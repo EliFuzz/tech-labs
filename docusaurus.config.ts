@@ -10,7 +10,7 @@ const config: Config = {
   tagline: "Tech Labs",
   favicon: "img/favicon.ico",
   url: "https://EliFuzz.github.io",
-  baseUrl: "/",
+  baseUrl: "/tech-labs/",
   projectName: "EliFuzz.github.io",
   organizationName: "EliFuzz",
   trailingSlash: false,
