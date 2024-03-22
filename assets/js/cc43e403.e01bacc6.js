@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkclassic=self.webpackChunkclassic||[]).push([[3195],{82356:a=>{a.exports=JSON.parse('{"title":"Architect","slug":"/category/architect","permalink":"/docs/category/architect","navigation":{"previous":{"title":"Database","permalink":"/docs/roadmap/database/database"},"next":{"title":"Overview","permalink":"/docs/roadmap/architect/overview"}}}')}}]);
