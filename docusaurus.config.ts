@@ -80,7 +80,7 @@ const config: Config = {
         },
         {
           label: "🧬 Toolset",
-          href: "/en/toolset",
+          href: "/toolset",
           position: "left",
         },
         {
