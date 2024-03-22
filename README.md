@@ -1,7 +1,7 @@
 # Tech-Labs 🧬
 
 Welcome to Tech-Labs, your comprehensive education database for all tech professions! This repository serves as a hub for studying materials, interview preparations, and essential developer toolsets
-for day-to-day tasks.
+for day-to-day tasks
 
 ## Table of Contents
 
