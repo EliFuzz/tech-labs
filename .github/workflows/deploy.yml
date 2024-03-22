@@ -13,6 +13,8 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - uses: actions/checkout@v4
         with:
@@ -22,8 +24,6 @@ jobs:
           node-version: 18
           cache: pnpm
 
-      - name: Install pnpm
-        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
