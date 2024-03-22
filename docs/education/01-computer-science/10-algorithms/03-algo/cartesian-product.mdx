@@ -1,0 +1,136 @@
+---
+title: Cartesian Product
+description: Cartesian Product
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/cartesian-product/go.go";
+import Java from "!!raw-loader!./assets/cartesian-product/java.java";
+import JS from "!!raw-loader!./assets/cartesian-product/js.js";
+import Kotlin from "!!raw-loader!./assets/cartesian-product/kt.kt";
+import Python from "!!raw-loader!./assets/cartesian-product/py.py";
+import Rust from "!!raw-loader!./assets/cartesian-product/rs.rs";
+import TS from "!!raw-loader!./assets/cartesian-product/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Cartesian Product Algorithm is a computational method used to find the Cartesian product of two or more sets. It generates all possible combinations of elements from these sets, creating a new set of tuples
+  </TabItem>
+  <TabItem value="how" label="Explanation"></TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Iterate through each element of the first set
+    - For each element, iterate through each element of the second set
+    - Combine the elements into tuples
+    - If there are more sets, repeat steps 2-3 for each subsequent set
+    - Store the tuples in the Cartesian product set
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure efficient memory usage, especially for large sets, as the Cartesian product can grow exponentially
+    - optimize the algorithm by avoiding unnecessary iterations or redundant computations
+    - use appropriate data structures to store intermediate results and the final Cartesian product set efficiently
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    cartesianProduct(sets):
+      // Initialize an empty list to store the Cartesian product
+      cartesianSet = []
+
+      // Initialize a list to keep track of the current index of each set
+      currentIndex = [0] * length(sets)
+
+      // Start with the first element of the first set
+      generateCartesianProduct(sets, cartesianSet, currentIndex, 0)
+
+      return cartesianSet
+
+    generateCartesianProduct(sets, cartesianSet, currentIndex, setIndex):
+      // Base case: if all sets have been traversed, add the current combination to the Cartesian product
+      if setIndex == length(sets):
+        cartesianSet.append(getCurrentCombination(sets, currentIndex))
+        return
+
+      // Iterate over each element in the current set
+      for i from 0 to length(sets[setIndex]) - 1:
+        // Update the current index for the current set
+        currentIndex[setIndex] = i
+
+        // Recursively generate combinations for the next set
+        generateCartesianProduct(sets, cartesianSet, currentIndex, setIndex + 1)
+
+    getCurrentCombination(sets, currentIndex):
+      // Initialize an empty list to store the current combination
+      combination = []
+
+      // Iterate over each set and append the element at the current index to the combination
+      for i from 0 to length(sets) - 1:
+        combination.append(sets[i][currentIndex[i]])
+
+      return combination
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,375 @@
+---
+title: Suffix Tree
+description: Suffix Tree Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/suffixTree/go.go";
+import Java from "!!raw-loader!./assets/suffixTree/java.java";
+import JS from "!!raw-loader!./assets/suffixTree/js.js";
+import Kotlin from "!!raw-loader!./assets/suffixTree/kt.kt";
+import Python from "!!raw-loader!./assets/suffixTree/py.py";
+import Rust from "!!raw-loader!./assets/suffixTree/rs.rs";
+import TS from "!!raw-loader!./assets/suffixTree/ts.ts";
+
+![](./assets/suffixTree/suffixTree.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sibling lists / unsorted arrays</td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Bitwise sibling trees</td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Hash maps</td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Balanced search tree</td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Sorted arrays</td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Hash maps + sibling lists</td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Suffix Tree** is a tree-based data structure that efficiently represents all suffixes of a given string, enabling fast pattern matching and substring search algorithms
+
+  :::note[Simplified]
+
+  Imagine you have a giant book, and a Suffix Tree is like a smart index that helps you quickly find any word or phrase in the book without reading it all over again, making searches faster and more
+  efficient
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Suffix Tree** (also called **PAT Tree** or **Position Tree**) is a compressed trie containing all the suffixes of the given text as their keys and positions in the text as their values. Suffix
+    trees allow particularly fast implementations of many important string operations.
+
+    ### Trie vs Suffix Tree
+
+    - **Suffix Tree** is a compressed and optimized version of a Trie, specifically designed for efficient storage and retrieval of all suffixes of a given string, making it more suitable for
+    text-related tasks such as pattern matching and substring searches
+    - **Trie** is a tree-like data structure that stores a dynamic set of strings and allows efficient prefix searches
+
+    ### Searching Pattern
+
+    When searching for a pattern in a text, preprocessing the pattern can significantly improve search time. Various algorithms like KMP, Rabin Karp, Finite Automata, and Boyer Moore focus on
+    preprocessing patterns. However, an alternative approach is to preprocess the text itself using a suffix tree. Suffix trees, built from the text, allow searching any pattern in `O(m)` time, where
+    m is the pattern length. This method is particularly efficient for fixed or infrequently changing texts.
+
+    To search a pattern in a built suffix tree, start from the root and iterate through each character of the pattern. For every character, follow the edge in the suffix tree if it exists. If not,
+    conclude that the pattern doesn't exist in the text. If all characters of the pattern are processed, a path from the root for the pattern characters indicates a successful pattern search.
+
+    ### Compressed Trie
+
+    A suffix tree is essentially a compressed trie for all suffixes of a given text. Building a suffix tree involves generating all suffixes and constructing a compressed trie from them. This trie can
+    be further compressed by joining chains of single nodes, creating the final suffix tree.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Build Suffix Tree</td>
+         <td>
+           ```
+           build_suffix_tree():
+             for index in text.length:
+               _add_suffix(index, root)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Add Suffix</td>
+         <td>
+           ```
+           add_suffix(suffix):
+             _add_suffix(0, root)
+
+           _add_suffix(suffix_start, node):
+             if suffix_start == text.length:
+               return
+
+             current_char = text[suffix_start]
+             if current_char not in node.children:
+               node.children[current_char] = SuffixNode()
+               node.children[current_char].index = suffix_start
+             else:
+               existing_node = node.children[current_char]
+               _add_suffix(suffix_start + 1, existing_node)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Insertion</td>
+         <td>
+           ```
+           insert(new_text):
+             text += new_text
+             for index in range(text.length - new_text.length, text.length):
+               _add_suffix(index, root)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Search</td>
+         <td>
+           ```
+           search(pattern):
+             current_node = root
+             n = len(pattern)
+             i = 0
+
+             while i < n:
+               char = pattern[i]
+               if char in current_node.children:
+                 current_node = current_node.children[char]
+                 i += 1
+               else:
+                 return False
+
+             return True
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Delete</td>
+         <td>
+           ```
+           delete(pattern):
+             if search(pattern):
+               text = text.replace(pattern, "", 1)
+               root = SuffixNode()
+               build_suffix_tree()
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Longest Common Substring</td>
+         <td>
+           ```
+           longest_common_substring():
+             result = [0, 0]
+             _longest_common_substring_dfs(root, "", result)
+             return text.substring(result[0], result[1])
+
+           _longest_common_substring_dfs(node, current_suffix, result):
+             if not node.children:
+               return
+
+             for child in node.children.values():
+               new_suffix = current_suffix + text[child.index]
+
+               if len(new_suffix) > result[1] - result[0]:
+                 result[0] = child.index - len(new_suffix) + 1
+                 result[1] = child.index + 1
+
+               _longest_common_substring_dfs(child, new_suffix, result)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Substring Count</td>
+         <td>
+           ```
+           substring_count(node=None):
+             if node is None:
+               node = root
+
+             count = 1
+             for child in node.children.values():
+               count += substring_count(child)
+
+             return count
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Pattern Matching</td>
+         <td>
+           ```
+           pattern_matching(pattern, node=None):
+             if node is None:
+               node = root
+
+             for i, char in enumerate(pattern):
+               if char in node.children:
+                 node = node.children[char]
+               else:
+                 return []
+
+             return _get_leaf_indices(node)
+
+           _get_leaf_indices(node):
+             indices = []
+             if not node.children:
+               indices.append(node.index)
+
+             for child in node.children.values():
+               indices.extend(_get_leaf_indices(child))
+
+             return indices
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Traverse</td>
+         <td>
+           ```
+           traverse(node=None, depth=0):
+             if node is None:
+               node = root
+             print(" " * depth + "Node: " + node.index)
+             for char, child in node.children.items():
+               print(" " * (depth + 1) + "Edge: " + char)
+               traverse(child, depth + 2)
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

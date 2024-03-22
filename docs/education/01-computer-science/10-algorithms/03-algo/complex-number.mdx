@@ -1,0 +1,137 @@
+---
+title: Complex Number
+description: Complex Number
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/complex-number/go.go";
+import Java from "!!raw-loader!./assets/complex-number/java.java";
+import JS from "!!raw-loader!./assets/complex-number/js.js";
+import Kotlin from "!!raw-loader!./assets/complex-number/kt.kt";
+import Python from "!!raw-loader!./assets/complex-number/py.py";
+import Rust from "!!raw-loader!./assets/complex-number/rs.rs";
+import TS from "!!raw-loader!./assets/complex-number/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Complex Number Algorithm is designed to perform arithmetic operations (addition, subtraction, multiplication, division) on complex numbers. Complex numbers consist of a real part and an imaginary part and are represented in the form a + bi, where 'a' is the real part, 'b' is the imaginary part, and 'i' is the imaginary unit (`√-1`)
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    - Addition:
+      - add their real parts and imaginary parts separately
+    - Subtraction
+      - subtract the corresponding real and imaginary parts
+    - Multiplication
+      - use the distributive property and multiply each term of one number by each term of the other
+    - Division
+      - multiply the numerator and denominator by the complex conjugate of the denominator, then simplify
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Addition
+      - add the real parts of both complex numbers
+      - add the imaginary parts of both complex numbers
+      - combine the results to get the sum
+    - Subtraction
+      - subtract the real part of the second complex number from the real part of the first
+      - subtract the imaginary part of the second complex number from the imaginary part of the first
+      - combine the results to get the difference
+    - Multiplication
+      - multiply the real parts of both complex numbers
+      - multiply the imaginary parts of both complex numbers
+      - combine the results to get the product
+    - Division
+      - find the complex conjugate of the denominator
+      - multiply the numerator and denominator by the complex conjugate
+      - simplify the result to obtain the quotient
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure that the programming language you're using supports complex number arithmetic natively or through libraries
+    - pay attention to handling special cases, such as division by zero or complex numbers with zero imaginary parts
+    - use built-in functions or libraries for complex arithmetic operations to simplify implementation and improve efficiency
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    addComplex(a, b):
+      return (a.real + b.real, a.imag + b.imag)
+
+    subtractComplex(a, b):
+      return (a.real - b.real, a.imag - b.imag)
+
+    multiplyComplex(a, b):
+      real = (a.real * b.real) - (a.imag * b.imag)
+      imag = (a.real * b.imag) + (a.imag * b.real)
+      return (real, imag)
+
+    divideComplex(a, b):
+      conjugate_b = (b.real, -b.imag)
+      numerator = multiplyComplex(a, conjugate_b)
+      denominator = multiplyComplex(b, conjugate_b)
+      return (numerator.real / denominator.real, numerator.imag / denominator.real)
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

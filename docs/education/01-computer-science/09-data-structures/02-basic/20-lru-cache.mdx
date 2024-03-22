@@ -1,0 +1,188 @@
+---
+title: LRU Cache
+description: LRU Cache Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/lruCache/go.go";
+import Java from "!!raw-loader!./assets/lruCache/java.java";
+import JS from "!!raw-loader!./assets/lruCache/js.js";
+import Kotlin from "!!raw-loader!./assets/lruCache/kt.kt";
+import Python from "!!raw-loader!./assets/lruCache/py.py";
+import Rust from "!!raw-loader!./assets/lruCache/rs.rs";
+import TS from "!!raw-loader!./assets/lruCache/ts.ts";
+
+![](./assets/lruCache/lruCache.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **LRU Cache** is a cache data structure that evicts the least recently used item when it is full.
+
+  :::note[Simplified]
+
+  **LRU Cache** is like a clothes rack. It holds a limited amount of data. When new data comes in, it removes the least recently used data, similar to removing the least worn clothing from a full
+  rack to make room for a new one. This keeps frequently used data quickly accessible.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    The **Least Recently Used (LRU) Cache** is a cache replacement algorithm that discards the least recently used items first. It can be implemented using a combination of a doubly linked list and a
+    hash map for quick access and efficient operations or ordered map.
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>LRU Cache on Map</td>
+         <td>
+           ```
+           get(key):
+             if key not in items:
+               return ø
+             value = items.get(key)
+             items.delete(key)
+             items.set(key, value)
+             return value
+
+           set(key, value):
+             items.delete(key)
+             items.set(key, value)
+             if items.size > capacity:
+               for each head_key in items.keys():
+                 items.delete(head_key)
+                 break
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>LRU Cache on Linked List</td>
+         <td>
+           ```
+           get(key):
+             if nodes_map[key] == ø:
+               return ø
+             node = nodes_map[key]
+             promote(node)
+             return node.value
+
+           set(key, value):
+             if nodes_map[key] == ø:
+               node = LinkedListNode(key, value)
+               append(node)
+             else:
+               node = nodes_map[key]
+               node.value = value
+               promote(node)
+
+           promote(node):
+             evict(node)
+             append(node)
+
+           append(node):
+             nodes_map[node.key] = node
+             if head.next != ø:
+               head.next = node
+               tail.prev = node
+               node.prev = head
+               node.next = tail
+             else:
+               old_tail = tail.prev
+               old_tail.next = node
+               node.prev = old_tail
+               node.next = tail
+               tail.prev = node
+               size += 1
+               if size > capacity:
+                 evict(head.next)
+
+           evict(node):
+             delete nodes_map[node.key]
+             size -= 1
+             prev_node = node.prev
+             next_node = node.next
+             if prev_node == head and next_node == tail:
+               head.next = ø
+               tail.prev = ø
+               size = 0
+             else if prev_node == head:
+               next_node.prev = head
+               head.next = next_node
+             else if next_node == tail:
+               prev_node.next = tail
+               tail.prev = prev_node
+             else:
+               prev_node.next = next_node
+               next_node.prev = prev_node
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

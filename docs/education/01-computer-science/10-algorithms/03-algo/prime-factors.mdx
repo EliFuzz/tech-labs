@@ -1,0 +1,116 @@
+---
+title: Prime Factors
+description: Prime Factors
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/prime-factors/go.go";
+import Java from "!!raw-loader!./assets/prime-factors/java.java";
+import JS from "!!raw-loader!./assets/prime-factors/js.js";
+import Kotlin from "!!raw-loader!./assets/prime-factors/kt.kt";
+import Python from "!!raw-loader!./assets/prime-factors/py.py";
+import Rust from "!!raw-loader!./assets/prime-factors/rs.rs";
+import TS from "!!raw-loader!./assets/prime-factors/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Prime Factors Algorithm is a computational method used to find the prime factors of a given integer. It leverages the fundamental theorem of arithmetic, which states that every integer greater than 1 either is a prime number itself or can be factorized into a unique combination of prime numbers. The algorithm efficiently identifies these prime factors, aiding in various mathematical and cryptographic applications
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Iteratively dividing the given integer by the smallest prime numbers (starting from 2) until the quotient becomes 1. At each step, it checks if the current divisor divides the integer evenly. If so, the divisor is a prime factor, and it is added to the list of factors. This process continues until the quotient becomes 1, indicating that all prime factors have been found
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with the given integer to factorize
+    - Initialize an empty list to store prime factors
+    - Begin iterating from 2, the smallest prime number
+      - check if the current number divides the given integer evenly
+      - if it does, add the current number to the list of prime factors
+      - divide the given integer by the current number
+      - repeat steps until the given integer becomes 1
+    - Return the list of prime factors
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use the fundamental theorem of arithmetic to guide the algorithm
+    - utilize efficient data structures to store factors and perform divisions
+    - handle edge cases like prime numbers or negative integers appropriately
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    prime_factors(n):
+      factors = []  # Initialize empty list to store prime factors
+      divisor = 2   # Start with the smallest prime number
+
+      while n > 1:
+        while n % divisor == 0:  # Check if divisor divides n evenly
+          factors.append(divisor)  # Add divisor to list of prime factors
+          n = n / divisor   # Update n by dividing by divisor
+        divisor = divisor + 1  # Move to the next number
+      return factors  # Return the list of prime factors
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

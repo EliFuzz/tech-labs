@@ -1,0 +1,125 @@
+---
+title: Combination Sum
+description: Combination Sum
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/combination-sum/go.go";
+import Java from "!!raw-loader!./assets/combination-sum/java.java";
+import JS from "!!raw-loader!./assets/combination-sum/js.js";
+import Kotlin from "!!raw-loader!./assets/combination-sum/kt.kt";
+import Python from "!!raw-loader!./assets/combination-sum/py.py";
+import Rust from "!!raw-loader!./assets/combination-sum/rs.rs";
+import TS from "!!raw-loader!./assets/combination-sum/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Combination Sum Algorithm finds all unique combinations of a given set of numbers that sum up to a specific target value. It's a backtracking algorithm commonly used in scenarios where you need to solve problems related to combinations and permutations
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm begins by sorting the input array to manage duplicates effectively. It then recursively traverses through potential combinations of numbers to reach the target sum. During each iteration, it chooses whether to include or exclude a number from the array in the current combination. This recursive process persists until either a combination adding up to the target is found or all possibilities are exhausted
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Sort the input array in non-decreasing order to handle duplicates
+    - Initialize an empty list to store combinations
+    - Implement a recursive function
+      - Base case: If the target sum becomes 0, add the current combination to the result list
+      - Iterate through the array
+        - For each element, subtract it from the target sum
+        - Recursively call the function with the updated target and the remaining elements of the array
+        - Remove the element from the current combination
+    - Call the recursive function with the initial target sum and the entire input array
+    - Return the list of combinations
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - avoid duplicate combinations by sorting the input array and skipping duplicates during recursion
+    - prune the search space by stopping recursion if the current element exceeds the remaining target sum
+    - use a data structure like a set to store unique combinations and avoid duplicates
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    combinationSum(nums, target):
+      sort(nums) // Sort the input array
+      result = [] // Initialize result list
+
+      backtrack(0, target, []) // Call the recursive function with initial parameters
+      return result
+
+    backtrack(start, target, path):
+      if target == 0:
+        result.append(path) // Add current combination to result
+        return
+
+      for i from start to length(nums):
+        if nums[i] > target:
+          break // Stop recursion if current element exceeds target
+
+        backtrack(i, target - nums[i], path + [nums[i]]) // Recur with updated target and path
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

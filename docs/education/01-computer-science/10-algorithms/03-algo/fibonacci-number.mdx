@@ -1,0 +1,108 @@
+---
+title: Fibonacci Number
+description: Fibonacci Number
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/fibonacci-number/go.go";
+import Java from "!!raw-loader!./assets/fibonacci-number/java.java";
+import JS from "!!raw-loader!./assets/fibonacci-number/js.js";
+import Kotlin from "!!raw-loader!./assets/fibonacci-number/kt.kt";
+import Python from "!!raw-loader!./assets/fibonacci-number/py.py";
+import Rust from "!!raw-loader!./assets/fibonacci-number/rs.rs";
+import TS from "!!raw-loader!./assets/fibonacci-number/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Fibonacci number algorithm generates a sequence of numbers known as the Fibonacci sequence, where each number is the sum of the two preceding ones, starting with 0 and 1
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    To compute the nth Fibonacci number, a function named `fibonacci` is created, accepting an integer parameter `n`. Inside this function, a base case is established: if `n` is 0 or 1, the function returns `n`. Otherwise, the function recursively calls itself with `n - 1` and `n - 2`, adding their results together. This recursive process continues until reaching the base case. Finally, the sum obtained from these recursive calls is returned as the nth Fibonacci number
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with `a = 0` and `b = 1`
+    - Iterate `n` times (where `n` is the desired Fibonacci number's position)
+      - update `temp` to `a`
+      - set `a` to `b`
+      - update `b` to `temp + b`
+    - Return the value of `a`
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use dynamic programming for better efficiency
+    - avoid recursive approaches for large values of n due to stack overflow
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    fibonacci(n):
+      if n <= 1:
+        return n
+      else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

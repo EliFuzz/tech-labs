@@ -1,0 +1,126 @@
+{
+  "key": "ts",
+  "metadata": {
+    "name": "TypeScript",
+    "url": "https://www.typescriptlang.org/",
+    "logo": "/static/img/lang/ts.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "boolean",
+      "description": "boolean",
+      "code": "false"
+    },
+    {
+      "name": "number",
+      "description": "Number",
+      "code": "0"
+    },
+    {
+      "name": "string",
+      "description": "UTF-16 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "bigInt",
+      "description": "BigInt",
+      "code": "0n"
+    },
+    {
+      "name": "symbol",
+      "description": "Symbol",
+      "code": "Symbol()"
+    }
+  ],
+  "reservedKeywords": [
+    "any",
+    "as",
+    "boolean",
+    "break",
+    "case",
+    "catch",
+    "class",
+    "const",
+    "constructor",
+    "continue",
+    "debugger",
+    "declare",
+    "default",
+    "delete",
+    "do",
+    "else",
+    "enum",
+    "export",
+    "extends",
+    "false",
+    "finally",
+    "for",
+    "from",
+    "function",
+    "get",
+    "if",
+    "implements",
+    "import",
+    "in",
+    "instanceof",
+    "interface",
+    "let",
+    "module",
+    "new",
+    "null",
+    "number",
+    "of",
+    "package",
+    "private",
+    "protected",
+    "public",
+    "require",
+    "return",
+    "set",
+    "static",
+    "string",
+    "super",
+    "switch",
+    "symbol",
+    "this",
+    "throw",
+    "true",
+    "try",
+    "type",
+    "typeof",
+    "var",
+    "void",
+    "while",
+    "with",
+    "yield"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "console.log(\"Hello, World!\")"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [],
+    "imports": [],
+    "variables": [],
+    "functions": [],
+    "flowControls": [],
+    "structures": [],
+    "errorHandling": [],
+    "concurrency": []
+  }
+}

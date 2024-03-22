@@ -1,0 +1,138 @@
+---
+title: Radix Sort
+description: Radix Sort
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/radix-sort/go.go';
+import Java from '!!raw-loader!./assets/radix-sort/java.java';
+import JS from '!!raw-loader!./assets/radix-sort/js.js';
+import Kotlin from '!!raw-loader!./assets/radix-sort/kt.kt';
+import Python from '!!raw-loader!./assets/radix-sort/py.py';
+import Rust from '!!raw-loader!./assets/radix-sort/rs.rs';
+import TS from '!!raw-loader!./assets/radix-sort/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Radix Sort is a non-comparative sorting algorithm that sorts integers by grouping them based on individual digits or radix (base). It works by iterating through each digit of the numbers, starting from the least significant digit (rightmost) to the most significant digit (leftmost). Radix Sort can be implemented using different approaches like LSD (Least Significant Digit) or MSD (Most Significant Digit)
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Radix Sort sorts numbers by placing them into buckets based on the value of their digits at a specific position. It starts from the least significant digit, placing each number into its respective bucket based on that digit. Then, it gathers the numbers from the buckets and repeats the process for the next significant digit until all digits have been considered. This process sorts the numbers effectively, as at each iteration, the numbers are arranged based on increasingly significant digits, leading to the final sorted sequence
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Identify the maximum number of digits in the given list of integers to determine the number of iterations required
+      - start from the least significant digit and iterate through each digit position
+      - for each iteration, create buckets for each digit (0-9)
+      - iterate through the list of integers and place each number into the corresponding bucket based on the digit at the current position
+      - gather the numbers from the buckets in the order they were placed and overwrite the original list with the sorted sequence
+      - repeat steps for each digit position until all digits have been considered
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure proper handling of negative numbers and zero-padding to maintain the significance of digits
+    - choose the appropriate approach (LSD or MSD) based on the characteristics of the data to optimize performance
+    - implement efficient bucketing and gathering strategies to minimize overhead
+    - consider the range of integers in the input data to optimize bucket sizes and reduce memory consumption
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    radix_sort(arr):
+      max_digit = getMax(arr)
+      exp = 1
+      while max_digit // exp > 0:
+        counting_sort(arr, exp)
+        exp *= 10
+
+    counting_sort(arr, exp):
+      n = len(arr)
+      output = [0] * n
+      count = [0] * 10
+
+      for i in range(n):
+        index = arr[i] // exp % 10
+        count[index] += 1
+
+      for i in range(1, 10):
+        count[i] += count[i - 1]
+
+      i = n - 1
+      while i >= 0:
+        index = arr[i] // exp % 10
+        output[count[index] - 1] = arr[i]
+        count[index] -= 1
+        i -= 1
+
+      for i in range(n):
+        arr[i] = output[i]
+
+    getMax(arr):
+      max_num = max(arr)
+      max_digit = len(str(max_num))
+      return max_digit
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

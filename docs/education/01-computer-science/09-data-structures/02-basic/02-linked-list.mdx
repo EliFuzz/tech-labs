@@ -1,0 +1,300 @@
+---
+title: Linked List
+description: Linked List Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/linkedList/go.go";
+import Java from "!!raw-loader!./assets/linkedList/java.java";
+import JS from "!!raw-loader!./assets/linkedList/js.js";
+import Kotlin from "!!raw-loader!./assets/linkedList/kt.kt";
+import Python from "!!raw-loader!./assets/linkedList/py.py";
+import Rust from "!!raw-loader!./assets/linkedList/rs.rs";
+import TS from "!!raw-loader!./assets/linkedList/ts.ts";
+
+![](./assets/linkedList/linkedList.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="6">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Linked List** is a dynamic data structure that consists of nodes, each containing data and a reference to the next node in the sequence.
+
+  :::note[Simplified]
+
+  **Linked List** is like a treasure hunt game. You start at the 'head' node and follow links to other nodes, each holding data and a link to the next node. The last node, or 'tail', has no link.
+  Just
+  like the game, you traverse the list to find your 'treasure' or data.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Linked list** is a dynamic structure organizing elements linearly via pointers, not physical memory locations like arrays. Each element, or node, holds data and a link to the next node. This
+    allows efficient element addition or deletion during iteration. Advanced linked lists have extra links for efficient element insertion or removal from any reference point. However, linked lists
+    have
+    linear access time, making operations like random access challenging. While arrays have better cache locality, the flexibility of linked lists makes them useful in many computer science areas.
+
+    ### Variants
+
+    #### Singly-Linked List
+
+    ![](./assets/linkedList/linkedList.svg)
+
+    Linear data structure where elements, each containing data and a reference to the next element, form a sequence. It begins with a head node, and the last node has a null reference. Singly-linked
+    lists are useful for dynamic memory allocation.
+
+    #### Doubly Linked List
+
+    ![](./assets/linkedList/doublyLinkedList.svg)
+
+    Linear data structure where nodes contain data and 2 pointers, one pointing to the next node and another to the previous node, allowing for bidirectional traversal.
+
+    #### Circular Linked List
+
+    ![](./assets/linkedList/circularLinkedList.svg)
+
+    Variation of a Linked List where the last node points back to the first, forming a closed loop. It facilitates continuous traversal and is useful for scenarios requiring repetitive processing or
+    indefinite iteration through a sequence.
+
+    #### Doubly Circular Linked List
+
+    ![](./assets/linkedList/circularDoublyLinkedList.svg)
+
+    Data structure where each node has data, a pointer to the next node, and a pointer to the previous node, forming bidirectional links. The last node connects back to the first, creating a closed
+    loop. This structure enables both forward and backward traversal and is useful for scenarios requiring bidirectional navigation with continuous iteration.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Prepend</td>
+        <td>
+          ```
+          prepend(data)
+            node = Node(data, head)
+            head = node
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Insert Before</td>
+        <td>
+          ```
+          insert_before(value, data)
+            if head == ø:
+              return
+            if data.head == value:
+              node = Node(data, head)
+              head = node
+              return
+            current = head
+            while current.next != ø and current.next.data != value:
+              current = current.next
+            if current.next != ø:
+              current.next = Node(data, current.next)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Insert After</td>
+        <td>
+          ```
+          insert_after(value, data)
+            current = head
+            while current != ø and current.data != value:
+              current = current.next
+            if current != ø:
+              current.next = Node(data, current.next)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Insert at Index</td>
+        <td>
+          ```
+          insert_at(index, data)
+            if index < 0:
+              throw error "Index must be greater than or equal to 0"
+            if index == 0:
+              node = Node(data, head)
+              head = node
+              return
+            current = head
+            current_index = 0
+            while current != ø and index - 1 > current_index:
+              current = current.next
+              current_index++
+            if current == ø:
+              throw error "Index exceeds the size of the list"
+            current.next = Node(data, current.next)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Append</td>
+        <td>
+          ```
+          append(data)
+            if head == ø:
+              head = Node(data)
+            else:
+              current = head
+              while current.next != ø:
+                current = current.next
+              current.next = Node(data)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Find</td>
+        <td>
+          ```
+          find(value)
+            current = head
+            while current != ø and current.data != value:
+              current = current.next
+            return current.data
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Delete Head</td>
+        <td>
+          ```
+          delete_head()
+            if head != ø:
+              head = head.next
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Remove Node</td>
+        <td>
+          ```
+          delete(value)
+            if head == ø:
+              return
+            if head.data == value:
+              head = head.next
+              return
+            current = head
+            while current.next != ø and current.next.data != value:
+              current = current.next
+            if current.next != ø:
+              current.next = current.next.next
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Delete Tail</td>
+        <td>
+          ```
+          delete_last()
+            if head == ø:
+              return
+            if head.next == ø:
+              head = ø
+              return
+            current = head
+            while current.next.next != ø:
+              current = current.next
+            current.next = ø
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Reverse</td>
+        <td>
+          ```
+          reverse()
+            prev = ø
+            current = head
+            while current != ø:
+              next = current.next
+              current.next = prev
+              prev = current
+              current = next
+            head = prev
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Traverse</td>
+        <td>
+          ```
+          traverse()
+            current = head
+            while current != ø:
+              yield current.data
+              current = current.next
+          ```
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

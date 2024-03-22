@@ -1,0 +1,141 @@
+---
+title: Longest Common Subsequence (LCS)
+description: Longest Common Subsequence (LCS)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/longest-common-subsequence/go.go";
+import Java from "!!raw-loader!./assets/longest-common-subsequence/java.java";
+import JS from "!!raw-loader!./assets/longest-common-subsequence/js.js";
+import Kotlin from "!!raw-loader!./assets/longest-common-subsequence/kt.kt";
+import Python from "!!raw-loader!./assets/longest-common-subsequence/py.py";
+import Rust from "!!raw-loader!./assets/longest-common-subsequence/rs.rs";
+import TS from "!!raw-loader!./assets/longest-common-subsequence/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Longest Common Subsequence (LCS) Algorithm is a dynamic programming approach used to find the longest subsequence present in given sequences
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The LCS algorithm aims to find the longest subsequence that is common to two given sequences. It starts by constructing a matrix where each cell represents the length of the longest common subsequence up to that point in the sequences. By iteratively filling this matrix, the algorithm efficiently computes the length of the longest common subsequence. It does so by comparing characters of the input sequences at each step. If the characters match, it adds one to the length of the LCS obtained without considering those characters. Otherwise, it takes the maximum length obtained so far without considering either of the characters. Finally, tracing back through the filled matrix yields the actual LCS
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize a matrix with dimensions `[m+1][n+1]` where `m` and `n` are the lengths of the 2 sequences
+    - Iterate through each cell of the matrix
+    - If the characters at the corresponding positions in the sequences match, increment the value in the current cell by 1 plus the value in the diagonal cell
+    - If the characters don't match, take the maximum of the values in the adjacent cells (above or to the left)
+    - Continue this process until the entire matrix is filled
+    - Trace back through the matrix from the bottom-right cell to reconstruct the LCS
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - optimize space usage by realizing that you only need to keep track of the current row and the previous row of the matrix, reducing space complexity to `O(min(m, n))`
+    - ensure your implementation handles edge cases properly, such as empty sequences or sequences with no common elements
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    longest_common_subsequence(sequence1, sequence2):
+      m = length(sequence1)
+      n = length(sequence2)
+      matrix = initialize_matrix(m, n)
+
+      for i from 1 to m:
+        for j from 1 to n:
+          if sequence1[i-1] == sequence2[j-1]:
+            matrix[i][j] = matrix[i-1][j-1] + 1
+          else:
+            matrix[i][j] = max(matrix[i-1][j], matrix[i][j-1])
+
+      return reconstruct_lcs(matrix, sequence1, sequence2, m, n)
+
+    reconstruct_lcs(matrix, sequence1, sequence2, m, n):
+      lcs = []
+      i = m
+      j = n
+
+      while i > 0 and j > 0:
+        if sequence1[i-1] == sequence2[j-1]:
+          lcs.push(sequence1[i-1])
+          i -= 1
+          j -= 1
+        else if matrix[i-1][j] > matrix[i][j-1]:
+          i -= 1
+        else:
+          j -= 1
+
+      return reverse(lcs)
+
+    initialize_matrix(m, n):
+      matrix = new matrix with dimensions (m+1) x (n+1)
+      for i from 0 to m:
+        matrix[i][0] = 0
+      for j from 0 to n:
+        matrix[0][j] = 0
+      return matrix
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

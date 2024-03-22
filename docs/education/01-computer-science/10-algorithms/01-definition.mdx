@@ -1,0 +1,1447 @@
+---
+title: Definition
+description: Algorithms Definition
+hide_table_of_contents: true
+---
+
+# Algorithms Definition
+
+**Algorithm** is a set of precise instructions designed to solve a problem or perform a task. It's like a recipe, providing step-by-step guidance to achieve a desired outcome. Algorithms are used across many fields, from computer science to everyday problem-solving.
+
+**Paradigm**
+
+- **Brute Force**: look at all the possibilities and selects the best solution
+- **Greedy**: choose the best option at the current time, without any consideration for the future
+- **Divide and Conquer** - divide the problem into smaller parts and then solve those parts
+- **Dynamic Programming** - build up a solution using previously found sub-solutions
+- **Backtracking** - incrementally build candidates for a solution, but when the algorithm determines that a candidate cannot lead to a valid solution, it discards the candidate and backtracks to try another
+
+<table className="sticky column">
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Topic</th>
+      <th>Paradigm</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/knapsack-problem"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Knapsack Problem
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Dynamic Programming</td>
+      <td>
+        Optimize value by selecting items to fit into a limited-capacity
+        knapsack
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/articulation-points"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Articulation Points
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Graph Theory</td>
+      <td>Identifies critical nodes whose removal would disconnect a graph</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/bellman-ford-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bellman-Ford Algorithm
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Dynamic Programming</td>
+      <td>
+        Finds shortest paths from a single source to all other vertices in a
+        weighted graph, even with negative edge weights. It works by repeatedly
+        relaxing edges
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/best-time-to-buy-sell-stocks"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Best Time To Buy Sell Stocks
+        </a>
+      </td>
+      <td>Sliding Window / Set</td>
+      <td>Divide and Conquer</td>
+      <td>
+        Problem of finding the maximum profit from buying and selling stocks at
+        the right times
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/binary-floating-point"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Binary Floating Point
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Floating Point Arithmetic</td>
+      <td>
+        Representation of real numbers in binary format with a floating-point
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/binary-search"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Binary Search
+        </a>
+      </td>
+      <td>Search</td>
+      <td>Divide and Conquer</td>
+      <td>
+        Search algorithm that divides a sorted array into halves, eliminating
+        half of the remaining elements in each step.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/bit-manipulation"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bit Manipulation
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Bitwise Manipulation</td>
+      <td>Manipulating individual bits within binary numbers</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/breadth-first-search"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Breadth-First Search (BFS)
+        </a>
+      </td>
+      <td>Graph / Tree</td>
+      <td>Graph Traversal</td>
+      <td>
+        Traversal algorithm that systematically explores all neighbor nodes at
+        the present depth prior to moving on to nodes at the next depth level
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/bridges"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bridges
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Graph Theory</td>
+      <td>
+        Edges in a graph, the removal of which would increase the number of
+        connected components
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/bubble-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bubble Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Comparison-based Sort</td>
+      <td>
+        A simple sorting algorithm that repeatedly steps through the list,
+        compares adjacent elements, and swaps them if they are in the wrong
+        order
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/bucket-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bucket Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Distribution-based Sort</td>
+      <td>
+        A sorting algorithm that distributes elements into a number of
+        "buckets", and then sorts each bucket individually
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/caesar-cipher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Caesar Cipher
+        </a>
+      </td>
+      <td>Cryptography</td>
+      <td>Substitution Cipher</td>
+      <td>
+        A substitution cipher that shifts characters in the alphabet by a fixed
+        number of positions
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/cartesian-product"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cartesian Product
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Combinatorial</td>
+      <td>Set of all possible ordered pairs from two sets</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/combination-sum"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Combination Sum
+        </a>
+      </td>
+      <td>Combinatorial Problem</td>
+      <td>Backtracking</td>
+      <td>
+        Finding combinations of numbers that sum up to a given target value
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/combinations"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Combinations
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Divide and Conquer</td>
+      <td>Selections of elements without considering the order</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/complex-number"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Complex Number
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>A number that comprises a real part and an imaginary part</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/counting-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Counting Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Sort</td>
+      <td>
+        A non-comparison-based sorting algorithm that sorts elements by counting
+        the number of occurrences of each unique element
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/depth-first-search"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Depth-First Search (DFS)
+        </a>
+      </td>
+      <td>Graph / Tree</td>
+      <td>Divide and Conquer</td>
+      <td>
+        Traversal algorithm that explores all neighbor nodes at the present
+        depth prior to moving on to nodes at the next depth level
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/detect-graph-cycle"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Detect Graph Cycle
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Graph</td>
+      <td>Algorithms used to determine if a graph contains a cycle</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/dijkstra-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Dijkstra Algorithm
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Greedy</td>
+      <td>
+        Algorithm used to find the shortest paths from a single source node to
+        all other nodes in a weighted graph
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/discrete-fourier-transform"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discrete Fourier Transform
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Brute Force</td>
+      <td>
+        Transforming discrete data from the time domain to the frequency domain
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/euclidean-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Euclidean Algorithm
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Divide and Conquer</td>
+      <td>Finding the greatest common divisor of two integers</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/euclidean-distance"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Euclidean Distance
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>The distance between two points in Euclidean space</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/eulerian-path-and-eulerian-circuit-fleurys-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Eulerian Path and Eulerian Circuit - Fleury's Algorithm
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Graph</td>
+      <td>
+        Algorithms used to find paths and circuits that traverse each edge of a
+        graph exactly once
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/factorial"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Factorial
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>The product of all positive integers up to a given number</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/fast-powering"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Fast Powering
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Divide and Conquer</td>
+      <td>Efficiently computing the exponentiation of a number</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/fibonacci-number"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Fibonacci Number
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Dynamic Programming</td>
+      <td>
+        A sequence of numbers where each number is the sum of the two preceding
+        ones
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/fisher–yates-shuffle"
+          target=""
+          rel="noopener noreferrer"
+        >
+          Fisher–Yates Shuffle
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Randomization</td>
+      <td>A method for randomly shuffling the elements of an array</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/floyd-warshall-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Floyd-Warshall Algorithm
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Dynamic Programming</td>
+      <td>
+        Algorithm used to find the shortest paths between all pairs of nodes in
+        a weighted graph
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/hamiltonian-cycle"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hamiltonian Cycle
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Backtracking</td>
+      <td>A cycle that visits each vertex of a graph exactly once</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/hamming-distance"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hamming Distance
+        </a>
+      </td>
+      <td>String</td>
+      <td>Mathematical</td>
+      <td>
+        The number of positions at which corresponding symbols differ in two
+        sequences
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/heap-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Heap Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Sort</td>
+      <td>
+        A sorting algorithm that utilizes the heap data structure to sort
+        elements in ascending or descending order
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/hill-cipher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hill Cipher
+        </a>
+      </td>
+      <td>Cryptography</td>
+      <td>Cryptography</td>
+      <td>A polygraphic substitution cipher based on linear algebra</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/horners-method"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Horner's Method
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>An algorithm for polynomial evaluation</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/insertion-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Insertion Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Sort</td>
+      <td>
+        A sorting algorithm that builds a sorted list one element at a time by
+        repeatedly inserting the next element into the already sorted part of
+        the list
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/integer-partition"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Integer Partition
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Dynamic Programming</td>
+      <td>Representing a given integer as the sum of other integers</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/interpolation-search"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Interpolation Search
+        </a>
+      </td>
+      <td>Search</td>
+      <td>Search</td>
+      <td>
+        A search algorithm that extrapolates the position of the target value
+        based on its value and the values of the array's endpoints, providing a
+        quicker approach for uniformly distributed data
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/is-power-of-two"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Is Power of Two
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Math</td>
+      <td>Determining whether a given integer is a power of two</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/jump-game"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Jump Game
+        </a>
+      </td>
+      <td>Array</td>
+      <td>Backtracking / Divide and Conquer / Dynamic Programming / Greedy</td>
+      <td>
+        Problem of determining if it's possible to reach the last index of an
+        array starting from the first index
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/jump-search"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Jump Search (or Block Search)
+        </a>
+      </td>
+      <td>Search</td>
+      <td>Search</td>
+      <td>
+        An algorithm that jumps ahead by fixed steps and then performs linear
+        search within the block until the desired element is found
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/k-means"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          k-Means
+        </a>
+      </td>
+      <td>Machine Learning</td>
+      <td>Clustering</td>
+      <td>
+        A clustering algorithm that partitions data into k clusters based on
+        similarities
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/knn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          k-NN
+        </a>
+      </td>
+      <td>Machine Learning</td>
+      <td>Machine Learning</td>
+      <td>
+        k-Nearest Neighbors, a non-parametric method used for classification and
+        regression
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/knight-tour"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Knight's Tour
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Backtracking</td>
+      <td>
+        Problem of finding a sequence of moves for a knight on a chessboard that
+        visits every square exactly once
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/knuth–morris–pratt-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Knuth–Morris–Pratt Algorithm (KMP Algorithm)
+        </a>
+      </td>
+      <td>String</td>
+      <td>String Matching</td>
+      <td>
+        An efficient string-searching algorithm that searches for occurrences of
+        a "word" within a larger "text"
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/kruskal-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Kruskal's Algorithm
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Greedy</td>
+      <td>
+        Greedy algorithm used to find the minimum spanning tree of a connected,
+        undirected graph
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/least-common-multiple"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Least Common Multiple (lcm)
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>
+        The smallest positive integer that is divisible by two given integers
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/levenshtein-distance"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Levenshtein Distance
+        </a>
+      </td>
+      <td>String</td>
+      <td>Dynamic Programming</td>
+      <td>
+        The minimum number of single-character edits (insertions, deletions, or
+        substitutions) required to change one word into another
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/linear-search"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Linear Search
+        </a>
+      </td>
+      <td>Search</td>
+      <td>Brute Force</td>
+      <td>
+        A basic searching algorithm that sequentially examines each element in a
+        list until a match is found
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/en/docs/education/computer-science/algorithms/algo/liu-hui-algorithm">
+          Liu Hui `π` Algorithm
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>A method for approximating the value of `π`</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/longest-common-subsequence"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Longest Common Subsequence (LCS)
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Dynamic Programming</td>
+      <td>The longest sequence that is common to two or more sequences</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/longest-common-substring"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Longest Common Substring (LCS)
+        </a>
+      </td>
+      <td>String</td>
+      <td>Dynamic Programming</td>
+      <td>
+        The longest sequence of characters that appears in both given strings
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/longest-increasing-subsequence"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Longest Increasing Subsequence (LIS)
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Dynamic Programming</td>
+      <td>The longest subsequence where elements are in increasing order</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/matrices"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Matrices
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Divide and Conquer</td>
+      <td>Rectangular arrays of numbers</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/maximum-subarray"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Maximum Subarray
+        </a>
+      </td>
+      <td>Array</td>
+      <td>Brute Force / Divide and Conquer / Dynamic Programming</td>
+      <td>
+        Problem of finding the contiguous subarray with the largest sum within a
+        given array
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/merge-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Merge Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Divide and Conquer</td>
+      <td>
+        A divide-and-conquer sorting algorithm that recursively divides the
+        input list into smaller sublists, sorts those sublists, and then merges
+        them back together
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/n-queens-problem"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          N-Queens Problem
+        </a>
+      </td>
+      <td>Array</td>
+      <td>Backtracking</td>
+      <td>
+        Problem of placing N queens on an NxN chessboard such that no two queens
+        attack each other
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/nano-neuron"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          NanoNeuron
+        </a>
+      </td>
+      <td>Machine Learning</td>
+      <td>Machine Learning</td>
+      <td>
+        A simplified model of a neuron used for educational purposes in machine
+        learning
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/palindrome"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Palindrome
+        </a>
+      </td>
+      <td>String</td>
+      <td>String Manipulation</td>
+      <td>A sequence that reads the same backward as forward</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/pascal-triangle"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pascal's Triangle
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Divide and Conquer</td>
+      <td>A triangular array of binomial coefficients</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/permutations"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Permutations
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Divide and Conquer</td>
+      <td>Arrangements of elements in a specific order</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/polynomial-hash"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Polynomial Hash
+        </a>
+      </td>
+      <td>Cryptography</td>
+      <td>Hash</td>
+      <td>
+        A hash function that converts a string into a polynomial representation
+        for efficient hashing
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/power-set"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Power Set
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Backtracking</td>
+      <td>Set of all subsets of a given set</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/primality-test"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Primality Test
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>Determining whether a given number is prime or composite</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/prime-factors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Prime Factors
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>
+        The prime numbers that multiply together to give a composite number
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/prims-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Prim's Algorithm
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Greedy</td>
+      <td>
+        Greedy algorithm used to find the minimum spanning tree of a connected,
+        undirected graph
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/quicksort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Quicksort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Divide and Conquer</td>
+      <td>
+        A divide-and-conquer sorting algorithm that partitions the input list
+        into smaller sublists, recursively sorts those sublists, and then
+        combines them
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/rabin-karp-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Rabin Karp Algorithm
+        </a>
+      </td>
+      <td>String</td>
+      <td>String Manipulation</td>
+      <td>
+        A string-searching algorithm that searches for patterns in a string
+        using hashing
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/radian-degree"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Radian & Degree
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Mathematical</td>
+      <td>Units of measurement for angles</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/radix-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Radix Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Sort</td>
+      <td>
+        A non-comparison-based sorting algorithm that sorts elements by their
+        digits or numbers
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/rail-fence-cipher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Rail Fence Cipher
+        </a>
+      </td>
+      <td>Cryptography</td>
+      <td>Cryptography</td>
+      <td>
+        A transposition cipher that encrypts and decrypts messages by shifting
+        characters along diagonal rails
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/rain-terraces"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Rain Terraces
+        </a>
+      </td>
+      <td>Array</td>
+      <td>Brute Force / Dynamic Programming</td>
+      <td>
+        Problem involving calculating the amount of water that can be trapped
+        between blocks
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/recursion-staircase"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Recursive Staircase
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Brute Force / Dynamic Programming</td>
+      <td>
+        Problem of counting the number of ways to climb a staircase with a given
+        number of steps
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/regular-expression-matching"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Regular Expression Matching
+        </a>
+      </td>
+      <td>String</td>
+      <td>Dynamic Programming</td>
+      <td>
+        Determining if a string matches a pattern specified by a regular
+        expression
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/reverse-traversal"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Reverse Traversal
+        </a>
+      </td>
+      <td>Linked List</td>
+      <td>Iteration</td>
+      <td>
+        Traversing elements in the reverse order of their appearance in a data
+        structure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/seam-carving"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Seam Carving
+        </a>
+      </td>
+      <td>Image Processing</td>
+      <td>Dynamic Programming</td>
+      <td>
+        An image resizing technique that removes or adds pixels in a way that
+        preserves the most important features of the image
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/selection-sort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Selection Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Sort</td>
+      <td>
+        A sorting algorithm that divides the input list into two parts: a sorted
+        sublist and an unsorted sublist, and repeatedly selects the smallest (or
+        largest) element from the unsorted sublist to add to the sorted sublist
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/shellsort"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Shell Sort
+        </a>
+      </td>
+      <td>Sort</td>
+      <td>Sort</td>
+      <td>
+        A variation of insertion sort that sorts elements at different intervals
+        to improve performance
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/shortest-common-supersequence"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Shortest Common Supersequence (SCS)
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Dynamic Programming</td>
+      <td>The shortest string containing both given strings as subsequences</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/sieve-of-eratosthenes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Sieve of Eratosthenes
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Prime Number</td>
+      <td>An algorithm to find all prime numbers up to a specified integer</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/square-root-newtons-method"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Square Root - Newton's method
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Math</td>
+      <td>An iterative method for finding square roots</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/straight-traversal"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Straight Traversal
+        </a>
+      </td>
+      <td>Linked List</td>
+      <td>Iteration</td>
+      <td>Traversing elements in the order they appear in a data structure</td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/strongly-connected-components-kosarajus-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Strongly Connected Components - Kosaraju's Algorithm
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Graph</td>
+      <td>
+        Algorithms used to find sets of vertices in a directed graph such that
+        every vertex in the set is reachable from every other vertex
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/topological-sorting"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Topological Sorting
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Graph</td>
+      <td>
+        Arranging the nodes of a directed graph in a linear order respecting the
+        dependencies between nodes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/tower-of-hanoi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tower of Hanoi
+        </a>
+      </td>
+      <td>Math</td>
+      <td>Divide and Conquer / Recursion</td>
+      <td>
+        Mathematical puzzle involving the movement of disks from one peg to
+        another, following certain rules
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/travelling-salesman-problem"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Travelling Salesman Problem
+        </a>
+      </td>
+      <td>Graph</td>
+      <td>Brute Force</td>
+      <td>
+        A problem that asks for the shortest possible route that visits each
+        city exactly once and returns to the origin city
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/unbound-knapsack-problem"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Unbound Knapsack Problem
+        </a>
+      </td>
+      <td>Set</td>
+      <td>Dynamic Programming / Greedy</td>
+      <td>
+        Variation of the knapsack problem where there is an unlimited supply of
+        each item
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/unique-paths"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Unique Paths
+        </a>
+      </td>
+      <td>Grid</td>
+      <td>Backtracking / Dynamic Programming</td>
+      <td>
+        Problem of counting the number of unique paths from the top-left corner
+        to the bottom-right corner of a grid
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/weighted-random"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Weighted Random
+        </a>
+      </td>
+      <td>Statistics</td>
+      <td>Randomization</td>
+      <td>
+        Generating random values with different probabilities assigned to each
+        value
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="/en/docs/education/computer-science/algorithms/algo/z-algorithm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Z Algorithm
+        </a>
+      </td>
+      <td>String</td>
+      <td>String Matching</td>
+      <td>substring search (pattern matching)</td>
+    </tr>
+  </tbody>
+</table>

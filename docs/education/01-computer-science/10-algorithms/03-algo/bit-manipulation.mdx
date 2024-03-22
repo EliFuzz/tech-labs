@@ -1,0 +1,124 @@
+---
+title: Bit Manipulation
+description: Bit Manipulation
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/bit-manipulation/go.go";
+import Java from "!!raw-loader!./assets/bit-manipulation/java.java";
+import JS from "!!raw-loader!./assets/bit-manipulation/js.js";
+import Kotlin from "!!raw-loader!./assets/bit-manipulation/kt.kt";
+import Python from "!!raw-loader!./assets/bit-manipulation/py.py";
+import Rust from "!!raw-loader!./assets/bit-manipulation/rs.rs";
+import TS from "!!raw-loader!./assets/bit-manipulation/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    It involves manipulating individual bits within a binary representation of data. This algorithm aims to efficiently perform operations like setting, clearing, toggling, or checking the status of specific bits within binary numbers
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm leverages bitwise operators to perform operations directly on individual bits of binary numbers
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Setting a Bit
+      - to set a specific bit at position pos in an integer num, use the OR operator with a bitmask where only the desired bit is set to 1
+        - `num |= (1 << pos)`
+    - Clearing a Bit
+      - to clear a specific bit at position pos in an integer num, use the AND operator with a bitmask where only the desired bit is set to 0
+        - `num &= ~(1 << pos)`
+    - Toggling a Bit
+      - to toggle a specific bit at position pos in an integer num, use the XOR operator with a bitmask where only the desired bit is set to 1
+        - `num ^= (1 << pos)`
+    - Checking the Status of a Bit
+      - to check if a specific bit at position pos in an integer num is set, use the AND operator with a bitmask where only the desired bit is set to 1
+        - `(num & (1 << pos)) != 0` will return true if the bit is set, false otherwise
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - be mindful of integer overflow when shifting bits
+    - ensure to use unsigned integers to avoid issues with signed bit manipulation
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    // Setting a bit at position pos in num
+    setBit(num, pos):
+      return num | (1 << pos)
+
+    // Clearing a bit at position pos in num
+    clearBit(num, pos):
+      return num & ~(1 << pos)
+
+    // Toggling a bit at position pos in num
+    toggleBit(num, pos):
+      return num ^ (1 << pos)
+
+    // Checking if a bit at position pos in num is set
+    isBitSet(num, pos):
+      return (num & (1 << pos)) != 0
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,28 @@
+[
+  {
+    "value": "dataFormat",
+    "label": "Data Format",
+    "children": [
+      {
+        "value": "base64",
+        "label": "Base64"
+      },
+      {
+        "value": "base",
+        "label": "Base Conversion"
+      },
+      {
+        "value": "unit",
+        "label": "Unit Convertor"
+      },
+      {
+        "value": "string_manipulation",
+        "label": "String Manipulation"
+      },
+      {
+        "value": "url",
+        "label": "URL"
+      }
+    ]
+  }
+]

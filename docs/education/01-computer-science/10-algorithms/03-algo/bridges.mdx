@@ -1,0 +1,135 @@
+---
+title: Bridges
+description: Bridges
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/bridges/go.go";
+import Java from "!!raw-loader!./assets/bridges/java.java";
+import JS from "!!raw-loader!./assets/bridges/js.js";
+import Kotlin from "!!raw-loader!./assets/bridges/kt.kt";
+import Python from "!!raw-loader!./assets/bridges/py.py";
+import Rust from "!!raw-loader!./assets/bridges/rs.rs";
+import TS from "!!raw-loader!./assets/bridges/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Bridges Algorithm, also known as the "Bridges of Konigsberg" problem, is a classic graph theory problem that aims to determine whether it is possible to traverse all the bridges of a city's river system exactly once and return to the starting point without crossing any bridge twice. This algorithmic problem is essential in understanding Eulerian paths and circuits
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Start by creating a graph depicting the city's bridges. Calculate the degree of each node, representing the number of bridges connected to it. If there are more than two nodes with odd degrees, it's impossible to cross all bridges exactly once without retracing steps. In the case of exactly two nodes with odd degrees, begin the journey from one and conclude at the other. When all nodes have even degrees, any node can serve as the starting point for the route
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Identify the nodes and edges in the graph
+    - Calculate the degree of each node by counting the number of incident edges
+    - Determine if there are any nodes with odd degrees
+    - If there are more than two nodes with odd degrees, it's impossible to solve the problem
+    - If there are exactly two nodes with odd degrees, start the path from one of these nodes and end it at the other
+    - If all nodes have even degrees, any node can be chosen as a starting point
+    - Traverse the graph using depth-first search or breadth-first search to find a path that crosses each bridge exactly once
+    - Backtrack if necessary to explore alternative paths
+    - If a path exists that traverses all bridges exactly once, return it as the solution
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use graph representation techniques such as adjacency lists or matrices for efficient traversal
+    - employ backtracking to explore alternative paths when necessary
+    - validate the solution by ensuring that all bridges are traversed exactly once
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    function BridgesAlgorithm(graph):
+      odd_degree_nodes = []
+      for node in graph.nodes:
+        if degree(node) % 2 != 0:
+          odd_degree_nodes.append(node)
+
+      if length(odd_degree_nodes) > 2:
+        return "No solution exists"
+      else if length(odd_degree_nodes) == 2:
+        start_node = odd_degree_nodes[0]
+        end_node = odd_degree_nodes[1]
+      else:
+        start_node = any_node
+        end_node = any_node
+
+      path = find_path(graph, start_node)
+      return path
+
+    function find_path(graph, node):
+      path = []
+      stack = [node]
+      while stack is not empty:
+        current_node = stack.pop()
+        path.append(current_node)
+        for neighbor in graph.neighbors(current_node):
+          if edge(current_node, neighbor) not in path:
+            stack.push(neighbor)
+      return path
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

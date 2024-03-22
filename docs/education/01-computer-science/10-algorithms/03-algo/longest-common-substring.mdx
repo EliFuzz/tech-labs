@@ -1,0 +1,130 @@
+---
+title: Longest Common Substring (LCS)
+description: Longest Common Substring (LCS)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/longest-common-substring/go.go";
+import Java from "!!raw-loader!./assets/longest-common-substring/java.java";
+import JS from "!!raw-loader!./assets/longest-common-substring/js.js";
+import Kotlin from "!!raw-loader!./assets/longest-common-substring/kt.kt";
+import Python from "!!raw-loader!./assets/longest-common-substring/py.py";
+import Rust from "!!raw-loader!./assets/longest-common-substring/rs.rs";
+import TS from "!!raw-loader!./assets/longest-common-substring/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Longest Common Substring (LCS) Algorithm is a dynamic programming technique used to find the longest contiguous sequence of characters that is present in two given strings
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Building a matrix where each cell represents the length of the longest common substring ending at that position. It iteratively fills this matrix based on whether characters match in the two strings. The algorithm then traces back from the cell with the maximum value to reconstruct the actual substring
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Create a matrix with dimensions (length of string 1 + 1) by (length of string 2 + 1)
+    - Initialize the first row and first column of the matrix with zeros
+    - Iterate through each cell of the matrix, starting from the second row and second column
+    - If the characters at the corresponding positions in the two strings match, set the value of the current cell to the value of the cell diagonally left and above it, plus one
+    - If the characters do not match, set the value of the current cell to zero
+    - Track the maximum value encountered during the iteration and its position
+    - Trace back from the cell with the maximum value to reconstruct the longest common substring
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - optimize space usage by updating the matrix row by row instead of storing the entire matrix
+    - use efficient data structures like arrays instead of matrices for better memory utilization
+    - if memory is a concern, you can optimize further by using a rolling array approach, updating only the necessary portions of the matrix
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    longest_common_substring(string1, string2):
+      m = length(string1)
+      n = length(string2)
+      max_length = 0
+      end_index = 0
+
+      # Initialize a matrix to store lengths of longest common suffixes
+      # Initialize max_length and end_index to track the longest substring
+      matrix = [[0] * (n + 1) for _ in range(m + 1)]
+
+      # Iterate through each character of both strings
+      for i from 1 to m:
+        for j from 1 to n:
+          if string1[i - 1] == string2[j - 1]:
+            matrix[i][j] = matrix[i - 1][j - 1] + 1
+            if matrix[i][j] > max_length:
+              max_length = matrix[i][j]
+              end_index = i
+          else:
+            matrix[i][j] = 0
+
+      # Reconstruct the longest common substring
+      longest_substring = string1[end_index - max_length : end_index]
+
+      return longest_substring
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

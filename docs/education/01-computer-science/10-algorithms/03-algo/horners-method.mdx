@@ -1,0 +1,108 @@
+---
+title: Horner's Method
+description: Horner's Method
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/horners-method/go.go";
+import Java from "!!raw-loader!./assets/horners-method/java.java";
+import JS from "!!raw-loader!./assets/horners-method/js.js";
+import Kotlin from "!!raw-loader!./assets/horners-method/kt.kt";
+import Python from "!!raw-loader!./assets/horners-method/py.py";
+import Rust from "!!raw-loader!./assets/horners-method/rs.rs";
+import TS from "!!raw-loader!./assets/horners-method/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Horner's Method is an algorithm used to efficiently evaluate polynomials. It reduces the number of arithmetic operations required compared to other methods by evaluating the polynomial as a nested multiplication and addition process
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    evaluates a polynomial of the form $a_nx^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0$. Instead of evaluating each term individually and then summing them up, it uses a nested multiplication and addition approach. Starting from the highest degree term, it multiplies the current result by `x` and adds the next coefficient. This process continues until the constant term is reached.
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize a variable `result` to `0`
+    - Iterate through the coefficients of the polynomial from highest degree to lowest
+    - For each coefficient
+      - multiply the current `result` by `x`
+      - add the coefficient to the `result`
+    - Once all coefficients are processed, the `result` will hold the value of the polynomial evaluated at `x`
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure the coefficients of the polynomial are stored efficiently to reduce memory usage
+    - implement bounds checking to handle cases where the polynomial has fewer terms than expected
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    evaluate_polynomial(coefficients, x):
+      result = 0
+      for i from n to 0:
+        result = result * x + coefficients[i]
+      return result
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

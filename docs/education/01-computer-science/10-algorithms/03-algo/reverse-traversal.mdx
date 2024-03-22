@@ -1,0 +1,115 @@
+---
+title: Reverse Traversal
+description: Reverse Traversal
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/reverse-traversal/go.go";
+import Java from "!!raw-loader!./assets/reverse-traversal/java.java";
+import JS from "!!raw-loader!./assets/reverse-traversal/js.js";
+import Kotlin from "!!raw-loader!./assets/reverse-traversal/kt.kt";
+import Python from "!!raw-loader!./assets/reverse-traversal/py.py";
+import Rust from "!!raw-loader!./assets/reverse-traversal/rs.rs";
+import TS from "!!raw-loader!./assets/reverse-traversal/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Reverse Traversal Algorithm is a technique used to traverse through a data structure in reverse order, starting from the end and moving towards the beginning
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Start from the last element of the data structure and recursively or iteratively moving towards the first element. At each step, it processes the current element and then proceeds to the previous one until it reaches the beginning of the data structure
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Identify the data structure you want to traverse in reverse order
+    - Determine whether you'll use recursion or iteration for the traversal
+    - Recursive
+      - stop recursion when you reach the beginning of the data structure
+      - process the current element/node, then call the function recursively with the previous element/node
+    - Iterative
+      - initialize a pointer or index to the last element of the data structure
+      - iterate backwards through the data structure, processing each element in reverse order
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure that your base case for recursion properly handles the end condition to prevent infinite recursion
+    - keep track of the current position or node during traversal to process each element correctly
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    reverseTraversalRecursive(array, currentIndex):
+      if currentIndex < 0: # Base case: stop when reaching the beginning of the array
+        return
+      process(array[currentIndex]) # Process the current element
+      reverseTraversal(array, currentIndex - 1) # Recursive step: move to the previous element
+
+    reverseTraversalIterative(array):
+      endIndex = length(array) - 1
+      for i from endIndex to 0: # Iterate backwards through the array
+        process(array[i]) # Process each element in reverse order
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,105 @@
+---
+title: Is Power of Two
+description: Is Power of Two
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/is-power-of-two/go.go";
+import Java from "!!raw-loader!./assets/is-power-of-two/java.java";
+import JS from "!!raw-loader!./assets/is-power-of-two/js.js";
+import Kotlin from "!!raw-loader!./assets/is-power-of-two/kt.kt";
+import Python from "!!raw-loader!./assets/is-power-of-two/py.py";
+import Rust from "!!raw-loader!./assets/is-power-of-two/rs.rs";
+import TS from "!!raw-loader!./assets/is-power-of-two/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Power of Two Algorithm determines whether a given integer is a power of two. It leverages bitwise operations for efficiency and simplicity
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Performing a bitwise AND operation between the integer and its decrement (integer - 1). If the result is zero, the integer is a power of two
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Check if the given integer is less than or equal to `0`
+    - Perform a bitwise `AND` operation between the integer and its decrement (`integer - 1`)
+    - If the result is `0`, return `true`
+    - Otherwise, return false
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize bitwise operations for efficient manipulation of bits
+    - avoid iterative approaches; the algorithm can be solved in constant time
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    isPowerOfTwo(x):
+      if x <= 0:
+        return false
+      return (x & (x - 1)) == 0
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

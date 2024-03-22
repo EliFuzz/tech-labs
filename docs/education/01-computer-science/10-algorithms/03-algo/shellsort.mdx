@@ -1,0 +1,117 @@
+---
+title: Shellsort
+description: Shellsort
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/shell-sort/go.go";
+import Java from "!!raw-loader!./assets/shell-sort/java.java";
+import JS from "!!raw-loader!./assets/shell-sort/js.js";
+import Kotlin from "!!raw-loader!./assets/shell-sort/kt.kt";
+import Python from "!!raw-loader!./assets/shell-sort/py.py";
+import Rust from "!!raw-loader!./assets/shell-sort/rs.rs";
+import TS from "!!raw-loader!./assets/shell-sort/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Shellsort is an efficient sorting algorithm that improves upon the insertion sort algorithm by sorting sublists of the data and then eventually sorting the entire list. It belongs to the family of comparison-based sorting algorithms and operates by moving elements closer to their sorted position through a series of diminishing increment gaps
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Start by sorting elements that are far apart from each other and then progressively reduces the gap between elements to be compared. It involves dividing the list into smaller sublists and sorting them using the insertion sort algorithm. These sublists are created by selecting elements that are a certain distance apart from each other, called the gap or increment sequence. The algorithm continues to decrease the gap until it becomes 1, at which point the list is sorted
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Define an increment sequence to determine the gap between elements to be compared
+    - Start with the largest gap and perform an insertion sort on sublists created by this gap
+    - Reduce the gap and repeat the insertion sort process until the gap becomes 1
+    - Finally, perform a standard insertion sort with a gap of 1 to sort the entire list
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - experiment with different increment sequences to find the most efficient one for your dataset
+    - avoid using large gaps at the beginning, as this might result in inefficient sorting
+    - consider using the Knuth sequence (3x + 1) for determining the increment sequence, as it often yields good result
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    shellSort(arr):
+      # Define increment sequence
+      gaps = [701, 301, 132, 57, 23, 10, 4, 1]
+
+      # Iterate over each gap
+      for gap in gaps:
+        # Perform insertion sort with current gap
+        for i = gap to length(arr):
+          temp = arr[i]
+          j = i
+          # Move elements of arr[0..i-gap] that are greater than temp to their positions ahead of current position
+          while j >= gap and arr[j - gap] > temp:
+            arr[j] = arr[j - gap]
+            j = j - gap
+          arr[j] = temp
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

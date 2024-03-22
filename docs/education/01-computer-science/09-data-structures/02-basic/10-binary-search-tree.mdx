@@ -1,0 +1,398 @@
+---
+title: Binary Search Tree
+description: Binary Search Tree Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/binarySearchTree/go.go";
+import Java from "!!raw-loader!./assets/binarySearchTree/java.java";
+import JS from "!!raw-loader!./assets/binarySearchTree/js.js";
+import Kotlin from "!!raw-loader!./assets/binarySearchTree/kt.kt";
+import Python from "!!raw-loader!./assets/binarySearchTree/py.py";
+import Rust from "!!raw-loader!./assets/binarySearchTree/rs.rs";
+import TS from "!!raw-loader!./assets/binarySearchTree/ts.ts";
+
+![](./assets/binarySearchTree/binarySearchTree.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Binary Search Tree** is a data structure that organizes elements in a sorted manner, where each node can have at most 2 children: a left and a right child. This makes it efficient for searching,
+    insertion, and deletion operations.
+
+  :::note[Simplified]
+
+  **Binary Search Tree** is like a library system. Each book (or "node") has a unique identifier and up to 2 related books. You start from a certain point (the "root") and go left if the book you're
+  looking for has a smaller identifier, right if it's larger. This way, you eliminate half of the remaining books with each step, making the search efficient.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Binary Search Trees (BSTs)** are data structures that store items like numbers or names in memory. They're used for quick lookup, addition, and removal of items, and can be used to create
+    dynamic sets of items or lookup tables.
+
+    BSTs maintain their keys in sorted order, allowing operations to use binary search principles. When searching for a key or a place to insert a new key, they traverse the tree from root to leaf,
+    comparing keys stored in the nodes and deciding to continue searching in the left or right subtrees based on the comparison.
+
+    On average, each comparison lets the operations skip about half of the tree, making each lookup, insertion, or deletion time proportional to the logarithm of the number of items in the tree. This
+    is faster than the linear time needed to find items by key in an unsorted array, but slower than operations on hash tables.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+    <tbody>
+      <tr>
+        <td>Insertion</td>
+        <td>
+          ```
+          insert(root, key):
+            if root == ø:
+              return new Node(key)
+            if key < root.key:
+              root.left = insert(root.left, key)
+            else if key > root.key:
+              root.right = insert(root.right, key)
+            return root
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Search Node</td>
+        <td>
+          ```
+          search(root, key):
+            if root == ø or root.key == key:
+              return root
+            if key < root.key:
+              return search(root.left, key)
+            return search(root.right, key)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Find MIN</td>
+        <td>
+          ```
+          find_min(root):
+            while root.left != ø:
+              root = root.left
+            return root
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Find MAX</td>
+        <td>
+          ```
+          find_max(root):
+            while root.right != ø:
+              root = root.right
+            return root
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Find Successor</td>
+        <td>
+          ```
+          find_successor(root, key):
+            if root == ø:
+              return ø
+
+            successor = ø
+            while root != ø:
+              if key < root.key:
+                successor = root
+                root = root.left
+              else:
+                root = root.right
+
+            return successor
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Find Predecessor</td>
+        <td>
+          ```
+          find_predecessor(root, key):
+            if root == ø:
+              return ø
+
+            predecessor = ø
+            while root != ø:
+              if key > root.key:
+                predecessor = root
+                root = root.right
+              else:
+                root = root.left
+
+            return predecessor
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Deletion</td>
+        <td>
+          ```
+          delete_node(root, key):
+            if root ø:
+              return ø
+
+            // Locate the node to be deleted
+            if key < root.key:
+              root.left = delete_node(root.left, key)
+            else if key > root.key:
+              root.right = delete_node(root.right, key)
+            else:
+              // Node with the key is found
+              // Case 1: Node with only one child or no child
+              if root.left == ø:
+                return root.right
+              else if root.right == ø:
+                return root.left
+
+              // Case 2: Node with two children
+              // Find the inorder successor (smallest node in the right subtree)
+              successor = root.right
+              // Find MIN: Find the leftmost leaf in the right subtree
+              while successor.left != ø:
+                successor = successor.left
+              root.key = successor.key
+
+              // Delete the inorder successor
+              root.right = delete_node(root.right, successor.key)
+
+            return root
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>BFS Recursive</td>
+        <td>
+          ```
+          bfs_recursive(root):
+            if root == ø:
+              return
+
+            queue = Queue()
+            queue.enqueue(root)
+
+            bfs_helper(queue)
+
+          bfs_helper(queue):
+            if queue == ø:
+              return
+
+            current = queue.dequeue()
+            process(current)
+
+            if current.left != ø:
+              queue.enqueue(current.left)
+            if current.right != ø:
+              queue.enqueue(current.right)
+
+            bfs_helper(queue)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>BFS Iterative</td>
+        <td>
+          ```
+          bfs_iterative(root):
+            if root == ø:
+              return
+
+            queue = Queue()
+            queue.enqueue(root)
+
+            while queue != ø:
+              current = queue.dequeue()
+              process(current)
+
+              if current.left != ø:
+                queue.enqueue(current.left)
+              if current.right != ø:
+                queue.enqueue(current.right)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>DFS PreOrder Recursive</td>
+        <td>
+          ```
+          dfs_pre_order_recursive(root):
+            if root == ø:
+              return
+            print root.value
+            dfs_pre_order_recursive(root.left)
+            dfs_pre_order_recursive(root.right)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>DFS PreOrder Iterative</td>
+        <td>
+          ```
+          dfs_preorder_iterative(root):
+            if root == ø:
+              return
+
+            stack = Stack()
+            stack.push(root)
+
+            while stack != ø:
+              current = stack.pop()
+              process(current)
+
+              if current.right != ø:
+                stack.push(current.right)
+              if current.left != ø:
+                stack.push(current.left)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>DFS InOrder Recursive</td>
+        <td>
+          ```
+          dfs_in_order_recursive(root):
+            if root == ø:
+              return
+            dfs_in_order_recursive(root.left)
+            print root.value
+            dfs_in_order_recursive(root.right)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>DFS InOrder Iterative</td>
+        <td>
+          ```
+          dfs_inorder_iterative(root):
+            if root == ø:
+              return
+
+            stack = Stack()
+            current = root
+
+            while current != ø or stack != ø:
+              while current != ø:
+                stack.push(current)
+                current = current.left
+
+              current = stack.pop()
+              process(current)
+              current = current.right
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>DFS PostOrder Recursive</td>
+        <td>
+          ```
+          dfs_post_order_recursive(root):
+            if root == ø:
+              return
+            dfs_post_order_recursive(root.left)
+            dfs_post_order_recursive(root.right)
+            print root.value
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>DFS PostOrder Iterative</td>
+        <td>
+          ```
+          dfs_postorder_iterative(root):
+            if root == ø:
+              return
+
+            stack1 = Stack()
+            stack2 = Stack()
+            stack1.push(root)
+
+            while stack1 != ø:
+              current = stack1.pop()
+              stack2.push(current)
+
+              if current.left != ø:
+                stack1.push(current.left)
+              if current.right != ø:
+                stack1.push(current.right)
+
+            while stack2 != ø:
+              process(stack2.pop())
+          ```
+        </td>
+      </tr>
+    </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

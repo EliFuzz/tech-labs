@@ -1,0 +1,159 @@
+{
+  "key": "rust",
+  "metadata": {
+    "name": "Rust",
+    "url": "https://www.rust-lang.org/",
+    "logo": "/static/img/lang/rust.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "bool",
+      "description": "Boolean",
+      "code": "true"
+    },
+    {
+      "name": "char",
+      "description": "Character",
+      "code": "'a'"
+    },
+    {
+      "name": "i8",
+      "description": "i8 signed 8-bit integer: -128(-2⁸) to 127(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u8",
+      "description": "u8 unsigned 8-bit integer: 0 to 255(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i16",
+      "description": "i16 signed 16-bit integer: -32768(-2¹⁶) to 32767(2¹⁶ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u16",
+      "description": "u16 unsigned 16-bit integer: 0 to 65535(2¹⁶ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i32",
+      "description": "i32 signed 32-bit integer: -2147483648(-2³¹) to 2147483647(2³¹ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u32",
+      "description": "u32 unsigned 32-bit integer: 0 to 4294967295(2³¹ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i64",
+      "description": "i64 signed 64-bit integer: -9223372036854775808(-2⁶³) to 9223372036854775807(2⁶³ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u64",
+      "description": "u64 unsigned 64-bit integer: 0 to 18446744073709551615(2⁶³ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i128",
+      "description": "i128 signed 128-bit integer: -170141183460469231731687303715884105728(-2¹²⁸) to 170141183460469231731687303715884105727(2¹²⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u128",
+      "description": "u128 unsigned 128-bit integer: 0 to 340282366920938463463374607431768211455(2¹²⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "f32",
+      "description": "f32 32-bit floating point number",
+      "code": "0.0"
+    },
+    {
+      "name": "f64",
+      "description": "f64 64-bit floating point number",
+      "code": "0.0"
+    }
+  ],
+  "reservedKeywords": [
+    "abstract",
+    "as",
+    "become",
+    "box",
+    "break",
+    "const",
+    "continue",
+    "crate",
+    "do",
+    "else",
+    "enum",
+    "extern",
+    "false",
+    "final",
+    "fn",
+    "for",
+    "if",
+    "impl",
+    "in",
+    "let",
+    "loop",
+    "macro",
+    "match",
+    "mod",
+    "move",
+    "mut",
+    "override",
+    "priv",
+    "pub",
+    "ref",
+    "return",
+    "Self",
+    "self",
+    "static",
+    "struct",
+    "super",
+    "trait",
+    "true",
+    "try",
+    "type",
+    "typeof",
+    "unsafe",
+    "unsized",
+    "use",
+    "virtual",
+    "where",
+    "while",
+    "yield"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "fn main() {\n  println!(\"Hello, World!\")\n}"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [],
+    "imports": [],
+    "variables": [],
+    "functions": [],
+    "flowControls": [],
+    "structures": [],
+    "errorHandling": [],
+    "concurrency": []
+  }
+}

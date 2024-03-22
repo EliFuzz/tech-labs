@@ -1,0 +1,122 @@
+---
+title: Rail Fence Cipher
+description: Rail Fence Cipher
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/rail-fence-cipher/go.go";
+import Java from "!!raw-loader!./assets/rail-fence-cipher/java.java";
+import JS from "!!raw-loader!./assets/rail-fence-cipher/js.js";
+import Kotlin from "!!raw-loader!./assets/rail-fence-cipher/kt.kt";
+import Python from "!!raw-loader!./assets/rail-fence-cipher/py.py";
+import Rust from "!!raw-loader!./assets/rail-fence-cipher/rs.rs";
+import TS from "!!raw-loader!./assets/rail-fence-cipher/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Rail Fence Cipher is a transposition cipher technique that rearranges the plaintext characters by writing them in a zigzag pattern across a specified number of "rails" or lines. It is a simple form of encryption that can be easily implemented
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Arranging the plaintext characters in a zigzag pattern across a specified number of rails. First, the plaintext is written diagonally up and down the rails. Then, the ciphertext is formed by reading off the characters row by row
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose the number of rails (usually referred to as the key) for the cipher
+    - Write the plaintext diagonally across the rails in a zigzag pattern
+    - Read the characters row by row to form the ciphertext
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure that the number of rails chosen is less than the length of the plaintext to avoid errors
+    - take care when writing and reading characters diagonally to maintain the integrity of the encryption
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    rail_fence_cipher(plaintext, num_rails):
+        // Initialize an empty list for each rail
+        rails = []
+        for i from 0 to num_rails - 1:
+            rails.append([])
+
+        // Fill the rails with the plaintext characters
+        rail_num = 0
+        direction = 1 // Direction of the diagonal movement
+        for char in plaintext:
+            rails[rail_num].append(char)
+            rail_num += direction
+            // Change direction when reaching the first or last rail
+            if rail_num == 0 or rail_num == num_rails - 1:
+                direction = -direction
+
+        // Concatenate the characters from each rail to form the ciphertext
+        ciphertext = ""
+        for rail in rails:
+            ciphertext += ''.join(rail)
+
+        return ciphertext
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

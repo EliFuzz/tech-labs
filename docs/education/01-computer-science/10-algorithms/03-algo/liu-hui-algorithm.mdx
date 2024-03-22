@@ -1,0 +1,123 @@
+---
+title: Liu Hui `π` Algorithm
+description: Liu Hui `π` Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/liu-hui-algorithm/go.go";
+import Java from "!!raw-loader!./assets/liu-hui-algorithm/java.java";
+import JS from "!!raw-loader!./assets/liu-hui-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/liu-hui-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/liu-hui-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/liu-hui-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/liu-hui-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Liu Hui's `π` Algorithm is a ancient Chinese method devised by mathematician Liu Hui in the 3rd century CE to approximate the value of `π`. It employs the idea of inscribing and circumscribing polygons around a circle to iteratively approach the value of `π`
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm approximates the value of `π` by inscribing and circumscribing regular polygons around a circle. It uses the properties of polygons and trigonometric functions to calculate perimeters and approximate `π`
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with a circle of radius 1
+      - Begin with a regular polygon inscribed within the circle. The more sides it has, the closer the approximation
+      - Compute the perimeter of the inscribed polygon
+      - Construct a regular polygon circumscribing the circle
+      - Find the perimeter of the circumscribed polygon
+      - repeat steps with polygons of increasing sides
+    - Use the formula to approximate: `π ≈ (Perimeter of circumscribed polygon + Perimeter of inscribed polygon) / 2`
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - start with a low number of sides for the polygons and gradually increase it for better precision
+    - ensure accuracy in calculating perimeters to avoid cumulative errors
+    - use trigonometric functions to calculate side lengths and angles of polygons accurately
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    liuHuiPiApproximation():
+      radius = 1
+      inscribed_perimeter = 0
+      circumscribed_perimeter = 0
+
+      for sides in range(3, maximum_sides):
+        inscribed_perimeter = calculatePolygonPerimeter(radius, sides, True)
+        circumscribed_perimeter = calculatePolygonPerimeter(radius, sides, False)
+        pi_approximation = (inscribed_perimeter + circumscribed_perimeter) / 2
+        print("Approximation of π with", sides, "sides:", pi_approximation)
+
+    calculatePolygonPerimeter(radius, sides, inscribed):
+      if inscribed:
+        polygon_side_length = 2 * radius * sin(π / sides)
+      else:
+        polygon_side_length = 2 * radius * tan(π / sides)
+
+      return sides * polygon_side_length
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

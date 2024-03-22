@@ -1,0 +1,130 @@
+---
+title: Least Common Multiple (LCM)
+description: Least Common Multiple (LCM)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/least-common-multiple/go.go";
+import Java from "!!raw-loader!./assets/least-common-multiple/java.java";
+import JS from "!!raw-loader!./assets/least-common-multiple/js.js";
+import Kotlin from "!!raw-loader!./assets/least-common-multiple/kt.kt";
+import Python from "!!raw-loader!./assets/least-common-multiple/py.py";
+import Rust from "!!raw-loader!./assets/least-common-multiple/rs.rs";
+import TS from "!!raw-loader!./assets/least-common-multiple/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Least Common Multiple (LCM) algorithm is a computational method used to find the smallest positive integer that is divisible by two or more given integers
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The LCM algorithm works by identifying the prime factors of each given integer and then determining the product of the highest powers of all prime factors involved. This ensures that the resulting number is divisible by all given integers and is the smallest such number
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Identify the prime factors of each given integer
+    - Determine the highest power of each prime factor among the given integers
+    - Multiply these highest powers together
+    - The result is the least common multiple of the given integers
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize efficient prime factorization techniques such as trial division or the Sieve of Eratosthenes
+    - use an optimized method to find the highest power of each prime factor, possibly through exponentiation or dynamic programming
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    LCM(nums):
+      lcm = 1
+      prime_factors = []
+
+      for num in nums:
+        factors = prime_factorization(num)
+        update_prime_factors(prime_factors, factors)
+
+      for factor in prime_factors:
+        lcm *= factor
+
+      return lcm
+
+    prime_factorization(num):
+      factors = []
+      divisor = 2
+
+      while num > 1:
+        while num % divisor == 0:
+          factors.append(divisor)
+          num /= divisor
+        divisor += 1
+
+      return factors
+
+    update_prime_factors(prime_factors, factors):
+      for factor in factors:
+        if prime_factors.count(factor) < factors.count(factor):
+          prime_factors.append(factor)
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

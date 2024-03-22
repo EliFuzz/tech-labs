@@ -1,0 +1,200 @@
+---
+title: Segment Tree
+description: Segment Tree Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/segmentTree/go.go";
+import Java from "!!raw-loader!./assets/segmentTree/java.java";
+import JS from "!!raw-loader!./assets/segmentTree/js.js";
+import Kotlin from "!!raw-loader!./assets/segmentTree/kt.kt";
+import Python from "!!raw-loader!./assets/segmentTree/py.py";
+import Rust from "!!raw-loader!./assets/segmentTree/rs.rs";
+import TS from "!!raw-loader!./assets/segmentTree/ts.ts";
+
+![](./assets/segmentTree/segmentTree.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Segment Tree** is a data structure that allows efficient range queries on an array. It's built by recursively dividing the array into smaller segments and storing the results of operations on
+    those segments.
+
+  :::note[Simplified]
+
+  **Segment Tree** is like a librarian for data. It organizes data into segments for quick searches and updates, similar to how a librarian sorts books into sections for easy access. However, once
+  the Segment Tree is built, it can't be modified. It's a tool for efficient data management and retrieval.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Segment Tree**, or statistic tree, is a static binary tree data structure used for storing interval information. It enables queries to determine which stored segments contain a given point. The
+    tree's root represents an entire array, with its children representing the array's halves. This pattern continues down the tree.
+
+    The tree is built from the bottom up, with each node's value being the "minimum" (or another function) of its children's values. This process takes `O(n log n)` time. For range queries, each node
+    divides the query into 2 sub-queries for each child. if a query encompasses a node's entire subarray, the precomputed node value can be used.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Init</td>
+         <td>
+           ```
+           constructor(input_array, operation, operation_fallback):
+             input_array = input_array
+             operation = operation
+             operation_fallback = operation_fallback
+             segment_tree = init_segment_tree(input_array)
+
+             build_segment_tree()
+
+           init_segment_tree(input_array):
+             input_array_length = length(input_array)
+             if is_power_of_two(input_array_length):
+               segment_tree_array_length = (2 * input_array_length) - 1
+             else:
+               current_power = floor(log2(input_array_length))
+               next_power = current_power + 1
+               next_powerOfTwoNumber = 2^next_power
+               segment_tree_array_length = (2 * next_powerOfTwoNumber) - 1
+             return Array(segment_tree_array_length)
+
+           is_power_of_two(number):
+             if number < 1:
+               return False
+             divided_number = number
+             While divided_number ≠ 1:
+               if divided_number % 2 ≠ 0:
+                 return False
+               divided_number /= 2
+             return True
+
+           build_segment_tree():
+             left_index = 0
+             right_index = input_array.length - 1
+             position = 0
+             build_tree_recursively(left_index, right_index, position)
+
+           build_tree_recursively(left_input_index, right_input_index, position):
+             if left_input_index = right_input_index:
+               segment_tree[position] = input_array[left_input_index]
+               return
+             middle_index = floor((left_input_index + right_input_index) / 2)
+             build_tree_recursively(left_input_index, middle_index, get_left_child_index(position))
+             build_tree_recursively(middle_index + 1, right_input_index, get_right_child_index(position))
+             segment_tree[position] = operation(
+               segment_tree[get_left_child_index(position)],
+               segment_tree[get_right_child_index(position)]
+             )
+
+           get_left_child_index(parentIndex):
+             return (2 * parentIndex) + 1
+
+           get_right_child_index(parentIndex):
+             return (2 * parentIndex) + 2
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Range Query</td>
+         <td>
+           ```
+           range_query(query_left_index, query_right_index):
+             left_index = 0
+             right_index = input_array.length - 1
+             position = 0
+             return range_query_helper(query_left_index, query_right_index, left_index, right_index, position)
+
+           range_query_helper(query_left_index, query_right_index, left_index, right_index, position):
+             if query_left_index ≤ left_index and query_right_index ≥ right_index:
+               return segment_tree[position]
+             if query_left_index > right_index or query_right_index < left_index:
+               return operation_fallback
+             middle_index = floor((left_index + right_index) / 2)
+             left_operation_result = range_queryRecursive(
+               query_left_index, query_right_index, left_index, middle_index, get_left_child_index(position)
+             )
+             right_operation_result = range_queryRecursive(
+               query_left_index, query_right_index, middle_index + 1, right_index, get_right_child_index(position)
+             )
+             return operation(left_operation_result, right_operation_result)
+
+           get_left_child_index(parentIndex):
+             return (2 * parentIndex) + 1
+
+           get_right_child_index(parentIndex):
+             return (2 * parentIndex) + 2
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

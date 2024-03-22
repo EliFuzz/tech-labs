@@ -1,0 +1,120 @@
+---
+title: Power Set
+description: Power Set
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/power-set/go.go';
+import Java from '!!raw-loader!./assets/power-set/java.java';
+import JS from '!!raw-loader!./assets/power-set/js.js';
+import Kotlin from '!!raw-loader!./assets/power-set/kt.kt';
+import Python from '!!raw-loader!./assets/power-set/py.py';
+import Rust from '!!raw-loader!./assets/power-set/rs.rs';
+import TS from '!!raw-loader!./assets/power-set/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Power Set Algorithm is a method used to generate all possible subsets of a given set. It's commonly implemented using recursion and bitwise manipulation for efficiency
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Start with an empty set and iteratively adds elements from the original set, effectively doubling the number of subsets with each addition. It utilizes recursion to explore all possible combinations. By leveraging bitwise manipulation, it efficiently generates subsets by representing each subset as a binary number, where each bit position corresponds to an element in the set
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with an empty set (result) and an integer variable (n) representing the size of the input set
+    - Use a loop to iterate from 0 to $2^{n-1}$
+    - Within the loop, for each iteration, convert the current loop variable into a binary representation
+    - For each bit in the binary representation, if the bit is set (1), add the corresponding element from the input set to the result set
+    - Add the generated subset to the final result set
+    - Repeat until all possible subsets are generated
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize bitwise manipulation to efficiently represent subsets
+    - use memoization techniques if necessary to optimize performance for larger input sets
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    powerSet(inputSet):
+      memo = {} # Initialize a memoization dictionary to store already computed subsets
+      result = [] # Initialize an empty list to store subsets
+
+      generateSubset(0, []) # Start the recursive function with index 0 and an empty subset
+      return result # Return the power set
+
+    # Recursive function to generate subsets
+    generateSubset(index, currentSubset):
+      if index == len(inputSet): # Base case: If index equals the length of input set
+        result.append(currentSubset) # Add currentSubset to result list
+        return
+      if (index, currentSubset) in memo: # Check if subset with current index and currentSubset is memoized
+        return
+      generateSubset(index + 1, currentSubset) # Skip current element
+      generateSubset(index + 1, currentSubset + [inputSet[index]]) # Include current element
+      memo[(index, currentSubset)] = True # Memoize the current subset
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

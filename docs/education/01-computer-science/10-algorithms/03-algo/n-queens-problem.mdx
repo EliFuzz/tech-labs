@@ -1,0 +1,133 @@
+---
+title: N-Queens Problem
+description: N-Queens Problem
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/n-queens-problem/go.go';
+import Java from '!!raw-loader!./assets/n-queens-problem/java.java';
+import JS from '!!raw-loader!./assets/n-queens-problem/js.js';
+import Kotlin from '!!raw-loader!./assets/n-queens-problem/kt.kt';
+import Python from '!!raw-loader!./assets/n-queens-problem/py.py';
+import Rust from '!!raw-loader!./assets/n-queens-problem/rs.rs';
+import TS from '!!raw-loader!./assets/n-queens-problem/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The N-Queens Problem is a classic computer science problem where the task is to place N chess queens on an NxN chessboard in such a way that no two queens threaten each other. This means that no two queens share the same row, column, or diagonal
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Recursively placing queens on the board and backtracking when a solution cannot be found. It begins by placing a queen in the first row of the first column and then attempts to place subsequent queens in the next rows, ensuring that no two queens threaten each other. If a conflict arises, the algorithm backtracks and tries a different position for the queen
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with an empty chessboard
+    - Place the first queen in the first row and first column
+    - Move to the next row
+      - Check if the queen can be placed in the current column without conflicting with existing queens
+      - If it can be placed, mark the position and move to the next row
+      - Repeat steps until all queens are placed
+    - If a conflict arises or all positions in the current row are tried, backtrack to the previous row and try the next available position
+    - Continue this process until a solution is found or all possibilities are exhausted
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use efficient data structures to represent the chessboard and track queen positions
+    - implement pruning techniques to reduce the search space and improve performance
+    - optimize the algorithm by considering symmetries and avoiding redundant calculations
+    - test the algorithm with different board sizes to ensure its correctness and scalability
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    solveNQueens(board, row):
+      if row == size_of_board:
+        return true // all queens are placed successfully
+      for each column in size_of_board:
+        if isSafe(board, row, column):
+          placeQueen(board, row, column)
+          if solveNQueens(board, row + 1):
+            return true
+          removeQueen(board, row, column)
+      return false // no solution found
+
+    isSafe(board, row, column):
+      for i from 0 to row - 1:
+        if board[i][column] == true:
+          return false // queen threatens in the same column
+        if column - (row - i) >= 0 and board[i][column - (row - i)] == true:
+          return false // queen threatens in the left diagonal
+        if size_of_board > column + (row - i) and board[i][column + (row - i)] == true:
+          return false // queen threatens in the right diagonal
+      return true
+
+    placeQueen(board, row, column):
+      board[row][column] = true
+
+    removeQueen(board, row, column):
+      board[row][column] = false
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

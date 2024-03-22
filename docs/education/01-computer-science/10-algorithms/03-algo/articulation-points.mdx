@@ -1,0 +1,155 @@
+---
+title: Articulation Points
+description: Articulation Points
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/articulation-points/go.go";
+import Java from "!!raw-loader!./assets/articulation-points/java.java";
+import JS from "!!raw-loader!./assets/articulation-points/js.js";
+import Kotlin from "!!raw-loader!./assets/articulation-points/kt.kt";
+import Python from "!!raw-loader!./assets/articulation-points/py.py";
+import Rust from "!!raw-loader!./assets/articulation-points/rs.rs";
+import TS from "!!raw-loader!./assets/articulation-points/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Articulation Points Algorithm is a graph algorithm used to identify critical points, or articulation points, within a connected graph. These points, when removed, disconnect the graph or increase its number of connected components
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Begin by initializing variables and data structures to represent the graph, then perform a Depth First Search (DFS) or Breadth First Search (BFS) traversal on the graph, marking vertices as visited and keeping track of discovery time and low value for each vertex during the traversal. Determine if a vertex is an articulation point by examining its children in the DFS tree, and finally output the identified articulation points
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize variables
+      - initialize an empty list to store articulation points
+      - implement a graph representation (adjacency list or matrix)
+      - initialize arrays to track visited status, discovery time, and low values for vertices
+    - Traverse the graph
+      - start DFS or BFS traversal from any vertex
+      - during traversal, mark vertices as visited and update discovery time
+      - keep track of the lowest discovery time reachable from each vertex (low value)
+    - Identify Articulation Points
+      - in DFS, maintain a parent array to keep track of the parent of each vertex
+      - for each vertex, traverse its adjacent vertices
+      - if a vertex's child has a lower discovery time than the current vertex's low value, update the low value
+      - if the current vertex is the root of the DFS tree and has more than one child, it's an articulation point
+      - if the current vertex is not the root and has a child with a discovery time less than or equal to its low value, it's an articulation point
+    Output
+      - output the list of articulation points identified during traversal
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize efficient data structures for graph representation to optimize traversal
+    - ensure proper handling of back edges during traversal to accurately determine articulation points
+    - pay attention to the conditions for identifying articulation points, especially considering the root vertex and its children
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    function findArticulationPoints(graph):
+      // Initialization
+      articulationPoints = []
+      visited = [False] * (number of vertices)
+      discoveryTime = [0] * (number of vertices)
+      low = [float('inf')] * (number of vertices)
+      parent = [-1] * (number of vertices)
+      time = 0
+
+      // DFS traversal
+      for vertex in range(number of vertices):
+        if not visited[vertex]:
+          dfsArticulationPoints(graph, vertex, visited, discoveryTime, low, parent, articulationPoints)
+
+      return articulationPoints
+
+    function dfsArticulationPoints(graph, vertex, visited, discoveryTime, low, parent, articulationPoints):
+      // Initialization
+      visited[vertex] = True
+      children = 0
+      discoveryTime[vertex] = time
+      low[vertex] = time
+      time += 1
+
+      // Traverse adjacent vertices
+      for adjacentVertex in graph[vertex]:
+        if not visited[adjacentVertex]:
+          children += 1
+          parent[adjacentVertex] = vertex
+          dfsArticulationPoints(graph, adjacentVertex, visited, discoveryTime, low, parent, articulationPoints)
+
+          // Update low value
+          low[vertex] = min(low[vertex], low[adjacentVertex])
+
+          // Check if vertex is articulation point
+          if parent[vertex] == -1 and children > 1:
+            articulationPoints.append(vertex)
+          if parent[vertex] != -1 and low[adjacentVertex] >= discoveryTime[vertex]:
+            articulationPoints.append(vertex)
+        elif adjacentVertex != parent[vertex]:
+          low[vertex] = min(low[vertex], discoveryTime[adjacentVertex])
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

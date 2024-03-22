@@ -1,0 +1,214 @@
+---
+title: Priority Queue
+description: Priority Queue Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/priorityQueue/go.go";
+import Java from "!!raw-loader!./assets/priorityQueue/java.java";
+import JS from "!!raw-loader!./assets/priorityQueue/js.js";
+import Kotlin from "!!raw-loader!./assets/priorityQueue/kt.kt";
+import Python from "!!raw-loader!./assets/priorityQueue/py.py";
+import Rust from "!!raw-loader!./assets/priorityQueue/rs.rs";
+import TS from "!!raw-loader!./assets/priorityQueue/ts.ts";
+
+![](./assets/priorityQueue/priorityQueue.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="6">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Priority Queue** is a data structure that allows elements to be inserted and removed based on their priority.
+
+  :::note[Simplified]
+
+  You're planning your day with a list of tasks: grocery shopping, work meeting, gym, cooking dinner, and reading a book. However, not all tasks are equally important. Some tasks are urgent and need
+  to be done first, while others can wait.
+
+  In this scenario, a "Priority Queue" is like a smart to-do list. It helps you manage your tasks based on their importance or urgency. The task with the highest priority (like a work meeting) gets
+  to be at the front of the queue, meaning it should be done first. Once that task is completed, it's removed from the queue, and the next highest priority task (like grocery shopping) moves to the
+  front.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Priority Queue** is a specialized data structure. It functions like a regular queue or stack, but each element also has an associated "priority". Elements with higher priority are processed
+    before those with lower priority. If elements share the same priority, they're handled in their queue order.
+
+    Priority queues and heaps are often mentioned together, but they're not the same. A priority queue is an abstract concept, like a list or a map, and can be implemented in various ways, including
+    using a heap or an unordered array.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Heapify Up</td>
+          <td>
+            ```
+            heapify_up(index):
+              if index == 0:
+                return
+              parent_index = (index - 1) / 2
+              if heap[parent_index].value < heap[index].value:
+                swap(heap, parent_index, index)
+              heapify_up(parent_index)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Heapify Down</td>
+          <td>
+            ```
+            heapify_down():
+              index = 0
+              while index < heap.size:
+                left_child_index=2 * index + 1
+                right_child_index = 2 * index + 2
+                smallest_index = -1
+                if heap.size > left_child_index and heap[left_child_index].value < heap[index].value:
+                  smallest_index = left_child_index
+                else if heap.size > right_child_index and heap[right_child_index].value < heap[index].value:
+                  smallest_index = right_child_index
+                else:
+                  break
+                swap(heap, index, smallest_index)
+                index = smallest_index
+
+              method swap(list, i, j):
+                temp = list[i]
+                list[i] = list[j]
+                list[j] = temp
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Enqueue</td>
+          <td>
+            ```
+            enqueue(item, priority):
+              heap.add(Pair(item, priority))
+              heapify_up(heap.last_index)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Dequeue</td>
+          <td>
+            ```
+            dequeue():
+              if heap == ø:
+                return ø
+              highest_priority_item = heap[0].key
+              heap[0] = heap.last()
+              heap.remove_at(heap.last_index)
+              heapify_down()
+              return highest_priority_item
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Peek</td>
+          <td>
+            ```
+            peek():
+              if heap == ø:
+                return ø
+              else:
+                return heap[0].key
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Change Priority</td>
+          <td>
+            ```
+            change_priority(item, new_priority):
+              index = heap.find_index(item)
+              if index != -1:
+                heap[index] = Pair(item, new_priority)
+                heapify_up(index)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Find by Value</td>
+          <td>
+            ```
+            find_by_value(item: T): T?:
+              index = heap.find_index(item)
+              if index != -1:
+                return heap[index].key
+              else:
+                return ø
+            ```
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

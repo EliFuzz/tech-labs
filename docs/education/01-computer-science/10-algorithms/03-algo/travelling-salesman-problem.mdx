@@ -1,0 +1,113 @@
+---
+title: Travelling Salesman Problem
+description: Travelling Salesman Problem
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/travelling-salesman-problem/go.go";
+import Java from "!!raw-loader!./assets/travelling-salesman-problem/java.java";
+import JS from "!!raw-loader!./assets/travelling-salesman-problem/js.js";
+import Kotlin from "!!raw-loader!./assets/travelling-salesman-problem/kt.kt";
+import Python from "!!raw-loader!./assets/travelling-salesman-problem/py.py";
+import Rust from "!!raw-loader!./assets/travelling-salesman-problem/rs.rs";
+import TS from "!!raw-loader!./assets/travelling-salesman-problem/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Travelling Salesman Problem (TSP) is a classic problem in computer science and operations research where the objective is to find the shortest possible route that visits a given set of cities and returns to the original city. It's an NP-hard problem, meaning there is no known polynomial-time solution for large inputs. However, there are several approaches and algorithms to approximate the solution
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Works by exhaustively evaluating all possible routes or by using heuristics to find an approximate solution. One common approach is the brute-force method, where all possible permutations of city visits are generated and the shortest route is selected. Another popular approach is the nearest neighbor algorithm, where the salesman starts at a random city and repeatedly visits the nearest unvisited city until all cities are visited
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start at any city
+      - choose the nearest unvisited city to the current city
+      - add the selected city to the route
+      - repeat steps until all cities are visited
+    - Once all cities are visited, return to the starting city to complete the route
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - implementing memoization techniques can significantly improve the performance of the brute-force approach by avoiding redundant calculations
+    - using dynamic programming, particularly in cases where subproblems overlap, can help optimize the solution
+    - experiment with different heuristics, such as the nearest insertion or farthest insertion algorithms, to find a good balance between accuracy and efficiency
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    tsp_brute_force(graph, current_city, visited_cities):
+      if all cities visited:
+        return distance from current_city to starting_city
+      else:
+        min_distance = INFINITY
+        for each city in graph:
+          if city not in visited_cities:
+            distance = tsp_brute_force(graph, city, visited_cities + [city])
+            min_distance = min(min_distance, distance + distance from current_city to city)
+        return min_distance
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

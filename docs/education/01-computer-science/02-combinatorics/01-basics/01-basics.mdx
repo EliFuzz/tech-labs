@@ -1,0 +1,139 @@
+---
+title: Basics
+description: 'Combinatorics: Basics'
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Combinatorics: Basics
+
+## Overview
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+  **Combinatorics** is a branch of mathematics, deals with counting and arranging finite sets of objects, offering a systematic framework indispensable in fields like computer science.
+
+  Combinatorics plays an important role in software development, aiding in algorithm design, data structures, optimization, and cryptography, enabling developers to tackle complex problems and craft elegant solutions for cleaner, faster, and more scalable software.
+
+  Combinatorial principles are essential in solving a variety of problems in software development, from determining configurations in games to optimizing algorithms, by breaking down complex problems, devising efficient algorithms, and reaching optimal solutions.
+  </TabItem>
+  <TabItem value="examples" label="Examples">
+  - **Data Structures**: Combinatorial principles are vital in designing data structures, such as hash tables, by analyzing collision probabilities and optimizing hash functions for performance
+  - **Optimization Problems**: Combinatorial optimization problems, like the traveling salesman and knapsack problems, necessitate efficient algorithms for selecting elements from finite sets
+  - **Cryptography**: Combinatorial techniques are integral for designing secure cryptographic protocols, as the security of many schemes depends on the complexity of combinatorial problems like factoring large integers or finding discrete logarithms
+  </TabItem>
+</Tabs>
+
+## Concepts
+
+<Tabs>
+  <TabItem value="multiplicationPrinciple" label="Multiplication Principle" attributes={{className:"tabs__vertical"}}>
+  **Multiplication principle**, a cornerstone of combinatorics, states that if there are `n` ways to perform one task and `m` ways to perform another task independently of the first, then there are `n × m` ways to perform both tasks.
+
+  This principle is invaluable in solving problems involving sequences of independent choices, such as arranging elements or constructing objects with multiple stages.
+  </TabItem>
+  <TabItem value="additionPrinciple" label="Addition Principle">
+  **Addition principle** states that if there are `n` ways to perform one task and `m` ways to perform another mutually exclusive task, then there are `n + m` ways to perform either task.
+
+  This principle is useful in scenarios where choices are exclusive or when counting the total number of possibilities involves considering multiple disjoint cases.
+  </TabItem>
+  <TabItem value="permutations" label="Permutations">
+  **Permutations** refer to the arrangements of objects in a specific order:
+
+  $P(n,r)$
+
+  - `n` total number of objects
+  - `r` number of objects selected for the arrangement.
+
+  The formula for permutations:
+
+  $P(n,r)=\frac{n!}{(n−r)!}$
+
+  - `n!` denotes the factorial of `n`
+
+  Permutations are widely used in various applications, such as arranging elements in a sequence or selecting candidates for positions.
+  </TabItem>
+  <TabItem value="combinations" label="Combinations">
+  **Combinations** refer to selections of objects without considering the order:
+
+  $C(n,r)$
+
+  - `n` total number of objects
+  - `r` number of objects selected from the total.
+
+  The formula for combinations:
+
+  $C(n,r)=\frac{n!}{r!×(n−r)!}$
+
+  Combinations are essential in scenarios where the order of selection does not matter, such as forming committees or selecting subsets from a set of elements.
+  </TabItem>
+  <TabItem value="binomial" label="Binomial Theorem">
+  **Binomial theorem** provides a formula for expanding expressions of the form:
+
+  $(a+b)^n$
+
+  - `a` and `b` are variables
+  - `n` is a positive integer
+
+  The binomial theorem states that
+
+  $(a+b)^n=\sum_{k=0}^n C(n,k)×a^{n−k}×b^k$
+
+  Pascal’s triangle, a triangular array of binomial coefficients, provides a visual representation of the coefficients in the expansion of binomial expressions. Both the binomial theorem and Pascal’s triangle are essential tools in combinatorics and find applications in algebra, probability, and calculus.
+  </TabItem>
+  <TabItem value="premutation" label="Permutations with Repetition" attributes={{className:"tabs__vertical"}}>
+  Permutations with repetition arise when arranging objects where some elements are repeated. For example, when arranging the letters of a word like "BOOKKEEPER," the repeated letters lead to multiple identical permutations.
+
+  The formula for permutations with repetition is:
+
+  $\frac{n!}{n_1!n_2!...n_k!}$
+
+  - `n` total number of objects
+  - $n_1, n_2, ..., n_k$ counts of each distinct element
+  </TabItem>
+  <TabItem value="multisets" label="Multisets">
+  **Multisets** represent collections of objects where elements may appear more than once, and their arrangement depends only on the counts of each element. Permutations with indistinguishable objects involve arranging objects where some or all elements are indistinguishable from one another.
+
+  For example, rearranging the letters of the word "MISSISSIPPI" highlights permutations with indistinguishable objects.
+  </TabItem>
+  <TabItem value="combinationsWithRepetition" label="Combinations with Repetition">
+  **Combinations with repetition** involve selecting subsets from a larger set where repetition is allowed.
+
+  For instance, when distributing identical candies among children, combinations with repetition determine the number of ways to distribute the candies.
+  </TabItem>
+  <TabItem value="starsAndBars" label="Stars and Bars">
+  **Stars and bars** method is a powerful technique for solving combinations with repetition problems. It involves visualizing objects as stars and using bars to separate them into groups.
+
+  For example, when distributing identical candies among children, the number of ways to distribute them can be represented using stars and bars.
+  </TabItem>
+  <TabItem value="inclusionExclusion" label="Inclusion-Exclusion">
+  **Inclusion-exclusion principle** provides a systematic approach to counting elements that satisfy multiple conditions. It states that the size of the union of sets can be calculated by adding the sizes of individual sets and subtracting the sizes of their intersections.
+
+  This principle is invaluable in solving counting problems involving overlapping constraints.
+  </TabItem>
+  <TabItem value="pigeonhole" label="Pigeonhole">
+  **Pigeonhole principle** fundamental concept in combinatorics, states that if `n` items are placed into `m` containers where `n > m`, then at least one container must contain more than one item.
+
+  This principle is essential in various counting problems, probability theory, and algorithm design, providing insights into the distribution of objects and constraints.
+  </TabItem>
+</Tabs>
+
+## Case Studies
+
+<Tabs>
+  <TabItem value="google" label="Google's Search">
+  - **Indexing**: Google's search engine crawls and indexes billions of web pages. Combinatorial techniques are used to efficiently store and organize the massive volume of indexed data, enabling fast retrieval of relevant information
+  - **Ranking**: Combinatorial methods are employed to analyze the relationships between web pages, determining the importance and relevance of each page based on factors like backlinks, content quality, and user engagement. Techniques like PageRank, an algorithm that assigns numerical values to web pages based on their importance, utilize combinatorial principles to evaluate and rank pages effectively
+  - **Query Processing**: When a user enters a search query, Google's algorithm employs combinatorial techniques to parse and process the query, identifying relevant keywords, synonyms, and context to retrieve the most accurate and useful results
+  </TabItem>
+  <TabItem value="facebook" label="Facebook's Friend Suggestion">
+  - **Graph Analysis**: Facebook's social network can be represented as a graph, with users as nodes and friend connections as edges. Combinatorial methods are used to analyze the structure of this graph, identifying clusters, communities, and common interests among users
+  - **Recommendation Generation**: Combinatorial techniques are employed to generate personalized friend recommendations for users, considering factors such as mutual friends, shared interests, geographic proximity, and social interactions. Algorithms like collaborative filtering and probabilistic models utilize combinatorial principles to identify potential connections and improve recommendation accuracy
+  </TabItem>
+  <TabItem value="amazon" label="Amazon's Recommendation">
+  - **Data Analysis**: Amazon collects vast amounts of user data, including purchase history, browsing behavior, and product interactions. Combinatorial methods are used to analyze this data, identifying patterns, correlations, and user preferences that inform recommendation algorithms
+  - **Collaborative Filtering**: Combinatorial techniques like collaborative filtering are employed to generate recommendations based on similarities between users and items. By analyzing user-item interactions and identifying similar users or items, collaborative filtering algorithms can predict user preferences and suggest relevant products
+  - **Content-Based Filtering**: Combinatorial principles are utilized in content-based filtering, where recommendations are generated based on the attributes and features of products. By analyzing product descriptions, categories, and user preferences, content-based filtering algorithms can match users with items that align with their interests and preferences
+  </TabItem>
+</Tabs>

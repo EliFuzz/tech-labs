@@ -1,0 +1,118 @@
+---
+title: Palindrome
+description: Palindrome
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/palindrome/go.go";
+import Java from "!!raw-loader!./assets/palindrome/java.java";
+import JS from "!!raw-loader!./assets/palindrome/js.js";
+import Kotlin from "!!raw-loader!./assets/palindrome/kt.kt";
+import Python from "!!raw-loader!./assets/palindrome/py.py";
+import Rust from "!!raw-loader!./assets/palindrome/rs.rs";
+import TS from "!!raw-loader!./assets/palindrome/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Palindrome Algorithm is a method used to determine whether a given input string reads the same forwards and backwards. It utilizes string manipulation techniques to compare characters from both ends of the string simultaneously
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    It works by comparing characters from the beginning and end of the input string. It iterates through the string, starting from both ends and moving towards the center simultaneously. At each step, it compares the characters at these positions. If all characters match, the string is a palindrome. If any characters don't match, the string is not a palindrome. The algorithm terminates when the pointers meet at the center of the string or cross each other
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with two pointers, one at the beginning and one at the end of the string
+      - compare characters at these pointers
+      - if they match, move both pointers towards the center of the string
+      - if they don't match, the string is not a palindrome
+      - repeat steps until the pointers meet at the center or cross each other
+    - If the pointers meet without any mismatch, the string is a palindrome
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - avoid unnecessary operations that may increase the time complexity
+    - consider edge cases such as empty strings or strings with a single character
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    isPalindrome(string):
+      // Initialize pointers
+      leftPointer = 0
+      rightPointer = length(string) - 1
+
+      // Loop until pointers meet or cross
+      while leftPointer < rightPointer:
+        // Compare characters at pointers
+        if string[leftPointer] != string[rightPointer]:
+          return false // Not a palindrome
+        // Move pointers towards center
+        leftPointer += 1
+        rightPointer -= 1
+
+      return true // Palindrome
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

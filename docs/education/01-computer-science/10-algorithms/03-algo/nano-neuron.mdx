@@ -1,0 +1,131 @@
+---
+title: NanoNeuron
+description: NanoNeuron
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/nano-neuron/go.go";
+import Java from "!!raw-loader!./assets/nano-neuron/java.java";
+import JS from "!!raw-loader!./assets/nano-neuron/js.js";
+import Kotlin from "!!raw-loader!./assets/nano-neuron/kt.kt";
+import Python from "!!raw-loader!./assets/nano-neuron/py.py";
+import Rust from "!!raw-loader!./assets/nano-neuron/rs.rs";
+import TS from "!!raw-loader!./assets/nano-neuron/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    NanoNeuron is a simplified neural network algorithm designed to predict numerical values. It consists of a single neuron with one input and one output, incorporating basic principles of linear regression. The neuron has two parameters: weight (w) and bias (b). The algorithm aims to learn these parameters to fit a given dataset using gradient descent optimization
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Iteratively adjusting its weight and bias parameters to minimize the difference between predicted and actual values. Initially, random values are assigned to weight and bias. Then, for each data point, the predicted output is calculated by multiplying the input with the weight, adding the bias, and passing the result through an activation function (usually the identity function in this case). The algorithm calculates the loss (difference between predicted and actual output) and adjusts the parameters using gradient descent to minimize this loss. This process continues for a fixed number of iterations or until the loss converges to a satisfactory level
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize weight (`w`) and bias (`b`) with random values
+    - For each data point (`input`, `output pair`) in the dataset
+       - calculate the predicted output (`y_pred`) using the formula: `y_pred = w * input + b`
+       - compute the loss (`error`) between the predicted output and actual output
+       - update the weight and bias using gradient descent
+         - calculate the gradients of the loss function with respect to weight and bias
+         - adjust weight and bias in the opposite direction of the gradients to minimize loss
+         - update weight: `w = w - learning_rate * dw`
+         - update bias: `b = b - learning_rate * db`
+      - repeat steps for a fixed number of iterations or until convergence criteria are met
+    - Once training is complete, the neuron's weight and bias parameters represent the learned model
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - choose an appropriate learning rate to balance convergence speed and stability
+    - monitor the loss during training to ensure it is decreasing steadily
+    - normalize the input data to a similar scale to aid convergence
+    - experiment with different activation functions and initialization methods for the neuron's parameters
+    - regularize the model if overfitting occurs by adding regularization terms to the loss function
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    # Initialize parameters
+    w = random()
+    b = random()
+    learning_rate = 0.01
+    num_iterations = 1000
+
+    # Training loop
+    for _ in range(num_iterations):
+      # Iterate over dataset
+      for input, output in dataset:
+        # Forward pass
+        y_pred = w * input + b
+        # Compute loss
+        loss = (y_pred - output)**2 / 2
+        # Backward pass (gradient descent)
+        dw = (y_pred - output) * input
+        db = y_pred - output
+        # Update parameters
+        w = w - learning_rate * dw
+        b = b - learning_rate * db
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

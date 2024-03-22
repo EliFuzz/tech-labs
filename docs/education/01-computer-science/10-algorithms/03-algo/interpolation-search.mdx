@@ -1,0 +1,118 @@
+---
+title: Interpolation Search
+description: Interpolation Search
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/interpolation-search/go.go';
+import Java from '!!raw-loader!./assets/interpolation-search/java.java';
+import JS from '!!raw-loader!./assets/interpolation-search/js.js';
+import Kotlin from '!!raw-loader!./assets/interpolation-search/kt.kt';
+import Python from '!!raw-loader!./assets/interpolation-search/py.py';
+import Rust from '!!raw-loader!./assets/interpolation-search/rs.rs';
+import TS from '!!raw-loader!./assets/interpolation-search/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Interpolation Search is an efficient searching algorithm that works on sorted arrays. It improves on binary search by using interpolation to find the probable position of the target value
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Calculate the probable position of the target value using the interpolation formula. Then, compare the target value with the element located at this probable position. If they match, return the index of the element. If the target value is greater than the element at the probable position, continue the search in the right subarray. Conversely, if the target value is smaller, search the left subarray. Continue this process until the element is found or the subarray reduces to an empty array
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - To find where the target value might be, consider where it falls between the lowest and highest values in the array
+    - Check if the value at this estimated position matches the target value
+    - If it does, you've found the target value
+    - If the estimated value is greater than the target, look in the lower half of the remaining array
+    - If the estimated value is smaller than the target, look in the upper half
+    - Repeat these steps until you find the target or you've searched through the entire array without finding it
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - interpolation Search performs well when the elements in the array are uniformly distributed
+    - it's more effective on large arrays than binary search, particularly if the elements are evenly distributed
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    interpolationSearch(arr, x):
+      low = 0
+      high = length(arr) - 1
+
+      while low <= high and x >= arr[low] and x <= arr[high]:
+        pos = low + ((high - low) / (arr[high] - arr[low])) * (x - arr[low])
+
+        if arr[pos] == x:
+          return pos
+        elif arr[pos] < x:
+          low = pos + 1
+        else:
+          high = pos - 1
+
+      return -1
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

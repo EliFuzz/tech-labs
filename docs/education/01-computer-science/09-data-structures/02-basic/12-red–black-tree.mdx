@@ -1,0 +1,322 @@
+---
+title: Red-Black Tree
+description: Red-Black Tree Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/redBlackTree/go.go";
+import Java from "!!raw-loader!./assets/redBlackTree/java.java";
+import JS from "!!raw-loader!./assets/redBlackTree/js.js";
+import Kotlin from "!!raw-loader!./assets/redBlackTree/kt.kt";
+import Python from "!!raw-loader!./assets/redBlackTree/py.py";
+import Rust from "!!raw-loader!./assets/redBlackTree/rs.rs";
+import TS from "!!raw-loader!./assets/redBlackTree/ts.ts";
+
+![](./assets/redBlackTree/redBlackTree.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Red-Black Tree** is a type of self-balancing binary search tree that ensures the MAX height of any node is logarithmic and that no path from the root to any leaf node has more than a given
+    number (usually 2) consecutive red nodes.
+
+  :::note[Simplified]
+
+  **Red-Black Tree** is like a family tree with specific rules about the color of hats (red or black) each person wears. These rules ensure the tree remains balanced, which makes searching for a
+  person (or data) efficient.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Red-Black Tree** is a self-balancing binary search tree. Each node has an extra bit, interpreted as the color (red or black), which helps keep the tree balanced during insertions and deletions.
+
+    The tree is painted in a way that satisfies certain properties, ensuring it remains approximately balanced. When the tree is modified, it's rearranged and repainted to restore these properties.
+
+    While the balancing isn't perfect, it guarantees search, insertion, and deletion operations in `O(log n)` time.
+
+    A red-black tree must satisfy these conditions:
+
+    - Each node is either red or black
+    - The root is black
+    - All leaves (ø) are black
+    - If a node is red, its children are black
+    - Every path from a node to any of its descendant ø nodes contains the same number of black nodes
+
+    These constraints ensure that the path from the root to the farthest leaf is no more than twice as long as the path to the nearest leaf, making the tree roughly height-balanced. This allows
+    red-black trees to be efficient in the worst case, unlike ordinary binary search trees.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Insertion</td>
+         <td>
+           ```
+           insert_rbtree(tree, key):
+             new_node = create_node(key)
+             uncle = ø
+             current_node = tree.root
+             while current_node != ø:
+               uncle = current_node
+               if new_node.key < current_node.key:
+                 current_node = current_node.left_child
+               else:
+                 current_node = current_node.right_child
+             new_node.parent = uncle
+             if uncle == ø:
+               tree.root = new_node
+             elif new_node.key < uncle.key:
+               uncle.left_child = new_node
+             else:
+               uncle.right_child = new_node
+
+             insert_fixup(tree, new_node)
+             tree.root.color = BLACK # Ensure the root is always black
+
+           create_node(key):
+             node = new Node()
+             node.key = key
+             node.color = RED
+             node.left_child = ø
+             node.right_child = ø
+             node.parent = ø
+             return node
+
+           left_rotate(tree, current_node):
+             uncle = current_node.right_child
+             current_node.right_child = uncle.left_child
+             if uncle.left_child != ø:
+               uncle.left_child.parent = current_node
+             uncle.parent = current_node.parent
+             if current_node.parent == ø:
+               tree.root = uncle
+             elif current_node == current_node.parent.left_child:
+               current_node.parent.left_child = uncle
+             else:
+               current_node.parent.right_child = uncle
+             uncle.left_child = current_node
+             current_node.parent = uncle
+
+           right_rotate(tree, uncle):
+             current_node = uncle.left_child
+             uncle.left_child = current_node.right_child
+             if current_node.right_child != ø:
+               current_node.right_child.parent = uncle
+             current_node.parent = uncle.parent
+             if uncle.parent == ø:
+               tree.root = current_node
+             elif uncle == uncle.parent.left_child:
+               uncle.parent.left_child = current_node
+             else:
+               uncle.parent.right_child = current_node
+             current_node.right_child = uncle
+             uncle.parent = current_node
+
+           insert_fixup(tree, new_node):
+             while new_node.parent != ø and new_node.parent.color == RED:
+               if new_node.parent == new_node.parent.parent.left_child:
+                 grand_parent_child = new_node.parent.parent.right_child
+                 if grand_parent_child != ø and grand_parent_child.color == RED:
+                   new_node.parent.color = BLACK
+                   grand_parent_child.color = BLACK
+                   new_node.parent.parent.color = RED
+                   new_node = new_node.parent.parent
+                 else:
+                   if new_node == new_node.parent.right_child:
+                     new_node = new_node.parent
+                     left_rotate(tree, new_node)
+                   new_node.parent.color = BLACK
+                   new_node.parent.parent.color = RED
+                   right_rotate(tree, new_node.parent.parent)
+               else:
+                 grand_parent_child = new_node.parent.parent.left_child
+                 if grand_parent_child != ø and grand_parent_child.color == RED:
+                   new_node.parent.color = BLACK
+                   grand_parent_child.color = BLACK
+                   new_node.parent.parent.color = RED
+                   new_node = new_node.parent.parent
+                 else:
+                   if new_node == new_node.parent.left_child:
+                     new_node = new_node.parent
+                     right_rotate(tree, new_node)
+                   new_node.parent.color = BLACK
+                   new_node.parent.parent.color = RED
+                   left_rotate(tree, new_node.parent.parent)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Deletion</td>
+         <td>
+           ```
+           delete_rbtree(tree, key):
+             node_to_delete = search(tree.root, key)
+             if node_to_delete == ø:
+               return
+
+             successor = node_to_delete
+             successor_original_color = successor.color
+             if node_to_delete.left_child == ø:
+               successor_child = node_to_delete.right_child
+               transplant(tree, node_to_delete, node_to_delete.right_child)
+             elif node_to_delete.right_child == ø:
+               successor_child = node_to_delete.left_child
+               transplant(tree, node_to_delete, node_to_delete.left_child)
+             else:
+               successor = find_min_node(node_to_delete.right_child)
+               successor_original_color = successor.color
+               successor_child = successor.right_child
+               if successor.parent == node_to_delete:
+                 successor_child.parent = successor
+               else:
+                 transplant(tree, successor, successor.right_child)
+                 successor.right_child = node_to_delete.right_child
+                 successor.right_child.parent = successor
+               transplant(tree, node_to_delete, successor)
+               successor.left_child = node_to_delete.left_child
+               successor.left_child.parent = successor
+               successor.color = node_to_delete.color
+             if successor_original_color == BLACK:
+               delete_fixup(tree, successor_child)
+
+           search(root, key):
+             current = root
+             while current != ø and current.key != key:
+               if key < current.key:
+                 current = current.left_child
+               else:
+                 current = current.right_child
+             return current
+
+           find_min_node(node):
+             while node.left_child != ø:
+               node = node.left_child
+             return node
+
+           transplant(tree, parent, child):
+             if parent.parent == ø:
+               tree.root = child
+             elif parent == parent.parent.left_child:
+               parent.parent.left_child = child
+             else:
+               parent.parent.right_child = child
+             if child != ø:
+               child.parent = parent.parent
+
+           delete_fixup(tree, current_node):
+             while current_node != tree.root and (current_node == ø or current_node.color == BLACK):
+               if current_node == current_node.parent.left_child:
+                 current_node_sibling = current_node.parent.right_child
+                 if current_node_sibling.color == RED:
+                   current_node_sibling.color = BLACK
+                   current_node.parent.color = RED
+                   left_rotate(tree, current_node.parent)
+                   current_node_sibling = current_node.parent.right_child
+                 if (current_node_sibling.left_child == ø or current_node_sibling.left_child.color == BLACK) and (current_node_sibling.right_child == ø or current_node_sibling.right_child.color == BLACK):
+                   current_node_sibling.color = RED
+                   current_node = current_node.parent
+                 else:
+                   if current_node_sibling.right_child == ø or current_node_sibling.right_child.color == BLACK:
+                     current_node_sibling.left_child.color = BLACK
+                     current_node_sibling.color = RED
+                     right_rotate(tree, current_node_sibling)
+                     current_node_sibling = current_node.parent.right_child
+                   current_node_sibling.color = current_node.parent.color
+                   current_node.parent.color = BLACK
+                   current_node_sibling.right_child.color = BLACK
+                   left_rotate(tree, current_node.parent)
+                   current_node = tree.root
+               else:
+                 current_node_sibling = current_node.parent.left_child
+                 if current_node_sibling.color == RED:
+                   current_node_sibling.color = BLACK
+                   current_node.parent.color = RED
+                   right_rotate(tree, current_node.parent)
+                   current_node_sibling = current_node.parent.left_child
+                 if (current_node_sibling.right_child == ø or current_node_sibling.right_child.color == BLACK) and (current_node_sibling.left_child == ø or current_node_sibling.left_child.color == BLACK):
+                   current_node_sibling.color = RED
+                   current_node = current_node.parent
+                 else:
+                   if current_node_sibling.left_child == ø or current_node_sibling.left_child.color == BLACK:
+                     current_node_sibling.right_child.color = BLACK
+                     current_node_sibling.color = RED
+                     left_rotate(tree, current_node_sibling)
+                     current_node_sibling = current_node.parent.left_child
+                   current_node_sibling.color = current_node.parent.color
+                   current_node.parent.color = BLACK
+                   current_node_sibling.left_child.color = BLACK
+                   right_rotate(tree, current_node.parent)
+                   current_node = tree.root
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

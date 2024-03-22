@@ -1,0 +1,118 @@
+---
+title: Prim's Algorithm
+description: Prim's Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/prims-algorithm/go.go";
+import Java from "!!raw-loader!./assets/prims-algorithm/java.java";
+import JS from "!!raw-loader!./assets/prims-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/prims-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/prims-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/prims-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/prims-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Prim's Algorithm is a greedy algorithm used to find the minimum spanning tree of a connected, undirected graph. It operates by selecting the smallest edge connected to the current minimum spanning tree and adding it to the tree, repeating this process until all vertices are included
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Beginning with an arbitrary vertex, the algorithm grows the minimum spanning tree one vertex at a time. At each step, it selects the smallest edge that connects a vertex in the tree to a vertex outside of it, ensuring that the tree remains connected. This process continues until all vertices are included in the tree, resulting in a minimum spanning tree that spans all vertices with the smallest possible total edge weight
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose an arbitrary starting vertex to begin the minimum spanning tree
+    - Mark this vertex as visited or add it to the minimum spanning tree
+      - find the smallest edge connected to any vertex in the minimum spanning tree that leads to an unvisited vertex
+      - add this edge to the minimum spanning tree
+      - mark the newly reached vertex as visited
+      - repeat steps until all vertices are included in the minimum spanning tree
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - keep track of visited vertices to avoid cycles and ensure connectivity
+    - utilize a priority queue or heap data structure to efficiently find the smallest edge at each step
+    - ensure that the graph is connected; if not, handle disconnected components separately or consider using a different algorithm
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    Prim(Graph, start_vertex):
+        initialize an empty set called MST (minimum spanning tree)
+        initialize a priority queue called pq
+        initialize a boolean array called visited to track visited vertices
+        add start_vertex to pq with priority 0
+        while pq is not empty:
+            vertex = pq.extract_min()
+            if vertex is not visited:
+                add vertex to MST
+                mark vertex as visited
+                for each neighbor of vertex:
+                    if neighbor is not visited:
+                        add edge(vertex, neighbor) to pq with priority equal to edge weight
+        return MST
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

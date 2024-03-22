@@ -1,0 +1,113 @@
+---
+title: Selection Sort
+description: Selection Sort
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/selection-sort/go.go";
+import Java from "!!raw-loader!./assets/selection-sort/java.java";
+import JS from "!!raw-loader!./assets/selection-sort/js.js";
+import Kotlin from "!!raw-loader!./assets/selection-sort/kt.kt";
+import Python from "!!raw-loader!./assets/selection-sort/py.py";
+import Rust from "!!raw-loader!./assets/selection-sort/rs.rs";
+import TS from "!!raw-loader!./assets/selection-sort/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Selection Sort is a simple comparison-based sorting algorithm that divides the input list into two parts: a sorted sublist and an unsorted sublist. It repeatedly selects the smallest (or largest) element from the unsorted sublist and swaps it with the leftmost unsorted element, moving the sublist boundaries one element to the right
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Iterate through the input list and repeatedly selecting the smallest element from the unsorted part and moving it to the beginning. This is done by maintaining two sublists within the array: the sorted sublist and the unsorted sublist. Initially, the entire array is unsorted. In each iteration, the algorithm finds the minimum element from the unsorted sublist and swaps it with the first unsorted element, thereby expanding the sorted sublist by one element and shrinking the unsorted sublist by one element. This process continues until the entire array is sorted
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with the first element as the current minimum
+      - Compare this minimum element with the rest of the elements in the array
+      - If any element is found smaller than the current minimum, update the minimum element
+      - After completing the comparison, swap the current minimum element with the first unsorted element
+      - Now, the first element of the array is in its correct sorted position
+      - Repeat steps for the remaining unsorted portion of the array, each time considering only the unsorted portion for finding the minimum element
+    - Continue this process until the entire array is sorted
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - remember that it's not the most efficient sorting algorithm for large datasets. It's mainly used for educational purposes or when simplicity is favored over efficiency
+    - selection sort is an in-place sorting algorithm, meaning it doesn't require extra space for sorting
+    - the algorithm involves a lot of swapping, so keep track of the indices and values being swapped properly to avoid errors
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    selectionSort(array A)
+      n = length of A
+      for i from 0 to n-1
+        minIndex = i
+        for j from i+1 to n-1
+          if A[j] < A[minIndex]
+            minIndex = j
+          swap A[i] with A[minIndex] // Swap the minimum element with the first unsorted element
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

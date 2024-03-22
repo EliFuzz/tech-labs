@@ -1,0 +1,127 @@
+---
+title: Rabin Karp Algorithm
+description: Rabin Karp Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/rabin-karp-algorithm/go.go";
+import Java from "!!raw-loader!./assets/rabin-karp-algorithm/java.java";
+import JS from "!!raw-loader!./assets/rabin-karp-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/rabin-karp-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/rabin-karp-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/rabin-karp-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/rabin-karp-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Rabin-Karp Algorithm is a string-searching algorithm that efficiently finds the occurrence of a pattern within a text. It's particularly useful when the pattern searching involves multiple occurrences in the text
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Hashing the pattern and each substring of the text, then comparing these hashes to find matches. To avoid recomputing hashes for each substring, it uses a rolling hash function. This function efficiently updates the hash value by subtracting the contribution of the outgoing character and adding the contribution of the incoming character. When a match is found, it verifies the match by comparing the actual characters. By utilizing hashing, it significantly reduces the number of comparisons needed, leading to faster search times
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Compute the hash value of the pattern
+    - Slide the pattern over the text, computing the hash of each substring using the rolling hash function
+    - Compare the hash values of the pattern and the current substring
+    - If the hash values match, compare the actual characters to confirm the match
+    - If a match is confirmed, record the position/index of the match
+    - Continue sliding the pattern until the end of the text is reached
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use a rolling hash function to efficiently update hash values
+    - employ a hash function that minimizes collisions for better performance
+    - choose a base and a prime number carefully to avoid hash collisions
+    - utilize modular arithmetic to prevent overflow when dealing with large hash values
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    rabin_karp(text, pattern):
+      n = length(text)
+      m = length(pattern)
+      prime = a large prime number
+      base = a base value for the hash function
+
+      pattern_hash = hash(pattern)   # Compute hash of the pattern
+      text_hash = hash(text[0:m])    # Compute hash of the initial substring of text
+
+      for i from 0 to n-m:
+        if pattern_hash == text_hash:
+          if pattern == text[i:i+m]:
+            print "Pattern found at index", i
+        if i < n-m:
+          text_hash = (text_hash - ord(text[i]) * base**m) * base + ord(text[i+m])
+
+    # Rolling hash function
+    hash(s):
+      hash_value = 0
+      for character in s:
+        hash_value = (hash_value * base + ord(character)) % prime
+      return hash_value
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

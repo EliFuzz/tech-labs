@@ -1,0 +1,133 @@
+---
+title: Knapsack Problem
+description: Knapsack Problem
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/knapsack-problem/go.go";
+import Java from "!!raw-loader!./assets/knapsack-problem/java.java";
+import JS from "!!raw-loader!./assets/knapsack-problem/js.js";
+import Kotlin from "!!raw-loader!./assets/knapsack-problem/kt.kt";
+import Python from "!!raw-loader!./assets/knapsack-problem/py.py";
+import Rust from "!!raw-loader!./assets/knapsack-problem/rs.rs";
+import TS from "!!raw-loader!./assets/knapsack-problem/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The knapsack (rucksack) problem is about optimizing the selection of items with weights and values to fit within a given limit while maximizing total value. It's named after the challenge of filling a fixed-size knapsack with valuable items. For instance, one version involves choosing boxes to maximize earnings while staying within a weight limit, such as 15 kg. Problem of maximizing the value of items in a knapsack without exceeding its capacity, with items being either selected or not.
+
+    **0/1 Knapsack Problem**
+
+    Each item can only be selected once. It involves a set of items with weights `wi` and values `vi`, along with a maximum weight capacity `W`, maximize $$\displaystyle\sum_{i = 1}^n v_i x_i$$
+    subject to $$\displaystyle\sum_{i = 1}^n w_i x_i \leq W$$ and $$x_i \in \{0, 1\}$$ where $$x_i$$ signifies the quantity of item `i` to add to the knapsack. The objective is to maximize the total
+    value of the items while ensuring their combined weight doesn't exceed the knapsack's capacity
+
+    **Bounded knapsack problem (BKP)**
+
+    Removes the restriction that there is only one of each item, but restricts the number $$x_i$$ of copies of each kind of item to a maximum non-negative integer value `c`: maximize
+    $$\displaystyle\sum_{i = 1}^n v_i x_i$$ subject to $$\displaystyle\sum_{i = 1}^n w_i x_i \leq W$$ and $$0 \leq x_i \leq c$$
+
+    **Unbounded knapsack problem (UKP)**
+
+    Places no upper bound on the number of copies of each kind of item and can be formulated as above except for that the only restriction on $$x_i$$ is that it is a non-negative integer, maximize
+    $$\displaystyle\sum_{i = 1}^n v_i x_i$$ subject to $$\displaystyle\sum_{i = 1}^n w_i x_i \leq W$$ and $$x_i \geq 0$$
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Visualize a grid where each cell represents a combination of items and their capacity. Initially filled with zeros, the grid is primed for calculations. We systematically explore each item and capacity option, toggling between inclusion and exclusion of items to optimize value. By updating the grid iteratively, the bottom-right cell reveals the maximum achievable value given the constraints
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Begin by setting up a grid, like a table, with rows for each item and columns for each possible capacity, starting from zero and going up to the maximum capacity
+    - Go through each item one by one
+       - for each item, consider every capacity from zero up to the maximum capacity
+          - if the weight of the current item can fit into the current capacity
+             - calculate the value if we include the item: take the maximum between the value obtained by including the item and the value obtained by excluding it
+          - if the weight of the item is too much for the current capacity, just keep the value same as the previous item
+    - The maximum value achievable is the number in the bottom-right corner of the table/grid
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - optimize the space complexity by using a 1D array instead of a 2D array if possible
+    - ensure that the items are sorted either by weight or by value to optimize the algorithm
+    - handle edge cases such as when the capacity is zero or when there are no items
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    knapsack(weights[], values[], capacity):
+        n = length(weights)
+        dp = array of size (n + 1) x (capacity + 1) filled with zeros
+
+        for i from 1 to n:
+            for j from 1 to capacity:
+                if weights[i] <= j:
+                    dp[i][j] = max(dp[i-1][j], dp[i-1][j - weights[i]] + values[i])
+                else:
+                    dp[i][j] = dp[i-1][j]
+
+        return dp[n][capacity]
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

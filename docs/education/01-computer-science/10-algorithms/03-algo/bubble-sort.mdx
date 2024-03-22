@@ -1,0 +1,112 @@
+---
+title: Bubble Sort
+description: Bubble Sort
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/bubble-sort/go.go";
+import Java from "!!raw-loader!./assets/bubble-sort/java.java";
+import JS from "!!raw-loader!./assets/bubble-sort/js.js";
+import Kotlin from "!!raw-loader!./assets/bubble-sort/kt.kt";
+import Python from "!!raw-loader!./assets/bubble-sort/py.py";
+import Rust from "!!raw-loader!./assets/bubble-sort/rs.rs";
+import TS from "!!raw-loader!./assets/bubble-sort/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The Bubble Sort algorithm begins by iterating through the list from the start. It compares adjacent elements, swapping them if they're in the wrong order. This comparison continues for each pair until the end of the list is reached. This process repeats for every element until the entire list is sorted
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start from the beginning of the list
+    - Compare the first two elements
+      - If the first element is greater than the second, swap them
+      - Move to the next pair of elements
+      - Repeat steps until you reach the end of the list
+    - Repeat steps until the entire list is sorted
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - keep track of whether any swaps are made in each pass. If no swaps are made, the list is already sorted, and the algorithm can terminate early
+    - optimize the algorithm by implementing a flag to check if any swapping occurred in a pass. If no swaps occur, the list is sorted, and further iterations can be skipped
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    function bubbleSort(arr)
+      n = length(arr)
+      swapped = true
+      while swapped is true
+        swapped = false
+        for i from 0 to n-2
+          if arr[i] > arr[i+1]
+            swap(arr[i], arr[i+1])
+            swapped = true
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

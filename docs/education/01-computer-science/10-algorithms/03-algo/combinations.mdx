@@ -1,0 +1,133 @@
+---
+title: Combinations
+description: Combinations
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/combinations/go.go";
+import Java from "!!raw-loader!./assets/combinations/java.java";
+import JS from "!!raw-loader!./assets/combinations/js.js";
+import Kotlin from "!!raw-loader!./assets/combinations/kt.kt";
+import Python from "!!raw-loader!./assets/combinations/py.py";
+import Rust from "!!raw-loader!./assets/combinations/rs.rs";
+import TS from "!!raw-loader!./assets/combinations/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Combinations Algorithm generates all possible combinations of elements from a given set without considering the order of elements
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm accepts a set of elements and a desired combination size. It employs recursion to systematically construct combinations by selecting elements iteratively. At each iteration, it evaluates whether to include the current element. This process persists until the combination achieves the target size, upon which it is appended to the result set. This cycle continues for all elements in the set until all possible combinations are exhausted
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with an empty combination and an empty result set
+    - Iterate through each element in the given set
+      - for each element, decide whether to include it in the current combination or not
+        - if including the element, add it to the current combination and recursively call the algorithm with a reduced target size and remaining elements
+        - if not including the element, skip it and recursively call the algorithm with the same target size and remaining elements
+        - repeat steps until the target size is reached
+        - add the generated combination to the result set
+    - Repeat for all elements in the set
+    - Return the result set containing all possible combinations
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize recursion to simplify the implementation
+    - keep track of the current combination and remaining elements during recursion
+    - use backtracking to efficiently explore all possible combinations
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    generateCombinations(set, targetSize, currentCombination, index, results)
+      if size of currentCombination is equal to targetSize
+        add currentCombination to results
+        return
+      end if
+
+      if index is equal to size of set
+        return
+      end if
+
+      // Include the current element
+      add set[index] to currentCombination
+      generateCombinations(set, targetSize, currentCombination, index + 1, results)
+
+      // Exclude the current element
+      remove set[index] from currentCombination
+      generateCombinations(set, targetSize, currentCombination, index + 1, results)
+
+    end function
+
+    // Example usage:
+    results = []
+    set = [1, 2, 3, 4]
+    targetSize = 2
+    generateCombinations(set, targetSize, [], 0, results)
+    print results
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

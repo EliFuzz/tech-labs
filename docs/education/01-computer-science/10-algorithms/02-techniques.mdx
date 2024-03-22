@@ -1,0 +1,202 @@
+---
+title: Techniques
+description: Techniques / Patterns for Common Algorithms
+hide_table_of_contents: true
+---
+
+<table className="sticky column">
+  <thead>
+    <tr>
+      <th>Technique</th>
+      <th>Definition</th>
+      <th>Examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>0/1 Knapsack (Dynamic Programming)</b></td>
+      <td>
+        Problem where you need to determine the most valuable combination of items to include in a knapsack without exceeding its weight capacity. Items can either be included wholly (`1`) or not at all (`0`), hence the name `0/1`. The problem is solved using Dynamic Programming, a technique that breaks down complex problems into simpler subproblems. The solution to the 0/1 Knapsack problem involves finding the optimal combinations for each possible weight limit up to the capacity of the knapsack, ensuring the maximum possible value is achieved
+      </td>
+      <td>
+        <ul>
+          <li>
+            <b>Project Management</b>: A manager has a fixed budget and a list of projects, each with a cost and expected return
+          </li>
+          <li>
+            <b>Logistics</b>: Shipping company has a truck with a weight limit and various packages with different weights and values
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Backtracking</b></td>
+      <td>
+        Backtracking is a depth-first search (DFS) algorithm used to solve computational problems by reversing steps when a solution is non-viable. It discards multiple solutions without fully examining them and continues by choosing another option until a solution is found or options are exhausted. It's efficient for large solution spaces (exponential), but can be inefficient if many partially built solutions are rejected
+      </td>
+      <td>
+        <ul>
+          <li>solve puzzle</li>
+          <li>pathfinding</li>
+          <li>combinatorial optimization problems</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Bitwise Operations</b></td>
+      <td>Bitwise operators are used in programming to manipulate individual bits in binary numbers. They include Bitwise AND (`&`), OR (`|`), XOR (`^`), NOT (`~`), Left Shift (`<<`), and Right Shift (`>>`). They operate at the binary level, comparing or shifting bits based on the operator used</td>
+      <td>
+        <ul>
+          <li><b>Hardware Device Control</b>: read/write to specific bits in device's hardware registers</li>
+          <li><b>Data Compression</b>: used in algorithms for data compression and decompression</li>
+          <li><b>Cryptography</b>: essential for manipulating binary data in encryption techniques</li>
+          <li><b>Network Protocols</b>: used to extract specific fields from the packet data in network protocols like TCP/IP</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Dynamic Programming (DP)</b></td>
+      <td>Method that solves complex problems by breaking them down into simpler subproblems. It helps optimize computation time by storing the results of these subproblems in an array or table, which can be reused when the same subproblem reoccurs, a concept known as memoization</td>
+      <td>
+        <ul>
+          <li><b>Inventory Management</b>: determine the optimal quantity of items to stock to maximize profit</li>
+          <li><b>Financial Budgeting</b>: helps in allocating a fixed budget to maximize return or profit</li>
+          <li><b>Machine Learning</b>: In reinforcement learning, dynamic programming helps an agent to learn an optimal policy to navigate in an environment by maximizing rewards</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Fast & Slow Pointers</b></td>
+      <td>It's a technique that primarily used in linked list data structures. It involves 2 pointers that move at different speeds through the list</td>
+      <td>
+        <ul>
+          <li>cycle detection and locating the start of it</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Island (Matrix Traversal) Pattern</b></td>
+      <td>Helps to identify, count or process distinct groups, known as "islands", in a matrix or 2D array. An island is a group of connected components that are horizontally or vertically adjacent. The pattern uses Depth-First Search (DFS) or Breadth-First Search (BFS) algorithms to traverse the matrix, starting from a point and moving to adjacent points until the entire island is covered</td>
+      <td>
+        <ul>
+          <li><b>Digital Image Processing</b>: The Island Pattern identifies distinct shapes in a binary image by counting groups of connected pixels</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>K-way Merge</b></td>
+      <td>It's used to merge `k` number of sorted lists into 1 sorted list. It uses a min-heap or priority queue to efficiently combine the lists, resulting in a time complexity of `O(n log k)`, where `n` is the total number of elements and `k` is the number of sorted lists</td>
+      <td>
+        <ul>
+          <li><b>Database Systems</b>: In the process of external sorting, databases use K-way Merge to merge sorted runs of records, especially when they don't fit into the main memory</li>
+          <li><b>Big Data Processing</b>: Frameworks like Apache Hadoop or Apache Spark use K-way Merge to merge data from multiple reducers into a globally sorted output</li>
+          <li><b>Streaming Data Processing</b>: For real-time analytics or IoT data processing, K-way Merge merges multiple sorted data streams into a single sorted stream for further analysis</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Memoization</b></td>
+      <td>It's a technique that speeds up programs by storing the results of expensive function calls or computations and reusing them when the same inputs occur. It's particularly useful in problems with overlapping subproblems, like dynamic programming. Although it enhances performance, it can also increase memory usage due to the cached values. Therefore, it represents a trade-off between time and space complexity</td>
+      <td>
+        <ul>
+          <li><b>Dynamic Programming</b>: is used to improve the performance of algorithm by caching the results of previously computed subproblems</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Merge Intervals</b></td>
+      <td>Common algorithmic problem, which involves merging overlapping intervals from a given collection. The problem requires sorting the intervals based on start times and then iterating through, merging intervals where the end of one interval is greater than the start of the next. This problem is fundamental in areas like interval scheduling and computational geometry</td>
+      <td>
+        <ul>
+          <li><b>Meeting Scheduler Application</b>: identify and merge overlapping meetings</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Monotonic Stack</b></td>
+      <td>Variation of Stack (FIFO) that only allows items to be pushed onto the stack or popped off the stack in a specific order</td>
+      <td>
+        <ul>
+          <li><b>Nearest Greater or Smaller Element</b>: to find the nearest greater or smaller element to the left or right of each element in an array or sequence</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Recursion</b></td>
+      <td>Function that calls itself to solve smaller instances of the same problem. It's used in repetitive structures like searching and sorting algorithms. A recursive algorithm progresses towards a base case to avoid indefinite recursion. It's a powerful tool, but should be used cautiously to prevent high memory usage and stack overflow errors</td>
+      <td>
+        <ul>
+          <li><b>Family Tree</b>: Each person in a family tree is a parent to the next generation, repeating the parent-child relationship</li>
+          <li><b>Computer Directories</b>: A directory can contain sub-directories which further contain more sub-directories, showing recursive structure</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Search</b></td>
+      <td>
+        <ul>
+          <li>Binary Search</li>
+          <li>Breadth First Search (BFS)</li>
+          <li>Depth First Search (DFS)</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><b>Sliding Window</b></td>
+      <td>It's used in algorithms to limit data processed at one time, often in array or list manipulation. The 'window' slides along the array or list, providing control over memory usage and computational complexity</td>
+      <td>
+        <ul>
+          <li><b>Video Streaming</b>: Streaming services like using it to buffer videos for smooth playback</li>
+          <li><b>Text Analysis</b>: in natural language processing, sliding windows analyze subsets of words for tasks like sentiment analysis</li>
+          <li><b>Time Series Analysis</b>: calculates moving averages in time series analysis by updating the data set as new information comes in</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Sorting</b></td>
+      <td>
+        <ul>
+          <li>Binary Sort</li>
+          <li>Topological Sort</li>
+          <li>Cyclic Sort</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><b>Subsets</b></td>
+      <td>Subset, is a set that contains all, some, or none of the elements of another set, known as the superset</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><b>Top 'K' Elements</b></td>
+      <td>Refers to identifying the 'K' highest-ranking or most common elements in a collection like an array or list. The value of 'K' can vary and the 'top' elements are determined based on factors such as numerical value, frequency, or a custom logic. This problem is often solved using data structures and algorithms such as priority queues, max-heaps, hash maps, or binary search trees</td>
+      <td>
+        <ul>
+          <li><b>Search Engine or Social Media Platforms</b>: returns the top 'K' most relevant web pages / trending hashtags for a user's query</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Trie</b></td>
+      <td>Trie (prefix tree), is a tree-like data structure used for efficient key retrieval in a dataset of strings. Each node of the Trie holds a reference to its child nodes, and the key is represented by the string of characters from the root to that node</td>
+      <td>
+        <ul>
+          <li>dictionaries with prefix lookup</li>
+          <li>auto-complete suggestions</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Two Heaps</b></td>
+      <td>Involves max-heap and a min-heap, for efficient extreme value tracking. This setup is particularly useful in streaming data situations where you need to find the median value quickly</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><b>Two Pointers</b></td>
+      <td>Involves two pointers to traverse through an array or linked list efficiently. This technique is valuable for reducing time and space complexity in problem-solving. It can be employed in various ways, including moving pointers towards each other, away from each other, or in the same direction, depending on the specific problem</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

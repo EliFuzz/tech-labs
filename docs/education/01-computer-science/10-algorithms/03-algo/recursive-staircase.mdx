@@ -1,0 +1,118 @@
+---
+title: Recursive Staircase
+description: Recursive Staircase
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/recursive-staircase/go.go";
+import Java from "!!raw-loader!./assets/recursive-staircase/java.java";
+import JS from "!!raw-loader!./assets/recursive-staircase/js.js";
+import Kotlin from "!!raw-loader!./assets/recursive-staircase/kt.kt";
+import Python from "!!raw-loader!./assets/recursive-staircase/py.py";
+import Rust from "!!raw-loader!./assets/recursive-staircase/rs.rs";
+import TS from "!!raw-loader!./assets/recursive-staircase/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Recursive Staircase Algorithm (Fibonacci) is a dynamic programming approach to efficiently solve the problem of finding the number of ways to climb a staircase with a given number of steps, where you can take either 1 or 2 steps at a time. It optimizes the computation by storing previously calculated results, avoiding redundant calculations
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    It calculates the number of ways to climb a staircase with `n` steps by recursively breaking down the problem into smaller subproblems. At each step, it considers two possibilities: either taking one step or taking two steps. It then sums up the results of these two possibilities to find the total number of ways to climb `n` steps. By memoizing previously computed results, it avoids redundant calculations and optimizes the overall computation.
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Base cases
+      - if n is 0 or 1, there is only one way to climb the staircase (either by taking no steps or taking one step)
+    - If the result for `n` is already computed (memoized), return it
+      - Otherwise, recursively compute the number of ways to climb `n-1` steps and `n-2` steps
+      - Memoize the result for `n`
+      - Return the sum of the results computed for `n-1` and `n-2`
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize memoization to store previously computed results and avoid redundant calculations, significantly improving efficiency
+    - start by considering the base cases (0 and 1 steps) to build the recursive solution from the ground up
+    - be cautious of potential stack overflow issues with deep recursion for large values of n; consider optimizing with iterative approaches or tail recursion if necessary
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    countWays(n):
+      if n <= 1:
+        return 1  # Base cases
+
+      if memo[n] is not None:
+        return memo[n]  # Return memoized result if available
+
+      # Recursive calls
+      memo[n] = countWays(n-1) + countWays(n-2)
+
+      return memo[n]
+
+    # Initialize memoization array
+    memo = [None] * (max_steps + 1)
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

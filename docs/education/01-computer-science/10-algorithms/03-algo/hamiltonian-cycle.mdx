@@ -1,0 +1,131 @@
+---
+title: Hamiltonian Cycle
+description: Hamiltonian Cycle
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/hamiltonian-cycle/go.go";
+import Java from "!!raw-loader!./assets/hamiltonian-cycle/java.java";
+import JS from "!!raw-loader!./assets/hamiltonian-cycle/js.js";
+import Kotlin from "!!raw-loader!./assets/hamiltonian-cycle/kt.kt";
+import Python from "!!raw-loader!./assets/hamiltonian-cycle/py.py";
+import Rust from "!!raw-loader!./assets/hamiltonian-cycle/rs.rs";
+import TS from "!!raw-loader!./assets/hamiltonian-cycle/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Hamiltonian Cycle Algorithm aims to find a cycle that visits every vertex in a graph exactly once and returns to the starting vertex. It's a problem of determining whether such a cycle exists in a given graph
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm explores all possible permutations of vertices to find a cycle that visits each vertex exactly once and returns to the starting vertex. It typically uses backtracking to efficiently explore the solution space
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with any vertex as the current vertex
+    - Explore all unvisited vertices adjacent to the current vertex
+    - If all vertices are visited and the current vertex has an edge to the start vertex, then a Hamiltonian cycle is found
+    - Otherwise, mark the current vertex as visited and recursively explore the unvisited adjacent vertices
+    - Backtrack if no Hamiltonian cycle is found from the current vertex
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - Implement efficient data structures for graph representation and vertex visitation tracking to optimize performance
+    - Prune unnecessary branches early in the search process to reduce computation time
+    - Consider heuristic approaches or domain-specific knowledge if applicable to improve search efficiency
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    hamiltonianCycle(graph):
+      numVertices = graph.numVertices()
+      path = array of size numVertices
+      for each vertex in graph:
+        path[0] = vertex
+        if hamiltonianCycleUtil(graph, path, 1):
+          return path
+      return "No Hamiltonian cycle found"
+
+    hamiltonianCycleUtil(graph, path, pos):
+      if pos == graph.numVertices():
+        if graph.hasEdge(path[pos-1], path[0]):
+          return true
+        else:
+          return false
+      for v in graph.adjacentVertices(path[pos-1]):
+        if not isVisited(v, path, pos):
+          path[pos] = v
+          if hamiltonianCycleUtil(graph, path, pos+1):
+            return true
+          path[pos] = -1
+      return false
+
+    isVisited(vertex, path, pos):
+      for i from 0 to pos-1:
+        if path[i] == vertex:
+          return true
+      return false
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,131 @@
+---
+title: Knuth–Morris–Pratt Algorithm (KMP Algorithm)
+description: Knuth–Morris–Pratt Algorithm (KMP Algorithm)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/knuth–morris–pratt-algorithm/go.go";
+import Java from "!!raw-loader!./assets/knuth–morris–pratt-algorithm/java.java";
+import JS from "!!raw-loader!./assets/knuth–morris–pratt-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/knuth–morris–pratt-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/knuth–morris–pratt-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/knuth–morris–pratt-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/knuth–morris–pratt-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Knuth–Morris–Pratt (KMP) Algorithm is a string searching algorithm that efficiently finds occurrences of a pattern within a text. It does so by utilizing information from previously matched characters to avoid unnecessary comparisons
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The KMP Algorithm works by precomputing a partial match table, also known as the "failure function" or "prefix function," for the pattern. This table enables the algorithm to determine the maximum length of a proper suffix of the pattern that matches a prefix of the pattern. During the matching process, the algorithm utilizes this information to efficiently skip unnecessary comparisons
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Construct the partial match table for the pattern
+    - Initialize two pointers: one for the text (`i`) and one for the pattern (`j`) at the beginning of their respective strings
+    - Iterate through the text while the text pointer is less than its length
+      - Compare characters at the text and pattern pointers
+      - If the characters match, increment both pointers
+      - If the characters don't match and the pattern pointer is not at the beginning, update the pattern pointer using information from the partial match table
+      - If the characters don't match and the pattern pointer is at the beginning, move only the text pointer forward
+      - Repeat steps until a match is found or the end of the text is reached
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize the partial match table to efficiently determine the next comparison position in the pattern
+    - avoid unnecessary backtracking by utilizing the information from the partial match table
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    computePrefixFunction(pattern):
+      m = length of pattern
+      prefixFunction[m]
+      prefixFunction[0] = 0
+      k = 0
+      for q from 2 to m:
+        while k > 0 and pattern[k+1] ≠ pattern[q]:
+          k = prefixFunction[k]
+        if pattern[k+1] == pattern[q]:
+          k = k + 1
+        prefixFunction[q] = k
+      return prefixFunction
+
+    searchKMP(text, pattern):
+      n = length of text
+      m = length of pattern
+      prefixFunction = computePrefixFunction(pattern)
+      q = 0
+      for i from 1 to n:
+        while q > 0 and pattern[q+1] ≠ text[i]:
+          q = prefixFunction[q]
+        if pattern[q+1] == text[i]:
+          q = q + 1
+        if q == m:
+          print "Pattern occurs with shift" i - m
+          q = prefixFunction[q]
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

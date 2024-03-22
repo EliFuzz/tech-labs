@@ -1,0 +1,137 @@
+---
+title: Quicksort
+description: Quicksort
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/quicksort/go.go';
+import Java from '!!raw-loader!./assets/quicksort/java.java';
+import JS from '!!raw-loader!./assets/quicksort/js.js';
+import Kotlin from '!!raw-loader!./assets/quicksort/kt.kt';
+import Python from '!!raw-loader!./assets/quicksort/py.py';
+import Rust from '!!raw-loader!./assets/quicksort/rs.rs';
+import TS from '!!raw-loader!./assets/quicksort/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Quicksort is a highly efficient sorting algorithm that works by partitioning an array into smaller sub-arrays, then recursively sorting each sub-array. It follows the divide-and-conquer strategy, making it particularly effective for large datasets
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted. This process continues until the entire array is sorted
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose a pivot element from the array (commonly the last element)
+    - Partition the array into two sub-arrays
+      - elements less than the pivot
+      - elements greater than the pivot
+    - Recursively apply the above steps to the sub-arrays until the base case (sub-array size is 1 or 0) is reached
+    - Concatenate the sorted sub-arrays to obtain the sorted array
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - always try to choose a pivot that helps in evenly dividing the array. Common choices include the first, last, or middle element
+    - implementing a technique like the 'median of three' to choose a pivot can improve performance, especially for nearly sorted arrays
+    - quicksort can be implemented in-place, reducing the need for additional memory allocation
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    quicksort(array, low, high):
+      if low < high:
+        // Partition the array and get the pivot index
+        pivot_index = partition(array, low, high)
+        // Recursively sort the sub-arrays
+        quicksort(array, low, pivot_index - 1)
+        quicksort(array, pivot_index + 1, high)
+
+    partition(array, low, high):
+      // Choose the pivot (here, we choose the last element)
+      pivot = array[high]
+      // Index of the smaller element
+      smaller_index = low - 1
+
+      // Iterate through the array from low to high
+      for j = low to high - 1:
+        // If current element is smaller than or equal to pivot
+        if array[j] <= pivot:
+          // Increment index of smaller element
+          smaller_index = smaller_index + 1
+          // Swap smaller element with current element
+          swap(array, smaller_index, j)
+
+      // Swap pivot with element at smaller_index + 1
+      swap(array, smaller_index + 1, high)
+      // Return the partitioning index
+      return smaller_index + 1
+
+    swap(array, i, j):
+      // Swap elements at indices i and j in the array
+      temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,126 @@
+---
+title: Binary Search
+description: Binary Search
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/binary-search/go.go";
+import Java from "!!raw-loader!./assets/binary-search/java.java";
+import JS from "!!raw-loader!./assets/binary-search/js.js";
+import Kotlin from "!!raw-loader!./assets/binary-search/kt.kt";
+import Python from "!!raw-loader!./assets/binary-search/py.py";
+import Rust from "!!raw-loader!./assets/binary-search/rs.rs";
+import TS from "!!raw-loader!./assets/binary-search/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Binary search is an efficient algorithm used to find a target value within a sorted array or list. It works by repeatedly dividing the search interval in half until the target value is found or the interval is empty
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Start with a sorted array. Find the middle index of the array. If the middle element matches the target, return its index. If the middle element is greater than the target, search the left half, otherwise search the right half. Repeat until the target is found or the search interval is empty
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize variables
+      - low as the starting index of the array (0) and high as the ending index (length of the array - 1)
+    - While low is less than or equal to high, continue the search
+      - calculate the middle index
+        - `mid = (low + high) / 2`
+      - if the middle element is equal to the target value
+        - return `mid`
+      - if the middle element is greater than the target value
+        - set `high = mid - 1` to search the left half
+      - if the middle element is less than the target value
+        - set `low = mid + 1` to search the right half
+      - repeat steps in a while loop until low is greater than high, indicating the target value is not present in the array
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure the array is sorted beforehand
+    - watch out for integer overflow when calculating the midpoint (mid = (low + high) / 2). Consider using mid = low + (high - low) / 2 to avoid this issue
+    - make sure to handle edge cases such as empty arrays or arrays with only one element
+    - remember to handle scenarios where the target value is not present in the array
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    binarySearch(arr, target):
+      low = 0
+      high = length(arr) - 1
+
+      while low <= high:
+        mid = (low + high) / 2
+
+        if arr[mid] == target:
+          return mid
+        elif arr[mid] < target:
+          low = mid + 1
+        else:
+          high = mid - 1
+
+      return -1 // Target not found
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

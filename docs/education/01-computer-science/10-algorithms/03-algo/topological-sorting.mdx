@@ -1,0 +1,134 @@
+---
+title: Topological Sorting
+description: Topological Sorting
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/topological-sorting/go.go";
+import Java from "!!raw-loader!./assets/topological-sorting/java.java";
+import JS from "!!raw-loader!./assets/topological-sorting/js.js";
+import Kotlin from "!!raw-loader!./assets/topological-sorting/kt.kt";
+import Python from "!!raw-loader!./assets/topological-sorting/py.py";
+import Rust from "!!raw-loader!./assets/topological-sorting/rs.rs";
+import TS from "!!raw-loader!./assets/topological-sorting/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Topological sorting is a linear ordering of vertices in a directed graph such that for every directed edge `uv` from vertex `u` to vertex `v`, `u` comes before `v` in the ordering
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Repeatedly select a vertex with no incoming edges (in-degree of 0), adding it to the topological order, and removing it along with its outgoing edges. This process continues until all vertices are included in the topological order or until no vertex with zero in-degree is found
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize an empty list to store the topological order
+    - Compute the in-degree of each vertex in the graph
+    - Enqueue all vertices with an in-degree of 0 into a queue
+    - While the queue is not empty
+      - Dequeue a vertex u from the queue
+      - Add u to the topological order list
+      - For each neighbor v of u, decrement the in-degree of v
+      - If the in-degree of v becomes 0, enqueue v into the queue
+    - If the topological order list's length is equal to the number of vertices, return the list as the topological order. Otherwise, the graph has a cycle
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure the graph is directed before applying the algorithm
+    - handle cases where the graph may contain cycles
+    - use data structures like queues to efficiently track vertices with zero in-degree
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    topologicalSort(graph):
+      inDegree[] // array to store in-degree of vertices
+      queue // queue to store vertices with in-degree 0
+      topologicalOrder[] // list to store topological order
+
+      // Initialize in-degree array and queue
+      for each vertex v in graph:
+        inDegree[v] = 0
+      for each edge (u, v) in graph:
+        inDegree[v]++
+        if inDegree[v] == 0:
+          queue.enqueue(v)
+
+      // Perform topological sort
+      while queue is not empty:
+        u = queue.dequeue()
+        topologicalOrder.append(u)
+        for each neighbor v of u in graph:
+          inDegree[v]--
+          if inDegree[v] == 0:
+            queue.enqueue(v)
+
+      // Check for cycles
+      if size of topologicalOrder != number of vertices:
+        return "Graph has a cycle"
+
+      return topologicalOrder
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

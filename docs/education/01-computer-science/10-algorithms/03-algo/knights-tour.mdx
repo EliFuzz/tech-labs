@@ -1,0 +1,124 @@
+---
+title: Knight's Tour
+description: Knight's Tour
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/knights-tour/go.go';
+import Java from '!!raw-loader!./assets/knights-tour/java.java';
+import JS from '!!raw-loader!./assets/knights-tour/js.js';
+import Kotlin from '!!raw-loader!./assets/knights-tour/kt.kt';
+import Python from '!!raw-loader!./assets/knights-tour/py.py';
+import Rust from '!!raw-loader!./assets/knights-tour/rs.rs';
+import TS from '!!raw-loader!./assets/knights-tour/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Knight's Tour Algorithm is a method used to solve the puzzle of moving a knight chess piece to visit every square on a chessboard exactly once
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Starting with an empty chessboard, positioning the knight arbitrarily on one of its squares. Subsequently, it systematically investigates all feasible moves adhering to the regulations of chess. During each iteration, the algorithm favors moves that lead to unvisited squares. If the knight encounters a situation where no further unvisited squares are accessible, it retraces its steps to the previous position, seeking an alternative path. This iterative process persists until either every square has been visited, signifying a successful tour, or all potential moves have been exhausted, resulting in an unsuccessful attempt
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with an empty chessboard and place the knight on any square
+    - From the current position, calculate all possible moves according to the knight's movement rules
+    - Choose one of the unvisited squares reachable from the current position
+    - Move the knight to the chosen square and mark it as visited
+    - Repeat steps 2-4 until either all squares are visited or there are no more unvisited squares reachable from the current position
+    - If all squares are visited, the algorithm terminates successfully. If not, backtrack to the previous position and choose another unvisited square
+    - Continue backtracking until either a successful tour is found or all possible paths are exhausted
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - prioritize moves that lead to squares with fewer unvisited neighbors to increase the chances of finding a successful tour
+    - implement a data structure to efficiently track visited squares and available moves
+    - consider implementing heuristics or optimizations to improve the algorithm's performance, such as Warnsdorff's rule for selecting the next move
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    knight_tour(board, row, col, move_count):
+        if move_count == board.size ** 2:
+            return true  // All squares visited, tour complete
+
+        for each possible move from (row, col) as (next_row, next_col):
+            if is_valid_move(board, next_row, next_col):
+                mark_square_as_visited(board, next_row, next_col, move_count)
+                if knight_tour(board, next_row, next_col, move_count + 1):
+                    return true  // Successful tour found
+                else:
+                    unmark_square(board, next_row, next_col) // Backtrack
+        return false  // No successful tour found
+
+    initialize chessboard
+    start_row, start_col = choose_starting_position(chessboard)
+    if knight_tour(chessboard, start_row, start_col, 1):
+        print("Successful tour found")
+    else:
+        print("No tour found")
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,154 @@
+---
+title: k-Means
+description: k-Means
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/k-means/go.go";
+import Java from "!!raw-loader!./assets/k-means/java.java";
+import JS from "!!raw-loader!./assets/k-means/js.js";
+import Kotlin from "!!raw-loader!./assets/k-means/kt.kt";
+import Python from "!!raw-loader!./assets/k-means/py.py";
+import Rust from "!!raw-loader!./assets/k-means/rs.rs";
+import TS from "!!raw-loader!./assets/k-means/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The k-Means algorithm is an unsupervised machine learning technique used for clustering data into k groups based on similarities in their features. It partitions the data into clusters by minimizing the sum of squared distances between data points and their respective cluster centroids
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The k-Means algorithm begins by randomly initializing k cluster centroids within the data space. Next, each data point is assigned to the nearest centroid, thereby forming k clusters. After the initial assignment, the centroids are recalculated as the mean of all data points assigned to each cluster. This process of assignment and centroid recalculation is repeated iteratively until convergence is achieved, meaning that the centroids no longer change significantly or a specified number of iterations is reached
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose the number of clusters, k
+    - Initialize k centroids randomly within the data space
+    - Repeat until convergence
+      - Assign each data point to the nearest centroid
+      - Update the centroids by calculating the mean of all points assigned to each centroid
+    - Repeat until convergence or a maximum number of iterations is reached
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - it's essential to select an appropriate value for k, typically determined using domain knowledge or techniques like the elbow method
+    - initialization of centroids can affect the final clustering, so multiple random initializations and selecting the best result can improve performance
+    - pay attention to the choice of distance metric, usually Euclidean distance, but other metrics may be more suitable for certain types of data
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    kMeans(data, k):
+        // Step 1: Initialization
+        centroids = randomly_initialize_centroids(data, k)
+        clusters = []
+        repeat:
+            // Step 2: Assignment
+            clusters = assign_points_to_clusters(data, centroids)
+            // Step 3: Update centroids
+            centroids = update_centroids(clusters)
+        until convergence
+        return clusters
+
+    randomly_initialize_centroids(data, k):
+        centroids = []
+        randomly_select k points from data and add them to centroids
+        return centroids
+
+    assign_points_to_clusters(data, centroids):
+        clusters = initialize_empty_clusters(k)
+        for each point in data:
+            nearest_centroid = find_nearest_centroid(point, centroids)
+            add point to nearest_centroid's cluster in clusters
+        return clusters
+
+    update_centroids(clusters):
+        centroids = []
+        for each cluster in clusters:
+            new_centroid = calculate_mean(cluster.points)
+            add new_centroid to centroids
+        return centroids
+
+    find_nearest_centroid(point, centroids):
+        min_distance = infinity
+        nearest_centroid = null
+        for each centroid in centroids:
+            distance = calculate_distance(point, centroid)
+            if distance < min_distance:
+                min_distance = distance
+                nearest_centroid = centroid
+        return nearest_centroid
+
+    calculate_distance(point1, point2):
+        // Euclidean distance
+        return sqrt(sum((point1[i] - point2[i])^2) for i in dimensions)
+
+    initialize_empty_clusters(k):
+        clusters = []
+        for i from 1 to k:
+            create a new cluster and add it to clusters
+        return clusters
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

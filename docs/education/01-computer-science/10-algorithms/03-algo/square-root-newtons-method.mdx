@@ -1,0 +1,118 @@
+---
+title: Square Root - Newton's method
+description: Square Root - Newton's method
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/square-root-newtons-method/go.go";
+import Java from "!!raw-loader!./assets/square-root-newtons-method/java.java";
+import JS from "!!raw-loader!./assets/square-root-newtons-method/js.js";
+import Kotlin from "!!raw-loader!./assets/square-root-newtons-method/kt.kt";
+import Python from "!!raw-loader!./assets/square-root-newtons-method/py.py";
+import Rust from "!!raw-loader!./assets/square-root-newtons-method/rs.rs";
+import TS from "!!raw-loader!./assets/square-root-newtons-method/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Newton's method is an iterative algorithm used for finding successively better approximations to the roots of a real-valued function. In the context of finding the square root of a number, Newton's method can be applied iteratively to converge upon the square root
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Involves repeatedly refining an initial guess until it is close enough to the actual square root. It achieves this by using the tangent line of the function at each guess to find a better approximation. This process continues until the approximation is within an acceptable range of the actual square root
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose an initial guess for the square root, preferably close to the actual square root
+    - Calculate the next approximation: `next_guess = (current_guess + (number / current_guess)) / 2`
+    - Check if the difference between the current guess and the next guess is within a predefined tolerance
+    - If the tolerance is met, the current guess is the square root. If not, repeat steps 2 and 3 with the next guess as the current guess
+    - Continue iterating until the tolerance is satisfied, producing successively better approximations of the square root
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - choose the initial guess wisely to expedite convergence
+    - adjust the tolerance level based on the desired accuracy versus computational cost trade-off
+    - ensure proper handling of edge cases such as zero or negative input numbers
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    square_root(number, tolerance):
+      // Initialize the initial guess
+      guess = number / 2
+
+      // Iterate until convergence
+      while true:
+        // Calculate the next guess
+        next_guess = (guess + (number / guess)) / 2
+
+        // Check if the tolerance is met
+        if abs(next_guess - guess) < tolerance:
+          return next_guess
+
+        // Update the current guess
+        guess = next_guess
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

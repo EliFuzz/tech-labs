@@ -1,0 +1,155 @@
+---
+title: Bloom Filter
+description: Bloom Filter Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/bloomFilter/go.go";
+import Java from "!!raw-loader!./assets/bloomFilter/java.java";
+import JS from "!!raw-loader!./assets/bloomFilter/js.js";
+import Kotlin from "!!raw-loader!./assets/bloomFilter/kt.kt";
+import Python from "!!raw-loader!./assets/bloomFilter/py.py";
+import Rust from "!!raw-loader!./assets/bloomFilter/rs.rs";
+import TS from "!!raw-loader!./assets/bloomFilter/ts.ts";
+
+![](./assets/bloomFilter/bloomFilter.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="fair">O(k)</code> <br /> • `k` number of the hash
+        function implemented
+      </td>
+      <td>
+        <code className="fair">O(k)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+        <br /> • not supported
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Bloom Filter** is a space-efficient probabilistic data structure that is used to test whether an element is a member of a set.
+
+  :::note[Simplified]
+
+  **Bloom Filter** is like a super-efficient memory that can quickly check if an item is in a set. It can say "probably yes" or "definitely no". The "probably yes" can sometimes be wrong, but
+  "definitely no" is always right. For example, your browser uses it to check if a URL is safe.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Bloom Filter** (invented by Burton Howard **Bloom**) is a fast, memory-efficient data structure that checks if an element is in a set. It can return false positives but never false negatives.
+    It's useful when conventional hashing would require too much memory.
+
+    The filter is a bit array of `m` bits, all set to 0 initially. It uses `k` hash functions that map an element to one of the `m` array positions. The choice of `k` and `m` depends on the desired
+    false positive rate.
+
+    The filter supports two operations: insertion and search. Deletion isn't possible. When inserting, the hash functions create indexes and set the corresponding bits to true. When searching, if all
+    hashed indexes are true, the element might be in the set. If any index is false, the element is definitely not in the set.
+
+    False positive probability depends on the filter size, number of hash functions, and number of inserted items.
+
+    It's calculated as:
+
+    (1-e<sup>-kn/m</sup>)<sup>k</sup>
+
+    - `k` is the number of hash functions
+    - `m` is the filter size
+    - `n` is the number of items inserted
+
+    These parameters should be chosen based on the acceptable false positive rate.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+    <tbody>
+      <tr>
+        <td>Insertion</td>
+        <td>
+          ```
+          insert(item):
+            hash_values = get_hash_values(item)
+            for each val in hash_values:
+              storage.setValue(val)
+
+          get_hash_values(item):
+            return [hash_function]
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>May Contain</td>
+        <td>
+          ```
+          may_contain(item):
+            hash_values = get_hash_values(item)
+            for hash_index from 0 to length(hash_values) - 1:
+              if storage.get_value(hash_values[hash_index]) != ø:
+                return False
+            return True
+
+          get_hash_values(item):
+            return [hash_function]
+          ```
+        </td>
+      </tr>
+    </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

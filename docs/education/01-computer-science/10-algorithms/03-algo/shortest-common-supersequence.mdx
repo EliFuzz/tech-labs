@@ -1,0 +1,152 @@
+---
+title: Shortest Common Supersequence (SCS)
+description: Shortest Common Supersequence (SCS)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/shortest-common-supersequence/go.go";
+import Java from "!!raw-loader!./assets/shortest-common-supersequence/java.java";
+import JS from "!!raw-loader!./assets/shortest-common-supersequence/js.js";
+import Kotlin from "!!raw-loader!./assets/shortest-common-supersequence/kt.kt";
+import Python from "!!raw-loader!./assets/shortest-common-supersequence/py.py";
+import Rust from "!!raw-loader!./assets/shortest-common-supersequence/rs.rs";
+import TS from "!!raw-loader!./assets/shortest-common-supersequence/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Shortest Common Supersequence (SCS) algorithm finds the shortest supersequence that contains all the given sequences as subsequences. It's a dynamic programming-based approach, commonly used in bioinformatics, data compression, and version control systems. This algorithm efficiently computes the length of the SCS and can also reconstruct the SCS itself
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    It leverages dynamic programming to find the shortest common supersequence of two given sequences. It involves constructing a table where each cell represents the length of the SCS for subsequences of the original sequences. The algorithm fills this table iteratively by considering three possibilities: extending the supersequence by adding characters from each sequence individually, or if the characters match, extending the supersequence by adding that character once. The final cell of the table holds the length of the SCS. By tracing back through the table, the SCS itself can be reconstructed
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize a 2D table of size `[m+1][n+1]` where m and n are the lengths of the two sequences
+    - Fill the first row and first column of the table with values representing the lengths of empty subsequences
+    - Iterate through each cell of the table starting from `[1,1]` to `[m,n]`
+    - For each cell `[i,j]`, if the characters at positions `i-1` and `j-1` in the sequences match, set the value of the current cell to one plus the value of the cell diagonally left-upwards
+    - If the characters don't match, set the value of the current cell to the maximum of the cell directly above or directly leftwards
+    - The value in the bottom-right cell of the table represents the length of the SCS
+    - Reconstruct the SCS by tracing back through the table, starting from the bottom-right cell, following the rules of movement (diagonal if characters match, otherwise up or left)
+    - Concatenate the characters encountered during the tracing to form the SCS
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize memoization or tabulation to optimize the algorithm's time complexity
+    - ensure to handle cases where one sequence is a subsequence of the other efficiently
+    - it's crucial to understand the recurrence relation and base cases for dynamic programming implementation
+    - consider implementing a solution that reconstructs the actual SCS sequence if required
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    shortest_common_supersequence(sequence1, sequence2):
+      m = length(sequence1)
+      n = length(sequence2)
+      table = create_table(m+1, n+1)
+
+      // Step 1: Initialize the table
+      for i from 0 to m:
+        table[i][0] = i
+      for j from 0 to n:
+        table[0][j] = j
+
+      // Step 2: Fill the table
+      for i from 1 to m:
+        for j from 1 to n:
+          if sequence1[i-1] == sequence2[j-1]:
+            table[i][j] = 1 + table[i-1][j-1]
+          else:
+            table[i][j] = max(table[i-1][j], table[i][j-1])
+
+      // Step 3: Reconstruct the SCS
+      scs = ""
+      i = m
+      j = n
+      while i > 0 and j > 0:
+        if sequence1[i-1] == sequence2[j-1]:
+          scs = sequence1[i-1] + scs
+          i = i - 1
+          j = j - 1
+        else:
+          if table[i-1][j] > table[i][j-1]:
+            scs = sequence1[i-1] + scs
+            i = i - 1
+          else:
+            scs = sequence2[j-1] + scs
+            j = j - 1
+
+      // Step 4: Add remaining characters
+      while i > 0:
+        scs = sequence1[i-1] + scs
+        i = i - 1
+      while j > 0:
+        scs = sequence2[j-1] + scs
+        j = j - 1
+
+      return scs
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

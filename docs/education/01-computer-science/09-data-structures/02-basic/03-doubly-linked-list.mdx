@@ -1,0 +1,291 @@
+---
+title: Doubly Linked List
+description: Doubly Linked List Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/doublyLinkedList/go.go";
+import Java from "!!raw-loader!./assets/doublyLinkedList/java.java";
+import JS from "!!raw-loader!./assets/doublyLinkedList/js.js";
+import Kotlin from "!!raw-loader!./assets/doublyLinkedList/kt.kt";
+import Python from "!!raw-loader!./assets/doublyLinkedList/py.py";
+import Rust from "!!raw-loader!./assets/doublyLinkedList/rs.rs";
+import TS from "!!raw-loader!./assets/doublyLinkedList/ts.ts";
+
+![](./assets/doublyLinkedList/doublyLinkedList.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="6">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Doubly Linked List** is a type of data structure in which each node contains a data part and 2 pointers, one pointing to the next node and another pointing to the previous node in the sequence.
+
+  :::note[Simplified]
+
+  **Doubly Linked List** is like a game of hopscotch. Each square, or "node", holds an item and information about the next and previous squares. You start at the "head" and can move forward or
+  backward to the "tail". You can also add or remove squares during the game.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Doubly Linked List** in computer science is a sequence of nodes linked in both directions. Each node has two links pointing to its previous and next nodes. The list starts and ends with a
+    terminator, usually a sentinel node or null, aiding in list traversal. If there's only one sentinel node, the list forms a circular link through it. Essentially, it's like having two singly linked
+    lists with the same data but in reverse orders.
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Pseudo Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prepend</td>
+          <td>
+            ```
+            prepend(value)
+              n = Node(value)
+              if head == ø:
+                head = n
+                tail = n
+              else:
+                n.previous = tail
+                tail.next = n
+                tail = n
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Append</td>
+          <td>
+            ```
+            append(value):
+              n = Node(value)
+              if head == ø:
+                head = n
+                tail = n
+              else:
+                tail.next = n
+                n.previous = tail
+                tail = n
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Search</td>
+          <td>
+            ```
+            search(value):
+              current_node = head
+              while current_node != ø and current_node.value != value:
+                current_node = current_node.next
+              return current_node
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Delete Head</td>
+          <td>
+            ```
+            delete_head():
+              if head == ø:
+                return ø
+              deleted_head = head
+              if head.next != ø:
+                head = head.next
+                head.previous = ø
+              else:
+                tail = ø
+                head = ø
+              return deleted_head
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Delete Node</td>
+          <td>
+            ```
+            delete_node(value):
+             current = head
+             while current != ø:
+               if current.value == value:
+                 if current == head:
+                   head = current.next
+                   head.previous = ø
+                 else:
+                   current.previous.next = current.next
+                   current.next.previous = current.previous
+                 return current
+               current = current.next
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Delete Tail</td>
+          <td>
+            ```
+            delete_tail():
+              if tail == ø:
+                print("The list is empty!")
+                return
+              if head == tail:
+                head = ø
+                tail = ø
+                return
+              prevNode = tail.previous
+              prevNode.next = ø
+              tail = prevNode
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Reverse</td>
+          <td>
+            ```
+            reverse():
+              current_node = head
+              previous_node = ø
+              next_node = ø
+
+              while current_node != ø:
+                next_node = current_node.next
+                previous_node = current_node.previous
+                current_node.next = previous_node
+                current_node.previous = next_node
+                previous_node = current_node
+                current_node = next_node
+
+              tail = head
+              head = previous_node
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Traverse</td>
+          <td>
+            ```
+            traversal():
+              current = head
+              while current != ø:
+                yield current.data
+                current = current.next
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Reverse Traversal</td>
+          <td>
+            ```
+            reverse_traversal():
+              current = tail
+              while current != ø:
+                yield current.data
+                current = current.previous
+            ```
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

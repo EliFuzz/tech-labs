@@ -1,0 +1,123 @@
+---
+title: Merge Sort
+description: Merge Sort
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/merge-sort/go.go";
+import Java from "!!raw-loader!./assets/merge-sort/java.java";
+import JS from "!!raw-loader!./assets/merge-sort/js.js";
+import Kotlin from "!!raw-loader!./assets/merge-sort/kt.kt";
+import Python from "!!raw-loader!./assets/merge-sort/py.py";
+import Rust from "!!raw-loader!./assets/merge-sort/rs.rs";
+import TS from "!!raw-loader!./assets/merge-sort/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Merge Sort is a popular comparison-based sorting algorithm that follows the divide-and-conquer paradigm. It recursively divides the input array into smaller sub-arrays until each sub-array contains only one element, then merges those sub-arrays in a sorted manner
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Merge Sort operates by dividing the array into halves until each subset contains only one element. Then, it merges adjacent pairs of these subsets, comparing elements and arranging them in the correct order. This process continues recursively until the entire array is sorted. The key operation is the merging step, where two sorted arrays are combined into a single sorted array. It repeatedly compares the elements from the two arrays, selecting the smaller (or larger) element and appending it to the result array until one of the arrays is exhausted. The remaining elements from the non-empty array are then appended to the result
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Divide the array into two halves
+    - Recursively apply Merge Sort on each half until each sub-array contains only one element
+    - Merge the sorted sub-arrays by comparing elements from each and arranging them in ascending order
+      - repeat until all sub-arrays are merged into a single sorted array
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure proper handling of edge cases, such as empty arrays or arrays with only one element
+    - use an auxiliary array during the merging step to store the sorted elements temporarily
+    - consider implementing an optimized version of Merge Sort that avoids unnecessary memory allocations or copying of arrays
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    mergeSort(array)
+      if length of array <= 1
+        return array
+      else
+        mid = length of array / 2
+        leftArray = mergeSort(first half of array)
+        rightArray = mergeSort(second half of array)
+        return merge(leftArray, rightArray)
+
+    merge(leftArray, rightArray)
+      result = []
+      while leftArray is not empty and rightArray is not empty
+        if first element of leftArray <= first element of rightArray
+          append first element of leftArray to result
+          remove first element from leftArray
+        else
+          append first element of rightArray to result
+          remove first element from rightArray
+      append remaining elements of leftArray to result
+      append remaining elements of rightArray to result
+      return result
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

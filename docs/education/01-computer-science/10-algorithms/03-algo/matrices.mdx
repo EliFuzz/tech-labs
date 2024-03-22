@@ -1,0 +1,175 @@
+---
+title: Matrices
+description: Matrices
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/matrices/go.go";
+import Java from "!!raw-loader!./assets/matrices/java.java";
+import JS from "!!raw-loader!./assets/matrices/js.js";
+import Kotlin from "!!raw-loader!./assets/matrices/kt.kt";
+import Python from "!!raw-loader!./assets/matrices/py.py";
+import Rust from "!!raw-loader!./assets/matrices/rs.rs";
+import TS from "!!raw-loader!./assets/matrices/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Matrices Algorithm involves operations on matrices, typically for tasks such as multiplication, addition, or finding determinants
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    It works by iterating through corresponding elements of matrices, applying the defined operation to each pair, and storing the result in a new matrix. The process may involve nested loops for efficient traversal of matrix elements and appropriate mathematical operations based on the desired outcome
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Matrix Addition
+      - Iterate through each element of both matrices
+      - Add corresponding elements and store the result in a new matrix
+      - Ensure matrices have the same dimensions
+    - Matrix Multiplication
+      - Iterate through rows of the first matrix
+      - Iterate through columns of the second matrix
+      - Multiply corresponding elements and sum them up for each resulting element of the new matrix
+      - Ensure the number of columns in the first matrix matches the number of rows in the second matrix
+    - Finding Determinant
+      - Implement the appropriate determinant calculation method (e.g., cofactor expansion, LU decomposition)
+      - Ensure the matrix is square (i.e., same number of rows and columns)
+      - Handle special cases like 2x2 matrices separately for efficiency
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure that the dimensions of the matrices are compatible for the intended operation
+    - optimize the algorithm by minimizing unnecessary iterations and operations
+    - implement error handling for invalid operations or incompatible matrix dimensions
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    matrix_addition(matrix1, matrix2):
+      // Check if matrices have the same dimensions
+      if dimensions of matrix1 != dimensions of matrix2:
+        return "Matrices must have the same dimensions"
+      else:
+        // Initialize an empty matrix for the result
+        result_matrix = empty matrix with dimensions of matrix1
+        // Iterate through each element of the matrices
+        for i from 0 to number of rows in matrix1:
+          for j from 0 to number of columns in matrix1:
+            // Add corresponding elements and store the result in the result matrix
+            result_matrix[i][j] = matrix1[i][j] + matrix2[i][j]
+        return result_matrix
+
+    matrix_multiplication(matrix1, matrix2):
+      // Check if matrices can be multiplied (number of columns in matrix1 == number of rows in matrix2)
+      if number of columns in matrix1 != number of rows in matrix2:
+        return "Number of columns in matrix1 must be equal to number of rows in matrix2"
+      else:
+        // Initialize an empty matrix for the result
+        result_matrix = empty matrix with dimensions (rows of matrix1) x (columns of matrix2)
+        // Iterate through each row of matrix1
+        for i from 0 to number of rows in matrix1:
+          // Iterate through each column of matrix2
+          for j from 0 to number of columns in matrix2:
+            // Initialize the sum for the current element of the result matrix
+            sum = 0
+            // Iterate through each column of matrix1 (or each row of matrix2)
+            for k from 0 to number of columns in matrix1:
+              // Multiply corresponding elements and accumulate the sum
+              sum += matrix1[i][k] * matrix2[k][j]
+            // Store the sum as the resulting element in the result matrix
+            result_matrix[i][j] = sum
+        return result_matrix
+
+    find_determinant(matrix):
+      // Check if the matrix is square
+      if number of rows != number of columns:
+        return "Matrix must be square"
+      else if matrix is 2x2:
+        // Calculate determinant for 2x2 matrix using the formula ad - bc
+        return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
+      else:
+        // Implement determinant calculation method (e.g., cofactor expansion)
+
+    find_determinant(matrix):
+      // Check if the matrix is square
+      if number of rows != number of columns:
+        return "Matrix must be square"
+      else if matrix is 2x2:
+        // Calculate determinant for 2x2 matrix using the formula ad - bc
+        return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
+      else:
+        // Initialize determinant variable
+        determinant = 0
+        // Iterate through each column of the matrix
+        for col from 0 to number of columns in matrix:
+          // Calculate cofactor (submatrix) for the current element
+          cofactor = submatrix obtained by removing the first row and current column
+          // Calculate the sign of the current element's contribution to the determinant
+          sign = (-1)^(row + col)  // Alternating signs for each element
+          // Recursively calculate determinant using cofactor expansion
+          determinant += sign * matrix[0][col] * find_determinant(cofactor)
+        return determinant
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

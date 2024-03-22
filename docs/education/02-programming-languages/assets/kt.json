@@ -1,0 +1,139 @@
+{
+  "key": "kotlin",
+  "metadata": {
+    "name": "Kotlin",
+    "url": "https://kotlinlang.org/",
+    "logo": "/static/img/lang/kt.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "boolean",
+      "description": "Boolean",
+      "code": "false"
+    },
+    {
+      "name": "char",
+      "description": "Character",
+      "code": "'\\u0000'"
+    },
+    {
+      "name": "string",
+      "description": "UTF-16 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "array",
+      "description": "Array",
+      "code": "arrayOf()"
+    },
+    {
+      "name": "byte",
+      "description": "Byte (8-bit): -128(-2⁸) to 127(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "ubyte",
+      "description": "UByte (8-bit): 0 to 255(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "short",
+      "description": "Short (16-bit): -32768(-2¹⁶) to 32767(2¹⁶ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "ushort",
+      "description": "UShort (16-bit): 0 to 65535(2¹⁶ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "int",
+      "description": "Int (32-bit): -2147483648(-2³¹) to 2147483647(2³¹ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "uint",
+      "description": "UInt (32-bit): 0 to 4294967295(2³¹ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "long",
+      "description": "Long (64-bit): -9223372036854775808(-2⁶³) to 9223372036854775807(2⁶³ - 1)",
+      "code": "0L"
+    },
+    {
+      "name": "ulong",
+      "description": "ULong (64-bit): 0 to 18446744073709551615(2⁶³ - 1)",
+      "code": "0L"
+    },
+    {
+      "name": "float",
+      "description": "Float: -3.4028235E38 to 3.4028235E38",
+      "code": "0.0f"
+    },
+    {
+      "name": "double",
+      "description": "Double: -1.7976931348623157E308 to 1.7976931348623157E308",
+      "code": "0.0"
+    }
+  ],
+  "reservedKeywords": [
+    "as",
+    "break",
+    "class",
+    "continue",
+    "do",
+    "else",
+    "false",
+    "for",
+    "fun",
+    "if",
+    "in",
+    "interface",
+    "is",
+    "null",
+    "object",
+    "package",
+    "return",
+    "super",
+    "this",
+    "throw",
+    "true",
+    "try",
+    "typealias",
+    "typeof",
+    "val",
+    "var",
+    "when",
+    "while"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "fun main() {\n  println(\"Hello, World!\")\n}"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [],
+    "imports": [],
+    "variables": [],
+    "functions": [],
+    "flowControls": [],
+    "structures": [],
+    "errorHandling": [],
+    "concurrency": []
+  }
+}

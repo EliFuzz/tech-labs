@@ -1,0 +1,109 @@
+---
+title: Radian & Degree
+description: Radian & Degree
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/radian-and-degree/go.go";
+import Java from "!!raw-loader!./assets/radian-and-degree/java.java";
+import JS from "!!raw-loader!./assets/radian-and-degree/js.js";
+import Kotlin from "!!raw-loader!./assets/radian-and-degree/kt.kt";
+import Python from "!!raw-loader!./assets/radian-and-degree/py.py";
+import Rust from "!!raw-loader!./assets/radian-and-degree/rs.rs";
+import TS from "!!raw-loader!./assets/radian-and-degree/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    It's used to convert between radians and degrees, providing flexibility in mathematical calculations involving angles
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Conversion factors: `π` radians equals 180 degrees, and 1 radian equals approximately 57.2958 degrees.
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - To convert radians to degrees
+      - multiply the radian value by `180/π`
+    - To convert degrees to radians
+      - multiply the degree value by `π/180`
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure precision in conversion by using accurate mathematical constants like `π`
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    convertRadiansToDegrees(radians):
+      // Multiply radians by the conversion factor to get degrees
+      degrees = radians * (180 / π)
+      return degrees
+
+    convertDegreesToRadians(degrees):
+      // Multiply degrees by the conversion factor to get radians
+      radians = degrees * (π / 180)
+      return radians
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

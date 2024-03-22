@@ -1,0 +1,109 @@
+---
+title: Factorial
+description: Factorial
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/factorial/go.go";
+import Java from "!!raw-loader!./assets/factorial/java.java";
+import JS from "!!raw-loader!./assets/factorial/js.js";
+import Kotlin from "!!raw-loader!./assets/factorial/kt.kt";
+import Python from "!!raw-loader!./assets/factorial/py.py";
+import Rust from "!!raw-loader!./assets/factorial/rs.rs";
+import TS from "!!raw-loader!./assets/factorial/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Factorial Algorithm is a mathematical procedure used to calculate the factorial of a non-negative integer
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The factorial of a non-negative integer `n`, denoted as `n!`, is the product of all positive integers less than or equal to `n`. It's often expressed recursively or iteratively
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with a non-negative integer input `n`
+    - If `n` is `0` or `1`, return `1` (base case)
+    - Otherwise, recursively multiply `n` by the factorial of (`n-1`) until reaching the base case
+    - Return the final result
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - for small inputs (typically less than 12), consider using an iterative approach for efficiency
+    - optimize for tail recursion if using a recursive approach to prevent stack overflow errors
+    - use memoization technique to reduce the computation time and improve the performance
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    factorial(n):
+      if n is negative:
+        throw "Invalid input: Cannot compute factorial of a negative number"
+      else if n equals 0 or 1:
+        return 1
+      else:
+        return n * factorial(n - 1)
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

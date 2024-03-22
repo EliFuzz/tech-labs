@@ -1,0 +1,135 @@
+---
+title: Queue
+description: Queue Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/queue/go.go";
+import Java from "!!raw-loader!./assets/queue/java.java";
+import JS from "!!raw-loader!./assets/queue/js.js";
+import Kotlin from "!!raw-loader!./assets/queue/kt.kt";
+import Python from "!!raw-loader!./assets/queue/py.py";
+import Rust from "!!raw-loader!./assets/queue/rs.rs";
+import TS from "!!raw-loader!./assets/queue/ts.ts";
+
+![](./assets/queue/queue.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="6">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Queue** is a data structure that follows the First-In-First-Out (FIFO) principle, where elements are added at the end and removed from the front.
+
+  :::note[Simplified]
+
+  You're in a candy store with your friends, and you all want to buy your favorite candies. But there's a rule: you can't all rush to the counter at once; you have to form a line. The first one in
+  the line gets their candy first, then the second, and so on until everyone has their candy.
+
+  This is just like a queue in a shop.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Queue** is a data structure where elements are kept in order. It operates on a First-In-First-Out (FIFO) principle, meaning the first element added will be the first to be removed. The main
+    operations are 'enqueue' (adding elements to the end) and 'dequeue' (removing elements from the front). Often, there's also a 'peek' operation that lets you see the front element without removing
+    it. In essence, a queue is a linear, sequential collection.
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Enqueue</td>
+        <td>
+          ```
+          enqueue(item):
+            queue.add_to_end(item)
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Peak</td>
+        <td>
+          ```
+          peek():
+            queue.show_first()
+
+          ```
+        </td>
+      </tr>
+      <tr>
+        <td>Dequeue</td>
+        <td>
+          ```
+          dequeue():
+            queue.remove_first()
+          ```
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

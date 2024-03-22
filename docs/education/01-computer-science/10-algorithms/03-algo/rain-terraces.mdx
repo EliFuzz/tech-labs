@@ -1,0 +1,121 @@
+---
+title: Rain Terraces
+description: Rain Terraces
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/rain-terraces/go.go";
+import Java from "!!raw-loader!./assets/rain-terraces/java.java";
+import JS from "!!raw-loader!./assets/rain-terraces/js.js";
+import Kotlin from "!!raw-loader!./assets/rain-terraces/kt.kt";
+import Python from "!!raw-loader!./assets/rain-terraces/py.py";
+import Rust from "!!raw-loader!./assets/rain-terraces/rs.rs";
+import TS from "!!raw-loader!./assets/rain-terraces/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Rain Terraces Algorithm is a technique used to calculate the total volume of water that can be trapped between terraces formed by an elevation map
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Iterate through the elevation map and calculating the amount of water that can be trapped between the terraces formed by the varying heights. It uses two pointers approach to keep track of the maximum height seen so far from the left and right side for each element. The trapped water for each element is then calculated based on the difference between the minimum of the maximum heights on both sides and the height of the current element
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize variables: `left_max`, `right_max`, and `water_volume` to `0`
+    - Iterate through each element in the elevation map
+      - for each element, update `left_max = max(left_max, elevation_map[i])`
+      - iterate from the end of the elevation map to the current element and update right_max similarly
+      - calculate the trapped water for the current element: `trapped_water = min(left_max, right_max) - elevation_map[i]`
+      - add the calculated trapped water to the total water volume
+      - repeat steps until all elements in the elevation map are processed
+    - Return the total water volume as the result
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - keep track of the maximum height seen from both sides for each element efficiently to optimize the algorithm's performance
+    - handle edge cases such as empty elevation maps or maps with fewer than three elements appropriately
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    rainTerraces(elevation_map):
+      left_max = 0
+      right_max = 0
+      water_volume = 0
+
+      for i from 0 to length(elevation_map) - 1:
+        left_max = max(left_max, elevation_map[i])
+
+      for i from length(elevation_map) - 1 to 0:
+        right_max = max(right_max, elevation_map[i])
+
+      for i from 0 to length(elevation_map) - 1:
+        water_volume += min(left_max, right_max) - elevation_map[i]
+        left_max = max(left_max, elevation_map[i])
+
+      return water_volume
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,116 @@
+---
+title: Caesar Cipher
+description: Caesar Cipher
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/caesar-cipher/go.go";
+import Java from "!!raw-loader!./assets/caesar-cipher/java.java";
+import JS from "!!raw-loader!./assets/caesar-cipher/js.js";
+import Kotlin from "!!raw-loader!./assets/caesar-cipher/kt.kt";
+import Python from "!!raw-loader!./assets/caesar-cipher/py.py";
+import Rust from "!!raw-loader!./assets/caesar-cipher/rs.rs";
+import TS from "!!raw-loader!./assets/caesar-cipher/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Caesar Cipher is a simple substitution cipher technique in cryptography. It involves shifting the letters of the alphabet by a fixed number of positions. It's named after Julius Caesar, who is reputed to have used it to communicate with his generals
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    In the Caesar Cipher algorithm, a fixed number called the "key" or "shift" is chosen. This key determines how many positions each letter in the plaintext message is shifted. For instance, with a shift of 3, 'A' becomes 'D', 'B' becomes 'E', and so forth. The alphabet wraps around, meaning 'Z' becomes 'C'. Ultimately, the shifted letters constitute the ciphertext
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Decide on a shift value, typically denoted by 'k'
+    - Iterate through each character in the plaintext message
+    - For each character
+      - if it's a letter, shift it by 'k' positions
+      - preserve uppercase/lowercase and handle wrapping around the alphabet
+      - if it's not a letter, leave it unchanged
+    - Assemble the shifted characters to form the ciphertext
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - remember to handle both uppercase and lowercase letters separately
+    - ensure the shift value is within the range 1-25 to avoid redundant shifts
+    - watch out for non-alphabetic characters in the plaintext and maintain their positions in the ciphertext
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    caesarCipher(plaintext, shift):
+      ciphertext = ""
+      for each character in plaintext:
+        if character is an uppercase letter:
+          shifted_char = (character + shift - 'A') % 26 + 'A'
+        else if character is a lowercase letter:
+          shifted_char = (character + shift - 'a') % 26 + 'a'
+        else:
+          shifted_char = character
+        ciphertext += shifted_char
+      return ciphertext
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,2284 @@
+[
+  {
+    "value": "GMT-12:00",
+    "label": "GMT-12:00",
+    "children": [
+      {
+        "value": "UnitedStatesGMT-12",
+        "label": "United States (US/USA)",
+        "children": [
+          {
+            "value": "BakerIsland",
+            "label": "Baker Island"
+          },
+          {
+            "value": "HowlandIsland",
+            "label": "Howland Island"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-11:00",
+    "label": "GMT-11:00",
+    "children": [
+      {
+        "value": "NiueGMT-11",
+        "label": "Niue",
+        "children": [
+          {
+            "value": "Alofi",
+            "label": "Alofi"
+          }
+        ]
+      },
+      {
+        "value": "UnitedStatesGMT-11",
+        "label": "United States (US/USA)",
+        "children": [
+          {
+            "value": "Samoa",
+            "label": "Samoa"
+          },
+          {
+            "value": "JarvisIsland",
+            "label": "Jarvis Island"
+          },
+          {
+            "value": "KingmanReef",
+            "label": "Kingman Reef"
+          },
+          {
+            "value": "PalmyraAtoll",
+            "label": "Palmyra Atoll"
+          },
+          {
+            "value": "MidwayIslands",
+            "label": "Midway Islands"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-10:00",
+    "label": "GMT-10:00",
+    "children": [
+      {
+        "value": "CookIslandsGMT-10",
+        "label": "Cook Islands",
+        "children": [
+          {
+            "value": "Avarua",
+            "label": "Avarua"
+          }
+        ]
+      },
+      {
+        "value": "FrenchPolynesiaGMT-10",
+        "label": "French Polynesia",
+        "children": [
+          {
+            "value": "Papeete",
+            "label": "Papeete"
+          },
+          {
+            "value": "Faaa",
+            "label": "Faaa"
+          },
+          {
+            "value": "Punaauia",
+            "label": "Punaauia"
+          },
+          {
+            "value": "Pirae",
+            "label": "Pirae"
+          },
+          {
+            "value": "MooreaMaiao",
+            "label": "Moorea-Maiao"
+          },
+          {
+            "value": "BoraBora",
+            "label": "Bora Bora"
+          },
+          {
+            "value": "HivaOa",
+            "label": "Hiva Oa"
+          },
+          {
+            "value": "Rangiroa",
+            "label": "Rangiroa"
+          }
+        ]
+      },
+      {
+        "value": "TokelauGMT-10",
+        "label": "Tokelau",
+        "children": [
+          {
+            "value": "Atafu",
+            "label": "Atafu"
+          },
+          {
+            "value": "Fakaofo",
+            "label": "Fakaofo"
+          },
+          {
+            "value": "Nukunonu",
+            "label": "Nukunonu"
+          }
+        ]
+      },
+      {
+        "value": "UnitedStatesGMT-10",
+        "label": "United States (US/USA)",
+        "children": [
+          {
+            "value": "AleutianIslands",
+            "label": "Aleutian Islands"
+          },
+          {
+            "value": "Hilo",
+            "label": "Hilo"
+          },
+          {
+            "value": "Honolulu",
+            "label": "Honolulu"
+          },
+          {
+            "value": "JohnstonAtoll",
+            "label": "Johnston Atoll"
+          },
+          {
+            "value": "Kahului",
+            "label": "Kahului"
+          },
+          {
+            "value": "Kailua",
+            "label": "Kailua"
+          },
+          {
+            "value": "PearlCity",
+            "label": "Pearl City"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-09:00",
+    "label": "GMT-09:00",
+    "children": [
+      {
+        "value": "FrenchPolynesiaGMT-09",
+        "label": "French Polynesia",
+        "children": [
+          {
+            "value": "Mangareva",
+            "label": "Mangareva"
+          },
+          {
+            "value": "Rikitea",
+            "label": "Rikitea"
+          },
+          {
+            "value": "Taravai",
+            "label": "Taravai"
+          },
+          {
+            "value": "Akamaru",
+            "label": "Akamaru"
+          },
+          {
+            "value": "Aukena",
+            "label": "Aukena"
+          }
+        ]
+      },
+      {
+        "value": "UnitedStatesGMT-09",
+        "label": "United States (US/USA)",
+        "children": [
+          {
+            "value": "Juneau",
+            "label": "Juneau, AK (Alaska)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-08:00",
+    "label": "GMT-08:00 (PST - Pacific Standard Time)",
+    "children": [
+      {
+        "value": "CanadaGMT-08",
+        "label": "Canada",
+        "children": [
+          {
+            "value": "Vancouver",
+            "label": "Vancouver, BC (British Columbia)"
+          }
+        ]
+      },
+      {
+        "value": "UnitedStatesGMT-08",
+        "label": "United States (US/USA)",
+        "children": [
+          {
+            "value": "California",
+            "label": "Sacramento, CA (California)"
+          },
+          {
+            "value": "Nevada",
+            "label": "Carson City, NV (Nevada)"
+          },
+          {
+            "value": "Washington",
+            "label": "Olympia, WA (Washington)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-07:00",
+    "label": "GMT-07:00 (MST - Mountain Standard Time)",
+    "children": [
+      {
+        "value": "CanadaGMT-07",
+        "label": "Canada",
+        "children": [
+          {
+            "value": "Edmonton",
+            "label": "Edmonton, AB (Alberta)"
+          }
+        ]
+      },
+      {
+        "value": "UnitedStatesGMT-07",
+        "label": "United States (US/USA)",
+        "children": [
+          {
+            "value": "Phoenix",
+            "label": "Phoenix, AZ (Arizona)"
+          },
+          {
+            "value": "Denver",
+            "label": "Denver, CO (Colorado)"
+          },
+          {
+            "value": "Cheyenne",
+            "label": "Cheyenne, WY (Wyoming)"
+          },
+          {
+            "value": "Helena",
+            "label": "Helena, MT (Montana)"
+          },
+          {
+            "value": "SantaFe",
+            "label": "Santa Fe, NM (New Mexico)"
+          },
+          {
+            "value": "SaltLakeCity",
+            "label": "Salt Lake City, UT (Utah)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-06:00",
+    "label": "GMT-06:00 (CST - Central Standard Time)",
+    "children": [
+      {
+        "value": "BelizeGMT-06",
+        "label": "Belize",
+        "children": [
+          {
+            "value": "Belmopan",
+            "label": "Belmopan"
+          }
+        ]
+      },
+      {
+        "value": "CanadaGMT-06",
+        "label": "Canada",
+        "children": [
+          {
+            "value": "Regina",
+            "label": "Regina, SK (Saskatchewan)"
+          },
+          {
+            "value": "Winnipeg",
+            "label": "Winnipeg, MB (Manitoba)"
+          }
+        ]
+      },
+      {
+        "value": "CostaRicaGMT-06",
+        "label": "Costa Rica",
+        "children": [
+          {
+            "value": "SanJosé",
+            "label": "San José"
+          }
+        ]
+      },
+      {
+        "value": "ElSalvadorGMT-06",
+        "label": "El Salvador",
+        "children": [
+          {
+            "value": "SanSalvador",
+            "label": "San Salvador"
+          }
+        ]
+      },
+      {
+        "value": "GuatemalaGMT-06",
+        "label": "Guatemala",
+        "children": [
+          {
+            "value": "GuatemalaCity",
+            "label": "Guatemala City"
+          }
+        ]
+      },
+      {
+        "value": "HondurasGMT-06",
+        "label": "Honduras",
+        "children": [
+          {
+            "value": "Tegucigalpa",
+            "label": "Tegucigalpa"
+          }
+        ]
+      },
+      {
+        "value": "MexicoGMT-06",
+        "label": "Mexico",
+        "children": [
+          {
+            "value": "MexicoCity",
+            "label": "Mexico City"
+          }
+        ]
+      },
+      {
+        "value": "NicaraguaGMT-06",
+        "label": "Nicaragua",
+        "children": [
+          {
+            "value": "Managua",
+            "label": "Managua"
+          }
+        ]
+      },
+      {
+        "value": "UnitedStatesGMT-06",
+        "label": "United States (US/USA)",
+        "children": [
+          {
+            "value": "Austin",
+            "label": "Austin, TX (Texas)"
+          },
+          {
+            "value": "BatonRouge",
+            "label": "Baton Rouge, LA (Louisiana)"
+          },
+          {
+            "value": "Bismarck",
+            "label": "Bismarck, ND (North Dakota)"
+          },
+          {
+            "value": "DesMoines",
+            "label": "Des Moines, IA (Iowa)"
+          },
+          {
+            "value": "JeffersonCity",
+            "label": "Jefferson City, MO (Missouri)"
+          },
+          {
+            "value": "Lincoln",
+            "label": "Lincoln, NE (Nebraska)"
+          },
+          {
+            "value": "LittleRock",
+            "label": "Little Rock, AR (Arkansas)"
+          },
+          {
+            "value": "Madison",
+            "label": "Madison, WI (Wisconsin)"
+          },
+          {
+            "value": "OklahomaCity",
+            "label": "Oklahoma City, OK (Oklahoma)"
+          },
+          {
+            "value": "Pierre",
+            "label": "Pierre, SD (South Dakota)"
+          },
+          {
+            "value": "SaintPaul",
+            "label": "Saint Paul, MN (Minnesota)"
+          },
+          {
+            "value": "Springfield",
+            "label": "Springfield, IL (Illinois)"
+          },
+          {
+            "value": "Topeka",
+            "label": "Topeka, KS (Kansas)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-05:00",
+    "label": "GMT-05:00 (EST - Eastern Standard Time)",
+    "children": [
+      {
+        "value": "BahamasGMT-05",
+        "label": "Bahamas",
+        "children": [
+          {
+            "value": "Nassau",
+            "label": "Nassau"
+          }
+        ]
+      },
+      {
+        "value": "CanadaGMT-05",
+        "label": "Canada",
+        "children": [
+          {
+            "value": "Ottawa",
+            "label": "Ottawa, ON (Ontario) - Capital of Canada"
+          },
+          {
+            "value": "Toronto",
+            "label": "Toronto, ON (Ontario)"
+          },
+          {
+            "value": "Québec",
+            "label": "Québec, QC (Québec)"
+          }
+        ]
+      },
+      {
+        "value": "CubaGMT-05",
+        "label": "Cuba",
+        "children": [
+          {
+            "value": "Havana",
+            "label": "Havana"
+          }
+        ]
+      },
+      {
+        "value": "HaitiGMT-05",
+        "label": "Haiti",
+        "children": [
+          {
+            "value": "PortAuPrince",
+            "label": "Port-au-Prince"
+          }
+        ]
+      },
+      {
+        "value": "JamaicaGMT-05",
+        "label": "Jamaica",
+        "children": [
+          {
+            "value": "Kingston",
+            "label": "Kingston"
+          }
+        ]
+      },
+      {
+        "value": "PanamaGMT-05",
+        "label": "Panama",
+        "children": [
+          {
+            "value": "PanamaCity",
+            "label": "Panama City"
+          }
+        ]
+      },
+      {
+        "value": "UnitedStatesGMT-05",
+        "label": "United States (USA)",
+        "children": [
+          {
+            "value": "Albany",
+            "label": "Albany, NY (New York)"
+          },
+          {
+            "value": "Atlanta",
+            "label": "Atlanta, GA (Georgia)"
+          },
+          {
+            "value": "Boston",
+            "label": "Boston, MA (Massachusetts)"
+          },
+          {
+            "value": "Charleston",
+            "label": "Charleston, WV (West Virginia)"
+          },
+          {
+            "value": "Columbus",
+            "label": "Columbus, OH (Ohio)"
+          },
+          {
+            "value": "Harrisburg",
+            "label": "Harrisburg, PA (Pennsylvania)"
+          },
+          {
+            "value": "Indianapolis",
+            "label": "Indianapolis, IN (Indiana)"
+          },
+          {
+            "value": "Lansing",
+            "label": "Lansing, MI (Michigan)"
+          },
+          {
+            "value": "Montpelier",
+            "label": "Montpelier, VT (Vermont)"
+          },
+          {
+            "value": "Tallahassee",
+            "label": "Tallahassee, FL (Florida)"
+          },
+          {
+            "value": "WashingtonDC",
+            "label": "Washington, D.C. (District of Columbia) - Capital of the United States"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-04:00",
+    "label": "GMT-04:00 (AST - Atlantic Standard Time)",
+    "children": [
+      {
+        "value": "BarbadosGMT-04",
+        "label": "Barbados",
+        "children": [
+          {
+            "value": "Bridgetown",
+            "label": "Bridgetown"
+          }
+        ]
+      },
+      {
+        "value": "BoliviaGMT-04",
+        "label": "Bolivia",
+        "children": [
+          {
+            "value": "Sucre",
+            "label": "Sucre"
+          },
+          {
+            "value": "LaPaz",
+            "label": "La Paz"
+          }
+        ]
+      },
+      {
+        "value": "BrazilGMT-04",
+        "label": "Brazil",
+        "children": [
+          {
+            "value": "Brasília",
+            "label": "Brasília"
+          }
+        ]
+      },
+      {
+        "value": "CanadaGMT-04",
+        "label": "Canada",
+        "children": [
+          {
+            "value": "Halifax",
+            "label": "Halifax, NS (Nova Scotia)"
+          },
+          {
+            "value": "Charlottetown",
+            "label": "Charlottetown, PE (Prince Edward Island)"
+          },
+          {
+            "value": "Fredericton",
+            "label": "Fredericton, NB (New Brunswick)"
+          },
+          {
+            "value": "SaintJohns",
+            "label": "Saint John's, NL (Newfoundland and Labrador)"
+          }
+        ]
+      },
+      {
+        "value": "ChileGMT-04",
+        "label": "Chile",
+        "children": [
+          {
+            "value": "Santiago",
+            "label": "Santiago"
+          }
+        ]
+      },
+      {
+        "value": "DominicanRepublicGMT-04",
+        "label": "Dominican Republic",
+        "children": [
+          {
+            "value": "SantoDomingo",
+            "label": "Santo Domingo"
+          }
+        ]
+      },
+      {
+        "value": "GuyanaGMT-04",
+        "label": "Guyana",
+        "children": [
+          {
+            "value": "Georgetown",
+            "label": "Georgetown"
+          }
+        ]
+      },
+      {
+        "value": "ParaguayGMT-04",
+        "label": "Paraguay",
+        "children": [
+          {
+            "value": "Asunción",
+            "label": "Asunción"
+          }
+        ]
+      },
+      {
+        "value": "PuertoRicoGMT-04",
+        "label": "Puerto Rico",
+        "children": [
+          {
+            "value": "SanJuan",
+            "label": "San Juan"
+          }
+        ]
+      },
+      {
+        "value": "TrinidadAndTobagoGMT-04",
+        "label": "Trinidad and Tobago",
+        "children": [
+          {
+            "value": "PortOfSpain",
+            "label": "Port of Spain"
+          }
+        ]
+      },
+      {
+        "value": "VenezuelaGMT-04",
+        "label": "Venezuela",
+        "children": [
+          {
+            "value": "Caracas",
+            "label": "Caracas"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-03:00",
+    "label": "GMT-03:00",
+    "children": [
+      {
+        "value": "ArgentinaGMT-03",
+        "label": "Argentina",
+        "children": [
+          {
+            "value": "BuenosAires",
+            "label": "Buenos Aires"
+          }
+        ]
+      },
+      {
+        "value": "BrazilGMT-03",
+        "label": "Brazil",
+        "children": [
+          {
+            "value": "Brasília",
+            "label": "Brasília"
+          }
+        ]
+      },
+      {
+        "value": "ChileGMT-03",
+        "label": "Chile",
+        "children": [
+          {
+            "value": "Santiago",
+            "label": "Santiago"
+          }
+        ]
+      },
+      {
+        "value": "GreenlandGMT-03",
+        "label": "Greenland",
+        "children": [
+          {
+            "value": "Nuuk",
+            "label": "Nuuk"
+          }
+        ]
+      },
+      {
+        "value": "ParaguayGMT-03",
+        "label": "Paraguay",
+        "children": [
+          {
+            "value": "Asunción",
+            "label": "Asunción"
+          }
+        ]
+      },
+      {
+        "value": "SurinameGMT-03",
+        "label": "Suriname",
+        "children": [
+          {
+            "value": "Paramaribo",
+            "label": "Paramaribo"
+          }
+        ]
+      },
+      {
+        "value": "UruguayGMT-03",
+        "label": "Uruguay",
+        "children": [
+          {
+            "value": "Montevideo",
+            "label": "Montevideo"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-02:00",
+    "label": "GMT-02:00",
+    "children": [
+      {
+        "value": "BrazilGMT-02",
+        "label": "Brazil",
+        "children": [
+          {
+            "value": "FernandoDeNoronha",
+            "label": "Fernando de Noronha"
+          }
+        ]
+      },
+      {
+        "value": "SouthGeorgiaAndTheSouthSandwichIslandsGMT-02",
+        "label": "South Georgia and the South Sandwich Islands",
+        "children": [
+          {
+            "value": "KingEdwardPoint",
+            "label": "King Edward Point"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT-01:00",
+    "label": "GMT-01:00",
+    "children": [
+      {
+        "value": "AzoresGMT-01",
+        "label": "Portugal (Azores)",
+        "children": [
+          {
+            "value": "PontaDelgada",
+            "label": "Ponta Delgada"
+          }
+        ]
+      },
+      {
+        "value": "CapeVerdeGMT-01",
+        "label": "Cape Verde",
+        "children": [
+          {
+            "value": "Praia",
+            "label": "Praia"
+          }
+        ]
+      },
+      {
+        "value": "GreenlandGMT-01",
+        "label": "Greenland",
+        "children": [
+          {
+            "value": "Nuuk",
+            "label": "Nuuk"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT",
+    "label": "GMT (UTC - Coordinated Universal Time)",
+    "children": [
+      {
+        "value": "BurkinaFasoGMT",
+        "label": "Burkina Faso",
+        "children": [
+          {
+            "value": "Ouagadougou",
+            "label": "Ouagadougou"
+          }
+        ]
+      },
+      {
+        "value": "CoteDIvoireGMT",
+        "label": "Côte d'Ivoire",
+        "children": [
+          {
+            "value": "Yamoussoukro",
+            "label": "Yamoussoukro"
+          }
+        ]
+      },
+      {
+        "value": "GambiaGMT",
+        "label": "Gambia",
+        "children": [
+          {
+            "value": "Banjul",
+            "label": "Banjul"
+          }
+        ]
+      },
+      {
+        "value": "GhanaGMT",
+        "label": "Ghana",
+        "children": [
+          {
+            "value": "Accra",
+            "label": "Accra"
+          }
+        ]
+      },
+      {
+        "value": "GreenlandGMT",
+        "label": "Greenland",
+        "children": [
+          {
+            "value": "Nuuk",
+            "label": "Nuuk"
+          }
+        ]
+      },
+      {
+        "value": "GuineaGMT",
+        "label": "Guinea",
+        "children": [
+          {
+            "value": "Conakry",
+            "label": "Conakry"
+          }
+        ]
+      },
+      {
+        "value": "GuineaBissauGMT",
+        "label": "Guinea-Bissau",
+        "children": [
+          {
+            "value": "Bissau",
+            "label": "Bissau"
+          }
+        ]
+      },
+      {
+        "value": "IcelandGMT",
+        "label": "Iceland",
+        "children": [
+          {
+            "value": "Reykjavik",
+            "label": "Reykjavik"
+          }
+        ]
+      },
+      {
+        "value": "IrelandGMT",
+        "label": "Ireland",
+        "children": [
+          {
+            "value": "Dublin",
+            "label": "Dublin"
+          }
+        ]
+      },
+      {
+        "value": "LiberiaGMT",
+        "label": "Liberia",
+        "children": [
+          {
+            "value": "Monrovia",
+            "label": "Monrovia"
+          }
+        ]
+      },
+      {
+        "value": "MaliGMT",
+        "label": "Mali",
+        "children": [
+          {
+            "value": "Bamako",
+            "label": "Bamako"
+          }
+        ]
+      },
+      {
+        "value": "MauritaniaGMT",
+        "label": "Mauritania",
+        "children": [
+          {
+            "value": "Nouakchott",
+            "label": "Nouakchott"
+          }
+        ]
+      },
+      {
+        "value": "PortugalGMT",
+        "label": "Portugal",
+        "children": [
+          {
+            "value": "Lisbon",
+            "label": "Lisbon"
+          }
+        ]
+      },
+      {
+        "value": "SaintHelenaGMT",
+        "label": "Saint Helena",
+        "children": [
+          {
+            "value": "Jamestown",
+            "label": "Jamestown"
+          }
+        ]
+      },
+      {
+        "value": "SenegalGMT",
+        "label": "Senegal",
+        "children": [
+          {
+            "value": "Dakar",
+            "label": "Dakar"
+          }
+        ]
+      },
+      {
+        "value": "SierraLeoneGMT",
+        "label": "Sierra Leone",
+        "children": [
+          {
+            "value": "Freetown",
+            "label": "Freetown"
+          }
+        ]
+      },
+      {
+        "value": "TogoGMT",
+        "label": "Togo",
+        "children": [
+          {
+            "value": "Lomé",
+            "label": "Lomé"
+          }
+        ]
+      },
+      {
+        "value": "UnitedKingdomGMT",
+        "label": "United Kingdom",
+        "children": [
+          {
+            "value": "London",
+            "label": "London"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+01:00",
+    "label": "GMT+01:00 (CET - Central European Time)",
+    "children": [
+      {
+        "value": "AlbaniaGMT+01",
+        "label": "Albania",
+        "children": [
+          {
+            "value": "Tirana",
+            "label": "Tirana"
+          }
+        ]
+      },
+      {
+        "value": "AndorraGMT+01",
+        "label": "Andorra",
+        "children": [
+          {
+            "value": "AndorraLaVella",
+            "label": "Andorra la Vella"
+          }
+        ]
+      },
+      {
+        "value": "AustriaGMT+01",
+        "label": "Austria",
+        "children": [
+          {
+            "value": "Vienna",
+            "label": "Vienna"
+          }
+        ]
+      },
+      {
+        "value": "BelgiumGMT+01",
+        "label": "Belgium",
+        "children": [
+          {
+            "value": "Brussels",
+            "label": "Brussels"
+          }
+        ]
+      },
+      {
+        "value": "BosniaAndHerzegovinaGMT+01",
+        "label": "Bosnia and Herzegovina",
+        "children": [
+          {
+            "value": "Sarajevo",
+            "label": "Sarajevo"
+          }
+        ]
+      },
+      {
+        "value": "CroatiaGMT+01",
+        "label": "Croatia",
+        "children": [
+          {
+            "value": "Zagreb",
+            "label": "Zagreb"
+          }
+        ]
+      },
+      {
+        "value": "CzechRepublicGMT+01",
+        "label": "Czech Republic",
+        "children": [
+          {
+            "value": "Prague",
+            "label": "Prague"
+          }
+        ]
+      },
+      {
+        "value": "DenmarkGMT+01",
+        "label": "Denmark",
+        "children": [
+          {
+            "value": "Copenhagen",
+            "label": "Copenhagen"
+          }
+        ]
+      },
+      {
+        "value": "FranceGMT+01",
+        "label": "France",
+        "children": [
+          {
+            "value": "Paris",
+            "label": "Paris"
+          }
+        ]
+      },
+      {
+        "value": "GermanyGMT+01",
+        "label": "Germany",
+        "children": [
+          {
+            "value": "Berlin",
+            "label": "Berlin"
+          }
+        ]
+      },
+      {
+        "value": "HungaryGMT+01",
+        "label": "Hungary",
+        "children": [
+          {
+            "value": "Budapest",
+            "label": "Budapest"
+          }
+        ]
+      },
+      {
+        "value": "ItalyGMT+01",
+        "label": "Italy",
+        "children": [
+          {
+            "value": "Rome",
+            "label": "Rome"
+          }
+        ]
+      },
+      {
+        "value": "NetherlandsGMT+01",
+        "label": "Netherlands",
+        "children": [
+          {
+            "value": "Amsterdam",
+            "label": "Amsterdam"
+          }
+        ]
+      },
+      {
+        "value": "NorwayGMT+01",
+        "label": "Norway",
+        "children": [
+          {
+            "value": "Oslo",
+            "label": "Oslo"
+          }
+        ]
+      },
+      {
+        "value": "PolandGMT+01",
+        "label": "Poland",
+        "children": [
+          {
+            "value": "Warsaw",
+            "label": "Warsaw"
+          }
+        ]
+      },
+      {
+        "value": "SlovakiaGMT+01",
+        "label": "Slovakia",
+        "children": [
+          {
+            "value": "Bratislava",
+            "label": "Bratislava"
+          }
+        ]
+      },
+      {
+        "value": "SpainGMT+01",
+        "label": "Spain",
+        "children": [
+          {
+            "value": "Madrid",
+            "label": "Madrid"
+          }
+        ]
+      },
+      {
+        "value": "SwedenGMT+01",
+        "label": "Sweden",
+        "children": [
+          {
+            "value": "Stockholm",
+            "label": "Stockholm"
+          }
+        ]
+      },
+      {
+        "value": "SwitzerlandGMT+01",
+        "label": "Switzerland",
+        "children": [
+          {
+            "value": "Bern",
+            "label": "Bern"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+02:00",
+    "label": "GMT+02:00 (EET - Eastern European Time)",
+    "children": [
+      {
+        "value": "BulgariaGMT+02",
+        "label": "Bulgaria",
+        "children": [
+          {
+            "value": "Sofia",
+            "label": "Sofia"
+          }
+        ]
+      },
+      {
+        "value": "CyprusGMT+02",
+        "label": "Cyprus",
+        "children": [
+          {
+            "value": "Nicosia",
+            "label": "Nicosia"
+          }
+        ]
+      },
+      {
+        "value": "EgyptGMT+02",
+        "label": "Egypt",
+        "children": [
+          {
+            "value": "Cairo",
+            "label": "Cairo"
+          }
+        ]
+      },
+      {
+        "value": "EstoniaGMT+02",
+        "label": "Estonia",
+        "children": [
+          {
+            "value": "Tallinn",
+            "label": "Tallinn"
+          }
+        ]
+      },
+      {
+        "value": "FinlandGMT+02",
+        "label": "Finland",
+        "children": [
+          {
+            "value": "Helsinki",
+            "label": "Helsinki"
+          }
+        ]
+      },
+      {
+        "value": "GreeceGMT+02",
+        "label": "Greece",
+        "children": [
+          {
+            "value": "Athens",
+            "label": "Athens"
+          }
+        ]
+      },
+      {
+        "value": "IsraelGMT+02",
+        "label": "Israel",
+        "children": [
+          {
+            "value": "Jerusalem",
+            "label": "Jerusalem"
+          }
+        ]
+      },
+      {
+        "value": "JordanGMT+02",
+        "label": "Jordan",
+        "children": [
+          {
+            "value": "Amman",
+            "label": "Amman"
+          }
+        ]
+      },
+      {
+        "value": "LatviaGMT+02",
+        "label": "Latvia",
+        "children": [
+          {
+            "value": "Riga",
+            "label": "Riga"
+          }
+        ]
+      },
+      {
+        "value": "LebanonGMT+02",
+        "label": "Lebanon",
+        "children": [
+          {
+            "value": "Beirut",
+            "label": "Beirut"
+          }
+        ]
+      },
+      {
+        "value": "LithuaniaGMT+02",
+        "label": "Lithuania",
+        "children": [
+          {
+            "value": "Vilnius",
+            "label": "Vilnius"
+          }
+        ]
+      },
+      {
+        "value": "MoldovaGMT+02",
+        "label": "Moldova",
+        "children": [
+          {
+            "value": "Chisinau",
+            "label": "Chisinau"
+          }
+        ]
+      },
+      {
+        "value": "RomaniaGMT+02",
+        "label": "Romania",
+        "children": [
+          {
+            "value": "Bucharest",
+            "label": "Bucharest"
+          }
+        ]
+      },
+      {
+        "value": "SyriaGMT+02",
+        "label": "Syria",
+        "children": [
+          {
+            "value": "Damascus",
+            "label": "Damascus"
+          }
+        ]
+      },
+      {
+        "value": "UkraineGMT+02",
+        "label": "Ukraine",
+        "children": [
+          {
+            "value": "Kiev",
+            "label": "Kiev"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+03:00",
+    "label": "GMT+03:00",
+    "children": [
+      {
+        "value": "BahrainGMT+03",
+        "label": "Bahrain",
+        "children": [
+          {
+            "value": "Manama",
+            "label": "Manama"
+          }
+        ]
+      },
+      {
+        "value": "BelarusGMT+03",
+        "label": "Belarus",
+        "children": [
+          {
+            "value": "Minsk",
+            "label": "Minsk"
+          }
+        ]
+      },
+      {
+        "value": "ComorosGMT+03",
+        "label": "Comoros",
+        "children": [
+          {
+            "value": "Moroni",
+            "label": "Moroni"
+          }
+        ]
+      },
+      {
+        "value": "DjiboutiGMT+03",
+        "label": "Djibouti",
+        "children": [
+          {
+            "value": "Djibouti",
+            "label": "Djibouti"
+          }
+        ]
+      },
+      {
+        "value": "EritreaGMT+03",
+        "label": "Eritrea",
+        "children": [
+          {
+            "value": "Asmara",
+            "label": "Asmara"
+          }
+        ]
+      },
+      {
+        "value": "EthiopiaGMT+03",
+        "label": "Ethiopia",
+        "children": [
+          {
+            "value": "AddisAbaba",
+            "label": "Addis Ababa"
+          }
+        ]
+      },
+      {
+        "value": "IraqGMT+03",
+        "label": "Iraq",
+        "children": [
+          {
+            "value": "Baghdad",
+            "label": "Baghdad"
+          }
+        ]
+      },
+      {
+        "value": "KenyaGMT+03",
+        "label": "Kenya",
+        "children": [
+          {
+            "value": "Nairobi",
+            "label": "Nairobi"
+          }
+        ]
+      },
+      {
+        "value": "KuwaitGMT+03",
+        "label": "Kuwait",
+        "children": [
+          {
+            "value": "KuwaitCity",
+            "label": "Kuwait City"
+          }
+        ]
+      },
+      {
+        "value": "MadagascarGMT+03",
+        "label": "Madagascar",
+        "children": [
+          {
+            "value": "Antananarivo",
+            "label": "Antananarivo"
+          }
+        ]
+      },
+      {
+        "value": "QatarGMT+03",
+        "label": "Qatar",
+        "children": [
+          {
+            "value": "Doha",
+            "label": "Doha"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+03",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Moscow",
+            "label": "Moscow"
+          }
+        ]
+      },
+      {
+        "value": "SaudiArabiaGMT+03",
+        "label": "Saudi Arabia",
+        "children": [
+          {
+            "value": "Riyadh",
+            "label": "Riyadh"
+          }
+        ]
+      },
+      {
+        "value": "SomaliaGMT+03",
+        "label": "Somalia",
+        "children": [
+          {
+            "value": "Mogadishu",
+            "label": "Mogadishu"
+          }
+        ]
+      },
+      {
+        "value": "SouthSudanGMT+03",
+        "label": "South Sudan",
+        "children": [
+          {
+            "value": "Juba",
+            "label": "Juba"
+          }
+        ]
+      },
+      {
+        "value": "SudanGMT+03",
+        "label": "Sudan",
+        "children": [
+          {
+            "value": "Khartoum",
+            "label": "Khartoum"
+          }
+        ]
+      },
+      {
+        "value": "TurkeyGMT+03",
+        "label": "Turkey",
+        "children": [
+          {
+            "value": "Ankara",
+            "label": "Ankara"
+          }
+        ]
+      },
+      {
+        "value": "UgandaGMT+03",
+        "label": "Uganda",
+        "children": [
+          {
+            "value": "Kampala",
+            "label": "Kampala"
+          }
+        ]
+      },
+      {
+        "value": "YemenGMT+03",
+        "label": "Yemen",
+        "children": [
+          {
+            "value": "Sanaa",
+            "label": "Sanaa"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+04:00",
+    "label": "GMT+04:00",
+    "children": [
+      {
+        "value": "ArmeniaGMT+04",
+        "label": "Armenia",
+        "children": [
+          {
+            "value": "Yerevan",
+            "label": "Yerevan"
+          }
+        ]
+      },
+      {
+        "value": "AzerbaijanGMT+04",
+        "label": "Azerbaijan",
+        "children": [
+          {
+            "value": "Baku",
+            "label": "Baku"
+          }
+        ]
+      },
+      {
+        "value": "GeorgiaGMT+04",
+        "label": "Georgia",
+        "children": [
+          {
+            "value": "Tbilisi",
+            "label": "Tbilisi"
+          }
+        ]
+      },
+      {
+        "value": "MauritiusGMT+04",
+        "label": "Mauritius",
+        "children": [
+          {
+            "value": "PortLouis",
+            "label": "Port Louis"
+          }
+        ]
+      },
+      {
+        "value": "OmanGMT+04",
+        "label": "Oman",
+        "children": [
+          {
+            "value": "Muscat",
+            "label": "Muscat"
+          }
+        ]
+      },
+      {
+        "value": "ReunionGMT+04",
+        "label": "Reunion",
+        "children": [
+          {
+            "value": "SaintDenis",
+            "label": "Saint Denis"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+04",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Astrakhan",
+            "label": "Astrakhan"
+          },
+          {
+            "value": "Samara",
+            "label": "Samara"
+          },
+          {
+            "value": "Saratov",
+            "label": "Saratov"
+          },
+          {
+            "value": "Ulyanovsk",
+            "label": "Ulyanovsk"
+          }
+        ]
+      },
+      {
+        "value": "SeychellesGMT+04",
+        "label": "Seychelles",
+        "children": [
+          {
+            "value": "Victoria",
+            "label": "Victoria"
+          }
+        ]
+      },
+      {
+        "value": "UnitedArabEmiratesGMT+04",
+        "label": "United Arab Emirates",
+        "children": [
+          {
+            "value": "AbuDhabi",
+            "label": "Abu Dhabi"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+05:00",
+    "label": "GMT+05:00",
+    "children": [
+      {
+        "value": "KazakhstanGMT+05",
+        "label": "Kazakhstan",
+        "children": [
+          {
+            "value": "NurSultan",
+            "label": "Nur-Sultan"
+          }
+        ]
+      },
+      {
+        "value": "MaldivesGMT+05",
+        "label": "Maldives",
+        "children": [
+          {
+            "value": "Male",
+            "label": "Male"
+          }
+        ]
+      },
+      {
+        "value": "PakistanGMT+05",
+        "label": "Pakistan",
+        "children": [
+          {
+            "value": "Islamabad",
+            "label": "Islamabad"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+05",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Chelyabinsk",
+            "label": "Chelyabinsk"
+          },
+          {
+            "value": "Ekaterinburg",
+            "label": "Ekaterinburg"
+          }
+        ]
+      },
+      {
+        "value": "TajikistanGMT+05",
+        "label": "Tajikistan",
+        "children": [
+          {
+            "value": "Dushanbe",
+            "label": "Dushanbe"
+          }
+        ]
+      },
+      {
+        "value": "TurkmenistanGMT+05",
+        "label": "Turkmenistan",
+        "children": [
+          {
+            "value": "Ashgabat",
+            "label": "Ashgabat"
+          }
+        ]
+      },
+      {
+        "value": "UzbekistanGMT+05",
+        "label": "Uzbekistan",
+        "children": [
+          {
+            "value": "Tashkent",
+            "label": "Tashkent"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+06:00",
+    "label": "GMT+06:00",
+    "children": [
+      {
+        "value": "BangladeshGMT+06",
+        "label": "Bangladesh",
+        "children": [
+          {
+            "value": "Dhaka",
+            "label": "Dhaka"
+          }
+        ]
+      },
+      {
+        "value": "BhutanGMT+06",
+        "label": "Bhutan",
+        "children": [
+          {
+            "value": "Thimphu",
+            "label": "Thimphu"
+          }
+        ]
+      },
+      {
+        "value": "KazakhstanGMT+06",
+        "label": "Kazakhstan",
+        "children": [
+          {
+            "value": "Almaty",
+            "label": "Almaty"
+          }
+        ]
+      },
+      {
+        "value": "KyrgyzstanGMT+06",
+        "label": "Kyrgyzstan",
+        "children": [
+          {
+            "value": "Bishkek",
+            "label": "Bishkek"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+06",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Novosibirsk",
+            "label": "Novosibirsk"
+          },
+          {
+            "value": "Omsk",
+            "label": "Omsk"
+          },
+          {
+            "value": "Tomsk",
+            "label": "Tomsk"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+07:00",
+    "label": "GMT+07:00",
+    "children": [
+      {
+        "value": "CambodiaGMT+07",
+        "label": "Cambodia",
+        "children": [
+          {
+            "value": "PhnomPenh",
+            "label": "Phnom Penh"
+          }
+        ]
+      },
+      {
+        "value": "IndonesiaGMT+07",
+        "label": "Indonesia",
+        "children": [
+          {
+            "value": "Jakarta",
+            "label": "Jakarta"
+          }
+        ]
+      },
+      {
+        "value": "LaosGMT+07",
+        "label": "Laos",
+        "children": [
+          {
+            "value": "Vientiane",
+            "label": "Vientiane"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+07",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Barnaul",
+            "label": "Barnaul"
+          },
+          {
+            "value": "Krasnoyarsk",
+            "label": "Krasnoyarsk"
+          },
+          {
+            "value": "Novokuznetsk",
+            "label": "Novokuznetsk"
+          },
+          {
+            "value": "Novosibirsk",
+            "label": "Novosibirsk"
+          }
+        ]
+      },
+      {
+        "value": "ThailandGMT+07",
+        "label": "Thailand",
+        "children": [
+          {
+            "value": "Bangkok",
+            "label": "Bangkok"
+          }
+        ]
+      },
+      {
+        "value": "VietnamGMT+07",
+        "label": "Vietnam",
+        "children": [
+          {
+            "value": "Hanoi",
+            "label": "Hanoi"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+08:00",
+    "label": "GMT+08:00 (CST - China Standard Time)",
+    "children": [
+      {
+        "value": "AustraliaGMT+08",
+        "label": "Australia",
+        "children": [
+          {
+            "value": "Perth",
+            "label": "Perth"
+          }
+        ]
+      },
+      {
+        "value": "BruneiGMT+08",
+        "label": "Brunei",
+        "children": [
+          {
+            "value": "BandarSeriBegawan",
+            "label": "Bandar Seri Begawan"
+          }
+        ]
+      },
+      {
+        "value": "ChinaGMT+08",
+        "label": "China",
+        "children": [
+          {
+            "value": "Beijing",
+            "label": "Beijing"
+          }
+        ]
+      },
+      {
+        "value": "HongKongGMT+08",
+        "label": "Hong Kong",
+        "children": [
+          {
+            "value": "HongKong",
+            "label": "Hong Kong"
+          }
+        ]
+      },
+      {
+        "value": "IndonesiaGMT+08",
+        "label": "Indonesia",
+        "children": [
+          {
+            "value": "Jakarta",
+            "label": "Jakarta"
+          }
+        ]
+      },
+      {
+        "value": "MacauGMT+08",
+        "label": "Macau",
+        "children": [
+          {
+            "value": "Macau",
+            "label": "Macau"
+          }
+        ]
+      },
+      {
+        "value": "MalaysiaGMT+08",
+        "label": "Malaysia",
+        "children": [
+          {
+            "value": "KualaLumpur",
+            "label": "Kuala Lumpur"
+          }
+        ]
+      },
+      {
+        "value": "MongoliaGMT+08",
+        "label": "Mongolia",
+        "children": [
+          {
+            "value": "Ulaanbaatar",
+            "label": "Ulaanbaatar"
+          }
+        ]
+      },
+      {
+        "value": "PhilippinesGMT+08",
+        "label": "Philippines",
+        "children": [
+          {
+            "value": "Manila",
+            "label": "Manila"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+08",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Irkutsk",
+            "label": "Irkutsk"
+          }
+        ]
+      },
+      {
+        "value": "SingaporeGMT+08",
+        "label": "Singapore",
+        "children": [
+          {
+            "value": "Singapore",
+            "label": "Singapore"
+          }
+        ]
+      },
+      {
+        "value": "TaiwanGMT+08",
+        "label": "Taiwan",
+        "children": [
+          {
+            "value": "Taipei",
+            "label": "Taipei"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+09:00",
+    "label": "GMT+09:00",
+    "children": [
+      {
+        "value": "IndonesiaGMT+09",
+        "label": "Indonesia",
+        "children": [
+          {
+            "value": "Jayapura",
+            "label": "Jayapura"
+          }
+        ]
+      },
+      {
+        "value": "JapanGMT+09",
+        "label": "Japan",
+        "children": [
+          {
+            "value": "Tokyo",
+            "label": "Tokyo"
+          }
+        ]
+      },
+      {
+        "value": "NorthKoreaGMT+09",
+        "label": "North Korea",
+        "children": [
+          {
+            "value": "Pyongyang",
+            "label": "Pyongyang"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+09",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Chita",
+            "label": "Chita"
+          },
+          {
+            "value": "Yakutsk",
+            "label": "Yakutsk"
+          }
+        ]
+      },
+      {
+        "value": "SouthKoreaGMT+09",
+        "label": "South Korea",
+        "children": [
+          {
+            "value": "Seoul",
+            "label": "Seoul"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+10:00",
+    "label": "GMT+10:00",
+    "children": [
+      {
+        "value": "AustraliaGMT+10",
+        "label": "Australia",
+        "children": [
+          {
+            "value": "Brisbane",
+            "label": "Brisbane"
+          },
+          {
+            "value": "Canberra",
+            "label": "Canberra"
+          },
+          {
+            "value": "Sydney",
+            "label": "Sydney"
+          }
+        ]
+      },
+      {
+        "value": "PapuaNewGuineaGMT+10",
+        "label": "Papua New Guinea",
+        "children": [
+          {
+            "value": "PortMoresby",
+            "label": "Port Moresby"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+10",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Khabarovsk",
+            "label": "Khabarovsk"
+          },
+          {
+            "value": "Vladivostok",
+            "label": "Vladivostok"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+11:00",
+    "label": "GMT+11:00",
+    "children": [
+      {
+        "value": "AustraliaGMT+11",
+        "label": "Australia",
+        "children": [
+          {
+            "value": "Canberra",
+            "label": "Canberra"
+          },
+          {
+            "value": "Melbourne",
+            "label": "Melbourne"
+          },
+          {
+            "value": "Sydney",
+            "label": "Sydney"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+11",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Magadan",
+            "label": "Magadan"
+          },
+          {
+            "value": "Sakhalin",
+            "label": "Yuzhno-Sakhalinsk"
+          },
+          {
+            "value": "Vladivostok",
+            "label": "Vladivostok"
+          }
+        ]
+      },
+      {
+        "value": "SolomonIslandsGMT+11",
+        "label": "Solomon Islands",
+        "children": [
+          {
+            "value": "Honiara",
+            "label": "Honiara"
+          }
+        ]
+      },
+      {
+        "value": "VanuatuGMT+11",
+        "label": "Vanuatu",
+        "children": [
+          {
+            "value": "PortVila",
+            "label": "Port Vila"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "GMT+12:00",
+    "label": "GMT+12:00",
+    "children": [
+      {
+        "value": "FijiGMT+12",
+        "label": "Fiji",
+        "children": [
+          {
+            "value": "Suva",
+            "label": "Suva"
+          }
+        ]
+      },
+      {
+        "value": "KiribatiGMT+12",
+        "label": "Kiribati",
+        "children": [
+          {
+            "value": "Tarawa",
+            "label": "Tarawa"
+          }
+        ]
+      },
+      {
+        "value": "MarshallIslandsGMT+12",
+        "label": "Marshall Islands",
+        "children": [
+          {
+            "value": "Majuro",
+            "label": "Majuro"
+          }
+        ]
+      },
+      {
+        "value": "NauruGMT+12",
+        "label": "Nauru",
+        "children": [
+          {
+            "value": "Yaren",
+            "label": "Yaren"
+          }
+        ]
+      },
+      {
+        "value": "NewZealandGMT+12",
+        "label": "New Zealand",
+        "children": [
+          {
+            "value": "Wellington",
+            "label": "Wellington"
+          }
+        ]
+      },
+      {
+        "value": "RussiaGMT+12",
+        "label": "Russia",
+        "children": [
+          {
+            "value": "Anadyr",
+            "label": "Anadyr"
+          },
+          {
+            "value": "PetropavlovskKamchatsky",
+            "label": "Petropavlovsk-Kamchatsky"
+          }
+        ]
+      },
+      {
+        "value": "TuvaluGMT+12",
+        "label": "Tuvalu",
+        "children": [
+          {
+            "value": "Funafuti",
+            "label": "Funafuti"
+          }
+        ]
+      },
+      {
+        "value": "WallisAndFutunaGMT+12",
+        "label": "Wallis and Futuna",
+        "children": [
+          {
+            "value": "MataUtu",
+            "label": "Mata Utu"
+          }
+        ]
+      }
+    ]
+  }
+]

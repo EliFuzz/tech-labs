@@ -1,0 +1,762 @@
+---
+title: Gangs of Four (GoF)
+description: Gangs of Four (GoF) Design Patterns
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Gangs of Four (GoF) Design Patterns
+
+## Overview
+
+<Tabs>
+  <TabItem value="creational" label="Creational">
+    Deal with object creation mechanisms, trying to create objects in a manner
+    suitable to the situation. These patterns help in making a system
+    independent of how its objects are created, composed, and represented.
+
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th style={{minWidth: '440px'}}>Visualization</th>
+        <th>Definition</th>
+        <th>Example</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Singleton</td>
+        <td>
+          ```mermaid
+          classDiagram
+          class Singleton {
+          -static instance: Singleton
+          - constructor()
+          + static getInstance() Singleton
+        }
+          ```
+        </td>
+        <td>ensures a class has only one instance and provides a global point of access to it</td>
+        <td>database connection manager in a web application</td>
+      </tr>
+      <tr>
+        <td>Factory</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class Creator {
+          +factoryMethod(): Product
+        }
+
+          class ConcreteCreator {
+          +factoryMethod(): Product
+
+        }
+
+          ConcreteCreator ..|> Creator : implements
+          ConcreteCreator ..> Product : depends on
+          ConcreteProduct ..|> ProductInterface: implements
+          ```
+        </td>
+        <td>interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created</td>
+        <td>different factories produce different types of vehicles (car, truck)</td>
+      </tr>
+      <tr>
+        <td>Abstract Factory</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class AbstractFactoryInterface {
+          +createProductA(): AbstractProduct
+          +createProductB(): AbstractProduct
+        }
+          class ConcreteFactory {
+          +createProductA(): ConcreteProduct
+          +createProductB(): ConcreteProduct
+        }
+
+          Client --> AbstractFactoryInterface : create
+          Client --> AbstractProduct : use
+          ConcreteProduct ..|> AbstractProduct : implements
+          ConcreteFactory ..|> AbstractFactoryInterface : implements
+          ```
+        </td>
+        <td>interface for creating families of related or dependent objects without specifying their concrete classes</td>
+        <td>GUI toolkit providing different look and feel for different operating systems</td>
+      </tr>
+      <tr>
+        <td>Builder</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction BT
+          class Director {
+          +construct(builder: BuilderInterface)
+        }
+          class BuilderInterface {
+          +buildPart()
+        }
+          class ConcreteBuilder {
+            +buildPart()
+            + getResult()
+        }
+
+          ConcreteBuilder ..|> BuilderInterface : implements
+          BuilderInterface ..* Director : has-a
+          ```
+        </td>
+        <td>separates the construction of a complex object from its representation, allowing the same construction process to create various representations</td>
+        <td>construction of complex objects like HTML documents</td>
+      </tr>
+      <tr>
+        <td>Prototype</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class PrototypeInterface {
+          +clone(): PrototypeInterface
+        }
+          class ConcretePrototype {
+          +clone(): PrototypeInterface
+        }
+          Client --> PrototypeInterface : use
+          ConcretePrototype ..|> PrototypeInterface : implements
+          ```
+        </td>
+        <td>specifies the kinds of objects to create using a prototypical instance, and creates new objects by copying this prototype</td>
+        <td>creating multiple instances of a document (cloning objects) with different content but similar structure</td>
+      </tr>
+      </tbody>
+    </table>
+
+    **Factory vs Abstract Factory**
+
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Factory Method</th>
+        <th>Abstract Factory</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><strong>Product Type</strong></td>
+        <td>creates one product only</td>
+        <td>creates families of related or dependent products</td>
+      </tr>
+      <tr>
+        <td><strong>Exposure</strong></td>
+        <td>exposes a method to create the object</td>
+        <td>exposes a family of related objects</td>
+      </tr>
+      <tr>
+        <td><strong>Construction Hiding</strong></td>
+        <td>hides the construction of a single object</td>
+        <td>hides the construction of a family of related objects. Abstract factories are usually implemented using (a set of) factory methods</td>
+      </tr>
+      <tr>
+        <td><strong>Creation Responsibility</strong></td>
+        <td>uses inheritance and relies on a derived class or subclass to create an object</td>
+        <td>uses composition to delegate the responsibility of creating an object to another class</td>
+      </tr>
+      <tr>
+        <td><strong>Ideal Usage</strong></td>
+        <td>best for cases where the client doesn't know what concrete classes it will be required to create at runtime</td>
+        <td>best utilized when your system has to create multiple families of products or you want to provide a library of products without exposing the implementation details</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="structural" label="Structural">
+    Focus on organizing different classes and objects to form larger structures
+    and provide new functionality. They help ensure that if one part of a system
+    changes, the entire system doesn't need to do so. These patterns generally
+    identify simple ways to realize relationships between entities.
+
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th style={{minWidth: '350px'}}>Visualization</th>
+        <th>Definition</th>
+        <th>Example</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Adapter</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class AdapterInterface {
+          +operation()
+        }
+          class ConcreteAdapter {
+          -adaptee: Adaptee
+          +operation()
+        }
+          class Adaptee {
+          +adaptedOperation()
+        }
+
+          Client --> AdapterInterface : uses
+          ConcreteAdapter ..|> AdapterInterface : implements
+          ConcreteAdapter --> Adaptee : uses
+          ```
+        </td>
+        <td>allows objects with incompatible interfaces to collaborate</td>
+        <td>adapting an old version of an API to a new version</td>
+      </tr>
+      <tr>
+        <td>Bridge</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class Abstraction{
+          +operation()
+        }
+          class BridgeInterface{
+          +operationImpl()
+        }
+          class ConcreteA {
+          +operationImpl()
+        }
+          class ConcreteB {
+          +operationImpl()
+        }
+
+          ConcreteA ..|> BridgeInterface : implements
+          ConcreteB ..|> BridgeInterface : implements
+          BridgeInterface ..* Abstraction : has-a
+          ```
+        </td>
+        <td>decouples an abstraction from its implementation so that the two can vary independently</td>
+        <td>Different rendering engines (DirectX, OpenGL) for graphical shapes in a drawing application</td>
+      </tr>
+      <tr>
+        <td>Composite</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class ComponentInterface {
+          +operation()
+        }
+          class Leaf {
+          +operation()
+        }
+          class Composite {
+          -children: Component[]
+          + operation()
+          + add(component: Component)
+          + remove(component: Component)
+          + getChild(index: number): Component
+        }
+
+          Leaf ..|> ComponentInterface : implements
+          Composite ..|> ComponentInterface : implements
+          ComponentInterface ..* Composite : has-a (children)
+          ```
+        </td>
+        <td>composes objects into tree structures to represent part-whole hierarchies</td>
+        <td>representing a hierarchy of files and directories in a file system</td>
+      </tr>
+      <tr>
+        <td>Decorator</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class ComponentInterface {
+          +operation()
+        }
+          class ConcreteComponent {
+          +operation()
+        }
+          class Decorator {
+          -component: ComponentInterface
+          + operation()
+        }
+          class ConcreteDecorator {
+            +operation()
+            + addedBehavior()
+        }
+          ConcreteComponent ..|> ComponentInterface : implements
+          Decorator ..|> ComponentInterface : implements
+          ConcreteDecorator --|> Decorator : extends
+          ConcreteComponent --* Decorator : has-a
+          ```
+        </td>
+        <td>attaches additional responsibilities to an object dynamically, providing a flexible alternative to subclassing</td>
+        <td>adding additional features to a text editor, such as spell checking or formatting</td>
+      </tr>
+      <tr>
+        <td>Facade</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class Facade {
+          -subsystem1: Subsystem1
+          -subsystem2: Subsystem2
+          -subsystem3: Subsystem3
+          + operation()
+        }
+          namespace ComplexSystem {
+          class Subsystem1 {
+          +
+
+            operation1()
+          }
+          class Subsystem2 {
+          + operation2()
+        }
+          class Subsystem3 {
+          + operation3()
+        }
+        }
+
+          Facade --> Subsystem1 : uses
+          Facade --> Subsystem2 : uses
+          Facade --> Subsystem3 : uses
+          ```
+        </td>
+        <td>provides a simplified interface to a complex system of classes, libraries, or frameworks</td>
+        <td>providing a simplified interface to a complex subsystem like a software library</td>
+      </tr>
+      <tr>
+        <td>Flyweight</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class FlyweightFactory {
+          -flyweights: Map[Key, FlyweightInterface]
+          + getFlyweight(key: Key): FlyweightInterface
+        }
+          class FlyweightInterface {
+          +operation()
+        }
+          class ConcreteFlyweight {
+            -state
+            + operation()
+        }
+          class UnsharedConcreteFlyweight {
+            -allState
+            + operation()
+        }
+          FlyweightInterface --* FlyweightFactory : has-a
+          ConcreteFlyweight ..|> FlyweightInterface : implements
+          UnsharedConcreteFlyweight..|> FlyweightInterface : implements
+          Client --> FlyweightFactory : creates
+          Client --> ConcreteFlyweight : uses
+          Client --> UnsharedConcreteFlyweight : uses
+          ```
+        </td>
+        <td>shares common state among multiple objects, effectively reducing memory consumption</td>
+        <td>text editing software where frequently used characters (space, period) are stored as flyweight objects to save memory</td>
+      </tr>
+      <tr>
+        <td>Proxy</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class SubjectInterface {
+          +request()
+        }
+          class RealSubject {
+          +request()
+        }
+          class Proxy {
+          +request()
+        }
+          RealSubject ..|> SubjectInterface : implements
+          Proxy ..|> SubjectInterface : implements
+          Proxy --> RealSubject : represents
+          ```
+        </td>
+        <td>provides a surrogate or placeholder for another object to control access to it</td>
+        <td>proxy server that acts as an intermediary between clients and a web server, handling requests and caching responses</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="behavioral" label="Behavioral">
+    Concentrate on algorithms and the assignment of responsibilities between
+    objects. They describe not just patterns of objects or classes but also the
+    patterns of communication between them. These patterns help in defining how
+    objects interact and communicate with each other.
+
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th style={{minWidth: '350px'}}>Visualization</th>
+        <th>Definition</th>
+        <th>Example</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Chain of Responsibility</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class HandlerInterface {
+          -successor: HandlerInterface
+          + handleRequest(request: Request)
+        }
+          class HandlerA {
+          +handleRequest(request: Request)
+        }
+          class HandlerB {
+          +handleRequest(request: Request)
+        }
+          HandlerA ..|> HandlerInterface : implements
+          HandlerB ..|> HandlerInterface : implements
+          ```
+        </td>
+        <td>passes requests along a chain of handlers, allowing multiple objects to handle a request without the sender needing to know which object will ultimately process it</td>
+        <td>handling support tickets in a customer service system where tickets are passed down a chain of support agents until one can handle it</td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class CommandInterface {
+          +execute()
+        }
+          class ConcreteCommand {
+          -receiver: Receiver
+          + execute()
+        }
+          class Receiver {
+          +action()
+        }
+          class Invoker {
+          -command: CommandInterface
+          + executeCommand()
+        }
+          ConcreteCommand ..|> CommandInterface : implements
+          Invoker --> CommandInterface : uses
+          Client --> Invoker : uses
+          Client --> Receiver : uses
+          Client ..> CommandInterface : depends on
+          ```
+        </td>
+        <td>encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations</td>
+        <td>undo and redo operations in a text editor</td>
+      </tr>
+      <tr>
+        <td>Interpreter</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class ExpressionInterface {
+          +interpret(context: Context)
+        }
+          class Expression1 {
+          +interpret(context: Context)
+        }
+          class Expression2 {
+          +interpret(context: Context)
+        }
+
+          Client --> Context : uses
+          Client --> ExpressionInterface : uses
+          Expression1..> ExpressionInterface : implements
+          Expression2..> ExpressionInterface : implements
+          Expression2 --o ExpressionInterface : uses
+          ```
+        </td>
+        <td>defines a grammatical representation for a language and provides an interpreter to interpret sentences in the language</td>
+        <td>implementing a query language interpreter for a database system to parse and execute user queries</td>
+      </tr>
+      <tr>
+        <td>Iterator</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class IteratorInterface {
+          +next(): Context
+        }
+          class ConcreteIterator {
+          +next(): Context
+        }
+          class AggregateInterface {
+          +createIterator(): Context
+        }
+          class ConcreteAggregate {
+          +createIterator(): Context
+        }
+
+          ConcreteIterator --|> IteratorInterface : implements
+          ConcreteAggregate --|> AggregateInterface : implements
+          Client --> AggregateInterface : uses
+          Client --> IteratorInterface : uses
+          ```
+        </td>
+        <td>provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation</td>
+        <td>iterating through a collection of objects in a database system</td>
+      </tr>
+      <tr>
+        <td>Mediator</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class ColleagueInterface {
+          +send()
+        }
+          class ColleagueA {
+          +send()
+        }
+          class ColleagueB {
+          +send()
+        }
+          class Mediator {
+          +notify(sender: ColleagueInterface)
+        }
+          class ConcreteMediator {
+          +notify(sender: ColleagueInterface)
+        }
+
+          ColleagueInterface --> Mediator : informs
+          ConcreteMediator --|> Mediator : inherits
+          ConcreteMediator --> ColleagueA : notifies
+          ConcreteMediator --> ColleagueB : notifies
+          ColleagueA ..|> ColleagueInterface : implements
+          ColleagueB ..|> ColleagueInterface : implements
+          ```
+        </td>
+        <td>defines an object that encapsulates how a set of objects interact, promoting loose coupling by keeping objects from referring to each other explicitly</td>
+        <td>chat application where users communicate through a central chat room (mediator) rather than directly with each other</td>
+      </tr>
+      <tr>
+        <td>Memento</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class Caretaker {
+          -memento: Memento
+        }
+          class Memento {
+          -state
+        }
+          class Originator {
+            -state
+            - memento: Memento
+          + createMemento(): Memento
+        }
+          Originator ..> Memento : creates
+          Memento --* Caretaker : holds
+          ```
+        </td>
+        <td>captures and externalizes an object's internal state so that the object can be restored to this state later</td>
+        <td>saving and restoring the state of a text editor (cursor position, selected text) to implement undo/redo functionality</td>
+      </tr>
+      <tr>
+        <td>Observer</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class SubjectInterface {
+          +attach(observer: ObserverInterface)
+          + detach(observer: ObserverInterface)
+          + notify()
+        }
+          class ConcreteSubject {
+          +attach(observer: ObserverInterface)
+          + detach(observer: ObserverInterface)
+          + notify()
+        }
+          class ObserverInterface {
+          +update()
+        }
+          class ConcreteObserver {
+          +update()
+        }
+
+          ConcreteSubject ..|> SubjectInterface : implements
+          ConcreteObserver ..|> ObserverInterface : implements
+          SubjectInterface --> ObserverInterface : notifies
+          ConcreteObserver --> ConcreteSubject : observes
+          ```
+        </td>
+        <td>defines a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically</td>
+        <td>updating the GUI when the contents of a text editor change</td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class StateInterface {
+          +handle(context: Context)
+        }
+          class Context {
+          -state: StateInterface
+          + request()
+        }
+          class StateA {
+          +handle(context: Context)
+        }
+          class StateB {
+          +handle(context: Context)
+        }
+
+          StateInterface ..* Context : has-a
+          StateA ..> StateInterface : implements
+          StateB ..> StateInterface : implements
+          ```
+        </td>
+        <td>allows an object to alter its behavior when its internal state changes, encapsulating state-specific behavior into separate objects</td>
+        <td>switching between different views of a text editor (normal, bold, italic). Deals with what (state or type) an object is (in). It encapsulates state-dependent behavior</td>
+      </tr>
+      <tr>
+        <td>Strategy</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class Context {
+          -strategy: StrategyInterface
+          + executeStrategy()
+        }
+          class StrategyInterface {
+          +execute()
+        }
+          class StrategyA {
+          +execute()
+        }
+          class StrategyB {
+          +execute()
+        }
+
+          StrategyInterface ..* Context : has-a
+          StrategyA ..|> StrategyInterface : implements
+          StrategyB ..|> StrategyInterface : implements
+          ```
+        </td>
+        <td>defines a family of algorithms, encapsulates each one, and makes them interchangeable, allowing the algorithm to vary independently from clients that use it</td>
+        <td>switching between different sorting algorithms (quicksort, mergesort, heapsort). Deals with how an object performs a certain task. It encapsulates an algorithm</td>
+      </tr>
+      <tr>
+        <td>Template Method</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class AbstractClass {
+          +templateMethod()
+          # subMethod()
+        }
+          class ConcreteClass {
+          # subMethod()
+        }
+
+          ConcreteClass --|> AbstractClass : extends
+          ```
+        </td>
+        <td>defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure</td>
+        <td>creating a new type of text editor (text editor with spell checking)</td>
+      </tr>
+      <tr>
+        <td>Visitor</td>
+        <td>
+          ```mermaid
+          classDiagram
+          direction TB
+          class VisitorInterface {
+          +visitElementA(element: ElementA)
+          + visitElementB(element: ElementB)
+        }
+          class ConcreteVisitor {
+          +visitElementA(element: ElementA)
+          + visitElementB(element: ElementB)
+        }
+          class ElementInterface {
+          +accept(visitor: VisitorInterface)
+        }
+          class ElementA {
+          +accept(visitor: VisitorInterface)
+        }
+          class ElementB {
+          +accept(visitor: VisitorInterface)
+        }
+
+          Client --> VisitorInterface : uses
+          Client --> ElementInterface : uses
+          ConcreteVisitor ..|> VisitorInterface : implements
+          ElementA..|> ElementInterface : implements
+          ElementB..|> ElementInterface : implements
+          ```
+        </td>
+        <td>represents an operation to be performed on elements of an object structure, decoupling the algorithm from the object structure</td>
+        <td>compiler that traverses an abstract syntax tree representing code and performs different operations (type checking, code generation) based on the node being visited</td>
+      </tr>
+      </tbody>
+    </table>
+
+    **State vs Strategy**
+
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>State</th>
+        <th>Strategy</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><strong>Storage of Context Object Reference</strong></td>
+        <td>store a reference to the context object that contains them</td>
+        <td>do not store</td>
+      </tr>
+      <tr>
+        <td><strong>Replacement Ability</strong></td>
+        <td>are allowed to replace themselves, changing the state of the context object</td>
+        <td>cannot replace themselves or change the state of the context object</td>
+      </tr>
+      <tr>
+        <td><strong>Creation</strong></td>
+        <td>created by the context object itself</td>
+        <td>passed to the context object as parameters</td>
+      </tr>
+      <tr>
+        <td><strong>Responsibility</strong></td>
+        <td>provide the underlying implementation for most actions of the context object</td>
+        <td>handle specific tasks but do not dictate the behavior of the context object</td>
+      </tr>
+      <tr>
+        <td><strong>Focus</strong></td>
+        <td>deals with <b>what</b> (state or type) an object is (in). It encapsulates state-dependent behavior</td>
+        <td>deals with <b>how</b> an object performs a certain task. It encapsulates an algorithm</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </TabItem>
+</Tabs>

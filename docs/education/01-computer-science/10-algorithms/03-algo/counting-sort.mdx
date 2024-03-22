@@ -1,0 +1,122 @@
+---
+title: Counting Sort
+description: Counting Sort
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/counting-sort/go.go';
+import Java from '!!raw-loader!./assets/counting-sort/java.java';
+import JS from '!!raw-loader!./assets/counting-sort/js.js';
+import Kotlin from '!!raw-loader!./assets/counting-sort/kt.kt';
+import Python from '!!raw-loader!./assets/counting-sort/py.py';
+import Rust from '!!raw-loader!./assets/counting-sort/rs.rs';
+import TS from '!!raw-loader!./assets/counting-sort/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Counting Sort is a non-comparative sorting algorithm that sorts elements by counting the number of occurrences of each unique element in the input array. It operates on integer arrays with a defined range of values
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm begins by tallying the occurrences of each distinct element within the input array. These counts are then utilized to ascertain the respective positions of the elements within the sorted output array. Finally, the sorted array is assembled using the counts and positions obtained in the previous step
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize an auxiliary array, to store the count of each unique element
+    - Traverse the input array, and increment the corresponding count in count array for each element encountered
+    - Modify the count array to contain the actual position of each element in the sorted array
+    - Iterate through the count array to construct the sorted array, by placing each element from the input array into its correct position based on the counts
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - counting Sort is most efficient when the range of input elements is not significantly greater than the number of elements to be sorted
+    - ensure the input array contains only non-negative integers or modify the algorithm accordingly if negative integers are present
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    counting_sort(arr[], size, max_val):
+      // Initialize count array with zeros
+      for i = 0 to max_val:
+        count[i] = 0
+
+      // Count occurrences of each element
+      for i = 0 to size:
+        count[arr[i]]++
+
+      // Modify count array to contain actual position
+      for i = 1 to max_val:
+        count[i] += count[i - 1]
+
+      // Build the sorted array
+      for i = size - 1 downto 0:
+        sorted[count[arr[i]] - 1] = arr[i]
+        count[arr[i]]--
+
+      // Copy sorted array to original array
+      for i = 0 to size:
+        arr[i] = sorted[i]
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

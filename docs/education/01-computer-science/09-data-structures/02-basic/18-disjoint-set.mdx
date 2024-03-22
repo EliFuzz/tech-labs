@@ -1,0 +1,202 @@
+---
+title: Disjoint Set
+description: Disjoint Set Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/disjointSet/go.go";
+import Java from "!!raw-loader!./assets/disjointSet/java.java";
+import JS from "!!raw-loader!./assets/disjointSet/js.js";
+import Kotlin from "!!raw-loader!./assets/disjointSet/kt.kt";
+import Python from "!!raw-loader!./assets/disjointSet/py.py";
+import Rust from "!!raw-loader!./assets/disjointSet/rs.rs";
+import TS from "!!raw-loader!./assets/disjointSet/ts.ts";
+
+![](./assets/disjointSet/disjointSet.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Disjoint Set** is a data structure that allows efficient union and find operations on a set of elements.
+
+  :::note[Simplified]
+
+  **Disjoint Set** is like a smart party organizer. It keeps track of distinct groups (like people at a party), can merge groups, and quickly answer if 2 people belong to the same group. It's a way
+  to manage and query non-overlapping groups efficiently.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Disjoint Set**, also known as a union-find or merge-find set, is a data structure that manages a collection of elements split into non-overlapping subsets. It enables near-instant operations for
+    creating new sets, merging existing ones, and checking if elements belong to the same set. These operations are crucial in various applications, including Kruskal's algorithm for determining a
+    graph's minimum spanning tree. The speed of these operations is limited by the inverse Ackermann function.
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Disjoint Set Item</td>
+         <td>
+           ```
+           get_key():
+             return value
+
+           get_root():
+             if is_root():
+               return this
+             return parent.get_root()
+
+           is_root():
+             return parent == ø
+
+           get_rank():
+             if length of get_children() == 0:
+               return 0
+             rank = 0
+             for each child in get_children():
+               rank += 1
+               rank += child.get_rank()
+             return rank
+
+           get_children():
+             return values of children
+
+           set_parent(parent_item, force_setting_parent_child):
+             parent = parent_item
+             if force_setting_parent_child == True:
+               parent_item.add_child(this)
+
+           add_child(child_item):
+             children[child_item.get_key()] = child_item
+             child_item.set_parent(this, false)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Make Set</td>
+         <td>
+           ```
+           make_set(item_value):
+             disjoint_set_item = DisjointSetItem(item_value, keyCallback)
+             if items[disjoint_set_item.get_key()] == ø:
+               items[disjoint_set_item.get_key()] = disjoint_set_item
+             return this
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Find</td>
+         <td>
+           ```
+           find(item_value):
+             template_disjoint_item = DisjointSetItem(item_value, keyCallback)
+             required_disjoint_item = items[template_disjoint_item.get_key()]
+             if required_disjoint_item == ø:
+               return ø
+             return required_disjoint_item.get_root().get_key()
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Union</td>
+         <td>
+           ```
+           union(value_a, value_b):
+             root_key_a = find(value_a)
+             root_key_b = find(value_b)
+             if root_key_a == ø or root_key_b == ø:
+               'One or two values are not in sets'
+             if root_key_a == root_key_b:
+               return this
+             root_a = items[root_key_a]
+             root_b = items[root_key_b]
+             if root_a.get_rank() < root_b.get_rank():
+               root_b.add_child(root_a)
+               return this
+             root_a.add_child(root_b)
+             return this
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>In Same Set</td>
+         <td>
+           ```
+           in_same_set(value_a, value_b):
+             root_key_a = find(value_a)
+             root_key_b = find(value_b)
+             if root_key_a == ø or root_key_b == ø:
+               'One or two values are not in sets'
+             return root_key_a == root_key_b
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,133 @@
+---
+title: Z Algorithm
+description: Z Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/z-algorithm/go.go";
+import Java from "!!raw-loader!./assets/z-algorithm/java.java";
+import JS from "!!raw-loader!./assets/z-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/z-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/z-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/z-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/z-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Z Algorithm is a linear time pattern matching algorithm used to find all occurrences of a pattern in a given text. It preprocesses the pattern to create a Z-array, which stores the longest common prefix between the pattern and every suffix of the pattern. This array is then utilized to efficiently find matches in the text
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Preprocesses the pattern and text to construct a Z-array, where each element Z[i] represents the length of the longest substring starting from index i that matches the prefix of the pattern. By comparing the Z-array values with the length of the pattern, we can identify positions in the text where the pattern occurs
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Preprocess the pattern and text to construct the Z-array
+    - Initialize two pointers, `L` and `R`, where `L` left boundary and `R` right boundary of the current match
+    - Iterate through the text
+      - update `R` to the maximum index where `Z[R-L]` equals the length of the pattern or until the end of the text
+      - if `R` exceeds the current right boundary, update `L` and `R` accordingly
+      - if `R` reaches the end of the pattern, record the starting index of the match
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize the Z-array efficiently to avoid unnecessary comparisons
+    - consider edge cases such as empty pattern or text
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    ZAlgorithm(text, pattern):
+      concat = pattern + "$" + text
+      Z = [0] * length(concat)
+      L = 0
+      R = 0
+
+      for i from 1 to length(concat) - 1:
+        if i > R:
+          L = R = i
+          while R < length(concat) and concat[R - L] == concat[R]:
+            R += 1
+          Z[i] = R - L
+          R -= 1
+        else:
+          k = i - L
+          if R - i + 1 > Z[k]:
+            Z[i] = Z[k]
+          else:
+            L = i
+            while R < length(concat) and concat[R - L] == concat[R]:
+              R += 1
+            Z[i] = R - L
+            R -= 1
+
+      matches = []
+      for i from length(pattern) + 1 to length(concat) - 1:
+        if Z[i] == length(pattern):
+          matches.append(i - length(pattern) - 1)
+
+      return matches
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

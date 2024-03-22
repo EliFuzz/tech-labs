@@ -1,0 +1,162 @@
+---
+title: Binary Indexed Tree
+description: Binary Indexed Tree Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/binaryIndexedTree/go.go";
+import Java from "!!raw-loader!./assets/binaryIndexedTree/java.java";
+import JS from "!!raw-loader!./assets/binaryIndexedTree/js.js";
+import Kotlin from "!!raw-loader!./assets/binaryIndexedTree/kt.kt";
+import Python from "!!raw-loader!./assets/binaryIndexedTree/py.py";
+import Rust from "!!raw-loader!./assets/binaryIndexedTree/rs.rs";
+import TS from "!!raw-loader!./assets/binaryIndexedTree/ts.ts";
+
+![](./assets/binaryIndexedTree/binaryIndexedTree.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Binary Indexed Tree** is a data structure that allows efficient updates and range queries on an array. It is built by storing the cumulative sums of the array elements in a binary tree, allowing
+    for efficient computation of prefix sums and range queries.
+
+  :::note[Simplified]
+
+  It's like a smart organizer at a party. It quickly updates or calculates the total of a series of numbers (like candies held by people), saving a lot of time.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Binary Indexed Tree (Fenwick Tree)**, is a data structure that efficiently updates elements and calculates prefix sums in a number table.
+
+    Unlike a flat array, a Fenwick tree balances 2 operations:
+
+    - element update
+    - prefix sum calculation
+
+    In a flat array of `n` numbers, storing elements allows constant time operations but requires linear time for prefix sums. Storing prefix sums allows constant time operations but requires linear
+    time for element updates.
+
+    Fenwick trees overcome this by allowing both operations in `O(log n)` time. This is achieved by representing the numbers as a tree, where each node's value is the sum of the numbers in its
+    subtree.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Increase</td>
+         <td>
+           ```
+           increase(position, value):
+             if position < 1 or position > tree_array.length:
+               'Position is out of allowed range'
+             for i in range(position, tree_array.length + 1, i & -i):
+               tree_array[i] += value
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Query</td>
+         <td>
+           ```
+           query(position):
+             if position < 1 or position > tree_array.length:
+               'Position is out of allowed range'
+             sum = 0
+             for i in range(position, 0, -(i & -i)):
+               sum += tree_array[i]
+             return sum
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Query Range</td>
+         <td>
+           ```
+           query_range(left_index, right_index):
+             if left_index > right_index:
+               'Left index cannot be greater than right one'
+             if left_index == 1:
+               return query(right_index)
+             return query(right_index) - query(left_index - 1)
+
+           query(position):
+             if position < 1 or position > tree_array.length:
+               'Position is out of allowed range'
+             sum = 0
+             for i in range(position, 0, -(i & -i)):
+               sum += tree_array[i]
+             return sum
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

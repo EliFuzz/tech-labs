@@ -1,0 +1,138 @@
+---
+title: Eulerian Path and Eulerian Circuit - Fleury's Algorithm
+description: Eulerian Path and Eulerian Circuit - Fleury's Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/eulerian-path-and-eulerian-circuit-fleurys-algorithm/go.go';
+import Java from '!!raw-loader!./assets/eulerian-path-and-eulerian-circuit-fleurys-algorithm/java.java';
+import JS from '!!raw-loader!./assets/eulerian-path-and-eulerian-circuit-fleurys-algorithm/js.js';
+import Kotlin from '!!raw-loader!./assets/eulerian-path-and-eulerian-circuit-fleurys-algorithm/kt.kt';
+import Python from '!!raw-loader!./assets/eulerian-path-and-eulerian-circuit-fleurys-algorithm/py.py';
+import Rust from '!!raw-loader!./assets/eulerian-path-and-eulerian-circuit-fleurys-algorithm/rs.rs';
+import TS from '!!raw-loader!./assets/eulerian-path-and-eulerian-circuit-fleurys-algorithm/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Fleury's Algorithm is a method for finding Eulerian paths and circuits in a graph. It's particularly useful when dealing with graphs that have a mix of even and odd degree vertices
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Select any vertex within the graph. Proceed by examining the number of edges connected to the current vertex. If only one edge exists, follow that edge. However, if multiple edges are present, prioritize selecting an edge that maintains graph connectivity; otherwise, any edge can be chosen. Once an edge is selected, mark it as visited and remove it from the graph. Transition to the vertex at the opposite end of the chosen edge. Continue this process of edge selection, traversal, and removal until no edges remain unexplored in the graph
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose a starting vertex
+    - If the starting vertex has an odd degree, choose another starting vertex with an odd degree if one exists; otherwise, start with any vertex
+    - While there are unexplored edges
+      - if the current vertex has only one unexplored edge, follow that edge
+      - if the current vertex has multiple unexplored edges
+        - choose an edge that doesn't disconnect the graph if possible
+        - if all edges disconnect the graph, choose any edge
+      - mark the chosen edge as visited and remove it from the graph
+      - move to the other end of the chosen edge
+    - Stop when all edges are explored
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - keep track of the degrees of vertices to efficiently choose the next edge
+    - use graph traversal techniques such as depth-first search (DFS) or breadth-first search (BFS) to implement Fleury's Algorithm
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    fleury(graph):
+      initialize empty list path
+      current_vertex = any_vertex_with_odd_degree(graph) or any_vertex(graph)
+      while graph has edges:
+        if current_vertex has unvisited edges:
+          next_vertex = choose_edge(current_vertex, graph)
+          remove_edge(current_vertex, next_vertex, graph)
+          add current_vertex to path
+          current_vertex = next_vertex
+        else:
+          add current_vertex to path
+          break
+      return path
+
+    choose_edge(vertex, graph):
+      for each adjacent_vertex of vertex:
+        if removing_edge(vertex, adjacent_vertex, graph) does not disconnect graph:
+          return adjacent_vertex
+      return any adjacent_vertex
+
+    removing_edge(vertex1, vertex2, graph):
+      remove edge between vertex1 and vertex2 from graph temporarily
+      check if graph is still connected
+      restore edge between vertex1 and vertex2 in graph
+      return true if graph is still connected, false otherwise
+
+    any_vertex_with_odd_degree(graph):
+      for each vertex in graph:
+        if degree of vertex is odd:
+          return vertex
+      return null
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

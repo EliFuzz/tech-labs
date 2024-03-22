@@ -1,0 +1,115 @@
+---
+title: Tower of Hanoi
+description: Tower of Hanoi
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/tower-of-hanoi/go.go";
+import Java from "!!raw-loader!./assets/tower-of-hanoi/java.java";
+import JS from "!!raw-loader!./assets/tower-of-hanoi/js.js";
+import Kotlin from "!!raw-loader!./assets/tower-of-hanoi/kt.kt";
+import Python from "!!raw-loader!./assets/tower-of-hanoi/py.py";
+import Rust from "!!raw-loader!./assets/tower-of-hanoi/rs.rs";
+import TS from "!!raw-loader!./assets/tower-of-hanoi/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Tower of Hanoi is a classic recursive algorithm used to solve the problem of moving a stack of discs from one rod to another, following certain rules
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Recursively moving disks from one rod to another, adhering to three rules: (1) Only one disk can be moved at a time. (2) A disk can only be moved onto a rod if it's either empty or has a larger disk on top of it. (3) Each move must involve moving the top disk of one rod onto another rod. The algorithm follows a pattern where it moves n-1 disks from the source rod to the auxiliary rod, then moves the nth disk from the source rod to the destination rod, and finally moves the n-1 disks from the auxiliary rod to the destination rod, all recursively
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with all disks stacked on one rod, called the source rod
+    - Identify the target rod where you want to move all the disks
+    - Choose an auxiliary rod to assist in the movement
+    - Move n-1 disks from the source rod to the auxiliary rod using the target rod as a helper
+    - Move the nth disk from the source rod to the target rod
+    - Move the n-1 disks from the auxiliary rod to the target rod using the source rod as a helper
+    - Repeat the process recursively for the remaining disks until all disks are moved to the target rod
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - keep track of the number of disks being moved at each step to ensure proper recursive function calls
+    - ensure that the disks are moved in the correct order to maintain the rules of the Tower of Hanoi puzzle
+    - use the recursive nature of the algorithm efficiently to minimize unnecessary movements
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    tower_of_hanoi(n, source, target, auxiliary):
+      if n == 1:
+        move_disk(source, target)
+      else:
+        tower_of_hanoi(n-1, source, auxiliary, target)
+        move_disk(source, target)
+        tower_of_hanoi(n-1, auxiliary, target, source)
+
+    move_disk(source, target):
+      print "Move disk from", source, "to", target
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

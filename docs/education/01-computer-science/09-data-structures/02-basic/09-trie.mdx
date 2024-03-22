@@ -1,0 +1,258 @@
+---
+title: Trie
+description: Trie Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/trie/go.go";
+import Java from "!!raw-loader!./assets/trie/java.java";
+import JS from "!!raw-loader!./assets/trie/js.js";
+import Kotlin from "!!raw-loader!./assets/trie/kt.kt";
+import Python from "!!raw-loader!./assets/trie/py.py";
+import Rust from "!!raw-loader!./assets/trie/rs.rs";
+import TS from "!!raw-loader!./assets/trie/ts.ts";
+
+![](./assets/trie/trie.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="6">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Trie** is a tree-like data structure used to store and efficiently retrieve strings.
+
+  :::note[Simplified]
+
+  **Trie** as a kind of magical tree. But instead of having fruits or leaves, this tree has letters on each branch. Now, suppose you want to find a word. You start at the root of the tree and follow
+  the branches that have the letters of your word in order. If you can reach the end of your word by following the branches, voila, the word is in the tree!
+
+  For example, if you're looking for the word "cat", you'd start at the root, find a branch with the letter 'c', then from there find a branch with 'a', and finally a branch with 't'. If all these
+  branches exist in the correct order, the word "cat" is in your tree.
+
+  This magical tree is super efficient and can help you find words really quickly, even if you have a dictionary's worth of words in your tree. That's why it's used in software engineering,
+  especially in tasks like word suggestions and spell checks. It's like having a super-powered dictionary.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Trie**, also known as a digital or prefix tree, is a search tree used in computer science. It's an ordered tree data structure for storing dynamic sets or associative arrays where keys are
+    typically strings. Unlike binary search trees, the key isn't stored in the node, but is defined by the node's position in the tree. All descendants of a node share a common prefix of the string
+    associated with that node, with the root associated with an empty string. Values are usually associated with leaves and some inner nodes that correspond to keys of interest. A compact prefix tree
+    is a space-optimized version of a trie.
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Insertion</td>
+         <td>
+           ```
+           add_word(word)
+             current_node = root
+             for char in word:
+               current_node = current_node.children[char] ?: TrieNode()
+             current_node.is_end_of_word = True
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Deletion Recursive</td>
+         <td>
+           ```
+           delete_word(word)
+             delete_word(root, word, 0)
+
+           delete_word(current_node, word, index)
+             if current_node == ø:
+               return False
+             if index == word.length:
+               if !current_node.is_end_of_word:
+                 return False
+               current_node.is_end_of_word = false
+               return current_node.children == ø
+             char = word[index]
+             next_node = current_node.children[char] ?: return false
+             should_delete_current_node = delete_word(next_node, word, index + 1)
+             if should_delete_current_node:
+               current_node.children.remove(char)
+             return current_node.children == ø
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Deletion Iterative</td>
+         <td>
+           ```
+           delete_word_iterative(word)
+             current_node = root
+             index = 0
+             nodes_stack = Stack<Pair<TrieNode, Int>>()
+
+             while index < word.length:
+               char = word[index]
+               next_node = current_node.children[char]
+
+               if next_node == ø:
+                 return
+
+               nodes_stack.add(Pair(current_node, index))
+               current_node = next_node
+               index++
+
+             current_node.is_end_of_word = false
+
+             while nodes_stack != ø:
+               parentNode, parentIndex = nodes_stack.pop()
+
+               if current_node.children == ø and not current_node.is_end_of_word:
+                 parentNode.children.remove(word[parentIndex])
+
+               current_node = parentNode
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Suggest Next Characters Recursive</td>
+         <td>
+           ```
+           suggest_next_characters(prefix)
+             lastNode = get_last_character_node(prefix)
+             suggestions = List<Char>()
+
+             if lastNode != ø:
+               suggest_next_characters(lastNode, prefix, suggestions)
+
+             return suggestions
+
+           suggest_next_characters(node, currentPrefix, suggestions)
+             if node.is_end_of_word:
+               suggestions.add(currentPrefix[currentPrefix.length - 1])
+
+             for char, child_node in node.children:
+               suggest_next_characters(child_node, currentPrefix + char, suggestions)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Suggest Next Characters Iterative</td>
+         <td>
+           ```
+           suggest_next_characters_iterative(prefix)
+             suggestions = List<Char>()
+             current_node = root
+             currentPrefix = ""
+
+             for char in prefix:
+               current_node = current_node.children[char] ?: return suggestions
+               currentPrefix += char
+
+             stack = Stack<Pair<TrieNode, String>>()
+             stack.add(Pair(current_node, currentPrefix))
+
+             while stack != ø:
+               node, current = stack.pop()
+
+               if node.is_end_of_word:
+                 suggestions.add(current.last())
+
+               for char, child_node in node.children:
+                 stack.add(Pair(child_node, current + char))
+
+             return suggestions
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Search</td>
+         <td>
+           ```
+           does_word_exist(word)
+             lastNode = get_last_character_node(word)
+             return lastNode?.is_end_of_word ?: false
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Starts with</td>
+         <td>
+           ```
+           starts_with(prefix)
+             return get_last_character_node(prefix) != ø
+
+           get_last_character_node(prefix)
+             current_node = root
+
+             for char in prefix:
+               current_node = current_node.children[char] ?: return ø
+
+             return current_node
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

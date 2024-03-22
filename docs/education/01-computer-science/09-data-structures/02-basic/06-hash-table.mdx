@@ -1,0 +1,179 @@
+---
+title: Hast Table
+description: Hast Table Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/hashTable/go.go";
+import Java from "!!raw-loader!./assets/hashTable/java.java";
+import JS from "!!raw-loader!./assets/hashTable/js.js";
+import Kotlin from "!!raw-loader!./assets/hashTable/kt.kt";
+import Python from "!!raw-loader!./assets/hashTable/py.py";
+import Rust from "!!raw-loader!./assets/hashTable/rs.rs";
+import TS from "!!raw-loader!./assets/hashTable/ts.ts";
+
+![](./assets/hashTable/hashTable.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="6">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="na">N/A</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Hash Table** is a data structure used to store and retrieve data using a hash function.
+
+  :::note[Simplified]
+
+  You have a big box of toys and you want to find your favorite toy car quickly next time you play. So, you decide to keep each toy in a specific spot in the box. For example, you always put your
+  toy car in the top left corner. This way, the next time you want to play with it, you know exactly where it is and can grab it quickly without having to search through the whole box.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Hash Table** is a data structure that pairs keys with values. It uses a hash function to calculate an index for each key, directing it to a specific bucket or slot where the corresponding value
+    is stored. While the goal is for each key to have a unique index, some hash functions may assign the same index to multiple keys, causing what's known as a hash collision. These collisions need to
+    be managed in the design of the hash table.
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Pseudo Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Insertion</td>
+          <td>
+            ```
+              insert(key, value):
+                index = key.hash_code() % HASH_MODULO
+                table[index] = Pair(key, value)
+
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Search</td>
+          <td>
+            ```
+             search(key):
+               index = key.hash_code() % HASH_MODULO
+               if table[index] != ø:
+                 return table[index]
+               return ø
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Deletion</td>
+          <td>
+            ```
+            delete(key):
+              index = key.hash_code() % HASH_MODULO
+              table[index] = null
+            ```
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

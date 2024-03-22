@@ -1,0 +1,118 @@
+---
+title: Depth-First Search (DFS)
+description: Depth-First Search (DFS)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/depth-first-search/go.go";
+import Java from "!!raw-loader!./assets/depth-first-search/java.java";
+import JS from "!!raw-loader!./assets/depth-first-search/js.js";
+import Kotlin from "!!raw-loader!./assets/depth-first-search/kt.kt";
+import Python from "!!raw-loader!./assets/depth-first-search/py.py";
+import Rust from "!!raw-loader!./assets/depth-first-search/rs.rs";
+import TS from "!!raw-loader!./assets/depth-first-search/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Depth-First Search (DFS) is a fundamental graph traversal algorithm used to explore nodes and edges of a graph. It starts at a chosen node and explores as far as possible along each branch before backtracking
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Begin from a chosen node in the graph. Proceed by exploring each branch extensively before returning back. Keep track of visited nodes to prevent revisiting them
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose a starting node
+    - Visit the node and mark it as visited
+    - Explore one of its neighbors
+      - if the neighbor has unvisited neighbors, explore another neighbor
+      - if all neighbors are visited, backtrack to the previous node
+    - Repeat steps until all nodes are visited
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use a stack or recursion for implementation
+    - be cautious of infinite loops in cyclic graphs
+    - optimize memory usage by marking visited nodes appropriately
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    DFS(graph, start_node):
+      initialize an empty stack
+      push start_node onto the stack
+      initialize an empty set to keep track of visited nodes
+
+      while stack is not empty:
+        current_node = pop from stack
+        if current_node is not visited:
+          mark current_node as visited
+          visit current_node
+
+          for each neighbor in graph[current_node]:
+            if neighbor is not visited:
+              push neighbor onto stack
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

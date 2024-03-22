@@ -1,0 +1,120 @@
+---
+title: Unique Paths
+description: Unique Paths
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/unique-paths/go.go";
+import Java from "!!raw-loader!./assets/unique-paths/java.java";
+import JS from "!!raw-loader!./assets/unique-paths/js.js";
+import Kotlin from "!!raw-loader!./assets/unique-paths/kt.kt";
+import Python from "!!raw-loader!./assets/unique-paths/py.py";
+import Rust from "!!raw-loader!./assets/unique-paths/rs.rs";
+import TS from "!!raw-loader!./assets/unique-paths/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Unique Paths Algorithm calculates the number of unique paths from the top-left corner to the bottom-right corner of a grid, moving only down or right
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    It utilizes dynamic programming to compute the number of unique paths. It starts with initializing a 2D array to store the number of unique paths for each cell. Then, it iterates through each cell of the grid, calculating the number of unique paths to reach that cell by summing the paths from the cell above and the cell to the left. Finally, it returns the value in the bottom-right corner, which represents the total number of unique paths
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize a 2D array grid of size m x n, where `grid[i][j]` represents the number of unique paths to reach cell `[i, j]`
+    - Set `grid[0][0]` to `1`, as there's only one way to reach the starting cell
+    - Iterate through each cell in the grid
+      - for each cell `[i, j]`, update `grid[i][j]=grid[i-1][j] + grid[i][j-1]` (if they exist)
+    - Return `grid[m-1][n-1]`, which represents the number of unique paths from the top-left corner to the bottom-right corner
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize memoization or dynamic programming to optimize computation time and space
+    - be mindful of integer overflow when dealing with large grid
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    uniquePaths(m, n):
+      # Initialize a 2D array to store the number of unique paths
+      grid = [[0] * n for _ in range(m)]
+
+      # Set the starting point to 1
+      grid[0][0] = 1
+
+      # Iterate through each cell
+      for i from 0 to m-1:
+        for j from 0 to n-1:
+          # Update the number of unique paths for the current cell
+          if i > 0:
+            grid[i][j] += grid[i-1][j]
+          if j > 0:
+            grid[i][j] += grid[i][j-1]
+
+      # Return the number of unique paths to the bottom-right corner
+      return grid[m-1][n-1]
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

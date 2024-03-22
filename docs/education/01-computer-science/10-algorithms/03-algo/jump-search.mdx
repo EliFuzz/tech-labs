@@ -1,0 +1,116 @@
+---
+title: Jump Search (or Block Search)
+description: Jump Search (or Block Search)
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/jump-search/go.go';
+import Java from '!!raw-loader!./assets/jump-search/java.java';
+import JS from '!!raw-loader!./assets/jump-search/js.js';
+import Kotlin from '!!raw-loader!./assets/jump-search/kt.kt';
+import Python from '!!raw-loader!./assets/jump-search/py.py';
+import Rust from '!!raw-loader!./assets/jump-search/rs.rs';
+import TS from '!!raw-loader!./assets/jump-search/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Jump search, also known as block search, is an algorithm for searching sorted arrays efficiently. It works by jumping ahead by fixed steps to find a range where the target element might be located, then performing a linear search within that range for the exact match
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Calculate the jump size (or block size) by considering the size of the array and the search key. Then, navigate through the array using this jump size until a range is identified where the search key might be situated. Within this range, conduct a linear search to pinpoint the exact match of the search key. If the key is found, return its index; otherwise, return -1 to signify that the element is not present in the array
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Calculate the jump size using the square root of the array size or any other appropriate method
+    - Start by setting the current position to 0 and the previous position to -1
+    - Jump ahead by the jump size until the current element is greater than or equal to the search key, or until reaching the end of the array
+    - Perform a linear search within the range from the previous position to the current position for the search key
+    - If the search key is found, return its index; otherwise, return -1
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - choose an appropriate jump size to balance between the number of jumps and the number of comparisons
+    - ensure that the array is sorted before applying the jump search algorithm
+    - this algorithm works efficiently for large arrays, especially when the cost of random access is high
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    jumpSearch(arr, key):
+      n = arr.length
+      jump_size = floor(sqrt(n))
+      prev = 0
+      while n > prev and arr[min(jump_size, n) - 1] < key:
+        prev = jump_size
+        jump_size += floor(sqrt(n))
+        if prev >= n:
+          return -1
+      for i from prev to min(jump_size, n):
+        if arr[i] == key:
+          return i
+      return -1
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

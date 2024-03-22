@@ -1,0 +1,133 @@
+---
+title: Hill Cipher
+description: Hill Cipher
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/hill-cipher/go.go";
+import Java from "!!raw-loader!./assets/hill-cipher/java.java";
+import JS from "!!raw-loader!./assets/hill-cipher/js.js";
+import Kotlin from "!!raw-loader!./assets/hill-cipher/kt.kt";
+import Python from "!!raw-loader!./assets/hill-cipher/py.py";
+import Rust from "!!raw-loader!./assets/hill-cipher/rs.rs";
+import TS from "!!raw-loader!./assets/hill-cipher/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Hill Cipher is a polygraphic substitution cipher based on linear algebra. It operates on blocks of plaintext letters, typically 2 or 3 at a time, and uses modular arithmetic for encryption and decryption
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    To begin the Hill Cipher algorithm, select a key matrix that is invertible modulo the alphabet size, typically 26 for English. Each letter in the plaintext is assigned a numerical value based on its position in the alphabet (A=0, B=1, ..., Z=25). The plaintext is then divided into blocks of the same size as the key matrix. During encryption, each plaintext block is multiplied by the key matrix modulo the alphabet size. For decryption, the block is multiplied by the inverse of the key matrix. Finally, the resulting numerical values are converted back into letters to generate the ciphertext
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose a key matrix, ensuring it is invertible modulo the alphabet size
+    - Represent each plaintext letter by its numerical equivalent
+    - Break the plaintext into blocks of the same size as the key matrix
+      - for each block
+        - multiply the block by the key matrix modulo the alphabet size
+        - convert the resulting numbers back to letters
+    - Concatenate the encrypted blocks to form the ciphertext
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure the key matrix is invertible modulo the alphabet size to enable decryption
+    - if the key matrix is not invertible, choose another key matrix
+    - the size of the key matrix determines the size of the blocks of plaintext that can be encrypted or decrypted
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    hillCipher(plaintext, keyMatrix, alphabetSize):
+      ciphertext = ""
+      for each block in plaintext:
+        numericalBlock = convertToNumerical(block)
+        encryptedBlock = multiplyMatrix(keyMatrix, numericalBlock, alphabetSize)
+        ciphertext += convertToLetters(encryptedBlock)
+      return ciphertext
+
+    multiplyMatrix(keyMatrix, block, alphabetSize):
+      result = []
+      for row in keyMatrix:
+        value = 0
+        for i in range(len(row)):
+          value += row[i] * block[i]
+        result.append(value % alphabetSize)
+      return result
+
+    convertToNumerical(block):
+      numericalBlock = []
+      for letter in block:
+        numericalBlock.append(letterToNumber(letter))
+      return numericalBlock
+
+    convertToLetters(block):
+      letters = ""
+      for num in block:
+        letters += numberToLetter(num)
+      return letters
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,109 @@
+---
+title: Fisher–Yates Shuffle
+description: Fisher–Yates Shuffle
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/fisher–yates-shuffle/go.go';
+import Java from '!!raw-loader!./assets/fisher–yates-shuffle/java.java';
+import JS from '!!raw-loader!./assets/fisher–yates-shuffle/js.js';
+import Kotlin from '!!raw-loader!./assets/fisher–yates-shuffle/kt.kt';
+import Python from '!!raw-loader!./assets/fisher–yates-shuffle/py.py';
+import Rust from '!!raw-loader!./assets/fisher–yates-shuffle/rs.rs';
+import TS from '!!raw-loader!./assets/fisher–yates-shuffle/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Fisher-Yates Shuffle Algorithm, also known as the Knuth Shuffle, is a method for generating a random permutation of a finite sequence. It efficiently shuffles elements within an array or list, ensuring each permutation has an equal probability of occurrence
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Start by having an array containing the elements to be shuffled. Proceed by traversing the array, moving from the last element to the second. During each iteration, generate a random index within the inclusive range of 0 to the current index. Subsequently, swap the element located at the current index with the element positioned at the randomly chosen index. Repeat this process until all elements within the array have undergone shuffling. This algorithm ensures that each element within the array has an equal probability of appearing at any position, resulting in a random permutation of the original sequence
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Begin with an array of elements to be shuffled
+    - Start iterating backward through the array, from the last element to the second
+    - At each iteration
+      - Generate a random index `randomIndex` between 0 and the current index (inclusive)
+      - Swap the element at the current index with the element at `randomIndex`
+    - Continue this process until all elements have been shuffled
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure that your random number generator is capable of producing uniformly distributed random numbers
+    - avoid using inefficient random number generators to maintain the algorithm's time complexity
+    - double-check your implementation to ensure that each element has an equal probability of ending up in any position within the array
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    fisherYatesShuffle(array):
+      n = length(array)
+      for i from n-1 down to 1:
+        randomIndex = random(0, i)
+        swap(array[i], array[randomIndex])
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,126 @@
+---
+title: Bucket Sort
+description: Bucket Sort
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/bucket-sort/go.go";
+import Java from "!!raw-loader!./assets/bucket-sort/java.java";
+import JS from "!!raw-loader!./assets/bucket-sort/js.js";
+import Kotlin from "!!raw-loader!./assets/bucket-sort/kt.kt";
+import Python from "!!raw-loader!./assets/bucket-sort/py.py";
+import Rust from "!!raw-loader!./assets/bucket-sort/rs.rs";
+import TS from "!!raw-loader!./assets/bucket-sort/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Bucket Sort is a comparison sort algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm or by recursively applying the bucket sort algorithm
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The Bucket Sort algorithm starts by dividing the input data's range into equally-sized buckets. Then, it distributes each element from the input array into its corresponding bucket based on a predefined function. Subsequently, it sorts each bucket separately, employing either a recursive application of Bucket Sort or another sorting algorithm. Finally, it concatenates the sorted buckets to produce the final sorted array
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Determine the range of the input data
+    - Create an array of empty buckets
+    - Iterate through the input array, placing each element into its corresponding bucket
+    - Sort each bucket, either by recursively applying bucket sort or using another sorting algorithm
+    - Concatenate the sorted buckets into a single sorted array
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - choose an appropriate function to map elements to buckets, ensuring even distribution
+    - consider the distribution of input data when choosing the number and size of buckets
+    - use an efficient sorting algorithm to sort individual buckets
+    - be mindful of the memory usage when working with large datasets, as bucket sort can require additional space for the buckets
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    bucketSort(arr):
+      n = length(arr)
+      create n empty buckets
+      max_val = maximum value in arr
+      min_val = minimum value in arr
+      range = (max_val - min_val) / n
+
+      // Scatter elements into buckets
+      for each element in arr:
+        bucket_index = (element - min_val) / range
+        append element to bucket[bucket_index]
+
+      // Sort each bucket
+      for each bucket in buckets:
+        sort(bucket)
+
+      // Concatenate sorted buckets
+      sorted_arr = []
+      for each bucket in buckets:
+        append bucket to sorted_arr
+
+      return sorted_arr
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

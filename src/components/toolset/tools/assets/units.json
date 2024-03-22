@@ -1,0 +1,610 @@
+[
+  {
+    "value": "area",
+    "label": "Area",
+    "children": [
+      {
+        "value": "square_km",
+        "label": "Square kilometer (km²)"
+      },
+      {
+        "value": "square_m",
+        "label": "Square meter (m²)"
+      },
+      {
+        "value": "square_mi",
+        "label": "Square mile (mi²)"
+      },
+      {
+        "value": "square_yd",
+        "label": "Square yard (yd²)"
+      },
+      {
+        "value": "square_ft",
+        "label": "Square foot (ft²)"
+      },
+      {
+        "value": "square_in",
+        "label": "Square inch (in²)"
+      },
+      {
+        "value": "hectare",
+        "label": "Hectare (ha)"
+      },
+      {
+        "value": "acre",
+        "label": "acre"
+      }
+    ]
+  },
+  {
+    "value": "data_transfer_rate",
+    "label": "Data Transfer Rate",
+    "children": [
+      {
+        "value": "bps",
+        "label": "Bit per second (bps)"
+      },
+      {
+        "value": "kbps",
+        "label": "Kilobit per second (kbps)"
+      },
+      {
+        "value": "kBps",
+        "label": "Kilobyte per second (kBps)"
+      },
+      {
+        "value": "kibps",
+        "label": "Kibibit per second (kibps)"
+      },
+      {
+        "value": "mbps",
+        "label": "Megabit per second (mbps)"
+      },
+      {
+        "value": "mBps",
+        "label": "Megabyte per second (mBps)"
+      },
+      {
+        "value": "Mibps",
+        "label": "Mebibit per second (Mibps)"
+      },
+      {
+        "value": "Gbps",
+        "label": "Gigabit per second (Gbps)"
+      },
+      {
+        "value": "GBps",
+        "label": "Gigabyte per second (GBps)"
+      },
+      {
+        "value": "Gibps",
+        "label": "Gibibit per second (Gibps)"
+      },
+      {
+        "value": "Tbps",
+        "label": "Terabit per second (Tbps)"
+      },
+      {
+        "value": "TBps",
+        "label": "Terabyte per second (TBps)"
+      },
+      {
+        "value": "Tibps",
+        "label": "Tebibit per second (Tibps)"
+      }
+    ]
+  },
+  {
+    "value": "digital_storage",
+    "label": "Digital Storage",
+    "children": [
+      {
+        "value": "bit",
+        "label": "bit"
+      },
+      {
+        "value": "kilobit",
+        "label": "kilobit (Kb)"
+      },
+      {
+        "value": "kibibit",
+        "label": "kibibit (KiB)"
+      },
+      {
+        "value": "megabit",
+        "label": "megabit (Mb)"
+      },
+      {
+        "value": "mebibit",
+        "label": "mebibit (MiB)"
+      },
+      {
+        "value": "gigabit",
+        "label": "gigabit (Gb)"
+      },
+      {
+        "value": "gibibit",
+        "label": "gibibit (GiB)"
+      },
+      {
+        "value": "terabit",
+        "label": "terabit (Tb)"
+      },
+      {
+        "value": "tebibit",
+        "label": "tebibit (TiB)"
+      },
+      {
+        "value": "petabit",
+        "label": "petabit (Pb)"
+      },
+      {
+        "value": "pebibit",
+        "label": "pebibit (PiB)"
+      },
+      {
+        "value": "byte",
+        "label": "byte (B)"
+      },
+      {
+        "value": "kilobyte",
+        "label": "kilobyte (KB)"
+      },
+      {
+        "value": "kibibyte",
+        "label": "kibibyte (KiB)"
+      },
+      {
+        "value": "megabyte",
+        "label": "megabyte (MB)"
+      },
+      {
+        "value": "mebibyte",
+        "label": "mebibyte (MiB)"
+      },
+      {
+        "value": "gigabyte",
+        "label": "gigabyte (GB)"
+      },
+      {
+        "value": "gibibyte",
+        "label": "gibibyte (GiB)"
+      },
+      {
+        "value": "terabyte",
+        "label": "terabyte (TB)"
+      },
+      {
+        "value": "tebibyte",
+        "label": "tebibyte (TiB)"
+      },
+      {
+        "value": "petabyte",
+        "label": "petabyte (PB)"
+      },
+      {
+        "value": "pebibyte",
+        "label": "pebibyte (PiB)"
+      }
+    ]
+  },
+  {
+    "value": "energy",
+    "label": "Energy",
+    "children": [
+      {
+        "value": "joule",
+        "label": "Joule (J)"
+      },
+      {
+        "value": "kilojoule",
+        "label": "Kilojoule (kJ)"
+      },
+      {
+        "value": "gram_calorie",
+        "label": "Gram calorie (cal)"
+      },
+      {
+        "value": "kilocalorie",
+        "label": "Kilocalorie (kcal)"
+      },
+      {
+        "value": "watt_hour",
+        "label": "Watt hour (Wh)"
+      },
+      {
+        "value": "kilowatt_hour",
+        "label": "Kilowatt hour (kWh)"
+      },
+      {
+        "value": "electronvolt",
+        "label": "Electronvolt (eV)"
+      },
+      {
+        "value": "british_thermal_unit",
+        "label": "British thermal unit (BTU)"
+      },
+      {
+        "value": "us_therm",
+        "label": "US therm (U)"
+      },
+      {
+        "value": "foot_pound",
+        "label": "Foot-pound (ft-lb)"
+      }
+    ]
+  },
+  {
+    "value": "frequency",
+    "label": "Frequency",
+    "children": [
+      {
+        "value": "hertz",
+        "label": "Hertz (Hz)"
+      },
+      {
+        "value": "kilohertz",
+        "label": "Kilohertz (kHz)"
+      },
+      {
+        "value": "megahertz",
+        "label": "Megahertz (MHz)"
+      },
+      {
+        "value": "gigahertz",
+        "label": "Gigahertz (GHz)"
+      }
+    ]
+  },
+  {
+    "value": "fuel_consumption",
+    "label": "Fuel Consumption",
+    "children": [
+      {
+        "value": "mile_per_us_gallon",
+        "label": "Mile per US gallon (MPG)"
+      },
+      {
+        "value": "mile_per_gallon",
+        "label": "Mile per gallon (MPG)"
+      },
+      {
+        "value": "kilometer_per_liter",
+        "label": "Kilometer per liter (km/L)"
+      }
+    ]
+  },
+  {
+    "value": "length",
+    "label": "Length",
+    "children": [
+      {
+        "value": "kilometre",
+        "label": "Kilometre (km)"
+      },
+      {
+        "value": "metre",
+        "label": "Metre (m)"
+      },
+      {
+        "value": "centimetre",
+        "label": "Centimetre (cm)"
+      },
+      {
+        "value": "millimetre",
+        "label": "Millimetre (mm)"
+      },
+      {
+        "value": "micrometre",
+        "label": "Micrometre (μm)"
+      },
+      {
+        "value": "nanometre",
+        "label": "Nanometre (nm)"
+      },
+      {
+        "value": "mile",
+        "label": "Mile (mi)"
+      },
+      {
+        "value": "yard",
+        "label": "Yard (yd)"
+      },
+      {
+        "value": "foot",
+        "label": "Foot (ft)"
+      },
+      {
+        "value": "inch",
+        "label": "Inch (in)"
+      },
+      {
+        "value": "nautical_mile",
+        "label": "Nautical mile (nmi)"
+      }
+    ]
+  },
+  {
+    "value": "mass",
+    "label": "Mass",
+    "children": [
+      {
+        "value": "tonne",
+        "label": "Tonne (t)"
+      },
+      {
+        "value": "kilogram",
+        "label": "Kilogram (kg)"
+      },
+      {
+        "value": "gram",
+        "label": "Gram (g)"
+      },
+      {
+        "value": "milligram",
+        "label": "Milligram (mg)"
+      },
+      {
+        "value": "microgram",
+        "label": "Microgram (μg)"
+      },
+      {
+        "value": "imperial_ton",
+        "label": "Imperial ton (ton)"
+      },
+      {
+        "value": "us_ton",
+        "label": "US ton (ton)"
+      },
+      {
+        "value": "stone",
+        "label": "Stone (st)"
+      },
+      {
+        "value": "pound",
+        "label": "Pound (lb)"
+      },
+      {
+        "value": "ounce",
+        "label": "Ounce (oz)"
+      }
+    ]
+  },
+  {
+    "value": "plane_angle",
+    "label": "Plane Angle",
+    "children": [
+      {
+        "value": "arcsecond",
+        "label": "Arcsecond (arcsec)"
+      },
+      {
+        "value": "degree",
+        "label": "Degree (°)"
+      },
+      {
+        "value": "gradian",
+        "label": "Gradian (grad)"
+      },
+      {
+        "value": "milliradian",
+        "label": "Milliradian (mrad)"
+      },
+      {
+        "value": "minute_of_arc",
+        "label": "Minute of arc (min)"
+      },
+      {
+        "value": "radian",
+        "label": "Radian (rad)"
+      }
+    ]
+  },
+  {
+    "value": "pressure",
+    "label": "Pressure",
+    "children": [
+      {
+        "value": "bar",
+        "label": "Bar (bar)"
+      },
+      {
+        "value": "pascal",
+        "label": "Pascal (Pa)"
+      },
+      {
+        "value": "pound_per_square_inch",
+        "label": "Pound per square inch (psi)"
+      },
+      {
+        "value": "standard_atmosphere",
+        "label": "Standard atmosphere (atm)"
+      },
+      {
+        "value": "torr",
+        "label": "Torr (Torr)"
+      }
+    ]
+  },
+  {
+    "value": "speed",
+    "label": "Speed",
+    "children": [
+      {
+        "value": "miles_per_hour",
+        "label": "Miles per hour (mph)"
+      },
+      {
+        "value": "foot_per_second",
+        "label": "Foot per second (ft/s)"
+      },
+      {
+        "value": "meter_per_second",
+        "label": "Meter per second (m/s)"
+      },
+      {
+        "value": "kilometer_per_hour",
+        "label": "Kilometer per hour (km/h)"
+      },
+      {
+        "value": "knot",
+        "label": "Knot (kn)"
+      }
+    ]
+  },
+  {
+    "value": "temperature",
+    "label": "Temperature",
+    "children": [
+      {
+        "value": "celsius",
+        "label": "Celsius (°C)"
+      },
+      {
+        "value": "fahrenheit",
+        "label": "Fahrenheit (°F)"
+      },
+      {
+        "value": "kelvin",
+        "label": "Kelvin (K)"
+      }
+    ]
+  },
+  {
+    "value": "time",
+    "label": "Time",
+    "children": [
+      {
+        "value": "nanosecond",
+        "label": "Nanosecond (ns)"
+      },
+      {
+        "value": "microsecond",
+        "label": "Microsecond (us)"
+      },
+      {
+        "value": "millisecond",
+        "label": "Millisecond (ms)"
+      },
+      {
+        "value": "second",
+        "label": "Second (s)"
+      },
+      {
+        "value": "minute",
+        "label": "Minute (min)"
+      },
+      {
+        "value": "hour",
+        "label": "Hour (h)"
+      },
+      {
+        "value": "day",
+        "label": "Day (d)"
+      },
+      {
+        "value": "week",
+        "label": "Week (w)"
+      },
+      {
+        "value": "month",
+        "label": "Month (m)"
+      },
+      {
+        "value": "calendar_year",
+        "label": "Calendar year (y)"
+      },
+      {
+        "value": "decade",
+        "label": "Decade (dec)"
+      },
+      {
+        "value": "century",
+        "label": "Century (c)"
+      }
+    ]
+  },
+  {
+    "value": "volume",
+    "label": "Volume",
+    "children": [
+      {
+        "value": "us_liquid_gallon",
+        "label": "US liquid gallon (gal)"
+      },
+      {
+        "value": "us_liquid_quart",
+        "label": "US liquid quart (qt)"
+      },
+      {
+        "value": "us_liquid_pint",
+        "label": "US liquid pint (pt)"
+      },
+      {
+        "value": "us_legal_cup",
+        "label": "US legal cup (lc)"
+      },
+      {
+        "value": "us_fluid_ounce",
+        "label": "US fluid ounce (oz)"
+      },
+      {
+        "value": "us_tablespoon",
+        "label": "US tablespoon (tbsp)"
+      },
+      {
+        "value": "us_teaspoon",
+        "label": "US teaspoon (tsp)"
+      },
+      {
+        "value": "cubic_meter",
+        "label": "Cubic meter (m³)"
+      },
+      {
+        "value": "liter",
+        "label": "Liter (L)"
+      },
+      {
+        "value": "milliliter",
+        "label": "Milliliter (mL)"
+      },
+      {
+        "value": "imperial_gallon",
+        "label": "Imperial gallon (gal)"
+      },
+      {
+        "value": "imperial_quart",
+        "label": "Imperial quart (qt)"
+      },
+      {
+        "value": "imperial_pint",
+        "label": "Imperial pint (pt)"
+      },
+      {
+        "value": "imperial_cup",
+        "label": "Imperial cup (cup)"
+      },
+      {
+        "value": "imperial_fluid_ounce",
+        "label": "Imperial fluid ounce (oz)"
+      },
+      {
+        "value": "imperial_tablespoon",
+        "label": "Imperial tablespoon (tbsp)"
+      },
+      {
+        "value": "imperial_teaspoon",
+        "label": "Imperial teaspoon (tsp)"
+      },
+      {
+        "value": "cubic_foot",
+        "label": "Cubic foot (ft³)"
+      },
+      {
+        "value": "cubic_inch",
+        "label": "Cubic inch (in³)"
+      }
+    ]
+  }
+]

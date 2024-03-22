@@ -1,0 +1,116 @@
+---
+title: Polynomial Hash
+description: Polynomial Hash
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/polynomial-hash/go.go";
+import Java from "!!raw-loader!./assets/polynomial-hash/java.java";
+import JS from "!!raw-loader!./assets/polynomial-hash/js.js";
+import Kotlin from "!!raw-loader!./assets/polynomial-hash/kt.kt";
+import Python from "!!raw-loader!./assets/polynomial-hash/py.py";
+import Rust from "!!raw-loader!./assets/polynomial-hash/rs.rs";
+import TS from "!!raw-loader!./assets/polynomial-hash/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Polynomial Hash Algorithm is a method used in computer science for hashing strings into unique numerical values. It involves treating the characters of a string as coefficients of a polynomial, evaluating this polynomial at a specific point, and taking the result modulo a prime number to avoid overflow and ensure uniform distribution of hash values
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Set the hash value to zero. Next, examine each character in the given string individually. As you process each character, modify the hash value using a specific calculation method. Ensure the hash value remains within a defined range. Lastly, provide the resulting hash value as the output
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with a hash value set to `0`
+    - Go through each letter in the string one by one
+    - For each letter, add it to the hash value in a specific way
+    - After considering all the letters, make sure the hash value stays within a certain range
+    - Return resulting hash value
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - choose a large prime number to minimize the chance of collisions
+    - ensure the base is sufficiently large to cover the character set of the input string
+    - consider using a rolling hash variant if dealing with large strings or streaming data, where the hash value can be efficiently updated with each character insertion or deletion
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    polynomial_hash(input_string):
+      // Initialize variables
+      hash = 0
+      P = large_prime_number
+      B = base_value
+
+      // Iterate through each character in the input string
+      for each character c in input_string:
+        // Update hash using polynomial evaluation
+        hash = (hash * B + c) % P
+
+      // Return final hash value
+      return hash
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

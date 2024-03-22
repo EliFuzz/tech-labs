@@ -1,0 +1,116 @@
+---
+title: Floyd-Warshall Algorithm
+description: Floyd-Warshall Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/floyd-warshall-algorithm/go.go';
+import Java from '!!raw-loader!./assets/floyd-warshall-algorithm/java.java';
+import JS from '!!raw-loader!./assets/floyd-warshall-algorithm/js.js';
+import Kotlin from '!!raw-loader!./assets/floyd-warshall-algorithm/kt.kt';
+import Python from '!!raw-loader!./assets/floyd-warshall-algorithm/py.py';
+import Rust from '!!raw-loader!./assets/floyd-warshall-algorithm/rs.rs';
+import TS from '!!raw-loader!./assets/floyd-warshall-algorithm/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Floyd-Warshall algorithm is a dynamic programming technique used to find the shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles). It efficiently computes the shortest paths between all pairs of vertices in a graph, making it suitable for problems where the shortest distances between all pairs of vertices are required
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Initialize a distance matrix, which encapsulates the shortest distances between every pair of vertices within the graph. It then systematically iterates through the vertices, entertaining each vertex as a potential intermediary in pathfinding. During each iteration, the algorithm evaluates if including an intermediate vertex could potentially yield a shorter distance between two vertices. If such an improvement is discovered, the distance matrix is promptly updated. This process continues iteratively until the algorithm has thoroughly explored all possible paths, resulting in the determination of the shortest path between every pair of vertices within the graph
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize a distance matrix where each element represents the direct edge weight between vertices. If there's no direct edge, set the distance to infinity
+    - Iterate through all vertices and consider each vertex as an intermediate vertex in the shortest path computation
+    - For each pair of vertices (`u, v`), update the distance matrix by comparing the distance between u and v with the sum of distances between u and the intermediate vertex k and between the intermediate vertex `k` and `v`. If this sum is smaller, update the distance matrix accordingly
+      - Repeat the step for all possible intermediate vertices
+    - After completing all iterations, the distance matrix will contain the shortest distances between all pairs of vertices
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure that the graph does not contain negative cycles, as the algorithm does not work correctly in such cases
+    - the algorithm can efficiently handle graphs with both positive and negative edge weights
+    - it is suitable for dense graphs or graphs with a relatively small number of vertices and edges
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    FloydWarshall(graph):
+      n = number of vertices in the graph
+      distance[][] = initialize distance matrix with direct edge weights
+
+      // Compute shortest paths
+      for k from 1 to n:
+        for i from 1 to n:
+          for j from 1 to n:
+            // If vertex k is on the shortest path from i to j
+            if distance[i][k] + distance[k][j] < distance[i][j]:
+              distance[i][j] = distance[i][k] + distance[k][j]
+
+      return distance
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

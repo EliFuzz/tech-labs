@@ -1,0 +1,142 @@
+---
+title: Strongly Connected Components - Kosaraju's Algorithm
+description: Strongly Connected Components - Kosaraju's Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/strongly-connected-components-kosarajus-algorithm/go.go";
+import Java from "!!raw-loader!./assets/strongly-connected-components-kosarajus-algorithm/java.java";
+import JS from "!!raw-loader!./assets/strongly-connected-components-kosarajus-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/strongly-connected-components-kosarajus-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/strongly-connected-components-kosarajus-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/strongly-connected-components-kosarajus-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/strongly-connected-components-kosarajus-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Kosaraju's Algorithm is a method used to find strongly connected components (SCCs) within a directed graph. It efficiently identifies groups of vertices where each vertex is reachable from every other vertex within the same group. This algorithm relies on depth-first search (DFS) techniques to traverse the graph twice, first to determine the order of vertices for the second traversal, and then to identify the SCCs
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Operates in 2 main phases. First, it performs a DFS on the given graph to determine the order in which vertices should be processed. Then, it transposes the graph (reverses the direction of all edges) and performs another DFS based on the determined order to identify the strongly connected components
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with a directed graph represented as an adjacency list or matrix
+    - Perform a DFS traversal on the graph, keeping track of the order in which vertices finish their recursive calls
+    - Reverse the direction of all edges in the graph to create a transposed graph
+    - Perform another DFS traversal on the transposed graph, using the order obtained from the first traversal
+    - Each tree in the DFS forest of the transposed graph represents a strongly connected component
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure proper implementation of the DFS algorithm with appropriate data structures (such as stacks or recursion)
+    - pay attention to the order of vertices obtained in the first traversal as it determines the sequence for the second traversal
+    - utilize efficient data structures for tracking visited vertices and storing the SCCs
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    kosaraju(graph):
+        order = [] # to store the order of vertices
+        visited = set() # set to keep track of visited vertices
+
+        # Phase 1: Perform DFS to determine the order of vertices
+        for each vertex in graph:
+            if vertex not in visited:
+                DFS(graph, vertex, visited, order)
+
+        # Transpose the graph
+        transposed_graph = transpose(graph)
+
+        # Phase 2: Perform DFS on the transposed graph in the determined order
+        visited.clear()
+        SCCs = []
+        while order is not empty:
+            vertex = order.pop()
+            if vertex not in visited:
+                SCC = []
+                DFS(transposed_graph, vertex, visited, SCC)
+                SCCs.append(SCC)
+
+        return SCCs
+
+    DFS(graph, vertex, visited, result):
+        visited.add(vertex)
+        for neighbor in graph[vertex]:
+            if neighbor not in visited:
+                DFS(graph, neighbor, visited, result)
+        result.append(vertex)
+
+    transpose(graph):
+        transposed_graph = {}
+        for vertex in graph:
+            transposed_graph[vertex] = []
+        for vertex in graph:
+            for neighbor in graph[vertex]:
+                transposed_graph[neighbor].append(vertex)
+        return transposed_graph
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

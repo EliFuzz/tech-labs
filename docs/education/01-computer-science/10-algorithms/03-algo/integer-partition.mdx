@@ -1,0 +1,117 @@
+---
+title: Integer Partition
+description: Integer Partition
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/integer-partition/go.go';
+import Java from '!!raw-loader!./assets/integer-partition/java.java';
+import JS from '!!raw-loader!./assets/integer-partition/js.js';
+import Kotlin from '!!raw-loader!./assets/integer-partition/kt.kt';
+import Python from '!!raw-loader!./assets/integer-partition/py.py';
+import Rust from '!!raw-loader!./assets/integer-partition/rs.rs';
+import TS from '!!raw-loader!./assets/integer-partition/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Integer Partition Algorithm aims to find all possible ways to partition a given integer into a sum of positive integers. It's a fundamental problem in combinatorics and dynamic programming, often used in various fields like number theory and computer science
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Select the target integer that you wish to partition. Next, set up a two-dimensional array designated for storing partition counts. Iterate through each integer starting from 1 up to the chosen target integer. For each integer `i`, systematically go through all potential partition sizes `j`. Employ dynamic programming principles to continually update the counts of partitions. Upon completion, return the count of partitions available for the target integer, thus completing the integer partitioning algorithm
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with the target integer, let's call it n
+    - Create a grid called "partitions" with (n+1) rows and (n+1) columns, and fill it with zeros
+    - For each row in the grid (from 0 to n)
+      - set the value at column 1 to 1
+    - Now, for each row (from 1 to n) and each column (from 1 to n)
+      - If the column index is greater than the row index, copy the value from the diagonal (same row, same column)
+      - Otherwise, add the value from the previous column to the value from the row-index difference column
+    - The result is the intersection of the nth row and nth column in the grid
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize dynamic programming to avoid redundant calculations
+    - take advantage of memoization to store intermediate results
+    - ensure proper bounds checking to avoid index out of range errors
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    integerPartition(n):
+      partitions = 2D array of size (n+1) x (n+1) filled with 0s
+      for i from 0 to n:
+        partitions[i][1] = 1
+      for i from 1 to n:
+        for j from 1 to n:
+          if j > i:
+            partitions[i][j] = partitions[i][i]
+          else:
+            partitions[i][j] = partitions[i][j-1] + partitions[i-j][j]
+      return partitions[n][n]
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,120 @@
+---
+title: Breadth-First Search (BFS)
+description: Breadth-First Search (BFS)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/breadth-first-search/go.go";
+import Java from "!!raw-loader!./assets/breadth-first-search/java.java";
+import JS from "!!raw-loader!./assets/breadth-first-search/js.js";
+import Kotlin from "!!raw-loader!./assets/breadth-first-search/kt.kt";
+import Python from "!!raw-loader!./assets/breadth-first-search/py.py";
+import Rust from "!!raw-loader!./assets/breadth-first-search/rs.rs";
+import TS from "!!raw-loader!./assets/breadth-first-search/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Breadth-First Search (BFS) is a graph traversal algorithm that explores all the neighbor nodes at the present depth before moving on to the nodes at the next depth level. It operates on a data structure called a queue, enabling it to visit nodes in a level-by-level manner
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Breadth-First Search (BFS) begins from a chosen node, typically known as the root node, within a graph. It systematically explores all neighbor nodes at the current depth level before proceeding to nodes at deeper levels. Utilizing a queue, BFS manages the nodes awaiting exploration, initially adding the starting node to the queue. While the queue remains populated, BFS dequeues a node and examines its adjacent nodes. To prevent revisiting nodes and cycles, BFS marks each explored node as visited. This exploration process persists until the queue exhausts its contents
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - enqueue the starting node onto a queue
+    - mark the starting node as visited
+    - while the queue is not empty
+      - dequeue a node from the queue
+      - visit the dequeued node and process it as needed
+      - enqueue all of its unvisited neighbors onto the queue
+      - mark each visited neighbor as visited
+    - continue this process until the queue becomes empty
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize a data structure like a queue to maintain the order of nodes to be visited
+    - ensure efficient marking of visited nodes to avoid unnecessary revisits
+    - BFS is particularly useful for finding the shortest path in unweighted graphs
+    - it's ideal for finding connected components and checking if a graph is bipartite
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    BFS(graph, start_node):
+      initialize an empty queue
+      enqueue start_node onto the queue
+      mark start_node as visited
+
+      while queue is not empty:
+        current_node = dequeue from queue
+        process current_node
+
+        for each neighbor_node of current_node:
+          if neighbor_node is not visited:
+            mark neighbor_node as visited
+            enqueue neighbor_node onto queue
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

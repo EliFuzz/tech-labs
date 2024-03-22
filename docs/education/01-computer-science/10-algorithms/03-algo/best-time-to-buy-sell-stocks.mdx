@@ -1,0 +1,193 @@
+---
+title: Best Time To Buy Sell Stocks
+description: Best Time To Buy Sell Stocks
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/best-time-to-buy-sell-stocks/go.go";
+import Java from "!!raw-loader!./assets/best-time-to-buy-sell-stocks/java.java";
+import JS from "!!raw-loader!./assets/best-time-to-buy-sell-stocks/js.js";
+import Kotlin from "!!raw-loader!./assets/best-time-to-buy-sell-stocks/kt.kt";
+import Python from "!!raw-loader!./assets/best-time-to-buy-sell-stocks/py.py";
+import Rust from "!!raw-loader!./assets/best-time-to-buy-sell-stocks/rs.rs";
+import TS from "!!raw-loader!./assets/best-time-to-buy-sell-stocks/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Problem of finding the maximum profit from buying and selling stocks at the right times
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    To find the best time to buy and sell stocks, start by initializing variables to track the minimum stock price and maximum profit. Then, go through each day's stock price, updating the minimum price encountered so far. Calculate the potential profit if selling at the current price and update the maximum profit if this exceeds the current maximum. Finally, return the maximum profit found
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    **Detailed Description**
+
+    Say you have an array prices for which the `i-th` element is the price of a given stock on day `i`. Find the maximum profit. You may complete as many transactions as you like (i.e., buy one and
+    sell one share of the stock multiple times).
+
+    > Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
+
+    **Example #1**
+
+    ```
+    Input: [7, 1, 5, 3, 6, 4]
+    Output: 7
+    ```
+
+    *Explanation*: Buy on day `2` (`price = 1`) and sell on day `3` (`price = 5`), `profit = 5 - 1 = 4`. Then buy on day `4` (`price = 3`) and sell on day `5` (`price = 6`), `profit = 6 - 3 = 3`.
+
+    **Example #2**
+
+    ```
+    Input: [1, 2, 3, 4, 5]
+    Output: 4
+    ```
+
+    *Explanation*: Buy on day `1` (`price = 1`) and sell on day `5` (`price = 5`), `profit = 5 - 1 = 4`. Note that you cannot buy on day `1`, buy on day `2` and sell them later, as you are engaging
+    multiple transactions at the same time. You must sell before buying again.
+
+    **Example #3**
+
+    ```
+    Input: [7, 6, 4, 3, 1]
+    Output: 0
+    ```
+
+    *Explanation*: In this case, no transaction is done, i.e. max `profit = 0`.
+
+    **Examples**
+
+    **Divide and Conquer**
+
+    **Complexity**: Time: <code className="horrible" style={{whiteSpace: "pre"}}>O(2<sup>n</sup>)</code> Space: <code className="fair" style={{whiteSpace: "pre"}}>O(n)</code>
+
+    Using a divide and conquer approach, we can exhaustively explore all buying and selling combinations to find the most profitable one. For instance, given an array of prices like `[7, 6, 4, 3, 1]`,
+    at each step, we decide whether to keep the money or buy/sell at the current price, recursively considering the remaining stocks.
+
+    **Peak Valley**
+
+    **Complexity**: Time: <code className="fair" style={{whiteSpace: "pre"}}>O(n)</code> Space: <code className="excellent" style={{whiteSpace: "pre"}}>O(1)</code>
+
+    If we plot the prices array `[7, 1, 5, 3, 6, 4]` we may notice that the points of interest are the consecutive valleys and peaks
+
+    ```mermaid
+    ---
+    config:
+    xyChart:
+    width: 900
+    ---
+    xychart-beta
+    x-axis [1,2,3,4,5,6]
+    y-axis 0 --> 8
+    bar [7,1,5,3,6,4]
+    line [7,1,5,3,6,4]
+    ```
+
+    **Accumulator**
+
+    **Complexity**: Time: <code className="fair">O(n)</code> Space: <code className="excellent">O(1)</code>
+
+    With prices array `[1, 7, 2, 3, 6, 7, 6, 7]` we may notice that we don't need to keep track of all the points of interest. Instead, we may simply add the price difference for all growing segments
+    of the chart which eventually sums up to the highest possible profit
+
+    ```mermaid
+    ---
+    config:
+    xyChart:
+    width: 900
+    ---
+    xychart-beta
+    x-axis [1,2,3,4,5,6,7,8]
+    y-axis 0 --> 8
+    bar [1,7,2,3,6,7,6,7]
+    line [1,7,2,3,6,7,6,7]
+    ```
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure the algorithm handles edge cases like an empty list of stock prices
+    - emphasize efficiency to handle large datasets efficiently
+    - utilize dynamic programming to optimize time complexity
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    function maxProfit(prices):
+      if prices is empty:
+        return 0
+
+      min_price = infinity
+      max_profit = 0
+
+      for price in prices:
+        min_price = min(min_price, price)
+        potential_profit = price - min_price
+        max_profit = max(max_profit, potential_profit)
+
+      return max_profit
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

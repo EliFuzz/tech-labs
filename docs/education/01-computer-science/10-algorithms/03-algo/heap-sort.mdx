@@ -1,0 +1,134 @@
+---
+title: Heap Sort
+description: Heap Sort
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/heap-sort/go.go";
+import Java from "!!raw-loader!./assets/heap-sort/java.java";
+import JS from "!!raw-loader!./assets/heap-sort/js.js";
+import Kotlin from "!!raw-loader!./assets/heap-sort/kt.kt";
+import Python from "!!raw-loader!./assets/heap-sort/py.py";
+import Rust from "!!raw-loader!./assets/heap-sort/rs.rs";
+import TS from "!!raw-loader!./assets/heap-sort/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Heap Sort is a comparison-based sorting algorithm that operates by converting the array into a binary heap structure, then repeatedly removing the maximum element from the heap and rebuilding the heap
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    To initiate Heap Sort, first, convert the given array into a max heap, ensuring each parent node is greater than or equal to its children. Then, proceed to repeatedly remove the maximum element, which is the root of the heap, while preserving the heap property through heapify operations. This process continues until the heap is empty, ultimately yielding a sorted array
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Build Max Heap
+      - Start from the last non-leaf node (index n/2 - 1) to the root (index 0)
+      - For each node, compare it with its children and swap if necessary to maintain the heap property
+      - Continue this process until the entire array satisfies the heap property
+    - Heapify
+      - Remove the root element (maximum value) from the heap and replace it with the last element of the heap
+      - Reduce the size of the heap by one
+      - Heapify the remaining elements to maintain the heap property
+      - Repeat steps until the heap size becomes 1, resulting in a sorted array
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure you understand the heap data structure and its properties before implementing Heap Sort
+    - efficiently utilize the heapify process to maintain the heap property after each removal of the maximum element
+    - be mindful of the array indexing, especially when dealing with parent-child relationships in the heap
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    procedure heapSort(array)
+        n := length(array)
+
+        // Build Max Heap
+        for i from n/2 - 1 down to 0 do
+            heapify(array, n, i)
+
+        // Heapify and Extract Maximum
+        for i from n - 1 down to 0 do
+            swap(array[0], array[i])   // Move current root to end
+            heapify(array, i, 0)       // Heapify the reduced heap
+
+    procedure heapify(array, heapSize, index)
+        largest := index
+        leftChild := 2 * index + 1
+        rightChild := 2 * index + 2
+
+        // Find the largest element among root, left child, and right child
+        if heapSize > leftChild and array[leftChild] > array[largest] then
+            largest := leftChild
+        if heapSize > rightChild and array[rightChild] > array[largest] then
+            largest := rightChild
+
+        // Swap and continue heapifying if necessary
+        if largest != index then
+            swap(array[index], array[largest])
+            heapify(array, heapSize, largest)
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

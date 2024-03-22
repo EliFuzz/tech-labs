@@ -1,0 +1,149 @@
+{
+  "key": "python",
+  "metadata": {
+    "name": "Python",
+    "url": "https://www.python.org/",
+    "logo": "/static/img/lang/py.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "bool",
+      "description": "Boolean",
+      "code": "False"
+    },
+    {
+      "name": "noneType",
+      "description": "None Type",
+      "code": "NoneType"
+    },
+    {
+      "name": "str",
+      "description": "UTF-8 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "int",
+      "description": "Integer",
+      "code": "0"
+    },
+    {
+      "name": "float",
+      "description": "Float",
+      "code": "0.0"
+    },
+    {
+      "name": "complex",
+      "description": "Complex",
+      "code": "0j"
+    },
+    {
+      "name": "list",
+      "description": "List",
+      "code": "[]"
+    },
+    {
+      "name": "tuple",
+      "description": "Tuple",
+      "code": "()"
+    },
+    {
+      "name": "range",
+      "description": "Range",
+      "code": "range()"
+    },
+    {
+      "name": "dict",
+      "description": "Dictionary",
+      "code": "{}"
+    },
+    {
+      "name": "set",
+      "description": "Set",
+      "code": "set()"
+    },
+    {
+      "name": "frozenset",
+      "description": "Frozen Set",
+      "code": "frozenset()"
+    },
+    {
+      "name": "bytes",
+      "description": "Bytes",
+      "code": "b\"\""
+    },
+    {
+      "name": "bytearray",
+      "description": "Bytearray",
+      "code": "bytearray()"
+    },
+    {
+      "name": "memoryview",
+      "description": "Memoryview",
+      "code": "memoryview()"
+    }
+  ],
+  "reservedKeywords": [
+    "and",
+    "as",
+    "assert",
+    "break",
+    "class",
+    "continue",
+    "def",
+    "del",
+    "elif",
+    "else",
+    "except",
+    "False",
+    "finally",
+    "for",
+    "from",
+    "global",
+    "if",
+    "import",
+    "in",
+    "is",
+    "lambda",
+    "None",
+    "nonlocal",
+    "not",
+    "or",
+    "pass",
+    "raise",
+    "return",
+    "True",
+    "try",
+    "while",
+    "with",
+    "yield"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "if __name__ == \"__main__\":\n    print(\"Hello, World!\")"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "# Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "''' Multi-line\ncomment '''"
+      }
+    ],
+    "namespaces": [],
+    "imports": [],
+    "variables": [],
+    "functions": [],
+    "flowControls": [],
+    "structures": [],
+    "errorHandling": [],
+    "concurrency": []
+  }
+}

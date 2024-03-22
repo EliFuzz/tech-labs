@@ -1,0 +1,327 @@
+---
+title: Graph
+description: Graph Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/graph/go.go";
+import Java from "!!raw-loader!./assets/graph/java.java";
+import JS from "!!raw-loader!./assets/graph/js.js";
+import Kotlin from "!!raw-loader!./assets/graph/kt.kt";
+import Python from "!!raw-loader!./assets/graph/py.py";
+import Rust from "!!raw-loader!./assets/graph/rs.rs";
+import TS from "!!raw-loader!./assets/graph/ts.ts";
+
+![](./assets/graph/graph.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Representation</th>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**Adjacency Matrix**</td>
+      <td>
+        <code className="horrible">O(V²)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="fair">O(V)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>**Adjacency List**</td>
+      <td>
+        <code className="fair">O(V+E)</code> <br /> • `V` is the number of
+        vertices <br /> • `E` is the number of edges
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Graph** is a collection of nodes connected by edges, where each node represents a entity and each edge represents a relationship between 2 entities.
+
+  :::note[Simplified]
+
+  **Graph** in software engineering is like a city map. It shows how different things, like cities (nodes), are connected by roads (edges). It's used to solve complex problems, like finding the
+  shortest route or recommending friends on social media.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Graph** is a data type that represents both undirected and directed graphs from mathematical graph theory.
+
+    A graph data structure has a finite set of vertices (or nodes), along with a set of pairs of these vertices. For an undirected graph, the pairs are unordered, while for a directed graph, they're
+    ordered. These pairs are called edges for undirected graphs and arrows for directed ones. The vertices can be part of the graph structure itself or external entities represented by indices or
+    references.
+
+    A graph can be directed or undirected, weighted or unweighted, and can have cycles or be acyclic. There are many different types of graphs, including trees, forests, complete graphs, and bipartite
+    graphs.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Graph Edge</td>
+          <td>
+            ```
+            GraphEdge
+              get_key()
+                return start_vertex.value + '_' + end_vertex.value
+
+              reverse()
+                tmp = start_vertex
+                start_vertex = end_vertex
+                end_vertex = tmp
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Graph Vertex</td>
+          <td>
+            ```
+            GraphVertex
+              add_edge(edge)
+                edges.append(edge)
+
+              delete_edge(edge)
+                edges.delete(edge)
+
+              get_neighbors()
+                neighbors = []
+                for (node in edges):
+                  if node.value.start_vertex == this:
+                    neighbors.add(node.value.end_vertex)
+                  else:
+                    neighbors.add(node.value.start_vertex)
+                return neighbors
+
+              getEdges()
+                edges = []
+                for (node in edges):
+                  edges.add(node.value)
+
+              get_degree()
+                edges.length
+
+              has_edge(required_edge)
+                return edges.find(required_edge)
+
+              has_neighbor(vertex)
+                return edges.find(start_vertex === vertex or edge.end_vertex === vertex)
+
+              find_edge(vertex)
+                return edges.find(edge.start_vertex === vertex or edge.end_vertex === vertex)
+
+              delete_all_edges()
+                for (node in get_edges()):
+                  delete_edge(node)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Get Vertex by Key</td>
+          <td>
+            ```
+            get_vertex_by_key(vertexKey)
+              return vertices[vertexKey]
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Add Edge</td>
+          <td>
+            ```
+            add_edge(edge)
+              start_vertex = get_vertex_by_key(edge.start_vertex.value)
+              end_vertex = get_vertex_by_key(edge.end_vertex.value)
+
+              if start_vertex != ø:
+                add_vertex(edge.start_vertex)
+                start_vertex = get_vertex_by_key(edge.start_vertex.value)
+
+              if end_vertex != ø:
+                add_vertex(edge.end_vertex)
+                end_vertex = get_vertex_by_key(edge.end_vertex.value)
+
+              if edges[edge.get_key()]:
+                throw Error('Edge has already been added before')
+              else:
+                edges[edge.get_key()] = edge
+
+              if isDirected:
+                start_vertex.add_edge(edge)
+              else:
+                start_vertex.add_edge(edge)
+                end_vertex.add_edge(edge)
+
+              add_vertex(new_vertex)
+                vertices[new_vertex.value] = new_vertex
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Delete Edge</td>
+          <td>
+            ```
+            delete_edge(edge)
+              if edges[edge.get_key()]:
+                delete edges[edge.get_key()]
+              else:
+                'Edge not found in graph'
+
+              start_vertex = get_vertex_by_key(edge.start_vertex.value)
+              end_vertex = get_vertex_by_key(edge.end_vertex.value)
+
+              start_vertex.delete_edge(edge)
+              end_vertex.delete_edge(edge)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Get All Edges</td>
+          <td>
+            ```
+            get_all_edges()
+              edges = []
+              for {key, edge} in edges:
+                vertices.add(vertex)
+              return edges
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Get Weight</td>
+          <td>
+            ```
+            get_weight()
+              weight = 0
+              for graph_edge in get_all_edges():
+                weight += graph_edge.weight
+              return weight
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Reverse</td>
+          <td>
+            ```
+            reverse()
+              for edge in get_all_edges():
+                delete_edge(edge)
+                edge.reverse()
+                add_edge(edge)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Find Edge</td>
+          <td>
+            ```
+            find_edge(start_vertex, end_vertex)
+              vertex = get_vertex_by_key(start_vertex.value)
+              if vertex != ø
+                return null
+              return vertex.find_edge(end_vertex)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Get Adjacency Matrix</td>
+          <td>
+            ```
+            get_adjacency_matrix()
+              vertices_indices = get_vertices_indices()
+              adjacency_matrix = [][]
+              for {i, vertex} in get_all_vertices():
+                for neighbor in vertex.get_neighbors():
+                  adjacency_matrix[vertexIndex][vertices_indices[neighbor.get_key()]] = find_edge(vertex, neighbor).weight))
+              return adjacency_matrix
+
+            get_vertices_indices()
+              vertices_indices = Map()
+              for {i, vertex} in vertices:
+                vertices_indices[vertex.value] = index
+              return vertices_indices
+
+            get_neighbors(vertex)
+              return vertex.get_neighbors()
+
+            get_all_vertices()
+              vertices = []
+              for {key, vertex} in vertices:
+                vertices.add(vertex)
+              return vertices
+            ```
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

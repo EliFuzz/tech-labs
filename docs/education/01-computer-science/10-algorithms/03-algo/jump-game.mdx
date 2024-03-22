@@ -1,0 +1,113 @@
+---
+title: Jump Game
+description: Jump Game
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/jump-game/go.go";
+import Java from "!!raw-loader!./assets/jump-game/java.java";
+import JS from "!!raw-loader!./assets/jump-game/js.js";
+import Kotlin from "!!raw-loader!./assets/jump-game/kt.kt";
+import Python from "!!raw-loader!./assets/jump-game/py.py";
+import Rust from "!!raw-loader!./assets/jump-game/rs.rs";
+import TS from "!!raw-loader!./assets/jump-game/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Jump Game Algorithm determines if it's possible to reach the last index of an array starting from the first index, given that each element in the array represents the maximum number of steps that can be taken from that position
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm iterates through each element in the array, keeping track of the maximum reachable index. If at any point the current index exceeds this maximum reachable index, it indicates that it's not possible to reach the end
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Set a starting point at the beginning of the array
+    - Traverse each number in the array
+      - for each number
+      - determine if advancing by the number of steps it indicates would take you farther than before
+      - update your furthest reachable position accordingly
+      - if you can already reach the end from your current position return true
+    - If you've covered all numbers without reaching the end return false
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - keep track of the maximum reachable index as you iterate through the array
+    - if at any point the current index exceeds the maximum reachable index, it's not possible to reach the end
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    canReachEnd(nums):
+      max_reachable = 0
+      for i from 0 to length(nums) - 1:
+        if i > max_reachable:
+          return false
+        max_reachable = max(max_reachable, i + nums[i])
+        if max_reachable >= length(nums) - 1:
+          return true
+      return false
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

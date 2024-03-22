@@ -1,0 +1,148 @@
+[
+  {
+    "value": "escape",
+    "label": "Escape/Unescape",
+    "children": [
+      {
+        "value": "escape_html",
+        "label": "Escape HTML"
+      },
+      {
+        "value": "unescape_html",
+        "label": "Unescape HTML"
+      },
+      {
+        "value": "escape_xml",
+        "label": "Escape XML"
+      },
+      {
+        "value": "unescape_xml",
+        "label": "Unescape XML"
+      }
+    ]
+  },
+  {
+    "value": "switch_case",
+    "label": "Switch Case",
+    "children": [
+      {
+        "value": "camel_case",
+        "label": "camelCase"
+      },
+      {
+        "value": "snake_case",
+        "label": "snake_case"
+      },
+      {
+        "value": "screaming_snake_case",
+        "label": "SCREAMING_SNAKE_CASE"
+      },
+      {
+        "value": "capitalized_snake_case",
+        "label": "Capitalized_Snake_Case"
+      },
+      {
+        "value": "kebab_case",
+        "label": "kebab-case"
+      },
+      {
+        "value": "pascal_case",
+        "label": "PascalCase"
+      },
+      {
+        "value": "capitalize",
+        "label": "Capitalize case"
+      },
+      {
+        "value": "lowercase",
+        "label": "lower case"
+      },
+      {
+        "value": "uppercase",
+        "label": "UPPER CASE"
+      }
+    ]
+  },
+  {
+    "value": "sort",
+    "label": "Sort",
+    "children": [
+      {
+        "value": "str_sort",
+        "label": "string sort"
+      },
+      {
+        "value": "str_reverse",
+        "label": "string reverse"
+      },
+      {
+        "value": "str_shuffle",
+        "label": "string shuffle"
+      },
+      {
+        "value": "words_sort",
+        "label": "words sort"
+      },
+      {
+        "value": "words_reverse",
+        "label": "words reverse"
+      },
+      {
+        "value": "words_shuffle",
+        "label": "words shuffle"
+      },
+      {
+        "value": "lines_sort",
+        "label": "lines sort"
+      },
+      {
+        "value": "lines_reverse",
+        "label": "lines reverse"
+      },
+      {
+        "value": "lines_shuffle",
+        "label": "lines shuffle"
+      }
+    ]
+  },
+  {
+    "value": "blank_space",
+    "label": "Blank Space",
+    "children": [
+      {
+        "value": "trim_start",
+        "label": "trim start"
+      },
+      {
+        "value": "trim_end",
+        "label": "trim end"
+      },
+      {
+        "value": "normalize_blank_space",
+        "label": "normalize blank space"
+      },
+      {
+        "value": "trim_lines",
+        "label": "trim lines"
+      }
+    ]
+  },
+  {
+    "value": "extract",
+    "label": "Extract",
+    "children": [
+      {
+        "value": "strip_html",
+        "label": "Strip HTML/XML Tags"
+      },
+      {
+        "value": "extract_url",
+        "label": "Extract URL"
+      },
+      {
+        "value": "extract_email",
+        "label": "Extract Email"
+      }
+    ]
+  }
+]

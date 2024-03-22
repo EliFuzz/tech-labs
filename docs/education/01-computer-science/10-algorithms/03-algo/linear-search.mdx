@@ -1,0 +1,110 @@
+---
+title: Linear Search
+description: Linear Search
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/linear-search/go.go";
+import Java from "!!raw-loader!./assets/linear-search/java.java";
+import JS from "!!raw-loader!./assets/linear-search/js.js";
+import Kotlin from "!!raw-loader!./assets/linear-search/kt.kt";
+import Python from "!!raw-loader!./assets/linear-search/py.py";
+import Rust from "!!raw-loader!./assets/linear-search/rs.rs";
+import TS from "!!raw-loader!./assets/linear-search/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Linear search is a simple searching algorithm that sequentially checks each element in a list until the desired element is found or the end of the list is reached. It is applicable to both ordered and unordered lists
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Start by examining the first element of the list. Then, it progresses through each subsequent element in sequential order. At each step, the current element is compared with the target element. If a match is discovered, the algorithm returns the index of the found element. However, if the end of the list is reached without encountering the target element, the algorithm signals a failure to find the desired item
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Begin from the first element in the list
+    - Check each element in the list one by one
+    - If the current element matches the target, return its index
+    - If no match is found after checking all elements, return a failure signal
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - linear search is straightforward but inefficient for large datasets compared to more optimized algorithms like binary search
+    - it's best suited for small lists or unordered lists where the elements are not arranged in any specific order
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    linearSearch(list, target):
+      // Iterate through each element in the list
+      for index from 0 to length(list)-1:
+        // Check if the current element matches the target
+        if list[index] equals target:
+          // Return the index of the target element
+          return index
+      // If target not found, return a failure signal
+      return -1
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

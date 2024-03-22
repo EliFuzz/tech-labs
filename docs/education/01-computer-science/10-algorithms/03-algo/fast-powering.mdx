@@ -1,0 +1,110 @@
+---
+title: Fast Powering
+description: Fast Powering
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/fast-powering/go.go";
+import Java from "!!raw-loader!./assets/fast-powering/java.java";
+import JS from "!!raw-loader!./assets/fast-powering/js.js";
+import Kotlin from "!!raw-loader!./assets/fast-powering/kt.kt";
+import Python from "!!raw-loader!./assets/fast-powering/py.py";
+import Rust from "!!raw-loader!./assets/fast-powering/rs.rs";
+import TS from "!!raw-loader!./assets/fast-powering/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Fast Powering Algorithm, also known as Exponentiation by Squaring, is a method used to efficiently compute large powers of a number. It reduces the number of multiplications required, making it significantly faster than the naive approach of repeated multiplication
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    First step involves checking if the exponent (`n`) is `0`; if it is, the algorithm returns `1`. Next, for even exponents, the algorithm recursively computes the value of `x` raised to the power of half of `n`. On the other hand, for odd exponents, it multiplies `x` by the result of `x` raised to half of (`n - 1`), and then continues this process recursively. Finally, the algorithm combines the results obtained from both even and odd exponent calculations to obtain the final result
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - See if the exponent `n` is `0`. If it is, just give back `1`
+    - If `n` is an even number, find out what `x` raised to the power of half of `n` is, and do it again until you get the answer
+    - If `n` is an odd number, first find out what `x` raised to the power of half of (`n - 1`) is, then multiply it by `x`, and repeat until you get the answer
+    - Combine the results obtained and return the final result
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize recursion efficiently to minimize the number of multiplications
+    - optimize for even and odd exponents separately
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    fast_power(x, n):
+      if n == 0:
+        return 1
+      else if n % 2 == 0:
+        temp = fast_power(x, n/2)
+        return temp * temp
+      else:
+        temp = fast_power(x, (n-1)/2)
+        return x * temp * temp
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

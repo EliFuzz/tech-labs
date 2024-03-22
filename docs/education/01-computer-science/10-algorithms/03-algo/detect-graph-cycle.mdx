@@ -1,0 +1,121 @@
+---
+title: Detect Graph Cycle
+description: Detect Graph Cycle
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/detect-cycle/go.go";
+import Java from "!!raw-loader!./assets/detect-cycle/java.java";
+import JS from "!!raw-loader!./assets/detect-cycle/js.js";
+import Kotlin from "!!raw-loader!./assets/detect-cycle/kt.kt";
+import Python from "!!raw-loader!./assets/detect-cycle/py.py";
+import Rust from "!!raw-loader!./assets/detect-cycle/rs.rs";
+import TS from "!!raw-loader!./assets/detect-cycle/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Detect Cycle Algorithm in Graph is used to identify if a graph contains cycles, i.e., closed loops where a sequence of edges returns to a vertex. It's crucial for various applications such as network routing, deadlock detection, and more. This algorithm typically employs Depth-First Search (DFS) or Union-Find to traverse the graph and detect cycles efficiently
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm utilizes Depth-First Search (DFS) to traverse the graph. During traversal, it keeps track of visited vertices and explores adjacent vertices. If it encounters a visited vertex during traversal other than its parent (in the DFS tree), it signifies the presence of a cycle
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with an empty set to keep track of visited vertices
+    - Begin DFS traversal from any vertex in the graph
+    - While traversing, mark each visited vertex
+      - if during traversal, you encounter a visited vertex that is not the parent of the current vertex in the DFS tree, a cycle is detected
+    - Continue DFS until all vertices are visited
+    - If no cycles are detected, the graph is acyclic
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use an efficient data structure for storing visited vertices, such as a set or array
+    - understand the behavior of DFS in traversing graphs
+    - pay attention to how the algorithm handles back edges during traversal
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    hasCycle(graph):
+      visited = set() // Set to keep track of visited vertices
+      for vertex in graph.vertices:
+        if vertex not in visited:
+          if dfs(vertex, visited, None): // Start DFS from current vertex
+            return true // If cycle detected, return true
+      return false // If no cycle detected, return false
+
+    dfs(vertex, visited, parent):
+      visited.add(vertex) // Mark current vertex as visited
+      for neighbor in vertex.neighbors:
+        if neighbor not in visited: // If neighbor not visited, recursively call DFS
+          if dfs(neighbor, visited, vertex):
+            return true // If cycle detected, return true
+        else if neighbor != parent: // If neighbor is visited and not parent, cycle detected
+          return true
+      return false // If no cycle detected, return false
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

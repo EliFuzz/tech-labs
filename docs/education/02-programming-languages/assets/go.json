@@ -1,0 +1,494 @@
+{
+  "key": "go",
+  "metadata": {
+    "name": "Go",
+    "url": "https://golang.org/",
+    "logo": "/static/img/lang/go.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "bool",
+      "description": "Boolean",
+      "code": "true"
+    },
+    {
+      "name": "string",
+      "description": "UTF-8 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "byte",
+      "description": "Byte (8-bit) - alias for uint8: 0 to 255(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "int8",
+      "description": "Signed Integer (8-bit): -128(-2⁸) to 127(2⁸ - 1)",
+      "code": "-0"
+    },
+    {
+      "name": "uint8",
+      "description": "Unsigned Integer (8-bit): 0 to 255(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "int16",
+      "description": "Signed Integer (16-bit): -32768(-2¹⁶) to 32767(2¹⁶ - 1)",
+      "code": "-0"
+    },
+    {
+      "name": "uint16",
+      "description": "Unsigned Integer (16-bit): 0 to 65535(2¹⁶ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "int32",
+      "description": "Signed Integer (32-bit): -2147483648(-2³¹) to 2147483647(2³¹ - 1)",
+      "code": "-0"
+    },
+    {
+      "name": "uint32",
+      "description": "Unsigned Integer (32-bit): 0 to 4294967295(2³¹ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "int64",
+      "description": "Signed Integer (64-bit): -9223372036854775808(-2⁶³) to 9223372036854775807(2⁶³ - 1)",
+      "code": "-0"
+    },
+    {
+      "name": "uint64",
+      "description": "Unsigned Integer (64-bit): 0 to 18446744073709551615(2⁶³ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "int",
+      "description": "Signed Integer (32/64-bit) - platform dependent",
+      "code": "0"
+    },
+    {
+      "name": "uint",
+      "description": "Unsigned Integer (32/64-bit) - platform dependent",
+      "code": "0"
+    },
+    {
+      "name": "uintptr",
+      "description": "Unsigned Integer (pointer size) - platform dependent",
+      "code": "0xc82000c290"
+    },
+    {
+      "name": "rune",
+      "description": "Rune - alias for int32: represents a Unicode code point",
+      "code": "0"
+    },
+    {
+      "name": "float32",
+      "description": "32-bit floating point: -3.4028234663852886e+38 to 3.4028234663852886e+38",
+      "code": "0.0"
+    },
+    {
+      "name": "float64",
+      "description": "64-bit floating point: -1.7976931348623157e+308 to 1.7976931348623157e+308",
+      "code": "0.0"
+    },
+    {
+      "name": "complex64",
+      "description": "32-bit complex number: -3.4028234663852886e+38 to 3.4028234663852886e+38",
+      "code": "complex(8,-5)"
+    },
+    {
+      "name": "complex128",
+      "description": "64-bit complex number: -1.7976931348623157e+308 to 1.7976931348623157e+308",
+      "code": "complex(8,-5)"
+    }
+  ],
+  "reservedKeywords": [
+    "break",
+    "case",
+    "chan",
+    "const",
+    "continue",
+    "default",
+    "defer",
+    "else",
+    "fallthrough",
+    "for",
+    "func",
+    "go",
+    "goto",
+    "if",
+    "import",
+    "interface",
+    "map",
+    "package",
+    "range",
+    "return",
+    "select",
+    "struct",
+    "switch",
+    "type",
+    "var"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Hello, World!\")\n}"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [
+      {
+        "name": "namespace",
+        "description": "Package: every source file begins with a package clause. 'main' denotes an executable, not a library",
+        "code": "package main"
+      }
+    ],
+    "imports": [
+      {
+        "name": "package_standard_library",
+        "description": "package in the Go standard library",
+        "code": "import \"fmt\""
+      },
+      {
+        "name": "package_nested",
+        "description": "Implements some I/O utility functions",
+        "code": "import \"io/ioutil\""
+      },
+      {
+        "name": "package_alias",
+        "description": "Math library with local alias m",
+        "code": "import m \"math\""
+      },
+      {
+        "name": "package_github",
+        "description": "package in the github.com/google/uuid library",
+        "code": "import \"github.com/google/uuid\""
+      }
+    ],
+    "variables": [
+      {
+        "name": "variable_declaration",
+        "description": "Variable declaration",
+        "code": "var x int"
+      },
+      {
+        "name": "variable_assignment",
+        "description": "Variable assignment",
+        "code": "var x int\nx = 8"
+      },
+      {
+        "name": "variable_assignment_with_type",
+        "description": "Variable assignment with type",
+        "code": "var x uint = 8"
+      },
+      {
+        "name": "short_declaration",
+        "description": "Short declaration",
+        "code": "x:=8"
+      },
+      {
+        "name": "multiple_return_values",
+        "description": "Multiple return values",
+        "code": "sum, prod := sum(x, y)"
+      },
+      {
+        "name": "string",
+        "description": "String",
+        "code": "str := \"Hello, World!\""
+      },
+      {
+        "name": "multiline_string",
+        "description": "Multiline string",
+        "code": "str := `A \"raw\" string literal\n\ncan include line breaks.`"
+      },
+      {
+        "name": "string_interpolation",
+        "description": "String interpolation",
+        "code": "message := fmt.Sprintf(\"Hello, my name is %s\", name)"
+      },
+      {
+        "name": "rune",
+        "description": "Rune, an alias for int32, represents a Unicode code point",
+        "code": "g := 'Σ'"
+      },
+      {
+        "name": "float",
+        "description": "Float64",
+        "code": "f := 3.14159"
+      },
+      {
+        "name": "complex",
+        "description": "Complex128: represented internally with 2 float64's",
+        "code": "c := 3 + 4i"
+      },
+      {
+        "name": "convertion_syntax",
+        "description": "Conversion syntax",
+        "code": "n := byte('\\n')"
+      },
+      {
+        "name": "byte_slice",
+        "description": "Byte slice",
+        "code": "bs := []byte(\"hello\")"
+      },
+      {
+        "name": "array_initialization",
+        "description": "Array initialization with 0's",
+        "code": "var arr [4]int"
+      },
+      {
+        "name": "array_initialization_with_values",
+        "description": "Array initialization with values",
+        "code": "arr := [...]int{3, 1, 8, 88, 100}"
+      },
+      {
+        "name": "array_copy",
+        "description": "Copy of arr, 2 separate instances",
+        "code": "arr_copy := arr"
+      },
+      {
+        "name": "array_update",
+        "description": "Update value at index 0, only arr_copy is affected",
+        "code": "arr_copy[0] = 8"
+      },
+      {
+        "name": "2d_array_declaration",
+        "description": "2D array declaration with 0's",
+        "code": "var d2 [][]float64"
+      },
+      {
+        "name": "slice_initialization_with_0",
+        "description": "Slice initialization with 0's",
+        "code": "sl := make([]int, 4)"
+      },
+      {
+        "name": "slice_initialization_with_values",
+        "description": "Slice initialization with values",
+        "code": "sl := []int{4, 8, 9}"
+      },
+      {
+        "name": "slice_copy",
+        "description": "Copy of slice. Both variables point to the same instance therefore update both",
+        "code": "sl_copy := sl\nsl_copy[0] = 8"
+      },
+      {
+        "name": "slice_append",
+        "description": "Append to slice",
+        "code": "sl = append(sl, 8)"
+      },
+      {
+        "name": "slice_append_another_slice",
+        "description": "Append another slice",
+        "code": "sl = append(sl, []int{8, 9}...)"
+      },
+      {
+        "name": "pointer",
+        "description": "Pointer",
+        "code": "p := 5\nfmt.Println(*p)"
+      },
+      {
+        "name": "unused_variable",
+        "description": "Unused variable",
+        "code": "_ := myFunc()"
+      },
+      {
+        "name": "map_initialization",
+        "description": "Map initialization",
+        "code": "m := map[string]int{\"3\": 3, \"4\": 4}\nm[\"1\"] = 1"
+      },
+      {
+        "name": "variadic_parameters_func_input",
+        "description": "Variadic parameters function input",
+        "code": "func myFunc(x...int) {}"
+      },
+      {
+        "name": "variadic_parameters_passing",
+        "description": "Variadic parameters passing to function",
+        "code": "myFunc(arr...)"
+      }
+    ],
+    "functions": [
+      {
+        "name": "main",
+        "description": "Main function",
+        "code": "func main() {}"
+      },
+      {
+        "name": "custom_function_declaration",
+        "description": "Custom function declaration",
+        "code": "func myFunc() {}"
+      },
+      {
+        "name": "function_with_parameters",
+        "description": "Function with parameters",
+        "code": "func myFunc(x int) {}"
+      },
+      {
+        "name": "function_with_return",
+        "description": "Function with return",
+        "code": "func myFunc() int {}"
+      },
+      {
+        "name": "function_with_multiple_return",
+        "description": "Function with multiple return",
+        "code": "func sum(x, y int) (sum, prod int) {\n  return x + y, x * y\n}"
+      },
+      {
+        "name": "function_with_named_return",
+        "description": "Function with named return",
+        "code": "func sum(x, y int) (sum int) {\n  sum = x + y\n  return\n}"
+      },
+      {
+        "name": "call",
+        "description": "Call function",
+        "code": "myFunc()"
+      },
+      {
+        "name": "call_with_parameters",
+        "description": "Call function with parameters",
+        "code": "myFunc(8)"
+      },
+      {
+        "name": "closure_initialization",
+        "description": "Closure initialization",
+        "code": "x := func() bool {\n  return x > 1000\n}"
+      },
+      {
+        "name": "closure_call",
+        "description": "Closure call",
+        "code": "x()"
+      },
+      {
+        "name": "closure_inline",
+        "description": "Closure inline",
+        "code": "x := func() bool { return x > 1000 }()"
+      },
+      {
+        "name": "anonymous_function",
+        "description": "Anonymous function",
+        "code": "func(a, b int) int {\n  return (a + b) * 2\n}(8, 2)"
+      },
+      {
+        "name": "defer",
+        "description": "Defer statements execute function calls in reverse order after the surrounding function returns, commonly used for tasks like file closure to keep related operations close in code",
+        "code": "defer myFunc()"
+      },
+      {
+        "name": "decorator",
+        "description": "Decorators",
+        "code": "func myFunc(str string) func(before, after string) string {\n  return func(before, after string) string {\n    return fmt.Sprintf(\"%s %s %s\", before, str, after)  \n  }\n}"
+      }
+    ],
+    "flowControls": [
+      {
+        "name": "if",
+        "description": "If statement",
+        "code": "if true {}"
+      },
+      {
+        "name": "if_else",
+        "description": "If-else statement",
+        "code": "if true {} else {}"
+      },
+      {
+        "name": "switch",
+        "description": "Switch statement",
+        "code": "x := 48.0\nswitch x {\n  case 0:\n  case 1, 2:\n  case 48:\n  case 49:\n    // Unreached.\n  default:\n}"
+      },
+      {
+        "name": "type_switch",
+        "description": "Type switch statement",
+        "code": "var data interface{}\ndata = \"\"\nswitch c := data.(type) {\n  case string:\n    fmt.Println(c, \"string\")\n  case int64:\n    fmt.Printf(\"%d int64\\n\", c)\n  default:\n}"
+      },
+      {
+        "name": "for",
+        "description": "For statement",
+        "code": "for x := 0; x < 3; x++ {\n  fmt.Println(x)\n}"
+      },
+      {
+        "name": "for_break",
+        "description": "For statement with break",
+        "code": "for x := 0; x < 3; x++ {\n  if x == 1 {\n    break\n  }\n  fmt.Println(x)\n}"
+      },
+      {
+        "name": "for_continue",
+        "description": "For statement with continue",
+        "code": "for x := 0; x < 3; x++ {\n  if x == 1 {\n    continue\n  }\n  fmt.Println(x)\n}"
+      },
+      {
+        "name": "for_range",
+        "description": "For statement with range. Range is used to iterate over an array, a slice, a string, a map, or a channel",
+        "code": "for key, value := range map[string]int{\"1\": 1, \"2\": 2, \"3\": 3} {\n  fmt.Printf(\"key=%s, value=%d\\n\", key, value)\n}"
+      }
+    ],
+    "structures": [
+      {
+        "name": "interface_initialization",
+        "description": "Interface initialization",
+        "code": "type myInterface interface {\n  myMethod()\n}"
+      },
+      {
+        "name": "struct_initialization",
+        "description": "Struct initialization",
+        "code": "type myStruct struct {\n  myField int\n}"
+      }
+    ],
+    "errorHandling": [
+      {
+        "name": "ok_idiom",
+        "description": "Ok idiom",
+        "code": "m := map[int]string{8: \"8\"}\nif x, ok := m[1]; ok {\n  fmt.Print(x)\n} else {\n  fmt.Print(\"missing\")\n}"
+      },
+      {
+        "name": "error_idiom",
+        "description": "Error idiom",
+        "code": "if _, err := myFunc(); err != nil {\n  fmt.Println(err)\n}"
+      }
+    ],
+    "concurrency": [
+      {
+        "name": "goroutine",
+        "description": "Goroutine",
+        "code": "go myFunc()"
+      },
+      {
+        "name": "channel_initialization",
+        "description": "Channel initialization",
+        "code": "c := make(chan int)"
+      },
+      {
+        "name": "channel",
+        "description": "Channel",
+        "code": "func inc(i int, c chan int) {\n  c <- i + 1\n}"
+      },
+      {
+        "name": "channel_send_inline",
+        "description": "Channel send inline",
+        "code": "c <- 8"
+      },
+      {
+        "name": "channel_send_function",
+        "description": "Channel send function",
+        "code": "go inc(8, c)"
+      },
+      {
+        "name": "channel_receive",
+        "description": "Channel receive",
+        "code": "x := <-c"
+      }
+    ]
+  }
+}

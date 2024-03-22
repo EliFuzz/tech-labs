@@ -1,0 +1,124 @@
+---
+title: Straight Traversal
+description: Straight Traversal
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/straight-traversal/go.go";
+import Java from "!!raw-loader!./assets/straight-traversal/java.java";
+import JS from "!!raw-loader!./assets/straight-traversal/js.js";
+import Kotlin from "!!raw-loader!./assets/straight-traversal/kt.kt";
+import Python from "!!raw-loader!./assets/straight-traversal/py.py";
+import Rust from "!!raw-loader!./assets/straight-traversal/rs.rs";
+import TS from "!!raw-loader!./assets/straight-traversal/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Straight Traversal Algorithm is a method used in graph theory to traverse a graph by moving along edges in a straight path from one vertex to another, without revisiting any vertices
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Select a starting vertex. Then explores adjacent vertices in a systematic manner, without revisiting any vertices already visited. The algorithm employs a data structure to keep track of visited vertices and the current path. It continues until all reachable vertices have been visited or until a specific condition is met. The choice of data structure (stack or queue) may affect the order in which vertices are visited
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Select a vertex to start the traversal
+    - Initialize a data structure to keep track of visited vertices and the current path
+      - Explore the neighbors of the current vertex
+      - Select the next vertex to visit based on a specific criteria (e.g., alphabetical order, distance, etc.)
+      - Update the data structures to mark the current vertex as visited and add it to the path
+      - Repeat the process until all reachable vertices have been visited
+    - Terminate the algorithm when all vertices have been visited or when a specific condition is met
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - consider different strategies for selecting the next vertex to visit, such as depth-first or breadth-first
+    - implement mechanisms to detect and handle cycles in the graph to prevent infinite loops
+    - ensure the graph is properly represented to facilitate efficient traversal
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    straightTraversal(graph, startVertex):
+      stack = empty stack
+      visited = set() // Set to keep track of visited vertices
+      path = empty list
+
+      stack.push(startVertex)
+
+      while stack is not empty:
+        currentVertex = stack.pop()
+
+        if currentVertex is not in visited:
+          add currentVertex to visited set
+          add currentVertex to path list
+
+          for each neighbor in graph.adjacent(currentVertex):
+            if neighbor is not in visited:
+              stack.push(neighbor)
+
+      return path
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

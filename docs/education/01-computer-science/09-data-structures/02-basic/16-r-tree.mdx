@@ -1,0 +1,522 @@
+---
+title: R-Tree
+description: R-Tree Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/rTree/go.go";
+import Java from "!!raw-loader!./assets/rTree/java.java";
+import JS from "!!raw-loader!./assets/rTree/js.js";
+import Kotlin from "!!raw-loader!./assets/rTree/kt.kt";
+import Python from "!!raw-loader!./assets/rTree/py.py";
+import Rust from "!!raw-loader!./assets/rTree/rs.rs";
+import TS from "!!raw-loader!./assets/rTree/ts.ts";
+
+![](./assets/rTree/rTree.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="bad">O(n log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **R-Tree** is a spatial index structure used in computer science and geographic information systems to efficiently organize and search spatial objects, facilitating operations like finding nearby
+    locations or detecting overlapping regions.
+
+  :::note[Simplified]
+
+  **R-Tree** is like a smart index for digital maps, organizing locations into boxes for efficient searches. It helps quickly find specific places, like parks or restaurants, by guiding you to
+  relevant areas rather than scanning the entire map. In essence, it's an efficient guide for locating things on a digital map
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **R-Tree** is a spatial indexing data structure used for organizing and efficiently querying multidimensional spatial data. It arranges data in a hierarchical manner, with internal nodes
+    representing bounding rectangles of child nodes and leaves representing actual data objects within rectangles. R-Trees are designed to minimize overlap, optimize space, and enable fast retrieval
+    of spatial information, making them useful in applications like geographic information systems and databases dealing with multidimensional data.
+
+    ### Properties
+
+    - **Structure Components**: Consists of a single root, internal nodes, and leaf nodes
+    - **Root Property**: The root contains a pointer to the largest region in the spatial domain
+    - **Parent-Child Relationship**: Parent nodes contain pointers to their child nodes, where the region of child nodes completely overlaps the regions of parent nodes
+    - **Leaf Node Information**: Leaf nodes contain data about the Minimum Bounding Region (MBR) for the current objects
+    - **MBR Definition**: Minimum Bounding Region, refers to the minimal bounding box parameter surrounding the region/object under consideration
+
+    ### Use Cases:
+
+    - Indexing multi-dimensional information
+    - Handling geospatial coordinates
+    - Implementation of virtual maps
+    - Handling game data
+
+    ### R*-Tree vs R-tree
+
+    <table>
+      <tr>
+        <th>Feature</th>
+        <th>R*-Tree</th>
+        <th>R-Tree</th>
+      </tr>
+      <tr>
+        <td>Splitting Strategy</td>
+        <td>Optimized split strategy (e.g., R*-split)</td>
+        <td>Basic split strategy (e.g., linear split)</td>
+      </tr>
+      <tr>
+        <td>Overlapping Nodes</td>
+        <td>Minimizes overlapping nodes for better performance</td>
+        <td>May have more overlapping nodes</td>
+      </tr>
+      <tr>
+        <td>Node Overlap Reduction</td>
+        <td>Uses delayed reinsertion to reduce overlap</td>
+        <td>May not have sophisticated overlap reduction</td>
+      </tr>
+      <tr>
+        <td>Node Overflow Handling</td>
+        <td>Utilizes quadratic split for overflow nodes</td>
+        <td>Utilizes basic split (e.g., linear split) for overflow nodes</td>
+      </tr>
+      <tr>
+        <td>Node Utilization</td>
+        <td>More efficient space utilization</td>
+        <td>May have less efficient space utilization</td>
+      </tr>
+      <tr>
+        <td>Query Performance</td>
+        <td>Generally better query performance</td>
+        <td>May have slightly lower query performance</td>
+      </tr>
+      <tr>
+        <td>Insertion and Deletion</td>
+        <td>Improved insertion and deletion algorithms</td>
+        <td>May have simpler but less efficient algorithms</td>
+      </tr>
+      <tr>
+        <td>Complexity of Implementation</td>
+        <td>More complex due to advanced strategies</td>
+        <td>Simpler and easier to implement</td>
+      </tr>
+      <tr>
+        <td>General Efficiency</td>
+        <td>Designed for better overall efficiency</td>
+        <td>Basic design with acceptable efficiency</td>
+      </tr>
+    </table>
+
+    ### Quad-Tree vs R-Tree
+
+    <table>
+      <tr>
+        <th>Feature</th>
+        <th>Quad-Tree</th>
+        <th>R-Tree</th>
+      </tr>
+      <tr>
+        <td>Tiling Level Optimization</td>
+        <td>Required</td>
+        <td>Optional</td>
+      </tr>
+      <tr>
+        <td>Implementation on B-Tree</td>
+        <td>Can be implemented on top of an existing B-tree</td>
+        <td>Follows a different structure from a B-tree</td>
+      </tr>
+      <tr>
+        <td>Spatial Index Creation Speed</td>
+        <td>Faster compared to R-Trees</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Performance in Nearest Neighbour Queries</td>
+        <td></td>
+        <td>Faster than Quad-trees</td>
+      </tr>
+      <tr>
+        <td>Performance in Window Queries</td>
+        <td>Faster than R-Trees</td>
+        <td></td>
+      </tr>
+    </table>
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Calculate Bounding Box</td>
+         <td>
+           ```
+           _calculate_bounding_box(points):
+             min_x = min(p[0] for p in points)
+             min_y = min(p[1] for p in points)
+             max_x = max(p[0] for p in points)
+             max_y = max(p[1] for p in points)
+             return (min_x, min_y, max_x, max_y)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Calculate Expanded Bbox</td>
+         <td>
+           ```
+           _calculate_expanded_bbox(old_bbox, point):
+             min_x, min_y, max_x, max_y = old_bbox
+             new_min_x = min(min_x, point[0])
+             new_min_y = min(min_y, point[1])
+             new_max_x = max(max_x, point[0])
+             new_max_y = max(max_y, point[1])
+             return (new_min_x, new_min_y, new_max_x, new_max_y)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Point In Bbox</td>
+         <td>
+           ```
+           _point_in_bbox(point, bbox):
+             return bbox[0] <= point[0] <= bbox[2] and bbox[1] <= point[1] <= bbox[3]
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Distance</td>
+         <td>
+           ```
+           _distance(point1, point2):
+             return sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Bbox Fully Contained</td>
+         <td>
+           ```
+           _bbox_fully_contained(bbox1, bbox2):
+             return bbox1[0] >= bbox2[0] and bbox1[1] >= bbox2[1] and bbox1[2] <= bbox2[2] and bbox1[3] <= bbox2[3]
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Bbox Intersects Query</td>
+         <td>
+           ```
+           _bbox_intersects_query(bbox, query_bbox):
+             return not (bbox[2] < query_bbox[0] or
+                         bbox[0] > query_bbox[2] or
+                         bbox[3] < query_bbox[1] or
+                         bbox[1] > query_bbox[3])
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Split</td>
+         <td>
+           ```
+           _split(node):
+             split_point = len(node.children) // 2
+             new_node = RTreeNode(is_leaf=node.is_leaf)
+             new_node.children = node.children.split(split_point, node.children.length)
+             node.children = node.children.split(0, split_point)
+
+             node.bounding_box = _calculate_bounding_box(node.children)
+             new_node.bounding_box = _calculate_bounding_box(new_node.children)
+
+             if node == root:
+               new_root = RTreeNode(is_leaf=False)
+               new_root.children = [node, new_node]
+               new_root.bounding_box = _calculate_bounding_box(new_root.children)
+               root = new_root
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Calculate Area Increase</td>
+         <td>
+           ```
+           _calculate_area_increase(old_bbox, new_bbox):
+             old_area = (old_bbox[2] - old_bbox[0]) * (old_bbox[3] - old_bbox[1])
+             new_area = (new_bbox[2] - new_bbox[0]) * (new_bbox[3] - new_bbox[1])
+             return new_area - old_area
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Insertion</td>
+         <td>
+           ```
+           insert(point):
+             _insert_recursive(root, point)
+
+           _insert_recursive(node, point):
+             if node.is_leaf:
+               node.children.append(point)
+               if len(node.children) > max_children:
+                 _split(node)
+             else:
+               min_increase = ∞
+               best_child = ø
+
+               for child in node.children:
+                 child_bbox = _calculate_bounding_box(child)
+                 expanded_bbox = _calculate_expanded_bbox(child_bbox, point)
+                 increase = _calculate_area_increase(child_bbox, expanded_bbox)
+
+                 if increase < min_increase:
+                   min_increase=increase
+                   best_child=child
+
+               _insert_recursive(best_child, point)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Search Recursive</td>
+         <td>
+           ```
+           _search_recursive(node, query_bbox, result):
+             if node.is_leaf:
+               for point in node.children:
+                 if _point_in_bbox(point, query_bbox):
+                   result.append(point)
+             else:
+               for child in node.children:
+                 child_bbox = _calculate_bounding_box(child)
+                 if _bbox_intersects_query(child_bbox, query_bbox):
+                   _search_recursive(child, query_bbox, result)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Nearest Neighbors Recursive</td>
+         <td>
+           ```
+           nearest_neighbors_recursive(node, query_point, k, result):
+             if node.is_leaf:
+               for point in node.children:
+                 _update_nearest_neighbors(query_point, point, k, result)
+             else:
+               sorted_children = sorted(node.children, key=lambda child: _distance(query_point, _calculate_bounding_box(child)))
+
+               for child in sorted_children:
+                 child_bbox = _calculate_bounding_box(child)
+                 if _distance(query_point, child_bbox) < result[-1][0]:
+                   _nearest_neighbors_recursive(child, query_point, k, result)
+
+           _update_nearest_neighbors(query_point, point, k, result):
+             distance = _distance(query_point, point)
+
+             if len(result) < k:
+               result.append((distance, point))
+               result.sort(key=lambda x: x[0], reverse=True)
+             elif distance < result[0][0]:
+               result[0] = (distance, point)
+               result.sort(key=lambda x: x[0], reverse=True)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Delete Recursive</td>
+         <td>
+           ```
+           _delete_recursive(node, point):
+             if node.is_leaf:
+               node.children = [p for p in node.children if p != point]
+             else:
+               for child in node.children:
+                 child_bbox = _calculate_bounding_box(child)
+                 if _point_in_bbox(point, child_bbox):
+                   _delete_recursive(child, point)
+                   break
+               node.bounding_box = _calculate_bounding_box(node.children)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Update</td>
+         <td>
+           ```
+           update(old_point, new_point):
+             _recursive_update(root, old_point, new_point)
+
+           _recursive_update(node, old_point, new_point):
+             if node.is_leaf:
+               for i, child in enumerate(node.children):
+                 if child.bounding_box == old_point:
+                   node.children[i].bounding_box = new_point
+                   return
+             else:
+               for child in node.children:
+                 if _intersects(child.bounding_box, old_point):
+                   _recursive_update(child, old_point, new_point)
+
+           _intersects(box1, box2):
+             return not (box1[2] < box2[0] or
+                         box1[0] > box2[2] or
+                         box1[3] < box2[1] or
+                         box1[1] > box2[3])
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Range Query</td>
+         <td>
+           ```
+           range_query(query_bbox):
+             result = []
+             _range_query_recursive(root, query_bbox, result)
+             return result
+
+           _range_query_recursive(node, query_bbox, result):
+             if node.is_leaf:
+               for point in node.children:
+                 if _point_in_bbox(point, query_bbox):
+                   result.append(point)
+             else:
+               for child in node.children:
+                 child_bbox = _calculate_bounding_box(child)
+                 if _bbox_intersects_query(child_bbox, query_bbox):
+                   _range_query_recursive(child, query_bbox, result)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Window Query Recursive</td>
+         <td>
+           ```
+           window_query_recursive(node, query_bbox, result):
+             if node.is_leaf:
+               for point in node.children:
+                 if _point_in_bbox(point, query_bbox):
+                   result.append(point)
+             else:
+               for child in node.children:
+                 child_bbox = _calculate_bounding_box(child)
+                 if _bbox_fully_contained(child_bbox, query_bbox):
+                   window_query_recursive(child, query_bbox, result)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>kNN Query</td>
+         <td>
+           ```
+           knn_query(query_point, k):
+             result = []
+
+             _knn_search(root, query_point, k)
+
+             result.sort_based_on_second_element()
+             return result.split(0,k)
+
+           _knn_search(node, query_point, k):
+             if node.is_leaf:
+               for child in node.children:
+                 result.append((child, _distance(query_point, child.bounding_box)))
+             else:
+               distances = [(child, _calculate_min_distance(query_point, child.bounding_box)) for child in node.children]
+               distances.sort_based_on_second_element()
+
+               for child, _ in distances[:k]:
+                 knn_search(child, query_point, k)
+
+           _calculate_min_distance(point, bounding_box):
+             min_distance = 0
+             for i in range(len(point)):
+               if point[i] < bounding_box[i]:
+                 min_distance += (bounding_box[i] - point[i])**2
+               elif point[i] > bounding_box[i + 2]:
+                 min_distance += (point[i] - bounding_box[i + 2])**2
+             return sqrt(min_distance)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Traverse</td>
+         <td>
+           ```
+           traverse(visit_func):
+             recursive_traverse(root, visit_func)
+
+           recursive_traverse(node, visit_func):
+             visit_func(node)
+             if not node.is_leaf:
+               for child in node.children:
+                 recursive_traverse(child, visit_func)
+
+           print_node_info(node, depth):
+             indentation = " " * depth
+             if node.is_leaf:
+               print(indentation + "Leaf Node Bounding Box:", node.bounding_box)
+             else:
+               print(indentation + "Internal Node Bounding Box:", node.bounding_box)
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

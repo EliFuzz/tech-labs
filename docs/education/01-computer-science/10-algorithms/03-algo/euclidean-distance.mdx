@@ -1,0 +1,116 @@
+---
+title: Euclidean Distance
+description: Euclidean Distance
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/euclidean-distance/go.go";
+import Java from "!!raw-loader!./assets/euclidean-distance/java.java";
+import JS from "!!raw-loader!./assets/euclidean-distance/js.js";
+import Kotlin from "!!raw-loader!./assets/euclidean-distance/kt.kt";
+import Python from "!!raw-loader!./assets/euclidean-distance/py.py";
+import Rust from "!!raw-loader!./assets/euclidean-distance/rs.rs";
+import TS from "!!raw-loader!./assets/euclidean-distance/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Euclidean Distance Algorithm is a mathematical method used to calculate the distance between two points in Euclidean space
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The Euclidean Distance Algorithm computes the straight-line distance between two points in a multi-dimensional space. It utilizes the Pythagorean theorem, treating each dimension as a separate axis. By finding the square root of the sum of the squared differences between corresponding coordinates, the algorithm determines the distance
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Identify the Dimensionality
+      - determine the number of dimensions (features) in your space. Each dimension corresponds to a specific attribute or variable
+    - Retrieve the Coordinates
+      - obtain the coordinates of the two points for which you want to calculate the distance. These coordinates represent the values of each dimension for each point
+    - Calculate the Squared Differences
+      - for each dimension, subtract the corresponding coordinates of the two points and square the result. Repeat this process for all dimensions
+    - Sum the Squared Differences
+      - add up all the squared differences obtained in the previous step. This yields the sum of squared differences
+    - Take the Square Root
+      - compute the square root of the sum obtained in previous step. This is the Euclidean distance between the two points
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure consistency in dimensionality between the points being compared
+    - utilize vectorized operations for efficient computation, especially when dealing with large datasets
+    - normalize the data if the scales of different dimensions vary significantly
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    euclidean_distance(point1, point2):
+      sum_of_squared_differences = 0
+      for each dimension d in point1 and point2:
+        difference = point1[d] - point2[d]
+        squared_difference = difference * difference
+        sum_of_squared_differences += squared_difference
+      distance = square_root(sum_of_squared_differences)
+      return distance
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

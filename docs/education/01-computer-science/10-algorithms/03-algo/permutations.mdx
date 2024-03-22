@@ -1,0 +1,115 @@
+---
+title: Permutations
+description: Permutations
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/permutations/go.go";
+import Java from "!!raw-loader!./assets/permutations/java.java";
+import JS from "!!raw-loader!./assets/permutations/js.js";
+import Kotlin from "!!raw-loader!./assets/permutations/kt.kt";
+import Python from "!!raw-loader!./assets/permutations/py.py";
+import Rust from "!!raw-loader!./assets/permutations/rs.rs";
+import TS from "!!raw-loader!./assets/permutations/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Permutations Algorithm is a method used to generate all possible arrangements of elements in a set
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Recursively or iteratively generating permutations of elements in a set. At each step, it selects an element from the set and appends it to the current permutation. Then, it recursively generates permutations for the remaining elements until all elements have been used. The algorithm backtracks whenever it completes a permutation or reaches a dead-end, allowing it to explore all possible arrangements
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start with an empty permutation list
+    - Iterate through each element in the set
+    - For each element
+      - Append it to the current permutation
+      - Recursively generate permutations for the remaining elements
+      - Backtrack to explore other possibilities
+      - Repeat until all elements have been used
+    - Return the list of permutations
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use efficient data structures like arrays or lists to store permutations
+    - implement the algorithm using recursion for simplicity, but consider optimizing it with iteration for large sets
+    - utilize techniques like backtracking to efficiently explore all possible arrangements and avoid unnecessary computations
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    generate_permutations(elements, current_permutation, permutations):
+      if length(current_permutation) == length(elements):
+        permutations.append(current_permutation)
+        return
+
+      for each element in elements:
+        if element not in current_permutation:
+          new_permutation = current_permutation + [element]
+          generate_permutations(elements, new_permutation, permutations)
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

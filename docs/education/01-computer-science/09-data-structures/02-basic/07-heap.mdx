@@ -1,0 +1,484 @@
+---
+title: Heap
+description: Heap Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/heap/go.go";
+import Java from "!!raw-loader!./assets/heap/java.java";
+import JS from "!!raw-loader!./assets/heap/js.js";
+import Kotlin from "!!raw-loader!./assets/heap/kt.kt";
+import Python from "!!raw-loader!./assets/heap/py.py";
+import Rust from "!!raw-loader!./assets/heap/rs.rs";
+import TS from "!!raw-loader!./assets/heap/ts.ts";
+
+![](./assets/heap/heap.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>find MIN/MAX</th>
+      <th>delete MIN/MAX - remove root node</th>
+      <th>insert - update a key</th>
+      <th>increase key</th>
+      <th>meld - merge 2 heaps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Binary_heap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Binary
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Leftist_tree"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Leftist
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Binomial_heap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Binomial
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Fibonacci_heap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Fibonacci
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Pairing_heap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pairing
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Brodal_queue"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Brodal
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Rank-pairing_heap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Rank-pairing
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/Fibonacci_heap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Strict Fibonacci
+        </a>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+          href="https://en.wikipedia.org/wiki/2%E2%80%933_heap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          2-3 heap
+        </a>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="excellent">O(1)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Heap** is a tree-like data structure used for efficient storage and retrieval of data.
+
+  :::note[Simplified]
+
+  **Heap**, it's like a family tree of blocks where each block (called 'nodes') has children, but the rule is, the parent block is always bigger (or smaller depending on the type of heap) than its
+  children blocks. This helps find the biggest or smallest block quickly.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Heap** is a tree-based data structure that follows the heap property. It's used in efficient graph algorithms like Dijkstra's algorithm and the sorting algorithm heapsort. Heaps can also find
+    the `k-th`` smallest or largest element in an array, and are implemented as binary trees.
+
+    They're used in applications like priority queues, schedulers, and quick median calculations on data sets.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Heapify Up</td>
+         <td>
+           ```
+           heapify_up(index):
+             current_index = index
+             current_element = heap[current_index]
+
+             while current_index > 0:
+               parent_index = (current_index - 1) / 2
+               parent = heap[parent_index]
+
+               if current_element > parent:
+                 break
+               heap[current_index] = parent
+               current_index = parent_index
+
+             heap[current_index] = current_element
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Heapify Down</td>
+         <td>
+           ```
+           heapify_down(index):
+             current_index = index
+             while current_index < heap.length:
+               left_child_index=2 * current_index + 1
+               right_child_index = 2 * current_index + 2
+               left_child = heap[left_child_index]
+               right_child = heap[right_child_index]
+
+               min_child_index = ø
+               if left_child == ø || right_child == ø:
+                 if left_child == ø:
+                   min_child_index = left_child_index
+                 else:
+                   min_child_index = right_child_index
+               else:
+                 if left_child == right_child:
+                   if left_child < heap[current_index]:
+                     min_child_index = left_child_index
+                   else:
+                     min_child_index = right_child_index
+                 else if left_child < heap[current_index]:
+                   min_child_index = left_child_index
+                 else:
+                   min_child_index = right_child_index
+
+               if min_child_index == ø || heap[min_child_index] > heap[current_index]:
+                 break
+
+               min_child = heap[min_child_index]
+               heap[current_index] = min_child
+               current_index = min_child_index
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Find MIN</td>
+         <td>
+           ```
+           find_min():
+             if heap == ø:
+               return ø
+             return heap[0]
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Find MAX</td>
+         <td>
+           ```
+           find_max():
+             if heap == ø:
+               return ø
+             return heap[heap.length - 1]
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Extract MIN</td>
+         <td>
+           ```
+           extract_min():
+             if heap == ø:
+               return ø
+             min = heap[0]
+             heap[0] = heap[heap.length - 1]
+             heap.remove_last()
+             heapify_down(0)
+             return min
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Extract MAX</td>
+         <td>
+           ```
+           extract_max():
+             if heap == ø:
+               return ø
+
+             max = heap[heap.length - 1]
+             heap[0] = heap[heap.length - 1]
+             heap.remove_last()
+             heapify_down()
+             return max
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Insertion</td>
+         <td>
+           ```
+           insert(element):
+             heap.add(element)
+             heapify_up(heap.length - 1)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Increase Key</td>
+         <td>
+           ```
+           increase_key(index, newKey):
+             if newKey <> heap[index]:
+               "New key must be greater than current key"
+
+             heap[index] = newKey
+             heapifyUp(index)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Decrease Key</td>
+         <td>
+           ```
+           decrease_key(index, newKey):
+             if newKey > heap[index]:
+               "New key must be less than current key"
+
+             heap[index] = newKey
+             heapify_down(index)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Meld</td>
+         <td>
+           ```
+           meld(other):
+             merged_heap = Heap()
+             merged_heap.heap = heap + other.heap
+
+             for i, i in heap.length / 2, i >= 0:
+               heapify_down(i)
+
+             return merged_heap
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

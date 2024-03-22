@@ -1,0 +1,144 @@
+---
+title: Binary Floating Point
+description: Binary Floating Point
+hide_table_of_contents: true
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+import Go from '!!raw-loader!./assets/binary-floating-point/go.go';
+import Java from '!!raw-loader!./assets/binary-floating-point/java.java';
+import JS from '!!raw-loader!./assets/binary-floating-point/js.js';
+import Kotlin from '!!raw-loader!./assets/binary-floating-point/kt.kt';
+import Python from '!!raw-loader!./assets/binary-floating-point/py.py';
+import Rust from '!!raw-loader!./assets/binary-floating-point/rs.rs';
+import TS from '!!raw-loader!./assets/binary-floating-point/ts.ts';
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Binary Floating Point Algorithm is a method used for representing real numbers in a binary format. It involves breaking down a real number into its binary representation consisting of a sign bit, an exponent, and a fraction (also known as mantissa). This algorithm ensures efficient storage and arithmetic operations on floating-point numbers.
+
+    Computers store floating-point numbers using the **IEEE 754** standard, which allows for a wider range of values, including small numbers closer to zero and also utilizes biased exponents to allow
+    for negative exponents.
+
+    This standard splits the representation of numbers into parts:
+
+    - sign
+    - exponent
+    - fraction
+
+    Different floating-point formats allocate varying numbers of bits for each part:
+
+    - half-precision (16 bits)
+    - single-precision (32 bits)
+    - double-precision (64 bits)
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Given a real number, first determine its sign, then normalize it by adjusting its exponent and fraction, convert the normalized components into binary, combine them to form the floating-point representation, and finally output this binary representation
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Extract Sign
+      - if the number is positive, set the sign bit to 0 else set it to 1
+    - Normalize
+      - determine the exponent required to represent the number accurately. Adjust the fraction accordingly
+    - Convert to Binary
+      - convert the sign bit, exponent, and fraction into their binary representations
+    - Combine Components
+      - concatenate the binary representations of the sign, exponent, and fraction
+    - Output
+      - output the combined binary representation as the binary floating-point format of the input number
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure proper handling of special cases like zero, infinity, and NaN (Not a Number)
+    - consider the precision requirements of the application to determine the number of bits allocated for the exponent and fraction
+    - implement proper rounding techniques to minimize errors in floating-point arithmetic
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+     function binaryFloatingPointAlgorithm(realNumber):
+       // Step 1: Extract Sign
+       if realNumber < 0:
+         signBit = 1
+       else:
+         signBit = 0
+
+       // Step 2: Normalize
+       exponent = calculateExponent(realNumber)
+       fraction = calculateFraction(realNumber, exponent)
+
+       // Step 3: Convert to Binary
+       signBinary = convertToBinary(signBit)
+       exponentBinary = convertToBinary(exponent)
+       fractionBinary = convertToBinary(fraction)
+
+       // Step 4: Combine Components
+       binaryRepresentation = concatenate(signBinary, exponentBinary, fractionBinary)
+
+       // Step 5: Output
+       return binaryRepresentation
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

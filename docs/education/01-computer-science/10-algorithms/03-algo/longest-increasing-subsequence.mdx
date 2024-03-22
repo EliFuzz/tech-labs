@@ -1,0 +1,117 @@
+---
+title: Longest Increasing Subsequence (LIS)
+description: Longest Increasing Subsequence (LIS)
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/longest-increasing-subsequence/go.go";
+import Java from "!!raw-loader!./assets/longest-increasing-subsequence/java.java";
+import JS from "!!raw-loader!./assets/longest-increasing-subsequence/js.js";
+import Kotlin from "!!raw-loader!./assets/longest-increasing-subsequence/kt.kt";
+import Python from "!!raw-loader!./assets/longest-increasing-subsequence/py.py";
+import Rust from "!!raw-loader!./assets/longest-increasing-subsequence/rs.rs";
+import TS from "!!raw-loader!./assets/longest-increasing-subsequence/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Longest Increasing Subsequence (LIS) algorithm is a dynamic programming approach used to find the longest subsequence in an array where the elements are in increasing order
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The LIS algorithm works by iterating through each element in the given array and maintaining a separate array to store the length of the longest increasing subsequence ending at each index. At each step, the algorithm compares the current element with all previous elements to find the longest increasing subsequence ending at the current element. It updates the length of the longest increasing subsequence for the current element based on the maximum length found so far. Finally, the algorithm returns the maximum length of the longest increasing subsequence
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize an array `dp` of size equal to the length of the input array, where `dp[i]` will store the length of the longest increasing subsequence ending at index `i`
+    - Set all elements of `dp` to 1 initially, as the minimum length of any subsequence is 1 (which is the element itself)
+    - Iterate through each element `arr[i]` in the input array
+    - For each element, iterate through all previous elements `arr[j]` where `j < i`
+    - If `arr[j] < arr[i]`, meaning the current element can be part of the increasing subsequence ending at index `i`, update `dp[i]` to `max(dp[i], dp[j] + 1)`
+    - After iterating through all previous elements, `dp[i]` will hold the length of the longest increasing subsequence ending at index `i`
+    - Find the maximum value in the `dp` array, which represents the length of the longest increasing subsequence
+    - This maximum value is the result
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize dynamic programming to efficiently solve the problem by breaking it down into smaller subproblems
+    - optimize the algorithm by using binary search to reduce the time complexity
+    - pay attention to the indices while updating the dp array to correctly compute the length of the longest increasing subsequence ending at each index
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    lis(arr):
+      # Initialize an array dp to store lengths of longest increasing subsequences
+      dp = array of length equal to size of arr, initialized with 1s
+      for i from 0 to length of arr - 1:
+        for j from 0 to i - 1:
+          if arr[j] < arr[i]:
+            # Update the length of longest increasing subsequence ending at index i
+            dp[i] = max(dp[i], dp[j] + 1)
+      # Find the maximum value in dp
+      max_length = maximum value in dp
+      return max_length
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

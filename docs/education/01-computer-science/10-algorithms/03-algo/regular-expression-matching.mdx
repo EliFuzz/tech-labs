@@ -1,0 +1,126 @@
+---
+title: Regular Expression Matching
+description: Regular Expression Matching
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/regular-expression-matching/go.go";
+import Java from "!!raw-loader!./assets/regular-expression-matching/java.java";
+import JS from "!!raw-loader!./assets/regular-expression-matching/js.js";
+import Kotlin from "!!raw-loader!./assets/regular-expression-matching/kt.kt";
+import Python from "!!raw-loader!./assets/regular-expression-matching/py.py";
+import Rust from "!!raw-loader!./assets/regular-expression-matching/rs.rs";
+import TS from "!!raw-loader!./assets/regular-expression-matching/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Regular Expression Matching is a computational method used to determine whether a given string matches a pattern defined by a regular expression. It involves parsing the regular expression and the input string, and then applying matching rules iteratively to determine if there's a match.
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Starts by parsing the regular expression and the input string. Then, it iterates through each character in the input string and matches it with the corresponding regular expression pattern. It uses techniques like backtracking and dynamic programming to handle complex patterns efficiently
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Parse the regular expression into a data structure that represents its components (e.g., characters, wildcards, quantifiers)
+    - Iterate through each character in the input string
+    - For each character, compare it with the corresponding pattern in the regular expression
+    - Apply matching rules based on the pattern, considering characters, wildcards, and quantifiers
+    - If a match is found, move to the next character in both the input string and the regular expression
+    - If a mismatch occurs, backtrack or try alternative paths if applicable
+    - Continue this process until the end of the input string is reached or a match is found
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - implement techniques like memoization to avoid redundant computations
+    - handle special cases efficiently, such as empty strings and complex patterns with nested quantifiers
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    isMatch(input: string, pattern: string) -> boolean:
+      # Start matching from the beginning of input and pattern
+      return matchHelper(0, 0)
+
+    # Function to recursively match the pattern with the input string
+    function matchHelper(inputIndex: integer, patternIndex: integer) -> boolean:
+      # Base case: both input and pattern are exhausted
+      if inputIndex == length(input) and patternIndex == length(pattern):
+        return true
+      # Base case: pattern is exhausted, but input is not
+      if patternIndex == length(pattern):
+        return false
+      # Check if the current characters match or pattern has wildcard
+      currentMatch = inputIndex < length(input) and (input[inputIndex] == pattern[patternIndex] or pattern[patternIndex] == '.')
+      # Check if next character in pattern is a quantifier
+      if patternIndex + 1 < length(pattern) and pattern[patternIndex + 1] == '*':
+        # If pattern has a wildcard, try matching input with pattern after wildcard
+        return matchHelper(inputIndex, patternIndex + 2) or (currentMatch and matchHelper(inputIndex + 1, patternIndex))
+      # If characters match, move to next character in both input and pattern
+      if currentMatch:
+        return matchHelper(inputIndex + 1, patternIndex + 1)
+      return false
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

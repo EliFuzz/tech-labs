@@ -1,0 +1,133 @@
+---
+title: Weighted Random
+description: Weighted Random
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/weighted-random/go.go";
+import Java from "!!raw-loader!./assets/weighted-random/java.java";
+import JS from "!!raw-loader!./assets/weighted-random/js.js";
+import Kotlin from "!!raw-loader!./assets/weighted-random/kt.kt";
+import Python from "!!raw-loader!./assets/weighted-random/py.py";
+import Rust from "!!raw-loader!./assets/weighted-random/rs.rs";
+import TS from "!!raw-loader!./assets/weighted-random/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Weighted Random Algorithm is a method used to select elements randomly from a collection, with each element having a weighted probability of being chosen. This algorithm is commonly employed in scenarios where certain elements are more likely to be selected than others based on their assigned weights
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+     It operates in 3 main phases:
+      - preprocessing
+      - selection
+      - updating cumulative weights (optionally)
+
+     During preprocessing, cumulative weights for each element are computed by summing up the weights of all preceding elements in the collection. In the selection phase, a random number within the range of total weight sums is generated, and the algorithm iterates through the collection to find the first element whose cumulative weight surpasses this generated number, which is then returned as the selected element. Optionally, if the weights of elements dynamically change, the algorithm can update cumulative weights to reflect these changes
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Preprocessing
+      - start with an empty cumulative weight variable
+      - traverse the collection
+      - for each element, add its weight to the cumulative weight
+      - store cumulative weight for each element
+    - Selection
+      - generate a random number between 0 and the total sum of weights
+      - initialize a variable to store the cumulative weight
+      - traverse the collection
+      - for each element, check if the cumulative weight exceeds the generated random number
+      - if found, return the element
+    - Updating cumulative weights (Optional)
+      - whenever weights change
+      - recalculate cumulative weights following the preprocessing steps
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure that the weights of items accurately reflect their importance or priority
+    - consider using an efficient data structure to store the items and their weights, such as a dictionary or a tuple
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    weighted_random(collection):
+      cum_weights = calculate_cumulative_weights(collection)
+      random_num = generate_random_number(0, total_sum(cum_weights))
+      return select_element(collection, cum_weights, random_num)
+
+    calculate_cumulative_weights(collection):
+      cum_weights = []
+      cum_weight = 0
+      for each element in collection:
+        cum_weight += element.weight
+        cum_weights.append(cum_weight)
+      return cum_weights
+
+    select_element(collection, cum_weights, random_num):
+      for i from 0 to length(collection) - 1:
+        if random_num < cum_weights[i]:
+          return collection[i]
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

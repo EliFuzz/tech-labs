@@ -1,0 +1,123 @@
+---
+title: Dijkstra Algorithm
+description: Dijkstra Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/dijkstra-algorithm/go.go";
+import Java from "!!raw-loader!./assets/dijkstra-algorithm/java.java";
+import JS from "!!raw-loader!./assets/dijkstra-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/dijkstra-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/dijkstra-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/dijkstra-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/dijkstra-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Dijkstra's algorithm is a graph search algorithm that finds the shortest path between nodes in a graph, particularly for graphs with non-negative edge weights
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Set the distance from the start node to all other nodes as infinite, and the distance to itself as 0. We mark all nodes as unvisited and set the initial node as the current node. Then, for the current node, we assess each of its neighbors and compute their tentative distances through the current node. We compare these newly calculated tentative distances to the current assigned values and update them if a smaller distance is found. Afterward, we mark the current node as visited and remove it from the unvisited set. We check if the destination node has been visited or if the smallest tentative distance among the unvisited nodes is infinite; if so, the algorithm stops. Otherwise, we select the unvisited node with the smallest tentative distance, set it as the new current node, and repeat the process
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Start from the source node
+    - Assign tentative distances to all nodes. Initialize the source node distance as 0 and all others as infinite
+    - Mark all nodes as unvisited
+    - Set the current node as the source node
+    - For each neighboring node of the current node
+      - calculate the tentative distance from the source node through the current node
+      - if this distance is less than the current assigned distance, update it
+      - Mark the current node as visited
+      - If the destination node has been visited or if the smallest tentative distance among the unvisited nodes is infinite, stop. Otherwise, select the unvisited node with the smallest tentative distance as the new current node and repeat
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - keep track of the shortest distance from the source node to each node
+    - use a priority queue or heap to efficiently select the node with the smallest tentative distance
+    - ensure that the graph doesn't contain negative edge weights, as Dijkstra's algorithm doesn't work correctly with negative weights
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    Dijkstra(Graph, source):
+        dist[source] := 0
+        for each vertex v in Graph:
+            if v ≠ source
+                dist[v] := infinity
+            add v to unvisited set
+
+        while unvisited set is not empty:
+            current := vertex in unvisited set with smallest distance
+            remove current from unvisited set
+            for each neighbor v of current:
+                alt := dist[current] + weight(current, v)
+                if alt < dist[v]:
+                    dist[v] := alt
+
+        return dist
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

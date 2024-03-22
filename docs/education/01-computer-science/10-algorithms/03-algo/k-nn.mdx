@@ -1,0 +1,164 @@
+---
+title: k-NN
+description: k-NN
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/k-nn/go.go";
+import Java from "!!raw-loader!./assets/k-nn/java.java";
+import JS from "!!raw-loader!./assets/k-nn/js.js";
+import Kotlin from "!!raw-loader!./assets/k-nn/kt.kt";
+import Python from "!!raw-loader!./assets/k-nn/py.py";
+import Rust from "!!raw-loader!./assets/k-nn/rs.rs";
+import TS from "!!raw-loader!./assets/k-nn/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The k-Nearest Neighbors (k-NN) algorithm is a simple yet powerful supervised machine learning algorithm used for classification and regression tasks. It works by finding the k closest data points in the training set to a given input data point and then making predictions based on the labels or values of those neighboring points
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Select the number of neighbors (k) and specify a distance metric. Then, given an input data point, identify the k nearest neighbors using the chosen distance metric. For classification purposes, ascertain the majority class within the k neighbors and designate it as the predicted class for the input point. In regression tasks, compute the average (or weighted average) of the target values of the k neighbors, assigning it as the predicted value. Finally, return the predicted class or value based on the task at hand
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Choose the value of k, which determines how many neighbors will be considered for prediction
+    - Select a distance metric such as Euclidean distance or Manhattan distance
+    - For each data point in the dataset
+      - calculate the distance between the input data point and all other data points using the chosen distance metric
+      - sort the distances in ascending order and select the k nearest neighbors
+    - For classification
+      - determine the majority class among the k neighbors
+      - assign this class as the predicted class for the input data point
+    - For regression
+      - calculate the average (or weighted average) of the target values of the k neighbors
+      - assign this value as the predicted value for the input data point
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - choose an appropriate value of k based on the dataset size and complexity. A smaller k may lead to overfitting, while a larger k may lead to underfitting
+    - experiment with different distance metrics to find the one that best fits the data distribution
+    - scaling the features can improve the performance of the algorithm, especially when using distance-based metrics
+    - consider using weighted voting for classification, where closer neighbors have a higher influence on the prediction
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    knn_predict(input_point, training_data, k, task_type):
+        // Step 1: Calculate distances
+        distances = []
+        for point in training_data:
+            distance = calculate_distance(input_point, point)
+            distances.append((point, distance))
+
+        // Step 2: Sort distances
+        sorted_distances = sort(distances, by=distance_value)
+
+        // Step 3: Select k nearest neighbors
+        nearest_neighbors = sorted_distances[:k]
+
+        // Step 4: Perform prediction based on task type
+        if task_type == "classification":
+            predicted_class = majority_vote(nearest_neighbors)
+            return predicted_class
+        elif task_type == "regression":
+            predicted_value = calculate_average(nearest_neighbors)
+            return predicted_value
+
+    calculate_distance(point1, point2):
+        // Implementation of distance calculation (e.g., Euclidean, Manhattan)
+        // Returns the distance value
+
+    distance_value(element):
+        // Returns the distance value of the element (used for sorting)
+
+    majority_vote(neighbors):
+        // Step 5a: Count occurrences of each class
+        class_counts = {}
+        for neighbor in neighbors:
+            neighbor_class = neighbor[0].class
+            if neighbor_class in class_counts:
+                class_counts[neighbor_class] += 1
+            else:
+                class_counts[neighbor_class] = 1
+
+        // Step 5b: Find the class with the highest count
+        max_count = 0
+        majority_class = None
+        for cls, count in class_counts.items():
+            if count > max_count:
+                max_count = count
+                majority_class = cls
+        return majority_class
+
+    calculate_average(neighbors):
+        // Step 5: Calculate the average (or weighted average) of target values
+        total_value = 0
+        for neighbor in neighbors:
+            total_value += neighbor[0].value  // Assuming the value is stored in neighbor[0]
+        average_value = total_value / len(neighbors)
+        return average_value
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,221 @@
+---
+title: AVL Tree
+description: AVL Tree Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/avlTree/go.go";
+import Java from "!!raw-loader!./assets/avlTree/java.java";
+import JS from "!!raw-loader!./assets/avlTree/js.js";
+import Kotlin from "!!raw-loader!./assets/avlTree/kt.kt";
+import Python from "!!raw-loader!./assets/avlTree/py.py";
+import Rust from "!!raw-loader!./assets/avlTree/rs.rs";
+import TS from "!!raw-loader!./assets/avlTree/ts.ts";
+
+![](./assets/avlTree/avlTree.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="4">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair">O(n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+      <td>
+        <code className="good">O(log n)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **AVL Tree** is a self-balancing binary search tree that ensures the heights of its 2 child subtrees differ by at most one.
+
+  :::note[Simplified]
+
+  **Binary AVL Tree** is like a special bookshelf. It organizes data (like books) in a way that you can quickly find, add, or remove items. Each item can have 2 others next to it, one smaller and
+  one bigger. The shelf stays balanced by ensuring the difference in the number of items on either side of any item is not more than one.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **AVL Tree** named after inventors Adelson-Velsky and Landis, the first self-balancing binary search tree in computer science, ensures that the heights of 2 child subtrees of any node differ by at
+    most one. If they differ by more than one, the tree is rebalanced. Operations like lookup, insertion, and deletion take `O(log n)` time, where n is the pre-operation node count. Tree rotations may
+    be needed to rebalance after insertions or deletions.
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Pseudo Code</th>
+      </tr>
+      </thead>
+     <tbody>
+       <tr>
+         <td>Insertion</td>
+         <td>
+           ```
+           insert(node, key):
+             if node == ø:
+               return createNewNode(key)
+             if key < node.key:
+               node.left = insert(node.left, key)
+             else if key > node.key:
+               node.right = insert(node.right, key)
+             else:
+               return node // Duplicate keys are not allowed
+
+             node.height = 1 + max(height(node.left), height(node.right)) // Update height
+
+             return rebalance(node) // Perform rotations to maintain balance
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Rebalance</td>
+         <td>
+           ```
+           rebalance(node):
+             balance = get_balance(node)
+
+             if balance > 1: // Left Heavy
+               if get_balance(node.left) < 0: // Left-Right Case
+                 node.left = left_rotate(node.left)
+                 return right_rotate(node)
+
+             if balance < -1: // Right Heavy
+               if get_balance(node.right) > 0: // Right-Left Case
+                 node.right = right_rotate(node.right)
+                 return left_rotate(node)
+
+             return node
+
+           left_rotate(y):
+             x = y.right
+             T2 = x.left
+             x.left = y
+             y.right = T2
+             y.height = 1 + max(height(y.left), height(y.right))
+             x.height = 1 + max(height(x.left), height(x.right))
+             return x
+
+           right_rotate(x):
+             y = x.left
+             T2 = y.right
+             y.right = x
+             x.left = T2
+             x.height = 1 + max(height(x.left), height(x.right))
+             y.height = 1 + max(height(y.left), height(y.right))
+             return y
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Height</td>
+         <td>
+           ```
+           height(node):
+             if node == ø:
+               return 0
+             return node.height
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Get Balance</td>
+         <td>
+           ```
+           get_balance(node):
+             if node == ø:
+               return 0
+             return height(node.left) - height(node.right)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Search</td>
+         <td>
+           ```
+           search(node, key):
+             if node == ø or key == node.key:
+               return node
+             if key < node.key:
+               return search(node.left, key)
+             return search(node.right, key)
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Find MIN</td>
+         <td>
+           ```
+           find_min(node):
+             while node.left != ø:
+               node = node.left
+             return node
+           ```
+         </td>
+       </tr>
+       <tr>
+         <td>Find MAX</td>
+         <td>
+           ```
+           find_max(node):
+             while node.right != ø:
+               node = node.right
+             return node
+           ```
+         </td>
+       </tr>
+     </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

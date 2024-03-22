@@ -1,0 +1,179 @@
+---
+title: Stack
+description: Stack Data Structure
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/stack/go.go";
+import Java from "!!raw-loader!./assets/stack/java.java";
+import JS from "!!raw-loader!./assets/stack/js.js";
+import Kotlin from "!!raw-loader!./assets/stack/kt.kt";
+import Python from "!!raw-loader!./assets/stack/py.py";
+import Rust from "!!raw-loader!./assets/stack/rs.rs";
+import TS from "!!raw-loader!./assets/stack/ts.ts";
+
+![](./assets/stack/stack.svg)
+
+<table>
+  <thead>
+    <tr>
+      <th>Space</th>
+      <th colspan="6">Time</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Lookup</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code className="fair" style={{ whiteSpace: "pre" }}>O(n)</code>
+      </td>
+      <td>
+        <code className="fair" style={{ whiteSpace: "pre" }}>O(n)</code>
+      </td>
+      <td>
+        <code className="fair" style={{ whiteSpace: "pre" }}>O(n)</code>
+      </td>
+      <td>
+        <code className="excellent" style={{ whiteSpace: "pre" }}>O(1)</code>
+      </td>
+      <td>
+        <code className="excellent" style={{ whiteSpace: "pre" }}>O(1)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Definition
+
+<Tabs>
+  <TabItem value="short" label="Short">
+    **Stack** is a data structure that stores items in a Last-In-First-Out (LIFO) manner, meaning the most recently added item is the first one to be removed.
+
+  :::note[Simplified]
+
+  You have a stack of plates. You can only put a new plate on the top of the stack, and you can only take the plate that’s on the top. You can’t take the ones in the middle until you’ve take the
+  ones on top of them.
+
+  :::
+
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Stack** is a concept that functions as a collection of elements. It primarily operates through 2 actions:
+
+    - `push`, which adds an element to the collection
+    - `pop`, which removes the most recent element that hasn't been removed yet
+
+    This structure is also known as LIFO (last in, first out) due to the order in which elements are removed. A `peek` operation can also be used to access the top element without altering the stack.
+    The term "stack" is derived from the physical analogy of items stacked on top of each other, allowing easy removal from the top, while accessing deeper items may require removing several top items
+    first.
+
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Pseudo Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Peek</td>
+          <td>
+          ```
+          peek():
+            stack.show_last()
+          ```
+          </td>
+        </tr>
+        <tr>
+          <td>Push</td>
+          <td>
+          ```
+          push():
+            stack.add_to_end(data)
+          ```
+          </td>
+        </tr>
+        <tr>
+          <td>Pop</td>
+          <td>
+          ```
+          pop():
+            stack.pop_from_end()
+          ```
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

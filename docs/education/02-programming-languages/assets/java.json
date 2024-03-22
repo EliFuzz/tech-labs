@@ -1,0 +1,136 @@
+{
+  "key": "java",
+  "metadata": {
+    "name": "Java",
+    "url": "https://www.java.com/",
+    "logo": "/static/img/lang/java.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "byte",
+      "description": "Byte: -128 to 127",
+      "code": "0"
+    },
+    {
+      "name": "short",
+      "description": "Short: -32768 to 32767",
+      "code": "0"
+    },
+    {
+      "name": "int",
+      "description": "Integer: -2147483648 to 2147483647",
+      "code": "0"
+    },
+    {
+      "name": "long",
+      "description": "Long: -9223372036854775808 to 9223372036854775807",
+      "code": "0L"
+    },
+    {
+      "name": "float",
+      "description": "Float: -3.4028235E38 to 3.4028235E38",
+      "code": "0.0f"
+    },
+    {
+      "name": "double",
+      "description": "Double: -1.7976931348623157E308 to 1.7976931348623157E308",
+      "code": "0.0"
+    },
+    {
+      "name": "char",
+      "description": "Character",
+      "code": "'\\u0000'"
+    },
+    {
+      "name": "string",
+      "description": "UTF-16 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "boolean",
+      "description": "Boolean",
+      "code": "true"
+    }
+  ],
+  "reservedKeywords": [
+    "abstract",
+    "continue",
+    "for",
+    "new",
+    "switch",
+    "assert",
+    "default",
+    "goto",
+    "package",
+    "synchronized",
+    "boolean",
+    "do",
+    "if",
+    "private",
+    "this",
+    "break",
+    "double",
+    "implements",
+    "protected",
+    "throw",
+    "byte",
+    "else",
+    "import",
+    "public",
+    "throws",
+    "case",
+    "enum",
+    "instanceof",
+    "return",
+    "transient",
+    "catch",
+    "extends",
+    "int",
+    "short",
+    "try",
+    "char",
+    "final",
+    "interface",
+    "static",
+    "void",
+    "class",
+    "finally",
+    "long",
+    "strictfp",
+    "volatile",
+    "const",
+    "float",
+    "native",
+    "super",
+    "while"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, World!\");\n  }\n}"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [],
+    "imports": [],
+    "variables": [],
+    "functions": [],
+    "flowControls": [],
+    "structures": [],
+    "errorHandling": [],
+    "concurrency": []
+  }
+}

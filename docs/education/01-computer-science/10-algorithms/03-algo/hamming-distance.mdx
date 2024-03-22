@@ -1,0 +1,114 @@
+---
+title: Hamming Distance
+description: Hamming Distance
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/hamming-distance/go.go";
+import Java from "!!raw-loader!./assets/hamming-distance/java.java";
+import JS from "!!raw-loader!./assets/hamming-distance/js.js";
+import Kotlin from "!!raw-loader!./assets/hamming-distance/kt.kt";
+import Python from "!!raw-loader!./assets/hamming-distance/py.py";
+import Rust from "!!raw-loader!./assets/hamming-distance/rs.rs";
+import TS from "!!raw-loader!./assets/hamming-distance/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Hamming Distance Algorithm calculates the number of positions at which corresponding symbols differ between two strings of equal length
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    The algorithm iterates over each symbol in the strings and compares them. It increments a counter whenever it finds a difference. The final count represents the Hamming distance
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Take two strings as input, ensuring they are of equal length
+    - Initialize a variable `distance` to `0` to keep track of differences
+    - Iterate over each character in the strings simultaneously
+    - Compare characters at the same position in both strings
+    - If characters differ, increment `distance` by `1`
+    - Continue until you've checked all positions
+    - Return the value of `distance`
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - ensure both strings are of equal length before applying the algorithm
+    - optimize by exiting the loop early if the lengths of the strings are exceeded
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    hammingDistance(string1, string2):
+      if length(string1) ≠ length(string2):
+        throw "Error: Strings must be of equal length"
+
+      distance = 0
+      for i = 0 to length(string1) - 1:
+        if string1[i] ≠ string2[i]:
+          distance += 1
+
+      return distance
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

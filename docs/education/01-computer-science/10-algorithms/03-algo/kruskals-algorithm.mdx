@@ -1,0 +1,121 @@
+---
+title: Kruskal's Algorithm
+description: Kruskal's Algorithm
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/kruskals-algorithm/go.go";
+import Java from "!!raw-loader!./assets/kruskals-algorithm/java.java";
+import JS from "!!raw-loader!./assets/kruskals-algorithm/js.js";
+import Kotlin from "!!raw-loader!./assets/kruskals-algorithm/kt.kt";
+import Python from "!!raw-loader!./assets/kruskals-algorithm/py.py";
+import Rust from "!!raw-loader!./assets/kruskals-algorithm/rs.rs";
+import TS from "!!raw-loader!./assets/kruskals-algorithm/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Kruskal's Algorithm is a greedy algorithm used to find the minimum spanning tree (MST) of a connected, undirected graph. It works by selecting edges in increasing order of weight until all vertices are connected without forming a cycle
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Create an empty graph which will eventually represent the Minimum Spanning Tree (MST). Next, arrange all edges of the graph in ascending order based on their weights. Then, proceed to traverse through these sorted edges. During each iteration, evaluate if including the current edge into the MST introduces a cycle; if not, incorporate it into the MST. This process repeats until all vertices in the graph are interconnected within the MST
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Sort all edges of the graph in non-decreasing order of weight
+    - Initialize an empty MST
+    - Iterate through the sorted edges
+    - If adding the current edge to the MST does not form a cycle, add it to the MST
+    - Use a disjoint-set data structure to detect cycles
+    - Continue until all vertices are connected in the MST
+    - Return the MST
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - use a disjoint-set data structure (such as Union-Find) to efficiently detect cycles
+    - always prioritize edges with the smallest weights to ensure the resulting MST is minimal
+    - implement efficient sorting algorithms, such as merge sort or quicksort, to sort the edges
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    kruskalMST(graph):
+        edges = graph.getAllEdges() // Retrieve all edges from the graph
+        edges.sort() // Sort edges in non-decreasing order of weight
+        MST = new Graph() // Initialize an empty graph to hold the MST
+        disjointSet = new DisjointSet() // Initialize a disjoint-set data structure
+
+        for edge in edges:
+            if !disjointSet.isSameSet(edge.start, edge.end):
+                // Adding this edge does not form a cycle
+                MST.addEdge(edge.start, edge.end, edge.weight) // Add edge to the MST
+                disjointSet.union(edge.start, edge.end) // Union the sets of the vertices
+
+            if MST.numEdges == MST.numVertices - 1:
+                break // MST is complete when all vertices are connected
+
+        return MST
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

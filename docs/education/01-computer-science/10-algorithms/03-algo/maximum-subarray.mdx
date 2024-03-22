@@ -1,0 +1,109 @@
+---
+title: Maximum Subarray
+description: Maximum Subarray
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/maximum-subarray/go.go";
+import Java from "!!raw-loader!./assets/maximum-subarray/java.java";
+import JS from "!!raw-loader!./assets/maximum-subarray/js.js";
+import Kotlin from "!!raw-loader!./assets/maximum-subarray/kt.kt";
+import Python from "!!raw-loader!./assets/maximum-subarray/py.py";
+import Rust from "!!raw-loader!./assets/maximum-subarray/rs.rs";
+import TS from "!!raw-loader!./assets/maximum-subarray/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Maximum Subarray Algorithm is a method used to find the contiguous subarray within a one-dimensional array of numbers which has the largest sum
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Iterate through the array, keeping track of the current sum of the subarray and the maximum sum found so far. It updates these values as it traverses the array, ensuring that the current sum is either extended by the next element or reset to the next element itself, whichever is greater. At each step, it also compares the current sum with the maximum sum found so far and updates the maximum sum accordingly. By the end of the iteration, the algorithm returns the maximum sum found and the corresponding subarray
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Initialize variables: `max_sum` = `current_sum` = `array[0]`
+    - Iterate through the array starting from the second element
+    - For each element
+       - Update `current_sum` to be the maximum of the current element or the sum of the current element and the previous `current_sum`
+       - Update `max_sum` to be the maximum of `max_sum` and `current_sum`
+    - After iterating through the array, return `max_sum`
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize Kadane's Algorithm for an optimized solution
+    - focus on keeping track of the maximum sum and the current sum efficiently to minimize space complexity
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    maxSubarray(array):
+      max_sum = current_sum = array[0]  // Initialize variables
+      for i from 1 to length(array)-1:   // Iterate through the array
+        current_sum = max(array[i], current_sum + array[i]) // Update current sum
+        max_sum = max(max_sum, current_sum)  // Update max sum
+      return max_sum  // Return the maximum sum found
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

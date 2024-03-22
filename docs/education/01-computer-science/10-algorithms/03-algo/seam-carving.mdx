@@ -1,0 +1,138 @@
+---
+title: Seam Carving
+description: Seam Carving
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/seam-carving/go.go";
+import Java from "!!raw-loader!./assets/seam-carving/java.java";
+import JS from "!!raw-loader!./assets/seam-carving/js.js";
+import Kotlin from "!!raw-loader!./assets/seam-carving/kt.kt";
+import Python from "!!raw-loader!./assets/seam-carving/py.py";
+import Rust from "!!raw-loader!./assets/seam-carving/rs.rs";
+import TS from "!!raw-loader!./assets/seam-carving/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    Seam Carving Algorithm is a content-aware image resizing technique that intelligently removes or adds pixels from an image's least noticeable areas, rather than simply scaling it. This allows for resizing without distorting important features in the image
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Iteratively finding and removing or adding seams, which are connected paths of pixels with the least energy in the image. Energy is a measure of pixel importance, typically calculated based on gradients or contrast. Initially, the algorithm calculates the energy of each pixel in the image. Then, it identifies the lowest-energy seam, which represents the path of pixels that contributes the least to the overall image content. This seam is removed or duplicated, depending on whether the image needs to be reduced or enlarged. This process is repeated iteratively until the desired image size is achieved
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Calculate the energy of each pixel in the image based on gradients or other relevant measures
+      - compute the cumulative minimum energy map, which represents the minimum energy path from the top to each pixel in the image
+      - identify the seam with the lowest energy by tracing back from the bottom row of the cumulative energy map
+      - remove or duplicate the identified seam from the image
+      - update the energy values of the pixels affected by the removal or addition of the seam
+      - repeat steps until the desired image size is reached
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - consider parallelization techniques for faster processing, especially for large images
+    - experiment with different energy functions and seam removal strategies to achieve desired resizing results
+    - handle boundary cases carefully to ensure seamless resizing without artifacts
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    seam_carving(image, new_width, new_height):
+      while image.width > new_width:
+        energy_map = calculate_energy_map(image)
+        cumulative_energy_map = calculate_cumulative_energy_map(energy_map)
+        seam = find_vertical_seam(cumulative_energy_map)
+        image = remove_vertical_seam(image, seam)
+
+      while image.height > new_height:
+        energy_map = calculate_energy_map(image)
+        cumulative_energy_map = calculate_cumulative_energy_map(energy_map)
+        seam = find_horizontal_seam(cumulative_energy_map)
+        image = remove_horizontal_seam(image, seam)
+
+      return image
+
+    remove_vertical_seam(image, seam):
+      new_image = create_new_image(image.width - 1, image.height)
+      for row from 0 to image.height:
+        for col from 0 to image.width:
+          if col < seam[row]:
+            new_image[row][col] = image[row][col]
+          else if col > seam[row]:
+            new_image[row][col - 1] = image[row][col]
+      return new_image
+
+    remove_horizontal_seam(image, seam):
+      new_image = create_new_image(image.width, image.height - 1)
+      for col from 0 to image.width:
+        for row from 0 to image.height:
+          if row < seam[col]:
+            new_image[row][col] = image[row][col]
+          else if row > seam[col]:
+            new_image[row - 1][col] = image[row][col]
+      return new_image
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

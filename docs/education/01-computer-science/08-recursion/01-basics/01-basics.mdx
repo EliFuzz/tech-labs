@@ -1,0 +1,311 @@
+---
+title: Basics
+description: "Recursion: Basics"
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/recursion/go.go";
+import Java from "!!raw-loader!./assets/recursion/java.java";
+import JS from "!!raw-loader!./assets/recursion/js.js";
+import Kotlin from "!!raw-loader!./assets/recursion/kt.kt";
+import Python from "!!raw-loader!./assets/recursion/py.py";
+import Rust from "!!raw-loader!./assets/recursion/rs.rs";
+import TS from "!!raw-loader!./assets/recursion/ts.ts";
+
+# Recursion: Basics
+
+![](./assets/recursion/pow.svg)
+
+## Definition
+
+**Recursion** is a programming concept where a function calls itself in its own definition.
+
+### Terminology
+
+- **Base Case:** The condition that stops the recursion
+
+```
+factorial(n):
+ if n <= 0: // base case
+   return 1
+ else:
+   return n * factorial(n-1)
+```
+
+- **Recursive Case:** The case where the function calls itself
+- **Stack Overflow:** If the base case is not reached or defined, a stack overflow error may occur due to the continuous (infinite) addition of functions to the stack
+- **Direct Recursion:** Function calls itself
+- **Indirect Recursion:** One function calling another, forming a cycle
+- **Tailed Recursion:** When the recursive call is the last operation in the function, and its result is directly returned
+
+```
+factorial_tail(n, result=1):
+  if n <= 1:
+    return result
+  else:
+    return factorial_tail(n-1, n*result)
+```
+
+- **Non-Tailed Recursion:** When the recursive call is not the last operation
+- **Mutual Recursion:** Two or more functions call each other in a cycle
+
+```
+is_even(n):
+  if n == 0:
+    return True
+  else:
+    return is_odd(n-1)
+
+is_odd(n):
+  if n == 0:
+    return False
+  else:
+    return is_even(n-1)
+```
+
+- **Tabulation:** Tabulation is a bottom-up approach in dynamic programming that involves storing subproblem results in a table and employs an iterative implementation. This method is particularly effective for problems with a substantial number of inputs and is preferred when subproblems do not overlap
+- **Memoization:** Memoization is a top-down dynamic programming approach that involves caching the results of function calls through a recursive implementation. This method is effective for problems with a relatively small set of inputs, especially when the subproblems exhibit overlapping subproblems
+
+## Advantages
+
+- Elegant solution to complex problems
+- Simplifies code and improves readability
+- Can lead to efficient solutions
+
+## Disadvantages
+
+- May lead to infinite recursion if not handled properly
+- Can be less efficient in certain cases compared to iterative solutions
+
+## Use Cases
+
+- Mathematical problems like factorial, Fibonacci
+- Tree and graph traversals
+- Divide and conquer algorithms
+- Backtracking problems
+
+## Algorithmic Steps
+
+- **Define a base case**: Identify the simplest case for which the solution is known
+- **Define a recursive case**: Break the problem into smaller subproblems and call the function recursively
+- **Ensure termination**: Make sure the recursive function reaches the base case to avoid infinite loops
+- **Combine solutions**: Combine the solutions of subproblems to solve the original problem
+
+## Memory Allocation
+
+Memory is allocated on the stack for each function call, with each call having its own copy of local variables. De-allocation occurs when the base case is reached.
+
+## Comparison
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Amount of calls to find 5th element</th>
+      <th>Amount of calls to find 10th element</th>
+      <th>Amount of calls to find 5th using Memoization/Tabulation</th>
+      <th>Amount of calls to find 10th using Memoization/Tabulation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Factorial</td>
+      <td>6</td>
+      <td>11</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Fibonacci</td>
+      <td>15</td>
+      <td>177</td>
+      <td>9</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+
+## Step-by-Step
+
+<Tabs>
+  <TabItem value="fibonacci" label="Fibonacci">
+    ![](./assets/recursion/recursion.svg)
+
+    - **Mathematical formula**: `F(n) = F(n−1) + F(n−2)`
+    - **Initial Call**: start with the initial call to `fibonacci(5)`
+    - **Base Case Check**: function checks if the base case is met. In this case, if `n` is 0 or 1, the Fibonacci number is `n`. Since 5 is not 0 or 1, we proceed to the recursive case
+    ```
+    if n == 0 or n == 1:
+    return n
+    ```
+    - **Recursive Case**: since `n` is 5, we enter the recursive case
+    ```
+    else:
+    return fibonacci(n - 1) + fibonacci(n - 2)
+    ```
+    - **First Recursive Call**: function makes a recursive call to calculate `fibonacci(4)`
+    - **Base Case Check (First Recursive Call)**: base case is not met for `n = 4`, so we proceed to the recursive case
+    ```
+    else:
+    return fibonacci(4 - 1) + fibonacci(4 - 2)
+    ```
+    - **Second Recursive Call (First Nested)**: function makes another recursive call to calculate `fibonacci(3)`
+    - **Base Case Check (First Nested Recursive Call)**: once again, the base case is not met for `n=3`
+    ```
+    else:
+    return fibonacci(3 - 1) + fibonacci(3 - 2)
+    ```
+    - **Third Recursive Call (First Nested)**: another recursive call is made to calculate `fibonacci(2)`
+    - **Base Case Check (First Nested Recursive Call)**: base case is met for `n = 2`. The function returns 2
+    ```
+    if n == 0 or n == 1:
+    return n
+    ```
+    - **First Nested Recursive Return**: recursive call `fibonacci(2)` returns 2
+    - **Second Nested Recursive Return (First Nested)**: recursive call `fibonacci(3)` receives the result (2) and makes another recursive call to `fibonacci(1)`
+    - **Base Case Check (Second Nested Recursive Call)**: base case is met for `n = 1`. The function returns 1
+    ```
+    if n == 0 or n == 1:
+    return n
+    ```
+    - **Second Nested Recursive Return**: The recursive call `fibonacci(1)` returns `1`
+    - **First Recursive Return**: recursive call `fibonacci(3)` receives the results (**2 and 1**) and returns `3`
+    - **Second Recursive Return**: recursive call `fibonacci(4)` receives the results (**3 and 2**) and returns `5`
+    - **Final Return**: initial call to `fibonacci(5)` receives the result (**5**) and returns `5 + 3 = 8`
+    - **Result**: final result is `fibonacci(5) = 8`
+
+  </TabItem>
+  <TabItem value="factorial" label="Factorial">
+    - **Mathematical formula**: `n! = n * (n−1) * (n−2) * … * 2 * 1`
+    - **Initial Call**: `factorial(5)`
+    - **Base Case Check**: function checks if the base case is met. In this case, if `n` is 0 or 1, the factorial is 1. Since 5 is not 0 or 1, we proceed to the recursive case
+    ```
+    if n == 0 or n == 1:
+    return 1
+    ```
+    - **Recursive Case**: since `n` is 5, we enter the recursive case
+    ```
+    else:
+    return n * factorial(n - 1)
+    ```
+    - **Recursive Call**: The function makes a recursive call to calculate `factorial(4)`
+    - **Base Case Check (Recursive Call)**: again, the base case is not met for `n = 4`, so we proceed to the recursive case
+    - **Recursive Call (Nested)**: function makes another recursive call to calculate `factorial(3)`
+    - **Base Case Check (Nested Recursive Call)**: once again, the base case is not met for `n = 3`
+    - **Recursive Call (Further Nested)**: another recursive call is made to calculate `factorial(2)`
+    - **Base Case Check (Further Nested Recursive Call)**: the base case is not met for `n = 2`
+    - **Recursive Call (Deeper Nesting)**: final recursive call is made to calculate `factorial(1)`
+    - **Base Case Check (Deeper Nesting Recursive Call)**: now, the base case is met for `n = 1`. The function returns 1
+    ```
+    if n == 0 or n == 1:
+    return 1
+    ```
+    - **Recursive Return (Deeper Nesting)**: recursive call `factorial(1)` returns `1`
+    - **Recursive Return (Further Nesting)**: recursive call `factorial(2)` receives the result (**1**) and returns `2 * 1 = 2`
+    - **Recursive Return (Nested)**: recursive call `factorial(3)` receives the result (**2**) and returns `3 * 2 = 6`
+    - **Recursive Return**: recursive call `factorial(4)` receives the result (**6**) and returns`4 * 6 = 24`
+    - **Final Return**: initial call to `factorial(5)` receives the result (**24**) and returns `5 * 24 = 120`
+    - **Result**: final result is `5! = 120`
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    <Tabs>
+      <TabItem value="factorialRecursive" label="Factorial Recursive" attributes={{className: "tabs__vertical"}}>
+        ```
+        factorial_recursive(n):
+          if n == 0 or n == 1:
+            return 1
+        return n * factorial_recursive(n - 1)
+        ```
+      </TabItem>
+      <TabItem value="factorialIterative" label="Factorial Iterative">
+        ```
+        factorial_iterative(n):
+          result = 1
+          for i in range(1, n + 1):
+            result *= i
+          return result
+        ```
+      </TabItem>
+      <TabItem value="factorialMemoization" label="Factorial Memoization">
+        ```
+        factorial_memoization(n, memo={}):
+          if n == 0 or n == 1:
+            return 1
+          if n not in memo:
+            memo[n] = n * factorial_memoization(n - 1, memo)
+          return memo[n]
+        ```
+      </TabItem>
+      <TabItem value="factorialTabulation" label="Factorial Tabulation">
+        ```
+        factorial_tabulation(n):
+          table = [1] * (n + 1)
+          for i in range(2, n + 1):
+            table[i] = i * table[i - 1]
+          return table[n]
+        ```
+      </TabItem>
+      <TabItem value="fibonacciRecursive" label="Fibonacci Recursive">
+        ```
+        fibonacci_recursive(n):
+          if n <= 1:
+            return n
+          return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+        ```
+      </TabItem>
+      <TabItem value="fibonacciIterative" label="Fibonacci Iterative">
+        ```
+        fibonacci_iterative(n):
+          if n <= 1:
+            return n
+          a, b = 0, 1
+          for _ in range(n - 1):
+            a, b = b, a + b
+          return b
+        ```
+      </TabItem>
+      <TabItem value="fibonacciMemoization" label="Fibonacci Memoization">
+        ```
+        fibonacci_memoization(n, memo={}):
+          if n <= 1:
+            return n
+          if n not in memo:
+            memo[n] = fibonacci_memoization(n - 1, memo) + fibonacci_memoization(n - 2, memo)
+          return memo[n]
+        ```
+      </TabItem>
+      <TabItem value="fibonacciTabulation" label="Fibonacci Tabulation">
+        ```
+        fibonacci_tabulation(n):
+          if n <= 1:
+            return n
+          table = [0] * (n + 1)
+          table[1] = 1
+          for i in range(2, n + 1):
+            table[i] = table[i - 1] + table[i - 2]
+          return table[n]
+        ```
+      </TabItem>
+    </Tabs>
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem value="go" label="" attributes={{title: "Go Lang", className: "code_lang go m"}}><CodeBlock language="go">{Go}</CodeBlock></TabItem>
+      <TabItem value="java" label="" attributes={{title: "Java", className: "code_lang java m"}}><CodeBlock language="java">{Java}</CodeBlock></TabItem>
+      <TabItem value="js" label="" attributes={{title: "JavaScript", className: "code_lang js m"}}><CodeBlock language="js">{JS}</CodeBlock></TabItem>
+      <TabItem value="kotlin" label="" attributes={{title: "Kotlin", className: "code_lang kotlin m"}}><CodeBlock language="kotlin">{Kotlin}</CodeBlock></TabItem>
+      <TabItem value="python" label="" attributes={{title: "Python", className: "code_lang python m"}}><CodeBlock language="python">{Python}</CodeBlock></TabItem>
+      <TabItem value="rust" label="" attributes={{title: "Rust", className: "code_lang rust m"}}><CodeBlock language="rust">{Rust}</CodeBlock></TabItem>
+      <TabItem value="ts" label="" attributes={{title: "TypeScript", className: "code_lang ts m"}}><CodeBlock language="ts">{TS}</CodeBlock></TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

@@ -1,0 +1,119 @@
+---
+title: Sieve of Eratosthenes
+description: Sieve of Eratosthenes
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+
+import Go from "!!raw-loader!./assets/sieve-of-eratosthenes/go.go";
+import Java from "!!raw-loader!./assets/sieve-of-eratosthenes/java.java";
+import JS from "!!raw-loader!./assets/sieve-of-eratosthenes/js.js";
+import Kotlin from "!!raw-loader!./assets/sieve-of-eratosthenes/kt.kt";
+import Python from "!!raw-loader!./assets/sieve-of-eratosthenes/py.py";
+import Rust from "!!raw-loader!./assets/sieve-of-eratosthenes/rs.rs";
+import TS from "!!raw-loader!./assets/sieve-of-eratosthenes/ts.ts";
+
+## Definition
+
+<Tabs>
+  <TabItem value="definition" label="Definition">
+    The Sieve of Eratosthenes is an efficient algorithm for finding all prime numbers up to a specified integer. It works by iteratively marking the multiples of each prime number starting from 2, which are not prime, until no more multiples can be found
+  </TabItem>
+  <TabItem value="how" label="Explanation">
+    Begins by creating a list of consecutive integers starting from 2 up to a specified maximum value. It then repeatedly finds the smallest unmarked number in the list (which is a prime number) and marks all of its multiples as composite (not prime). This process continues until there are no more unmarked numbers left in the list. The remaining unmarked numbers are all prime
+  </TabItem>
+  <TabItem value="guidance" label="Guidance">
+    - Create a list of consecutive integers from 2 to the maximum value
+    - Start with the first unmarked number (2) and mark all of its multiples as composite
+    - Find the next unmarked number (which is a prime), and repeat the process of marking its multiples as composite
+    - Continue this process until there are no more unmarked numbers left in the list
+    - The remaining unmarked numbers are all prime
+  </TabItem>
+  <TabItem value="tips" label="Tips">
+    - utilize a boolean array to efficiently mark numbers as prime or composite
+    - avoid checking even numbers greater than 2 since they are not prime
+    - optimize the algorithm by only iterating up to the square root of the maximum value to mark multiples
+  </TabItem>
+</Tabs>
+
+## Practice
+
+<Tabs>
+  <TabItem value="practice" label="Practice">
+    ```python
+    sieve_of_eratosthenes(maxValue):
+      Let isPrime be an array of Boolean values, indexed from 0 to maxValue, initialized to true
+      isPrime[0] = false
+      isPrime[1] = false
+
+      for i from 2 to square_root(maxValue):
+        if isPrime[i] is true:
+          for j from i^2 to maxValue with step i:
+            isPrime[j] = false
+
+      primes = empty list
+      for i from 2 to maxValue:
+        if isPrime[i] is true:
+          append i to primes
+
+      return primes
+    ```
+  </TabItem>
+  <TabItem value="solution" label="Solution">
+    <Tabs queryString="code">
+      <TabItem
+        value="go"
+        label=""
+        attributes={{ title: "Go Lang", className: "code_lang go m" }}
+      >
+        <CodeBlock language="go">{Go}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="java"
+        label=""
+        attributes={{ title: "Java", className: "code_lang java m" }}
+      >
+        <CodeBlock language="java">{Java}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="js"
+        label=""
+        attributes={{ title: "JavaScript", className: "code_lang js m" }}
+      >
+        <CodeBlock language="js">{JS}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="kotlin"
+        label=""
+        attributes={{ title: "Kotlin", className: "code_lang kotlin m" }}
+      >
+        <CodeBlock language="kotlin">{Kotlin}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="python"
+        label=""
+        attributes={{ title: "Python", className: "code_lang python m" }}
+      >
+        <CodeBlock language="python">{Python}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="rust"
+        label=""
+        attributes={{ title: "Rust", className: "code_lang rust m" }}
+      >
+        <CodeBlock language="rust">{Rust}</CodeBlock>
+      </TabItem>
+      <TabItem
+        value="ts"
+        label=""
+        attributes={{ title: "TypeScript", className: "code_lang ts m" }}
+      >
+        <CodeBlock language="ts">{TS}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

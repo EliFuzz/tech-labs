@@ -1,0 +1,140 @@
+{
+  "key": "js",
+  "metadata": {
+    "name": "Javascript",
+    "url": "https://www.javascript.com/",
+    "logo": "/static/img/lang/js.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "null",
+      "description": "Null (typeof 'object')",
+      "code": "null"
+    },
+    {
+      "name": "undefined",
+      "description": "Undefined (typeof 'undefined')",
+      "code": "undefined"
+    },
+    {
+      "name": "boolean",
+      "description": "Boolean",
+      "code": "true"
+    },
+    {
+      "name": "number",
+      "description": "Number",
+      "code": "0"
+    },
+    {
+      "name": "bigInt",
+      "description": "BigInt",
+      "code": "0n"
+    },
+    {
+      "name": "string",
+      "description": "UTF-16 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "symbol",
+      "description": "Symbol",
+      "code": "Symbol()"
+    }
+  ],
+  "reservedKeywords": [
+    "abstract",
+    "arguments",
+    "await",
+    "boolean",
+    "break",
+    "byte",
+    "case",
+    "catch",
+    "char",
+    "class",
+    "const",
+    "continue",
+    "debugger",
+    "default",
+    "delete",
+    "do",
+    "double",
+    "else",
+    "enum",
+    "eval",
+    "export",
+    "extends",
+    "false",
+    "final",
+    "finally",
+    "float",
+    "for",
+    "function",
+    "goto",
+    "if",
+    "implements",
+    "import",
+    "in",
+    "instanceof",
+    "int",
+    "interface",
+    "let",
+    "long",
+    "native",
+    "new",
+    "null",
+    "package",
+    "private",
+    "protected",
+    "public",
+    "return",
+    "short",
+    "static",
+    "super",
+    "switch",
+    "synchronized",
+    "this",
+    "throw",
+    "throws",
+    "transient",
+    "true",
+    "try",
+    "typeof",
+    "var",
+    "void",
+    "volatile",
+    "while",
+    "with",
+    "yield"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "console.log(\"Hello, World!\")"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [],
+    "imports": [],
+    "variables": [],
+    "functions": [],
+    "flowControls": [],
+    "structures": [],
+    "errorHandling": [],
+    "concurrency": []
+  }
+}
