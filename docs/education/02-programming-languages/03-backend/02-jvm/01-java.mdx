@@ -1636,21 +1636,46 @@ import TabItem from "@theme/TabItem";
         <details>
             <summary>Exception Tree</summary>
 
-            - `Throwable`
-                - Errors: unrecoverable and cannot be handled by the program
-                     - `StackOverFlowError`
-                     - `OutOfMemoryError`
-                - `Exception`: recoverable and can be handled by the program
-                    - checked (at compile-time)
-                        - `IOException`
-                        - `ClassNotFoundException`
-                        - `FileNotFoundException`
-                        - `SQLException`
-                    - unchecked (at runtime)
-                        - `NullPointerException`
-                        - `ClassCastException`
-                        - `ArithmeticException`
-                        - `IndexOutOfBoundsException`
+            ```mermaid
+                graph BT
+
+                Throwable(Throwable)
+
+                subgraph errors[Errors: unrecoverable and cannot be handled by the program]
+                    direction LR
+
+                    StackOverFlowError(StackOverFlowError)
+                    OutOfMemoryError(OutOfMemoryError)
+                end
+
+                subgraph exception[Exception: recoverable and can be handled by the program]
+                    direction TB
+
+                    checked
+                    unchecked
+                end
+
+                subgraph checked[Checked: at compile-time]
+                    direction LR
+
+                    IOException(IOException)
+                    ClassNotFoundException(ClassNotFoundException)
+                    FileNotFoundException(FileNotFoundException)
+                    SQLException(SQLException)
+                end
+
+                subgraph unchecked[Unchecked: at runtime]
+                    direction LR
+
+                    NullPointerException(NullPointerException)
+                    ClassCastException(ClassCastException)
+                    ArithmeticException(ArithmeticException)
+                    IndexOutOfBoundsException(IndexOutOfBoundsException)
+                end
+
+                errors --> Throwable
+                exception --> Throwable
+            ```
 
         </details>
 
