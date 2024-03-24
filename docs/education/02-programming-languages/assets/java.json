@@ -143,6 +143,11 @@
         "code": "import java.util.ArrayList;"
       },
       {
+        "name": "import_static",
+        "description": "Import static class",
+        "code": "import static java.lang.Math.PI;"
+      },
+      {
         "name": "multi_namespace",
         "description": "Import all classes inside of the package",
         "code": "import java.util.*;"
@@ -248,6 +253,11 @@
         "name": "variadic_parameter",
         "description": "Variadic parameter",
         "code": "void myFunc(int... numbers) {}"
+      },
+      {
+        "name": "variadic_usage",
+        "description": "Variadic usage",
+        "code": "myFunc(1, 2, 3, 4, 5);"
       },
       {
         "name": "object_declaration",

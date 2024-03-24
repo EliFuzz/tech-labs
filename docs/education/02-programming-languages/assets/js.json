@@ -241,6 +241,26 @@
         "name": "object_access_dot",
         "description": "Object access (dot)",
         "code": "x.a"
+      },
+      {
+        "name": "variadic_arguments",
+        "description": "Variadic arguments",
+        "code": "function sum(...numbers) {}"
+      },
+      {
+        "name": "variadic_arguments_usage",
+        "description": "Variadic arguments usage",
+        "code": "sum(1, 2, 3, 4, 5)"
+      },
+      {
+        "name": "destructuring_assignment",
+        "description": "Destructuring assignment",
+        "code": "const { x, y } = { x: 1, y: 2 }"
+      },
+      {
+        "name": "spread_operator",
+        "description": "Spread operator",
+        "code": "x = [...[1, 2, 3]] // output: [1, 2, 3]"
       }
     ],
     "bitwiseOperators": [
