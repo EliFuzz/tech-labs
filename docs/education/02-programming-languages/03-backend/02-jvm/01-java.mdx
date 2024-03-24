@@ -1,0 +1,3024 @@
+---
+title: Java
+description: Java Programming Language
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+**Java** - object-oriented, high-level, general-purpose programming language
+
+## Overview
+
+<Tabs>
+    <TabItem value="dataStructures" label="Data Structures">
+        <details>
+            <summary>Overview</summary>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Structure</th>
+                    <th>Methods</th>
+                    <th>null</th>
+                    <th>Duplicates</th>
+                    <th>Synchronized</th>
+                    <th>Ordered</th>
+                    <th>Iterator</th>
+                    <th>Enumeration</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <b>ArrayList</b>
+                    </td>
+                    <td>Dynamic Array</td>
+                    <td>add, remove, get, set</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>-</td>
+                    <td>Insertion order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Vector</b>
+                    </td>
+                    <td>Dynamic Array</td>
+                    <td>add, remove, get, set</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>Insertion order</td>
+                    <td>+</td>
+                    <td>+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Stack</b>
+                    </td>
+                    <td>LIFO</td>
+                    <td>push, pop, peek</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>No order</td>
+                    <td>+</td>
+                    <td>+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Queue</b>
+                    </td>
+                    <td>FIFO</td>
+                    <td>enqueue, dequeue, peek</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>-</td>
+                    <td>No order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>List</b>
+                    </td>
+                    <td>Linear</td>
+                    <td>add, remove, get, set</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>-</td>
+                    <td>Insertion order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>LinkedList</b>
+                    </td>
+                    <td>Doubly-Linked List</td>
+                    <td>add, remove, get, set</td>
+                    <td>+</td>
+                    <td>+</td>
+                    <td>-</td>
+                    <td>Insertion order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Set</b>
+                    </td>
+                    <td>Collection</td>
+                    <td>add, remove, contains</td>
+                    <td>+</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>No order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>HashSet</b>
+                    </td>
+                    <td>HashTable</td>
+                    <td>add, remove, contains</td>
+                    <td>+</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>No order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Map</b>
+                    </td>
+                    <td>key-value pair</td>
+                    <td>put, remove, get, containsKey</td>
+                    <td>1 key and multiple values</td>
+                    <td>only values</td>
+                    <td>-</td>
+                    <td>No order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>HashMap</b>
+                    </td>
+                    <td>key-value pair</td>
+                    <td>add, remove, contains</td>
+                    <td>1 key and multiple values</td>
+                    <td>only values</td>
+                    <td>-</td>
+                    <td>No order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>HashTable</b>
+                    </td>
+                    <td>key-value pair</td>
+                    <td>put, remove, get, containsKey</td>
+                    <td>-</td>
+                    <td>only values</td>
+                    <td>+</td>
+                    <td>No order</td>
+                    <td>+</td>
+                    <td>+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>TreeSet</b>
+                    </td>
+                    <td>Red-black tree</td>
+                    <td>add, remove, contains</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>Natural order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>TreeMap</b>
+                    </td>
+                    <td>Red-black tree</td>
+                    <td>put, remove, get, containsKey</td>
+                    <td>only values</td>
+                    <td>only values</td>
+                    <td>-</td>
+                    <td>Natural order</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+                </tbody>
+            </table>
+
+            **Collections**
+
+            ```mermaid
+            graph BT
+
+                Stack(StackInterface) --> Vector(VectorInterface)
+                Vector -.-> List(List)
+                LinkedList(LinkedListInterface) -.-> List
+                ArrayList(ArrayListInterface) -.-> List
+
+                LinkedList(LinkedListInterface) -.-> Deque(Deque)
+                PriorityQueue(PriorityQueueInterface) -.-> Queue(Queue)
+                ArrayDequeue(ArrayDequeInterface) -.-> Deque
+                Deque --> Queue
+
+                LinkedHashSet(LinkedHashSetInterface) -.-> Set(Set)
+                LinkedHashSet --> HashSet(HashSetInterface)
+
+                TreeSet(TreeSetInterface) -.-> SortedSet(SortedSet)
+                SortedSet --> Set
+
+                Set --> Collection(Collection)
+                Queue --> Collection
+                List --> Collection
+
+                Collection --> Iterable(Iterable)
+
+                TreeMap(TreeMapInterface) -.-> SortedMap(SortedMap)
+                SortedMap --> Map(Map)
+
+                LinkedHashMap(LinkedHashMapInterface) --> HashMap(HashMapInterface)
+                LinkedHashMap -.-> Map
+
+                HashTable(HashTableInterface )
+            ```
+
+            **Collection Decision**
+
+            ```mermaid
+            flowchart TB
+
+                Start(Start) --> Structure{structure}
+
+                Structure -->|key-value| OrderedKeys(Ordered)
+                OrderedKeys -->|no| HashMap(HashMap)
+                OrderedKeys -->|yes| OrderKeys{Order}
+                OrderKeys -->|sorted by keys| TreeMap(TreeMap)
+                OrderKeys -->|insertion order| LinkedHashMap(LinkedHashMap)
+
+                Structure -->|value only| Duplicates{Duplicates}
+                Duplicates -->|yes| Data{Data}
+                Data -->|sorting & accessing data| ArrayList(ArrayList)
+                Data -->|data manipulation| LinkedList(LinkedList)
+                Duplicates -->|no| OrderedValues{Ordered}
+                OrderedValues -->|no| HashSet(HashSet)
+                OrderedValues -->|yes| OrderValues{Order}
+                OrderValues -->|sorted by index| TreeSet(TreeSet)
+                OrderValues -->|insertion order| LinkedHashSet(LinkedHashSet)
+            ```
+
+        </details>
+
+        <details>
+            <summary>Iterator vs Enumeration</summary>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Iterator</th>
+                    <th>Enumeration</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <b>Type</b>
+                    </td>
+                    <td>interface</td>
+                    <td>class</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Namespace</b>
+                    </td>
+                    <td>`java.util`</td>
+                    <td>`java.util`</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Common methods</b>
+                    </td>
+                    <td>hasNext / next / remove</td>
+                    <td>hasMoreElements / nextElement</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Use Case</b>
+                    </td>
+                    <td>removes elements from collection during the iteration</td>
+                    <td>
+                        used for passing through a collection, usually of unknown size
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </details>
+    </TabItem>
+    <TabItem value="fundamentals" label="Fundamentals">
+        <details>
+          <summary>Object</summary>
+
+          Superclass class for every class in Java
+
+          Methods
+              - `clone()`: creates a copy of an object
+              - `equals()`: compares
+              - `finalize()`: called on GC
+              - `getClass()`: get runtime class
+              - `hashCode()`: returns a hash code value
+              - `toString()`: string representation
+              - `notify()`, `notifyAll()`, and `wait()`: These help in synchronizing the activities of the independently running threads in a program
+
+          **Creation**
+
+          <table>
+            <thead>
+            <tr>
+              <th>Variant</th>
+              <th>Syntax</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>`new` keyword</td>
+              <td>`new String()`</td>
+            </tr>
+            <tr>
+              <td> `Class.forName`</td>
+              <td>
+              `Class.forName` actually loads the Class in Java but doesn't create any Object. To Create an Object of the Class you have to use the newInstance method
+
+              ```java
+              Example obj = (Example) Class.forName("Example").newInstance();
+              ```
+              </td>
+            </tr>
+            <tr>
+              <td>`newInstance()` method of Constructor class</td>
+              <td>
+              ```java
+              Example obj = Example.class.getDeclaredConstructor().newInstance();
+              ```
+              </td>
+            </tr>
+            <tr>
+              <td>`clone()` method</td>
+              <td>
+              Creating an object using the clone method does not invoke any constructor
+
+              ```java
+              Example obj = (Example) new Example().clone();
+              ```
+              </td>
+            </tr>
+            <tr>
+              <td>deserialization</td>
+              <td>When we serialize and then deserialize an object, JVM creates a separate object. In deserialization, JVM doesn't use any constructor to create the object</td>
+            </tr>
+            </tbody>
+          </table>
+
+          **Initialization**
+
+            <table>
+              <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Allocation</th>
+                    <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td><b>Declaration</b></td>
+                    <td>Reference created in **stack**</td>
+                    <td>
+                    ```java
+                    Integer i;
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Initialization</b></td>
+                    <td>Allocates memory in **heap** with reference in **stack**</td>
+                    <td>
+                    ```java
+                    Integer i = new Integer(10);
+                    ```
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Pass by Reference vs Value</summary>
+
+            - Java is **Pass by Value**: when you pass a parameter to a method, whether it's a primitive type or an object reference, you are always passing a copy of the value of that parameter
+            - **Passing Object References**: When you pass an object to a method, you're actually passing a copy of the reference to that object, not the object itself. This means you're still passing a value (the memory address where the object resides in the heap), but that value refers to the actual object in memory
+
+            **Explanation**
+
+            When you pass an object reference to a method, you're passing a copy of the reference to the object. This means changes made to the object's fields within the method will affect the original object because both the original reference and the method's copy of the reference point to the same object in memory.
+
+            However, it's important to understand that you cannot change the reference itself within the method. For example, you cannot make the original reference point to a different object by assigning a new object to it within the method.
+
+            ```java
+            class MyClass {
+                int value;
+
+                MyClass(int value) {
+                    this.value = value;
+                }
+            }
+
+            public class Main {
+                public static void main(String[] args) {
+                    MyClass obj = new MyClass(5);
+                    System.out.println(obj.value); // Output: Before: 5
+                    modifyObject(obj);
+                    System.out.println(obj.value); // Output: After: 10
+                }
+
+                public static void modifyObject(MyClass obj) {
+                    /*
+                     Modifying the reference to the object.
+                     This change will only affect the local copy of the reference within the method itself,
+                     not the original reference passed from the calling method
+                     */
+                    obj = new MyClass(10);
+
+                    // Modifying the object's field will also affect the original object
+                    obj.value = 10;
+                }
+
+                /*
+                Although `obj` is passed by value, meaning `modifyObject()` receives a copy of the reference to the `MyClass` object,
+                changes made to the object's field `value` within the `modifyObject()` method are reflected in the original object referenced by `obj`.
+                This is because both the original reference `obj` and the method's copy of the reference point to the same object in memory
+                */
+            }
+            ```
+
+          <table>
+              <thead>
+                    <tr>
+                          <th>Feature</th>
+                          <th>Passing by Value</th>
+                          <th>Passing by Reference</th>
+                    </tr>
+              </thead>
+              <tbody>
+                    <tr>
+                          <td>Definition</td>
+                          <td>Copies the actual value of an argument into the parameter</td>
+                          <td>Copies the reference to the memory location of an object</td>
+                    </tr>
+                    <tr>
+                          <td>Effect on Original Data</td>
+                          <td>Original data remains unchanged</td>
+                          <td>Changes to the parameter affect the original data</td>
+                    </tr>
+                    <tr>
+                          <td>Memory Usage</td>
+                          <td>Requires additional memory for copying values</td>
+                          <td>Doesn't require additional memory for objects</td>
+                    </tr>
+                    <tr>
+                          <td>Example</td>
+                          <td>
+                              ```java
+                              void swap(int x, int y) {
+                                    int temp = x;
+                                    x = y;
+                                    y = temp;
+                              }
+                              swap(1, 2); // Output: First: 1, Second: 2
+                              ```
+                            </td>
+                            <td>
+                              ```java
+                              void swap(int[] arr) {
+                                int temp = arr[0];
+                                arr[0] = arr[1];
+                                arr[1] = temp;
+                              }
+                              swap(new int[] {1, 2}); // Output: First: 2, Second: 1
+                              ```
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Static Block</summary>
+
+            - executed at the time of classloading
+            - can be executed before `main` method
+            - can execute the program with static block and without `main` method
+
+            ```java
+            static { System.out.println("test"); }
+            ```
+
+        </details>
+
+        <details>
+            <summary>Constructor</summary>
+
+            - is not inherited
+            - cannot be `final`
+            - chaining constructors with `this()`
+            - can be overloaded
+            - if no constructor is defined, the JVM creates a default no-arg constructor
+
+            ```java
+            public class Employee {
+              int id,age;
+              String name, address;
+
+              public Employee (int age) { this.age = age; }
+              public Employee(int id, int age) { this(age); this.id = id; }
+            }
+            ```
+
+            - **flow of creation**: parent class -> child class
+            - **flow of destruction**: child class -> parent class
+
+        </details>
+
+        <details>
+            <summary>Class Casting</summary>
+
+            - cast can be performed only child -> parent
+            - to check if cast is possible, use `instanceof`
+
+            ```java
+            class Parent { void display() { } }
+
+            class Child extends Parent { void show() { } }
+
+            interface MyInterface { void myMethod(); }
+
+            class AnotherChild extends Parent implements MyInterface { public void myMethod() { } }
+
+            public class Main {
+                public static void main(String[] args) {
+                    Child child = new Child();
+                    Parent parent1 = (Parent) child; // Casting Child to Parent
+                    parent1.display(); // Accessing method of Parent class
+
+                    AnotherChild anotherChild = new AnotherChild();
+                    MyInterface myInterface = (MyInterface) anotherChild; // Casting AnotherChild to MyInterface
+                    myInterface.myMethod(); // Accessing method of MyInterface
+
+                    Parent parent2 = new Parent();
+                    if(parent2 instanceof Child) { // false: Class parent to class child casting (not possible)
+                        // Child child2 = (Child) parent2; // Compilation error: Parent cannot be cast to Child
+                    }
+
+                    Parent parent3 = new Parent();
+                    if(parent3 instanceof MyInterface) { // Class parent to interface child casting (not possible)
+                        // MyInterface myInterface2 = (MyInterface) parent3; // Compilation error: Parent cannot be cast to MyInterface
+                    }
+                }
+            }
+            ```
+
+        </details>
+
+        <details>
+          <summary>`this` and `super` keywords</summary>
+
+            - `this`
+                - current class instance variable
+                - invoke current class method (implicitly)
+                - `this` can be passed as an argument in the method call
+                - `this` can be passed as an argument in the constructor call
+                - `this` can be used to return the current class instance from the method
+                - `this()` - to invoke the current class constructor
+                - can be used to refer static members (preferred via class name)
+                - can't assign value (compiler-time error)
+            - `super`
+                - parent instance variable
+                - calls parent class method
+                - `super()` - to call parent constructor
+
+        </details>
+
+        <details>
+            <summary>Overriding vs Overloading vs Shadowing</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Concept</th>
+                  <th>Description</th>
+                  <th>Polymorphism Type</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td><b>Overloading</b></td>
+                    <td>Two or more methods in the same class have the exact same name, but different parameters</td>
+                    <td>Compile Time (Static)</td>
+                    <td>
+                    ```java
+                     public class A {
+                        void add(int a, int b) {}
+                        void add(int a, int b, int c) {}
+                     }
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                  <td><b>Overriding</b></td>
+                  <td>Child class redefines the same method as a parent class with the same name, argument list, and return type. May not limit the access of the method it overrides</td>
+                  <td>Run-Time (Dynamic)</td>
+                  <td>
+                  ```java
+                  public class A {
+                    void add(int a, int b) {}
+                  }
+
+                  public class B extends A {
+                      @Override
+                      void add(int a, int b) {}
+                  }
+                  ```
+                  </td>
+                </tr>
+                <tr>
+                    <td><b>Shadowing</b></td>
+                    <td>Overriding static methods</td>
+                    <td>-</td>
+                    <td>
+                    ```java
+                    public class A {
+                        static void add(int a, int b) {}
+                    }
+
+                    public class B extends A {
+                        static void add(int a, int b) {}
+                    }
+                    ```
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>String</summary>
+
+            <table>
+              <tr>
+                <th></th>
+                <th>Storage area</th>
+                <th>Mutability</th>
+                <th>Efficiency</th>
+                <th>Thread-safe</th>
+              </tr>
+              <tr>
+                <td>String</td>
+                <td>String pool</td>
+                <td>immutable</td>
+                <td>slow</td>
+                <td>no</td>
+              </tr>
+              <tr>
+                <td>new String</td>
+                <td>heap</td>
+                <td>immutable</td>
+                <td>slow</td>
+                <td>no</td>
+              </tr>
+              <tr>
+                <td>StringBuilder</td>
+                <td>heap</td>
+                <td>mutable</td>
+                <td>fastest</td>
+                <td>single-thread</td>
+              </tr>
+              <tr>
+                <td>StringBuffer</td>
+                <td>heap</td>
+                <td>mutable</td>
+                <td>fast</td>
+                <td>multi-thread</td>
+              </tr>
+            </table>
+
+            **String Pool**
+
+            ```mermaid
+            flowchart LR
+
+                subgraph Main
+                    direction LR
+
+                    str1(String str1 = Hi)
+                    str2(String str2 = Hi)
+                    str3("String str3 = new String (Hi)")
+                    str4("String str4 = new String (Hi)")
+                end
+
+                subgraph HeapMemory
+                    direction LR
+
+                    HeapStr3(Hi)
+                    HeapStr4(Hi)
+
+                    subgraph StringPool
+                        direction LR
+
+                        Pool(Hi)
+                    end
+                end
+
+                str1 --> Pool
+                str2 --> Pool
+                str3 --> HeapStr3
+                str4 --> HeapStr4
+            ```
+
+            ```java
+            String str1 = "Hi";
+            String str2 = "Hi";
+
+            String str3 = new String("Hi");
+            String str4 = new String("Hi");
+
+            println(str1 == str2);       // true (string pool)
+            println(str1 == str3);       // false (string pool != heap object reference)
+            println(str1.equals(str2));  // true (checks by string value)
+            println(str1.equals(str3));  // true (checks by string value)
+            println(str3 == str4);       // false (checks by object reference)
+            println(str3.equals(str4));  // true (checks by string value)
+            ```
+
+        </details>
+
+        <details>
+            <summary>Serialization vs Deserialization</summary>
+
+            <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Serialization</th>
+                    <th>Deserialization</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Process of converting an object into a byte stream for transmission over a network or storage in a file</td>
+                    <td>Process of reconstructing an object from its serialized form, typically from a byte stream</td>
+                  </tr>
+                  <tr>
+                    <td><b>Purpose</b></td>
+                    <td>Transferring objects between different applications or across a network</td>
+                    <td>Reconstructing objects from their serialized form for use in an application</td>
+                  </tr>
+                  <tr>
+                    <td><b>Data Format</b></td>
+                    <td>Serialized objects are typically stored in a specific format, such as JSON, XML, or binary</td>
+                    <td>Data is read from serialized format and converted back into objects</td>
+                  </tr>
+                </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Operator precedence</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Operator Type</th>
+                  <th>Category</th>
+                  <th>Precedence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2">Unary</td>
+                  <td>postfix</td>
+                  <td>`expr++` `expr--`</td>
+                </tr>
+                <tr>
+                  <td>prefix</td>
+                  <td>`++expr` `--expr` `+expr` `-expr` `~` `!`</td>
+                </tr>
+                <tr>
+                  <td rowspan="2">Arithmetic</td>
+                  <td>multiplicative</td>
+                  <td>`*` `/` `%`</td>
+                </tr>
+                <tr>
+                  <td>additive</td>
+                  <td>`+` `-`</td>
+                </tr>
+                <tr>
+                  <td>Shift</td>
+                  <td>shift</td>
+                  <td>`<<` `>>` `>>>`</td>
+                </tr>
+                <tr>
+                  <td rowspan="2">Relational</td>
+                  <td>comparison</td>
+                  <td>`<` `>` `<=` `>=` `instanceof`</td>
+                </tr>
+                <tr>
+                  <td>equality</td>
+                  <td>`==` `!=`</td>
+                </tr>
+                <tr>
+                  <td rowspan="3">Bitwise</td>
+                  <td>bitwise AND</td>
+                  <td>`&`</td>
+                </tr>
+                <tr>
+                  <td>bitwise exclusive OR</td>
+                  <td>`^`</td>
+                </tr>
+                <tr>
+                  <td>bitwise inclusive OR</td>
+                  <td>`|`</td>
+                </tr>
+                <tr>
+                  <td rowspan="2">Logical</td>
+                  <td>logical AND</td>
+                  <td>`&&`</td>
+                </tr>
+                <tr>
+                  <td>logical OR</td>
+                  <td>`||`</td>
+                </tr>
+                <tr>
+                  <td>Ternary</td>
+                  <td>ternary</td>
+                  <td>`? :`</td>
+                </tr>
+                <tr>
+                  <td rowspan="1">Assignment</td>
+                  <td>assignment</td>
+                  <td>`=` `+=` `-=` `*=` `/=` `%=` `&=` `^=` `|=` `<<=` `>>=` `>>>=`</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Main Method</summary>
+
+            - `static` - to reduce ambiguity
+            - can be `final`
+            - missing `static` in method - program compiles successfully but at runtime throws an error `NoSuchMethodError`
+            - using static block (`static {}`) to execute code before `main` method
+
+            **Examples**
+
+            ```java
+            public static void main(String[] args) throws Exception {} // with `throws`
+
+            public static final void main(String[] args) {} // with `final`
+
+            public static void main(String[] args) {} // array of strings
+
+            public static void main(String args[]) {} // array of strings
+
+            public static void main(String... args) {} // vararg
+
+            public static void main(String[] args, int additionalArg) {} // additional argument
+
+            public interface MyInterface { public static void main(String[] args) {} } // inside interface (Java8+)
+            ````
+
+        </details>
+
+        <details>
+            <summary>Interface vs Abstract Class</summary>
+
+            <table>
+              <tr>
+                <th></th>
+                <th>Methods</th>
+                <th>Inheritance</th>
+                <th>Method Inheritance</th>
+                <th>Implement Interface</th>
+                <th>Variable</th>
+              </tr>
+              <tr>
+                <td><b>Interface</b></td>
+                <td>all methods implicitly `public abstract`</td>
+                <td>`implements` multiple</td>
+                <td>class must implement all methods</td>
+                <td>no</td>
+                <td>default `final`</td>
+              </tr>
+              <tr>
+                <td><b>Abstract Class</b></td>
+                <td>can contain `default` `protected` `public` `non abstract` methods</td>
+                <td>`extends` one</td>
+                <td>not all as an abstract sub-class</td>
+                <td>yes, w/o implementation</td>
+                <td>`non final`</td>
+              </tr>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Default Values</summary>
+
+            ```java
+            class A {
+                static Object obj; // null
+                Object obj; // null
+                String str; // ""
+                boolean bool; // false
+                int i; // 0
+                float f; // 0.0
+                double d; // 0.0
+                byte b; // 0
+                char c; // '\u0000'
+                int[] arr; // []
+
+                void method() {
+                    int x; // local variables within methods or blocks are not initialized
+                }
+            }
+            ```
+
+        </details>
+
+        <details>
+            <summary>Access Modifiers</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Class</th>
+                  <th>Sub-Class</th>
+                  <th>Package</th>
+                  <th>Global</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>private</b></td>
+                  <td>+</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><b>protected</b></td>
+                  <td>+</td>
+                  <td>+</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><b>default</b></td>
+                  <td>+</td>
+                  <td>+</td>
+                  <td>+</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><b>public</b></td>
+                  <td>+</td>
+                  <td>+</td>
+                  <td>+</td>
+                  <td>+</td>
+                </tr>
+              </tbody>
+            </table>
+
+            **Example**
+
+            ```java
+            package com.example.myapplication;
+            class MyClass {
+                private int privateValue = 1;
+                protected int protectedValue = 2;
+                int defaultValue = 3;
+                public int publicValue = 4;
+            }
+
+            package com.example.myapplication;
+            class SubClass extends MyClass {
+                void sub() {
+                    privateValue // compile time error
+                    protectedValue // OK
+                    super.protectedValue // OK
+                    defaultValue // OK
+                    publicValue // OK
+                }
+            }
+
+            package com.example.myapplication;
+            class PackageClass {
+                void package() {
+                    privateValue // compile time error
+                    protectedValue // compile time error
+                    super.protectedValue // compile time error
+                    defaultValue // OK
+                    publicValue // OK
+                }
+            }
+
+            package org.example;
+            class GlobalClass {
+                void global() {
+                    privateValue // compile time error
+                    protectedValue // compile time error
+                    defaultValue // compile time error
+                    publicValue // OK
+                }
+            }
+            ```
+
+        </details>
+
+        <details>
+            <summary>Non-Access Modifiers</summary>
+
+            <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>class</th>
+                    <th>method</th>
+                    <th>variable</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>final</b></td>
+                    <td>
+                        <ul>
+                            <li>cannot be extended by any other class</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>cannot be overridden by any child class</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>value cannot be changed</li>
+                            <li>
+                                blank variable initialisation
+                                <ul>
+                                    <li>static -> only in static block</li>
+                                    <li>non-static -> constructor</li>
+                                </ul>
+                            </li>
+                            <li>concurrency: all variables (even if they are not accessible via getter methods) must be final to prevent racy access</li>
+                        </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>abstract</b></td>
+                    <td>
+                        <ul>
+                            <li>class can never be instantiated</li>
+                            <li>class cannot be declared both `abstract` and `final`</li>
+                            <li>if a class contains one or more `abstract` methods then the class should be declared `abstract`, or else a compile error will be thrown</li>
+                            <li>an `abstract` class may contain both `abstract` methods as well normal methods</li>
+                            <li>an `abstract` class does not need to contain `abstract` methods</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>does not have a body but only a signature</li>
+                            <li>can not be `final`</li>
+                            <li>any class that extends an `abstract` class must implement all the `abstract` methods of the super class unless the subclass is also an `abstract` class</li>
+                        </ul>
+                    </td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td><b>static</b></td>
+                    <td>
+                        <ul>
+                            <li>as Inner class (Nested)</li>
+                            <li>
+                                differences between `static` and non-static nested classes
+                                <ul>
+                                    <li>`static` nested class may be instantiated without instantiating its outer class</li>
+                                    <li>inner classes can access both `static` and non-static members of the outer class</li>
+                                    <li>`static` class can access only the `static` members of the outer class</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>belongs to the class and not to the object(instance)</li>
+                            <li>can access only `static` data</li>
+                            <li>can not access non-static data (instance variables)</li>
+                            <li>user cannot override `static` method, because overriding is based upon dynamic binding at runtime and static methods are statically binded at compile time</li>
+                            <li>**shadowing** - overriding static method</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>class variables as it belongs to the class rather than objects</li>
+                        </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>synchronized</b></td>
+                    <td>-</td>
+                    <td>
+                        <ul>
+                            <li>can be accessed by only one thread at a time</li>
+                            <li>can be applied with any of the four access level modifiers</li>
+                        </ul>
+                    </td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td><b>native</b></td>
+                    <td>-</td>
+                    <td>
+                        <ul>
+                            <li>is implemented in native code using **JNI** (Java Native Interface)</li>
+                            <li>will be implemented in other languages, not in Java</li>
+                            <li>you need to call a library from Java that is written in other language</li>
+                            <li>you need to access system or hardware resources that are only reachable from the other language</li>
+                        </ul>
+                    </td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td><b>transient</b></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <ul>
+                            <li>not to be serialized when it is persisted to streams of bytes</li>
+                            <li>to indicate that they are not part of the persistent state of an object</li>
+                        </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>volatile</b></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                        <ul>
+                            <li>will never be cached thread-locally</li>
+                            <li>all reads and writes will go straight to "main memory"</li>
+                            <li>visibility (all threads) uses **CAS** (compare-and-swap) mechanism to update the value for all threads (main memory)</li>
+                            <li>
+                                atomic
+                                <ul>
+                                    <li>is either executed completely or not at all</li>
+                                    <li>int guaranteed to be atomic</li>
+                                    <li>`long`, `double` - requires `volatile`</li>
+                                    <li>increment operation - `volatile` won't help instead use `AtomicInteger`, `AtomicLong` classes</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>strictfp</b></td>
+                    <td>
+                        <ul>
+                            <li>restricts floating-point calculations to ensure portability</li>
+                            <li>ensures that you get exactly the same results from your floating point calculations on every platform</li>
+                            <li>can be used on classes, interfaces</li>
+                            <li>applied to all calculations in the class</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>can be used on non-abstract methods</li>
+                            <li>applied only to this method</li>
+                        </ul>
+                    </td>
+                    <td>-</td>
+                  </tr>
+              </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Autoboxing vs Unboxing</summary>
+
+            - Autoboxing is the automatic conversion made by the Java compiler between the primitive types and their
+            corresponding object wrapper classes
+
+            ```java
+            int i = 10;
+            Integer j = i;
+            ```
+
+            - Unboxing when the conversion goes the other way
+
+            ```java
+            Integer i = 10;
+            int j = i;
+            ```
+
+            - Explicit conversion
+
+            ```java
+            int i = 10;
+            Integer j = Integer.valueOf(i);
+
+            Integer x = 10;
+            int y = x.intValue();
+            int z = (int) x;
+            ```
+
+        </details>
+
+        <details>
+            <summary>JVM Memory Allocation</summary>
+
+            <table>
+                <thead>
+                  <tr>
+                    <th>Component</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>class (method)</b></td>
+                    <td>Stores per-class structures (runtime constant pool, field, method data, and the code for methods)</td>
+                  </tr>
+                  <tr>
+                    <td><b>heap</b></td>
+                    <td>Runtime data area in which the memory is allocated to the objects</td>
+                  </tr>
+                  <tr>
+                    <td><b>stack</b></td>
+                    <td>
+                      <ul>
+                        <li>Holds local variables and partial results</li>
+                        <li>Plays a part in method invocation and return</li>
+                        <li>Each thread has a private JVM stack, created at the same time as the thread</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>program counter register</b></td>
+                    <td>Contains the address of the JVM instruction currently being executed</td>
+                  </tr>
+                  <tr>
+                    <td><b>native method stack</b></td>
+                    <td>Contains all the native methods used in the application</td>
+                  </tr>
+                </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>JVM/JRE/JDK</summary>
+
+            <table>
+              <tr>
+                <th>Feature</th>
+                <th>JVM</th>
+                <th>JRE</th>
+                <th>JDK</th>
+              </tr>
+              <tr>
+                <td><b>Definition</b></td>
+                <td>Java Virtual Machine</td>
+                <td>Java Runtime Environment</td>
+                <td>Java Development Kit</td>
+              </tr>
+              <tr>
+                <td><b>Components</b></td>
+                <td>Interpreter, Just-In-Time (JIT) Compiler</td>
+                <td>Implements the JVM, provides all class libraries, and other support files needed at runtime</td>
+                <td>Compiler, JRE, development tools (e.g., javac compiler, jar archiver)</td>
+              </tr>
+              <tr>
+                <td><b>Usage</b></td>
+                <td>Executes Java bytecode, platform-independent</td>
+                <td>Runs Java applications, required for end-users</td>
+                <td>Developing, compiling, and debugging Java programs</td>
+              </tr>
+              <tr>
+                <td><b>Inclusion</b></td>
+                <td>Part of JRE</td>
+                <td>Implements the JVM</td>
+                <td>JRE + Dev Tools</td>
+              </tr>
+              <tr>
+                <td><b>Purpose</b></td>
+                <td>Acts as a run-time engine to run Java applications</td>
+                <td>Runtime environment in which Java bytecode can be executed, providing all the class libraries and other support files that JVM uses at runtime</td>
+                <td>Developing, compiling, and running Java applications</td>
+              </tr>
+            </table>
+
+            **JVM**
+
+            JVM is a crucial component of the Java Runtime Environment (JRE) responsible for executing Java bytecode. It acts as an abstract computing machine, providing a runtime environment in which Java programs can run regardless of the underlying hardware and operating system.
+
+            **Key components**
+
+            - **Class Loader**: subsystem of the JVM is responsible for loading class files from the file system, network, or other sources and converting them into internal representation for execution
+            - **Bytecode Verifier**: before execution, the JVM performs bytecode verification to ensure that the loaded code does not violate any security constraints or Java language rules. This process helps in preventing harmful operations and ensuring type safety
+            - **Memory Management**: JVM manages memory allocation and deallocation for Java objects. It includes automatic garbage collection, which identifies and removes unreferenced objects to reclaim memory resources
+            - **Just-In-Time (JIT) Compiler**: JVM includes a JIT compiler that translates bytecode into native machine code at runtime for improved performance. It optimizes frequently executed code paths to enhance execution speed
+            - **Execution Engine**: Execution Engine interprets and executes Java bytecode instructions. It includes components such as the interpreter, which directly executes bytecode, and the JIT compiler, which compiles bytecode into native machine code for faster execution
+            - **Runtime Data Areas**: JVM maintains various runtime data areas such as the method area, heap, stack, PC (Program Counter) register, and native method stack. These areas store class metadata, objects, method invocation stacks, and other runtime information required for program execution
+            - **Security Manager**: JVM incorporates a Security Manager that enforces security policies to prevent untrusted code from performing harmful actions such as accessing system resources or executing dangerous operations
+            - **Platform Independence**: one of the key features of the JVM is its platform independence. Java programs compiled into bytecode can run on any system with a compatible JVM implementation, making Java a "write once, run anywhere" language
+            - **Dynamic Linking and Loading**: JVM supports dynamic linking and loading of classes and libraries at runtime, enabling the extension and modification of Java applications without recompilation
+            - **Monitoring and Management**: JVM provides tools and APIs for monitoring and managing its runtime behavior, including performance monitoring, memory profiling, and diagnostic capabilities
+
+        </details>
+
+        <details>
+            <summary>ClassLoader</summary>
+
+            - **Classpath Resolution**
+                - The class loading process begins with the JVM needing to load a class that is referenced by the application
+                - The class loader first checks its cache to see if the class has already been loaded. If found, it retrieves the class from the cache
+                - If the class is not cached, the class loader proceeds to locate the class file
+                - The classpath is a list of directories and JAR files where the class loader searches for class files
+                - The classpath can be set using the `-classpath` or `-cp` option when invoking the JVM, or it can be defined by the `CLASSPATH` environment variable
+            - **Bootstrap Class Loader**
+                - The bootstrap class loader is responsible for loading core Java classes provided by the JVM
+                - These classes are typically located in the `lib` directory of the Java installation
+                - Examples of core classes include those in the `java.lang` package, such as `Object`, `String`, and `Integer`
+            - **Extension Class Loader**
+                - The extension class loader loads classes from JAR files located in the extensions directory (`$JAVA_HOME/lib/ext`)
+                - This directory contains JAR files that extend the functionality of the JVM
+                - Classes loaded by the extension class loader are typically part of the Java Standard Extension mechanism
+            - **Application Class Loader**
+                - Also known as the system class loader, it loads classes from directories and JAR files specified by the classpath
+                - It is responsible for loading application-specific classes and 3rd-party libraries
+                - If a class is not found by the bootstrap or extension class loaders, the application class loader attempts to load it
+            - **Custom Class Loaders**
+                - Java allows developers to create custom class loaders to load classes from non-standard sources or to modify the default loading behavior
+                - Custom class loaders can be implemented by extending the `java.lang.ClassLoader` class
+                - Developers can override methods such as `findClass()` to define their own class-loading logic
+            - **Delegation Model**
+                - Class loaders in Java follow a delegation model, where each class loader delegates the class-loading request to its parent class loader before attempting to load the class itself
+                - This ensures that classes are loaded only once and promotes code reuse
+                - If a class loader cannot find a class, it delegates the request to its parent class loader, and the process continues recursively until the bootstrap class loader is reached
+            - **Resource Loading**
+                - In addition to loading class files, class loaders can also load other types of resources, such as configuration files, images, and XML files
+                - Resources are located using the same mechanism as class files, by searching directories and JAR files specified in the `classpath`
+            - **Loading the Class File**
+                - Once the class loader determines the location of the class file, it reads the binary data representing the class from the file system, network, or other sources
+                - The class loader then creates a `java.lang.Class` object, representing the loaded class, and stores it in the JVM's method area
+            - **Linking the Class**: after loading the class, the JVM performs linking which consists of 3 sub-stages
+                - **Verification**
+                    - The JVM verifies the loaded class file to ensure it adheres to the rules of the Java language and the JVM specification
+                    - Verification checks include verifying the format of the class file, examining the bytecode for correctness, and ensuring type safety and security
+                - **Preparation**
+                    - During this stage, memory for class variables (static fields) is allocated within the method area
+                    - Static fields are initialized with default values based on their data types (e.g., `0` for numeric types, `null` for objects)
+                    - However, the actual initialization of these variables to their proper values is deferred until later
+                - **Resolution**
+                    - In this stage, symbolic references in the class file are resolved to direct references to objects or methods in memory
+                    - This involves resolving symbolic references to other classes or interfaces, fields, and methods
+                    - Resolution ensures that the class can interact with other classes and resources at runtime
+            - **Initialization**
+                - The final stage involves the actual initialization of the class
+                - During initialization, the JVM executes any static initializer blocks (`static { }`) defined within the class
+                - Static fields are initialized with explicit initial values specified in the code
+                - This stage ensures that the class is properly initialized before it is used in the application
+
+        </details>
+
+        <details>
+            <summary>JIT (Just-In-Time) Compiler</summary>
+
+            - used to improve the performance
+            - compiles parts of the bytecode that have similar functionality at the same time, and hence reduces the amount of
+            time needed for compilation
+            - compiler - translates JVM instructions to specific CPU instructions
+
+        </details>
+
+        <details>
+            <summary>Java Compiler</summary>
+
+            - create file:
+
+            ```java
+            public class A {
+                public static void main(String[] args) {
+                    System.out.println(8);
+                }
+            }
+            ````
+
+            - save (empty name also possible): `.java`
+            - compile: `javac .java`
+            - execute: `java A`
+
+        </details>
+
+        <details>
+            <summary>Packaging</summary>
+
+            - **Modularity**: Organizes related classes
+            - **Namespace Management**: Prevents naming conflicts
+            - **Access Control**: Defines visibility within packages
+            - **Encapsulation**: Hides implementation details
+            - **Dependency Management**: Manages component dependencies
+            - **Code Organization**: Organizes files for easy navigation
+            - **Distribution & Versioning**: Facilitates library distribution and version control
+            - **Standardization**: Promotes consistent development practices
+
+            **Example**
+
+            ```java
+            package com.example.myapplication;
+
+            public class MyClass {
+                public static void main(String[] args) {
+                    System.out.println(8);
+                }
+            }
+            ```
+
+        </details>
+    </TabItem>
+    <TabItem value="gc" label="Garbage Collection (GC)">
+        <details>
+            <summary>Garbage Collection (GC)</summary>
+
+            Process of automatically reclaiming memory occupied by objects that are no longer reachable by the application.
+
+            Objects are dynamically allocated memory from a region called the heap. The heap is managed by the JVM and is the storage area for all objects, including arrays.
+
+        </details>
+
+        <details>
+            <summary>GC Generations</summary>
+
+            - **Young Generation**
+                - Newly created objects are allocated in the Young Generation
+                - The Young Generation is further divided into Eden Space and Survivor Spaces (usually two)
+            - **Old Generation (Tenured Generation)**
+                - Objects that survive multiple garbage collection cycles in the Young Generation are promoted to the Old Generation
+                - The Old Generation holds objects with longer lifetimes
+
+            ```java
+            public class GarbageCollectionExample {
+                public static void main(String[] args) {
+                    Object obj1 = new Object(); // Object 1 created in the Young Generation
+                    Object obj2 = new Object(); // Object 2 created in the Young Generation
+
+                    obj1 = null; // Object 1 becomes unreachable
+                    System.gc(); // Request garbage collection
+
+                    // After garbage collection, obj1 is collected from the Young Generation
+
+                    Object obj3 = new Object(); // Object 3 created in the Young Generation
+
+                    // Now, let's simulate a scenario where obj2 survives multiple garbage collections
+                    for (int i = 0; i < 10000; i++) {
+                        Object temp = new Object();
+                        if (i % 100 == 0)
+                            temp = obj2; // Reassigning obj2 to simulate its continued use
+                    }
+
+                    // After repeated garbage collections, obj2 is promoted to the Old Generation
+
+                    Object obj4 = new Object(); // Object 4 created in the Young Generation
+
+                    obj3 = null; // Object 3 becomes unreachable
+                    obj4 = null; // Object 4 becomes unreachable
+                    System.gc(); // Request garbage collection
+
+                    // After garbage collection, obj3 and obj4 are collected from the Young Generation
+                    // Meanwhile, obj2 remains in the Old Generation
+                } // obj2 is ready for garbage collection
+            }
+            ```
+
+        </details>
+
+        <details>
+            <summary>GC Types</summary>
+
+            <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Serial GC</th>
+                    <th>Parallel GC</th>
+                    <th>CMS GC</th>
+                    <th>G1 GC</th>
+                    <th>Shenandoah GC</th>
+                    <th>ZGC</th>
+                    <th>Epsilon GC</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td><b>Concurrency</b></td>
+                    <td>Single-threaded</td>
+                    <td>Multi-threaded</td>
+                    <td>Concurrent</td>
+                    <td>Concurrent</td>
+                    <td>Concurrent</td>
+                    <td>Concurrent</td>
+                    <td>No GC (no garbage collection)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Pause Time</b></td>
+                    <td>Can have longer pause times</td>
+                    <td>Can have shorter pause times compared to Serial GC</td>
+                    <td>Can have shorter pause times</td>
+                    <td>Can have shorter and more predictable pause times</td>
+                    <td>Can have shorter pause times</td>
+                    <td>Can have shorter and more predictable pause times</td>
+                    <td>No pauses (no garbage collection)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Throughput</b></td>
+                    <td>Lower throughput compared to Parallel GC</td>
+                    <td>Higher throughput compared to Serial GC</td>
+                    <td>
+                      Higher throughput compared to Serial and Parallel GC for concurrent mode
+                    </td>
+                    <td>High throughput with incremental and parallel phases</td>
+                    <td>High throughput with concurrent phases</td>
+                    <td>High throughput with concurrent phases</td>
+                    <td>Does not perform garbage collection</td>
+                  </tr>
+                  <tr>
+                    <td><b>Heap Size</b></td>
+                    <td>Small to medium heap sizes</td>
+                    <td>Medium to large heap sizes</td>
+                    <td>Medium to large heap sizes</td>
+                    <td>Large heap sizes</td>
+                    <td>Medium to large heap sizes</td>
+                    <td>Medium to very large heap sizes</td>
+                    <td>N/A (no garbage collection)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Garbage Collection Algorithm</b></td>
+                    <td>Serial</td>
+                    <td>Parallel</td>
+                    <td>Concurrent Mark-Sweep</td>
+                    <td>Garbage First</td>
+                    <td>Concurrent</td>
+                    <td>Concurrent</td>
+                    <td>No GC (no garbage collection)</td>
+                  </tr>
+                  <tr>
+                    <td><b>JDK Version</b></td>
+                    <td>All versions</td>
+                    <td>All versions</td>
+                    <td>Until Java 14 (deprecated in Java 9)</td>
+                    <td>Java 7 onwards</td>
+                    <td>Java 12 onwards</td>
+                    <td>Java 11 onwards</td>
+                    <td>Java 11 onwards</td>
+                  </tr>
+                  <tr>
+                    <td><b>Usability</b></td>
+                    <td>Simple and lightweight</td>
+                    <td>Easy to use</td>
+                    <td>Requires tuning; deprecated in newer versions</td>
+                    <td>Self-tuning; default in recent JDK versions</td>
+                    <td>Requires specific JDK version</td>
+                    <td>Requires specific JDK version</td>
+                    <td>For performance testing and troubleshooting</td>
+                  </tr>
+              </tbody>
+            </table>
+
+        </details>
+    </TabItem>
+    <TabItem value="files" label="Files">
+        <details>
+            <summary>File I/O</summary>
+
+            ```java
+                Path path = Path.of("test.txt");
+                boolean isExists = Files.exists(path);
+                String content = Files.readString(path, Charsets.UTF_8);
+                /**
+                 * CREATE - creates if not exists
+                 * TRUNCATE_EXISTING - remove all content
+                 * APPEND - adds to the file
+                 * WRITE - write access
+                 */
+                Files.writeString(path, "some text", StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE);
+            ```
+
+        </details>
+    </TabItem>
+    <TabItem value="exception" label="Exceptions">
+
+        <details>
+            <summary>Exception Tree</summary>
+
+            - `Throwable`
+                - Errors: unrecoverable and cannot be handled by the program
+                     - `StackOverFlowError`
+                     - `OutOfMemoryError`
+                - `Exception`: recoverable and can be handled by the program
+                    - checked (at compile-time)
+                        - `IOException`
+                        - `ClassNotFoundException`
+                        - `FileNotFoundException`
+                        - `SQLException`
+                    - unchecked (at runtime)
+                        - `NullPointerException`
+                        - `ClassCastException`
+                        - `ArithmeticException`
+                        - `IndexOutOfBoundsException`
+
+        </details>
+
+        <details>
+            <summary>Structure</summary>
+
+            ```java
+            try {
+                // Code that may throw an exception
+            } catch (ExceptionType1 e1) {
+                // Handle ExceptionType1
+            } catch (ExceptionType2 e2) {
+                // Handle ExceptionType2
+            } finally {
+                // Optional: Code to be executed regardless of whether an exception occurred or not
+                // used to release resources like I/O buffers, database connections, etc
+            }
+            ```
+
+            **Try-With-Resources**
+
+            ```java
+            // Specify the resources within the try-with-resources block
+            try (BufferedReader fileInput = new BufferedReader(new FileReader("file.txt"))) {
+                // Read from the file
+                String line;
+                while ((line = fileInput.readLine()) != null) {
+                    System.out.println(line);
+                }
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+            // No need to explicitly close the resources, it's automatically handled by try-with-resources
+            ```
+        </details>
+
+        <details>
+            <summary>throws</summary>
+
+            ```java
+            public class ThrowsExample {
+
+                // Method that declares it may throw an IOException
+                public static void methodThatThrows() throws IOException { throw new IOException(); } // Simulating an IOException
+
+                // Method that calls methodThatThrows and handles the IOException
+                public static void callerMethod() {
+                    try {
+                        methodThatThrows(); // Call methodThatThrows
+                    } catch (IOException e) {
+                        System.err.println(e.getMessage()); // Handle the IOException
+                    }
+                }
+
+                public static void main(String[] args) { callerMethod(); } // Call callerMethod
+            }
+            ```
+        </details>
+
+        <details>
+            <summary>Order</summary>
+
+            When an exception occurs, the catch blocks are evaluated in the order they appear in the code. The first catch block that matches the type of the thrown exception or one of its superclasses will be executed. Therefore, catch blocks for more specific exceptions should come before catch blocks for more general exceptions to ensure that exceptions are handled in the most appropriate way. If no catch block is found that matches the exception type, the exception will propagate up the call stack
+
+            **Exception Precedence**
+
+            ```java
+            public class ExceptionOrderHandlingExample {
+
+                public static void indexOutOfBoundsException() {
+                    var arr = {1, 2, 3};
+                    int value = arr[3]; // Accessing an index that is out of bounds
+                }
+
+                public static void arithmeticException() { int result = 10 / 0; } // Attempting division by zero
+
+                public static void main(String[] args) {
+                    try {
+                        indexOutOfBoundsException(); // exception raised
+                        arithmeticException(); // won't be executed
+                    } catch (ArithmeticException e) {
+                        System.err.println(e.getMessage()); // skipped
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.err.println(e.getMessage()); // caught exception
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage()); // didn't reach
+                    }
+                }
+            }
+            ```
+
+            **Rules for Subclass Overriding Superclass Methods**
+
+            ```java
+            class Superclass {
+                void doSomething() { } // Superclass method that doesn't declare any exception
+            }
+
+            class Subclass extends Superclass {
+                /* Subclass overridden method attempting to declare a checked exception
+                   This will result in a compilation error because the superclass method doesn't declare it
+                   but it can declare an unchecked exception
+                   So, we will declare an unchecked exception instead
+                */
+                @Override
+                void doSomething() throws RuntimeException { throw new RuntimeException(); }
+            }
+
+            public class Main {
+                public static void main(String[] args) {
+                    Superclass obj = new Subclass(); // Upcasting
+                    obj.doSomething(); // Calls overridden method in Subclass
+                }
+            }
+            ```
+
+            **Exception Declaration Flexibility in Subclass Methods**
+
+            If a superclass method declares an exception, a subclass's overridden method can declare the same exception, a subclass exception, or no exception at all. However, it cannot declare a parent exception
+
+            ```java
+            class Superclass {
+                void doSomething() throws Exception { } // Superclass method that declares a checked exception
+            }
+
+            class Subclass extends Superclass {
+                @Override
+                void doSomething() throws Exception { } // Subclass overridden method can declare the same exception
+            }
+
+            class AnotherSubclass extends Superclass {
+                @Override
+                void doSomething() throws IllegalArgumentException { } // Subclass overridden method can declare a subclass exception
+            }
+
+            public class Main {
+                public static void main(String[] args) {
+                    Superclass obj1 = new Subclass(); // Upcasting
+                    Superclass obj2 = new AnotherSubclass(); // Upcasting
+
+                    try {
+                        obj1.doSomething(); // Calls overridden method in Subclass
+                        obj2.doSomething(); // Calls overridden method in AnotherSubclass
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            ```
+        </details>
+
+        <details>
+            <summary>Exception Propagation vs Chaining</summary>
+
+            <table>
+              <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Exception Chaining</th>
+                    <th>Exception Propagation</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Exception chaining is the process of associating one exception with another, providing more context about the cause of the exception</td>
+                    <td>Exception propagation refers to the process by which an exception is passed from one method to another if it is not caught and handled in the method where it occurs</td>
+                  </tr>
+                  <tr>
+                    <td><b>Triggering</b></td>
+                    <td>Typically occurs when an exception is caught in one method and rethrown with additional context or information</td>
+                    <td>Automatically occurs when an exception is thrown in a method and not caught, causing it to propagate up the call stack to the caller method</td>
+                  </tr>
+                  <tr>
+                    <td><b>Purpose</b></td>
+                    <td>Provides more detailed information about the cause of an exception, allowing better understanding and debugging of the issue</td>
+                    <td>Allows handling of exceptions at an appropriate level in the call stack, providing a mechanism to deal with errors at higher levels of abstraction</td>
+                  </tr>
+                  <tr>
+                    <td><b>Mechanism</b></td>
+                    <td>The caught exception is wrapped with another exception that provides additional context, often using the constructor that accepts a `String` message and a `Throwable` cause</td>
+                    <td>The exception is propagated up the call stack until it is caught and handled or until it reaches the top-level caller, typically using `try-catch` blocks</td>
+                  </tr>
+                  <tr>
+                    <td><b>Example</b></td>
+                    <td>
+                        ```java
+                        public class ExceptionChainingExample {
+
+                            // Method that throws an exception
+                            public static void method1() throws Exception { throw new Exception(); } // Simulating an IOException
+
+                            // Method that calls method1 and wraps the exception
+                            public static void method2() throws Exception {
+                                try {
+                                    method1(); // Call method1
+                                } catch (Exception e) {
+                                    throw new Exception(e); // Wrap the caught exception and throw a new exception with additional information
+                                }
+                            }
+
+                            // Main method
+                            public static void main(String[] args) {
+                                try {
+                                    method2(); // Call method2
+                                } catch (Exception e) {
+                                    System.err.println(e.getMessage()); // Handle the chained exception
+                                    System.err.println(e.getCause().getMessage()); // Print the original cause of the exception
+                                }
+                            }
+                        }
+                        ```
+                    </td>
+                    <td>
+                        ```java
+                        public class ExceptionPropagationExample {
+
+                            // Method that throws an exception
+                            public static void method1() throws Exception { throw new Exception(); } // Simulating an exception
+
+                            // Method that calls method1 and doesn't handle the exception
+                            public static void method2() throws Exception { method1(); } // Call method1
+
+                            // Main method
+                            public static void main(String[] args) {
+                                try {
+                                    method2(); // Call method2
+                                } catch (Exception e) {
+                                    System.err.println(e.getMessage()); // Handle the exception propagated from method1
+                                }
+                            }
+                        }
+                        ```
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary>Custom Exception</summary>
+
+            ```java
+            public class CustomException extends Exception {
+                public CustomException(String message) { super(message); }
+            }
+            ```
+        </details>
+
+        <details>
+            <summary>Multi-Threaded Environment</summary>
+
+            ```java
+            public class MultiThreadedExceptionHandler {
+
+                public static void main(String[] args) {
+                    // Create and start multiple threads
+                    new Thread(new MyRunnable()).start();
+                    new Thread(new MyRunnable()).start();
+                }
+
+                // Runnable class to be executed by threads
+                static class MyRunnable implements Runnable {
+                    @Override
+                    public void run() {
+                        try {
+                            // Simulate an exception
+                            if (Math.random() < 0.5) {
+                                throw new RuntimeException("Simulated Exception");
+                            }
+                            Thread.sleep(1000); // Simulate some work
+                        } catch (InterruptedException e) {
+                            System.err.println(e.getMessage()); // when the thread is interrupted during sleep
+                        } catch (RuntimeException e) {
+                            System.err.println(e.getMessage()); // any other exceptions that occur during execution
+                        }
+                    }
+                }
+            }
+            ```
+
+        </details>
+    </TabItem>
+    <TabItem value="generics" label="Generics">
+        <details>
+            <summary>Pros & Limitations</summary>
+
+            - Pros
+                - enable developers to create reusable, type-safe code, enhancing both the flexibility and safety of programs
+                - enabling operations on various object types
+                - aim to bolster compile-time type checks and prevent `ClassCastException` errors during runtime
+                - enable reusable code components by allowing classes and methods to function with any data type
+            - Limitations
+                - don't directly support primitive types; instead, their wrapper classes must be used (e.g., `Integer` for `int`)
+                - Type erasure, which occurs with generics, can result in unexpected behavior, particularly with reflection or low-level type manipulation
+
+        </details>
+
+        <details>
+            <summary>Syntax</summary>
+
+            **Generic Class Declaration**
+
+            ```java
+            class ClassName<T> { }
+            ```
+
+            **Generic Method Declaration**
+
+            ```java
+            <T, R> R methodName(T arg) { }
+            ```
+
+            **Generic Interface**
+
+            ```java
+            interface Pair<T> {
+                void setFirst(T first);
+                T getFirst();
+            }
+
+            class StringPair implements Pair<Integer> {
+                private Integer first;
+
+                public void setFirst(Integer first) { this.first = first; }
+                public Integer getFirst() { return first; }
+            }
+
+            public class Main {
+                public static void main(String[] args) {
+                    StringPair pair = new StringPair();
+                    pair.setFirst(1);
+                    System.out.println(pair.getFirst());
+                }
+            }
+            ```
+
+            **Bounded Type Parameters**
+
+            ```java
+            public class Example<T extends Number> { } // restrict the types that can be used: T can only be a subclass of Number
+            ```
+
+            **Wildcards**
+
+            ```java
+            List<?> list; // list of unknown (any) type
+            ```
+
+        </details>
+    </TabItem>
+    <TabItem value="threads" label="Threads">
+        <details>
+            <summary>Context Switching</summary>
+
+            - technique where CPU time is shared across all running processes and processor allocation is switched in a time bound fashion
+            - to schedule a process to allocate the CPU, a running process is interrupted to a halt and its state is saved
+            - the process that has been waiting or saved earlier for its CPU turn is restored to gain its processing time from the CPU
+            - this gives an illusion that the CPU is executing multiple tasks, while in fact a part of the instruction is executed from multiple processes in a round robin fashion
+
+        </details>
+
+        <details>
+            <summary>Thread vs Process</summary>
+
+            <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Java Threads</th>
+                <th>Processes</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><b>Creation</b></td>
+                <td>Created within a Java Virtual Machine (JVM)</td>
+                <td>Spawned by the operating system</td>
+              </tr>
+              <tr>
+                <td><b>Overhead</b></td>
+                <td>Lightweight</td>
+                <td>More heavyweight due to OS involvement</td>
+              </tr>
+              <tr>
+                <td><b>Communication</b></td>
+                <td>Direct communication within the same JVM</td>
+                <td>Inter-process communication required</td>
+              </tr>
+              <tr>
+                <td><b>Memory Sharing</b></td>
+                <td>Threads share memory space</td>
+                <td>Processes have separate memory spaces</td>
+              </tr>
+              <tr>
+                <td><b>Resource Usage</b></td>
+                <td>Consumes less system resources</td>
+                <td>Consumes more system resources</td>
+              </tr>
+              <tr>
+                <td><b>Context Switching</b></td>
+                <td>Faster context switching within a thread group</td>
+                <td>Slower context switching due to OS involvement</td>
+              </tr>
+              <tr>
+                <td><b>Synchronization</b></td>
+                <td>Easier synchronization using built-in mechanisms</td>
+                <td>Requires explicit synchronization mechanisms</td>
+              </tr>
+              <tr>
+                <td><b>Data Sharing</b></td>
+                <td>Shared memory model</td>
+                <td>Requires inter-process communication for data sharing</td>
+              </tr>
+              <tr>
+                <td><b>Scalability</b></td>
+                <td>Easier to scale within a JVM</td>
+                <td>
+                  Scaling may involve more complexity due to inter-process communication
+                </td>
+              </tr>
+              <tr>
+                <td><b>Coordination</b></td>
+                <td>Easier coordination between threads</td>
+                <td>Inter-process coordination may be more complex</td>
+              </tr>
+              <tr>
+                <td><b>Error Isolation</b></td>
+                <td>Errors in one thread can affect others within JVM</td>
+                <td>Errors are contained within the process boundary</td>
+              </tr>
+              <tr>
+                <td><b>Deadlock Risks</b></td>
+                <td>Risk of deadlock within a thread group</td>
+                <td>Deadlock risks are typically more manageable</td>
+              </tr>
+              <tr>
+                <td><b>Programming Difficulty</b></td>
+                <td>Typically easier to program and manage</td>
+                <td>May require more careful programming and management</td>
+              </tr>
+              <tr>
+                <td><b>Performance Impact</b></td>
+                <td>Less overhead, typically better performance</td>
+                <td>More overhead, potentially lower performance</td>
+              </tr>
+              <tr>
+                <td><b>Fault Tolerance</b></td>
+                <td>Less fault tolerant due to shared memory</td>
+                <td>More fault tolerant due to separate memory spaces</td>
+              </tr>
+              <tr>
+                <td><b>Parallelism</b></td>
+                <td>Suitable for fine-grained parallelism</td>
+                <td>Suitable for coarse-grained parallelism</td>
+              </tr>
+              </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Thread States</summary>
+
+            - **NEW** — a new thread instance that was not yet started via `Thread.start()`
+            - **RUNNABLE** — running thread, enters when `Thread.start()` called
+            - **BLOCKED** — running thread becomes blocked if it needs to enter a synchronized section but cannot do that due to another thread holding the monitor of this section
+            - **WAITING** — a thread enters this state if it waits for another thread to perform a particular action: Object.wait(), Thread.join()
+            - **TIMED_WAITING** — same as the above, but a thread enters this state after calling timed versions: Thread.sleep(), Object.wait()
+            - **TERMINATED** — a thread has completed the execution of its Runnable.run() method and terminated or exception happened
+
+            ```mermaid
+                graph LR
+
+                    Created(Created) -->|"start()"| Runnable(Runnable)
+                    Runnable -->|"Blocked (waiting for monitor lock)"| Blocked(Blocked)
+                    Runnable -->|"sleep() or wait()"| TimedWaiting(TimedWaiting)
+                    Runnable -->|"yield() or time slice ends"| Runnable
+                    Blocked -->|"notify()/notifyAll()"| Runnable
+                    Blocked -->|"lock becomes available"| Runnable
+                    TimedWaiting -->|"sleep() or wait() finishes"| Runnable
+                    TimedWaiting -->|"time expires"| Runnable
+                    TimedWaiting -->|"notify()/notifyAll()"| Blocked
+            ```
+        </details>
+
+        <details>
+            <summary>Concurrency Utilities</summary>
+
+            - `java.util.concurrent` package
+            - collections: `ConcurrentHashMap`, `ConcurrentLinkedQueue`
+            - utilities: `CountDownLatch`, `Semaphore`, `CyclicBarrier`
+            - atomic variables: `AtomicInteger`, `AtomicBoolean`, `AtomicLong`
+        </details>
+
+        <details>
+            <summary>Runnable vs Callable</summary>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Method</th>
+                        <th>Return value or throw unchecked exceptions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Runnable</b></td>
+                        <td>`run()`</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><b>Callable</b></td>
+                        <td>`call()`</td>
+                        <td>+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary>Thread Initialization</summary>
+
+
+            **Extending the `Thread` class**
+
+            ```java
+            class MyThread extends Thread {
+                public void run() { /* Code to be executed by the thread*/ }
+
+                public static void main(String[] args) {
+                    MyThread thread = new MyThread();
+                    thread.start();
+                }
+            }
+            ```
+
+            **Implementing the `Runnable` interface**
+
+            ```java
+            class MyRunnable implements Runnable {
+                public void run() { /* Code to be executed by the thread */ }
+
+                public static void main(String[] args) {
+                    MyRunnable myRunnable = new MyRunnable();
+                    Thread thread = new Thread(myRunnable);
+                    thread.start();
+                }
+            }
+            ```
+
+            **Using lambda expressions with `Runnable`**
+
+            ```java
+            public class Main {
+                public static void main(String[] args) {
+                    Runnable myRunnable = () -> { /* Code to be executed by the thread */ };
+
+                    Thread thread = new Thread(myRunnable);
+                    thread.start();
+                }
+            }
+            ```
+
+            **Anonymous class with `Runnable`**
+
+            ```java
+            public class Main {
+                public static void main(String[] args) {
+                    Runnable myRunnable = new Runnable() {
+                        public void run() { /* Code to be executed by the thread */ }
+                    };
+
+                    Thread thread = new Thread(myRunnable);
+                    thread.start();
+                }
+            }
+            ```
+
+            **Using `ExecutorService` and `Callable`**
+
+            ```java
+            import java.util.concurrent.*;
+
+            public class Main {
+                public static void main(String[] args) throws ExecutionException, InterruptedException {
+                    Callable<Integer> callableTask = () -> {
+                        // Code to be executed by the thread
+                        return 8;
+                    };
+
+                    ExecutorService executorService = Executors.newSingleThreadExecutor();
+                    Future<Integer> future = executorService.submit(callableTask);
+
+                    String result = future.get();
+                    System.out.println(result);
+
+                    executorService.shutdown();
+                }
+            }
+            ```
+
+        </details>
+
+        <details>
+            <summary>Daemon Thread</summary>
+
+            - thread that does not prevent JVM from exiting
+            - used to carry out some supportive or service tasks for other threads
+            - they may be abandoned at any time
+            - not good for I/O operations due to not closing the resources
+
+            ```java
+                Thread daemon = new Thread(() -> System.out.println("Hello from daemon!"));
+                daemon.setDaemon(true);
+                daemon.start();
+            ```
+
+        </details>
+
+        <details>
+            <summary>Interrupt Flag (InterruptedException)</summary>
+
+            - internal Thread flag that is set when the thread is interrupted via `thread.interrupt()`
+            - if a thread is inside of the methods that throw InterruptedException (wait, join, sleep), then it throws InterruptedException
+                - else nothing special happens. It is thread's responsibility to periodically check the interrupt status via `Thread.interrupted()` (clears the interrupt flag), `isInterrupted()` (doesn't clear flag)
+
+        </details>
+
+        <details>
+            <summary>Executor vs ExecutorService</summary>
+
+            - `Executor` - interface with a single `execute` method. Interface that your task-executing code should depend on
+            - `ExecutorService` - extends the `Executor` interface with multiple methods for handling and checking the lifecycle of a concurrent task execution service
+                - `ThreadPoolExecutor` - for executing tasks using a pool of threads
+                - `ScheduledThreadPoolExecutor` - allows to schedule task execution instead of running it immediately when a thread is available
+
+        </details>
+
+        <details>
+            <summary>Deadlock, Livelock, Starvation</summary>
+
+            - **Deadlock** - condition within a group of threads that cannot make progress because every thread in the group has to acquire some resource that is already acquired by another thread in the group
+                - when two threads need to lock both of two resources to progress, the first resource is already locked by one thread, and the second by another. These threads will never acquire a lock to both resources and thus will never progress
+                - situation in which two (or more) threads are each waiting on the other thread to free a resource that it has locked, while the thread itself has locked a resource the other thread is waiting on
+                - mutual exclusion
+                    - resource that can be accessed only by one thread at any point in time
+                    - optimistic locking
+                - resource holding
+                    - while having locked one resource, the thread tries to acquire another lock on some other exclusive resource
+                    - thread may release all its exclusive locks, when it does not succeed in obtaining all exclusive locks
+                - no preemption
+                    - there is no mechanism, which frees the resource if one thread holds the lock for a specific period of time
+                    - using a timeout for an exclusive lock frees the lock after a given amount of time
+                - circular wait
+                    - during runtime a constellation occurs in which two (or more) threads are each waiting on the other thread to free a resource that it has locked
+                    - when all exclusive locks are obtained by all threads in the same sequence, no circular wait occurs
+            - **Livelock** - case of multiple threads reacting to conditions, or events, generated by themselves
+                - An event occurs in one thread and has to be processed by another thread. During this processing, a new event occurs which has to be processed in the first thread, and so on. Such threads are alive and not blocked, but still, do not make any progress because they overwhelm each other with useless work
+            - **Starvation** - case of a thread unable to acquire resource because other thread (or threads) occupy it for too long or have higher priority
+                - thread cannot make progress and thus is unable to fulfill useful work
+
+        </details>
+
+        <details>
+            <summary>Lock Interface vs Synchronized Block</summary>
+
+            - there are two separate locks for reading and writing, which enables write high-performance data structures, like ConcurrentHashMap and conditional blocking
+
+        </details>
+
+        <details>
+            <summary>`wait` vs `sleep`</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>action</th>
+                  <th>usage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>wait</b></td>
+                  <td>release the lock and must be called from the synchronized context</td>
+                  <td>inter-thread communication</td>
+                </tr>
+                <tr>
+                  <td><b>sleep</b></td>
+                  <td>pause the thread for some time and keep the lock</td>
+                  <td>introduce pause on execution</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </details>
+
+        <details>
+            <summary>Share data</summary>
+
+            - shared objects
+            - Queue (shared data structures)
+            - `synchronized` keyword
+
+        </details>
+
+        <details>
+            <summary>Volatile vs Synchronized Method</summary>
+
+            - `volatile`
+                - only synchronizes the value of one variable between the thread memory and the "main" memory
+                - forces all accesses (read or write) to the volatile variable to occur to main memory, effectively keeping the volatile variable out of CPU caches
+            - `synchronized`
+                - synchronizes the value of all variables between the thread memory and the "main" memory and locks and releases a monitor to control the ownership between multiple threads
+                - prevents any other thread from obtaining the monitor (or lock) for the same object
+
+        </details>
+
+        <details>
+            <summary>Thread `start()` vs `run()`</summary>
+
+            - when you call the `start()` method, it creates a new thread and executes code declared in the `run()`
+            - calling the `run()` method doesn't create any new threads and executes code on the same calling thread
+
+        </details>
+
+        <details>
+            <summary>Awake and Blocked Thread</summary>
+
+            - blocking can result in many ways
+                - IO - no way
+                - `wait()`,  `sleep()`, `join()` - can interrupt the thread, and it will awake by throwing  `InterruptedException`
+
+        </details>
+
+        <details>
+            <summary>Handle an unhandled exception in the thread</summary>
+
+            - use `UncaughtExceptionHandler`
+
+        </details>
+
+        <details>
+            <summary>ThreadLocal</summary>
+
+            - As memory is shared between different threads, `ThreadLocal` provides a way to store and retrieve values for each thread separately
+            - can provide different objects for each working thread
+                -  to avoid synchronizing access to that object
+                    - `SimpleDateFormat` (give each thread its own instance of the object)
+                - can be used to transport information throughout the application without the need to pass this from method to method
+
+        </details>
+
+        <details>
+            <summary>Thread Safety</summary>
+
+            - can be used safely by any thread without additional synchronization, even when synchronization is not used to publish them
+                - not setter methods
+                - all fields should be `final` and `private`
+                - if a field is a mutable object create defensive copies of it for getter methods
+                - if a mutable object passed to the constructor must be assigned to a field create a defensive copy of it
+                - don’t allow sub-classes to override methods
+
+        </details>
+
+        <details>
+            <summary>Thread Pool vs Group</summary>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Thread Pools</th>
+                        <th>Thread Groups</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Purpose</b></td>
+                        <td>Manages and reuses a pool of worker threads.</td>
+                        <td>Provides a way to organize and manipulate threads.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Creation</b></td>
+                        <td>Instantiated using ExecutorService or its subclasses like ThreadPoolExecutor.</td>
+                        <td>Created directly using the ThreadGroup class.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Management</b></td>
+                        <td>Automatically manages the lifecycle of threads in the pool (creation, execution, termination).</td>
+                        <td>Provides a way to organize threads hierarchically.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Usage</b></td>
+                        <td>Suitable for scenarios with a large number of short-lived tasks, where thread reuse is beneficial.</td>
+                        <td>Useful for scenarios requiring hierarchical organization of threads, such as categorizing threads based on their functionality.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Thread control</b></td>
+                        <td>Limited control over individual threads in the pool.</td>
+                        <td>Provides control over multiple threads as a group.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Task submission</b></td>
+                        <td>Tasks are submitted to the pool using execute() or submit() methods.</td>
+                        <td>Threads are created independently and can be added to the thread group using the constructor specifying the thread group.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Thread states</b></td>
+                        <td>Threads in a pool can be in various states like RUNNABLE, WAITING, TIMED_WAITING, or TERMINATED.</td>
+                        <td>Threads in a group can have different states as defined in the Thread.State enum, like NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, or TERMINATED.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Dynamic resizing</b></td>
+                        <td>Some thread pool implementations allow dynamic resizing based on workload.</td>
+                        <td>Thread groups do not support dynamic resizing; once a thread is added to a group, it remains part of that group.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Thread affinity</b></td>
+                        <td>No direct control over which thread executes a particular task.</td>
+                        <td>Threads in a group share certain characteristics and can be managed together.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Hierarchy</b></td>
+                        <td>Does not inherently support hierarchical organization of threads.</td>
+                        <td>Supports hierarchical organization of threads, where a group can contain other groups and threads.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Error handling</b></td>
+                        <td>Exception handling within a task must be managed within the task itself.</td>
+                        <td>Exception handling can be centralized within the thread group, allowing for a unified approach to error handling.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Performance</b></td>
+                        <td>Optimal for managing a large number of tasks with a limited number of threads, reducing overhead associated with thread creation and destruction.</td>
+                        <td>Overhead associated with thread groups is generally minimal, but they may not be as efficient for managing individual tasks compared to thread pools.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Flexibility</b></td>
+                        <td>Provides flexibility in managing thread lifecycle and resource utilization through various configuration options.</td>
+                        <td>Offers flexibility in organizing threads hierarchically, which can be useful for certain types of applications like monitoring or logging.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Resource management</b></td>
+                        <td>Provides better resource management by reusing threads, thus reducing overhead.</td>
+                        <td>Primarily used for organizational purposes and does not directly impact resource management.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Example</b></td>
+                        <td>
+                        ```java
+                        import java.util.concurrent.ExecutorService;
+                        import java.util.concurrent.Executors;
+
+                        public class ThreadPoolExample {
+                            public static void main(String[] args) {
+                                ExecutorService executor = Executors.newFixedThreadPool(5); // Create a fixed-size thread pool with 5 threads
+
+                                for (int i = 0; i < 10; i++) { // Submit tasks to the thread pool
+                                    Runnable task = new MyTask(i);
+                                    executor.submit(task);
+                                }
+
+                                executor.shutdown(); // Shutdown the executor to release resources
+                            }
+
+                            static class MyTask implements Runnable {
+                                private final int taskId;
+                                public MyTask(int taskId) { this.taskId = taskId; }
+
+                                @Override
+                                public void run() { System.out.println("Task " + taskId + " is running on thread " + Thread.currentThread().getName()); }
+                            }
+                        }
+                        ```
+                        </td>
+                        <td>
+                        ```java
+                        public class ThreadGroupExample {
+                            public static void main(String[] args) {
+                                ThreadGroup group = new ThreadGroup("MyThreadGroup"); // Create a new thread group
+
+                                // Create threads and add them to the thread group
+                                Thread t1 = new Thread(group, new MyRunnable(), "Thread1");
+                                Thread t2 = new Thread(group, new MyRunnable(), "Thread2");
+
+                                // Start the threads
+                                t1.start();
+                                t2.start();
+
+                                // Display information about the thread group
+                                group.list();
+                            }
+
+                            static class MyRunnable implements Runnable {
+                                @Override
+                                public void run() { System.out.println("Thread " + Thread.currentThread().getName() + " is running"); }
+                            }
+                        }
+                        ```
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary>Virtual Threads</summary>
+
+            Lightweight, highly efficient threads. Unlike traditional Java threads, which are mapped directly to native operating system threads, virtual threads are managed at the JVM level, allowing for more efficient use of system resources and greater scalability.
+
+            - **Lightweight:** Virtual threads have minimal memory overhead and quick creation/destruction, ideal for efficiently managing numerous threads
+            - **Highly Scalable:** Their lightweight nature enables virtual threads to scale to large numbers without excessive overhead, perfect for highly concurrent applications
+            - **Simplified Concurrency:** Virtual threads offer an intuitive and efficient model for concurrent task management, utilizing familiar Java concurrency constructs
+            - **Interoperability:** Seamlessly integrating with existing Java APIs and libraries, virtual threads ensure compatibility with frameworks like `CompletableFuture` and **Stream API**, without requiring significant codebase changes
+            - **Improved Performance:** Managed at the JVM level, virtual threads optimize thread scheduling and resource allocation, reducing overhead in thread operations and enhancing application responsiveness and throughput
+
+            **Create a Virtual Thread**
+
+            ```java
+            public class VirtualThreadExample {
+                public static void main(String[] args) {
+                    Thread virtualThread = Thread.startVirtualThread(() -> {
+                        System.out.println(2);
+                    });
+                    System.out.println(1);
+                    virtualThread.join();
+                    System.out.println(3);
+                }
+            }
+            ```
+
+            **Synchronization with Virtual Threads**
+
+            ```java
+                public class VirtualThreadSynchronizationExample {
+                    static int sharedCounter = 0;
+
+                    public static void main(String[] args) {
+                        Thread virtualThread1 = Thread.startVirtualThread(() -> {
+                            synchronized (VirtualThreadSynchronizationExample.class) {
+                                for (int i = 0; i < 1000; i++) {
+                                    sharedCounter++;
+                                }
+                            }
+                        });
+
+                        Thread virtualThread2 = Thread.startVirtualThread(() -> {
+                            synchronized (VirtualThreadSynchronizationExample.class) {
+                                for (int i = 0; i < 1000; i++) {
+                                    sharedCounter++;
+                                }
+                            }
+                        });
+
+                        try {
+                            virtualThread1.join();
+                            virtualThread2.join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        System.out.println(sharedCounter);
+                    }
+                }
+            ```
+
+            **CompletableFuture with Virtual Threads**
+
+            ```java
+            import java.util.concurrent.CompletableFuture;
+
+            public class CompletableFutureExample {
+                public static void main(String[] args) {
+                    CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                        System.out.println(1);
+                    });
+
+                    future.join(); // Wait for the CompletableFuture to complete
+                    System.out.println(2);
+                }
+            }
+            ```
+
+        </details>
+
+    </TabItem>
+
+</Tabs>
+
+## Practice
+
+<details>
+    <summary>Practice</summary>
+
+    ```java
+    public static void main(String[] args) {
+        if (true)
+            break; // compile-time error: `break` is used inside switch and loops
+    }
+    ```
+
+    ```java
+    public static void main(String[] args) {
+        System.out.println('j' + 'a' + 'v' + 'a'); // 106 + 97 + 118 + 97 = 418
+    }
+    ```
+
+    ```java
+    public class Demo {
+        public static void main(String[] arr) {
+            Integer num1 = 100;
+            Integer num2 = 100;
+            Integer num3 = 500;
+            Integer num4 = 500;
+
+            if(num1==num2) { // num1 == num2
+                System.out.println("num1 == num2");
+            } else {
+                System.out.println("num1 != num2");
+            }
+
+            if(num3 == num4) { // num3 != num4
+                System.out.println("num3 == num4");
+            } else {
+                System.out.println("num3 != num4");
+            }
+        }
+        /*
+         Integer class has a caching range of -128 to 127. Whenever a number is between this range and autoboxing is used, it assigns the same reference
+         That’s why for value 100, both num1 and num2 will have the same reference
+         For the value 500 (not in the range of -128 to 127), num3 and num4 will have different reference
+         */
+    }
+    ```
+
+    ```java
+    public static void main (String args[]) {
+        System.out.println(10 + 20 + "World"); // 30World
+        System.out.println("World" + 10 + 20); // World1020
+        System.out.println("World" + 10 * 20); // World200
+    }
+    ```
+
+    ```java
+    class Test {
+        public static void main (String args[]) {
+            for(int i=0; 0; i++) // compile-time error: for loop demands a boolean value in the second part and we are providing an integer value, i.e., 0
+            {
+                System.out.println("Hello World");
+            }
+        }
+    }
+    ```
+
+    ```java
+    class Test { int i; }
+
+    public class Main {
+        public static void main (String args[]) {
+            Test test = new Test();
+            System.out.println(test.i); // 0
+        }
+    }
+    ```
+
+    ```java
+    class Test {
+        int test_a, test_b;
+
+        Test(int a, int b) {
+            test_a = a;
+            test_b = b;
+        }
+
+        public static void main (String args[]) {
+            Test test = new Test(); // compile-time error: no default constructor
+            System.out.println(test.test_a + test.test_b);
+        }
+    }
+    ```
+
+    ```java
+    class OverloadingCalculation3 {
+
+        void sum(int a,long b){ System.out.println(1); }
+        void sum(long a,int b){ System.out.println(2); }
+
+        public static void main(String args[]) {
+            OverloadingCalculation3 obj = new OverloadingCalculation3();
+            obj.sum(20,20); // runtime error: ambiguity
+        }
+    }
+    ```
+
+    ```java
+    class Base {
+        void method(int a) {
+            System.out.println(a);
+        }
+
+        void method(double d) {
+            System.out.println(d);
+        }
+    }
+
+    class Derived extends Base {
+        @Override
+        void method(double d) {
+            System.out.println(d);
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            new Derived().method(10); // Base class method called with integer a = 10
+        }
+    }
+    ```
+
+    ```java
+    class Base {
+        public void baseMethod() {
+            System.out.println(1);
+        }
+    }
+
+    class Derived extends Base {
+        public void baseMethod() {
+            System.out.println(2);
+        }
+    }
+
+    public class Test {
+        public static void main (String args[]) {
+            Base b = new Derived();
+            b.baseMethod(); // Derived method called. Output: 2
+        }
+    }
+    ```
+
+    ```java
+    abstract class Calculate {
+        abstract int multiply(int a, int b);
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            int result = new Calculate() {
+
+                @Override
+                int multiply(int a, int b) {
+                    return a * b;
+                }
+            }.multiply(12,32);
+
+            System.out.println(result); // 384
+        }
+    }
+    ```
+
+    ```java
+    class Calculation extends Exception {
+        public Calculation() {
+            System.out.println(1);
+        }
+
+        public void add(int a, int b) {
+            System.out.println(a+b);
+        }
+    }
+
+    public class Main {
+        public static void main(String []args) {
+            try {
+                throw new Calculation();
+            } catch(Calculation c) {
+                c.add(10,20); // Calculation class is instantiated. Output: 1, 30
+            }
+        }
+    }
+    ```
+
+    ```java
+    public class Main {
+        void a() {
+            try {
+                System.out.println(1);
+                b(); // 2. method called
+            }catch(Exception e) {
+                System.out.println(2); // 8. Exception is caught
+            }
+        }
+
+        void b() throws Exception {
+            try{
+                System.out.println(3);
+                c(); // 3. method called
+            }catch(Exception e) { // 5. Exception is caught
+                throw new Exception(); // 6. throw exception
+            } finally {
+                System.out.println(4); // 7. finally block is called
+            }
+        }
+
+        void c() throws Exception {
+            throw new Exception(); // 4. throw exception
+        }
+
+        public static void main (String args[]) {
+            Main m = new Main();
+            m.a(); // 1. method called
+        }
+    }
+    ```
+
+    ```java
+    public class Calculation {
+        int a;
+        public Calculation(int a) {
+            this.a = a;
+        }
+
+        public int add() {
+            a = a+10;
+            try {
+                a = a+10;
+                try {
+                    a = a*10;
+                    throw new Exception();
+                }catch(Exception e){
+                    a = a - 10;
+                }
+            }catch(Exception e) {
+                a = a - 10;
+            }
+            return a;
+        }
+
+        public static void main (String args[])
+        {
+            Calculation c = new Calculation(10);
+            int result = c.add();
+            System.out.println("result = " + result); // result = 290
+        }
+    }
+    ```
+
+    ```java
+    public class Test {
+        public static void main (String args[]) {
+            String s1 = "Hello";
+            String s2 = new String("Hello");
+            s2 = s2.intern();
+            System.out.println(s1 == s2); // true
+            /*
+            The intern method returns the String object reference from the string pool.
+            In this case:
+                s1 is created by using string literal
+                s2 is created by using the String pool
+            However, s2 is changed to the reference of s1, and the operator == returns true
+            */
+        }
+    }
+    ```
+
+    ```java
+    class Simple{
+        public Simple() { System.out.println(1); } // 1. Constructor is invoked
+        void message(){ System.out.println(2); } // 2. method is invoked
+    }
+
+    class Test1{
+        public static void main(String args[]) {
+            try {
+                Class c = Class.forName("Simple");
+                Simple s = (Simple) c.newInstance();
+                s.message(); // Output: 1, 2
+            } catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+    ```
+
+    ```java
+    public class Test {
+        Test(int a, int b) { }
+
+        Test(int a, float b) { }
+
+        public static void main (String args[]) {
+            byte a = 10;
+            byte b = 15;
+            Test test = new Test(a,b); // a = 10 b = 15
+            /*
+            Here, the data type of the variables a and b,
+            i.e., byte gets promoted to int,
+            and the first parameterized constructor with the 2 integer parameters is called
+            */
+        }
+    }
+    ```
+
+    ```java
+    public class Test{
+        Test() {
+            super(); // only 1 call can be made super() or this()
+            this(); // compile-time error: call to this must be first statement in constructor
+            System.out.println(1);
+        }
+
+        public static void main(String []args) {
+            Test t = new Test();
+        }
+    }
+    ```
+
+    ```java
+    public class Animal {
+        void consume(int a) { System.out.println(a); }
+        static void consume(int a) { System.out.println(a); }
+
+        public static void main (String args[]) {
+            Animal a = new Animal();
+            a.consume(10); // compile-time error: method consume(int) is already defined in class Animal
+            Animal.consume(20); // compile-time error: non-static method consume(int) cannot be referenced from a static context
+        }
+    }
+    ```
+
+    ```java
+    class Main {
+        public static void main(String args[]) {
+            final int i;
+            i = 20;
+            System.out.println(i); // 20
+        }
+    }
+    ```
+
+    ```java
+    String s = new String("Welcome"); // 2 objects, one in string constant pool and other in non-pool (heap) is created
+    ```
+
+    ```java
+    public static void main (String args[]) {
+        String a = new String("Hello");
+        String b = "Hello";
+
+        if(a == b) { System.out.println(1); } // false
+        if(a.equals(b)) { System.out.println(2); } // true
+    }
+    ```
+
+    !!! info You have thread T1, T2, and T3. How will you ensure that thread T2 is run after T1 and thread T3 after T2?
+
+        - `join()`
+        - BlockingQueue (producer consumer problem)
+
+    !!! info Write a program that will result in a deadlock. How will you fix deadlock?
+
+    !!! info Race condition
+
+    !!! info Immutable class
+
+    !!! info ReadWriteLock
+
+</details>

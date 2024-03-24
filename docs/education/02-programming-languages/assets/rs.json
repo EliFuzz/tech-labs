@@ -150,6 +150,7 @@
     "namespaces": [],
     "imports": [],
     "variables": [],
+    "bitwiseOperators": [],
     "functions": [],
     "flowControls": [],
     "structures": [],

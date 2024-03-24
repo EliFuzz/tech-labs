@@ -169,12 +169,12 @@
       },
       {
         "name": "package_alias",
-        "description": "Math library with local alias m",
+        "description": "Import with alias m",
         "code": "import m \"math\""
       },
       {
         "name": "package_github",
-        "description": "package in the github.com/google/uuid library",
+        "description": "Package in the github.com/google/uuid library",
         "code": "import \"github.com/google/uuid\""
       }
     ],
@@ -320,6 +320,38 @@
         "code": "myFunc(arr...)"
       }
     ],
+    "bitwiseOperators": [
+      {
+        "name": "and",
+        "description": "AND",
+        "code": "x := x & y\nx &= y"
+      },
+      {
+        "name": "or",
+        "description": "OR",
+        "code": "x := x | y\nx |= y"
+      },
+      {
+        "name": "xor",
+        "description": "XOR",
+        "code": "x := x ^ y\nx ^= y"
+      },
+      {
+        "name": "shift_left",
+        "description": "Shift left",
+        "code": "x := x << y\nx <<= y"
+      },
+      {
+        "name": "shift_right",
+        "description": "Shift right",
+        "code": "x := x >> y\nx >>= y"
+      },
+      {
+        "name": "bit_clear_not",
+        "description": "Bit clear (AND NOT)",
+        "code": "/*\nclears bits in the first operand\nwhere corresponding bits in the second operand are set (equal to 1),\nwhile leaving the bits unchanged\nwhere corresponding bits in the second operand are clear (equal to 0)\n*/\nx := x &^ y\nx &^= y"
+      }
+    ],
     "functions": [
       {
         "name": "main",
@@ -441,6 +473,11 @@
         "code": "type myInterface interface {\n  myMethod()\n}"
       },
       {
+        "name": "interface_implementation",
+        "description": "Interface implementation",
+        "code": "type myInterface interface {\n  myMethod()\n}\n\nclass myClass implements myInterface {\n  myMethod() {\n    fmt.Println(\"myMethod\")\n  }\n}"
+      },
+      {
         "name": "struct_initialization",
         "description": "Struct initialization",
         "code": "type myStruct struct {\n  myField int\n}"
@@ -456,6 +493,16 @@
         "name": "error_idiom",
         "description": "Error idiom",
         "code": "if _, err := myFunc(); err != nil {\n  fmt.Println(err)\n}"
+      },
+      {
+        "name": "panic",
+        "description": "Panic: throw an error",
+        "code": "panic(\"error\")"
+      },
+      {
+        "name": "recover",
+        "description": "Recover: catch an error",
+        "code": "if err := recover(); err != nil {\n  fmt.Println(err)\n}"
       }
     ],
     "concurrency": [
