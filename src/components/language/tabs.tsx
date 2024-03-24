@@ -22,6 +22,7 @@ type Syntax = {
   namespaces: Code[];
   imports: Code[];
   variables: Code[];
+  bitwiseOperators: Code[];
   functions: Code[];
   flowControls: Code[];
   structures: Code[];
@@ -104,6 +105,17 @@ export default ({ data }: { data: Data[] }): ReactElement => {
                   </TabItem>
                   <TabItem value="Variables" label="Variables">
                     {content.syntax?.variables?.map((code: Code) => (
+                      <CodeBlock
+                        key={code.name}
+                        language={content.key}
+                        title={code.description}
+                      >
+                        {code.code}
+                      </CodeBlock>
+                    ))}
+                  </TabItem>
+                  <TabItem value="bitwiseOperators" label="Bitwise Operators">
+                    {content.syntax?.bitwiseOperators?.map((code: Code) => (
                       <CodeBlock
                         key={code.name}
                         language={content.key}

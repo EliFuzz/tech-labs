@@ -4,7 +4,6 @@ description: Array Data Structure
 hide_table_of_contents: true
 ---
 
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
@@ -60,11 +59,11 @@ import TS from "!!raw-loader!./assets/array/ts.ts";
   <TabItem value="short" label="Short">
     **Array** is a data structure that stores elements of the same type in contiguous memory locations, allowing for efficient indexing and retrieval.
 
-  :::note[Simplified]
+    <details>
+      <summary>Simplified</summary>
 
-  It's like organized row of storage bins where you can put similar items. Each bin has a number, making it easy to find and grab what you need quickly, helping to keep things neat and orderly.
-
-  :::
+      It's like organized row of storage bins where you can put similar items. Each bin has a number, making it easy to find and grab what you need quickly, helping to keep things neat and orderly.
+    </details>
 
   </TabItem>
   <TabItem value="detailed" label="Detailed">
@@ -124,15 +123,24 @@ import TS from "!!raw-loader!./assets/array/ts.ts";
       <tbody>
         <tr>
           <td>Reverse</td>
-          <td>Iterate array from the end to the start, appending each element to a new array</td>
+          <td>
+            Iterate array from the end to the start, appending each element to a
+            new array
+          </td>
         </tr>
         <tr>
           <td>Slice</td>
-          <td>Creating a new list, then iterating from the start to stop index in the input array, adding each element to the new list</td>
+          <td>
+            Creating a new list, then iterating from the start to stop index in
+            the input array, adding each element to the new list
+          </td>
         </tr>
         <tr>
           <td>Concatenate</td>
-          <td>Combine two arrays into one by first copying elements from the first array, then appending elements from the second array to a new array</td>
+          <td>
+            Combine two arrays into one by first copying elements from the first
+            array, then appending elements from the second array to a new array
+          </td>
         </tr>
       </tbody>
     </table>

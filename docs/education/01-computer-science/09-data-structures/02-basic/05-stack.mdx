@@ -4,7 +4,6 @@ description: Stack Data Structure
 hide_table_of_contents: true
 ---
 
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
@@ -36,19 +35,19 @@ import TS from "!!raw-loader!./assets/stack/ts.ts";
   <tbody>
     <tr>
       <td>
-        <code className="fair" style={{ whiteSpace: "pre" }}>O(n)</code>
+        <code className="fair">O(n)</code>
       </td>
       <td>
-        <code className="fair" style={{ whiteSpace: "pre" }}>O(n)</code>
+        <code className="fair">O(n)</code>
       </td>
       <td>
-        <code className="fair" style={{ whiteSpace: "pre" }}>O(n)</code>
+        <code className="fair">O(n)</code>
       </td>
       <td>
-        <code className="excellent" style={{ whiteSpace: "pre" }}>O(1)</code>
+        <code className="excellent">O(1)</code>
       </td>
       <td>
-        <code className="excellent" style={{ whiteSpace: "pre" }}>O(1)</code>
+        <code className="excellent">O(1)</code>
       </td>
     </tr>
   </tbody>
@@ -60,12 +59,12 @@ import TS from "!!raw-loader!./assets/stack/ts.ts";
   <TabItem value="short" label="Short">
     **Stack** is a data structure that stores items in a Last-In-First-Out (LIFO) manner, meaning the most recently added item is the first one to be removed.
 
-  :::note[Simplified]
+    <details>
+      <summary>Simplified</summary>
 
-  You have a stack of plates. You can only put a new plate on the top of the stack, and you can only take the plate that’s on the top. You can’t take the ones in the middle until you’ve take the
-  ones on top of them.
-
-  :::
+      You have a stack of plates. You can only put a new plate on the top of the stack, and you can only take the plate that’s on the top. You can’t take the ones in the middle until you’ve take the
+      ones on top of them.
+    </details>
 
   </TabItem>
   <TabItem value="detailed" label="Detailed">
@@ -95,30 +94,15 @@ import TS from "!!raw-loader!./assets/stack/ts.ts";
       <tbody>
         <tr>
           <td>Peek</td>
-          <td>
-          ```
-          peek():
-            stack.show_last()
-          ```
-          </td>
+          <td>``` peek(): stack.show_last() ```</td>
         </tr>
         <tr>
           <td>Push</td>
-          <td>
-          ```
-          push():
-            stack.add_to_end(data)
-          ```
-          </td>
+          <td>``` push(): stack.add_to_end(data) ```</td>
         </tr>
         <tr>
           <td>Pop</td>
-          <td>
-          ```
-          pop():
-            stack.pop_from_end()
-          ```
-          </td>
+          <td>``` pop(): stack.pop_from_end() ```</td>
         </tr>
       </tbody>
     </table>

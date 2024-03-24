@@ -20,6 +20,7 @@ type Syntax = {
   namespaces: Code[];
   imports: Code[];
   variables: Code[];
+  bitwiseOperators: Code[];
   functions: Code[];
   flowControls: Code[];
   structures: Code[];
@@ -31,7 +32,7 @@ type Data = {
   key: string;
   metadata: Metadata;
   dataTypes: Code[];
-  keywords: string[];
+  reservedKeywords: string[];
   syntax: Syntax;
 };
 
