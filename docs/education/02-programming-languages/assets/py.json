@@ -178,6 +178,21 @@
         "code": "x, y, z = 0, 1, 2"
       },
       {
+        "name": "variadic_variable_assignment",
+        "description": "Variadic variable assignment",
+        "code": "x, *y, z = 0, 1, 2, 3"
+      },
+      {
+        "name": "variadic_function_parameter",
+        "description": "Variadic function parameter",
+        "code": "def f(*args):\n    pass"
+      },
+      {
+        "name": "keyword_arguments",
+        "description": "Keyword arguments",
+        "code": "def f(**kwargs):\n    pass"
+      },
+      {
         "name": "string",
         "description": "String",
         "code": "x = \"Hello, World!\""
@@ -275,6 +290,16 @@
         "name": "function_short",
         "description": "Function shortcut",
         "code": "def even(x): return x % 2 == 0"
+      },
+      {
+        "name": "lambda",
+        "description": "Lambda function",
+        "code": "lambda x: x + 1"
+      },
+      {
+        "name": "generator",
+        "description": "Generator function",
+        "code": "def myFunc():\n    yield 0"
       }
     ],
     "flowControls": [
@@ -321,15 +346,50 @@
       {
         "name": "break",
         "description": "Break",
-        "code": "for x in range(10):\n    if x == 5:\n        break\n    print(x)"
+        "code": "for x in range(10):\n    if x == 5:\n    break\n    print(x)"
       },
       {
         "name": "continue",
         "description": "Continue",
-        "code": "for x in range(10):\n    if x == 5:\n        continue\n    print(x)"
+        "code": "for x in range(10):\n    if x == 5:\n    continue\n    print(x)"
       }
     ],
     "structures": [
+      {
+        "name": "class",
+        "description": "Class",
+        "code": "class MyClass:\n    pass"
+      },
+      {
+        "name": "constructor",
+        "description": "Constructor",
+        "code": "class MyClass:\n    def __init__(self):\n    pass"
+      },
+      {
+        "name": "classmethod",
+        "description": "Class method decorator",
+        "code": "class MyClass:\n    @classmethod\n    def f(cls):\n    pass"
+      },
+      {
+        "name": "staticmethod",
+        "description": "Static method decorator",
+        "code": "class MyClass:\n    @staticmethod\n    def f():\n    pass"
+      },
+      {
+        "name": "property",
+        "description": "Property decorator",
+        "code": "class MyClass:\n    @property\n    def f(self):\n    pass"
+      },
+      {
+        "name": "setter",
+        "description": "Setter decorator",
+        "code": "class MyClass:\n    @f.setter\n    def f(self):\n    pass"
+      },
+      {
+        "name": "deleter",
+        "description": "Deleter decorator",
+        "code": "class MyClass:\n    @f.deleter\n    def f(self):\n    pass"
+      },
       {
         "name": "list",
         "description": "List",
