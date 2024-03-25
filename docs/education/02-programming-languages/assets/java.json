@@ -441,6 +441,31 @@
         "name": "interface_implementation",
         "description": "Interface implementation",
         "code": "class MyClass implements MyInterface {}"
+      },
+      {
+        "name": "nested_class",
+        "description": "Nested class",
+        "code": "class Outer {\n  class Inner {}\n}"
+      },
+      {
+        "name": "generic_class",
+        "description": "Generic class",
+        "code": "class MyClass<T> {}"
+      },
+      {
+        "name": "generic_class_usage",
+        "description": "Generic class usage",
+        "code": "MyClass<String> myClass = new MyClass<String>();"
+      },
+      {
+        "name": "generic_enum",
+        "description": "Generic enum",
+        "code": "enum MyEnum<T> {}"
+      },
+      {
+        "name": "generic_interface",
+        "description": "Generic interface",
+        "code": "interface MyInterface<T> {}"
       }
     ],
     "errorHandling": [

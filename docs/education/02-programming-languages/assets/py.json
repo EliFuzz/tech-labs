@@ -141,7 +141,7 @@
       {
         "name": "namespace",
         "description": "Namespace",
-        "code": "# based on the package structure"
+        "code": "# based on the package structure with file `__init__.py` in each folder"
       }
     ],
     "imports": [

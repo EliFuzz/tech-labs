@@ -443,6 +443,31 @@
         "name": "class_inheritance_super_constructor",
         "description": "Class inheritance with super constructor",
         "code": "class MyClass(x: Int): MySuperClass(x)"
+      },
+      {
+        "name": "nested_class",
+        "description": "Nested class",
+        "code": "class Outer {\n  class Inner {}\n}"
+      },
+      {
+        "name": "generic_class",
+        "description": "Generic class",
+        "code": "class MyGenericClass<T>(val x: T)"
+      },
+      {
+        "name": "generic_class_usage",
+        "description": "Generic class usage",
+        "code": "val x = MyGenericClass<String>(\"Hello\")"
+      },
+      {
+        "name": "generic_enum",
+        "description": "Generic enum",
+        "code": "enum class MyGenericEnum<T>(val value: T)"
+      },
+      {
+        "name": "generic_interface",
+        "description": "Generic interface",
+        "code": "interface MyGenericInterface<T>"
       }
     ],
     "errorHandling": [
