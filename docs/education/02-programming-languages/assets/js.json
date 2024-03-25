@@ -267,42 +267,37 @@
       {
         "name": "and",
         "description": "AND",
-        "code": "/*\n0101 &\n0011\n----\n0001\n*/\nconst x = x & y\nconst x &= y"
+        "code": "const x = x & y\nconst x &= y"
       },
       {
         "name": "or",
         "description": "OR",
-        "code": "/*\n0101 |\n0011\n----\n0111\n*/\nconst x = x | y\nconst x |= y"
+        "code": "const x = x | y\nconst x |= y"
       },
       {
         "name": "xor",
         "description": "XOR",
-        "code": "/*\n0101 ^\n0011\n----\n0110\n*/\nconst x = x ^ y\nconst x ^= y"
+        "code": "const x = x ^ y\nconst x ^= y"
       },
       {
         "name": "not",
         "description": "NOT",
-        "code": "/*\n0101\n----\n1010\n*/\nconst x = ~x"
+        "code": "const x = ~x"
       },
       {
         "name": "left_shift",
         "description": "Left shift (preserve sign bit)",
-        "code": "/*\n0101 << 1 = 1010\n*/\nconst x = x << y\nconst x <<= y"
+        "code": "const x = x << y\nconst x <<= y"
       },
       {
         "name": "right_shift",
         "description": "Right shift (preserve sign bit)",
-        "code": "/*\n0101 >> 1 = 0010\n*/\nconst x = x >> y\nconst x >>= y"
+        "code": "const x = x >> y\nconst x >>= y"
       },
       {
         "name": "zero_fill_right_shift",
         "description": "Zero-fill right shift (fills vacant bits with zeros regardless of sign)",
-        "code": "/*\n1000 >>> 1 = 0100\n*/\nconst x = x >>> y\nconst x >>>= y"
-      },
-      {
-        "name": "zero_fill_left_shift",
-        "description": "Zero-fill left shift (fills vacant bits with zeros regardless of sign)",
-        "code": "/*\n0010 <<< 1 = 0100\n*/\nconst x = x <<< y\nconst x <<<= y"
+        "code": "const x = x >>> y\nconst x >>>= y"
       }
     ],
     "functions": [

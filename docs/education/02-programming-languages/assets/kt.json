@@ -288,11 +288,6 @@
         "name": "shift_right_unsigned",
         "description": "Unsigned shift right",
         "code": "val x = x ushr y"
-      },
-      {
-        "name": "shift_left_unsigned",
-        "description": "Unsigned shift left",
-        "code": "val x = x ushl y"
       }
     ],
     "functions": [
