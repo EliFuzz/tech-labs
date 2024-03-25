@@ -363,32 +363,32 @@
       {
         "name": "constructor",
         "description": "Constructor",
-        "code": "class MyClass:\n    def __init__(self):\n    pass"
+        "code": "class MyClass:\n    def __init__(self):\n        pass"
       },
       {
         "name": "classmethod",
         "description": "Class method decorator",
-        "code": "class MyClass:\n    @classmethod\n    def f(cls):\n    pass"
+        "code": "class MyClass:\n    @classmethod\n    def f(cls):\n        pass"
       },
       {
         "name": "staticmethod",
         "description": "Static method decorator",
-        "code": "class MyClass:\n    @staticmethod\n    def f():\n    pass"
+        "code": "class MyClass:\n    @staticmethod\n    def f():\n        pass"
       },
       {
         "name": "property",
         "description": "Property decorator",
-        "code": "class MyClass:\n    @property\n    def f(self):\n    pass"
+        "code": "class MyClass:\n    @property\n    def f(self):\n        pass"
       },
       {
         "name": "setter",
         "description": "Setter decorator",
-        "code": "class MyClass:\n    @f.setter\n    def f(self):\n    pass"
+        "code": "class MyClass:\n    @f.setter\n    def f(self):\n        pass"
       },
       {
         "name": "deleter",
         "description": "Deleter decorator",
-        "code": "class MyClass:\n    @f.deleter\n    def f(self):\n    pass"
+        "code": "class MyClass:\n    @f.deleter\n    def f(self):\n        pass"
       },
       {
         "name": "list",
