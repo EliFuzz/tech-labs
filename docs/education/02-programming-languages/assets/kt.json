@@ -348,6 +348,16 @@
         "description": "If-else"
       },
       {
+        "name": "elvis_operator",
+        "description": "Elvis operator",
+        "code": "val x = y ?: z"
+      },
+      {
+        "name": "safe_call_operator",
+        "description": "Safe call operator",
+        "code": "val x = y?.z"
+      },
+      {
         "name": "for_increment",
         "description": "For loop increment",
         "code": "for (i in 1..10) {}"

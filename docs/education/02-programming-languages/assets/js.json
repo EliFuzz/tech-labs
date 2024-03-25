@@ -435,9 +435,14 @@
     ],
     "concurrency": [
       {
-        "name": "async_await",
+        "name": "async",
         "description": "Async/Await",
-        "code": "async function myFunc() { return promise; }\nconst response = await myFunc();"
+        "code": "async function foo() { return promise; }"
+      },
+      {
+        "name": "await",
+        "description": "Await",
+        "code": "const response = await foo();"
       }
     ]
   }
