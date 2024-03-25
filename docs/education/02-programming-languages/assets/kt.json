@@ -251,6 +251,16 @@
         "name": "map",
         "description": "Map",
         "code": "val x: Map<String, Int> = mapOf(\"a\" to 1, \"b\" to 2, \"c\" to 3)\nval y = mapOf<String, Int>(\"a\" to 1, \"b\" to 2, \"c\" to 3)"
+      },
+      {
+        "name": "as",
+        "description": "as operator: type casting",
+        "code": "val str: String? = obj as? String"
+      },
+      {
+        "name": "is",
+        "description": "is operator: type check and smart casting",
+        "code": "if (obj is String) { /* do something */ }"
       }
     ],
     "bitwiseOperators": [
