@@ -1216,6 +1216,102 @@ import TabItem from "@theme/TabItem";
               </tbody>
             </table>
 
+            **Variations & Combinations**
+
+            <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Possible Combinations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Class Declaration</b></td>
+                    <td>
+                    ```java
+                    final class A {}
+                    abstract class A {}
+                    strictfp class A {} // redundant in Java 17+
+                    ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Class Fields</b></td>
+                    <td>
+                    ```java
+                    final int a = 8;
+                    final static int a = 8;
+                    final transient int a = 8;
+                    static int a = 8;
+                    static transient int a = 8; // `transient` is redundant for `static` field
+                    static volatile int a = 8;
+                    transient int a = 8;
+                    volatile int a = 8;
+                    ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Method & Interface Inputs</b></td>
+                    <td>
+                    ```java
+                    void f(final int a) {}
+                    ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Method Parameters</b></td>
+                    <td>
+                    ```java
+                    void f() {
+                      final int a = 8;
+                    }
+                    ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Method Outputs</b></td>
+                    <td>
+                    ```java
+                    final int f() { return 0; }
+                    final static int f() { return 0; } // `final` is redundant for `static` method
+                    final synchronized int f() { return 0; }
+                    static int f() { return 0; }
+                    synchronized int f() { return 0; }
+                    strictfp int f() { return 0; } // redundant in Java 17+
+                    abstract int f(); // only in abstract classes
+                    ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Interface Declaration</b></td>
+                    <td>
+                    ```java
+                    abstract interface A {} // `abstract` is redundant
+                    strictfp interface A {} // `strictfp` is redundant in Java 17+
+                    ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Interface Fields</b></td>
+                    <td>
+                    ```java
+                    final int x = 8; // `final` is redundant
+                    static int x = 8; // `static` is redundant
+                    ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Interface Method Outputs</b></td>
+                    <td>
+                    ```java
+                    abstract int f(); // `abstract` is redundant
+                    ```
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+
         </details>
 
         <details>
