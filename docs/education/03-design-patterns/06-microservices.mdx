@@ -609,8 +609,6 @@ import TabItem from "@theme/TabItem";
 
               ### Database per service
 
-              Each service has its own private database.
-
               ```mermaid
                 graph TB
 
@@ -642,36 +640,73 @@ import TabItem from "@theme/TabItem";
                 end
               ```
 
-              **Principles**
-
-              - **Database should be private**: inaccessible by other services
-              - **Keep data private**
-                  - **Private tables per service**: each service owns specific tables (Lowest overhead)
-                  - **Schema per service**: separate database schema for each service (clear ownership)
-                  - **Database server per service**: for high-throughput scenarios
-              - **Enforce data privacy**: use separate database users and access controls
-
-              **Pros**
-
-              - **Loose Coupling**: Changes in one service's database don't affect others
-              - **Flexibility**: Services can use the best database type for their needs (e.g., ElasticSearch for search, graph database for social graphs)
-
-              **Cons**
-
-              - **Distributed Transactions**: Complex and often unsupported by NoSQL databases (CAP theorem)
-              - **Multi-service Queries**: Joining data across databases is challenging
-              - **Management Complexity**: Managing multiple databases (SQL and NoSQL) can be complex
-
-              **Suggestions**
-
-              - **Transactions**: Use the Saga pattern for transactions spanning services
-              - **Multi-service queries**
-                  - **API Composition**: Application performs joins instead of the database
-                  - **CQRS**: Maintain materialized views joining data from different services, updated through event subscriptions
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Each service has its own private database</td>
+                  </tr>
+                  <tr>
+                    <td><b>Principles</b></td>
+                    <td>
+                      <ul>
+                        <li>**Database should be private**: inaccessible by other services</li>
+                        <li>
+                          **Keep data private**
+                          <ul>
+                            <li>**Private tables per service**: each service owns specific tables (Lowest overhead)</li>
+                            <li>**Schema per service**: separate database schema for each service (clear ownership)</li>
+                            <li>**Database server per service**: for high-throughput scenarios</li>
+                          </ul>
+                        </li>
+                        <li>**Enforce data privacy**: use separate database users and access controls</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Pros</b></td>
+                    <td>
+                      <ul>
+                        <li>**Loose Coupling**: Changes in one service's database don't affect others</li>
+                        <li>**Flexibility**: Services can use the best database type for their needs (e.g., ElasticSearch for search, graph database for social graphs)</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Cons</b></td>
+                    <td>
+                      <ul>
+                        <li>**Distributed Transactions**: Complex and often unsupported by NoSQL databases (CAP theorem)</li>
+                        <li>**Multi-service Queries**: Joining data across databases is challenging</li>
+                        <li>**Management Complexity**: Managing multiple databases (SQL and NoSQL) can be complex</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Suggestions</b></td>
+                    <td>
+                      <ul>
+                        <li>**Transactions**: Use the Saga pattern for transactions spanning services</li>
+                        <li>
+                          **Multi-service queries**
+                          <ul>
+                            <li>**API Composition**: Application performs joins instead of the database</li>
+                            <li>**CQRS**: Maintain materialized views joining data from different services, updated through event subscriptions</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               ### Shared database
-
-              Services share a database.
 
               ```mermaid
                 graph TB
@@ -680,22 +715,43 @@ import TabItem from "@theme/TabItem";
                 serviceB(Service B) -->|uses| database
               ```
 
-              **Pros**
-
-              - Easy data consistency with familiar transactions
-              - Simpler to manage one database
-
-              **Cons**
-
-              - Slower development due to coordination for schema changes
-              - Potential performance issues from services interfering with each other
-              - Database may not meet all service needs
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Services share a database</td>
+                  </tr>
+                  <tr>
+                    <td><b>Pros</b></td>
+                    <td>
+                      <ul>
+                        <li>Easy data consistency with familiar transactions</li>
+                        <li>Simpler to manage one database</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Cons</b></td>
+                    <td>
+                      <ul>
+                        <li>Slower development due to coordination for schema changes</li>
+                        <li>Potential performance issues from services interfering with each other</li>
+                        <li>Database may not meet all service needs</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               ## Querying
 
               ### API Composition
-
-              Implement queries by invoking the services that own the data and performing an in-memory join.
 
               ```mermaid
                 graph TB
@@ -707,17 +763,38 @@ import TabItem from "@theme/TabItem";
                 composer --->|queryC| providerA(Provider Service C)
               ```
 
-              **Pros**
-
-              - **Simple Data Queries**: Each service owns its data, making queries straightforward within a service
-
-              **Cons**
-
-              - **Inefficient Joins**: Complex queries requiring data from multiple services might involve in-memory joins of large datasets, leading to performance issues
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Implement queries by invoking the services that own the data and performing an in-memory join</td>
+                  </tr>
+                  <tr>
+                    <td><b>Pros</b></td>
+                    <td>
+                      <ul>
+                        <li>**Simple Data Queries**: Each service owns its data, making queries straightforward within a service</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Cons</b></td>
+                    <td>
+                      <ul>
+                        <li>**Inefficient Joins**: Complex queries requiring data from multiple services might involve in-memory joins of large datasets, leading to performance issues</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               ### CQRS
-
-              Implement queries by maintaining one or more materialized views that can be efficiently queried.
 
               ```mermaid
                 graph TB
@@ -727,23 +804,44 @@ import TabItem from "@theme/TabItem";
                 writeDatabase -->|"trigger update the data (synchronize)"| readDatabase
               ```
 
-              **Pros**
-
-              - **Scalability and Performance**: Supports multiple, denormalized views optimized for specific queries, leading to better performance and scalability
-              - **Separation of Concerns**: Clear separation between command and query models simplifies development and maintenance
-              - **Event Sourcing**: A natural fit for event-sourced architectures, where events are the source of truth for data updates
-
-              **Cons**
-
-              - **Complexity**: Implementing and managing separate models and data flows can increase overall system complexity
-              - **Code Duplication**: Denormalized views might lead to some data redundancy and potential for code duplication
-              - **Eventual Consistency**: Due to asynchronous updates, views may not reflect the latest changes immediately (eventual consistency). This requires careful handling for scenarios demanding strict real-time data accuracy
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Implement queries by maintaining one or more materialized views that can be efficiently queried</td>
+                  </tr>
+                  <tr>
+                    <td><b>Pros</b></td>
+                    <td>
+                      <ul>
+                        <li>**Scalability and Performance**: Supports multiple, denormalized views optimized for specific queries, leading to better performance and scalability</li>
+                        <li>**Separation of Concerns**: Clear separation between command and query models simplifies development and maintenance</li>
+                        <li>**Event Sourcing**: A natural fit for event-sourced architectures, where events are the source of truth for data updates</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Cons</b></td>
+                    <td>
+                      <ul>
+                        <li>**Complexity**: Implementing and managing separate models and data flows can increase overall system complexity</li>
+                        <li>**Code Duplication**: Denormalized views might lead to some data redundancy and potential for code duplication</li>
+                        <li>**Eventual Consistency**: Due to asynchronous updates, views may not reflect the latest changes immediately (eventual consistency). This requires careful handling for scenarios demanding strict real-time data accuracy</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               ## Maintaining data consistency
 
               ### Saga
-
-             Use sagas, which a sequences of local transactions, to maintain data consistency across services.
 
               #### Choreography-based saga
 
@@ -782,22 +880,47 @@ import TabItem from "@theme/TabItem";
                     Saga Orchestration ->> Order: order processed
               ```
 
-              **Pros**
-
-              - **Data Consistency**: Maintains data consistency across distributed services without complex distributed transactions
-
-              **Cons**
-
-              - **Complexity**: Implementing compensating transactions and handling message delivery issues increases development complexity
-              - **Atomic Updates**: Requires careful design to ensure updates to the database and message publication happen atomically
-              - **Client Outcome**: Different approaches for handling client notification of saga completion have trade-offs
-                - **Long-Polling**: Client polls for updates, leading to potential inefficiency
-                - **Event-Driven Notification**: Requires additional infrastructure for event delivery, but offers better responsiveness
-                - **Initial Response with Polling**: Balances initial response with potential polling overhead
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Use sagas, which a sequences of local transactions, to maintain data consistency across services</td>
+                  </tr>
+                  <tr>
+                    <td><b>Pros</b></td>
+                    <td>
+                      <ul>
+                        <li>**Data Consistency**: Maintains data consistency across distributed services without complex distributed transactions</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Cons</b></td>
+                    <td>
+                      <ul>
+                        <li>**Complexity**: Sagas require coordination between multiple services, leading to increased complexity</li>
+                        <li>**Atomic Updates**: Requires careful design to ensure updates to the database and message publication happen atomically</li>
+                        <li>
+                          **Client Outcome**: Different approaches for handling client notification of saga completion have trade-offs
+                          <ul>
+                            <li>**Long-Polling**: Client polls for updates, leading to potential inefficiency</li>
+                            <li>**Event-Driven Notification**: Requires additional infrastructure for event delivery, but offers better responsiveness</li>
+                            <li>**Initial Response with Polling**: Balances initial response with potential polling overhead</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               ### Event sourcing
-
-              Persist aggregates as a sequence of events
 
               ```mermaid
                 sequenceDiagram
@@ -828,21 +951,42 @@ import TabItem from "@theme/TabItem";
                 Order Service ->> Order: order processed
               ```
 
-              **Pros**
-
-              - Enables reliable event publishing in event-driven architectures
-              - Avoids object-relational impedance mismatch
-              - Provides complete audit history of data changes
-              - Allows querying past states of entities (time travel)
-              - Simplifies migration to microservices due to loosely coupled entities
-
-              **Cons**
-
-              - Complex querying due to need to reconstruct entity state (Often requires CQRS and eventual consistency)
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Persist aggregates as a sequence of events</td>
+                  </tr>
+                  <tr>
+                    <td><b>Pros</b></td>
+                    <td>
+                      <ul>
+                        <li>Enables reliable event publishing in event-driven architectures</li>
+                        <li>Avoids object-relational impedance mismatch</li>
+                        <li>Provides complete audit history of data changes</li>
+                        <li>Allows querying past states of entities (time travel)</li>
+                        <li>Simplifies migration to microservices due to loosely coupled entities</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Cons</b></td>
+                    <td>
+                      <ul>
+                        <li>Complex querying due to need to reconstruct entity state (Often requires CQRS and eventual consistency)</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               ### Domain event
-
-              Organize the business logic of a service as a collection of DDD aggregates that emit domain events when they created or updated. The service publishes these domain events so that they can be consumed by other services.
 
               ```mermaid
                 graph LR
@@ -874,6 +1018,21 @@ import TabItem from "@theme/TabItem";
 
                 userRegistrationService --> |⑥ notify| client
               ```
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Definition</b></td>
+                    <td>Organize the business logic of a service as a collection of DDD aggregates that emit domain events when they created or updated. The service publishes these domain events so that they can be consumed by other services</td>
+                  </tr>
+                </tbody>
+              </table>
             </TabItem>
             <TabItem value="ui" label="UI">
               ## Client-side UI composition
