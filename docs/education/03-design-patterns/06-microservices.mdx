@@ -1,0 +1,747 @@
+---
+title: Microservices
+description: Microservices
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+    <TabItem value="overview" label="Overview">
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>Monolithic architecture</th>
+            <th>Microservices architecture</th>
+          </tr>
+          <tr>
+            <td><b>Design</b></td>
+            <td>Single code base with multiple interdependent functions</td>
+            <td>Independent software components with autonomous functionality that communicate with each other using APIs</td>
+          </tr>
+          <tr>
+            <td><b>Development</b></td>
+            <td>Requires less planning at the start, but gets increasingly complex to understand and maintain</td>
+            <td>Requires more planning and infrastructure at the start, but gets easier to manage and maintain over time</td>
+          </tr>
+          <tr>
+            <td><b>Deployment</b></td>
+            <td>Entire application deployed as a single entity</td>
+            <td>Every microservice is an independent software entity that requires individual containerized deployment</td>
+          </tr>
+          <tr>
+            <td><b>Debugging</b></td>
+            <td>Trace the code path in the same environment</td>
+            <td>Requires advanced debugging tools to trace the data exchange between multiple microservices</td>
+          </tr>
+          <tr>
+            <td><b>Modification</b></td>
+            <td>Small changes introduce greater risks as they impact the entire code base</td>
+            <td>You can modify individual microservices without impacting the entire application</td>
+          </tr>
+          <tr>
+            <td><b>Scale</b></td>
+            <td>You have to scale the entire application, even if only certain functional areas experience an increase in demand</td>
+            <td>You can scale individual microservices as required, which saves overall scaling costs</td>
+          </tr>
+          <tr>
+            <td><b>Investment</b></td>
+            <td>Low upfront investment at the cost of increased ongoing and maintenance efforts</td>
+            <td>Additional time and cost investment to set up the required infrastructure and build team competency. However, long-term cost savings, maintenance, and adaptability</td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+                <ul>
+                    <li>Small to medium-sized projects</li>
+                    <li>Rapid prototyping and MVP development</li>
+                    <li>Tightly coupled components</li>
+                    <li>Resource constraints</li>
+                    <li>Low-usage applications for improving cost efficiency</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Large and complex systems</li>
+                    <li>Scalability demands</li>
+                    <li>Technology diversity</li>
+                    <li>Independent deployment and continuous delivery</li>
+                    <li>High fault tolerance and resilience</li>
+                    <li>Large cross-functional development teams</li>
+                    <li>Rapid evolving requirements</li>
+                </ul>
+            </td>
+          </tr>
+        </table>
+    </TabItem>
+    <TabItem value="monolithic" label="Monolithic">
+      <Tabs>
+        <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+          ```mermaid
+              graph TB
+
+              client(Client)
+
+              payment(Payment)
+              shoppingCart(Shopping Cart)
+              inventory(Inventory)
+
+              singleInstance(Monolith)
+
+              database[(Database)]
+
+              client --> payment
+              client --> shoppingCart
+              client --> inventory
+
+              payment --> singleInstance
+              shoppingCart --> singleInstance
+              inventory --> singleInstance
+              singleInstance --> database
+
+              subgraph dev [Development]
+                  direction LR
+
+                  subgraph vcs[Version Control System]
+                      direction TB
+
+                      git{{Git/Mercurial}}
+                  end
+
+                  subgraph teams [Dev Teams]
+                      direction TB
+
+                      developer1(Dev Team)
+                      developer2(Dev Team)
+                      developer3(Dev Team)
+                  end
+              end
+
+              vcs --> singleInstance
+              teams --> vcs
+          ```
+
+          **Monolithic architecture** is a single application that is built as a single unit. Is a singular, large computing network with one code base that couples all of the business concerns together. To make a change to this sort of application requires updating the entire stack by accessing the code base and building and deploying an updated version of the complete application.
+
+          - Monolithic applications initially offer advantages such as ease of development and deployment
+          - Challenges arise as teams grow, leading to blocked deploys, cross-team functionality issues, and difficulties with updates
+
+          As a result, monolithic applications are often difficult to scale and maintain and often migrate to a **microservices architecture**. This involves identifying and modifying tightly coupled entities, which is complex.
+        </TabItem>
+        <TabItem value="modular" label="Modular Monolith">
+          Monolithic applications can be transformed into **modular monolith** by starting with a single repository and clear boundaries between business contexts. Which will allow for easier transition to microservices architecture.
+
+          **Advantages of Modular Monolith**
+
+          - Bounded contexts in a modular monolith encompass independent business functions
+          - Isolating business contexts within a single codebase and database prevents future issues and facilitates changes
+          - Changes within a modular monolith are less costly compared to traditional monoliths, as data migration isn't necessary
+          - Communication between modules in a modular monolith should utilize events instead of direct method calls
+          - Techniques for maintaining data consistency and event management include emitting events, using databases, or employing message queues
+
+          **Segregation by Feature**
+
+          ```mermaid
+              graph LR
+
+              subgraph monolith[Modular Monolith]
+                  direction LR
+
+                  subgraph module1["Payment Module"]
+                      direction LR
+
+                      subgraph placeOrder[Place Order Feature]
+                          direction TB
+
+                          view1(View)
+                          controller1(Controller)
+                          model1(Model)
+
+                          view1 --> controller1
+                          controller1 --> model1
+                      end
+                  end
+
+                  subgraph module2["Shopping Cart Module"]
+                      direction LR
+
+                      subgraph shoppingCart[Shopping Cart Feature]
+                          direction TB
+
+                          view2(View)
+                          controller2(Controller)
+                          model2(Model)
+
+                          view2 --> controller2
+                          controller2 --> model2
+                      end
+                  end
+
+                  subgraph module3["Inventory Module"]
+                      direction LR
+
+                      subgraph inventory1[Product Catalog Management Feature]
+                          direction TB
+
+                          view3(View)
+                          controller3(Controller)
+                          model3(Model)
+
+                          view3 --> controller3
+                          controller3 --> model3
+                      end
+
+                      subgraph inventory2[Inventory Tracking Feature]
+                          direction TB
+
+                          view4(View)
+                          controller4(Controller)
+                          model4(Model)
+
+                          view4 --> controller4
+                          controller4 --> model4
+                      end
+                  end
+              end
+
+              database[(Database)]
+
+              model1 --> database
+              model2 --> database
+              model3 --> database
+              model4 --> database
+
+              devTeam1(Dev Team) --> module1
+              devTeam2(Dev Team) --> module2
+              devTeam3(Dev Team) --> module3
+          ```
+        </TabItem>
+      </Tabs>
+    </TabItem>
+    <TabItem value="microservices" label="Microservices">
+      <Tabs>
+        <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+          ```mermaid
+              graph LR
+
+              subgraph microservices[Microservices]
+                  direction TB
+
+                  payment(Payment)
+                  shoppingCart(Shopping Cart)
+                  inventory(Inventory)
+
+                  payment <--> shoppingCart
+                  payment <--> inventory
+                  shoppingCart <--> inventory
+              end
+
+              client(Client) --> payment
+              client --> shoppingCart
+              client --> inventory
+          ```
+
+          **Microservices** are independent, and loosely coupled software components that perform specific tasks within a larger application, facilitating scalability, flexibility, and maintainability in software development. They organize the subdomains into one or more deployable/executable components.
+        </TabItem>
+        <TabItem value="advantages" label="Advantages">
+          - **Simple Components**: Small, focused components, simplifying development and maintenance
+          - **Team Autonomy**: Teams should have the independence to develop, test, and deploy their software autonomously, enabling faster iterations and reducing dependencies on other teams
+          - **Fast Deployment Pipeline**: A rapid deployment pipeline facilitates quick feedback and frequent deployments
+          - **Support for Multiple Technology Stacks**: Applications may utilize various technologies within different subdomains, requiring developers to update the technology stack to maintain compatibility with current languages and frameworks
+          - **Segregation by Characteristics**: Segregating components based on characteristics like resource requirements, availability, and security enhances scalability, availability, and security, respectively
+          - **Simple Interactions**: Operations that involve local or straightforward interactions between components are easier to troubleshoot
+          - **Efficient Interactions**: Distributed operations involving numerous network round trips and large data transfers can be inefficient and should be minimized for optimal performance
+          - **Prefer ACID over BASE**: Implementing operations as ACID transactions rather than eventually consistent sagas simplifies development and maintenance
+          - **Minimize Runtime Coupling**: Reducing runtime coupling maximizes availability and minimizes latency for operations, improving overall system performance
+          - **Minimize Design Time Coupling**: Decreasing design time coupling reduces the likelihood of services needing to be changed simultaneously, enhancing productivity and flexibility in development
+        </TabItem>
+        <TabItem value="principles" label="Principles">
+          - **Organized around Business Capabilities**
+            - Traditional division based on technology layers leads to cross-team projects for even simple changes due to Conway's Law (the way people within an organization communicate influences the structure of the systems they build)
+            - Microservice approach focuses on organizing services around business capabilities
+            - Cross-functional teams with skills for entire development process
+
+          - **Size of Microservices**
+            - Varies, often sized around Amazon's "Two Pizza Team" concept (organizing teams small enough that they can be fed with just two pizzas)
+            - Ranges from a dozen people supporting several services to a smaller team per service
+
+          - **Product Ownership**
+            - Microservice teams own products over their full lifetime
+            - Inspired by Amazon's "you build, you run it" philosophy
+            - Emphasizes ongoing relationship and enhancing business capabilities
+
+          - **Communication Structure**
+            - Smart endpoints and dumb pipes approach
+            - Microservices use simple protocols like HTTP request-response and lightweight messaging
+
+          - **Comparison with SOA**
+            - Microservices similar to some aspects of Service Oriented Architecture (SOA) but with distinct differences by focusing on avoiding pitfalls of traditional SOA implementations
+
+          - **Decentralized Governance**
+            - Encourages using right tools for the job rather than standardizing on single technology platforms
+            - Promotes producing useful tools shared within teams, similar to internal open source model
+
+          - **Infrastructure Automation**
+            - Utilizes extensive automation techniques for building, deploying, and operating microservices
+            - Enables teams to manage infrastructure efficiently and deploy software frequently
+
+          - **Design Considerations**
+            - Emphasis on failure tolerance, real-time monitoring, and asynchronous communication
+            - Supports evolutionary design, modular decomposition, and granular release planning
+            - Prefers tolerant services over heavy versioning for managing changes
+        </TabItem>
+      </Tabs>
+    </TabItem>
+</Tabs>
+
+## Migration
+
+<Tabs>
+    <TabItem value="process" label="Process">
+      - **Discovering system operations**
+        - Analyzing existing monolithic architecture
+        - Identifying functionalities and dependencies
+        - Documenting system components, interactions, and data flows
+        - Conducting interviews with stakeholders to understand business requirements
+        - Profiling system performance and resource utilization
+        - Assessing scalability and maintainability issues in the current architecture
+        - Generating system documentation and diagrams (e.g., entity-relationship diagrams, flowcharts)
+
+      - **Defining subdomains**
+        - Use domain-driven design approach
+        - Identifying business capabilities and boundaries
+        - Decomposing the monolithic system into cohesive subdomains
+        - Prioritizing subdomains based on business impact and complexity
+        - Defining bounded contexts for each subdomain
+        - Documenting subdomain boundaries, responsibilities, and contexts
+
+      - **Designing services and their collaborations**
+        - Selecting appropriate communication protocols (e.g., REST, gRPC, GraphQL, Publish-Subscribe messaging)
+        - Defining service interfaces and contracts
+        - Choosing technology stacks for individual services
+        - Designing fault-tolerant and resilient services
+        - Implementing event-driven architectures or choreographed workflows
+        - Establishing service discovery and registry mechanisms
+        - Developing API gateways for routing and security
+        - Implementing circuit breakers and retries for robustness
+        - Designing data consistency strategies (e.g., eventual consistency, transactional boundaries)
+        - Defining service versioning and backward compatibility policies
+
+      - **Evaluating a microservice architecture**
+        - Performing architectural reviews and inspections
+        - Conducting proof-of-concept implementations
+        - Analyzing trade-offs between microservices and monolithic architectures
+        - Evaluating scalability, performance, and latency requirements
+        - Assessing operational overhead and deployment complexities
+        - Conducting cost-benefit analysis of microservices adoption
+        - Benchmarking against key performance indicators (KPIs) and service level objectives (SLOs)
+        - Considering organizational readiness and cultural implications
+
+      - **Refactoring a microservice architecture**
+        - Identifying code smells and anti-patterns in the existing architecture
+        - Decomposing monolithic codebase into microservices
+        - Applying domain-driven design principles for service boundaries
+        - Implementing continuous integration and continuous deployment (CI/CD) pipelines
+        - Automating testing, deployment, and monitoring processes
+        - Establishing DevOps practices for collaboration and feedback loops
+        - Implementing distributed tracing and logging for observability
+        - Refactoring data storage and access patterns
+        - Ensuring backward compatibility and data migration strategies
+        - Documenting refactoring decisions and outcomes
+    </TabItem>
+    <TabItem value="decomposition" label="Service Decomposition">
+        <Tabs>
+            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+              <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Decompose by Business Capability</th>
+                    <th>Decompose by Subdomain</th>
+                    <th>Self-contained Service</th>
+                    <th>Service per Team</th>
+                    <th>Strangler Application</th>
+                    <th>Anti-corruption Layer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Definition</td>
+                    <td>Breaks down the application into services based on business capabilities or functions</td>
+                    <td>Splits services based on different subdomains or components of the business</td>
+                    <td>Each service is independent and complete in itself, reducing dependencies</td>
+                    <td>Each team is responsible for one or more services, allowing for ownership and autonomy</td>
+                    <td>A new system slowly replaces the old one by gradually taking over its functionalities</td>
+                    <td>Creates a layer between two services to ensure that changes in one do not affect the other</td>
+                  </tr>
+                  <tr>
+                    <td>Complexity</td>
+                    <td>Medium. Requires a good understanding of business capabilities</td>
+                    <td>High. Requires a deep understanding of the domain and its subdomains</td>
+                    <td>High. Each service must be self-sufficient</td>
+                    <td>Low. Teams have full control over their services</td>
+                    <td>Medium. Requires careful planning and incremental implementation</td>
+                    <td>Medium. Requires understanding of both services involved</td>
+                  </tr>
+                  <tr>
+                    <td>Use Cases</td>
+                    <td>Large applications with distinct business functions</td>
+                    <td>Complex domains with distinct subdomains</td>
+                    <td>Applications where each service can operate independently</td>
+                    <td>Teams with specific domain knowledge or skills</td>
+                    <td>Legacy systems that need to be replaced</td>
+                    <td>Preventing unwanted dependencies between services</td>
+                  </tr>
+                </tbody>
+              </table>
+            </TabItem>
+            <TabItem value="subdomain" label="Decompose by Subdomain / Business Capability">
+              ```mermaid
+                graph LR
+
+                subgraph ssd[Successful Software Development]
+                  direction BT
+
+                  process(<b>Process</b><br/>CI/CD)
+
+                  architecture(<b>Architecture</b><br/>Microservice Architecture)
+
+                  organization(<b>Organization</b><br/>small, agile, autonomous, cross-functional teams)
+
+                  organization --->|enables| process
+                  architecture -->|enables| process
+                  architecture -->|enables| organization
+                end
+              ```
+
+              - **Stable Architecture**: Ensure the architecture is robust and consistent, minimizing disruptions and failures
+              - **Cohesive Services**: Services should focus on a specific set of closely related functions, enhancing clarity and maintainability
+              - **Common Closure Principle**: Group together components that are likely to change together, reducing the ripple effect of modifications across the system
+              - **Loose Coupling**: Services should expose clear APIs to interact with, allowing for flexibility in implementation changes without impacting clients
+              - **Testability**: Each service should be designed to be easily testable, facilitating quality assurance and reliability
+              - **Scalable Team Size**: Services should be small enough that they can be developed and managed effectively by a team of 6-10 people, promoting efficiency and communication
+              - **Autonomous Teams**: Teams responsible for services should have the autonomy to develop, deploy, and maintain their services independently, minimizing dependencies and streamlining workflows
+            </TabItem>
+            <TabItem value="selfContained" label="Self-Contained Service">
+                ```mermaid
+                    graph RL
+
+                    client(Client)
+
+                    subgraph contained[Self-Contained Service]
+                        direction LR
+
+                        embedded(Embedded Module)
+                    end
+
+                    client <-->|HTTP Request/Response| contained
+                    contained --- dbReplica
+
+                    dbReplica[(CQRS Replica)]
+
+                    message([Message Channel])
+                    saga(Saga Participant Service)
+
+                    saga --- message
+                    message --- contained
+
+                    event([Event Channel])
+                    cqrs(CQRS data owner Service)
+
+                    db[(DB)]
+
+                    db --- cqrs
+                    cqrs --- event
+                    event --- contained
+                ```
+
+              **Pros**
+
+              - Improved availability and response time
+
+              **Cons**
+
+              - Increased cost and complexity of using CQRS
+              - Increased complexity of using sagas
+              - Less straightforward API when using sagas
+            </TabItem>
+            <TabItem value="team" label="Service per Team">
+                ```mermaid
+                    graph BT
+
+                    api1((API))
+                    api2((API))
+
+                    subgraph serviceA [Service A]
+                        direction TB
+
+                        module1(Module 1)
+                        module2(Module 2)
+                    end
+
+                    api1 --> serviceA
+                    serviceA --> api2
+
+                    business(business capability-based, cross-functional, team) --->|responsible for| api1
+                    business -->|owns and deploys| serviceA
+
+                    negotiates{{negotiates}} -.-> anotherTeam(team)
+                    business -.-> negotiates
+                    negotiates -.-> api2
+
+                    anotherTeam -->|owns and deploy| serviceB(Service B)
+                ```
+
+              **Pros**
+
+              - Facilitates autonomous team work with minimal coordination
+              - Promotes loose coupling between teams
+              - Achieves autonomy and loose coupling with fewer services
+              - Enhances code quality through long-term ownership
+
+              **Cons**
+
+              - Teams may not always align with end user features
+              - Implementing cross-service features becomes more complex and requires collaboration between teams
+            </TabItem>
+            <TabItem value="strangler" label="Strangler Pattern">
+              - **Identify the system boundary you want to re-architect**
+
+                ```mermaid
+                  graph LR
+
+                  subgraph legacy[Legacy System]
+                    boundary[[Boundary]]
+                  end
+                ```
+
+              - **Create a facade**
+                - During system re-architecture, it's crucial that clients remain unaffected. To achieve this, the facade should align with the existing system API, providing a seamless transition for users
+                - API of the new service needs to be meticulously crafted to maintain backward compatibility with the legacy API. Any potential breaking changes to the new service's API should only be implemented after the re-architecture process is complete
+
+              ```mermaid
+                graph LR
+
+                  subgraph legacy[Legacy System]
+                    boundary[[Boundary]]
+                  end
+
+                  facade(Strangler Facade) <--> boundary
+              ```
+
+              - **Re-architect**
+                - Implement the new service and integrate it with the strangler facade
+                - Dark launch the new service by diverting traffic between the new and legacy implementations
+                - Initially, return responses from the legacy implementation while monitoring the behavior of the new implementation
+                - Optionally, employ continuous deployment to deploy partial implementations of the new service to gain confidence and reduce risk
+
+              ```mermaid
+                graph LR
+
+                  subgraph legacy[Legacy System]
+                    boundary{{Boundary}}
+                  end
+
+                  newService(New Service)
+
+                  facade(Strangler Facade) <--> boundary
+                  facade --> newService
+                  newService --> stop((🚫))
+              ```
+
+              - **Cutover**
+                - Once confident in the new implementation, switch production traffic to be served from the new implementation
+                - Retain the legacy implementation for easy rollback if necessary
+
+              ```mermaid
+                graph LR
+
+                  subgraph legacy[Legacy System]
+                    boundary{{Boundary}}
+                  end
+
+                  newService(New Service)
+
+                  facade(Strangler Facade) <--> newService
+                  boundary --> stop((🚫))
+              ```
+
+              - **Clean up**
+                - Delete the legacy code that has been replaced once the new system is established
+
+              ```mermaid
+                graph LR
+
+                  legacy[Legacy System]
+
+                  newService(New Service)
+
+                  facade(Strangler Facade) <--> newService
+              ```
+
+              - **Migrate clients to the new API and remove the strangler facade**
+                - Manage the transition to the new API, potentially requiring breaking changes to clients
+                - Expose the new API while maintaining the strangler facade for large client bases
+                - Monitor usage of the strangler facade and assist clients in migrating to the new API
+                - Remove the strangler facade once it's no longer in use
+
+              ```mermaid
+                graph LR
+
+                  legacy[Legacy System]
+
+                  client(Client) <--> newService(New Service)
+              ```
+            </TabItem>
+        </Tabs>
+    </TabItem>
+</Tabs>
+
+## Patterns
+
+<Tabs>
+    <TabItem value="application" label="Application">
+        <Tabs>
+            <TabItem value="decomposition" label="Decomposition" attributes={{className:"tabs__vertical"}}>
+              ## Decompose by subdomain/business capability
+
+              ## Self-contained service
+
+              ## Service per team
+            </TabItem>
+            <TabItem value="data" label="Data Patterns">
+              ## Database architecture
+
+              ### Shared/per service database
+
+              ## Querying
+
+              ### API Composition / CQRS
+
+              ## Maintaining data consistency
+
+              ### Saga
+
+              ### Aggregate
+
+              ### Event sourcing
+
+              ### Domain event
+
+            </TabItem>
+            <TabItem value="ui" label="UI">
+              ## Client-side UI composition
+
+              ## Server-side page fragment composition
+
+            </TabItem>
+            <TabItem value="testing" label="Testing">
+              ## Consumer-driven contract test
+
+              ## Consumer-side contract test
+
+              ## Service complement test
+
+            </TabItem>
+            <TabItem value="observability" label="Observability">
+              ## Audit logging
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="applicationInfrastructure" label="Application Infrastructure">
+        <Tabs>
+            <TabItem value="cross-cutting" label="Cross-cutting concerns" attributes={{className:"tabs__vertical"}}>
+              ## Service template
+
+              ## Microservice Chassis
+
+              ## Externalize configuration
+
+            </TabItem>
+            <TabItem value="security" label="Security">
+              ## Access Token
+            </TabItem>
+            <TabItem value="deployment" label="Deployment">
+              ## Serverless
+            </TabItem>
+            <TabItem value="communication" label="Communication Patterns">
+              ## Communication Patterns
+
+              ### Transactional messaging
+
+              #### Transactional Outbox
+
+              #### Transaction log tailing
+
+              #### Polling publisher
+
+              ## Communication style
+
+              ### Messaging
+
+              ### Domain-specific
+
+              ### Remote Procedure Invocation
+
+              ## Reliability
+
+              ### Circuit Breaker
+
+              ## External API
+
+              ### API Gateway
+
+              ### BFF (Backend for Frontend)
+
+              ## Discovery
+
+              ### Self registration
+
+              ### Client-side discovery
+
+            </TabItem>
+            <TabItem value="observability" label="Observability">
+              ## Health check API
+
+              ## Application metrics
+
+              ## Distributed tracing
+
+              ## Exception tracking
+
+              ## Log aggregation
+
+              ## Log deployments and changes
+
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="infrastructure" label="Infrastructure">
+        <Tabs>
+            <TabItem value="deployment" label="Deployment" attributes={{className:"tabs__vertical"}}>
+              ## Single service / multi services per host
+
+              ## Service deployment platform
+
+              ## Service per container/VM
+
+              ## Sidecar
+
+              ## Service Mesh
+
+            </TabItem>
+            <TabItem value="communication" label="Communication Patterns">
+              ## Discovery
+
+              ### Service Registry
+
+              ### Server-side discovery
+
+              ### 3rd party registration
+
+            </TabItem>
+        </Tabs>
+    </TabItem>
+</Tabs>
