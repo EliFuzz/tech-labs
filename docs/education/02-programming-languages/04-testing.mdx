@@ -1,0 +1,265 @@
+---
+title: Software Testing Lifecycle
+description: Software Testing Lifecycle Overview
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+    <TabItem value="overview" label="Overview">
+        **Software Testing Lifecycle (STLC)**: structured process for testing software to ensure quality and functionality throughout its development life cycle
+
+        ```mermaid
+            graph LR
+
+
+            requirement(Requirement Analysis) --> planning(Test Planning)
+            planning --> testCase(Test Case Development)
+            testCase --> environment(Environment Setup)
+            environment --> execution(Test Execution)
+            execution --> closure(Test Closure)
+            closure --> requirement
+        ```
+
+        <table className="sticky column" style={{textWrap: "nowrap"}}>
+            <thead>
+                <tr>
+                    <th>STLC Stage</th>
+                    <th>Entry Criteria</th>
+                    <th>Activity</th>
+                    <th>Exit Criteria</th>
+                    <th>Deliverables</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Requirement Analysis</b></td>
+                    <td>
+                        <ul>
+                            <li>Requirements Document available (both functional and non functional)</li>
+                            <li>Acceptance criteria defined</li>
+                            <li>Application architectural document available</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Analyse business functionality to know the business modules and module specific functionalities</li>
+                            <li>Identify all transactions in the modules</li>
+                            <li>Identify all the user profiles</li>
+                            <li>Gather user interface/authentication, geographic spread requirements</li>
+                            <li>Identify types of tests to be performed</li>
+                            <li>Gather details about testing priorities and focus</li>
+                            <li>Prepare Requirement Traceability Matrix (RTM)</li>
+                            <li>Identify test environment details where testing is supposed to be carried out</li>
+                            <li>Automation feasibility analysis</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Signed off RTM</li>
+                            <li>Test automation feasibility report signed off by the client</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>RTM</li>
+                          <li>Automation feasibility report</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Test Planning</b></td>
+                    <td>
+                        <ul>
+                          <li>Requirements Documents</li>
+                          <li>Requirement Traceability Matrix</li>
+                          <li>Test Automation Feasibility Document</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Analyze various testing approaches available</li>
+                          <li>Finalize on the best-suited approach</li>
+                          <li>Preparation of test plan/strategy document for various types of testing</li>
+                          <li>Test tool selection</li>
+                          <li>Test effort estimation</li>
+                          <li>Resource planning and determining roles and responsibilities</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Approved test plan/strategy document</li>
+                          <li>Effort estimation document signed off</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Test plan/strategy document</li>
+                          <li>Effort estimation document</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Test Case Development</b></td>
+                    <td>
+                        <ul>
+                          <li>Requirements Documents</li>
+                          <li>RTM and test plan</li>
+                          <li>Automation analysis report</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Create test cases, test design, automation scripts</li>
+                          <li>Review and baseline test cases and scripts</li>
+                          <li>Create test data</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Reviewed and signed test cases/scripts</li>
+                          <li>Reviewed and signed test data</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Test cases/scripts</li>
+                          <li>Test data</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Test Environment Setup</b></td>
+                    <td>
+                        <ul>
+                          <li>System Design and architecture documents are available</li>
+                          <li>Environment set-up plan is available</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Understand the required architecture, environment set-up</li>
+                          <li>Prepare hardware and software development requirement list</li>
+                          <li>Finalize connectivity requirements</li>
+                          <li>Prepare environment setup checklist</li>
+                          <li>Setup test Environment and test data</li>
+                          <li>Perform smoke test on the build</li>
+                          <li>Accept/reject the build depending on smoke test result</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Environment setup is working as per the plan and checklist</li>
+                          <li>Test data setup is complete</li>
+                          <li>Smoke test is successful</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Environment ready with test data set up</li>
+                          <li>Smoke Test Results</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Test Execution</b></td>
+                    <td>
+                        <ul>
+                          <li>Baselined RTM, Test Plan, Test case/scripts are available</li>
+                          <li>Test environment is ready</li>
+                          <li>Test data set up is done</li>
+                          <li>Unit/Integration test report for the build to be tested is available</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Execute tests as per plan</li>
+                          <li>Document test results, and log defects for failed cases</li>
+                          <li>Update test plans/test cases, if necessary</li>
+                          <li>Map defects to test cases in RTM</li>
+                          <li>Retest the defect fixes</li>
+                          <li>Regression Testing of application</li>
+                          <li>Track the defects to closure</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>All tests planned are executed</li>
+                          <li>Defects logged and tracked to closure</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Completed RTM with execution status</li>
+                          <li>Test cases updated with results</li>
+                          <li>Defect reports</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Test Cycle Closure</b></td>
+                    <td>
+                        <ul>
+                          <li>Testing has been completed</li>
+                          <li>Test results are available</li>
+                          <li>Defect logs are available</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Evaluate cycle completion criteria based on - Time, Test coverage, Cost, Software Quality, Critical Business Objectives</li>
+                          <li>Prepare test metrics based on the above parameters</li>
+                          <li>Document the learning out of the project</li>
+                          <li>Prepare Test closure report</li>
+                          <li>Qualitative and quantitative reporting of quality of the work product to the customer</li>
+                          <li>Test result analysis to find out the defect distribution by type and severity</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Test Closure report signed off by client</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                          <li>Test Closure report</li>
+                          <li>Test metrics</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </TabItem>
+    <TabItem value="detailed" label="Detailed">
+        ```mermaid
+            graph LR
+
+            requirements(Requirements Stage)
+            requirements ~~~|<ul style="text-align:left"><li>Functional Requirements</li><li>Non-Functional Requirements</li><li>Requirement Analysis</li></ul>| requirements
+
+            design(Design Stage)
+            design ~~~|<ul style="text-align:left"><li>Architectural Review</li><li>Data Flow</li><li>Design Verification and Validation</li><li>High-Level Design Review</li><li>Interface</li><li>Low-Level Design Review</li><li>Prototype Testing</li><li>System Design Review</li></ul><br/>| design
+
+            development(Development Stage)
+            development ~~~|<ul style="text-align:left"><li>Static Code Analysis</li></ul>| development
+
+            testing(Testing Stage)
+            testing ~~~|<ul style="text-align:left"><li>Accessibility</li><li>Acceptance</li><li>API</li><li>Code Review</li><li>Component</li><li>Compatibility</li><li>Compliance</li><li>Configuration</li><li>Data Retrieval/Restoration/Purging/Migration</li><li>Database</li><li>Disaster Recovery</li><li>End-to-End: E2E</li><li>Functional</li><li>Globalization</li><li>Integration</li><li>Load</li><li>Localization</li><li>Maintainability</li><li>Mobile</li><li>Regression</li><li>Recovery</li><li>Reliability</li><li>Requirements Review</li><li>Rollback</li><li>Scalability</li><li>Security</li><li>Service Level Agreement: SLA</li><li>Smoke</li><li>Spike</li><li>State Transition</li><li>Stress</li><li>Unit</li><li>Usability</li><li>User Acceptance: UAT</li><li>User Interface</li><li>Web</li></ul><br/>| testing
+
+            deployment(Deployment Stage)
+            deployment ~~~|<ul style="text-align:left"><li>Beta</li><li>Pilot</li><li>Rollback</li></ul></ul>| deployment
+
+            maintenance(Maintenance Stage)
+            maintenance ~~~|<ul style="text-align:left"><li>Chaos Engineering</li></ul><br/>| maintenance
+
+            requirements --> design
+            design --> development
+            development ---> testing
+            testing ---> deployment
+            deployment --> maintenance
+        ```
+    </TabItem>
+</Tabs>
