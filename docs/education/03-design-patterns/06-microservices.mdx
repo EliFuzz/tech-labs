@@ -244,6 +244,12 @@ import TabItem from "@theme/TabItem";
           ```
 
           **Microservices** are independent, and loosely coupled software components that perform specific tasks within a larger application, facilitating scalability, flexibility, and maintainability in software development. They organize the subdomains into one or more deployable/executable components.
+
+          **Golden Rule**
+
+          - we need to ensure that our microservices are independently deployable
+          - if we needed to update our country codes library, and have all services pick up the new data immediately, we’d need to redeploy all services at the moment the new library is available
+              - this is a classic lock-step release, and exactly what we’re trying to avoid with microservice architectures
         </TabItem>
         <TabItem value="advantages" label="Advantages">
           - **Simple Components**: Small, focused components, simplifying development and maintenance
@@ -354,10 +360,10 @@ import TabItem from "@theme/TabItem";
     <TabItem value="decomposition" label="Service Decomposition">
         <Tabs>
             <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
-              <table>
+              <table className="stick column">
                 <thead>
                   <tr>
-                    <th></th>
+                    <th>Aspect</th>
                     <th>Decompose by Business Capability</th>
                     <th>Decompose by Subdomain</th>
                     <th>Self-contained Service</th>
@@ -368,7 +374,7 @@ import TabItem from "@theme/TabItem";
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Definition</td>
+                    <td><b>Definition</b></td>
                     <td>Breaks down the application into services based on business capabilities or functions</td>
                     <td>Splits services based on different subdomains or components of the business</td>
                     <td>Each service is independent and complete in itself, reducing dependencies</td>
@@ -377,7 +383,7 @@ import TabItem from "@theme/TabItem";
                     <td>Creates a layer between two services to ensure that changes in one do not affect the other</td>
                   </tr>
                   <tr>
-                    <td>Complexity</td>
+                    <td><b>Complexity</b></td>
                     <td>Medium. Requires a good understanding of business capabilities</td>
                     <td>High. Requires a deep understanding of the domain and its subdomains</td>
                     <td>High. Each service must be self-sufficient</td>
@@ -386,7 +392,7 @@ import TabItem from "@theme/TabItem";
                     <td>Medium. Requires understanding of both services involved</td>
                   </tr>
                   <tr>
-                    <td>Use Cases</td>
+                    <td><b>Use Cases</b></td>
                     <td>Large applications with distinct business functions</td>
                     <td>Complex domains with distinct subdomains</td>
                     <td>Applications where each service can operate independently</td>
@@ -594,6 +600,88 @@ import TabItem from "@theme/TabItem";
 
                   client(Client) <--> newService(New Service)
               ```
+            </TabItem>
+            <TabItem value="branch" label="Branch by Abstraction">
+                ```mermaid
+                    graph TB
+
+                    subgraph monolith[Monolith]
+                        direction LR
+
+                        invoicing(Invoicing) ----> abstraction[[User Notifications Abstraction]]
+                        payroll(Payroll) ----> abstraction
+
+                        existing(Existing user notifications functionality) --> |implements| abstraction
+                        provider(Service-provided user notifications) --> |implements| abstraction
+                        existing -.-> |active implementation -> active implementation switched -> inactive implementation| provider
+                    end
+
+                    provider --> service{{User Notification Service}}
+                ```
+
+                **Steps**
+
+               - Create an abstraction for the functionality that needs to be replaced
+               - Modify clients of the existing functionality to use the new abstraction
+               - Develop a new implementation of the abstraction with the reworked functionality
+               - Switch over to using the new implementation by adapting the abstraction
+               - Once the transition is complete and the new implementation is proven, clean up the abstraction
+               - Remove the old implementation once it's no longer needed
+            </TabItem>
+            <TabItem value="parallel" label="Parallel Run">
+                ```mermaid
+                    graph TB
+
+                    pricing(Pricing Requests)
+                    pricing ~~~|all pricing requests duplicated and received by both systems| pricing
+
+                    pricing --> oldPricing[Old Pricing System]
+                    pricing --> newPricing[New Pricing System]
+
+                    oldPricing --> oldResults[(Results)]
+                    newPricing --> newResults[(Results)]
+
+                    oldResults --> daily[Daily comparison batch process]
+                    newResults --> daily[Daily comparison batch process]
+                ```
+
+                - Instead of solely calling either the old or new implementation, both are called simultaneously
+                - This enables comparison of results to ensure equivalence
+                - Despite calling both, only one implementation is regarded as the "source of truth" at any moment
+                - Initially, the old implementation serves as the source of truth until ongoing verification validates the reliability of the new implementation
+                - This technique verifies not only the equivalence of results but also ensures that the new implementation operates within acceptable nonfunctional parameters
+            </TabItem>
+            <TabItem value="decorating" label="Decorating Collaborator">
+                ```mermaid
+                    graph TB
+
+                    order(Order) --> |Place Order - Request| proxy{{Proxy}}
+                    proxy --> |Order Placed - Response| order
+                    proxy --> monolith(Existing Monolith)
+                    monolith --> proxy
+
+                    proxy -.-> |award loyalty points| loyalty(Loyalty Service)
+                    loyalty -.-> |fetch order value| monolith
+                ```
+
+                - It enables attaching new functionality to an object without the object being aware of it
+                - By using a decorator, it seems as if the monolith is directly communicating with services, without altering the monolith itself
+                - Instead of intercepting calls before reaching the monolith, the calls proceed normally
+                - After the call, based on the result, external microservices can be invoked through any chosen collaboration mechanism
+            </TabItem>
+            <TabItem value="capture" label="Change Data Capture">
+                ```mermaid
+                    graph TB
+
+                    monolith(Monolith) --> |"INSERT INTO (id, loyalty_number) VALUES (1, 1234)"| database[(Database)]
+                    database --> |generate| loyalty(Loyalty Card)
+                    database --> |synchronize| marketing(Marketing Service)
+                ```
+
+                - It involves reacting to changes made within a datastore rather than intercepting and acting on calls made into the monolith
+                - The effectiveness of change data capture relies on coupling the underlying capture system to the monolith's datastore
+                - Change data capture serves as a useful, versatile pattern, particularly for scenarios involving data replication
+                - In the context of microservices migration, this approach is most beneficial when there's a need to respond to data changes within the monolith, but it's not feasible to intercept them at the system's perimeter using techniques like strangler or decorator, nor is it possible to modify the underlying codebase
             </TabItem>
         </Tabs>
     </TabItem>
