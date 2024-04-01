@@ -1,0 +1,449 @@
+{
+  "key": "js",
+  "metadata": {
+    "name": "Javascript",
+    "url": "https://www.javascript.com/",
+    "logo": "/static/img/lang/js.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "null",
+      "description": "Null (typeof 'object')",
+      "code": "null"
+    },
+    {
+      "name": "undefined",
+      "description": "Undefined (typeof 'undefined')",
+      "code": "undefined"
+    },
+    {
+      "name": "boolean",
+      "description": "Boolean",
+      "code": "true"
+    },
+    {
+      "name": "number",
+      "description": "Number",
+      "code": "0"
+    },
+    {
+      "name": "bigInt",
+      "description": "BigInt",
+      "code": "0n"
+    },
+    {
+      "name": "string",
+      "description": "UTF-16 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "symbol",
+      "description": "Symbol",
+      "code": "Symbol()"
+    }
+  ],
+  "reservedKeywords": [
+    "abstract",
+    "arguments",
+    "await",
+    "boolean",
+    "break",
+    "byte",
+    "case",
+    "catch",
+    "char",
+    "class",
+    "const",
+    "continue",
+    "debugger",
+    "default",
+    "delete",
+    "do",
+    "double",
+    "else",
+    "enum",
+    "eval",
+    "export",
+    "extends",
+    "false",
+    "final",
+    "finally",
+    "float",
+    "for",
+    "function",
+    "goto",
+    "if",
+    "implements",
+    "import",
+    "in",
+    "instanceof",
+    "int",
+    "interface",
+    "let",
+    "long",
+    "native",
+    "new",
+    "null",
+    "package",
+    "private",
+    "protected",
+    "public",
+    "return",
+    "short",
+    "static",
+    "super",
+    "switch",
+    "synchronized",
+    "this",
+    "throw",
+    "throws",
+    "transient",
+    "true",
+    "try",
+    "typeof",
+    "var",
+    "void",
+    "volatile",
+    "while",
+    "with",
+    "yield"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "console.log(\"Hello, World!\")"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [],
+    "imports": [
+      {
+        "name": "import_module",
+        "description": "Importing an entire module (ES6 modules)",
+        "code": "import fs from 'fs'"
+      },
+      {
+        "name": "import_partial",
+        "description": "Importing specific functions or variables from a module (ES6 modules)",
+        "code": "import { readFile } from 'fs'"
+      },
+      {
+        "name": "require_module",
+        "description": "Importing an entire module (CommonJS modules)",
+        "code": "const fs = require('fs')"
+      },
+      {
+        "name": "require",
+        "description": "Importing specific functions or variables from a module (CommonJS modules)",
+        "code": "const { readFile } = require('fs')"
+      }
+    ],
+    "variables": [
+      {
+        "name": "var",
+        "description": "var: defines a variable with function or global scope, allowing redeclaration and reassignment",
+        "code": "var x = 0"
+      },
+      {
+        "name": "let",
+        "description": "let: Declares block-scoped variables that can be reassigned",
+        "code": "let x = 0"
+      },
+      {
+        "name": "const",
+        "description": "const: Declares variables with block scope whose values cannot be reassigned or redeclared",
+        "code": "const x = 0"
+      },
+      {
+        "name": "null",
+        "description": "null",
+        "code": "x = null"
+      },
+      {
+        "name": "undefined",
+        "description": "undefined",
+        "code": "x = undefined"
+      },
+      {
+        "name": "boolean",
+        "description": "Boolean",
+        "code": "x = true"
+      },
+      {
+        "name": "number",
+        "description": "Number",
+        "code": "x = 0\ny = 0.0"
+      },
+      {
+        "name": "bigint",
+        "description": "BigInt",
+        "code": "x = 0n"
+      },
+      {
+        "name": "string",
+        "description": "string",
+        "code": "x = \"Hello, World!\"\ny = 'Hello, World!'"
+      },
+      {
+        "name": "string_interpolation",
+        "description": "string interpolation",
+        "code": "x = \"World\" \ny = `Hello, ${x}!`"
+      },
+      {
+        "name": "symbol",
+        "description": "Symbol",
+        "code": "x = Symbol(\"x\")"
+      },
+      {
+        "name": "Infinity",
+        "description": "Infinity",
+        "code": "x = Infinity\ny = -Infinity"
+      },
+      {
+        "name": "NaN",
+        "description": "NaN",
+        "code": "x = NaN"
+      },
+      {
+        "name": "array",
+        "description": "Array",
+        "code": "x = [1, 2, 3]"
+      },
+      {
+        "name": "2d_array",
+        "description": "2D array",
+        "code": "x = [[1, 2, 3], [4, 5, 6]]"
+      },
+      {
+        "name": "object",
+        "description": "Object (associative array / dictionary / map)",
+        "code": "x = { a: 1, b: 2, c: 3 }"
+      },
+      {
+        "name": "object_access_subscript",
+        "description": "Object access (subscript)",
+        "code": "x[\"a\"]"
+      },
+      {
+        "name": "object_access_dot",
+        "description": "Object access (dot)",
+        "code": "x.a"
+      },
+      {
+        "name": "variadic_arguments",
+        "description": "Variadic arguments",
+        "code": "function sum(...numbers) {}"
+      },
+      {
+        "name": "variadic_arguments_usage",
+        "description": "Variadic arguments usage",
+        "code": "sum(1, 2, 3, 4, 5)"
+      },
+      {
+        "name": "destructuring_assignment",
+        "description": "Destructuring assignment",
+        "code": "const { x, y } = { x: 1, y: 2 }"
+      },
+      {
+        "name": "spread_operator",
+        "description": "Spread operator",
+        "code": "x = [...[1, 2, 3]] // output: [1, 2, 3]"
+      }
+    ],
+    "bitwiseOperators": [
+      {
+        "name": "and",
+        "description": "AND",
+        "code": "const x = x & y\nconst x &= y"
+      },
+      {
+        "name": "or",
+        "description": "OR",
+        "code": "const x = x | y\nconst x |= y"
+      },
+      {
+        "name": "xor",
+        "description": "XOR",
+        "code": "const x = x ^ y\nconst x ^= y"
+      },
+      {
+        "name": "not",
+        "description": "NOT",
+        "code": "const x = ~x"
+      },
+      {
+        "name": "left_shift",
+        "description": "Left shift (preserve sign bit)",
+        "code": "const x = x << y\nconst x <<= y"
+      },
+      {
+        "name": "right_shift",
+        "description": "Right shift (preserve sign bit)",
+        "code": "const x = x >> y\nconst x >>= y"
+      },
+      {
+        "name": "zero_fill_right_shift",
+        "description": "Zero-fill right shift (fills vacant bits with zeros regardless of sign)",
+        "code": "const x = x >>> y\nconst x >>>= y"
+      }
+    ],
+    "functions": [
+      {
+        "name": "function_declaration",
+        "description": "Function declaration",
+        "code": "function myFunc() {}"
+      },
+      {
+        "name": "function_expression",
+        "description": "Function expression (arrow function)",
+        "code": "const myFunc = () => {}"
+      },
+      {
+        "name": "function_with_parameters",
+        "description": "Function with parameters",
+        "code": "function myFunc(x, y) {}"
+      },
+      {
+        "name": "function_call",
+        "description": "Function call",
+        "code": "x = myFunc(1, 2)"
+      },
+      {
+        "name": "IIFE",
+        "description": "IIFE: Immediately invoked function expression",
+        "code": "(function() {})(); // function declaration\n(() => {})(); // arrow function"
+      },
+      {
+        "name": "object_method_declaration",
+        "description": "Object method declaration",
+        "code": "myObj = {\n    myFunc: function() {}\n}"
+      },
+      {
+        "name": "object_method_call",
+        "description": "Object method call",
+        "code": "myObj.myFunc()"
+      }
+    ],
+    "flowControls": [
+      {
+        "name": "if",
+        "description": "If statement",
+        "code": "if (x) {}"
+      },
+      {
+        "name": "if_else",
+        "description": "If-else statement",
+        "code": "if (x) {}\nelse {}"
+      },
+      {
+        "name": "ternary",
+        "description": "Ternary operator",
+        "code": "x ? y : z"
+      },
+      {
+        "name": "nullish_coalescing_operator",
+        "description": "Nullish coalescing operator",
+        "code": "x = y ?? 0"
+      },
+      {
+        "name": "falsy_default_assignment",
+        "description": "Falsy assignment with default value",
+        "code": "x = y || 0"
+      },
+      {
+        "name": "switch",
+        "description": "Switch statement",
+        "code": "switch (x) {\n  case 'A':\n    console.log('A');\n    break;\n  case 'B':\n    console.log('B');\n    break;\n  case 'C':\n    console.log('C');\n    break;\n  default:\n}"
+      },
+      {
+        "name": "for",
+        "description": "For loop",
+        "code": "for (let i = 0; i < 10; i++) {}"
+      },
+      {
+        "name": "for_in",
+        "description": "For-in loop",
+        "code": "for (const index in arr) {}\nfor (const key in obj) {}"
+      },
+      {
+        "name": "for_of",
+        "description": "For-of loop",
+        "code": "for (const value of arr) {}\nfor (const { key, value } of obj) {}"
+      },
+      {
+        "name": "while",
+        "description": "While loop",
+        "code": "while (x) {}"
+      },
+      {
+        "name": "do_while",
+        "description": "Do-while loop. Will run at least once",
+        "code": "do {} while (x);"
+      }
+    ],
+    "structures": [
+      {
+        "name": "object_declaration",
+        "description": "Object declaration",
+        "code": "const myObj = {};"
+      },
+      {
+        "name": "__proto__",
+        "description": "Object prototype (inheritance)",
+        "code": "myObj.__proto__ = {};"
+      },
+      {
+        "name": "class",
+        "description": "Class",
+        "code": "class MyClass {\n  myField = 0;\n  constructor() {}\n  myFunc() {}\n}"
+      }
+    ],
+    "errorHandling": [
+      {
+        "name": "try_catch",
+        "description": "Try-catch statement",
+        "code": "try {\n  // Do something\n} catch (e) {\n  // Handle exception\n}"
+      },
+      {
+        "name": "try_catch_finally",
+        "description": "Try-catch-finally statement",
+        "code": "try {\n  // Do something\n} catch (e) {\n  // Handle exception\n} finally {\n  // Cleanup\n}"
+      },
+      {
+        "name": "try_finally",
+        "description": "Try-finally statement",
+        "code": "try {\n  // Do something\n} finally {\n  // Cleanup\n}"
+      },
+      {
+        "name": "throw",
+        "description": "Throw statement",
+        "code": "throw new Error('message')"
+      }
+    ],
+    "concurrency": [
+      {
+        "name": "async",
+        "description": "Async/Await",
+        "code": "async function foo() { return promise; }"
+      },
+      {
+        "name": "await",
+        "description": "Await",
+        "code": "const response = await foo();"
+      }
+    ]
+  }
+}

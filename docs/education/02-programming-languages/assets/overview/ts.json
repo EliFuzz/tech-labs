@@ -1,0 +1,476 @@
+{
+  "key": "ts",
+  "metadata": {
+    "name": "TypeScript",
+    "url": "https://www.typescriptlang.org/",
+    "logo": "/static/img/lang/ts.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "boolean",
+      "description": "boolean",
+      "code": "false"
+    },
+    {
+      "name": "number",
+      "description": "Number",
+      "code": "0"
+    },
+    {
+      "name": "string",
+      "description": "UTF-16 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "bigInt",
+      "description": "BigInt",
+      "code": "0n"
+    },
+    {
+      "name": "symbol",
+      "description": "Symbol",
+      "code": "Symbol()"
+    }
+  ],
+  "reservedKeywords": [
+    "any",
+    "as",
+    "boolean",
+    "break",
+    "case",
+    "catch",
+    "class",
+    "const",
+    "constructor",
+    "continue",
+    "debugger",
+    "declare",
+    "default",
+    "delete",
+    "do",
+    "else",
+    "enum",
+    "export",
+    "extends",
+    "false",
+    "finally",
+    "for",
+    "from",
+    "function",
+    "get",
+    "if",
+    "implements",
+    "import",
+    "in",
+    "instanceof",
+    "interface",
+    "let",
+    "module",
+    "new",
+    "null",
+    "number",
+    "of",
+    "package",
+    "private",
+    "protected",
+    "public",
+    "require",
+    "return",
+    "set",
+    "static",
+    "string",
+    "super",
+    "switch",
+    "symbol",
+    "this",
+    "throw",
+    "true",
+    "try",
+    "type",
+    "typeof",
+    "var",
+    "void",
+    "while",
+    "with",
+    "yield"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "console.log(\"Hello, World!\")"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      }
+    ],
+    "namespaces": [
+      {
+        "name": "namespace",
+        "description": "Namespace",
+        "code": "// based on `baseUrl` assignment in `tsconfig.json` and folder structure"
+      }
+    ],
+    "imports": [
+      {
+        "name": "import_module",
+        "description": "Importing an entire module (ES6 modules)",
+        "code": "import fs from 'fs'"
+      },
+      {
+        "name": "import_partial",
+        "description": "Importing partially (ES6 modules)",
+        "code": "import { readFile } from 'fs'"
+      }
+    ],
+    "variables": [
+      {
+        "name": "var",
+        "description": "var: defines a variable with function or global scope, allowing redeclaration and reassignment",
+        "code": "var x = 0"
+      },
+      {
+        "name": "let",
+        "description": "let: Declares block-scoped variables that can be reassigned",
+        "code": "let x = 0"
+      },
+      {
+        "name": "const",
+        "description": "const: Declares variables with block scope whose values cannot be reassigned or redeclared",
+        "code": "const x = 0"
+      },
+      {
+        "name": "null",
+        "description": "null",
+        "code": "let x: number? = null"
+      },
+      {
+        "name": "undefined",
+        "description": "undefined",
+        "code": "let x: number? = undefined"
+      },
+      {
+        "name": "boolean",
+        "description": "Boolean",
+        "code": "const x: boolean = false"
+      },
+      {
+        "name": "number",
+        "description": "Number",
+        "code": "const x: number = 0"
+      },
+      {
+        "name": "string",
+        "description": "UTF-16 string",
+        "code": "const x: string = \"Hello, World!\""
+      },
+      {
+        "name": "bigInt",
+        "description": "BigInt",
+        "code": "const x: BigInt = 0n"
+      },
+      {
+        "name": "symbol",
+        "description": "Symbol",
+        "code": "const x: Symbol = Symbol()"
+      }
+    ],
+    "bitwiseOperators": [
+      {
+        "name": "and",
+        "description": "AND",
+        "code": "const x = x & y\nconst x &= y"
+      },
+      {
+        "name": "or",
+        "description": "OR",
+        "code": "const x = x | y\nconst x |= y"
+      },
+      {
+        "name": "xor",
+        "description": "XOR",
+        "code": "const x = x ^ y\nconst x ^= y"
+      },
+      {
+        "name": "not",
+        "description": "NOT",
+        "code": "const x = ~y"
+      },
+      {
+        "name": "shift_left",
+        "description": "Signed shift left",
+        "code": "const x = x << y\nconst x <<= y"
+      },
+      {
+        "name": "shift_right",
+        "description": "Signed shift right",
+        "code": "const x = x >> y\nconst x >>= y"
+      },
+      {
+        "name": "shift_right_unsigned",
+        "description": "Unsigned shift right (zero-fill)",
+        "code": "const x = x >>> y\nconst x >>>= y"
+      }
+    ],
+    "functions": [
+      {
+        "name": "function_declaration",
+        "description": "Function declaration",
+        "code": "function myFunc() {}"
+      },
+      {
+        "name": "function_expression",
+        "description": "Function expression (arrow function)",
+        "code": "const myFunc = () => {}"
+      },
+      {
+        "name": "function_with_parameters",
+        "description": "Function with parameters",
+        "code": "function myFunc(x: number, y: number) {}"
+      },
+      {
+        "name": "function_call",
+        "description": "Function call",
+        "code": "x = myFunc(1, 2)"
+      },
+      {
+        "name": "IIFE",
+        "description": "IIFE: Immediately invoked function expression",
+        "code": "(function() {})(); // function declaration\n(() => {})(); // arrow function"
+      },
+      {
+        "name": "function_with_return_type",
+        "description": "Function with return type",
+        "code": "function myFunc(): number {}"
+      },
+      {
+        "name": "arrow_function",
+        "description": "Arrow function",
+        "code": "const myFunc = (x: number, y: number): number => x + y"
+      },
+      {
+        "name": "spread",
+        "description": "Spread operator",
+        "code": "x = [...[1, 2, 3]] // output: [1, 2, 3]"
+      },
+      {
+        "name": "destructuring",
+        "description": "Destructuring",
+        "code": "const {x, y} = {x: 1, y: 2}"
+      },
+      {
+        "name": "default_parameter",
+        "description": "Default parameter",
+        "code": "function myFunc(x = 0) {}"
+      },
+      {
+        "name": "rest_parameter",
+        "description": "Rest parameter",
+        "code": "function myFunc(x: number, ...y: number[]) {}"
+      },
+      {
+        "name": "generic",
+        "description": "Generic function",
+        "code": "function myFunc<T>(x: T) {}"
+      },
+      {
+        "name": "generic_usage",
+        "description": "Generic function usage",
+        "code": "myFunc<number>(1)"
+      }
+    ],
+    "flowControls": [
+      {
+        "name": "if",
+        "description": "If",
+        "code": "if (true) {}"
+      },
+      {
+        "name": "if_else",
+        "description": "If-else",
+        "code": "if (true) {} else {}"
+      },
+      {
+        "name": "ternary",
+        "description": "Ternary",
+        "code": "x ? y : z"
+      },
+      {
+        "name": "safe_call_operator",
+        "description": "Safe call operator",
+        "code": "x = y?.z"
+      },
+      {
+        "name": "nullish_coalescing_operator",
+        "description": "Nullish coalescing operator",
+        "code": "x = y ?? 0"
+      },
+      {
+        "name": "falsy_default_assignment",
+        "description": "Falsy assignment with default value",
+        "code": "x = y || 0"
+      },
+      {
+        "name": "nullable",
+        "description": "Nullable 'elvis' operator",
+        "code": "x = y ?: 0"
+      },
+      {
+        "name": "switch",
+        "description": "Switch",
+        "code": "switch (date) {\n    case 1:\n    case 2:\n    case 3:\n        break;\n    case 4:\n        break;\n    default:\n        // default\n}"
+      },
+      {
+        "name": "while",
+        "description": "While",
+        "code": "while (true) {}"
+      },
+      {
+        "name": "do_while",
+        "description": "Do-while",
+        "code": "do {} while (true)"
+      },
+      {
+        "name": "for",
+        "description": "For",
+        "code": "for (let i = 0; i < 10; i++) {}"
+      },
+      {
+        "name": "for_in",
+        "description": "For-in",
+        "code": "for (const index in arr) {}\nfor (const key in obj) {}"
+      },
+      {
+        "name": "for_of",
+        "description": "For-of",
+        "code": "for (const value of arr) {}\nfor (const { key, value } of obj) {}"
+      }
+    ],
+    "structures": [
+      {
+        "name": "array",
+        "description": "Array",
+        "code": "const arr: number[] = [1, 2, 3]"
+      },
+      {
+        "name": "object",
+        "description": "Object",
+        "code": "const obj: { x: number, y: number } = { x: 1, y: 2 }"
+      },
+      {
+        "name": "tuple",
+        "description": "Tuple",
+        "code": "const tuple: [number, number] = [1, 2]"
+      },
+      {
+        "name": "map",
+        "description": "Map",
+        "code": "const map = new Map()"
+      },
+      {
+        "name": "set",
+        "description": "Set",
+        "code": "const set = new Set()"
+      },
+      {
+        "name": "class",
+        "description": "Class",
+        "code": "class A {}"
+      },
+      {
+        "name": "interface",
+        "description": "Interface",
+        "code": "interface A {}"
+      },
+      {
+        "name": "enum",
+        "description": "Enum",
+        "code": "enum A { A, B, C }"
+      },
+      {
+        "name": "union",
+        "description": "Union",
+        "code": "const union: number | string = 1"
+      },
+      {
+        "name": "literal",
+        "description": "Literal",
+        "code": "const literal = 1 | 2 | 3"
+      },
+      {
+        "name": "type_alias",
+        "description": "Type alias",
+        "code": "type A = number | string"
+      },
+      {
+        "name": "class_inheritance",
+        "description": "Class inheritance",
+        "code": "class A extends B {}"
+      },
+      {
+        "name": "interface_implementation",
+        "description": "Interface implementation",
+        "code": "class A implements C {}"
+      },
+      {
+        "name": "generic_class",
+        "description": "Generic class",
+        "code": "class A<T> {}"
+      },
+      {
+        "name": "generic_interface",
+        "description": "Generic interface",
+        "code": "interface A<T> {}"
+      },
+      {
+        "name": "generic_class_usage",
+        "description": "Generic class usage",
+        "code": "const a = new A<number>()"
+      }
+    ],
+    "errorHandling": [
+      {
+        "name": "try_catch",
+        "description": "Try-catch",
+        "code": "try {\n    // Do something\n} catch (error) {\n    // Handle error\n}"
+      },
+      {
+        "name": "try_catch_finally",
+        "description": "Try-catch-finally",
+        "code": "try {\n    // Do something\n} catch (error) {\n    // Handle error\n} finally {\n    // Cleanup\n}"
+      },
+      {
+        "name": "try_finally",
+        "description": "Try-finally",
+        "code": "try {\n    // Do something\n} finally {\n    // Cleanup\n}"
+      },
+      {
+        "name": "throw",
+        "description": "throw an error",
+        "code": "throw new Error('Error message')"
+      }
+    ],
+    "concurrency": [
+      {
+        "name": "async",
+        "description": "Async",
+        "code": "async function foo() {\n  // Do something\n}"
+      },
+      {
+        "name": "await",
+        "description": "Await",
+        "code": "const response = await foo();"
+      }
+    ]
+  }
+}

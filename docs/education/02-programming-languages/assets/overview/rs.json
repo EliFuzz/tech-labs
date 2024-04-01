@@ -1,0 +1,629 @@
+{
+  "key": "rust",
+  "metadata": {
+    "name": "Rust",
+    "url": "https://www.rust-lang.org/",
+    "logo": "/static/img/lang/rust.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "bool",
+      "description": "Boolean",
+      "code": "true"
+    },
+    {
+      "name": "char",
+      "description": "Character",
+      "code": "'a'"
+    },
+    {
+      "name": "i8",
+      "description": "i8 signed 8-bit integer: -128(-2⁸) to 127(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u8",
+      "description": "u8 unsigned 8-bit integer: 0 to 255(2⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i16",
+      "description": "i16 signed 16-bit integer: -32768(-2¹⁶) to 32767(2¹⁶ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u16",
+      "description": "u16 unsigned 16-bit integer: 0 to 65535(2¹⁶ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i32",
+      "description": "i32 signed 32-bit integer: -2147483648(-2³¹) to 2147483647(2³¹ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u32",
+      "description": "u32 unsigned 32-bit integer: 0 to 4294967295(2³¹ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i64",
+      "description": "i64 signed 64-bit integer: -9223372036854775808(-2⁶³) to 9223372036854775807(2⁶³ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u64",
+      "description": "u64 unsigned 64-bit integer: 0 to 18446744073709551615(2⁶³ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "i128",
+      "description": "i128 signed 128-bit integer: -170141183460469231731687303715884105728(-2¹²⁸) to 170141183460469231731687303715884105727(2¹²⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "u128",
+      "description": "u128 unsigned 128-bit integer: 0 to 340282366920938463463374607431768211455(2¹²⁸ - 1)",
+      "code": "0"
+    },
+    {
+      "name": "f32",
+      "description": "f32 32-bit floating point number",
+      "code": "0.0"
+    },
+    {
+      "name": "f64",
+      "description": "f64 64-bit floating point number",
+      "code": "0.0"
+    }
+  ],
+  "reservedKeywords": [
+    "abstract",
+    "as",
+    "become",
+    "box",
+    "break",
+    "const",
+    "continue",
+    "crate",
+    "do",
+    "else",
+    "enum",
+    "extern",
+    "false",
+    "final",
+    "fn",
+    "for",
+    "if",
+    "impl",
+    "in",
+    "let",
+    "loop",
+    "macro",
+    "match",
+    "mod",
+    "move",
+    "mut",
+    "override",
+    "priv",
+    "pub",
+    "ref",
+    "return",
+    "Self",
+    "self",
+    "static",
+    "struct",
+    "super",
+    "trait",
+    "true",
+    "try",
+    "type",
+    "typeof",
+    "unsafe",
+    "unsized",
+    "use",
+    "virtual",
+    "where",
+    "while",
+    "yield"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "fn main() {\n  println!(\"Hello, World!\")\n}"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      },
+      {
+        "name": "doc_comment",
+        "description": "Doc comment (support markdown notation)",
+        "code": "/// Doc comment"
+      }
+    ],
+    "namespaces": [
+      {
+        "name": "namespace",
+        "description": "Namespace",
+        "code": "based on the package structure with file `mod.rs` in each folder"
+      }
+    ],
+    "imports": [
+      {
+        "name": "import",
+        "description": "Import",
+        "code": "use std::io::Write;"
+      },
+      {
+        "name": "import_alias",
+        "description": "Import alias",
+        "code": "use std::io::Write as W;"
+      },
+      {
+        "name": "import_multiple",
+        "description": "Import multiple",
+        "code": "use std::io::{Write, Read};"
+      },
+      {
+        "name": "import_glob",
+        "description": "Import all items in a module",
+        "code": "use std::*;"
+      }
+    ],
+    "variables": [
+      {
+        "name": "let",
+        "description": "Variable (immutable)",
+        "code": "let x = 0;"
+      },
+      {
+        "name": "let_mut",
+        "description": "Variable (mutable)",
+        "code": "let mut x = 0;"
+      },
+      {
+        "name": "patter_matching",
+        "description": "Pattern matching to destructure tuples or enums",
+        "code": "let (x, y) = (1, 2);"
+      },
+      {
+        "name": "shadowing",
+        "description": "Shadowing",
+        "code": "let x = 0;\nlet x = x + 1;"
+      },
+      {
+        "name": "closure",
+        "description": "Bind variables to functions or closures",
+        "code": "let x = |y| y + 1;"
+      },
+      {
+        "name": "const",
+        "description": "Global constant",
+        "code": "const x: i32 = 0;"
+      },
+      {
+        "name": "type_annotation",
+        "description": "Type annotation (after a variable name using `:`)",
+        "code": "let x: i32 = 0;"
+      },
+      {
+        "name": "type_alias",
+        "description": "Type alias",
+        "code": "type MyInt = i32;"
+      },
+      {
+        "name": "bool",
+        "description": "Boolean",
+        "code": "let x: bool = true;"
+      },
+      {
+        "name": "char",
+        "description": "Character",
+        "code": "let x: char = 'a';"
+      },
+      {
+        "name": "str",
+        "description": "String",
+        "code": "let x: &str = \"hello world!\";\nlet s: String = \"hello world\".to_string();"
+      },
+      {
+        "name": "i8",
+        "description": " 8-bit signed integer",
+        "code": "let x: i8 = 0;"
+      },
+      {
+        "name": "u8",
+        "description": " 8-bit unsigned integer",
+        "code": "let x: u8 = 0;"
+      },
+      {
+        "name": "i16",
+        "description": " 16-bit signed integer",
+        "code": "let x: i16 = 0;"
+      },
+      {
+        "name": "u16",
+        "description": " 16-bit unsigned integer",
+        "code": "let x: u16 = 0;"
+      },
+      {
+        "name": "i32",
+        "description": " 32-bit signed integer",
+        "code": "let x: i32 = 0;"
+      },
+      {
+        "name": "u32",
+        "description": " 32-bit unsigned integer",
+        "code": "let x: u32 = 0;"
+      },
+      {
+        "name": "i64",
+        "description": " 64-bit signed integer",
+        "code": "let x: i64 = 0;"
+      },
+      {
+        "name": "u64",
+        "description": " 64-bit unsigned integer",
+        "code": "let x: u64 = 0;"
+      },
+      {
+        "name": "i128",
+        "description": " 128-bit signed integer",
+        "code": "let x: i128 = 0;"
+      },
+      {
+        "name": "u128",
+        "description": " 128-bit unsigned integer",
+        "code": "let x: u128 = 0;"
+      },
+      {
+        "name": "float32",
+        "description": " 32-bit floating point",
+        "code": "let x: f32 = 0.0;"
+      },
+      {
+        "name": "float64",
+        "description": " 64-bit floating point",
+        "code": "let x: f64 = 0.0;"
+      },
+      {
+        "name": "immutable_reference",
+        "description": "Immutable reference",
+        "code": "let x = &y;"
+      },
+      {
+        "name": "mutable_reference",
+        "description": "Mutable reference",
+        "code": "let x = &mut y;"
+      },
+      {
+        "name": "dereference",
+        "description": "Dereference",
+        "code": "let x = *y;"
+      },
+      {
+        "name": "immutable_pointer",
+        "description": "Immutable pointer",
+        "code": "let x: *const i32 = y;"
+      },
+      {
+        "name": "mutable_pointer",
+        "description": "Mutable pointer",
+        "code": "let x: *mut i32 = y;"
+      }
+    ],
+    "bitwiseOperators": [
+      {
+        "name": "and",
+        "description": "AND",
+        "code": "x = x & y"
+      },
+      {
+        "name": "or",
+        "description": "OR",
+        "code": "x = x | y"
+      },
+      {
+        "name": "xor",
+        "description": "XOR",
+        "code": "x = x ^ y"
+      },
+      {
+        "name": "not",
+        "description": "NOT",
+        "code": "x = !x"
+      },
+      {
+        "name": "left_shift",
+        "description": "Left shift",
+        "code": "x = x << y"
+      },
+      {
+        "name": "right_shift",
+        "description": "Right shift",
+        "code": "x = x >> y"
+      }
+    ],
+    "functions": [
+      {
+        "name": "main",
+        "description": "Main function",
+        "code": "fn main() {}"
+      },
+      {
+        "name": "function_declaration",
+        "description": "Function declaration",
+        "code": "fn myFunc() {}"
+      },
+      {
+        "name": "function_with_parameters",
+        "description": "Function with parameters",
+        "code": "fn myFunc(x: i32) {}"
+      },
+      {
+        "name": "function_with_return",
+        "description": "Function with return",
+        "code": "fn myFunc() -> i32 {}"
+      },
+      {
+        "name": "generic_function",
+        "description": "Generic function",
+        "code": "fn myFunc<T>(x: T) {}"
+      },
+      {
+        "name": "generic_function_usage",
+        "description": "Generic function usage",
+        "code": "let x = myFunc::<i32>(1);"
+      },
+      {
+        "name": "generic_constraint",
+        "description": "Generic constraint",
+        "code": "fn process<T: Display>(value: T) {\n    println!(\"{}\", value);\n}"
+      },
+      {
+        "name": "generic_where_clause",
+        "description": "Generic where clause",
+        "code": "fn foo<T, U>(x: T, y: U) -> i32\n    where T: Display + Clone,\n          U: Clone + Debug\n{\n    // Function body\n}"
+      },
+      {
+        "name": "hrtbs",
+        "description": "Higher-ranked Trait Bounds (HRTBs): enable working with traits that have generic type parameters",
+        "code": "fn print_pair<T: Debug, U: Debug>(first: T, second: U) {\n    println!(\"{:?}, {:?}\", first, second);\n}"
+      }
+    ],
+    "flowControls": [
+      {
+        "name": "if",
+        "description": "If statement",
+        "code": "if x {}"
+      },
+      {
+        "name": "if_else",
+        "description": "If-else statement",
+        "code": "if x {} else {}"
+      },
+      {
+        "name": "match",
+        "description": "Match statement",
+        "code": "match number {\n    1 => println!(\"One\"),\n    2 | 3 => println!(\"Two or Three\"),\n    _ => println!(\"Something else\"),\n}"
+      },
+      {
+        "name": "loop",
+        "description": "Loop",
+        "code": "let mut count = 0;\nloop {\n    count += 1;\n    if count == 5 {\n        break;\n    }\n}"
+      },
+      {
+        "name": "while",
+        "description": "While loop",
+        "code": "let mut count = 0;\nwhile count < 5 {\n    println!(\"Count: {}\", count);\n    count += 1;\n}"
+      },
+      {
+        "name": "for",
+        "description": "For loop",
+        "code": "for number in 0..5 {\n    println!(\"{}\", number);\n}\n\nlet text = \"Line 1\\nLine 2\\nLine 3\";\nfor line in text.lines() {\n    println!(\"{}\", line);\n}"
+      },
+      {
+        "name": "reverse",
+        "description": "Reverse",
+        "code": "for i in (0..=10).rev() {\n    println!(\"{}\", i);\n}"
+      },
+      {
+        "name": "loop_with_step",
+        "description": "Loop with step",
+        "code": "for i in (0..=10).rev().step_by(2) {\n    println!(\"{}\", i);\n}"
+      }
+    ],
+    "structures": [
+      {
+        "name": "immutable_struct",
+        "description": "Immutable struct",
+        "code": "struct Person {\n    name: String,\n    age: i32,\n}"
+      },
+      {
+        "name": "mutable_struct",
+        "description": "Mutable struct",
+        "code": "let mut person = Person {\n    name: String,\n    age: i32,\n}"
+      },
+      {
+        "name": "tuple",
+        "description": "Tuple",
+        "code": "let person = (String, i32);"
+      },
+      {
+        "name": "unit",
+        "description": "Unit type (Empty struct)",
+        "code": "struct EmptyStruct;\nlet empty = EmptyStruct;"
+      },
+      {
+        "name": "functions_in_struct",
+        "description": "Functions in struct",
+        "code": "impl Person {\n    fn greet(&self) {\n        println!(\"Hello, my name is {}\", self.name);\n    }\n}"
+      },
+      {
+        "name": "enum",
+        "description": "Enum",
+        "code": "enum Direction {\n    Up,\n    Down,\n    Left,\n    Right,\n}"
+      },
+      {
+        "name": "enum_with_associated_values",
+        "description": "Enum with associated values",
+        "code": "enum Direction {\n    Up(i32),\n    Down(i32),\n    Left(i32),\n    Right(i32),\n}"
+      },
+      {
+        "name": "struct_with_named_fields",
+        "description": "Struct with named fields",
+        "code": "enum Period {\n    Quarter { year: u16 }\n}\n\nlet period = Period::Quarter { year: 2000 };"
+      },
+      {
+        "name": "access_fields",
+        "description": "Access fields via dot notation",
+        "code": "person.age"
+      },
+      {
+        "name": "trait",
+        "description": "Trait",
+        "code": "trait Shape {\n    fn area(&self) -> f64;\n}"
+      },
+      {
+        "name": "trait_single_inheritance",
+        "description": "Single inheritance",
+        "code": "trait ParentTrait {\n    // Method signatures\n}\n\ntrait ChildTrait: ParentTrait {\n    // Additional methods or overrides\n}"
+      },
+      {
+        "name": "trait_implementation",
+        "description": "Trait implementation",
+        "code": "struct Rectangle {\n    width: f64,\n    height: f64,\n}\n\nimpl Shape for Rectangle {\n    fn area(&self) -> f64 {\n        self.width * self.height\n    }\n}"
+      },
+      {
+        "name": "generic_trait",
+        "description": "Generic trait",
+        "code": "trait Printable {\n    fn print(&self);\n}\n\nimpl<T: Printable> Pair<T> {\n    fn print_pair(&self) {\n        self.first.print();\n        self.second.print();\n    }\n}"
+      },
+      {
+        "name": "phantom_data",
+        "description": "Phantom data (marker type used to represent ownership of generic types)",
+        "code": "use std::marker::PhantomData;\n\nstruct Container<T> {\n    data: T,\n    phantom: PhantomData<T>,\n}\n"
+      },
+      {
+        "name": "generic_default_type_parameters",
+        "description": "Generic default type parameters",
+        "code": "struct Pair<T, U = i32> {\n    first: T,\n    second: U,\n}"
+      },
+      {
+        "name": "trait_associated_types",
+        "description": "Trait with associated types",
+        "code": "trait Iterator {\n    type Item;\n    fn next(&mut self) -> Option<Self::Item>;\n}"
+      },
+      {
+        "name": "generic_struct",
+        "description": "Generic struct",
+        "code": "struct MyStruct<T> { x: T }"
+      },
+      {
+        "name": "generic_enum",
+        "description": "Generic enum",
+        "code": "enum MyEnum<T> { A(T) }"
+      }
+    ],
+    "errorHandling": [
+      {
+        "name": "err",
+        "description": "Throw error",
+        "code": "Err(\"Division by zero\".to_string())"
+      },
+      {
+        "name": "ok",
+        "description": "OK (success)",
+        "code": "Ok()"
+      },
+      {
+        "name": "option",
+        "description": "Option",
+        "code": "fn find_element(array: &[i32], target: i32) -> Option<usize> {\n    for (index, &item) in array.iter().enumerate() {\n        if item == target {\n            return Some(index);\n        }\n    }\n    None\n}"
+      },
+      {
+        "name": "unwrap",
+        "description": "Unwrap: will unwrap in it's Some or Ok, otherwise will panic",
+        "code": "let x = Some(5);\nlet y = x.unwrap();"
+      },
+      {
+        "name": "expect",
+        "description": "Expect: will unwrap in it's Some or Ok, otherwise will panic with custom message",
+        "code": "let x = Some(5);\nlet y = x.expect(\"Custom message\");"
+      },
+      {
+        "name": "unwrap_or",
+        "description": "Unwrap or: will unwrap in it's Some or Ok, otherwise will return default value",
+        "code": "let x = Some(5);\nlet y = x.unwrap_or(0);"
+      },
+      {
+        "name": "question_operator",
+        "description": "`?` operator: shorthand for propagating errors up the call stack",
+        "code": "fn read_file_contents(file_path: &str) -> Result<String, std::io::Error> {\n    let mut file = File::open(file_path)?;\n    let mut contents = String::new();\n    file.read_to_string(&mut contents)?;\n    Ok(contents)\n}\n"
+      },
+      {
+        "name": "panic",
+        "description": "Panic! Macro",
+        "code": "panic!(\"Custom message\")"
+      },
+      {
+        "name": "custom_error",
+        "description": "Custom error",
+        "code": "use std::error::Error;\nuse std::fmt;\n\n#[derive(Debug)]\nenum MyError {\n    CustomError(String),\n}\n\nimpl fmt::Display for MyError {\n    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {\n        match *self {\n            MyError::CustomError(ref message) => write!(f, \"Custom Error: {}\", message),\n        }\n    }\n}\n\nimpl Error for MyError {}\n"
+      }
+    ],
+    "concurrency": [
+      {
+        "name": "thread",
+        "description": "Thread",
+        "code": "let thread = std::thread::spawn(|| {\n    // Do something\n});"
+      },
+      {
+        "name": "join",
+        "description": "Join",
+        "code": "let result = thread.join();"
+      },
+      {
+        "name": "channel",
+        "description": "Channel for sending and receiving values",
+        "code": "fn main() {\n    let (tx, rx) = std::sync::mpsc::channel();\n\n    std::thread::spawn(move || {\n        let val = String::from(\"Hello\");\n        tx.send(val).unwrap();\n    });\n\n    let received = rx.recv().unwrap();\n    println!(\"Got: {}\", received);\n}"
+      },
+      {
+        "name": "shared_state",
+        "description": "Shared State Concurrency",
+        "code": "use std::sync::{Arc, Mutex};\nuse std::thread;\n\nfn main() {\n    let counter = Arc::new(Mutex::new(0));\n\n    let mut handles = vec![];\n\n    for _ in 0..10 {\n        let counter = Arc::clone(&counter);\n        let handle = thread::spawn(move || {\n            let mut num = counter.lock().unwrap();\n            *num += 1;\n        });\n        handles.push(handle);\n    }\n\n    for handle in handles {\n        handle.join().unwrap();\n    }\n\n    println!(\"Result: {}\", *counter.lock().unwrap());\n}\n"
+      },
+      {
+        "name": "async",
+        "description": "Async",
+        "code": "async fn f() -> u32 {\n    42\n}"
+      },
+      {
+        "name": "await",
+        "description": "Await",
+        "code": "let result = f().await;"
+      },
+      {
+        "name": "future",
+        "description": "Future",
+        "code": "fn f() -> impl Future<Output = u32> {\n    async {\n        42\n    }\n}"
+      },
+      {
+        "name": "stream",
+        "description": "Stream",
+        "code": "fn f() -> impl Stream<Item = u32> {\n    async {\n        42\n    }\n}"
+      }
+    ]
+  }
+}

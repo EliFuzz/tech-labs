@@ -1,0 +1,511 @@
+{
+  "key": "java",
+  "metadata": {
+    "name": "Java",
+    "url": "https://www.java.com/",
+    "logo": "/static/img/lang/java.svg"
+  },
+  "dataTypes": [
+    {
+      "name": "byte",
+      "description": "Byte: -128 to 127",
+      "code": "0"
+    },
+    {
+      "name": "short",
+      "description": "Short: -32768 to 32767",
+      "code": "0"
+    },
+    {
+      "name": "int",
+      "description": "Integer: -2147483648 to 2147483647",
+      "code": "0"
+    },
+    {
+      "name": "long",
+      "description": "Long: -9223372036854775808 to 9223372036854775807",
+      "code": "0L"
+    },
+    {
+      "name": "float",
+      "description": "Float: -3.4028235E38 to 3.4028235E38",
+      "code": "0.0f"
+    },
+    {
+      "name": "double",
+      "description": "Double: -1.7976931348623157E308 to 1.7976931348623157E308",
+      "code": "0.0"
+    },
+    {
+      "name": "char",
+      "description": "Character",
+      "code": "'\\u0000'"
+    },
+    {
+      "name": "string",
+      "description": "UTF-16 string",
+      "code": "\"Hello, World!\""
+    },
+    {
+      "name": "boolean",
+      "description": "Boolean",
+      "code": "true"
+    }
+  ],
+  "reservedKeywords": [
+    "abstract",
+    "continue",
+    "for",
+    "new",
+    "switch",
+    "assert",
+    "default",
+    "goto",
+    "package",
+    "synchronized",
+    "boolean",
+    "do",
+    "if",
+    "private",
+    "this",
+    "break",
+    "double",
+    "implements",
+    "protected",
+    "throw",
+    "byte",
+    "else",
+    "import",
+    "public",
+    "throws",
+    "case",
+    "enum",
+    "instanceof",
+    "return",
+    "transient",
+    "catch",
+    "extends",
+    "int",
+    "short",
+    "try",
+    "char",
+    "final",
+    "interface",
+    "static",
+    "void",
+    "class",
+    "finally",
+    "long",
+    "strictfp",
+    "volatile",
+    "const",
+    "float",
+    "native",
+    "super",
+    "while"
+  ],
+  "syntax": {
+    "examples": [
+      {
+        "name": "hello_world",
+        "description": "Hello World",
+        "code": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, World!\");\n  }\n}"
+      }
+    ],
+    "comments": [
+      {
+        "name": "single_line_comment",
+        "description": "Single line comment",
+        "code": "// Single line comment"
+      },
+      {
+        "name": "multi_line_comment",
+        "description": "Multi-line comment",
+        "code": "/* Multi-line\ncomment */"
+      },
+      {
+        "name": "JavaDoc_comment",
+        "description": "JavaDoc comment",
+        "code": "/**\n * @author      Name (and contact information such as email) of author(s).\n * @version     Current version of the program.\n * @since       When this part of the program was first added.\n * @param       For describing the different parameters for a method.\n * @return      For describing what the method returns.\n * @deprecated  For showing the code is outdated or shouldn't be used.\n * @see         Links to another part of documentation.\n*/"
+      }
+    ],
+    "namespaces": [
+      {
+        "name": "package",
+        "description": "Package organizes Java classes into namespaces (groups), providing a unique namespace for each type it contains",
+        "code": "package org.example"
+      }
+    ],
+    "imports": [
+      {
+        "name": "single_namespace",
+        "description": "Single namespace",
+        "code": "import java.util.ArrayList;"
+      },
+      {
+        "name": "import_static",
+        "description": "Import static class",
+        "code": "import static java.lang.Math.PI;"
+      },
+      {
+        "name": "multi_namespace",
+        "description": "Import all classes inside of the package",
+        "code": "import java.util.*;"
+      }
+    ],
+    "variables": [
+      {
+        "name": "var",
+        "description": "Variable",
+        "code": "var x = 1;"
+      },
+      {
+        "name": "declare_variable",
+        "description": "Declare variable",
+        "code": "int x;"
+      },
+      {
+        "name": "declare_multiple_variables",
+        "description": "Declare multiple variables",
+        "code": "int x, y, z;"
+      },
+      {
+        "name": "variable_initialization",
+        "description": "Variable initialization",
+        "code": "int x = 0;"
+      },
+      {
+        "name": "multiple_variable_initialization",
+        "description": "Multiple variable initialization",
+        "code": "int x, y, z;\nx = y = z = 1;"
+      },
+      {
+        "name": "multiple_variable_initialization_inline",
+        "description": "Multiple variable initialization inline",
+        "code": "int x = 1, y = 2, z = 3;"
+      },
+      {
+        "name": "byte",
+        "description": "Byte",
+        "code": "byte x = 1; // primitive\nByte y = 1; // object"
+      },
+      {
+        "name": "short",
+        "description": "Short",
+        "code": "short x = 1; // primitive\nShort x = 1; // object"
+      },
+      {
+        "name": "integer",
+        "description": "Integer",
+        "code": "int = 1; // primitive\nInteger x = 1; // object"
+      },
+      {
+        "name": "long",
+        "description": "Long",
+        "code": "long x = 1L; // primitive\nLong x = 1L; // object"
+      },
+      {
+        "name": "float",
+        "description": "Float",
+        "code": "float x = 1.0f; // primitive\nFloat x = 1.0f; // object"
+      },
+      {
+        "name": "double",
+        "description": "Double",
+        "code": "double x = 1.0; // primitive\nDouble x = 1.0; // object"
+      },
+      {
+        "name": "character",
+        "description": "Character",
+        "code": "char x = 'a'; // primitive\nCharacter x = 'a'; // object"
+      },
+      {
+        "name": "boolean",
+        "description": "Boolean",
+        "code": "boolean x = true; // primitive\nBoolean x = true; // object"
+      },
+      {
+        "name": "big_integer",
+        "description": "BigInteger",
+        "code": "BigInteger x = new BigInteger(\"1\");"
+      },
+      {
+        "name": "big_decimal",
+        "description": "BigDecimal",
+        "code": "BigDecimal x = new BigDecimal(\"1\");"
+      },
+      {
+        "name": "string",
+        "description": "String",
+        "code": "String x = \"Hello, World!\" // string pool\nString x = new String(\"Hello, World!\"); // heap"
+      },
+      {
+        "name": "string_multiline",
+        "description": "Multiline string",
+        "code": "String x = \"Hello,\nWorld!\";"
+      },
+      {
+        "name": "string_interpolation",
+        "description": "String interpolation",
+        "code": "String x = String.format(\"Hello, %s!\", \"World\");"
+      },
+      {
+        "name": "variadic_parameter",
+        "description": "Variadic parameter",
+        "code": "void myFunc(int... numbers) {}"
+      },
+      {
+        "name": "variadic_usage",
+        "description": "Variadic usage",
+        "code": "myFunc(1, 2, 3, 4, 5);"
+      },
+      {
+        "name": "object_declaration",
+        "description": "Object declaration",
+        "code": "Object obj = new Object();"
+      },
+      {
+        "name": "array_declaration",
+        "description": "Array declaration",
+        "code": "int[] nums = new int[3];"
+      },
+      {
+        "name": "map_declaration",
+        "description": "Map declaration",
+        "code": "Map<String, Integer> myMap = new HashMap<>();"
+      },
+      {
+        "name": "set_declaration",
+        "description": "Set declaration",
+        "code": "Set<Integer> mySet = new HashSet<>();"
+      },
+      {
+        "name": "collection_initialization",
+        "description": "Collection initialization",
+        "code": "List<Integer> nums = Arrays.asList(1, 2, 3);"
+      }
+    ],
+    "bitwiseOperators": [
+      {
+        "name": "and",
+        "description": "AND",
+        "code": "int x = x & y;\nint x &= y;"
+      },
+      {
+        "name": "or",
+        "description": "OR",
+        "code": "int x = x | y;\nint x |= y;"
+      },
+      {
+        "name": "xor",
+        "description": "XOR",
+        "code": "int x = x ^ y;\nint x ^= y;"
+      },
+      {
+        "name": "shift_left",
+        "description": "Signed shift left",
+        "code": "int x = x << y;\nint x <<= y;"
+      },
+      {
+        "name": "shift_right",
+        "description": "Signed shift right",
+        "code": "int x = x >> y;\nint x >>= y;"
+      },
+      {
+        "name": "shift_right_unsigned",
+        "description": "Shift right unsigned",
+        "code": "int x = x >>> y;\nint x >>>= y;"
+      },
+      {
+        "name": "shift_left_unsigned",
+        "description": "Shift left unsigned",
+        "code": "int x = x >>> y;\nint x >>>= y;"
+      },
+      {
+        "name": "complement",
+        "description": "Complement (invert all bits)",
+        "code": "int x = ~y;"
+      }
+    ],
+    "functions": [
+      {
+        "name": "main",
+        "description": "Main function",
+        "code": "public static void main(String[] args) {}"
+      },
+      {
+        "name": "custom_function_declaration",
+        "description": "Custom function declaration",
+        "code": "public void myFunc() {}"
+      },
+      {
+        "name": "function_with_parameters",
+        "description": "Function with parameters",
+        "code": "public void myFunc(int x) {}"
+      },
+      {
+        "name": "function_with_return",
+        "description": "Function with return",
+        "code": "public int myFunc() {}"
+      },
+      {
+        "name": "function_throws_exception",
+        "description": "Function throws (propagates) exception to the next function",
+        "code": "public void myFunc() throws Exception {}"
+      },
+      {
+        "name": "function_generic_declaration",
+        "description": "Generic function declaration",
+        "code": "public <T, R> R myFunc(T x) {}"
+      },
+      {
+        "name": "function_generic_call",
+        "description": "Generic function call",
+        "code": "String str = myFunc<Integer, String>(1);"
+      }
+    ],
+    "flowControls": [
+      {
+        "name": "if",
+        "description": "If statement",
+        "code": "if (true) {}"
+      },
+      {
+        "name": "if_else",
+        "description": "If-else statement",
+        "code": "if (true) {} else {}"
+      },
+      {
+        "name": "ternary",
+        "description": "Ternary operator",
+        "code": "int x = true ? 1 : 0;"
+      },
+      {
+        "name": "switch",
+        "description": "Switch statement",
+        "code": "switch(number) {\n  case 1:\n  case 2:\n    break;\n  case 3:\n    System.out.println(3);\n    break;\n  default:\n    System.out.println(-1);\n}"
+      },
+      {
+        "name": "for",
+        "description": "For statement",
+        "code": "for (int x = 0; x < 3; x++) {}"
+      },
+      {
+        "name": "for_break",
+        "description": "For statement with break",
+        "code": "for (int x = 0; x < 3; x++) {\n  if (x == 1) break;\n}"
+      },
+      {
+        "name": "for_continue",
+        "description": "For statement with continue",
+        "code": "for (int x = 0; x < 3; x++) {\n  if (x == 1) continue;\n}"
+      },
+      {
+        "name": "for_range",
+        "description": "For statement with range",
+        "code": "for (int num: nums) {\n  System.out.println(num);\n}"
+      },
+      {
+        "name": "while",
+        "description": "While statement",
+        "code": "while (true) {}"
+      },
+      {
+        "name": "do_while",
+        "description": "Do-while statement. Will run at least once",
+        "code": "do {} while (true);"
+      }
+    ],
+    "structures": [
+      {
+        "name": "class_declaration",
+        "description": "Class declaration",
+        "code": "class MyClass {}"
+      },
+      {
+        "name": "interface_declaration",
+        "description": "Interface declaration",
+        "code": "interface MyInterface {}"
+      },
+      {
+        "name": "enum_declaration",
+        "description": "Enum declaration",
+        "code": "enum MyEnum {}"
+      },
+      {
+        "name": "class_inheritance",
+        "description": "Class inheritance",
+        "code": "class MyClass extends MySuperClass {}"
+      },
+      {
+        "name": "interface_implementation",
+        "description": "Interface implementation",
+        "code": "class MyClass implements MyInterface {}"
+      },
+      {
+        "name": "nested_class",
+        "description": "Nested class",
+        "code": "class Outer {\n  class Inner {}\n}"
+      },
+      {
+        "name": "generic_class",
+        "description": "Generic class",
+        "code": "class MyClass<T> {}"
+      },
+      {
+        "name": "generic_class_usage",
+        "description": "Generic class usage",
+        "code": "MyClass<String> myClass = new MyClass<String>();"
+      },
+      {
+        "name": "generic_enum",
+        "description": "Generic enum",
+        "code": "enum MyEnum<T> {}"
+      },
+      {
+        "name": "generic_interface",
+        "description": "Generic interface",
+        "code": "interface MyInterface<T> {}"
+      }
+    ],
+    "errorHandling": [
+      {
+        "name": "try_catch",
+        "description": "Try-catch statement",
+        "code": "try {\n  // Do something\n} catch (Exception e) {\n  // Handle exception\n}"
+      },
+      {
+        "name": "throw",
+        "description": "Throw statement",
+        "code": "throw new Exception(\"message\");"
+      },
+      {
+        "name": "try_finally",
+        "description": "Try-finally statement",
+        "code": "try {\n  // Do something\n} finally {\n  // Cleanup\n}"
+      },
+      {
+        "name": "try_catch_finally",
+        "description": "Try-catch-finally statement",
+        "code": "try {\n  // Do something\n} catch (Exception e) {\n  // Handle exception\n} finally {\n  // Cleanup\n}"
+      },
+      {
+        "name": "try_with_resources",
+        "description": "Try-with-resources statement",
+        "code": "try (MyResource myResource = new MyResource()) {\n  // Do something\n} catch (Exception e) {\n  // Handle exception\n}"
+      }
+    ],
+    "concurrency": [
+      {
+        "name": "thread",
+        "description": "Thread",
+        "code": "Thread thread = new Thread(() -> {\n  // Do something\n});\nthread.start();"
+      },
+      {
+        "name": "synchronized",
+        "description": "Synchronized",
+        "code": "synchronized (myObject) {\n  // Do something\n}"
+      }
+    ]
+  }
+}
