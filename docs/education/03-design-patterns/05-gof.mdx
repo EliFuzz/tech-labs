@@ -35,12 +35,16 @@ import TabItem from "@theme/TabItem";
           classDiagram
           class Singleton {
           -static instance: Singleton
-          - constructor()
-          + static getInstance() Singleton
+          -constructor()
+          +static getInstance() Singleton
         }
           ```
         </td>
-        <td>ensures a class has only one instance and provides a global point of access to it</td>
+        <td>
+          <ul>
+            <li>ensures a class has only one instance and provides a global point of access to it</li>
+          </ul>
+        </td>
         <td>database connection manager in a web application</td>
       </tr>
       <tr>
@@ -63,7 +67,13 @@ import TabItem from "@theme/TabItem";
           ConcreteProduct ..|> ProductInterface: implements
           ```
         </td>
-        <td>interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created</td>
+        <td>
+          <ul>
+            <li>interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created</li>
+            <li>implementation via inheritance</li>
+            <li>creates 1 product</li>
+          </ul>
+        </td>
         <td>different factories produce different types of vehicles (car, truck)</td>
       </tr>
       <tr>
@@ -87,7 +97,13 @@ import TabItem from "@theme/TabItem";
           ConcreteFactory ..|> AbstractFactoryInterface : implements
           ```
         </td>
-        <td>interface for creating families of related or dependent objects without specifying their concrete classes</td>
+        <td>
+          <ul>
+            <li>interface for creating families of related or dependent objects without specifying their concrete classes</li>
+            <li>implementation via composition</li>
+            <li>creates families of the products</li>
+          </ul>
+        </td>
         <td>GUI toolkit providing different look and feel for different operating systems</td>
       </tr>
       <tr>
@@ -104,14 +120,19 @@ import TabItem from "@theme/TabItem";
         }
           class ConcreteBuilder {
             +buildPart()
-            + getResult()
+            +getResult()
         }
 
           ConcreteBuilder ..|> BuilderInterface : implements
           BuilderInterface ..* Director : has-a
           ```
         </td>
-        <td>separates the construction of a complex object from its representation, allowing the same construction process to create various representations</td>
+        <td>
+          <ul>
+            <li>separates the construction of a complex object from its representation, allowing the same construction process to create various representations</li>
+            <li>constructs complex objects step by step</li>
+          </ul>
+        </td>
         <td>construction of complex objects like HTML documents</td>
       </tr>
       <tr>
@@ -130,7 +151,12 @@ import TabItem from "@theme/TabItem";
           ConcretePrototype ..|> PrototypeInterface : implements
           ```
         </td>
-        <td>specifies the kinds of objects to create using a prototypical instance, and creates new objects by copying this prototype</td>
+        <td>
+          <ul>
+            <li>specifies the kinds of objects to create using a prototypical instance, and creates new objects by copying this prototype</li>
+            <li>creates a copy (clone) of an object</li>
+          </ul>
+        </td>
         <td>creating multiple instances of a document (cloning objects) with different content but similar structure</td>
       </tr>
       </tbody>
@@ -214,7 +240,12 @@ import TabItem from "@theme/TabItem";
           ConcreteAdapter --> Adaptee : uses
           ```
         </td>
-        <td>allows objects with incompatible interfaces to collaborate</td>
+        <td>
+          <ul>
+            <li>allows objects with incompatible interfaces to collaborate (adapt incompatible interfaces)</li>
+            <li>acts as a wrapper</li>
+          </ul>
+        </td>
         <td>adapting an old version of an API to a new version</td>
       </tr>
       <tr>
@@ -241,7 +272,11 @@ import TabItem from "@theme/TabItem";
           BridgeInterface ..* Abstraction : has-a
           ```
         </td>
-        <td>decouples an abstraction from its implementation so that the two can vary independently</td>
+        <td>
+          <ul>
+            <li>decouples an abstraction from its implementation so that the 2 can vary independently</li>
+          </ul>
+        </td>
         <td>Different rendering engines (DirectX, OpenGL) for graphical shapes in a drawing application</td>
       </tr>
       <tr>
@@ -258,10 +293,10 @@ import TabItem from "@theme/TabItem";
         }
           class Composite {
           -children: Component[]
-          + operation()
-          + add(component: Component)
-          + remove(component: Component)
-          + getChild(index: number): Component
+          +operation()
+          +add(component: Component)
+          +remove(component: Component)
+          +getChild(index: number): Component
         }
 
           Leaf ..|> ComponentInterface : implements
@@ -269,7 +304,12 @@ import TabItem from "@theme/TabItem";
           ComponentInterface ..* Composite : has-a (children)
           ```
         </td>
-        <td>composes objects into tree structures to represent part-whole hierarchies</td>
+        <td>
+          <ul>
+            <li>composes objects into tree structures to represent part-whole hierarchies</li>
+            <li>composes zero-or-more similar objects so that they can be manipulated as one object</li>
+          </ul>
+        </td>
         <td>representing a hierarchy of files and directories in a file system</td>
       </tr>
       <tr>
@@ -286,11 +326,11 @@ import TabItem from "@theme/TabItem";
         }
           class Decorator {
           -component: ComponentInterface
-          + operation()
+          +operation()
         }
           class ConcreteDecorator {
             +operation()
-            + addedBehavior()
+            +addedBehavior()
         }
           ConcreteComponent ..|> ComponentInterface : implements
           Decorator ..|> ComponentInterface : implements
@@ -298,7 +338,11 @@ import TabItem from "@theme/TabItem";
           ConcreteComponent --* Decorator : has-a
           ```
         </td>
-        <td>attaches additional responsibilities to an object dynamically, providing a flexible alternative to subclassing</td>
+        <td>
+          <ul>
+            <li>attaches additional responsibilities to an object dynamically, providing a flexible alternative to subclassing</li>
+          </ul>
+        </td>
         <td>adding additional features to a text editor, such as spell checking or formatting</td>
       </tr>
       <tr>
@@ -307,24 +351,23 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class Facade {
           -subsystem1: Subsystem1
           -subsystem2: Subsystem2
           -subsystem3: Subsystem3
-          + operation()
+          +operation()
         }
           namespace ComplexSystem {
-          class Subsystem1 {
-          +
-
-            operation1()
-          }
-          class Subsystem2 {
-          + operation2()
-        }
-          class Subsystem3 {
-          + operation3()
-        }
+            class Subsystem1 {
+              +operation1()
+            }
+            class Subsystem2 {
+              +operation2()
+            }
+            class Subsystem3 {
+              +operation3()
+            }
         }
 
           Facade --> Subsystem1 : uses
@@ -332,7 +375,12 @@ import TabItem from "@theme/TabItem";
           Facade --> Subsystem3 : uses
           ```
         </td>
-        <td>provides a simplified interface to a complex system of classes, libraries, or frameworks</td>
+        <td>
+          <ul>
+            <li>provides a simplified interface to a complex system of classes, libraries, or frameworks</li>
+            <li>defines a high-level interface that makes the subsystem easier to use</li>
+          </ul>
+        </td>
         <td>providing a simplified interface to a complex subsystem like a software library</td>
       </tr>
       <tr>
@@ -341,21 +389,23 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class FlyweightFactory {
-          -flyweights: Map[Key, FlyweightInterface]
-          + getFlyweight(key: Key): FlyweightInterface
-        }
+            -flyweights: Map[Key, FlyweightInterface]
+            +getFlyweight(key: Key): FlyweightInterface
+          }
           class FlyweightInterface {
-          +operation()
-        }
+            +operation()
+          }
           class ConcreteFlyweight {
             -state
-            + operation()
-        }
+            +operation()
+          }
           class UnsharedConcreteFlyweight {
             -allState
-            + operation()
-        }
+            +operation()
+          }
+
           FlyweightInterface --* FlyweightFactory : has-a
           ConcreteFlyweight ..|> FlyweightInterface : implements
           UnsharedConcreteFlyweight..|> FlyweightInterface : implements
@@ -364,7 +414,12 @@ import TabItem from "@theme/TabItem";
           Client --> UnsharedConcreteFlyweight : uses
           ```
         </td>
-        <td>shares common state among multiple objects, effectively reducing memory consumption</td>
+        <td>
+          <ul>
+            <li>shares common state among multiple objects, effectively reducing memory consumption</li>
+            <li>reduces the cost of creating and manipulating a large number of similar objects</li>
+          </ul>
+        </td>
         <td>text editing software where frequently used characters (space, period) are stored as flyweight objects to save memory</td>
       </tr>
       <tr>
@@ -373,21 +428,27 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class SubjectInterface {
-          +request()
-        }
+            +request()
+          }
           class RealSubject {
-          +request()
-        }
+            +request()
+          }
           class Proxy {
-          +request()
-        }
+            +request()
+          }
+
           RealSubject ..|> SubjectInterface : implements
           Proxy ..|> SubjectInterface : implements
           Proxy --> RealSubject : represents
           ```
         </td>
-        <td>provides a surrogate or placeholder for another object to control access to it</td>
+        <td>
+          <ul>
+            <li>provides a surrogate or placeholder for another object to control access to it</li>
+          </ul>
+        </td>
         <td>proxy server that acts as an intermediary between clients and a web server, handling requests and caching responses</td>
       </tr>
       </tbody>
@@ -416,21 +477,27 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class HandlerInterface {
-          -successor: HandlerInterface
-          + handleRequest(request: Request)
-        }
+            -successor: HandlerInterface
+            +handleRequest(request: Request)
+          }
           class HandlerA {
-          +handleRequest(request: Request)
-        }
+            +handleRequest(request: Request)
+          }
           class HandlerB {
-          +handleRequest(request: Request)
-        }
+            +handleRequest(request: Request)
+          }
+
           HandlerA ..|> HandlerInterface : implements
           HandlerB ..|> HandlerInterface : implements
           ```
         </td>
-        <td>passes requests along a chain of handlers, allowing multiple objects to handle a request without the sender needing to know which object will ultimately process it</td>
+        <td>
+          <ul>
+            <li>passes requests along a chain of handlers, allowing multiple objects to handle a request without the sender needing to know which object will ultimately process it</li>
+          </ul>
+        </td>
         <td>handling support tickets in a customer service system where tickets are passed down a chain of support agents until one can handle it</td>
       </tr>
       <tr>
@@ -439,20 +506,22 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class CommandInterface {
-          +execute()
-        }
+            +execute()
+          }
           class ConcreteCommand {
-          -receiver: Receiver
-          + execute()
-        }
+            -receiver: Receiver
+            +execute()
+          }
           class Receiver {
-          +action()
-        }
+            +action()
+          }
           class Invoker {
-          -command: CommandInterface
-          + executeCommand()
-        }
+            -command: CommandInterface
+            +executeCommand()
+          }
+
           ConcreteCommand ..|> CommandInterface : implements
           Invoker --> CommandInterface : uses
           Client --> Invoker : uses
@@ -460,7 +529,11 @@ import TabItem from "@theme/TabItem";
           Client ..> CommandInterface : depends on
           ```
         </td>
-        <td>encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations</td>
+        <td>
+          <ul>
+            <li>encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations</li>
+          </ul>
+        </td>
         <td>undo and redo operations in a text editor</td>
       </tr>
       <tr>
@@ -469,15 +542,16 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class ExpressionInterface {
-          +interpret(context: Context)
-        }
+            +interpret(context: Context)
+          }
           class Expression1 {
-          +interpret(context: Context)
-        }
+            +interpret(context: Context)
+          }
           class Expression2 {
-          +interpret(context: Context)
-        }
+            +interpret(context: Context)
+          }
 
           Client --> Context : uses
           Client --> ExpressionInterface : uses
@@ -486,7 +560,11 @@ import TabItem from "@theme/TabItem";
           Expression2 --o ExpressionInterface : uses
           ```
         </td>
-        <td>defines a grammatical representation for a language and provides an interpreter to interpret sentences in the language</td>
+        <td>
+          <ul>
+            <li>defines a grammatical representation for a language and provides an interpreter to interpret sentences in the language</li>
+          </ul>
+        </td>
         <td>implementing a query language interpreter for a database system to parse and execute user queries</td>
       </tr>
       <tr>
@@ -495,18 +573,19 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class IteratorInterface {
-          +next(): Context
-        }
+            +next(): Context
+          }
           class ConcreteIterator {
-          +next(): Context
-        }
+            +next(): Context
+          }
           class AggregateInterface {
-          +createIterator(): Context
-        }
+            +createIterator(): Context
+          }
           class ConcreteAggregate {
-          +createIterator(): Context
-        }
+            +createIterator(): Context
+          }
 
           ConcreteIterator --|> IteratorInterface : implements
           ConcreteAggregate --|> AggregateInterface : implements
@@ -514,7 +593,11 @@ import TabItem from "@theme/TabItem";
           Client --> IteratorInterface : uses
           ```
         </td>
-        <td>provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation</td>
+        <td>
+          <ul>
+            <li>provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation</li>
+          </ul>
+        </td>
         <td>iterating through a collection of objects in a database system</td>
       </tr>
       <tr>
@@ -523,21 +606,22 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class ColleagueInterface {
-          +send()
-        }
+            +send()
+          }
           class ColleagueA {
-          +send()
-        }
+            +send()
+          }
           class ColleagueB {
-          +send()
-        }
+            +send()
+          }
           class Mediator {
-          +notify(sender: ColleagueInterface)
-        }
+            +notify(sender: ColleagueInterface)
+          }
           class ConcreteMediator {
-          +notify(sender: ColleagueInterface)
-        }
+            +notify(sender: ColleagueInterface)
+          }
 
           ColleagueInterface --> Mediator : informs
           ConcreteMediator --|> Mediator : inherits
@@ -547,7 +631,11 @@ import TabItem from "@theme/TabItem";
           ColleagueB ..|> ColleagueInterface : implements
           ```
         </td>
-        <td>defines an object that encapsulates how a set of objects interact, promoting loose coupling by keeping objects from referring to each other explicitly</td>
+        <td>
+          <ul>
+            <li>defines an object that encapsulates how a set of objects interact, promoting loose coupling by keeping objects from referring to each other explicitly</li>
+          </ul>
+        </td>
         <td>chat application where users communicate through a central chat room (mediator) rather than directly with each other</td>
       </tr>
       <tr>
@@ -556,22 +644,28 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class Caretaker {
-          -memento: Memento
-        }
+            -memento: Memento
+          }
           class Memento {
-          -state
-        }
+            -state
+          }
           class Originator {
             -state
-            - memento: Memento
-          + createMemento(): Memento
-        }
+            -memento: Memento
+            +createMemento(): Memento
+          }
+
           Originator ..> Memento : creates
           Memento --* Caretaker : holds
           ```
         </td>
-        <td>captures and externalizes an object's internal state so that the object can be restored to this state later</td>
+        <td>
+          <ul>
+            <li>captures and externalizes an object's internal state so that the object can be restored to this state later</li>
+          </ul>
+        </td>
         <td>saving and restoring the state of a text editor (cursor position, selected text) to implement undo/redo functionality</td>
       </tr>
       <tr>
@@ -580,22 +674,23 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class SubjectInterface {
-          +attach(observer: ObserverInterface)
-          + detach(observer: ObserverInterface)
-          + notify()
-        }
+            +attach(observer: ObserverInterface)
+            +detach(observer: ObserverInterface)
+            +notify()
+          }
           class ConcreteSubject {
           +attach(observer: ObserverInterface)
           + detach(observer: ObserverInterface)
-          + notify()
-        }
+            +notify()
+          }
           class ObserverInterface {
-          +update()
-        }
+            +update()
+          }
           class ConcreteObserver {
-          +update()
-        }
+            +update()
+          }
 
           ConcreteSubject ..|> SubjectInterface : implements
           ConcreteObserver ..|> ObserverInterface : implements
@@ -603,7 +698,11 @@ import TabItem from "@theme/TabItem";
           ConcreteObserver --> ConcreteSubject : observes
           ```
         </td>
-        <td>defines a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically</td>
+        <td>
+          <ul>
+            <li>defines a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically</li>
+          </ul>
+        </td>
         <td>updating the GUI when the contents of a text editor change</td>
       </tr>
       <tr>
@@ -612,26 +711,31 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class StateInterface {
-          +handle(context: Context)
-        }
+            +handle(context: Context)
+          }
           class Context {
-          -state: StateInterface
-          + request()
-        }
+            -state: StateInterface
+            +request()
+          }
           class StateA {
-          +handle(context: Context)
-        }
+            +handle(context: Context)
+          }
           class StateB {
-          +handle(context: Context)
-        }
+            +handle(context: Context)
+          }
 
           StateInterface ..* Context : has-a
           StateA ..> StateInterface : implements
           StateB ..> StateInterface : implements
           ```
         </td>
-        <td>allows an object to alter its behavior when its internal state changes, encapsulating state-specific behavior into separate objects</td>
+        <td>
+          <ul>
+            <li>allows an object to alter its behavior when its internal state changes, encapsulating state-specific behavior into separate objects</li>
+          </ul>
+        </td>
         <td>switching between different views of a text editor (normal, bold, italic). Deals with what (state or type) an object is (in). It encapsulates state-dependent behavior</td>
       </tr>
       <tr>
@@ -640,26 +744,33 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class Context {
-          -strategy: StrategyInterface
-          + executeStrategy()
-        }
+            -strategy: StrategyInterface
+            +executeStrategy()
+          }
           class StrategyInterface {
-          +execute()
-        }
+            +execute()
+          }
           class StrategyA {
-          +execute()
-        }
+            +execute()
+          }
           class StrategyB {
-          +execute()
-        }
+            +execute()
+          }
 
           StrategyInterface ..* Context : has-a
           StrategyA ..|> StrategyInterface : implements
           StrategyB ..|> StrategyInterface : implements
           ```
         </td>
-        <td>defines a family of algorithms, encapsulates each one, and makes them interchangeable, allowing the algorithm to vary independently from clients that use it</td>
+        <td>
+          <ul>
+            <li>defines a family of algorithms, encapsulates each one, and makes them interchangeable</li>
+            <li>allows the algorithm to vary independently from clients that use it</li>
+            <li>use Composition over Inheritance</li>
+          </ul>
+        </td>
         <td>switching between different sorting algorithms (quicksort, mergesort, heapsort). Deals with how an object performs a certain task. It encapsulates an algorithm</td>
       </tr>
       <tr>
@@ -668,18 +779,23 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class AbstractClass {
-          +templateMethod()
-          # subMethod()
-        }
+            +templateMethod()
+            #subMethod()
+          }
           class ConcreteClass {
-          # subMethod()
-        }
+            #subMethod()
+          }
 
           ConcreteClass --|> AbstractClass : extends
           ```
         </td>
-        <td>defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure</td>
+        <td>
+          <ul>
+            <li>defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure</li>
+          </ul>
+        </td>
         <td>creating a new type of text editor (text editor with spell checking)</td>
       </tr>
       <tr>
@@ -688,23 +804,24 @@ import TabItem from "@theme/TabItem";
           ```mermaid
           classDiagram
           direction TB
+
           class VisitorInterface {
-          +visitElementA(element: ElementA)
-          + visitElementB(element: ElementB)
-        }
+            +visitElementA(element: ElementA)
+            +visitElementB(element: ElementB)
+          }
           class ConcreteVisitor {
-          +visitElementA(element: ElementA)
-          + visitElementB(element: ElementB)
-        }
+            +visitElementA(element: ElementA)
+            +visitElementB(element: ElementB)
+          }
           class ElementInterface {
-          +accept(visitor: VisitorInterface)
-        }
+            +accept(visitor: VisitorInterface)
+          }
           class ElementA {
-          +accept(visitor: VisitorInterface)
-        }
+            +accept(visitor: VisitorInterface)
+          }
           class ElementB {
-          +accept(visitor: VisitorInterface)
-        }
+            +accept(visitor: VisitorInterface)
+          }
 
           Client --> VisitorInterface : uses
           Client --> ElementInterface : uses
@@ -713,7 +830,11 @@ import TabItem from "@theme/TabItem";
           ElementB..|> ElementInterface : implements
           ```
         </td>
-        <td>represents an operation to be performed on elements of an object structure, decoupling the algorithm from the object structure</td>
+        <td>
+          <ul>
+            <li>represents an operation to be performed on elements of an object structure, decoupling the algorithm from the object structure</li>
+          </ul>
+        </td>
         <td>compiler that traverses an abstract syntax tree representing code and performs different operations (type checking, code generation) based on the node being visited</td>
       </tr>
       </tbody>

@@ -12,96 +12,33 @@ import TabItem from "@theme/TabItem";
 ## Overview
 
 <Tabs>
-  <TabItem value="representation" label="Representation">
-    <table>
-      <thead>
-      <tr>
-        <th>Aspect</th>
-        <th>Unified Modeling Language (UML)</th>
-        <th>Business Process Model and Notation (BPMN)</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Definition</td>
-        <td>
-          standardized visual language used in software engineering to model
-          and describe software systems through graphical notations,
-          facilitating communication and visualization of system structure,
-          behavior, interactions, and architecture among project stakeholders
-        </td>
-        <td>
-          standardized graphical notation for modeling business processes and
-          workflows. It provides symbols and conventions to represent tasks,
-          events, gateways, and flows, enabling stakeholders to document,
-          analyze, and improve business processes visually
-        </td>
-      </tr>
-      <tr>
-        <td>Purpose</td>
-        <td>modeling software systems/components</td>
-        <td>modeling business processes/workflows</td>
-      </tr>
-      <tr>
-        <td>Scope</td>
-        <td>applicable in software engineering across industries</td>
-        <td>focuses on business process modeling/automation</td>
-      </tr>
-      <tr>
-        <td>Diagram Types</td>
-        <td>
-          <ul>
-            <li>
-              <b>Structural</b>
-              <ul>
-                <li>Class Diagram</li>
-                <li>Component Diagram</li>
-                <li>Composite Structure Diagram</li>
-                <li>Deployment Diagram</li>
-                <li>Object Diagram</li>
-                <li>Package Diagram</li>
-                <li>Profile Diagram</li>
-              </ul>
-            </li>
-            <li>
-              <b>Behavioral</b>
-              <ul>
-                <li>Activity Diagrams</li>
-                <li>
-                  <b>Interaction Diagram</b>
-                  <ul>
-                    <li>Communication Diagram</li>
-                    <li>Interaction Overview Diagram</li>
-                    <li>Sequence Diagram</li>
-                    <li>Timing Diagram</li>
-                  </ul>
-                </li>
-                <li>State Diagram</li>
-                <li>Use Case Diagram</li>
-              </ul>
-            </li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li>process</li>
-            <li>collaboration</li>
-            <li>choreography</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>audience</td>
-        <td>software engineers, architects, developers</td>
-        <td>architects, business analysts, managers</td>
-      </tr>
-      <tr>
-        <td>Level of Detail</td>
-        <td>detailed system modeling</td>
-        <td>high-level abstraction of business processes</td>
-      </tr>
-      </tbody>
-    </table>
+  <TabItem value="overview" label="Overview">
+    Well-described solution to the most commonly encountered problems which occur during software development.
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    **Dependency Injection**
+
+    Dependency injection makes it easy to create loosely coupled components, which typically means that components consume functionality defined by interfaces without having any first-hand knowledge of which implementation classes are being used.
+
+    **Inversion of Control**
+
+    Pattern used for decoupling components and layers in the system
+
+    ```java
+        public class TextEditor {
+            private SpellChecker checker;
+            public TextEditor() { this.checker = new SpellChecker(); }
+        }
+
+        // IoC
+        public class TextEditor {
+            private IocSpellChecker checker;
+            public TextEditor(IocSpellChecker checker) { this.checker = checker; }
+        }
+        // You have inverted control by handing the responsibility of instantiating the spell checker from the TextEditor class to the caller
+        SpellChecker sc = new SpellChecker; // dependency
+        TextEditor textEditor = new TextEditor(sc);
+    ```
   </TabItem>
   <TabItem value="oop" label="OOP Terms">
 
