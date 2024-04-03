@@ -1,0 +1,329 @@
+---
+title: Programming Paradigms
+description: Programming Paradigms Overview
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+    <TabItem value="definition" label="Definition">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Functional Programming (FP)</th>
+              <th>Object-Oriented Programming (OOP)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Paradigm</b></td>
+              <td>FP is based on the concept of functions as first-class citizens. It emphasizes the use of pure functions, immutability, and declarative programming</td>
+              <td>OOP is based on the concept of objects and classes. It emphasizes encapsulation, inheritance, and polymorphism</td>
+            </tr>
+            <tr>
+              <td><b>Core Concept</b></td>
+              <td>Functions</td>
+              <td>Objects</td>
+            </tr>
+            <tr>
+              <td><b>Data Handling</b></td>
+              <td>Immutable data structures are preferred. Data is treated as immutable, and transformations are done through the application of functions that create new data rather than modifying existing data</td>
+              <td>Objects encapsulate state and behavior. State modification occurs through methods and instance variables</td>
+            </tr>
+            <tr>
+              <td><b>Side Effects</b></td>
+              <td>Side effects are discouraged. Pure functions are preferred, which means functions produce the same output for a given input and do not have side effects</td>
+              <td>Side effects are common. Objects can have internal state and methods can modify this state, potentially causing side effects</td>
+            </tr>
+            <tr>
+              <td><b>State Management</b></td>
+              <td>State is managed through immutable data structures. Functions operate on these data structures without modifying them</td>
+              <td>State is encapsulated within objects. Objects maintain their state through instance variables, which can be modified through methods. State changes are often explicit and localized to specific objects</td>
+            </tr>
+            <tr>
+              <td><b>Modularity</b></td>
+              <td>Functions are composable and modular. Functions can be combined together to create larger functions</td>
+              <td>Classes provide encapsulation and modularity. Objects encapsulate both data and behavior, allowing for modular and reusable code through inheritance and composition</td>
+            </tr>
+            <tr>
+              <td><b>Inheritance</b></td>
+              <td>Inheritance is less emphasized. Instead, FP relies on higher-order functions, composition, and function chaining for code reuse and abstraction</td>
+              <td>Inheritance is a core concept. Objects can inherit properties and behavior from parent classes, enabling code reuse and establishing hierarchical relationships between classes</td>
+            </tr>
+            <tr>
+              <td><b>Polymorphism</b></td>
+              <td>Polymorphism is achieved through higher-order functions and function overloading</td>
+              <td>Polymorphism is achieved through inheritance and method overriding. Subclasses can override methods defined in parent classes to provide specialized behavior</td>
+            </tr>
+            <tr>
+              <td><b>Encapsulation</b></td>
+              <td>Encapsulation is achieved through function scope and closure. Functions can encapsulate internal state and behavior</td>
+              <td>Encapsulation is achieved through classes. Objects encapsulate both state and behavior, and access to internal data is controlled through methods</td>
+            </tr>
+            <tr>
+              <td><b>Error Handling</b></td>
+              <td>Error handling is often done through techniques like Monads in languages like Haskell</td>
+              <td>Error handling is typically done through exceptions and try-catch blocks</td>
+            </tr>
+            <tr>
+              <td><b>Concurrency</b></td>
+              <td>Pure functions and immutable data structures make concurrency easier to manage as there are no shared mutable state and fewer concerns about race conditions</td>
+              <td>Concurrency can be more challenging due to shared mutable state. Careful synchronization mechanisms like locks or synchronized methods are often required to ensure thread safety</td>
+            </tr>
+          </tbody>
+        </table>
+    </TabItem>
+    <TabItem value="languages" label="Languages">
+        <table>
+          <thead>
+            <tr>
+              <th>Language</th>
+              <th>Core Paradigm</th>
+              <th>Functional Features</th>
+              <th>Support for First-class Functions</th>
+              <th>Support for Closures</th>
+              <th>Support for Immutable Data Structures</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>C#</b></td>
+              <td>OOP</td>
+              <td>Closures, lambdas</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Limited (through `readonly` keyword)</td>
+            </tr>
+            <tr>
+              <td><b>C++11</b></td>
+              <td>Mixed but primary OOP</td>
+              <td>Lambda expressions, function objects, and higher-order functions</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Limited (with libraries like `Immutable` C++)</td>
+            </tr>
+            <tr>
+              <td><b>Go</b></td>
+              <td>Mixed</td>
+              <td>Higher-order functions and closures</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Limited (with libraries like immutable)</td>
+            </tr>
+            <tr>
+              <td><b>Java</b></td>
+              <td>OOP</td>
+              <td>Lambda expressions, streams, anonymous classes</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Limited (through `final` keyword)</td>
+            </tr>
+            <tr>
+              <td><b>JavaScript</b></td>
+              <td>Mixed</td>
+              <td>First-class functions, closures</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Through `Object.freeze()` and libraries like `immutable.js`</td>
+            </tr>
+            <tr>
+              <td><b>Kotlin</b></td>
+              <td>Mixed but more lean to Functional</td>
+              <td>Higher-order functions, first-class functions, and closures</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Yes (with `val` keyword)</td>
+            </tr>
+            <tr>
+              <td><b>Python</b></td>
+              <td>Mixed but primary OOP</td>
+              <td>First-class citizens, lambda expressions, and comprehensions</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Yes (through tuples, frozensets, etc.)</td>
+            </tr>
+            <tr>
+              <td><b>Rust</b></td>
+              <td>Mixed</td>
+              <td>Closures</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Yes (through libraries like `rust-immutability`)</td>
+            </tr>
+            <tr>
+              <td><b>Scala</b></td>
+              <td>Mixed</td>
+              <td>higher-order functions, traits, case classes, and mixins</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Yes (with `val` keyword)</td>
+            </tr>
+            <tr>
+              <td><b>Swift</b></td>
+              <td>Mixed</td>
+              <td>First-class functions, closures</td>
+              <td>+</td>
+              <td>+</td>
+              <td>Yes (with `let` keyword)</td>
+            </tr>
+          </tbody>
+        </table>
+    </TabItem>
+    <TabItem value="oop" label="OOP">
+        <Tabs>
+            <TabItem value="principles" label="Core Principles" attributes={{className:"tabs__vertical"}}>
+                - **Abstraction**: Process of simplifying complex reality by modeling classes appropriate to the problem and ignoring irrelevant details
+                    - Process of exposing only the relevant and essential data to the users without showing unnecessary information
+                    - Hides the unnecessary implementation details from the user
+                    - It's a concept of hiding unnecessary implementation details
+                    - Abstraction solves the problem on the design level
+                    - *Example*: Interface or abstract class that defines a set of methods without implementation details
+                - **Aggregation**: "has-a" relationship between two classes where one class contains references to other classes
+                    - Part-whole relationship: One class contains objects of another class
+                    - Objects have their own lifetime independent of the container object
+                    - *Example*: University has departments. Department can exist without a university, and a university can have multiple departments
+                - **Association**: Relationship between 2 or more objects with their own lifetime and independent existence
+                    - May have bidirectional navigation
+                    - Can be 1-to-1, 1-to-many, or many-to-many
+                    - *Example*: Student is associated with a course. Course can have multiple students, and a student can be enrolled in multiple courses
+                - **Class**: Blueprint (template/prototype) for creating objects
+                    - Represents the set of properties or methods that are common to all objects of one type
+                    - Can have fields and methods to describe the behavior of an object
+                    - *Example*: Class `Car` that has fields like `brand`, `model`, `color`, and methods like `start`, `stop`. Each car object created from this class will have these properties and methods
+                - **Cohesion**: How elements inside a module connected together
+                    - Class is focused on what it should be doing
+                    - Only related methods (no extra methods)
+                    - High cohesion means that the responsibilities of a given element are highly focused, promoting readability and maintainability
+                    - Low cohesion, on the other hand, means that an element has too many responsibilities. It can be complex and hard to maintain, understand, and reduce reusability
+                    - *Example*:
+                        - High cohesion (desirable): `Operations` class has a single responsibility with `add`, `subtract`, and `multiply` methods
+                        - Low cohesion: `Operations` class has too many responsibilities with `add`, `sendEmail`, and `print` methods
+                - **Composition**: Constructs classes using other classes as building blocks, forming a "has-a" relationship rather than an "is-a" relationship as in inheritance
+                    - Containment: Objects are composed of other objects as part of their internal structure
+                    - Composition implies a stronger relationship where the lifetime of the contained object is managed by the container object
+                    - Stronger relationship: Parts cannot exist independently of the whole
+                    - Assists in attaining high flexibility (loosely coupled) and prevents breaking of encapsulation
+                    - *Example*: Class `Car` containing objects of class `Engine` and `Wheel`
+                - **Coupling**: Degree to which one class knows about another class
+                    - Changing something major in one class should not affect the other
+                    - High coupling implies that a class has high dependence on another class. This is not a good thing as a change in one class may affect the other
+                    - Low coupling is often a sign of a well-structured computer system and a good design, and when combined with high cohesion, supports the general goals of high readability and maintainability
+                    - *Example*:
+                        - Low coupling (desirable): `Client` class asks a `DatabaseManager` class to fetch data. Here, the `Client` class doesn't need to know how to access the database
+                        - High coupling: `Client` class accessing the database directly to fetch the data
+                - **Dependency**: Relationship where one class depends on another class but has no ownership
+                    - Changes in the depended-on class may affect the dependent class
+                    - It's a weaker relationship compared to association
+                    - *Example*: Car depends on a fuel source to operate. If the fuel source changes, the car's behavior may be affected
+                - **Dependency Injection**: Dependency injection makes it easy to create loosely coupled components, which typically means that components consume functionality defined by interfaces without having any first-hand knowledge of which implementation classes are being used
+                    - Promotes loose coupling and easier testing by allowing dependencies to be swapped or mocked
+                    - Dependencies are typically passed through constructors, methods, or setter injection
+                    - *Example*: Instead of a car creating its own fuel object, it receives a fuel object from an external source
+                - **Encapsulation**: It's a bundling of data and methods that operate on the data into a single unit, called a class
+                     - Data hiding: Restricts access to certain components of the object
+                     - Access specifiers (e.g., public, private, protected) control the visibility of methods and variables
+                     - Prevents access to implementation details
+                     - It's a technique to prevent accidental modification of data
+                     - Data hiding ("Black boxing")
+                     - Encapsulation solves the problem in the implementation level
+                     - *Example*: Class with private attributes and public methods for accessing and modifying those attributes
+                - **Inheritance**: Mechanism by which one class acquires the properties (methods and fields) of another class
+                     - Allows new classes to reuse, extend, and modify the behavior of existing classes
+                     - Superclass (base class) and subclass (derived class) relationship
+                     - "is-a" relationship
+                     - *Example*: Class `Animal` with properties and methods, and subclasses like `Dog` and `Cat` inheriting from it
+                - **Inversion of Control (IoC)**: Pattern used for decoupling components and layers in the system
+                     - It allows for dynamic runtime behavior by letting the framework control the execution flow
+                     - IoC is often implemented using techniques such as dependency injection or event handling
+                     - *Example*:
+                         ```java
+                         public class TextEditor {
+                             private SpellChecker checker;
+                             public TextEditor() {
+                                 this.checker = new SpellChecker();
+                             }
+                         }
+
+                         // IoC
+                         public class TextEditor {
+                             private IocSpellChecker checker;
+                             public TextEditor(IocSpellChecker checker) {
+                                 this.checker = checker;
+                             }
+                         }
+                         /*
+                         You have inverted control by handing
+                         the responsibility of instantiating
+                         the spell checker from the TextEditor class
+                         to the caller
+                         */
+                         SpellChecker sc = new SpellChecker; // dependency
+                         TextEditor textEditor = new TextEditor(sc);
+                         ```
+                - **Object**: It's an instance of the class. When a class is defined, no memory is allocated in the heap only a pointer in the stack but when it is instantiated (i.e., an object is created) memory is allocated
+                    - Have states (data) and behaviors (methods)
+                    - *Example*: Object might be a specific `Car`, e.g. red Ferrari. This object will inherit all the properties and methods of the `Car` class but will represent a specific Ferrari
+                - **Polymorphism**: Ability to take various forms. It allows objects of different classes to be treated as objects of a common superclass
+                    - Method overriding (static binding): Subclasses can provide a specific implementation of a method that is already provided by its superclass
+                    - Method overloading (dynamic binding): Multiple methods can have the same name with different parameters
+                    - Many forms - one interface, multiple functions (behavior)
+                    - *Example*: `draw()` method in shapes where each shape implements its own version
+            </TabItem>
+            <TabItem value="solid" label="SOLID Principles">
+                - **Single Responsibility Principle (SRP)**: Class should have a single responsibility
+                    - Class should have only one reason to change
+                    - Class and methods should have only 1 responsibility
+                    - *Example*: Instead of implementing a class that handles file reading, printing, and sendingEmail, these responsibilities should be split into separate classes
+                - **Open/Closed Principle (OCP)**: Classes should be open for extension, but closed for modification
+                    - Class should be made in such a way that adding new features or components should not lead to modification in the existing system
+                    - How? - Rely on abstractions
+                    - *Example*: If you have a class that calculates the area of shapes, instead of modifying the class to support a new shape, you should create a new class for that shape and have it implement the existing shape interface
+                - **Liskov Substitution Principle (LSP)**: If a program is using a base class, it should be able to use any of its subclasses without the program knowing it
+                    - Derived classes must be substitutable for their base classes
+                    - Child classes must not remove base class behavior or violate base class invariants
+                    - "Is Substitutable for" in all situations
+                    - Extended class should implement/override all functionality
+                    - It looks like a duck quacks like a duck, but needs batteries -> wrong abstraction
+                    - Smells: if method trying to detect which class he should use; derived class didn't implement one of the methods in a base class
+                    - How to mitigate? - Create small interfaces
+                    - *Example*: It looks like a duck quacks like a duck, but needs batteries -> wrong abstraction
+                - **Interface Segregation Principle (ISP)**: Clients should not be forced to depend on interfaces they do not use
+                    - Use smaller interfaces
+                    - *Example*: Instead of having a large interface with many methods, it's better to have many smaller interfaces, each catering to a specific behavior
+                - **Dependency Inversion Principle (DIP)**: High-level modules should not depend on low-level modules; both should depend on abstractions
+                    - Abstractions should not depend on details, details should depend upon abstractions
+                    - Dependency Injection (DI) is an implementation of DIP
+                    - *Example*: Instead of hardcoding a specific database technology (like MySQL) into your application, you use an interface that can work with any database. The specific database implementation is then determined at runtime
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="functional" label="Functional">
+        <Tabs>
+            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+                Paradigm that treats computation as the evaluation of mathematical functions, emphasizing immutable data and pure functions.
+            </TabItem>
+            <TabItem value="advantages" label="Advantages">
+                - **Conciseness and Expressiveness**: Encourages concise and expressive code
+                - **Modularity and Reusability**: Promotes modular design for maintainable and reusable code
+                - **Parallelism and Concurrency**: Facilitates parallelism and concurrent programming
+                - **Reduced Bugs and Side Effects**: Minimizes bugs and makes programs easier to debug and test
+                - **Scalability**: Well-suited for building scalable systems
+                - **Better Error Handling**: Provides declarative error handling mechanisms
+                - **Cross-platform Compatibility**: Runs on multiple platforms for versatility
+            </TabItem>
+            <TabItem value="principles" label="Principles">
+                - **Immutability**: Data is immutable, preventing unexpected side effects
+                - **Pure Functions**: Functions produce the same output for the same input without side effects
+                - **First-class and Higher-order Functions**: Functions can be passed as arguments, returned as values, and assigned to variables
+                - **Recursion**: Functions call themselves to solve problems without mutable state
+                - **Laziness/Eager Evaluation**: Evaluation is delayed until needed, improving efficiency
+                - **Referential Transparency**: Expressions can be replaced with their values without changing behavior
+                - **Pattern Matching**: Deconstructs data for concise and expressive control flow
+            </TabItem>
+        </Tabs>
+    </TabItem>
+</Tabs>
