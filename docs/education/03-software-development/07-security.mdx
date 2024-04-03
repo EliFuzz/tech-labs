@@ -1,0 +1,519 @@
+---
+title: Security
+description: Security Overview
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+  <TabItem value="fe" label="Frontend (FE)">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Definition</th>
+          <th>Impact</th>
+          <th>Prevention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Cross-Site Scripting (XSS)</b></td>
+          <td>
+          Injecting malicious scripts into web pages viewed by other users
+
+          Types
+            - **Reflected XSS**: malicious script comes from the current HTTP request (`https://insecure-website.com/status?message=<script>/*+Bad+stuff+here...+*/</script>`)
+            - **Stored XSS**: malicious script comes from the website's database (`<p><script>/* Bad stuff here... */</script></p>`)
+            - **DOM-based XSS**: vulnerability exists in client-side code rather than server-side code (`You searched for: <img src=1 onerror='/* Bad stuff here... */'>`)
+          </td>
+          <td>
+            <ul>
+              <li>Steal sensitive data like login credentials, personal data, or credit card details</li>
+              <li>Hijack an account</li>
+              <li>Spread web worms</li>
+              <li>Access browser history and clipboard contents</li>
+              <li>Control the browser remotely</li>
+              <li>Scan and exploit intranet appliances and applications</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Validate, sanitize, and escape user inputs</li>
+              <li>Filter input on arrival</li>
+              <li>Encode data on output</li>
+              <li>Use appropriate response headers</li>
+              <li>
+              Implement Content Security Policy
+                <ul>
+                  <li>It's HTTP header that allows site operators fine-grained control over where resources on their site can be loaded from</li>
+                  <li>disable inline JavaScript (either reflected or stored – means that improperly escaped user-inputs can generate code that is interpreted by the web browser as JavaScript)</li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Cross-Site Request Forgery (CSRF)</b></td>
+          <td>An attacker tricks a victim into performing actions on their behalf on a web application</td>
+          <td>Unauthorized actions performed on a user's behalf, potentially leading to data loss or account takeover</td>
+          <td>
+            <ul>
+              <li>Use unique CSRF Tokens</li>
+              <li>Use anti-CSRF tokens in forms</li>
+              <li>Validate Request Origin (`Origin` and `Referer` headers)</li>
+              <li>
+                Secure cookies (Session Hijacking)
+                <ul>
+                  <li>Set `Expires` and `Max-Age`</li>
+                  <li>**Secure**: Ensures that the cookie will only be sent if the request is made over a secure (HTTPS) connection (prevents man-in-the-middle attacks)</li>
+                  <li>**HttpOnly**: Prevents JavaScript from having access to the cookie (prevents XSS attacks)</li>
+                  <li>**SameSite**: Can be set to only send cookies if the request origin matches the target domain (prevents CSRF attacks)</li>
+                </ul>
+              </li>
+              <li>
+                Cross-Origin Resource Sharing (CORS) allows servers to specify who (i.e., which origins) can access the assets on the server
+                <ul>
+                  <li>Set `Access-Control-Allow-Origin` header</li>
+                </ul>
+              </li>
+              <li>Use HTTPS (SSL) connection</li>
+              <li>Setup Root SSL certificate that is trusted certificate authority (CA)</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Clickjacking</b></td>
+          <td>Manipulating a website user's interaction by hiding clickable elements behind opaque layers</td>
+          <td>Trick users into performing undesired actions, potentially leading to sensitive data exposure</td>
+          <td>Implement `X-Frame-Options` HTTP response header. Use **framebusting** scripts</td>
+        </tr>
+        <tr>
+          <td><b>Insecure Direct Object References (IDOR)</b></td>
+          <td>When a web application exposes a reference to an internal implementation object</td>
+          <td>Unauthorized data access or manipulation</td>
+          <td>
+            <ul>
+              <li>Implement proper access control checks</li>
+              <li>Avoid exposing direct object references to users</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Unvalidated Redirects and Forwards</b></td>
+          <td>Web applications often redirect and forward users to other pages and websites, and use untrusted data to determine the destination</td>
+          <td>Phishing attacks, forcing users to perform undesired actions or download malicious software</td>
+          <td>
+            <ul>
+              <li>Avoid using user-supplied input to determine the destination of redirects and forwards</li>
+              <li>Validate the destination of redirects and forwards before allowing them to take place</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Security Misconfiguration</b></td>
+          <td>Inadequate default security configurations, incomplete or ad hoc configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages containing sensitive information</td>
+          <td>Unauthorized access to sensitive data, or functionality that can compromise the entire system</td>
+          <td>Regular security hardening of your servers, applications, and databases</td>
+        </tr>
+        <tr>
+          <td><b>Injection Flaws</b></td>
+          <td>Occur when untrusted data is sent to an interpreter as part of a command or query</td>
+          <td>
+            <ul>
+              <li>Data loss, corruption, or disclosure to unauthorized parties</li>
+              <li>Denial of service</li>
+              <li>Full host takeover</li>
+            </ul>
+          </td>
+          <td>Use prepared statements with parameterized queries, use safe API which avoids the use of interpreter entirely or provides a parameterized interface</td>
+        </tr>
+        <tr>
+          <td><b>Components with Known Vulnerabilities</b></td>
+          <td>Using software libraries or components with known vulnerabilities</td>
+          <td>
+            <ul>
+              <li>Serious data loss</li>
+              <li>Server takeover</li>
+            </ul>
+          </td>
+          <td>Regularly update and patch all components used in the application</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="be" label="Backend (BE)">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Definition</th>
+          <th>Impact</th>
+          <th>Prevention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Injection Flaws</b></td>
+          <td>More details could be found in Frontend section</td>
+          <td></td>
+          <td>Validation must be performed on both (FE and BE) sides</td>
+        </tr>
+        <tr>
+          <td><b>Cross-Site Scripting (XSS)</b></td>
+          <td>More details could be found in Frontend section</td>
+          <td></td>
+          <td>Validation must be performed on both (FE and BE) sides</td>
+        </tr>
+        <tr>
+          <td><b>Cross-Site Request Forgery (CSRF)</b></td>
+          <td>More details could be found in Frontend section</td>
+          <td></td>
+          <td>Validation must be performed on both (FE and BE) sides</td>
+        </tr>
+        <tr>
+          <td><b>Security Misconfiguration</b></td>
+          <td>More details could be found in Frontend section</td>
+          <td></td>
+          <td>Validation must be performed on both (FE and BE) sides</td>
+        </tr>
+        <tr>
+          <td><b>Insecure Direct Object References (IDOR)</b></td>
+          <td>More details could be found in Frontend section</td>
+          <td></td>
+          <td>Validation must be performed on both (FE and BE) sides</td>
+        </tr>
+        <tr>
+          <td><b>Unvalidated Redirects and Forwards</b></td>
+          <td>More details could be found in Frontend section</td>
+          <td></td>
+          <td>Validation must be performed on both (FE and BE) sides</td>
+        </tr>
+        <tr>
+          <td><b>Broken Authentication</b></td>
+          <td>When session management is not properly implemented, allowing attackers to compromise passwords, keys or session tokens</td>
+          <td>Unauthorized access to accounts and data</td>
+          <td>
+            <ul>
+              <li>Multi-factor authentication</li>
+              <li>Session timeout</li>
+              <li>Password complexity rules</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Sensitive Data Exposure</b></td>
+          <td>When an application does not adequately protect sensitive information</td>
+          <td>Credit card fraud, identity theft, and other serious crimes</td>
+          <td>
+            <ul>
+              <li>Encrypt sensitive data</li>
+              <li>Disable caching for sensitive data and use secure cookies</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Components with Known Vulnerabilities</b></td>
+          <td>More details could be found in Frontend section</td>
+          <td></td>
+          <td>Validation must be performed on both (FE and BE) sides</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="db" label="Database (DB)">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Definition</th>
+          <th>Impact</th>
+          <th>Prevention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>SQL Injection</b></td>
+          <td>Technique where an attacker can inject SQL queries into an application to manipulate a database</td>
+          <td>
+            <ul>
+              <li>Unauthorized access</li>
+              <li>Data corruption or loss</li>
+              <li>Expose sensitive information</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Use prepared statements</li>
+              <li>Use parameterized queries</li>
+              <li>Apply least privilege principle</li>
+              <li>Validate and sanitize user input</li>
+              <li>Use deny/allow list validation</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Inadequate Authentication/Authorization</b></td>
+          <td>Absence or poor implementation of user authentication or authorization process</td>
+          <td>Unauthorized access to sensitive data or critical functionalities</td>
+          <td>
+            <ul>
+              <li>Implement strong authentication and authorization mechanisms</li>
+              <li>Multi-factor authentication</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Unencrypted Data</b></td>
+          <td>Storing sensitive data in plain text</td>
+          <td>Data breaches, exposing sensitive user or system information</td>
+          <td>
+            <ul>
+              <li>Always encrypt sensitive data</li>
+              <li>Use secure hashing algorithms</li>
+              <li>Use secure protocols for data transfer</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Data Leakage</b></td>
+          <td>Unintended transfer or exposure of data from within an organization to an external or untrusted destination</td>
+          <td>Financial losses, damage to brand reputation, legal penalties</td>
+          <td>
+            <ul>
+              <li>Implement data loss prevention (DLP) solutions</li>
+              <li>Regular security audits</li>
+              <li>Use strong encryption</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Insecure Database Configuration</b></td>
+          <td>Default or weak database configurations that can be easily exploited by attackers</td>
+          <td>
+            <ul>
+              <li>Unauthorized access</li>
+              <li>Data theft, loss, manipulation</li>
+              <li>System instability</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Regularly review and update database configurations</li>
+              <li>Disable unnecessary features</li>
+              <li>Secure database accounts</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Database Vulnerabilities</b></td>
+          <td>Weaknesses or flaws in a database system that can be exploited</td>
+          <td>
+            <ul>
+              <li>Unauthorized access</li>
+              <li>Data theft, loss, manipulation</li>
+              <li>System instability</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Regularly update and patch database systems</li>
+              <li>Perform vulnerability assessments and penetration testing</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Lack of Backup and Recovery Plan</b></td>
+          <td>Failure to regularly backup data and lack of a plan for data recovery</td>
+          <td>Data loss and system downtime in the event of a disaster or data corruption</td>
+          <td>Implement regular data backup</td>
+        </tr>
+        <tr>
+          <td><b>Insecure Direct Object References (IDOR)</b></td>
+          <td>A vulnerability where an application exposes direct references to database records</td>
+          <td>
+            <ul>
+              <li>Unauthorized access</li>
+              <li>Data theft, loss, manipulation</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Validate user requests</li>
+              <li>Implement access control checks</li>
+              <li>Use indirect object references</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Excessive Privileges</b></td>
+          <td>Assigning more privileges to a database user than required</td>
+          <td>
+            <ul>
+              <li>Unauthorized activities</li>
+              <li>Data manipulation</li>
+              <li>Potential system damage</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Follow the principle of least privilege</li>
+              <li>Regularly review user privileges</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="infra" label="Infrastructure (Infra)">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Definition</th>
+          <th>Impact</th>
+          <th>Prevention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Unpatched Software</b></td>
+          <td>Failure to regularly update software with security patches</td>
+          <td>System vulnerable to known threats</td>
+          <td>Regularly update and patch all software</td>
+        </tr>
+       <tr>
+          <td><b>Insufficient transport layer protection</b></td>
+          <td>Failure to adequately secure data during transmission over networks</td>
+          <td>Leaves data vulnerable to interception and eavesdropping</td>
+          <td>
+          <ul>
+            <li>
+              Use protocols:
+              <ul>
+                <li>`HTTPS` for web communications</li>
+                <li>`SSH` for secure shell access</li>
+                <li>`VPNs` for remote connections</li>
+                <li>`TLS` encryption for email</li>
+              </ul>
+            </li>
+          </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Distributed Denial of Service (DDoS) Attack</b></td>
+          <td>Coordinated efforts to overwhelm a target system or network with a flood of traffic</td>
+          <td>
+            <ul>
+              <li>Disrupts access to services</li>
+              <li>Causing downtime</li>
+              <li>Potential financial losses</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Implement DDoS mitigation tools and services (e.g. CloudFlare)</li>
+              <li>Utilize firewalls and intrusion detection/prevention systems to filter and block malicious traffic</li>
+              <li>Distribute server load across multiple servers or utilize cloud-based DDoS protection services</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Weak Passwords</b></td>
+          <td>Use of easily guessed or common passwords</td>
+          <td>Permits unauthorized access to systems</td>
+          <td>Implement strong password policies</td>
+        </tr>
+        <tr>
+          <td><b>Lack of Encryption</b></td>
+          <td>Failure to encrypt sensitive data</td>
+          <td>If data is breached, it can be easily read and used maliciously</td>
+          <td>Encrypt all sensitive data, both in transit and at REST</td>
+        </tr>
+        <tr>
+          <td><b>Poor Access Control</b></td>
+          <td>Failure to properly control who has access to data</td>
+          <td>Unauthorized users can access sensitive data or systems</td>
+          <td>
+            <ul>
+              <li>Implement strict access control policies</li>
+              <li>Regularly review and update access permissions</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Phishing Attacks</b></td>
+          <td>Deceptive attempts to gain sensitive information</td>
+          <td>
+            <ul>
+              <li>Unauthorized access</li>
+              <li>Data breaches</li>
+              <li>Malware infection</li>
+            </ul>
+          </td>
+          <td>Use email filters to block known phishing attempts</td>
+        </tr>
+        <tr>
+          <td><b>Malware Infection</b></td>
+          <td>Malicious software designed to cause harm</td>
+          <td>
+            <ul>
+              <li>Can damage systems</li>
+              <li>Steal data</li>
+              <li>Disrupt operations</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Regularly update antivirus software</li>
+              <li>Avoid clicking suspicious links or downloading unverified software</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Social Engineering</b></td>
+          <td>Manipulative tactics used to trick individuals into divulging sensitive information</td>
+          <td>
+            <ul>
+              <li>Unauthorized access</li>
+              <li>Data breaches</li>
+            </ul>
+          </td>
+          <td>Encourage a culture of security awareness</td>
+        </tr>
+        <tr>
+          <td><b>Outdated Hardware</b></td>
+          <td>Using old or unsupported hardware</td>
+          <td>Older hardware may have known vulnerabilities that are not patched</td>
+          <td>Regularly update and replace hardware</td>
+        </tr>
+        <tr>
+          <td><b>Lack of Incident Response Plan</b></td>
+          <td>Failure to have a plan in place for when a security incident occurs</td>
+          <td>Increased damage and slower recovery times</td>
+          <td>Develop and regularly update an incident response plan</td>
+        </tr>
+        <tr>
+          <td><b>Unsecured APIs</b></td>
+          <td>APIs that do not have proper security measures in place</td>
+          <td>Unauthorized access to systems and data</td>
+          <td>Implement API security measures such as encryption, access control, and rate limiting</td>
+        </tr>
+        <tr>
+          <td><b>Misconfigured Cloud Storage</b></td>
+          <td>Incorrectly configured cloud storage settings that leave data exposed</td>
+          <td>
+            <ul>
+              <li>Unauthorized access</li>
+              <li>Data breaches</li>
+            </ul>
+          </td>
+          <td>Regularly audit and test cloud storage configurations</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
