@@ -687,13 +687,13 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
     </TabItem>
-    <TabItem value="workflow" label="Workflow">
+    <TabItem value="methodologies" label="Agile methodologies">
       <Tabs>
         <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
           <table>
             <thead>
               <tr>
-                <th>Comparison Criteria</th>
+                <th>Aspect</th>
                 <th>Agile</th>
                 <th>Scrum</th>
                 <th>Kanban</th>
@@ -787,9 +787,262 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="agile" label="Agile"></TabItem>
-        <TabItem value="scrum" label="Scrum"></TabItem>
-        <TabItem value="kanban" label="Kanban"></TabItem>
+        <TabItem value="agile" label="Agile">
+            ```mermaid
+                graph LR
+
+                plan(Plan) --> design(Design)
+                design --> develop(Develop)
+                develop --> test(Test)
+                test --> deploy(Deploy)
+                deploy --> review(Review)
+                review --> plan
+             ```
+
+            ## 4 pillars
+
+            - **Individuals over processes and tools** (people over processes): Prioritizes team collaboration over rigid procedures
+            - **Working software over comprehensive documentation** (functional software over docs): Values working software over extensive documentation
+            - **Customer collaboration over contract negotiation** (customer collaboration over contracts): Emphasizes customer involvement in shaping software
+            - **Responding to change over following a plan** (adaptation over adherence): Enables quick adjustments to plans over strict adherence to initial plans
+
+            ## 12 principles
+
+            - **Satisfy customers early and continuously**: Regular updates make customers happier and boost revenue
+            - **Embrace changing requirements**: Agile thrives on adaptability, rigid plans hinder progress
+            - **Deliver value frequently**: Regular delivery reduces customer churn
+            - **Break project silos**: Collaboration enhances Agile effectiveness
+            - **Motivate team members**: Agile success hinges on committed teams
+            - **Prioritize face-to-face communication**: Direct communication fosters better understanding
+            - **Focus on working software**: Functionality is the primary progress indicator
+            - **Maintain sustainable pace**: Avoid burnout by balancing speed and sustainability
+            - **Pursue continuous excellence**: Build on past successes for future efficiency
+            - **Embrace simplicity**: Avoid overcomplicating solutions
+            - **Empower self-organizing teams**: Proactive teams drive value creation
+            - **Reflect and adjust regularly**: Adaptation enhances effectiveness through retrospective meetings
+
+            ## Use cases
+
+            - Most companies typically don't adhere to all principles or procedures, thus each company adopts its own version of "Lean Agile" that best suits their needs
+        </TabItem>
+        <TabItem value="scrum" label="Scrum">
+            ```mermaid
+                graph LR
+
+                stakeholders --> vision(Vision)
+                vision ---> userStories(User Stories)
+                userStories --> |Product Owner| productBacklog(Product Backlog)
+
+                subgraph planning [Sprint Planning: Scrum Master]
+                    direction LR
+
+                    productBacklog --> selectedProductBacklog(Selected Product Backlog)
+                    selectedProductBacklog --> sprintBacklog(Sprint Backlog)
+                end
+
+                subgraph sprint [Sprint: 2-4 Weeks - Development Team]
+                    direction LR
+
+                    dailyScrum(Daily Scrum) --> |24 hours| dailyScrum
+                end
+
+                sprintBacklog --> sprint
+
+                sprint --> newFunctionality(New Functionality)
+                newFunctionality --> sprintReview(Sprint Review)
+                sprintReview --> retrospective(Retrospective)
+                retrospective --> productBacklog
+            ```
+
+            ## Finance
+
+            - **Calculate Project Costs**: Estimating project costs involves determining the budget required for team salaries, equipment, licenses, and other resources needed for product delivery. This is done collaboratively by the Scrum Team during Sprint Planning
+            - **Select Project Investments**: Product Owner prioritizes investments in the Product Backlog based on factors like market demand, customer feedback, and return on investment. Decision-making between buying and building solutions occurs during Sprint Review and Sprint Retrospective meetings
+                - **The Payback Period**: Time taken for a project to recoup its initial investment is assessed based on the frequency of delivering product increments, potentially shorter due to incremental value delivery
+                - **Buy Versus Build**: Choice between purchasing external solutions or developing in-house is made considering factors like time to market, customization needs, and long-term strategic goals
+                - **Net Present Value (NPV)**: Is evaluated for each product increment, comparing the present value of expected benefits with development costs. This guides prioritization in the Product Backlog
+                - **Internal Rate of Return (IRR), or Return on Investment (ROI)**: Profitability of features is assessed by comparing benefits with development costs, aiding prioritization decisions during Sprint Reviews
+            - **Monitor Project Performance**
+                - **Cost Performance**: Development Team tracks actual costs during Sprints, and the Scrum Master facilitates discussions to address budgetary concerns and deviations from the planned budget
+                - **Schedule Performance**: Progress is monitored using Sprint and Release Burndown Charts. Delays or impediments are addressed in Daily Scrums and Sprint Retrospectives to ensure project timelines are met
+                - **Project Budget Forecasting**: Future costs are estimated collaboratively by the Product Owner, Scrum Master, and Development Team based on velocity, scope changes, and uncertainties. Regular reviews ensure accuracy and inform resource adjustments
+
+            ## Values:
+
+            - **Commitment**: Dedication to Sprint and project goals (ensures alignment and motivates high-quality delivery)
+                - Team, Product Owner, and Scrum Master commitment
+            - **Courage**: Willingness to tackle challenges and take risks (fosters innovation, resilience, and continuous improvement)
+                - Transparency, adaptability, and self-organization
+            - **Focus**: Concentration on valuable tasks and Sprint Goals (enables regular delivery of working product increments)
+                - Sprint Goal, prioritization, and time management
+            - **Openness**: Transparency, honesty, and communication (builds trust, fosters collaboration, and supports problem-solving)
+                - Transparency, feedback, and collaboration
+            - **Respect**: Valuing contributions, opinions, and diversity (fosters trust, motivation, and positive work environment)
+                - Team dynamics, stakeholder engagement, and conflict resolution
+
+            ## Principles
+
+            - **Empirical Process Control**: Relies on transparency, inspection, and adaptation
+            - **Self-Organization**: Scrum Team determines how to accomplish work and improve processes
+            - **Collaboration**: Essential between stakeholders for maximizing product value
+            - **Value-Based Prioritization**: Product Backlog items prioritized based on value
+            - **Time-Boxing**: Scrum events are time-boxed for focus and adaptation
+            - **Iterative Development**: Promotes incremental delivery of potentially shippable increments
+            - **Visibility**: Progress and product made visible through artifacts
+            - **Adaptation**: Inspect progress and adapt plans to maximize value
+
+            ## Roles
+
+            ### Product Owner
+
+            - **Responsibilities**
+                - **Product Backlog Management**: Prioritize, refine, and order items in the Product Backlog
+                - **Stakeholder Communication**: Ensure alignment on product vision and goals among stakeholders
+                - **Acceptance Criteria**: Define clear acceptance criteria for backlog items
+                - **Release Planning**: Collaborate on planning and prioritizing releases
+                - **Maximizing Value**: Make decisions to maximize product value
+            - **Skills and Qualities**
+                - **Visionary**: Clearly communicate product vision
+                - **Prioritization**: Prioritize backlog items effectively
+                - **Communication**: Strong communication for requirements and feedback
+                - **Negotiation**: Balance priorities and negotiate with stakeholders
+                - **Domain Knowledge**: Understand market trends and user needs
+                - **Decision-Making**: Confidently make decisions based on data
+            - **Interaction with Stakeholders**
+                - **Regular Updates**: Provide regular progress updates
+                - **Feedback Gathering**: Actively seek stakeholder feedback
+                - **Expectations Management**: Manage stakeholder expectations
+                - **Prioritization Discussions**: Engage stakeholders in prioritization
+                - **Conflict Resolution**: Resolve conflicts among stakeholders
+
+            ### Scrum Master
+
+            - **Responsibilities**
+                - **Facilitate Scrum Events**: Ensure effectiveness of Scrum events
+                - **Coaching and Mentoring**: Coach teams on Scrum and Agile principles
+                - **Removing Impediments**: Identify and remove obstacles for the team
+                - **Promote Self-Organization**: Empower teams to make decisions
+                - **Servant Leadership**: Lead by serving the team
+                - **Ensure Transparency**: Maintain transparency in Scrum artifacts
+            - **Servant Leadership**
+                - **Supporting the Team**: Prioritize team needs
+                - **Empowering Others**: Encourage autonomy within the team
+                - **Active Listening**: Listen to team concerns
+                - **Removing Obstacles**: Clear impediments for the team
+                - **Building Trust**: Foster trust within the team
+            - **Removing Impediments**
+                - **Identify Impediments**: Monitor team progress
+                - **Problem-Solving**: Collaborate on solutions
+                - **Escalate Issues**: Raise unresolved impediments
+                - **Continuous Improvement**: Foster a culture of learning
+                - **Documentation and Reporting**: Document and report impediments
+
+            ### Development Team
+
+            - **Responsibilities**
+                - **Deliver Increments**: Produce shippable increments
+                - **Estimate Work**: Collaborate on effort estimation
+                - **Self-Organization**: Organize work within the team
+                - **Collaboration**: Work closely with PO and SM
+                - **Quality Assurance**: Ensure product quality
+                - **Continuous Improvement**: Seek process improvements
+            - **Self-Organization**
+                - **Autonomy**: Make decisions independently
+                - **Ownership**: Take responsibility for commitments
+                - **Collaboration**: Share knowledge and skills
+                - **Adaptability**: Be flexible in response to changes
+                - **Continuous Learning**: Pursue ongoing development
+            - **Cross-Functionality**
+                - **Diverse Skill Set**: Possess varied expertise
+                - **T-shaped Skills**: Combine depth with breadth of knowledge
+                - **Shared Responsibility**: Collaborate on all aspects of the product
+                - **Swarm Behavior**: Address challenges collectively
+                - **Flexibility**: Adapt roles as needed
+
+            ## Events
+
+            - **Sprint**: Time-boxed iteration for completing specific work
+                - **Duration**: Fixed, typically not exceeding one calendar month
+                - **Purpose**: Deliver potentially shippable product increment, provide cadence, enable feedback loops, foster transparency
+            - **Sprint Planning**: Define Sprint goal, select backlog items
+                - **Participants**: Product Owner, Development Team, Scrum Master
+            - **Daily Scrum**: Synchronize activities, identify impediments, adapt plans
+                - **Format**: Three questions (yesterday, today, impediments), time-boxed to 15 minutes
+                - **Timebox**: 15 minutes
+            - **Sprint Review**: Demonstrate work, gather feedback, assess Sprint Goal
+                - **Stakeholder Involvement**: Invite stakeholders, present product increment
+                - **Outputs**: Demonstrated product increment, feedback, updated backlog
+            - **Sprint Retrospective**: Encourage improvement, reflect on Sprint process
+                - **Conducting Retrospectives**: Facilitate discussion, identify improvements
+                - **Continuous Improvement**: Actionable items, commitment to change, iterative process
+
+            ## Artifacts
+
+            - **Product Backlog**: Dynamic list of all work needed for the project, owned by Product Owner
+                - **Content**: Includes user stories, technical tasks, bugs, enhancements, epics, and acceptance criteria
+                - **Prioritization**: Items prioritized based on value, often using techniques like MoSCoW
+            - **Sprint Backlog**: Subset of Product Backlog for current sprint, owned by Development Team
+                - **Contents**: Includes selected user stories, sprint goal, estimates, definition of ready, and dependencies
+                - **Updating**: Updated throughout sprint based on progress and changes, discussed in Daily Standup meetings
+            - **Increment**: Sum of completed Product Backlog items, potentially releasable at end of each sprint
+                - **Quality Standards**: Must meet quality standards defined by Definition of Done, covering functionality, performance
+                - **Definition of Done**: Set of criteria for an item to be considered complete, agreed upon by Scrum Team
+
+            ## Scaling Scrum
+
+            - **Scrum of Scrums**: Technique for coordinating multiple Scrum teams
+                - **Structure**: Meetings held daily or as needed, representatives from each team share progress, dependencies, and impediments
+                - **Benefits**: Facilitates inter-team communication, identifies and resolves dependencies, provides visibility into project progress
+            - **Large Scale Scrum (LeSS)**: Scaling Scrum while retaining simplicity and core principles
+                - **Key Principles**: Single Product Backlog, Whole Team Approach, Minimal Roles and Artifacts
+                - **Structure**: Teams organized around feature areas, Sprint Planning ensures alignment, Daily Scrum of Scrums for synchronization
+                - **Benefits**: Preserves Scrum principles, simplifies coordination, adapts to changing requirements
+            - **Scaled Agile Framework (SAFe)**: Comprehensive framework for scaling agile practices across the organization
+               - **Key Components**: Three Levels of Scale, Agile Release Train (ART), Lean Portfolio Management, Scaled Agile Roles
+               - **Implementation**: Launch ARTs, focus on continuous improvement through Inspect and Adapt workshops
+               - **Benefits**: Provides structured scaling framework, aligns strategy with execution, facilitates collaboration across different levels
+        </TabItem>
+        <TabItem value="kanban" label="Kanban">
+          ## Visualization
+
+          | To-Do | In Progress | Done  |
+          |-------|-------------|-------|
+          | Task1 | Task2       | Task3 |
+          | Task4 | Task5       |       |
+          | Task6 |             |       |
+
+          ## Principles
+
+             - **Start with what you do now**: Begin with the existing workflow, making gradual changes over time
+             - **Agree to pursue incremental, evolutionary change**: Aim for small, continuous improvements instead of drastic changes
+             - **Respect the current process, roles, responsibilities, and titles**: Acknowledge the value in current systems and improve on them without discarding them
+             - **Encourage acts of leadership at all levels**: Foster shared responsibility and continuous learning by promoting leadership at all levels
+
+          ## Practices
+
+             - **Visualize the workflow**: Use a Kanban board to map out work items and their status for transparency and understanding
+             - **Limit work in progress (WIP)**: Focus on task completion by limiting ongoing tasks, reducing multitasking and improving productivity
+             - **Flow Management**: Monitor and manage the pace and smoothness of work
+             - **Making Policies Explicit**: Make all process-related rules visible to all team members
+             - **Implement Feedback Loops**: Regular meetings to review work and discuss ways to improve
+             - **Collaborative or Experimental Evolution**: Experiment with processes and learn from the results collectively
+             - **Understanding the principles: Case Studies and Examples**: Provide insights into the principles and examples in action
+
+          ## Kanban board
+
+          Kanban boards are visual tools for managing workflow. Each column represents a stage of work, with cards representing individual tasks. They help improve workflow transparency, limit work in progress, and improve efficiency.
+
+          Basic Kanban boards have 3 columns: **To-Do** (new tasks), **In-Progress** (tasks being worked on), and **Done** (completed tasks).
+
+          Kanban cards are visual tools used in the Kanban system to track work progress. Their main purpose is to ensure a smooth workflow and limit WIP.
+
+          ## Implementing WIP Limits
+
+          - WIP limits prevent overloading, promote focus, and highlight bottlenecks in the workflow
+          - To set WIP limits, consider team capacity, work nature, and goals. Adjust based on team feedback and historical data
+          - WIP limits enhance productivity by reducing multitasking and context switching. They improve efficiency by making bottlenecks visible
+          - WIP limits should be regularly reviewed and adjusted based on team capacity and business priorities
+        </TabItem>
       </Tabs>
     </TabItem>
 </Tabs>
