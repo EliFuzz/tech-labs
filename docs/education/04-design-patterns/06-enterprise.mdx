@@ -401,7 +401,7 @@ import TabItem from "@theme/TabItem";
         **Identify and Define the Core Business Domain**
 
         - **Identify Primary Objects:** Entities, value objects, and domains critical to the business (Customers, accounts, transactions, and payments in banking)
-        - **Define Domain Model:** Define attributes, behaviors, and relationships of identified objects (Customer name, account balance; Account balance, number, and owner)
+        - **Define Domain Model:** Define attributes, behaviors, and relationships of identified objects (Customer name, account balance)
 
         **Ubiquitous Language Establishment**
 
@@ -417,12 +417,9 @@ import TabItem from "@theme/TabItem";
 
         - **Separate System Responsibilities:** Commands for updating the model, queries for data retrieval (Enhances scalability and maintainability)
 
-        - **Commands and Queries Usage:** Commands create, update, or delete entities (Queries retrieve data from the domain model)
-
         **Event Sourcing**
 
         - **Store Domain Model History:** Records changes as events, providing a complete history (Facilitates auditing and debugging)
-
         - **Reconstruction of Domain Model:** Replay events to reconstruct the model, understand system evolution
 
         **Bounded Context**
