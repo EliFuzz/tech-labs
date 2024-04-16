@@ -8,7 +8,7 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="overview" label="Overview">
       ![](./assets/definition/clean-code-overview.svg)
     </TabItem>
@@ -19,6 +19,269 @@ import TabItem from "@theme/TabItem";
       - **Expressive**: Clearly communicates intent using meaningful names and comments
       - **Extensible**: Easily adaptable to changing requirements
       - **Modular**: Composed of small, reusable units following the single responsibility principle
+
+      <table>
+          <thead>
+              <tr>
+                  <th>Principle</th>
+                  <th>Definition</th>
+                  <th>Application</th>
+                  <th>Benefits</th>
+                  <th>Use Cases</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><b>DRY</b></td>
+                  <td>Don't Repeat Yourself</td>
+                  <td>
+                    <ul>
+                        <li>Codebase</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Reduces code duplication</li>
+                        <li>Encourages maintainability</li>
+                        <li>Improves readability</li>
+                        <li>Minimizes errors by ensuring that a single piece of knowledge has a single, unambiguous representation in the system</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Refactoring code to eliminate duplicate logic</li>
+                        <li>Creating reusable functions or modules</li>
+                        <li>Enforcing consistency across the codebase</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>KISS</b></td>
+                  <td>Keep It Simple, Stupid</td>
+                  <td>
+                    <ul>
+                        <li>Design</li>
+                        <li>Implementation</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Encourages simplicity in design and implementation</li>
+                        <li>Makes it easier to understand, maintain, and extend</li>
+                        <li>Overly complex solutions are more prone to errors and difficult to modify or scale</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Designing user interfaces</li>
+                        <li>Writing code</li>
+                        <li>Designing system architectures</li>
+                        <li>Choosing between different approaches to solve a problem</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>YAGNI</b></td>
+                  <td>You Ain't Gonna Need It</td>
+                  <td>Feature Development, Architecture</td>
+                  <td>Prevents over-engineering by discouraging developers from adding functionality or architecture that is not immediately necessary. This avoids wasted effort and keeps the focus on delivering value to the customer</td>
+                  <td>Avoiding premature optimization, deferring implementation of features until they are requested by users or required by business needs</td>
+              </tr>
+              <tr>
+                  <td><b>SOLID</b></td>
+                  <td>Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion</td>
+                  <td>
+                    <ul>
+                        <li>Object-Oriented Design</li>
+                        <li>Code Modularity</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Promotes maintainability, extensibility, and testability by emphasizing principles for designing well-structured, modular code</li>
+                        <li>Each principle addresses a specific aspect of software design, contributing to overall code quality and flexibility</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Designing classes and interfaces</li>
+                        <li>Defining software architecture</li>
+                        <li>Refactoring existing code to improve its design</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>GRASP</b></td>
+                  <td>General Responsibility Assignment Software Patterns</td>
+                  <td>
+                    <ul>
+                        <li>Object-Oriented Design</li>
+                        <li>Class Responsibilities</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Provides guidelines for assigning responsibilities to classes and objects</li>
+                        <li>Helping to create systems that are easier to understand, maintain, and evolve</li>
+                        <li>Focuses on assigning responsibilities based on information expert</li>
+                        <li>High Cohesion</li>
+                        <li>Low Coupling</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Identifying class responsibilities</li>
+                        <li>Determining collaboration between objects</li>
+                        <li>Defining the overall structure of an object-oriented system</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>BDUF</b></td>
+                  <td>Big Design Up Front</td>
+                  <td>
+                    <ul>
+                        <li>Software Development Process</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Advocates for creating a detailed design before starting implementation</li>
+                        <li>While it may provide a clear plan initially, it can lead to rigid architectures and hinder adaptability to changing requirements</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Projects with well-defined requirements and stable specifications</li>
+                        <li>Where changes are unlikely or costly to implement</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>APO</b></td>
+                  <td>Always Plan for Obsolescence</td>
+                  <td>
+                    <ul>
+                        <li>System Architecture</li>
+                        <li>Technology Selection</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Encourages anticipating and planning for the eventual obsolescence of technology components, frameworks, or platforms</li>
+                        <li>Mitigates the risk of technology becoming outdated and reduces the effort required for future migrations or upgrades</li>
+                        <li></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Selecting technologies for long-term projects</li>
+                        <li>Designing architectures that can easily accommodate future changes</li>
+                        <li>Incorporating backward compatibility into system designs</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>Occam’s Razor</b></td>
+                  <td>The simplest explanation is usually the correct one</td>
+                  <td>
+                    <ul>
+                        <li>Problem Solving</li>
+                        <li>Decision Making</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Prefers simpler explanations or solutions over more complex ones when multiple options are available</li>
+                        <li>Helps in avoiding unnecessary assumptions or complexity, leading to more straightforward and efficient solutions</li>
+                        <li></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Analyzing data</li>
+                        <li>Troubleshooting issues</li>
+                        <li>Making design decisions</li>
+                        <li>Evaluating competing hypotheses</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>Law of Demeter</b></td>
+                  <td>Principle of Least Knowledge</td>
+                  <td>
+                    <ul>
+                        <li>Object-Oriented Design</li>
+                        <li>Dependency Management</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Encourages designing classes with limited knowledge of other classes</li>
+                        <li>Reducing coupling and promoting encapsulation</li>
+                        <li>Helps in creating more maintainable and flexible code by minimizing the impact of changes in one class on others</li>
+                        <li></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Accessing object properties or methods through a limited number of intermediary objects</li>
+                        <li>Avoiding long chains of method calls between objects</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>Boy Scout Rule</b></td>
+                  <td>Leave the code cleaner than you found it</td>
+                  <td>
+                    <ul>
+                        <li>Codebase Maintenance</li>
+                        <li>Continuous Improvement</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Encourages developers to continuously improve the quality of code by making small, incremental changes whenever they work with it</li>
+                        <li>Over time, this leads to a cleaner, more maintainable codebase</li>
+                        <li>Fosters a culture of continuous improvement within the development team</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Refactoring code during bug fixes or feature development</li>
+                        <li>Performing code reviews</li>
+                        <li>Addressing technical debt</li>
+                        <li>Enhancing code readability</li>
+                    </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>Principle of Least Surprise</b></td>
+                  <td>Design should minimize astonishment</td>
+                  <td>
+                    <ul>
+                        <li>User Interface Design</li>
+                        <li>API Design</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Behavior of a system or interface should be predictable and intuitive to users or developers</li>
+                        <li>Reduces confusion, errors, and the need for extensive documentation</li>
+                        <li>Leads to a better user experience and increased productivity</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        <li>Designing user interfaces</li>
+                        <li>Defining API contracts</li>
+                        <li>Naming conventions for variables and functions</li>
+                        <li>Designing error messages and prompts</li>
+                    </ul>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
     </TabItem>
     <TabItem value="benefits" label="Benefits">
       - **Productivity**: Simplifies writing, reading, debugging, testing, and maintenance, reducing time and effort for new features, bug fixes, and refactoring
