@@ -1,6 +1,6 @@
 ---
-title: Communication Protocols
-description: Communication Protocols Overview
+title: Architecture Styles
+description: Architecture Styles Overview
 hide_table_of_contents: true
 ---
 
@@ -8,10 +8,8 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Communication Paradigms
-
 <Tabs queryString="primary">
-    <TabItem value="overview" label="Communication Styles">
+    <TabItem value="overview" label="Architecture Styles">
       <table>
         <thead>
           <tr>
@@ -1126,6 +1124,7 @@ import TabItem from "@theme/TabItem";
                   <th>Aspect</th>
                   <th>Short Polling</th>
                   <th>Long Polling</th>
+                  <th>Webhook</th>
                   <th>WebSockets</th>
                   <th>Server-Sent Events (SSE)</th>
               </tr>
@@ -1173,6 +1172,23 @@ import TabItem from "@theme/TabItem";
                   </td>
                   <td>
                     ```mermaid
+                        sequenceDiagram
+
+                        participant User
+                        participant App
+                        participant Server
+                        participant Webhook
+
+                        User->>App: Performs an action
+                        App->>Server: Sends data about the action
+                        Note right of Server: Processes data and decides
+                        Server->>Webhook: Triggers the Webhook
+                        Webhook->>App: Sends data (POST request)
+                        App->>User: Updates based on Webhook data
+                    ```
+                  </td>
+                  <td>
+                    ```mermaid
                       sequenceDiagram
 
                       participant Client
@@ -1214,6 +1230,7 @@ import TabItem from "@theme/TabItem";
                   <td><b>Real-time communication</b></td>
                   <td>No, it makes repeated requests even if no data is available</td>
                   <td>Yes, it keeps connection open until data is available</td>
+                  <td>Yes, server pushes data to client when a particular event happens</td>
                   <td>Yes, it provides full-duplex communication channels</td>
                   <td>Yes, it allows a server to push updates to clients</td>
               </tr>
@@ -1221,6 +1238,7 @@ import TabItem from "@theme/TabItem";
                   <td><b>Efficiency</b></td>
                   <td>Low, as it continuously asks for data from the server, leading to high network traffic</td>
                   <td>Higher than short polling, as it reduces unnecessary network overhead</td>
+                  <td>High, no need for client to continuously poll for data, reducing network traffic</td>
                   <td>High, as it only communicates when there is new data, and maintains a constant connection</td>
                   <td>High, as it allows servers to push updates without client requests</td>
               </tr>
@@ -1228,6 +1246,7 @@ import TabItem from "@theme/TabItem";
                   <td><b>Complexity</b></td>
                   <td>Low, as it uses standard HTTP requests</td>
                   <td>Higher than short polling, as it needs to maintain open connections</td>
+                  <td>Medium, client needs to subscribe to events and server needs to support webhooks</td>
                   <td>High, as it requires specific protocols and server-side implementation</td>
                   <td>Medium, as it mostly requires server-side implementation</td>
               </tr>
@@ -1235,6 +1254,7 @@ import TabItem from "@theme/TabItem";
                   <td><b>HTTP Headers</b></td>
                   <td>Sent with every request, increasing overhead</td>
                   <td>Sent with every request, increasing overhead</td>
+                  <td>Sent only when an event occurs, reducing overhead</td>
                   <td>Sent only at connection setup, reducing overhead</td>
                   <td>Sent only at connection setup, reducing overhead</td>
               </tr>
@@ -1242,6 +1262,7 @@ import TabItem from "@theme/TabItem";
                   <td><b>Data Direction</b></td>
                   <td>Bidirectional, but inefficient</td>
                   <td>Bidirectional, but inefficient</td>
+                  <td>Unidirectional (server to client), best for delivering event notifications</td>
                   <td>Bidirectional, providing real-time interaction</td>
                   <td>Unidirectional (server to client), best for delivering updates</td>
               </tr>
@@ -1249,6 +1270,7 @@ import TabItem from "@theme/TabItem";
                   <td><b>Connection Persistence</b></td>
                   <td>No, connections are closed after each request</td>
                   <td>Yes, until the server has data to send</td>
+                  <td>No, connections are established only when an event occurs</td>
                   <td>Yes, connections are kept alive until closed by either client or server</td>
                   <td>Yes, until the client closes the connection</td>
               </tr>
@@ -1256,6 +1278,7 @@ import TabItem from "@theme/TabItem";
                   <td><b>Use Cases</b></td>
                   <td>Best for when updates are infrequent and data is small</td>
                   <td>Best for when updates are sporadic but real-time delivery is required</td>
+                  <td>Best for real-time notifications, when you want to be notified when a particular event happens</td>
                   <td>Best for real-time applications, gaming, chat applications etc</td>
                   <td>Best for real-time applications, especially when updates are only required to be sent to the client</td>
               </tr>
