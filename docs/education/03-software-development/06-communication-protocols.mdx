@@ -23,25 +23,6 @@ import TabItem from "@theme/TabItem";
         </thead>
         <tbody>
           <tr>
-            <td><b>SOAP</b></td>
-            <td>SOAP (Simple Object Access Protocol) is an XML-based communication protocol</td>
-            <td>
-              <ul>
-                <li>XML-based</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>Enterprise applications</li>
-                <li>Payment gateways</li>
-                <li>identity management</li>
-                <li>CRM solutions</li>
-                <li>financial and telecommunication services</li>
-                <li>legacy system support</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
             <td><b>Asynchronous</b></td>
             <td>Asynchronous communication is used to communicate between services without waiting for the response</td>
             <td>
@@ -132,6 +113,48 @@ import TabItem from "@theme/TabItem";
                     <li>Command and action oriented APIs</li>
                     <li>High performance communication in massive microservice systems</li>
                 </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>P2P</b></td>
+            <td>P2P (Peer-to-Peer) is a decentralized form of communication where each party has the same capabilities and either party can initiate a communication session. It enables direct communication and sharing of resources among multiple nodes in a network without the need for a central coordinating server</td>
+            <td>
+                <ul>
+                    <li>Decentralized</li>
+                    <li>Resource sharing</li>
+                    <li>Direct communication</li>
+                    <li>Dynamic network topology</li>
+                    <li>Resilient and scalable</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>File sharing applications (Torrent)</li>
+                    <li>Blockchain and cryptocurrencies</li>
+                    <li>Distributed databases</li>
+                    <li>Decentralized social networks</li>
+                    <li>Collaborative software applications</li>
+                    <li>Multiplayer online gaming</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>SOAP</b></td>
+            <td>SOAP (Simple Object Access Protocol) is an XML-based communication protocol</td>
+            <td>
+              <ul>
+                <li>XML-based</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Enterprise applications</li>
+                <li>Payment gateways</li>
+                <li>identity management</li>
+                <li>CRM solutions</li>
+                <li>financial and telecommunication services</li>
+                <li>legacy system support</li>
+              </ul>
             </td>
           </tr>
           <tr>
@@ -982,6 +1005,119 @@ import TabItem from "@theme/TabItem";
               </table>
             </TabItem>
         </Tabs>
+    </TabItem>
+    <TabItem value="p2p" label="P2P">
+      <Tabs>
+        <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+          Peer-to-peer (P2P) is a decentralized network model where nodes, or "peers", connect directly to each other instead of via a central server. Each peer shares resources like processing power or storage, enabling efficient and flexible data distribution
+
+          ```mermaid
+              graph LR
+
+              subgraph orders [Orders]
+                  direction LR
+
+                  order1(Order Service)
+                  order2(Order Service)
+                  order3(Order Service)
+              end
+
+              subgraph payments [Payments]
+                  direction LR
+
+                  payment1(Payment Service)
+                  payment2(Payment Service)
+                  payment3(Payment Service)
+              end
+
+              order1 --> payment1
+              order1 --> payment2
+              order1 --> payment3
+
+              order2 --> payment1
+              order2 --> payment2
+              order2 --> payment3
+
+              order3 --> payment1
+              order3 --> payment2
+              order3 --> payment3
+          ```
+        </TabItem>
+        <TabItem value="types" label="Network Types">
+          <table>
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Unstructured P2P</th>
+                <th>Structured P2P</th>
+                <th>Hybrid P2P</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Topology</b></td>
+                <td>Random, decentralized</td>
+                <td>Overlay network, usually structured based on distributed hash tables (DHTs)</td>
+                <td>Combination of decentralized and structured elements</td>
+              </tr>
+              <tr>
+                <td><b>Routing</b></td>
+                <td>Flooding, random walk</td>
+                <td>DHT-based (Chord, Kademlia, etc.)</td>
+                <td>Combination of flooding and DHT-based routing</td>
+              </tr>
+              <tr>
+                <td><b>Scalability</b></td>
+                <td>Limited by flooding, can suffer from congestion and inefficiency as network size grows</td>
+                <td>Highly scalable due to structured routing, can handle large-scale networks efficiently</td>
+                <td>Offers good scalability by combining the benefits of both structured and unstructured approaches</td>
+              </tr>
+              <tr>
+                <td><b>Search Efficiency</b></td>
+                <td>Low, as searches may need to traverse the entire network</td>
+                <td>High, logarithmic time complexity for routing queries</td>
+                <td>Moderate, depends on the implementation</td>
+              </tr>
+              <tr>
+                <td><b>Fault Tolerance</b></td>
+                <td>Limited, as nodes may join/leave without coordination, leading to data loss or inconsistency</td>
+                <td>High, redundancy and structured routing ensure resilience against node failures</td>
+                <td>Moderately high, benefits from both decentralized nature and structured redundancy</td>
+              </tr>
+              <tr>
+                <td><b>Data Locality</b></td>
+                <td>Low, data may be stored on any node, leading to increased latency for retrieval</td>
+                <td>Moderate, structured routing enables efficient data localization</td>
+                <td>Moderate, depends on the implementation</td>
+              </tr>
+              <tr>
+                <td><b>Resource Consumption</b></td>
+                <td>High, due to flooding and lack of optimization in routing</td>
+                <td>Moderate, structured routing reduces resource consumption compared to unstructured P2P</td>
+                <td>Moderate, depends on the balance between structured and unstructured elements</td>
+              </tr>
+              <tr>
+                <td><b>Security</b></td>
+                <td>Low, vulnerable to sybil attacks, as nodes can easily join without verification</td>
+                <td>Moderate to high, DHT-based authentication and routing protocols enhance security</td>
+                <td>Moderate, depends on the implementation and integration of security measures</td>
+              </tr>
+              <tr>
+                <td><b>Examples</b></td>
+                <td>BitTorrent</td>
+                <td>Chord, Kademlia</td>
+                <td>Blockchain networks</td>
+              </tr>
+              <tr>
+                <td><b>Use Cases</b></td>
+                <td>File sharing, ad hoc communication</td>
+                <td>Distributed storage, content delivery networks</td>
+                <td>Decentralized finance, decentralized applications</td>
+              </tr>
+            </tbody>
+          </table>
+        </TabItem>
+      </Tabs>
     </TabItem>
     <TabItem value="stream" label="Stream">
       <table>
