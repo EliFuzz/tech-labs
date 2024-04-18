@@ -12,10 +12,10 @@ import TabItem from "@theme/TabItem";
 
 ## Overview
 
-<Tabs>
+<Tabs queryString="primary">
   <TabItem value="foundational" label="Foundational">
     **Foundational Patterns** are reusable design principles and best practices for building applications that run on Kubernetes.
-    <Tabs>
+    <Tabs queryString="secondary">
       <TabItem
           value="predictable"
           label="Predictable Demands"
@@ -204,7 +204,7 @@ import TabItem from "@theme/TabItem";
     **Behavioral Patterns** describe how to manage the life-cycle of Pods, which are the basic units of deployment in Kubernetes. Depending on the type of workload, a Pod might run until completion as
     a batch job, be scheduled to run periodically as a cron job, run as a daemon service on every node, or run as a singleton service on a specific node.
 
-    <Tabs>
+    <Tabs queryString="secondary">
       <TabItem value="batch" label="Batch Job" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/behavioral/batch-job.svg)
 
@@ -607,7 +607,7 @@ import TabItem from "@theme/TabItem";
 
     This pattern is particularly useful in microservices architectures where each service can be encapsulated in its own container.
 
-    <Tabs>
+    <Tabs queryString="secondary">
       <TabItem value="initContainer" label="Init Container" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/structural/init-container.svg)
 
@@ -698,7 +698,8 @@ import TabItem from "@theme/TabItem";
 
     To achieve this separation, it’s a good practice to use external configuration data, which can be customized for each environment. This allows for flexibility in adapting configurations without
     needing to modify the application or recreate its container image.
-    <Tabs>
+
+    <Tabs queryString="secondary">
       <TabItem value="envVar" label="EnvVar Configuration" attributes={{className: "tabs__vertical"}}>
         Configuring applications using environment variables is a simple and universally applicable method, suitable for all environments and platforms.
 
@@ -829,7 +830,7 @@ import TabItem from "@theme/TabItem";
     - **Secure Configuration**: This pattern discusses how an application within a Pod can access and use configurations securely
     - **Access Control**: This describes how an application can authenticate and interact with the Kubernetes API server
 
-    <Tabs>
+    <Tabs queryString="secondary">
       <TabItem value="processContainment" label="Process Containment" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/security/process-containment-pattern.svg)
 
@@ -1504,8 +1505,7 @@ import TabItem from "@theme/TabItem";
 
   </TabItem>
   <TabItem value="advanced" label="Advanced">
-
-    <Tabs>
+    <Tabs queryString="secondary">
       <TabItem value="controller" label="Controller" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/advanced/controller.svg)
 

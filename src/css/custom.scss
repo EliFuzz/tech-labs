@@ -300,3 +300,11 @@ table.ant-picker-content {
     }
   }
 }
+
+table {
+  &.text_vertical {
+    > tbody > tr > td {
+      vertical-align: top;
+    }
+  }
+}

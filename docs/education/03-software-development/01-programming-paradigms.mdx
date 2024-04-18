@@ -8,7 +8,7 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="definition" label="Definition">
         <table>
           <thead>
@@ -174,7 +174,7 @@ import TabItem from "@theme/TabItem";
         </table>
     </TabItem>
     <TabItem value="oop" label="OOP">
-        <Tabs>
+        <Tabs queryString="secondary">
             <TabItem value="principles" label="Core Principles" attributes={{className:"tabs__vertical"}}>
                 - **Abstraction**: Process of simplifying complex reality by modeling classes appropriate to the problem and ignoring irrelevant details
                     - Process of exposing only the relevant and essential data to the users without showing unnecessary information
@@ -302,7 +302,7 @@ import TabItem from "@theme/TabItem";
         </Tabs>
     </TabItem>
     <TabItem value="functional" label="Functional">
-        <Tabs>
+        <Tabs queryString="secondary">
             <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
                 Paradigm that treats computation as the evaluation of mathematical functions, emphasizing immutable data and pure functions.
             </TabItem>

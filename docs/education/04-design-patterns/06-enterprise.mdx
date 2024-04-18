@@ -12,7 +12,7 @@ import TabItem from "@theme/TabItem";
 
 ## Layered Architecture MV(x)
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="overview" label="High Overview">
         <h3 style={{ textAlign: "center", margin: "3em 0 1em 0" }}>Model-View-Controller (MVC)</h3>
 
@@ -224,7 +224,7 @@ import TabItem from "@theme/TabItem";
 
 ## Domain-Driven Design (DDD)
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="benefits" label="Benefits">
         - **Communication**: Enhances communication among developers, managers, and domain experts through a shared language and understanding of the business domain
         - **Productivity**: Boosts productivity with a clear comprehension of the business domain and by encapsulating domain logic in an easily understandable and maintainable manner
@@ -438,7 +438,7 @@ import TabItem from "@theme/TabItem";
 
 ## Hexagonal Architecture
 
-<Tabs>
+<Tabs queryString="primary">
   <TabItem value="definition" label="Definition">
     Hexagonal architecture, also known as ports and adapters architecture, is an architectural pattern that aims to create loosely coupled application components that can be easily connected to their software environment by means of ports and adapters. This makes components exchangeable at any level and facilitates test automation.
 
@@ -552,8 +552,7 @@ import TabItem from "@theme/TabItem";
       - **adapters** are a CLI parser that implements the CLI API using Apache Commons CLI library, and various data source adapters that implement the data source interface using different technologies, such as Apache Commons CSV, Apache HttpClient or JDBC
   </TabItem>
   <TabItem value="comparison" label="Comparison">
-
-    <Tabs>
+    <Tabs queryString="secondary">
       <TabItem value="layered" label="Layered Architecture" attributes={{className: "tabs__vertical"}}>
         ![](./assets/enterprise/hexagonal-vs-layered-architecture.svg)
 

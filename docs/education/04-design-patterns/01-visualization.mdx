@@ -8,7 +8,7 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
+<Tabs queryString="primary">
   <TabItem value="representation" label="Representation">
     <table>
       <thead>
@@ -101,7 +101,7 @@ import TabItem from "@theme/TabItem";
     </table>
   </TabItem>
   <TabItem value="umlTypes" label="UML Types">
-    <Tabs>
+    <Tabs queryString="secondary">
       <TabItem value="class" label="Class Diagram" attributes={{className: "tabs__vertical"}}>
         The most commonly used UML diagram, representing classes, attributes, operations, and their relationships within a system.
 

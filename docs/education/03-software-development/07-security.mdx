@@ -490,6 +490,57 @@ import TabItem from "@theme/TabItem";
   </TabItem>
 </Tabs>
 
+## Password Storage
+
+<table>
+  <thead>
+    <tr>
+      <th style={{width: '70%'}}>Visualization</th>
+      <th>Specs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        ```mermaid
+          graph TB
+
+          user(User) --> |password| server(Server)
+          server --> db[(Database)]
+          db ~~~|"<table><thead><tr><th>id</th><th>salt</th><th>hash</th></tr></thead><tbody><tr><td>1</td><td>randomly generated</td><td>hashed result of: hash(password + salt)</td></tr></tbody></table>"| db
+        ```
+      </td>
+      <td>
+        <b>Store Password</b>
+        <ul>
+          <li>Avoid storing passwords in plain text to prevent unauthorized access</li>
+          <li>Storing password hashes alone is vulnerable to precomputation attacks like rainbow tables</li>
+          <li>Use salt to counter precomputation attacks by adding a unique, randomly generated string to each password before hashing</li>
+          <li>A salt, as per OWASP, is a unique, randomly generated string added to each password during hashing</li>
+          <li>Store passwords with their salt in the database by hashing the password combined with the salt</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ```mermaid
+          graph TB
+
+          user(User) --> |password| server(Server)
+          server --> |"hash(user's password + stored salt in DB) == hashed result that is stored in DB"| db[(Database)]
+          db ~~~|"<table><thead><tr><th>id</th><th>salt</th><th>hash</th></tr></thead><tbody><tr><td>1</td><td>randomly generated</td><td>hashed result of: hash(password + salt)</td></tr></tbody></table>"| db
+        ```
+      </td>
+      <td>
+        <b>Validate Password</b>
+        <ul>
+          <li>Validate passwords by fetching the corresponding salt from DB, appending it to the entered password, and comparing the resulting hash with the stored hash</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Uniform Resources
 
 <table>

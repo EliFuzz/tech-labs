@@ -8,7 +8,7 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="overview" label="High Overview">
         <table>
           <tr>
@@ -77,7 +77,7 @@ import TabItem from "@theme/TabItem";
         </table>
     </TabItem>
     <TabItem value="monolithic" label="Monolithic">
-      <Tabs>
+      <Tabs queryString="secondary">
         <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
           ```mermaid
               graph TB
@@ -221,7 +221,7 @@ import TabItem from "@theme/TabItem";
       </Tabs>
     </TabItem>
     <TabItem value="microservices" label="Microservices">
-      <Tabs>
+      <Tabs queryString="secondary">
         <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
           ```mermaid
               graph LR
@@ -298,13 +298,186 @@ import TabItem from "@theme/TabItem";
             - Supports evolutionary design, modular decomposition, and granular release planning
             - Prefers tolerant services over heavy versioning for managing changes
         </TabItem>
+        <TabItem value="practices" label="Best Practices">
+          - Use separate data storage for each microservice
+          - Keep code at a similar level of maturity
+          - Separate build for each microservice
+          - Assign each microservice with a single responsibility
+          - Deploy into containers
+          - Design stateless services
+          - Adopt Domain-Driven Design (DDD)
+          - Design micro frontend
+          - Orchestrating microservices with Kubernetes
+        </TabItem>
       </Tabs>
+    </TabItem>
+</Tabs>
+
+## Architecture Overview
+
+<Tabs queryString="primary">
+    <TabItem value="overview" label="Overview">
+      <table>
+        <thead>
+          <tr>
+            <th style={{width: '70%'}}>Visualization</th>
+            <th>Specs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              ```mermaid
+                  graph TB
+
+                  subgraph user
+                    direction TB
+
+                    web(Web)
+                    mobile(Mobile)
+                  end
+
+                  user --> lb(Load Balancer)
+                  lb --> apiGateway(API Gateway)
+                  apiGateway --> identity(Identity Provider)
+                  apiGateway --> sr(Service Registry & Discovery)
+
+                  subgraph microservices
+                    direction LR
+
+                    domainA(Domain A)
+                    domainB(Domain B)
+                  end
+
+                  domainA --> dbA[(Database A)]
+                  domainB --> dbB[(Database B)]
+
+                  sr --> domainA
+                  sr --> domainB
+
+                  management(Management) --> sr
+                  management --> microservices
+              ```
+            </td>
+            <td>
+              <ul>
+                <li><b>Load Balancer</b>: Distributes traffic to multiple backend services</li>
+                <li><b>CDN (Content Delivery Network)</b>: Speeds up content delivery by storing static content on distributed servers</li>
+                <li><b>API Gateway</b>: Routes requests to relevant services, interacts with identity provider and service discovery</li>
+                <li><b>Identity Provider</b>: Manages user authentication and authorization</li>
+                <li><b>Service Registry & Discovery</b>: Registers and finds microservices, used by API gateway to locate services</li>
+                <li><b>Management</b>: Monitors services</li>
+                <li><b>Microservices</b>: Independently deployed and maintained in separate domains, each with its own database. Communicate via REST API or RPC</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </TabItem>
+    <TabItem value="common" label="Common Setup">
+      <table>
+        <thead>
+          <tr>
+            <th>Pre-Production</th>
+            <th>Production</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              ```mermaid
+                  graph TB
+
+                  dev(Developer) --> api(Define API)
+                  api --> ui(Develop UI)
+                  api --> microservice(Develop microservices)
+                  api --> apiGateway(Modify configurations in API Gateway)
+
+                  ui --> test(Test)
+                  microservice --> test
+                  apiGateway --> test
+
+                  test --> build(Build Image)
+                  build --> deploy(Deploy)
+              ```
+
+              <ul>
+                <li>
+                  <b>Stack</b>
+                  <ul>
+                    <li><b>Define API</b>: Establish frontend-backend contract using Postman/OpenAPI</li>
+                    <li><b>Develop UI</b>: Node.js/React</li>
+                    <li><b>Develop Microservices</b>: Java/Python/Go</li>
+                    <li><b>Test</b>: Unit test framework and Jenkins/Github Actions/CircleCI/Gitlab CI</li>
+                    <li><b>Build</b>: Package code into Docker images for microservices deployment</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+            <td>
+              ```mermaid
+                  graph TB
+
+                  user --> cdn(CDN)
+                  user(User) --> lb(Load Balancer)
+
+                  lb --> apiGateway(API Gateway)
+
+                  subgraph microservices
+                    direction TB
+
+                    services(Services)
+                    cache(Cache)
+                    search(Full-Text Search)
+                    broker(Message Broker)
+                    management(Management & Monitoring)
+                  end
+
+                  subgraph access [Access Layer]
+                    direction TB
+
+                    relational(Relational DB)
+                    blob(Object/Blob Store)
+                    wideColumn(Wide-Column DB)
+                  end
+
+                  apiGateway --> microservices
+
+                  services --> access
+              ```
+
+              <ul>
+                <li>
+                  <b>Stack</b>
+                  <ul>
+                    <li><b>Load Balancer</b>: NGINX</li>
+                    <li><b>CDN</b>: CloudFront/Cloudflare</li>
+                    <li><b>API Gateway</b>: Zookeeper/Eureka for service discovery</li>
+                    <li><b>Full-Text Search</b>: ElasticSearch</li>
+                    <li><b>Cache</b>: Redis</li>
+                    <li><b>Communications</b>: Kafka or RPC for service communication</li>
+                    <li><b>Management & Monitoring</b>: Prometheus/Grafana/Elastic Stack/Kubernetes</li>
+                    <li>
+                      <b>Persistence</b>
+                      <ul>
+                        <li><b>Relational DB</b>: MySQL/PostgreSQL</li>
+                        <li><b>Object Store</b>: S3/GCS/Azure Blob</li>
+                      </ul>
+                    </li>
+                    <li><b>Cloud Deployment</b>: GCP/AWS/Azure</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </TabItem>
 </Tabs>
 
 ## Migration
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="process" label="Process">
       - **Discovering system operations**
         - Analyzing existing monolithic architecture
@@ -358,7 +531,7 @@ import TabItem from "@theme/TabItem";
         - Documenting refactoring decisions and outcomes
     </TabItem>
     <TabItem value="decomposition" label="Service Decomposition">
-        <Tabs>
+        <Tabs queryString="secondary">
             <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
               <table className="stick column">
                 <thead>

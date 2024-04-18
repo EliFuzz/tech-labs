@@ -8,9 +8,9 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="overview" label="Overview">
-      <Tabs>
+      <Tabs queryString="secondary">
         <TabItem value="lifecycle" label="Lifecycle" attributes={{className:"tabs__vertical"}}>
           **Software Testing Lifecycle (STLC)**: structured process for testing software to ensure quality and functionality throughout its development life cycle
 
@@ -257,7 +257,7 @@ import TabItem from "@theme/TabItem";
       </Tabs>
     </TabItem>
     <TabItem value="detailed" label="Detailed">
-      <Tabs>
+      <Tabs queryString="secondary">
         <TabItem value="overview" label="High Overview" attributes={{className:"tabs__vertical"}}>
           ```mermaid
               graph LR

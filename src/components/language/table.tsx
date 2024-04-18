@@ -40,7 +40,7 @@ export default ({ data }: { data: Data[] }): ReactElement => {
   return (
     <Table
       size="small"
-      className="vertical_top"
+      className="text_vertical"
       dataSource={data}
       columns={[
         {
