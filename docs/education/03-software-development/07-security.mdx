@@ -781,7 +781,7 @@ import TabItem from "@theme/TabItem";
                             <b>JWT Structure</b>
                             <ul>
                                 <li>
-                                Generate content
+                                Content
                                     <ul>
                                         <li>
                                         Header
@@ -802,7 +802,7 @@ import TabItem from "@theme/TabItem";
                                             }
                                             ```
                                         </li>
-                                        <li>Signature</li>
+                                        <li>Signature: `HMACSHA256("base64(header).base64(data)", secret)`</li>
                                     </ul>
                                 </li>
                                 <li>Encode each part using Base64: `base64(header)`, `base64(data)`, `base64(signature)`</li>
@@ -819,10 +819,8 @@ import TabItem from "@theme/TabItem";
     <table>
       <thead>
         <tr>
-          <th style={{width: '50%'}}>Visualization</th>
-          <th>Definition</th>
-          <th>Involved Parties</th>
-          <th>Flow Types</th>
+          <th style={{width: '70%'}}>Visualization</th>
+          <th>Specs</th>
         </tr>
       </thead>
       <tbody>
@@ -850,25 +848,31 @@ import TabItem from "@theme/TabItem";
             ```
           </td>
           <td>
-            Open Authorization (OAuth): Protocol for sharing user Authorization across systems
             <ul>
-              <li><b>OAuth 1.0</b>: Protocol designed only for web browser only</li>
-              <li><b>OAuth 2.0</b>: Protocol for cross-platform use (web, mobile, desktop, API)</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li><b>User (Resource Owner)</b>: Authorizes flows across systems</li>
-              <li><b>Identity Provider (IdP)</b>: Stores user identity, validates credentials, and shares authorization with other services</li>
-              <li><b>Server</b>: Service user accesses for authorization</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li><b>Authorization code</b>: Client gets a code from server, exchanges for access token</li>
-              <li><b>Client credentials</b>: Client directly authenticates for access to its resources</li>
-              <li><b>Implicit code</b>: Deprecated due to security risks</li>
-              <li><b>Resource owner password</b>: User's credentials exchanged for access token, not recommended for security reasons</li>
+                <li>
+                    <b>Open Authorization (OAuth)</b>: Protocol for sharing user Authorization across systems
+                    <ul>
+                        <li><b>OAuth 1.0</b>: Protocol designed only for web browser only</li>
+                        <li><b>OAuth 2.0</b>: Protocol for cross-platform use (web, mobile, desktop, API)</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Involved Parties</b>
+                    <ul>
+                      <li><b>User (Resource Owner)</b>: Authorizes flows across systems</li>
+                      <li><b>Identity Provider (IdP)</b>: Stores user identity, validates credentials, and shares authorization with other services</li>
+                      <li><b>Server</b>: Service user accesses for authorization</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Flow Types</b>
+                    <ul>
+                      <li><b>Authorization code</b>: Client gets a code from server, exchanges for access token</li>
+                      <li><b>Client credentials</b>: Client directly authenticates for access to its resources</li>
+                      <li><b>Implicit code</b>: Deprecated due to security risks</li>
+                      <li><b>Resource owner password</b>: User's credentials exchanged for access token, not recommended for security reasons</li>
+                    </ul>
+                </li>
             </ul>
           </td>
         </tr>
