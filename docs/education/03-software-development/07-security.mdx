@@ -8,7 +8,7 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
+<Tabs queryString="primary">
   <TabItem value="fe" label="Frontend (FE)">
     <table>
       <thead>
@@ -20,6 +20,38 @@ import TabItem from "@theme/TabItem";
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td><b>Clickjacking</b></td>
+          <td>Manipulating a website user's interaction by hiding clickable elements behind opaque layers</td>
+          <td>Trick users into performing undesired actions, potentially leading to sensitive data exposure</td>
+          <td>Implement `X-Frame-Options` HTTP response header. Use **framebusting** scripts</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="fe_be" label="FE + BE">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Definition</th>
+          <th>Impact</th>
+          <th>Prevention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Injection Flaws</b></td>
+          <td>Occur when untrusted data is sent to an interpreter as part of a command or query</td>
+          <td>
+            <ul>
+              <li>Data loss, corruption, or disclosure to unauthorized parties</li>
+              <li>Denial of service</li>
+              <li>Full host takeover</li>
+            </ul>
+          </td>
+          <td>Use prepared statements with parameterized queries, use safe API which avoids the use of interpreter entirely or provides a parameterized interface</td>
+        </tr>
         <tr>
           <td><b>Cross-Site Scripting (XSS)</b></td>
           <td>
@@ -86,10 +118,10 @@ import TabItem from "@theme/TabItem";
           </td>
         </tr>
         <tr>
-          <td><b>Clickjacking</b></td>
-          <td>Manipulating a website user's interaction by hiding clickable elements behind opaque layers</td>
-          <td>Trick users into performing undesired actions, potentially leading to sensitive data exposure</td>
-          <td>Implement `X-Frame-Options` HTTP response header. Use **framebusting** scripts</td>
+          <td><b>Security Misconfiguration</b></td>
+          <td>Inadequate default security configurations, incomplete or ad hoc configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages containing sensitive information</td>
+          <td>Unauthorized access to sensitive data, or functionality that can compromise the entire system</td>
+          <td>Regular security hardening of your servers, applications, and databases</td>
         </tr>
         <tr>
           <td><b>Insecure Direct Object References (IDOR)</b></td>
@@ -112,24 +144,6 @@ import TabItem from "@theme/TabItem";
               <li>Validate the destination of redirects and forwards before allowing them to take place</li>
             </ul>
           </td>
-        </tr>
-        <tr>
-          <td><b>Security Misconfiguration</b></td>
-          <td>Inadequate default security configurations, incomplete or ad hoc configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages containing sensitive information</td>
-          <td>Unauthorized access to sensitive data, or functionality that can compromise the entire system</td>
-          <td>Regular security hardening of your servers, applications, and databases</td>
-        </tr>
-        <tr>
-          <td><b>Injection Flaws</b></td>
-          <td>Occur when untrusted data is sent to an interpreter as part of a command or query</td>
-          <td>
-            <ul>
-              <li>Data loss, corruption, or disclosure to unauthorized parties</li>
-              <li>Denial of service</li>
-              <li>Full host takeover</li>
-            </ul>
-          </td>
-          <td>Use prepared statements with parameterized queries, use safe API which avoids the use of interpreter entirely or provides a parameterized interface</td>
         </tr>
         <tr>
           <td><b>Components with Known Vulnerabilities</b></td>
@@ -157,42 +171,6 @@ import TabItem from "@theme/TabItem";
       </thead>
       <tbody>
         <tr>
-          <td><b>Injection Flaws</b></td>
-          <td>More details could be found in Frontend section</td>
-          <td></td>
-          <td>Validation must be performed on both (FE and BE) sides</td>
-        </tr>
-        <tr>
-          <td><b>Cross-Site Scripting (XSS)</b></td>
-          <td>More details could be found in Frontend section</td>
-          <td></td>
-          <td>Validation must be performed on both (FE and BE) sides</td>
-        </tr>
-        <tr>
-          <td><b>Cross-Site Request Forgery (CSRF)</b></td>
-          <td>More details could be found in Frontend section</td>
-          <td></td>
-          <td>Validation must be performed on both (FE and BE) sides</td>
-        </tr>
-        <tr>
-          <td><b>Security Misconfiguration</b></td>
-          <td>More details could be found in Frontend section</td>
-          <td></td>
-          <td>Validation must be performed on both (FE and BE) sides</td>
-        </tr>
-        <tr>
-          <td><b>Insecure Direct Object References (IDOR)</b></td>
-          <td>More details could be found in Frontend section</td>
-          <td></td>
-          <td>Validation must be performed on both (FE and BE) sides</td>
-        </tr>
-        <tr>
-          <td><b>Unvalidated Redirects and Forwards</b></td>
-          <td>More details could be found in Frontend section</td>
-          <td></td>
-          <td>Validation must be performed on both (FE and BE) sides</td>
-        </tr>
-        <tr>
           <td><b>Broken Authentication</b></td>
           <td>When session management is not properly implemented, allowing attackers to compromise passwords, keys or session tokens</td>
           <td>Unauthorized access to accounts and data</td>
@@ -214,12 +192,6 @@ import TabItem from "@theme/TabItem";
               <li>Disable caching for sensitive data and use secure cookies</li>
             </ul>
           </td>
-        </tr>
-        <tr>
-          <td><b>Components with Known Vulnerabilities</b></td>
-          <td>More details could be found in Frontend section</td>
-          <td></td>
-          <td>Validation must be performed on both (FE and BE) sides</td>
         </tr>
       </tbody>
     </table>
@@ -515,5 +487,540 @@ import TabItem from "@theme/TabItem";
         </tr>
       </tbody>
     </table>
+  </TabItem>
+</Tabs>
+
+## Uniform Resources
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Definition</th>
+      <th>Identity Resources</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>URI: Uniform Resource Identifier</b></td>
+      <td>
+        <ul>
+          <li>Identifies a logical or physical resource on the web</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><span style={{color: '#f06292'}}>scheme</span>://<span style={{color: '#e57373'}}>path</span></li>
+          <li><span style={{color: '#f06292'}}>scheme</span>://<span style={{color: '#e57373'}}>authority</span>/<span style={{color: '#64b5f6'}}>path</span>?<span style={{color: '#4dd0e1'}}>query string</span></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><span style={{color: '#f06292'}}>mailto</span>://<span style={{color: '#e57373'}}>joe@mycompany.com</span></li>
+          <li><span style={{color: '#f06292'}}>ldap</span>://<span style={{color: '#e57373'}}>2000:ac8::8</span>/<span style={{color: '#64b5f6'}}>t=MB</span>?<span style={{color: '#4dd0e1'}}>object?process</span></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>URL: Uniform Resource Locator</b></td>
+      <td>
+        <ul>
+          <li>URL is subtype of URI</li>
+          <li>Key concept of HTTP</li>
+          <li>Locates a resource</li>
+          <li>Address of a unique resource on the web</li>
+          <li>Can be used with other protocols</li>
+        </ul>
+      </td>
+      <td>
+        <span style={{color: '#f06292'}}>scheme</span>://<span style={{color: '#e57373'}}>(</span><span style={{color: '#ba68c8'}}>domain name</span>:<span style={{color: '#9575cd'}}>port</span><span style={{color: '#e57373'}}>)</span><sup style={{color: '#e57373'}}>authority</sup>/<span style={{color: '#64b5f6'}}>path to file</span>?<span style={{color: '#4dd0e1'}}>query string</span>#<span style={{color: '#aed581'}}>anchor</span>
+
+        <ul>
+          <li><b>scheme</b>: `http`, `https`, `ftp`, `sftp`, `file`, `mailto`, `tel`, `sms`, `urn`, `data`, `blob`, `ws`, `wss`</li>
+          <li><b>domain name</b>: `google.com`, `amazon.com`, `apple.com`, `microsoft.com`, `usa.gov`</li>
+          <li><b>port</b>: `80`, `443`, `8080`</li>
+          <li><b>path to file</b>: `assets/image.png`</li>
+          <li><b>query string</b>: `order=asc&limit=10`</li>
+          <li><b>anchor</b>: `initial_setup`, `overview`, `conclusion`</li>
+        </ul>
+        </td>
+      <td><span style={{color: '#f06292'}}>http</span>://<span style={{color: '#e57373'}}>(</span><span style={{color: '#ba68c8'}}>mysite.com</span>:<span style={{color: '#9575cd'}}>80</span><span style={{color: '#e57373'}}>)</span><sup style={{color: '#e57373'}}>authority</sup>/<span style={{color: '#64b5f6'}}>path/to/file.html</span>?<span style={{color: '#4dd0e1'}}>product=book</span>#<span style={{color: '#aed581'}}>docAnchor</span></td>
+    </tr>
+    <tr>
+      <td><b>URN: Uniform Resource Name</b></td>
+      <td>
+        <ul>
+          <li>URN is subtype of URI</li>
+          <li>Locates names and resources</li>
+          <li>Uses the URN scheme</li>
+          <li>Cannot be used to locate a resource</li>
+        </ul>
+      </td>
+      <td><span style={{color: '#f06292'}}>scheme</span>://<span style={{color: '#e57373'}}>namespace</span>/<span style={{color: '#64b5f6'}}>namespace specific string</span></td>
+      <td><span style={{color: '#f06292'}}>urn</span>://<span style={{color: '#e57373'}}>isbn</span>/<span style={{color: '#64b5f6'}}>888</span></td>
+    </tr>
+  </tbody>
+</table>
+
+## Demystifying Inner Workflow
+
+<Tabs queryString="primary">
+  <TabItem value="https" label="HTTPS">
+    <table>
+      <thead>
+        <tr>
+          <th style={{width: '50%'}}>Visualization</th>
+          <th>Steps</th>
+          <th>Specs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            ```mermaid
+              sequenceDiagram
+              autonumber
+
+              participant Client
+              participant Server
+
+              alt TCP Handshake
+                Client->>Server: TCP SYN
+                Server->>Client: TCP SYN + ACK
+                Client->>Server: TCP ACK
+              end
+              Note over Client,Server: TCP Handshake Established <br/> Asymmetric Encryption
+
+              alt Certificate Check
+                Client->>Server: Client Hello
+                Server->>Client: Server Hello
+                Server->>Client: Certificate
+                Server->>Client: Server Hello Done
+              end
+
+              alt Key Exchange
+                note left of Client: session key --> encrypted session key
+                Client->>Server: Client Key Exchange
+                Client->>Server: Change Cipher Spec
+                Client->>Server: Finished
+
+                note right of Server: encrypted session key --> session key
+                Server->>Client: Change Cipher Spec
+                Server->>Client: Finished
+              end
+              Note over Client,Server: Symmetric Encryption
+
+              alt Data Transmission
+                Client->>Server: Encrypted Data
+                Note over Client,Server: session key
+                Server->>Client: Encrypted Data
+              end
+            ```
+          </td>
+          <td>
+            <ul>
+              <li>Client and server establish a TCP connection</li>
+              <li>Client sends a "client hello" with encryption preferences and server responds with a "server hello" and SSL certificate</li>
+              <li>Client generates a session key, encrypts it with the server's public key, and sends it. Server decrypts it with its private key</li>
+              <li>Both parties use the shared session key for symmetric encryption, ensuring secure data transmission</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Reasons for switching to symmetric encryption
+                <ul>
+                  <li><b>Security</b>: Asymmetric encryption only works one way, risking decryption if data is sent back to the client</li>
+                  <li><b>Efficiency</b>: Asymmetric encryption is resource-intensive, impractical for long sessions</li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
+
+## Authentication Mechanisms
+
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    ```mermaid
+        graph TB
+
+        subgraph auth [WWW-Authentication]
+          direction LR
+
+          authUser(User) --> |username + password| authServer(Server)
+        end
+
+        auth --> |inability to control the login lifecycle| session
+
+        subgraph session [Session-Cookie]
+          direction LR
+
+          sessionUser(User) --> |cookie| sessionServer(Server)
+          sessionServer --> sessionDb[(DB)]
+          sessionDb --> |session ID| sessionUser
+        end
+
+        session --> |no mobile support| token
+
+        subgraph token [Token-Based]
+          direction LR
+
+          tokenUser(User) --> |token| tokenServer(Server)
+          tokenServer --> |validate token| tokenValidator(Token Validation Service)
+        end
+
+        token --> |reduce token validation| jwt
+
+        subgraph jwt [JWT]
+          direction LR
+
+          jwtToken(Token: header.payload.signature)
+        end
+
+        jwt --> |cross-site login| sso
+
+        subgraph sso [SSO]
+          direction LR
+
+          ssoUser(User) --> ssoDomain1(a.com)
+          ssoUser --> ssoDomain2(b.com)
+          ssoUser --> ssoDomain3(c.com<br/>CAS - Central Authentication Service)
+          ssoDomain1 --> ssoDomain3
+          ssoDomain2 --> ssoDomain3
+        end
+
+        sso --> |3rd party access| oauth
+
+        subgraph oauth [OAuth 2.0]
+            direction LR
+
+            oauthUser(OAuth 2.0) --> |browser & server| code(Authentication Code)
+            oauthUser --> |server only| credentials(User Credentials)
+            oauthUser --> |implicit grant| native(Native App)
+        end
+    ```
+  </TabItem>
+  <TabItem value="credentials" label="Credentials">
+    ```mermaid
+       sequenceDiagram
+       autonumber
+
+       participant Client
+       box Server
+        participant Server
+        participant Database
+       end
+
+       note left of Client: Form with username and password
+
+       Client->>Server: HTTPS Connection <br/> Credentials Encryption with SSL
+       Server->>Server: Decrypts with SSL cert private key
+       Server->>Database: Username lookup & hashed password verification
+       Database->>Server:  
+
+       Server->>Client: Authentication Status
+    ```
+  </TabItem>
+  <TabItem value="jwt" label="JSON Web Token (JWT)">
+    <table>
+        <thead>
+            <tr>
+                <th style={{width: '70%'}}>Visualization</th>
+                <th>Specs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    ```mermaid
+                        sequenceDiagram
+                        autonumber
+
+                        participant User
+                        participant Server
+
+                        box Signing Algorithm
+                            participant JWT Provider
+                            participant JWT Consumer
+                        end
+
+                        User->>Server: Login <br/> username & password
+                        Server->>Server: Validate credentials
+                        Server->>JWT Provider: Create & Sign JWT with secret
+
+                        alt Public Key
+                            JWT Provider->>JWT Provider: Sign JWT with private key
+                            JWT Provider->>JWT Consumer: Signed JWT + Public Key
+                            JWT Consumer->>JWT Consumer: Verify with public key (RS256, ES256)
+                        end
+
+                        alt Symmetric Key
+                            JWT Provider->>JWT Provider: Sign JWT with public key
+                            JWT Provider->>JWT Consumer: Signed JWT
+                            JWT Provider-->JWT Consumer: Shared public key
+                            JWT Consumer->>JWT Consumer: Verify with public key (HS256, HMAC)
+                        end
+
+                        JWT Provider->>Server: Signed JWT
+                        Server->>User: Authorization Bearer JWT Token
+                        User->>User: Store JWT locally
+                        User->>Server: /resource/book<br/>Authorization Bearer JWT Token
+                        Server->>Server: Validate signature
+                        Server->>User: OK - access granted
+                    ```
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <b>JWT Structure</b>
+                            <ul>
+                                <li>
+                                Generate content
+                                    <ul>
+                                        <li>
+                                        Header
+
+                                        ```json
+                                        {
+                                            "alg": "HS256",
+                                            "type": "JWT"
+                                        }
+                                        ```
+                                        </li>
+                                        <li>
+                                            Data
+
+                                            ```json
+                                            {
+                                                "user_id": 1234,
+                                            }
+                                            ```
+                                        </li>
+                                        <li>Signature</li>
+                                    </ul>
+                                </li>
+                                <li>Encode each part using Base64: `base64(header)`, `base64(data)`, `base64(signature)`</li>
+                                <li>Concatenate each part using dot (`.`): `base64(header).base64(data).base64(signature)`</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="oauth" label="Oauth 2.0">
+    <table>
+      <thead>
+        <tr>
+          <th style={{width: '50%'}}>Visualization</th>
+          <th>Definition</th>
+          <th>Involved Parties</th>
+          <th>Flow Types</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            ```mermaid
+               sequenceDiagram
+               autonumber
+
+               participant User
+               participant Web App
+               participant Auth0 Tenant (Identity Provider)
+               participant Server
+
+               User->>Web App: Click login link
+               Web App->>Auth0 Tenant (Identity Provider): Authorization Code Request to `/authorize`
+               Auth0 Tenant (Identity Provider)->>Web App: Redirect to `login/authorization` prompt
+               User->>Auth0 Tenant (Identity Provider): Authenticate & Consent
+               Auth0 Tenant (Identity Provider)->>Web App: Authorization Code
+               Web App->>Auth0 Tenant (Identity Provider): Authorization Code for Application Credentials
+               Auth0 Tenant (Identity Provider)->>Auth0 Tenant (Identity Provider): Validate Authorization Code & Application Credentials
+               Auth0 Tenant (Identity Provider)->>Web App: ID Token & Access Token
+               Web App->>Server: Request user data with Access Token
+               Server->>Web App: Response
+            ```
+          </td>
+          <td>
+            Open Authorization (OAuth): Protocol for sharing user Authorization across systems
+            <ul>
+              <li><b>OAuth 1.0</b>: Protocol designed only for web browser only</li>
+              <li><b>OAuth 2.0</b>: Protocol for cross-platform use (web, mobile, desktop, API)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li><b>User (Resource Owner)</b>: Authorizes flows across systems</li>
+              <li><b>Identity Provider (IdP)</b>: Stores user identity, validates credentials, and shares authorization with other services</li>
+              <li><b>Server</b>: Service user accesses for authorization</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li><b>Authorization code</b>: Client gets a code from server, exchanges for access token</li>
+              <li><b>Client credentials</b>: Client directly authenticates for access to its resources</li>
+              <li><b>Implicit code</b>: Deprecated due to security risks</li>
+              <li><b>Resource owner password</b>: User's credentials exchanged for access token, not recommended for security reasons</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="ssh" label="SSH Keys">
+    ```mermaid
+       sequenceDiagram
+       autonumber
+
+       participant Client
+       participant Server
+
+       note left of Client: Host key: public/private userkey
+       Client->>Server: Authenticator userkey <br/> public key
+       note right of Server: Public userkey & client host keys
+
+       note right of Server: Host key: public/private userkey
+       Server->>Client: Authenticator hostkey <br/> server authentication
+       note left of Client: Public host keys
+    ```
+  </TabItem>
+  <TabItem value="ssl" label="SSL Certificates">
+    ```mermaid
+       sequenceDiagram
+       autonumber
+
+       participant Client
+       participant Server
+
+       Client->>Server: https://google.com
+       Server->>Client: SSL Certificate
+
+       Client->>Client: Validity Expiry Check
+       Client->>Client: Issue Authority (CA) Check
+       Client->>Client: Domain Name Match Check
+
+       Client->>Server: Random Encrypted Key
+       Server->>Server: Decrypts with SSL cert private key
+
+       Server->>Client: Secured Connection
+    ```
+  </TabItem>
+  <TabItem value="2af" label="2FA">
+    2FA (Two-Factor Authentication)
+
+    <table>
+        <thead>
+            <tr>
+                <th style={{width: '80%'}}>Visualization</th>
+                <th>Specs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    ```mermaid
+                       sequenceDiagram
+                       autonumber
+
+                       participant User
+                       participant Authentication Service
+                       participant Database
+                       participant Authenticator Client
+
+                       alt Stage 1: User enables 2SA Service
+                        User->>Authentication Service: Request a secret key
+                        Authentication Service->>Authentication Service: Generate secret key
+                        Authentication Service->>Database: Store secret key
+                        Authentication Service->>User: URI in a form of a QR code<br/>otpauth://topt/issuer:user?secret=secretkey<br/>⇣<br/>otpauth://topt/google:Joe?secret=E884S34
+                        User->>Authenticator Client: Scan QR code
+                        User->>User: Store secret key in Authenticator
+                       end
+
+                       alt Stage 2: User uses 2SA Service for authentication
+                       Authenticator Client->>Authenticator Client: every 30 seconds refreshes secret key (6-digit number)<br/>using TOPT (Time-based One-Time Password) algorithm<br/>⇣<br/>secret key + timestamp = 6-digit number
+                       Authenticator Client->>User: Enter generated password
+                       User->>Authentication Service: Send password to server
+                       Authentication Service->>User: Comparison result of client-side password and server-side password
+                       Authentication Service->>Database: Read secret key<br/>generates password using the same TOTP algorithm<br/>as authenticator client<br/>⇣<br/>secret key + timestamp = 6-digit number
+                       end
+                    ```
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <b>Safety</b>
+                            <ul>
+                                <li>Secret key transmission via `HTTPS`</li>
+                                <li>Encryption of secret keys in client and database</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Security</b>
+                            <ul>
+                                <li>Password (6-digit number) has 1 million combinations</li>
+                                <li>Changes every 30 seconds, making it hard to guess</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>2FA Code Types</b>
+                            <ul>
+                                <li>SMS code, scratch card, mobile app</li>
+                                <li>Hardware token: U2F FIDO key, MFA token, digital ID</li>
+                                <li>Biometric system: finger/hand print, iris scan, behavior/movement tracking</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="2sa" label="2SA">
+    2SA (Two-Step Verification)
+
+    ```mermaid
+           sequenceDiagram
+           autonumber
+
+           participant User
+           participant Server
+           participant Access Granted
+
+           User->>Server: username,password &<br/>2SV (Step Verification) token/cookie
+
+           alt Validate username & password
+            Server->>User: no - auth failed
+            Server->>Server: yes
+           end
+
+           alt 2SV Valid
+            Server->>Access Granted: yes
+            Server->>Server: no
+           end
+
+           Server->>Server: Prompt for OTP (One-Time Password)
+           alt OTP
+            note over Server: Single Factor, 2SV<br/>SMS, email
+            note over Server: Two Factor, 2SV<br/>Google Auth, SmartCard
+           end
+
+           alt 2SV code valid
+            Server->>User: no - password compromised
+            Server->>Server: yes
+           end
+
+           alt User trust this device
+            Server->>User: yes - store 2SV cookie
+            Server->>Access Granted: no
+           end
+    ```
   </TabItem>
 </Tabs>
