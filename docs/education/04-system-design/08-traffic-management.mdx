@@ -1,0 +1,1918 @@
+---
+title: Traffic Management
+description: Traffic Management Design Principles
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Routing
+
+<Tabs queryString="primary">
+  <TabItem value="proxy" label="Gateway Proxy">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>API Gateway</th>
+          <th>Forward Proxy</th>
+          <th>Reverse Proxy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>Visualization</td>
+            <td>
+                ```mermaid
+                    graph TB
+
+                    subgraph user
+                      direction TB
+
+                      web(Web)
+                      mobile(Mobile)
+                    end
+
+                    subgraph gateway [API Gateway]
+                        direction TB
+
+                        validation(Parameter Validation) --> allow(Allow/Deny List)
+                        allow --> auth(Authentication/Authorization)
+                        auth --> rate(Rate Limiting)
+                        rate --> routing(Dynamic Routing)
+                        routing --> discovery(Service Discovery)
+                        discovery --> conversation(Protocol Conversion)
+
+                        error(Error Handling)
+                        breaker(Circuit Breaker)
+                        log(Logging/Monitoring)
+                        cache(Cache)
+                    end
+
+                    user --> |HTTP Request| validation
+
+                    conversation --> microservice(Microservice)
+                    log --> elastic(Elastic)
+                    cache --> redis(Redis)
+                ```
+            </td>
+            <td>
+                ```mermaid
+                    graph TB
+
+                    subgraph LAN
+                        direction TB
+
+                        userA(User)
+                        userB(User)
+                        userC(User)
+                        proxy(Forward Proxy)
+
+                        userA --> proxy
+                        userB --> proxy
+                        userC --> proxy
+                    end
+
+                    proxy --> internet(Internet)
+                    internet --> serverA(Web Server)
+                    internet --> serverB(Web Server)
+                ```
+            </td>
+            <td>
+                ```mermaid
+                    graph TB
+
+                    userA(User) --> internet(Internet)
+                    userB(User) --> internet
+                    userC(User) --> internet
+
+                    subgraph LAN
+                        direction TB
+
+                        proxy(Reverse Proxy) --> serverA(Web Server)
+                        proxy --> serverB(Web Server)
+                    end
+
+                    internet --> proxy
+                ```
+            </td>
+        </tr>
+        <tr>
+          <td>Definition</td>
+          <td>Server that acts as an API front-end, receiving API requests, enforcing throttling and security policies, passing requests to the back-end service, and then passing the response back to the requester</td>
+          <td>Forward proxy, often simply referred to as a proxy, is an intermediary server that sits between the client and the internet. It captures all requests from the client and forwards them to the internet on behalf of the client</td>
+          <td>A reverse proxy is a type of proxy server that sits between the client and one or more backend servers. It accepts requests from clients, forwards those requests to the appropriate servers, and then returns the servers' responses to the clients</td>
+        </tr>
+        <tr>
+          <td>Functionality</td>
+          <td>
+            <ul>
+              <li>Request routing and forwarding</li>
+              <li>Protocol translation</li>
+              <li>Authentication and authorization</li>
+              <li>Rate limiting</li>
+              <li>Caching</li>
+              <li>Monitoring and analytics</li>
+              <li>Transformation and aggregation of requests/responses</li>
+              <li>Load balancing</li>
+              <li>Service discovery</li>
+              <li>Security (SSL termination)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Avoid browsing restrictions</li>
+              <li>Block access to certain content</li>
+              <li>Protect user identity online</li>
+              <li>Anonymity (hides client IP addresses)</li>
+              <li>Access control (filtering requests)</li>
+              <li>Caching</li>
+              <li>Content filtering</li>
+              <li>Bandwidth savings (caching commonly requested content)</li>
+              <li>Security (filtering malicious content)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Load balancing</li>
+              <li>Protect from DDoS attacks</li>
+              <li>Cache static content</li>
+              <li>Encrypt/Decrypt SSL communications</li>
+              <li>Load balancing across multiple backend servers</li>
+              <li>SSL termination</li>
+              <li>Caching</li>
+              <li>Compression</li>
+              <li>Health checks</li>
+              <li>Authentication and authorization</li>
+              <li>Request filtering and manipulation</li>
+              <li>Web acceleration</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Use Cases</td>
+          <td>
+            <ul>
+              <li>Microservices architecture</li>
+              <li>Exposing APIs to external/internal consumers</li>
+              <li>Protocol translation (REST to SOAP)</li>
+              <li>Centralized authentication and authorization</li>
+              <li>Traffic management and monitoring</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Protecting clients</li>
+              <li>Circumventing browsing restrictions</li>
+              <li>Blocking access to certain content</li>
+              <li>Bypassing geographical restrictions</li>
+              <li>Filtering unwanted content</li>
+              <li>Improving performance through caching</li>
+              <li>Anonymizing user traffic</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Protecting servers</li>
+              <li>Load balancing</li>
+              <li>Caching static contents</li>
+              <li>Encrypting and decrypting SSL communications</li>
+              <li>Load balancing across multiple backend servers</li>
+              <li>SSL termination</li>
+              <li>Protecting backend servers from direct exposure to the internet</li>
+              <li>Serving static content efficiently</li>
+              <li>Implementing security measures such as WAF</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Advantages</td>
+          <td>
+            <ul>
+              <li>Centralized management and control of APIs</li>
+              <li>Enhanced security through authentication, authorization, and SSL termination</li>
+              <li>Scalability and flexibility for evolving architectures</li>
+              <li>Traffic monitoring and analytics for insights and optimizations</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Enhanced privacy and security for clients</li>
+              <li>Bandwidth savings through caching</li>
+              <li>Access control and content filtering capabilities</li>
+              <li>Anonymity for clients</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Enhanced security through hiding backend servers</li>
+              <li>Simplified SSL management through termination at the proxy</li>
+              <li>Improved performance through caching and load balancing</li>
+              <li>Scalability by distributing incoming traffic across multiple servers</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Disadvantages</td>
+          <td>
+            <ul>
+              <li>Single point of failure if not properly configured for redundancy</li>
+              <li>Potential performance bottleneck due to centralized processing</li>
+              <li>Complexity in configuration and maintenance</li>
+              <li>Costly implementation and maintenance</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>May introduce latency</li>
+              <li>May require client-side configuration for proper functionality</li>
+              <li>Potential security risks if not properly secured and monitored</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Increased network complexity due to additional infrastructure</li>
+              <li>Potential performance degradation due to additional hops</li>
+              <li>SSL termination may introduce security risks if not properly implemented and managed</li>
+              <li>Configuration complexity, especially with multiple backend servers</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Vendors</td>
+          <td>
+            <ul>
+              <li>AWS API Gateway</li>
+              <li>Azure API Management</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Squid</li>
+              <li>Tor</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Envoy</li>
+              <li>HAProxy</li>
+              <li>Nginx</li>
+              <li>Traefik</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="balancer" label="Load Balancer (LB)">
+    <Tabs queryString="secondary">
+      <TabItem value="algorithms" label="Algorithms" attributes={{className:"tabs__vertical"}}>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Algorithm</th>
+                      <th style={{minWidth: '350px'}}>Visualization</th>
+                      <th>Type</th>
+                      <th>Definition</th>
+                      <th>Use Cases</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td><b>Round Robin</b></td>
+                    <td>
+                        ```mermaid
+                            graph LR
+
+                            client1(Client A) --> |req2<br/>req1| lb(Load Balancer)
+                            client2(Client B) --> |req4<br/>req3| lb
+
+                            lb --> |req4<br/>req1| serviceA(Service A)
+                            lb --> |req2| serviceB(Service B)
+                            lb --> |req3| serviceC(Service C)
+                        ```
+                    </td>
+                    <td>Static</td>
+                    <td>
+                        <ul>
+                            <li>Client requests are sent to different service instances in sequential order</li>
+                            <li>Services are usually required to be stateless</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>High-traffic web application that experiences spikes in user requests during peak hours</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Sticky Round Robin</b></td>
+                    <td>
+                        ```mermaid
+                            graph LR
+
+                            client1(Client A) --> |req2<br/>req1| lb(Load Balancer)
+                            client2(Client B) --> |req4<br/>req3| lb
+
+                            lb --> |req2<br/>req1| serviceA(Service A)
+                            lb --> |req4<br/>req3| serviceB(Service B)
+                            lb --> serviceC(Service C)
+                        ```
+                    </td>
+                    <td>Static</td>
+                    <td>
+                        <ul>
+                            <li>Improved round-robin algorithm</li>
+                            <li>If user's first request goes to service A, the following requests go to service A as well</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Ensures that subsequent requests from the same client are directed to the same server, maintaining session state for smooth user experiences in stateful applications</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Weighted Round Robin</b></td>
+                    <td>
+                        ```mermaid
+                            graph LR
+
+                            client1(Client A) --> |req2<br/>req1| lb(Load Balancer)
+                            client2(Client B) --> |req4<br/>req3| lb
+
+                            lb --> |req3<br/>req2<br/>req1| serviceA(Service A<br/>weight: 0.8)
+                            lb --> |req4| serviceB(Service B<br/>weight: 0.1)
+                            lb --> serviceC(Service C<br/>weight: 0.1)
+                        ```
+                    </td>
+                    <td>Static</td>
+                    <td>
+                        <ul>
+                            <li>Admin can specify the weight for each service</li>
+                            <li>The ones with a higher weight handle more requests than others</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Data processing tasks that require significant computational resources</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>IP/URL Hash</b></td>
+                    <td>
+                        ```mermaid
+                            graph LR
+
+                            client1(Client A) --> |req2<br/>req1| lb(Load Balancer)
+                            client2(Client B) --> |req4<br/>req3| lb
+
+                            lb --> |"hash(IP) = 0<br/>req2<br/>req1"| serviceA(Service A<br/>handle hash 0)
+                            lb --> serviceB(Service B<br/>handle hash 1)
+                            lb --> |"hash(IP) = 2<br/>req4<br/>req3"| serviceC(Service C<br/>handle hash 2)
+                        ```
+                    </td>
+                    <td>Static</td>
+                    <td>
+                        <ul>
+                            <li>Applies a hash function on the incoming requests’ IP or URL</li>
+                            <li>The requests are routed to relevant instances based on the hash function result</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Session persistence for stateful applications and maintains data integrity for transactions that span multiple requests</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Least Connections</b></td>
+                    <td>
+                        ```mermaid
+                            graph LR
+
+                            client1(Client A) --> |req2<br/>req1| lb(Load Balancer)
+                            client2(Client B) --> |req4<br/>req3| lb
+
+                            lb --> serviceA(Service A<br/>connections: 1000)
+                            lb --> serviceB(Service B<br/>connections: 100)
+                            lb --> |req4<br/>req3<br/>req2<br/>req1| serviceC(Service C<br/>connections: 10)
+                        ```
+                    </td>
+                    <td>Dynamic</td>
+                    <td>
+                        <ul>
+                            <li>New request is sent to the service instance with the least concurrent connections</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Real-time messaging platform where low latency is critical for user satisfaction</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Least Time</b></td>
+                    <td>
+                        ```mermaid
+                            graph LR
+
+                            client1(Client A) --> |req2<br/>req1| lb(Load Balancer)
+                            client2(Client B) --> |req4<br/>req3| lb
+
+                            lb --> serviceA(Service A<br/>response time: 100ms)
+                            lb --> serviceB(Service B<br/>response time: 10ms)
+                            lb --> |req4<br/>req3<br/>req2<br/>req1| serviceC(Service C<br/>response time: 1ms)
+                        ```
+                    </td>
+                    <td>Dynamic</td>
+                    <td>
+                        <ul>
+                            <li>New request is sent to the service instance with the fastest response time</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Online banking services that must remain available 24/7 without any single points of failure</li>
+                        </ul>
+                    </td>
+                </tr>
+              </tbody>
+          </table>
+        </TabItem>
+        <TabItem value="components" label="Components">
+          <table class="text_vertical">
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Hardware LB</th>
+                <th>Software LB</th>
+                <th>Virtual LB</th>
+                <th>Cloud LB</th>
+                <th>Application LB</th>
+                <th>Network LB</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Definition</b></td>
+                <td>Physical devices dedicated to distributing incoming network traffic across multiple servers</td>
+                <td>Applications or services that perform load balancing functions using software running on standard hardware</td>
+                <td>Operate as software instances within virtualized environments</td>
+                <td>Load balancing services provided by cloud service providers</td>
+                <td>Operate at the application layer, making routing decisions based on application-specific data</td>
+                <td>Operate at the transport layer, distributing traffic based on IP addresses and ports</td>
+              </tr>
+              <tr>
+                <td><b>Features</b></td>
+                <td>
+                  <ul>
+                    <li>Built for high availability and scalability</li>
+                    <li>Typically offer advanced traffic management features such as SSL termination, session persistence, and health monitoring</li>
+                    <li>Often come with redundant power supplies, fans, and network interfaces for high availability</li>
+                    <li>Can handle large volumes of traffic without performance degradation</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Flexible deployment options, including on-premises, virtual machines, or cloud-based instances</li>
+                    <li>Scalable and customizable through software configurations</li>
+                    <li>Can integrate with other software components in the infrastructure stack</li>
+                    <li>Often provide APIs for automation and integration with orchestration tools</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Designed for cloud-native applications and virtualized infrastructures</li>
+                    <li>Offer the flexibility of scaling up or down based on demand</li>
+                    <li>Can be deployed alongside other virtualized services for streamlined management</li>
+                    <li>Often support dynamic configuration changes without service interruption</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Fully managed by the cloud provider, reducing operational overhead</li>
+                    <li>Seamlessly integrate with other cloud services and resources</li>
+                    <li>Auto-scaling capabilities to handle fluctuating workloads</li>
+                    <li>Often include features such as content-based routing and global load balancing for distributed applications</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Support for HTTP/HTTPS protocols with advanced routing capabilities</li>
+                    <li>Enable features like URL-based routing, path-based routing, and host-based routing</li>
+                    <li>Often include built-in support for WebSockets, SSL offloading, and HTTP/2</li>
+                    <li>Ideal for modern microservices architectures and containerized applications</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>High-performance load balancing with low latency</li>
+                    <li>Support for both TCP and UDP protocols</li>
+                    <li>Often used for high-throughput applications such as streaming media or gaming</li>
+                    <li>Can handle millions of requests per second with minimal overhead</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Use Cases</b></td>
+                <td>
+                  <ul>
+                    <li>Large-scale Business Environments: where high throughput and low latency are critical</li>
+                    <li>High Traffic Websites: distribute incoming traffic across multiple servers to ensure high availability and reliability</li>
+                    <li>Managed Data Centers: distribute server load and prevent server overload</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Microservices Architecture & Cloud-native Applications: distribute traffic between multiple instances of a service</li>
+                    <li>Cost-effective Solution: no need for dedicated hardware</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Cloud Migration: used during cloud migration to ensure seamless transition and minimal downtime</li>
+                    <li>Scalability: they can easily expanded or contracted based on demand</li>
+                    <li>Virtualized Environments: distribute traffic across virtual servers or instances</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Multi-cloud Environments: distribute traffic across servers in different cloud platforms</li>
+                    <li>Cloud-native Applications: distribute traffic across multiple servers or instances</li>
+                    <li>High Availability: ensure high availability and reliability for applications hosted in the cloud</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Microservices: distribute traffic across multiple instances of a service based on the content of the request</li>
+                    <li>Container-based Applications: distribute traffic across multiple containers</li>
+                    <li>Layer 7 Load Balancing: used when layer 7 (OSI Application Layer) load balancing is required</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>High-performance Environments: low latency and high throughput are critical</li>
+                    <li>TCP Traffic: distribute TCP traffic across multiple servers or instances</li>
+                    <li>Layer 4 Load Balancing: layer 4 (OSI Transport Layer) load balancing is required</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </TabItem>
+        <TabItem value="techniques" label="Techniques">
+          <table>
+            <thead>
+              <tr>
+                <th>Load Balancing Technique</th>
+                <th>Description</th>
+                <th>Benefits</th>
+                <th>Pros</th>
+                <th>Cons</th>
+                <th>Considerations</th>
+                <th>Use Cases</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Session Persistence</b></td>
+                <td>Ensures that subsequent requests from a client are directed to the same backend server</td>
+                <td>
+                  <ul>
+                    <li>Ensures consistent user experience</li>
+                    <li>Improves application performance (reduced data transfer)</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Enhanced user experience</li>
+                    <li>Useful for applications requiring stateful connections</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Can lead to uneven distribution of traffic</li>
+                    <li>Potential for session affinity issues if not implemented correctly</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires additional configuration</li>
+                    <li>May not be suitable for stateless applications</li>
+                  </ul>
+                </td>
+                <td>Maintains user sessions by routing requests from the same client to the same server</td>
+              </tr>
+              <tr>
+                <td><b>SSL Offloading</b></td>
+                <td>SSL/TLS decryption and encryption processes are offloaded from backend servers to the Load Balancer</td>
+                <td>
+                  <ul>
+                    <li>Improves server performance (offloads encryption/decryption)</li>
+                    <li>Reduces server CPU usage</li>
+                    <li>Centralizes SSL certificate management</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Reduces server load by offloading SSL/TLS processing</li>
+                    <li>Improves performance by centralizing encryption and decryption tasks</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires careful handling of SSL certificates and keys</li>
+                    <li>Potential single point of failure if the Load Balancer is compromised</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires a load balancer with SSL termination capabilities</li>
+                    <li>Potential security concerns if the load balancer is compromised</li>
+                  </ul>
+                </td>
+                <td>Relieves servers from decrypting SSL/TLS traffic, enhancing performance</td>
+              </tr>
+              <tr>
+                <td><b>Health Checks</b></td>
+                <td>Perform health checks to monitor the availability and status of backend servers, ensuring that traffic is only routed to healthy servers</td>
+                <td>
+                  <ul>
+                    <li>Improves application uptime and availability</li>
+                    <li>Prevents overloading failing servers</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Ensures high availability by detecting and routing traffic away from unhealthy servers</li>
+                    <li>Improves reliability and fault tolerance</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>False positives/negatives can occur if health checks are not properly configured</li>
+                    <li>Adds overhead to network traffic due to health check requests</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires configuring health check parameters (ping checks, HTTP status codes)</li>
+                    <li>Potential for false positives or negatives</li>
+                  </ul>
+                </td>
+                <td>Monitors server health, removes failed servers, ensures high availability</td>
+              </tr>
+              <tr>
+                <td><b>Content-Based Routing</b></td>
+                <td>Traffic is routed based on specific content attributes, such as URL paths or headers, allowing for more granular control over traffic distribution</td>
+                <td>
+                  <ul>
+                    <li>Improves application performance (directing traffic to optimal servers)</li>
+                    <li>Enables advanced traffic management (A/B testing)</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Enables flexible routing based on application-specific criteria</li>
+                    <li>Useful for microservices architectures and content-based applications</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Increased complexity in configuration and management</li>
+                    <li>Requires deep understanding of application traffic patterns and content</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires careful configuration to avoid routing errors</li>
+                    <li>May increase load balancer complexity</li>
+                  </ul>
+                </td>
+                <td>Routes traffic based on request content for optimized distribution</td>
+              </tr>
+              <tr>
+                <td><b>Global Server Load Balancing (GSLB)</b></td>
+                <td>Technique for distributing traffic across multiple geographically dispersed data centers or points of presence (PoPs), improving performance and reliability for global users</td>
+                <td>
+                  <ul>
+                    <li>Improves application performance (reduced latency)</li>
+                    <li>Enhances user experience globally</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Enhances performance and reliability for geographically distributed users</li>
+                    <li>Enables disaster recovery and failover capabilities across multiple locations</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Complex to configure and manage, especially for multi-site deployments</li>
+                    <li>Requires synchronization of DNS records and health checks across distributed locations</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires additional infrastructure and configuration</li>
+                    <li>May introduce complexity for managing geographically distributed servers</li>
+                  </ul>
+                </td>
+                <td>Distributes traffic across multiple data centers for performance and availability</td>
+              </tr>
+              <tr>
+                <td><b>Queue-based Load Balancing</b></td>
+                <td>Incoming requests are queued and distributed to backend servers based on predefined algorithms, such as round-robin or least connections</td>
+                <td>
+                  <ul>
+                    <li>Handles high traffic spikes effectively</li>
+                    <li>Improves application scalability</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Fair distribution of traffic among backend servers</li>
+                    <li>Prevents overload of individual servers by queuing requests</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>May introduce latency, especially during periods of high traffic</li>
+                    <li>Requires careful tuning of queue management parameters</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires additional infrastructure (queueing system)</li>
+                    <li>May introduce processing delays for requests</li>
+                  </ul>
+                </td>
+                <td>Regulates request rates, ensures fair workload distribution</td>
+              </tr>
+              <tr>
+                <td><b>Dynamic Load Balancing</b></td>
+                <td>Adjust traffic distribution based on real-time metrics, such as server load, network latency, or user location, ensuring optimal performance and resource utilization</td>
+                <td>
+                  <ul>
+                    <li>Optimizes resource utilization</li>
+                    <li>Improves application performance dynamically</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Adapts to changing traffic conditions for optimal performance</li>
+                    <li>Improves scalability by dynamically scaling resources based on demand</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires sophisticated algorithms and monitoring systems</li>
+                    <li>Potential performance overhead due to real-time decision making</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Requires advanced load balancing software with dynamic algorithms</li>
+                    <li>May introduce complexity in managing dynamic traffic distribution</li>
+                  </ul>
+                </td>
+                <td>Scales resources dynamically based on real-time demand to optimize performance and cost</td>
+              </tr>
+            </tbody>
+          </table>
+        </TabItem>
+        <TabItem value="deployment" label="Deployment Architecture">
+          <table>
+              <thead>
+                <tr>
+                  <th>Deployment Architecture</th>
+                  <th>Description</th>
+                  <th>Advantages</th>
+                  <th>Disadvantages</th>
+                  <th>Use Cases</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Single Load Balancer</b></td>
+                  <td>Central traffic director for all requests</td>
+                  <td>Simple deployment, low cost</td>
+                  <td>Single point of failure (SPOF), limited scalability</td>
+                  <td>
+                    <ul>
+                      <li>Low-traffic web applications</li>
+                      <li>Proof-of-concept (POC) deployments</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Multiple Load Balancers</b></td>
+                  <td>Multiple devices for redundancy and scalability</td>
+                  <td>High availability (HA), improved scalability</td>
+                  <td>Increased complexity, management overhead</td>
+                  <td>
+                    <ul>
+                      <li>Mission-critical applications</li>
+                      <li>Geographical redundancy</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Active-Passive Load Balancers</b></td>
+                  <td>One active, one passive load balancer for failover</td>
+                  <td>High availability, fast failover</td>
+                  <td>Passive LB underutilized, single point of failure within active LB</td>
+                  <td>
+                    <ul>
+                      <li>High availability</li>
+                      <li>Moderate traffic volumes</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Active-Active Load Balancers</b></td>
+                  <td>Multiple load balancers actively handle traffic</td>
+                  <td>Highest availability, excellent scalability</td>
+                  <td>Most complex configuration, careful health check implementation</td>
+                  <td>
+                    <ul>
+                      <li>High-traffic</li>
+                      <li>Mission-critical applications</li>
+                      <li>Large-scale deployments</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="protocols" label="Protocols">
+          <table>
+            <thead>
+              <tr>
+                <th>Protocol</th>
+                <th>Layer</th>
+                <th>Description</th>
+                <th>Considerations</th>
+                <th>Load Balancing Algorithms (Common)</th>
+                <th>Typical Applications</th>
+                <th>Vendors</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>HTTP Load Balancing</b></td>
+                <td>Application (Layer 7)</td>
+                <td>Distributes incoming HTTP requests across a pool of web servers. Analyzes request content (URLs, headers, etc.) for intelligent routing</td>
+                <td>
+                  <ul>
+                    <li>High performance for web applications</li>
+                    <li>Requires understanding of application logic</li>
+                    <li>May not be suitable for static content</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Round Robin</li>
+                    <li>Least Connections</li>
+                    <li>Least Response Time</li>
+                    <li>URL/Path Based Routing</li>
+                    <li>Content Based Routing</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Web servers</li>
+                    <li>API Gateways</li>
+                    <li>Content Delivery Networks (CDNs)</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>HAProxy</li>
+                    <li>NGINX</li>
+                    <li>AWS Application Load Balancer (ALB)</li>
+                    <li>Azure Application Gateway</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>TCP Load Balancing</b></td>
+                <td>Transport (Layer 4)</td>
+                <td>Distributes incoming TCP connections across a pool of servers. Operates at the transport layer without inspecting application data</td>
+                <td>
+                  <ul>
+                    <li>Faster than HTTP Load Balancing due to simpler processing</li>
+                    <li>Limited visibility into application traffic</li>
+                    <li>Not suitable for applications with specific routing needs</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Round Robin</li>
+                    <li>Least Connections</li>
+                    <li>Least Active Connections</li>
+                    <li>Source IP Persistence</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Generic TCP services</li>
+                    <li>Database servers</li>
+                    <li>Email servers</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>HAProxy</li>
+                    <li>F5 BIG-IP</li>
+                    <li>Google Cloud Network Load Balancer (NLB)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>UDP Load Balancing</b></td>
+                <td>Transport (Layer 4)</td>
+                <td>Distributes incoming UDP datagrams across a pool of servers. Offers minimal processing overhead</td>
+                <td>
+                  <ul>
+                    <li>Highly efficient for connectionless protocols</li>
+                    <li>Limited control over traffic flow</li>
+                    <li>Requires application-level handling of packet order and loss</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Round Robin</li>
+                    <li>Least Connections</li>
+                    <li>Hashing</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Gaming servers</li>
+                    <li>Streaming media servers</li>
+                    <li>Voice over IP (VoIP)</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>HAProxy (with limitations)</li>
+                    <li>F5 BIG-IP (Advanced Networking Module)</li>
+                    <li>KEMP LoadMaster</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>SSL/TLS Load Balancing</b></td>
+                <td>Application (Layer 7)</td>
+                <td>Terminates and decrypts incoming SSL/TLS connections, then forwards traffic to backend servers using another load balancing protocol (often HTTP or TCP)</td>
+                <td>
+                  <ul>
+                    <li>Improves server performance by offloading encryption/decryption tasks</li>
+                    <li>Provides a single point of management for SSL certificates</li>
+                    <li>May introduce additional latency</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Follows algorithms of underlying load balancing protocol (e.g., Round Robin for HTTP)</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Secure web servers</li>
+                    <li>E-commerce platforms</li>
+                    <li>Online banking applications</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>HAProxy (with SSL module)</li>
+                    <li>NGINX (with SSL module)</li>
+                    <li>AWS Application Load Balancer (with SSL termination)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>WebSocket Load Balancing</b></td>
+                <td>Application (Layer 7)</td>
+                <td>Distributes WebSocket connections across a pool of servers. Manages complex handshake and stateful nature of WebSockets</td>
+                <td>
+                  <ul>
+                    <li>Enables real-time, two-way communication between clients and servers</li>
+                    <li>Requires specialized load balancers that understand WebSocket protocol</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Round Robin (with session persistence)</li>
+                    <li>Least Connections (with session persistence)</li>
+                    <li>URL/Path Based Routing</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Chat applications</li>
+                    <li>Collaborative editing tools</li>
+                    <li>Real-time dashboards</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>HAProxy (with WebSocket module)</li>
+                    <li>NGINX (with modules like NGINX Plus)</li>
+                    <li>Traefik (with WebSocket support)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>MQTT Load Balancing</b></td>
+                <td>Application (Layer 7)</td>
+                <td>Distributes MQTT (Message Queuing Telemetry Transport) messages across a pool of message brokers. Handles topics, QoS levels, and client subscriptions</td>
+                <td>
+                  <ul>
+                    <li>Enables lightweight messaging for Machine-to-Machine (M2M) communication (IoT)</li>
+                    <li>Requires specialized load balancers with MQTT protocol awareness</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Round Robin</li>
+                    <li>Least Connections</li>
+                    <li>Topic-based Routing</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Industrial automation</li>
+                    <li>Sensor networks</li>
+                    <li>Smart home applications</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>HAProxy (with custom modules)</li>
+                    <li>Mosquitto (with clustering capabilities)</li>
+                    <li>HiveMQ Enterprise (with load balancing)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Other Protocols</b></td>
+                <td></td>
+                <td>Load balancing can also be extended to support various other protocols depending on specific application needs</td>
+                <td>
+                  <ul>
+                    <li>Requires custom configurations or specialized load balancers</li>
+                    <li>May have limited vendor support</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Protocol-specific algorithms</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Custom applications</li>
+                    <li>Proprietary protocols</li>
+                    <li>Emerging technologies</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>HAProxy (with custom modules)</li>
+                    <li>F5 BIG-IP (iRules scripting)</li>
+                    <li>Vendor-specific load balancers</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </TabItem>
+        <TabItem value="practices" label="Best Practices">
+          - **Scalability Considerations**
+            - Choose a load balancer that supports horizontal scaling (adding more instances) and vertical scaling (increasing resource allocation per instance)
+            - Identify scaling triggers based on metrics like CPU, memory, or connection volume
+            - Consider autoscaling features that automatically adjust resources based on real-time load
+          - **Redundancy and High Availability**
+            - Implement redundant load balancers in an active/active or active/passive configuration
+            - Utilize health checks to monitor server health and automatically remove unhealthy servers from the pool
+            - Design for failover capabilities to seamlessly reroute traffic in case of failures
+          - **Load Testing and Performance Tuning**
+            - Perform load testing under various traffic scenarios (peak hours, sudden spikes)
+            - Analyze metrics like response times, throughput, and error rates
+            - Fine-tune load balancing algorithms (round robin, least connections) based on application behavior
+          - **Regular Maintenance and Updates**
+            - Schedule regular updates to address new features, bug fixes, and security vulnerabilities
+            - Implement configuration management tools for consistent and repeatable deployments
+            - Monitor system logs for potential issues and troubleshoot proactively
+          - **Disaster Recovery Planning**
+            - Design a disaster recovery plan that outlines actions for restoring the load balancing service
+            - Consider geographically dispersed deployments for redundancy in case of regional outages
+            - Test the disaster recovery plan regularly to ensure effectiveness
+        </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>
+
+## Rate Limiter
+
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    <Tabs queryString="secondary">
+      <TabItem value="definition" label="Definition" attributes={{className:"tabs__vertical"}}>
+        Regulates incoming and outgoing traffic. By setting maximum request thresholds within specific time frames, it controls flow at various system levels, such as APIs, servers, and networks.
+
+        **Core Concepts**
+
+        - **Request Rate**: Maximum allowable requests in a set time
+        - **Time Window**: Duration for rate restriction to apply
+      </TabItem>
+      <TabItem value="workflow" label="Workflow">
+        - **Tracking Requests**: System monitors incoming requests, typically keeping track of the IP address or unique identifier of the requester
+        - **Time Window & Limits**: Specific time window is defined. Within this window, a limit is set on the number of allowable requests from a single source (IP address or identifier)
+        - **Throttling & Blocking**: If a requester exceeds the defined limit within the time window, their requests are throttled or blocked for a predetermined period. This essentially puts them on hold until the next window opens
+      </TabItem>
+      <TabItem value="benefits" label="Benefits">
+        - **Prevent DoS Attacks**: Shields servers from overload caused by excessive requests, thwarting malicious attempts to render services unavailable
+        - **Mitigate Abusive Usage**: Curbs server overload from web scrapers and data miners, promoting fair resource allocation
+        - **Enhance Scalability & Performance**: Regulating traffic flow improves system stability and performance by preventing server overload
+        - **Protect Logins & Accounts**: On login pages slows down brute-force attacks, bolstering account security by impeding rapid login attempts
+        - **Manage API Access**: Prevents resource monopolization, ensuring equitable access for all applications
+      </TabItem>
+      <TabItem value="granularity" label="Granularity">
+        <table className="text_vertical">
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>IP Address-Based Rate Limiting</th>
+              <th>User ID-Based Rate Limiting</th>
+              <th>API Key-Based Rate Limiting</th>
+              <th>Combining Granularity Levels</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Restricts requests based on the source IP address</td>
+              <td>Limits requests based on user identity</td>
+              <td>Controls access by using API keys provided by the service</td>
+              <td>
+                Allows for multiple levels of granularity to be applied simultaneously
+                <ul>
+                  <li>**Multi-factor Authentication (MFA)**: Leveraging IP address, user ID, and additional factors like device identification can create a strong defense</li>
+                  <li>**Risk-based Rate Limiting**: Dynamically adjusting rate limits based on user behavior and past activity for a more personalized approach</li>
+                  <li>**Challenge-Response Mechanisms**: Implementing CAPTCHAs or additional verification steps for suspected high-risk requests</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Cons</b></td>
+              <td>
+                <ul>
+                  <li>Catches innocent bystanders (multiple users behind same IP)</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Vulnerable to account sharing</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Doesn't prevent brute-force attacks targeting specific users</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Increased complexity</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>
+                <ul>
+                  <li>Basic applications where IP addresses are stable</li>
+                  <li>Protects login endpoints</li>
+                  <li>Prevents denial-of-service (DoS) attacks</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Applications with identifiable user sessions</li>
+                  <li>Enforcing usage quotas</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>APIs serving multiple clients with distinct access requirements</li>
+                  <li>Securing API endpoints</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Complex systems requiring flexible access control policies</li>
+                  <li>Mitigating targeted attacks</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+  <TabItem value="strategies" label="Strategies">
+    <Tabs queryString="secondary">
+      <TabItem value="fixedWindow" label="Fixed Window Counter" attributes={{className:"tabs__vertical"}}>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Visualization</b></td>
+              <td>
+                ```mermaid
+                  graph LR
+
+                  subgraph capacity [Bucket Capacity: 2]
+                    direction LR
+
+                    subgraph window1 [Window]
+                      direction TB
+
+                      req1((consumed))
+                      req2((consumed))
+                      req3[[dropped]]
+                      req4[[dropped]]
+                    end
+
+                    min1((01:00))
+                    min2((02:00))
+                    min3((03:00))
+                    min4((04:00))
+
+                    min1 --> window1 --> min2
+
+                    subgraph window2 [Window]
+                      direction TB
+
+                      req5((consumed))
+                    end
+
+                    min2 --> window2 --> min3
+
+                    subgraph window3 [Window]
+                      direction TB
+
+                      req6((consumed))
+                      req7((consumed))
+                    end
+
+                    min3 --> window3 --> min4
+                  end
+                ```
+              </td>
+            </tr>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Counts the number of requests within fixed time windows and compares it to a preset limit</td>
+            </tr>
+            <tr>
+              <td><b>Process</b></td>
+              <td>
+                <ul>
+                  <li><b>Request Arrival</b>: When a request arrives, the system identifies the client making the request</li>
+                  <li><b>Window Determination</b>: The system determines the current time window based on the current timestamp and the pre-defined window size</li>
+                  <li><b>Counter Update</b>: The system retrieves the current counter value for the identified client within the current window</li>
+                  <li>
+                    <b>Rate Limit Check</b>: The system compares the current counter value with the predefined limit (L)
+                    <ul>
+                      <li><b>Allowed (Counter < L):</b> If the counter is less than the limit, the request is allowed. The counter is then incremented by one</li>
+                      <li><b>Denied (Counter >= L):</b> If the counter has already reached the limit, the request is denied due to exceeding the rate limit for the window</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Window Reset</b>: As time progresses, windows expire. When a new window begins, the counter for that window is reset to zero
+                    <ul>
+                      <li>The counter for that window is reset to zero</li>
+                      <li>Clients are eligible for their new quota of requests within the new window</li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Example</b></td>
+              <td>
+                Prerequisites: 1-minute window with capacity of 2
+                <ul>
+                  <li>0 seconds: 1 request push counter to 1</li>
+                  <li>30 seconds: 1 more request, reaching the 2-request limit</li>
+                  <li>45 seconds: 2 new requests denied, limit reached</li>
+                  <li>60 seconds: Counter resets to 0 for new window</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Functionality</b></td>
+              <td>
+                <ul>
+                  <li>Time is divided into fixed windows</li>
+                  <li>Each window allows a maximum number of requests</li>
+                  <li>Once the limit is reached, no more requests are allowed until the next window starts</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Pros</b></td>
+              <td>Easy to understand and implement</td>
+            </tr>
+            <tr>
+              <td><b>Cons</b></td>
+              <td>Prone to request bursts</td>
+            </tr>
+            <tr>
+              <td><b>Streaming APIs</b></td>
+              <td>Not ideal, window might miss bursts across segments</td>
+            </tr>
+            <tr>
+              <td><b>Geo-fencing</b></td>
+              <td>Can be combined with IP address tracking</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>
+                <ul>
+                  <li>Simple rate limiting scenarios</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="leakyBucket" label="Leaky Bucket">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Visualization</b></td>
+              <td>
+                ```mermaid
+                  graph LR
+
+                  userA(User) ---> |add req1| bucket[[Bucket]]
+                  userB(User) ---> |add req2| bucket
+                  userC(User) ---x |add req3| bucket
+
+                  bucket ~~~|Capacity: 2| bucket
+
+                  bucket --> |1 req/sec| service(Service)
+                ```
+              </td>
+            </tr>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Similar to the Token Bucket, but instead of tokens, it leaks requests at a constant rate</td>
+            </tr>
+            <tr>
+              <td><b>Process</b></td>
+              <td>
+                <ul>
+                  <li>
+                    <b>Request Arrival</b>: When a request arrives at your system
+                    <ul>
+                      <li>The system checks the bucket's current capacity</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Bucket Not Full</b>: If the bucket isn't full (available space > 0)
+                    <ul>
+                      <li>The request is added to the bucket (like water being poured in)</li>
+                      <li>The request waits in a queue (typically first-in-first-out, FIFO) for processing</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Bucket Full</b>: If the bucket is already at its capacity
+                    <ul>
+                      <li>
+                        Handle overflow
+                        <ul>
+                          <li><b>Dropping Requests</b>: The request is dropped (rejected) as the system can't handle additional load</li>
+                          <li><b>Queueing with Overflow</b>: The request is queued, but behind existing requests. This can lead to increased processing latency for newer requests</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Request Processing</b>: The system continuously removes requests from the bucket at the leak rate
+                    <ul>
+                      <li>As long as the bucket has requests, the system processes them according to the queue order (FIFO)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Example</b></td>
+              <td>
+                <ul>
+                  Prerequisites: Capacity = 2
+                  <li>First request: The bucket is empty, so the first request is added</li>
+                  <li>Second request: Still space, the second request joins the bucket</li>
+                  <li>Third to Fifth Requests: The bucket fills up (all 2 slots occupied), so these requests are either dropped (strict enforcement) or queued (lenient approach)</li>
+                  <li>
+                    Request Processing: The system continuously processes requests at 1 per second
+                    <ul>
+                      <li>If using a queue, the first two requests are processed immediately</li>
+                      <li>Subsequent requests wait until space becomes available (requests in front of them are processed)</li>
+                    </ul>
+                  </li>
+                  <li>Bucket Refill: Even while processing requests, the bucket is constantly refilled at 1 per second. This ensures it can accommodate new requests as space becomes available</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Functionality</b></td>
+              <td>
+                <ul>
+                  <li>Requests enter the bucket</li>
+                  <li>Requests are processed at a constant rate</li>
+                  <li>If the requests come in too fast, the bucket overflows and excess requests are discarded</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Pros</b></td>
+              <td>Simplicity in implementation</td>
+            </tr>
+            <tr>
+              <td><b>Cons</b></td>
+              <td>Potential burstiness</td>
+            </tr>
+            <tr>
+              <td><b>Streaming APIs</b></td>
+              <td>Suitable, allows for controlled bursts within segments</td>
+            </tr>
+            <tr>
+              <td><b>Geo-fencing</b></td>
+              <td>Can be combined with location-based rate limit</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>
+                <ul>
+                  <li>Network traffic shaping</li>
+                  <li>QoS (Quality of Service)</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="slidingWindow" label="Sliding Window">
+        <table class="text_vertical">
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Sliding Window Counter</th>
+              <th>Sliding Window Log</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Visualization</b></td>
+              <td colspan="2">
+                ```mermaid
+                  graph LR
+
+                  subgraph window
+                    direction LR
+
+                    subgraph bucket [Bucket Capacity: 2]
+                      direction LR
+
+                      req1((consumed))
+                      req2((consumed))
+                      req3[[dropped]]
+                      req4[[dropped]]
+                    end
+
+                    min11(( ))
+                    min2((02:00))
+                    min21(( ))
+                  end
+
+                  min1((01:00))
+                  min3((03:00))
+
+
+                  min1 --> min11
+                  min11 --> bucket
+                  bucket --> min2
+                  min2 --> min21
+                  min21 --> min3
+                ```
+              </td>
+            </tr>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Tracks request timestamps in a log to calculate the number of requests within sliding time windows</td>
+              <td>Maintains a log of timestamps for requests and slides a window over it to calculate rates</td>
+            </tr>
+            <tr>
+              <td><b>Distinction</b></td>
+              <td>Maintains a counter for each event or category of events</td>
+              <td>Instead of counting occurrences, it records details or metadata of events within the window</td>
+            </tr>
+            <tr>
+              <td><b>Process</b></td>
+              <td>
+                <ul>
+                  <li>
+                    Initialization
+                    <ul>
+                      <li>Define the window size and rate limit</li>
+                      <li>Initialize a counter to `0`</li>
+                      <li>Implement a queue (or similar data structure) to maintain request timestamps within the window</li>
+                    </ul>
+                  </li>
+                  <li>Request Arrival: When a new request arrives, record the current timestamp</li>
+                  <li>Slide Window (Optional Optimization): Before adding the new request, optionally slide the window forward by removing timestamps older than (`timestamp - window size`) from the queue. This ensures the counter only reflects requests within the current window</li>
+                  <li>Update Counter: Increment the counter (`counter + 1`)</li>
+                  <li>Rate Limit Check: Check if the counter exceeds the rate limit (`counter > rate limit`)</li>
+                  <li>
+                    Grant/Deny Request
+                    <ul>
+                      <li>If (`counter > rate limit`), reject the request (rate limit exceeded)</li>
+                      <li>If (`counter <= rate limit`), allow the request and add the timestamp to the queue</li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    Prerequisites
+                    <ul>
+                      <li>Rate limit = 10 requests/min</li>
+                      <li>Window size = 1 min</li>
+                      <li>
+                        Data Structure: to store request timestamps
+                        <ul>
+                          <li>**Circular Buffer**: Maintains a fixed size buffer, overwriting older entries when full</li>
+                          <li>**Sorted List**: Stores timestamps in chronological order, enabling efficient removal of outdated entries</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Request Arrival
+                    <ul>
+                      <li>**Remove outdated entries**: Eliminate timestamps older than the window's leading edge (`current time - window size`)</li>
+                      <li>**Add the current timestamp**: to the data structure</li>
+                    </ul>
+                  </li>
+                  <li>**Rate Check**: Calculate the number of requests within the current window based on the remaining timestamps</li>
+                  <li>
+                    Decision and Response
+                    <ul>
+                      <li>If the `rate limit > request count` → allow the request and process it normally</li>
+                      <li>If the `rate limit <= request count` → reject the request</li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Example</b></td>
+              <td>
+                <ul>
+                  <li>
+                    Prerequisites
+                    <ul>
+                      <li>Window Size = 1 second (requests within 1 second window are tracked)</li>
+                      <li>Rate Limit = 3 requests per second (maximum 3 requests allowed within 1 second)</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Request 1 (arrives at time 1000ms)
+                    <ul>
+                      <li>Counter = 1</li>
+                      <li>Request allowed and Request 1 added to the queue</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Request 2 (arrives at time 1005ms)
+                    <ul>
+                      <li>Counter = 2</li>
+                      <li>Request allowed and Request 2 added to the queue</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Request 3 (arrives at time 1010ms)
+                    <ul>
+                      <li>Counter = 3</li>
+                      <li>Request allowed and Request 3 added to the queue</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Request 4 (arrives at time 1012ms)
+                    <ul>
+                      <li>Slide Window (Optional): In an optimized implementation, the window might slide here, removing Request 1 from the queue as it's outside the window (`Request 4 - window size = 1012 - 1000 = 12 ms`)</li>
+                      <li>Counter = 3 (no change as Request 1 is removed in the slide)</li>
+                      <li>Request allowed and Request 4 added to the queue</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Request 5 (arrives at time 1018ms)
+                    <ul>
+                      <li>Counter = 4</li>
+                      <li>Rate limit exceeded: Since the counter > rate limit, the request is rejected</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Request 6 (arrives at time 1021ms)
+                    <ul>
+                      <li>Slide Window (Optional): Request 2 and 3 would be removed as they are outside the window (`Request 6 - window size = 1021 - 1000 = 21 ms`)</li>
+                      <li>Counter = 2 (Request 2 and 3 are removed, updating the counter)</li>
+                      <li>Request allowed and Request 6 added to the queue</li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  Prerequisites: Window Size = 1min, Rate Limit = 2 requests/min
+                  <li>Request 1 (`00:00:01`): allowed (`count = 1`)</li>
+                  <li>Request 2 (`00:00:30`): allowed (`count = 2`)</li>
+                  <li>Request 3 (`00:01:02`): rejected (`count = 3`) - Timestamps for Request 1 & 2 are still within the window</li>
+                  <li>Request 4 (`00:01:35`): allowed (`count = 1`) - Timestamps for Request 1 & 2 are removed as they fall outside the window (`00:01:02 - current time`)</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Functionality</b></td>
+              <td>
+                <ul>
+                  <li>Capture how many requests in previous timeframe</li>
+                  <li>Calculate current weight: `(1 - percentPassed) * lastWindow + currentWindow`</li>
+                  <li>Deny if weight+1 exceeds the rate limit</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Log every request along with its timestamp</li>
+                  <li>Window slides continuously, capturing recent requests</li>
+                  <li>If the count exceeds the limit, deny the request</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Pros</b></td>
+              <td>
+                <ul>
+                  <li>More accurate than Fixed Window Counter for bursty traffic</li>
+                  <li>Simpler implementation compared to Sliding Window Log</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Accurate control over request rates</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Cons</b></td>
+              <td>
+                <ul>
+                  <li>More complex than Fixed Window Counter</li>
+                  <li>Less precise than Sliding Window Log for highly bursty traffic</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>High memory requirements</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Streaming APIs</b></td>
+              <td colspan="2">More suitable, handles bursts within window segments</td>
+            </tr>
+            <tr>
+              <td><b>Geo-fencing</b></td>
+              <td colspan="2">Can be combined with dynamic window adjustments based on location</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>
+                <ul>
+                  <li>Manage bursty traffic efficiently for performance</li>
+                  <li>Monitor request rates in real-time without heavy log storage overhead</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Distributed systems</li>
+                  <li>Fine-grained control</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="tokenBucket" label="Token Bucket">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Visualization</b></td>
+              <td>
+                ```mermaid
+                  graph LR
+
+                  userA(User) ---> |req1| bucket[[Bucket]]
+                  userB(User) ---> |req2| bucket
+                  userC(User) ---x |req3| bucket
+
+                  bucket ~~~|Capacity: 2| bucket
+
+                  bucket --> |req1| service(Service)
+                  bucket --> |req2| service(Service)
+
+                  token(Token) --> |refill| bucket
+                ```
+              </td>
+            </tr>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Classic algorithm that uses a token bucket to control the rate of requests</td>
+            </tr>
+            <tr>
+              <td><b>Process</b></td>
+              <td>
+                <ul>
+                  <li>Initialization: Define the bucket's capacity and refill rate. The capacity determines the number of requests allowed in a burst, while the refill rate controls the sustained request allowance over time</li>
+                  <li>Token Generation: The bucket is initially filled with tokens (up to the capacity limit). New tokens are added at the refill rate (1 token/second)</li>
+                  <li>
+                    Request Arrival: When a request arrives
+                    <ul>
+                      <li>The system checks the bucket's token count</li>
+                      <li>If there are enough tokens (greater than or equal to the request cost, usually 1 token), a token is deducted from the bucket, and the request is processed</li>
+                    </ul>
+                  </li>
+                  <li>Request Denied: If the bucket is empty (no tokens available), the request is denied, and the system returns an error message (Rate limit exceeded)</li>
+                  <li>Refill Process: The bucket continuously refills at the defined refill rate, replenishing tokens for future requests. Even during request processing, the bucket keeps refilling</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Example</b></td>
+              <td>
+                Prerequisites: Capacity = 5 tokens with burst allowance
+                <ul>
+                  <li>First 5 requests: Each request consumes 1 token, and the system processes them normally (tokens remaining: 0)</li>
+                  <li>6th request: The bucket is empty, and the request is denied due to the rate limit being exceeded</li>
+                  <li>Subsequent seconds: The bucket refills at a rate of 1 token/second. Requests can resume as long as tokens are present</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Functionality</b></td>
+              <td>
+                <ul>
+                  <li>tokens are added steadily</li>
+                  <li>Each request consumes a token</li>
+                  <li>If no tokens, request is denied</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Pros</b></td>
+              <td>Precise control over request rates</td>
+            </tr>
+            <tr>
+              <td><b>Cons</b></td>
+              <td>Complex implementation</td>
+            </tr>
+            <tr>
+              <td><b>Streaming APIs</b></td>
+              <td>Most suitable, pre-allocate tokens for expected data volume</td>
+            </tr>
+            <tr>
+              <td><b>Geo-fencing</b></td>
+              <td>Can be combined with location-based token allocation</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>
+                <ul>
+                  <li>APIs</li>
+                  <li>Microservices</li>
+                  <li>Network traffic management</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+  <TabItem value="geo" label="Geo-Fencing">
+    <table class="text_vertical">
+      <thead>
+        <tr>
+          <th>Approach</th>
+          <th>Description</th>
+          <th>Pros</th>
+          <th>Cons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>IP-based</b></td>
+          <td>Rate limiting is applied based on the geographic location of the client IP address. Requests originating from specific regions or countries may be subject to different rate limits or access controls</td>
+          <td>
+            <ul>
+              <li>Effective for blocking malicious traffic from specific regions</li>
+              <li>Allows for targeted rate limiting based on geographic factors</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>May impact legitimate users accessing the service from restricted regions</li>
+              <li>Limited accuracy due to IP address geolocation inaccuracies</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Geofencing APIs</b></td>
+          <td>Third-party geolocation APIs are utilized to determine the physical location of the client device or network. Rate limiting rules are then applied based on the detected location</td>
+          <td>
+            <ul>
+              <li>Provides more accurate geolocation data compared to IP-based approaches</li>
+              <li>Allows for dynamic adjustment of rate limits based on real-time location information</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Requires integration with external APIs, introducing additional latency and dependencies</li>
+              <li>May incur additional costs for geolocation services</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>DNS-based</b></td>
+          <td>Rate limiting rules are enforced based on the DNS resolution of client requests. DNS records are analyzed to determine the geographic origin of the request, and rate limits are applied accordingly</td>
+          <td>
+            <ul>
+              <li>Works at the DNS level, providing efficient filtering of traffic before it reaches the application layer</li>
+              <li>Can be implemented using existing DNS infrastructure and tools</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Limited accuracy in geolocation compared to IP or API-based approaches</li>
+              <li>Vulnerable to DNS spoofing or manipulation</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Geofencing Rules</b></td>
+          <td>Custom geofencing rules are defined based on geographical boundaries, such as countries, regions, or proximity to specific locations. Requests originating from within or outside these boundaries are subject to different rate limits or access controls</td>
+          <td>
+            <ul>
+              <li>Allows for fine-grained control over rate limiting based on specific geographical criteria</li>
+              <li>Provides flexibility to define custom rules tailored to the application's requirements</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Requires robust geospatial data and algorithms for accurate boundary detection</li>
+              <li>May introduce complexity in managing and updating geofencing rules</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
