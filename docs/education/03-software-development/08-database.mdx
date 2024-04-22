@@ -1,0 +1,3051 @@
+---
+title: Database
+description: Database Design Patterns
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+      <table class="text_vertical">
+        <thead>
+          <tr>
+            <th>DB Type</th>
+            <th>Features</th>
+            <th>Consistency Model</th>
+            <th>Transactions</th>
+            <th>Horizontal Partitioning</th>
+            <th>Vertical Partitioning</th>
+            <th>Indexing</th>
+            <th>CAP Theorem</th>
+            <th>Use Cases</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Relational / SQL</b></td>
+            <td>
+                <ul>
+                    <li>Indexing & Optimization</li>
+                    <li>Security Features</li>
+                    <li>Relationship & Referential Integrity</li>
+                    <li>Structured Data</li>
+                    <li>Transactions & ACID</li>
+                    <li>SQL Support</li>
+                </ul>
+            </td>
+            <td>ACID</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>
+              <ul>
+                  <li>B-Tree</li>
+                  <li>Hash</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                  <li>Availability</li>
+                  <li>Consistency</li>
+                  <li>Partition Tolerance</li>
+              </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>OLTP</li>
+                    <li>OLAP</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>NoSQL</b></td>
+            <td>
+                <ul>
+                    <li>Horizontal Scalability</li>
+                    <li>High Availability</li>
+                    <li>Distributed Architecture</li>
+                    <li>Flexible Data Model</li>
+                </ul>
+            </td>
+            <td>Eventual, Strong</td>
+            <td>Limited</td>
+            <td>+</td>
+            <td>-</td>
+            <td>
+                <ul>
+                    <li>Key-Value</li>
+                </ul>
+            </td>
+            <td>
+              <ul>
+                  <li>Partition Tolerance</li>
+              </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Big Data</li>
+                    <li>Real-time</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Columnar</b></td>
+            <td>
+                <ul>
+                    <li>Schema Evolution</li>
+                    <li>Column-Oriented Storage</li>
+                    <li>Column-Level Compression</li>
+                    <li>Column-Wise Indexing</li>
+                    <li>Analytical Query Performance</li>
+                    <li>Ideal for OLAP with Slice-and-Dice approach (efficiently analyzing data by selecting specific columns (slicing) and breaking it down further (dicing), enabling complex queries and aggregations on large datasets with speed and flexibility)</li>
+                </ul>
+            </td>
+            <td>ACID</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+ (Conditional)</td>
+            <td>
+                <ul>
+                    <li>B-Tree</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Consistency</li>
+                    <li>Partition Tolerance</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Data Warehousing</li>
+                    <li>Analytics</li>
+                    <li>Log Processing</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>NewSQL</b></td>
+            <td>
+                <ul>
+                    <li>Transactions & ACID</li>
+                    <li>Support SQL</li>
+                </ul>
+            </td>
+            <td>ACID</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+ (Likely)</td>
+            <td>
+                <ul>
+                    <li>B-Tree</li>
+                    <li>Hash</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Availability</li>
+                    <li>Consistency</li>
+                    <li>Partition Tolerance</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>High-Transaction</li>
+                    <li>Real-time</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Spatial</b></td>
+            <td>
+                <ul>
+                    <li>Spatial Types & Indexing</li>
+                    <li>Topology & Network Analysis</li>
+                    <li>Geospatial Query Language</li>
+                    <li>Integration with GIS</li>
+                </ul>
+            </td>
+            <td>ACID</td>
+            <td>+</td>
+            <td>+</td>
+            <td>-</td>
+            <td>
+                <ul>
+                    <li>R-Tree</li>
+                    <li>Quadtree</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Availability</li>
+                    <li>Consistency</li>
+                    <li>Partition Tolerance</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Geographic Information Systems (GIS)</li>
+                    <li>Spatial Analysis</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Graph</b></td>
+            <td>
+                <ul>
+                    <li>Relationship Focus</li>
+                    <li>Deep Insight</li>
+                </ul>
+            </td>
+            <td>ACID</td>
+            <td>+</td>
+            <td>+</td>
+            <td>-</td>
+            <td>
+               <ul>
+                    <li>Graph Indices</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Availability</li>
+                    <li>Consistency</li>
+                    <li>Partition Tolerance</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Social Networks</li>
+                    <li>Fraud Detection</li>
+                    <li>LLMs</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Object-Oriented</b></td>
+            <td>
+                <ul>
+                    <li>Complex Querying & Navigation</li>
+                    <li>Complex Data Models</li>
+                    <li>Object Persistence</li>
+                    <li>Encapsulation & Data Abstraction</li>
+                    <li>Object Versioning</li>
+                    <li>Inheritance & Polymorphism</li>
+                </ul>
+            </td>
+            <td>ACID</td>
+            <td>+</td>
+            <td>+</td>
+            <td>-</td>
+            <td>
+                <ul>
+                    <li>Object Indices</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Availability</li>
+                    <li>Consistency</li>
+                    <li>Partition Tolerance</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Object Persistence</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Document</b></td>
+            <td>
+                <ul>
+                    <li>Efficient Query Performance</li>
+                    <li>Document Versioning</li>
+                    <li>Flexible Schema</li>
+                </ul>
+            </td>
+            <td>Eventual, Strong</td>
+            <td>Limited</td>
+            <td>+</td>
+            <td>-</td>
+            <td>
+                <ul>
+                    <li>B-Tree</li>
+                    <li>Hash</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Availability</li>
+                    <li>Partition Tolerance</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Content Management</li>
+                    <li>IoT</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Key-Value</b></td>
+            <td>
+                <ul>
+                    <li>Data Partitioning</li>
+                    <li>Simple Data Model</li>
+                    <li>High-Write & Query Performance</li>
+                    <li>Developer Friendly</li>
+                </ul>
+            </td>
+            <td>Eventual, Strong</td>
+            <td>Limited</td>
+            <td>+</td>
+            <td>-</td>
+            <td>
+                <ul>
+                    <li>Hash</li>
+                    <li>LSM Tree</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Partition Tolerance</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Caching</li>
+                    <li>Session Store</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Time-Series</b></td>
+            <td>
+                <ul>
+                    <li>Retention Policies</li>
+                    <li>Efficient Storage</li>
+                    <li>Time-Window Aggregation</li>
+                    <li>High Write & Query Performance</li>
+                </ul>
+            </td>
+            <td>ACID</td>
+            <td>+</td>
+            <td>+</td>
+            <td>-</td>
+            <td>
+                <ul>
+                    <li>B-Tree</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Availability</li>
+                    <li>Consistency</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Sensor Data</li>
+                    <li>Financial Data</li>
+                    <li>Industrial IoT</li>
+                </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </TabItem>
+  <TabItem value="selection" label="Selection Process">
+    <Tabs queryString="secondary">
+        <TabItem value="selection" label="Selection" attributes={{className:"tabs__vertical"}}>
+            ![](./assets/database/db-selection-process.svg)
+        </TabItem>
+        <TabItem value="choice" label="Choice">
+            ![](./assets/database/db-choice.svg)
+        </TabItem>
+    </Tabs>
+  </TabItem>
+  <TabItem value="transactions" label="Transactions">
+    <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Definition</th>
+            <th>Priority</th>
+            <th>Transaction Failure</th>
+            <th>Data Consistency</th>
+            <th>Use Cases</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>ACID</b></td>
+            <td>
+                <ul>
+                    <li>**Atomicity**: Each transaction is completed or aborted</li>
+                    <li>**Consistency**: Guarantees committed transaction state (store valid data)</li>
+                    <li>**Isolation**: Transactions are independent</li>
+                    <li>**Durability**: Committed data is never lost</li>
+                </ul>
+            </td>
+            <td>Consistency</td>
+            <td>Entire transaction rolls back</td>
+            <td>Guaranteed immediately</td>
+            <td>Financial Transactions (Banking, Stock Trading)</td>
+          </tr>
+          <tr>
+            <td><b>BASE</b></td>
+            <td>
+                <ul>
+                    <li>**Basically Available**: System remains available for read and write operations despite failures</li>
+                    <li>**Soft state**: System may be temporarily inconsistent but eventually becomes consistent</li>
+                    <li>**Eventual consistency**: Over time, all data replicas converge to the same state</li>
+                </ul>
+            </td>
+            <td>Availability</td>
+            <td>May proceed with eventual consistency</td>
+            <td>Eventual, but not always immediate</td>
+            <td>Social Media Platforms</td>
+          </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="locking" label="Locking">
+    <Tabs queryString="secondary">
+      <TabItem value="hierarchy" label="Locking Hierarchy" attributes={{className:"tabs__vertical"}}>
+          ```mermaid
+              graph LR
+
+              db(Database) --> table(Table)
+              table --> page(Page)
+              page --> row(Row)
+
+              db ~~~|"Data Query: Shared Lock (S)<br/>Data Manipulation: Shared Lock (S)"| db
+              table ~~~|"Data Query: Intention Shared Lock (IS)<br/>Data Manipulation: Intention Exclusive or Intent Update"| table
+              page ~~~|"Data Query: Intention Shared Lock (IS)<br/>Data Manipulation: Intention Exclusive or Intent Update"| page
+              row ~~~|"Data Query: Shared Lock (S)<br/>Data Manipulation: Exclusive or Update Lock"| row
+          ```
+
+          <table>
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Intent Shared (IS)</th>
+                <th>Exclusive (X)</th>
+                <th>Intent Exclusive (IX)</th>
+                <th>Shared with Intent Exclusive (SIX)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Definition</b></td>
+                <td>Allows multiple readers but prevents updates. Signals intent to acquire an exclusive lock later</td>
+                <td>Prevents all other users from accessing the data (reading or writing)</td>
+                <td>Signals intent to acquire an exclusive lock and prevents other users from acquiring any locks (read or write)</td>
+                <td>Allows multiple readers but prevents updates. Signals intent to acquire an exclusive lock and prevents other users from acquiring any locks (read or write)</td>
+              </tr>
+              <tr>
+                <td><b>Usage</b></td>
+                <td>
+                  <ul>
+                    <li>Initial read access before acquiring X lock</li>
+                    <li>Improve concurrency for read-heavy workloads</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Update operations (write, delete)</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Prevent other users from acquiring any locks before acquiring X lock</li>
+                    <li>Useful for long-running transactions</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Similar to IS but signals future X lock acquisition</li>
+                    <li>Useful for scenarios where initial read might be followed by update</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Impact on Concurrency</b></td>
+                <td>Improves read concurrency</td>
+                <td>Reduces write concurrency</td>
+                <td>Blocks all access, impacting overall concurrency</td>
+                <td>Improves read concurrency initially, reduces write concurrency later</td>
+              </tr>
+              <tr>
+                <td><b>Scalability</b></td>
+                <td>Scales well with read-heavy workloads</td>
+                <td>May impact performance with high write concurrency</td>
+                <td>May impact performance due to blocking all access</td>
+                <td>Can provide a balance between read and write concurrency</td>
+              </tr>
+            </tbody>
+          </table>
+      </TabItem>
+      <TabItem value="types" label="Types">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Pessimistic Locking</th>
+                <th>Optimistic Locking</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Visualization</b></td>
+                <td>
+                    ```mermaid
+                       sequenceDiagram
+                       autonumber
+
+                      participant User1
+                      participant Database
+                      participant User2
+
+                      User1->>Database: Begin Transaction
+                      User2->>Database: Begin Transaction
+                      alt User1 reads record
+                          Database->>User1: Return record
+                          alt User2 tries to read/update same record
+                              Database-->>User2: Record locked
+                              User2->>Database: Rollback Transaction
+                          else User2 waits
+                              activate Database
+                              Database->>Database: Lock record
+                              User1->>Database: Update record
+                              Database-->>User1: Record updated
+                              Database->>User1: Commit Transaction
+                              User1-->>Database: Commit acknowledged
+                              Database->>Database: Release Lock record
+                              deactivate Database
+                          end
+                      else User1 waits
+                          alt User2 reads record
+                              Database->>User2: Return record
+                              alt User1 tries to read/update same record
+                                  Database-->>User1: Record locked
+                                  User1->>Database: Rollback Transaction
+                              else User1 waits
+                                  activate Database
+                                  Database->>Database: Lock record
+                                  User2->>Database: Update record
+                                  Database-->>User2: Record updated
+                                  Database->>User2: Commit Transaction
+                                  User2-->>Database: Commit acknowledged
+                                  Database->>Database: Release Lock record
+                                  deactivate Database
+                              end
+                          else User2 waits
+                              activate Database
+                              Database->>Database: Lock record
+                              User1->>Database: Update record
+                              Database-->>User1: Record updated
+                              Database->>User1: Commit Transaction
+                              User1-->>Database: Commit acknowledged
+                              Database->>Database: Release Lock record
+                              deactivate Database
+                          end
+                      end
+                    ```
+                </td>
+                <td>
+                    ```mermaid
+                      sequenceDiagram
+                      autonumber
+
+                      participant User1
+                      participant Database
+                      participant User2
+
+                      User1->>Database: Request to read record
+                      Database->>User1: Returns record
+                      alt Record is not locked
+                          User1->>Database: Request to update record
+                          Database->>User1: Locks record for User1
+                          activate Database
+                          User1->>Database: Send updated record
+                          Database->>User1: Updates record, unlocks it
+                          deactivate Database
+                          Database->>User2: Notification of record update
+                      else Record is locked
+                          Database->>User1: Sends lock notification
+                      end
+
+                      User2->>Database: Request to read record
+                      Database->>User2: Returns record
+                      alt Record is not locked
+                          User2->>Database: Request to update record
+                          Database->>User2: Locks record for User2
+                          activate Database
+                          User2->>Database: Send updated record
+                          Database->>User2: Updates record, unlocks it
+                          deactivate Database
+                          Database->>User1: Notification of record update
+                      else Record is locked
+                          Database->>User2: Sends lock notification
+                      end
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Locking Mechanism</b></td>
+                <td>Acquires locks on database records before any read/write operation</td>
+                <td>No explicit locks; relies on versioning or timestamps</td>
+              </tr>
+              <tr>
+                <td><b>Transaction Isolation</b></td>
+                <td>Guarantees serializability (transactions appear to execute one after another)</td>
+                <td>Relies on conflict detection during commit</td>
+              </tr>
+              <tr>
+                <td><b>Concurrency</b></td>
+                <td>Lower concurrency due to exclusive access</td>
+                <td>Higher concurrency as multiple transactions can read data concurrently</td>
+              </tr>
+              <tr>
+                <td><b>Data Integrity</b></td>
+                <td>High; ensures only one transaction modifies data at a time</td>
+                <td>Lower; potential for "lost updates" if conflicts occur</td>
+              </tr>
+              <tr>
+                <td><b>Implementation</b></td>
+                <td>Database-managed; different lock types (shared, exclusive) available</td>
+                <td>Application-level; relies on versioning mechanisms (e.g., version numbers, timestamps) in the database</td>
+              </tr>
+              <tr>
+                <td><b>Error Handling</b></td>
+                <td>Rollback transactions that encounter locked records</td>
+                <td>Retry transactions that encounter conflicts during commit</td>
+              </tr>
+              <tr>
+                <td><b>Use Cases</b></td>
+                <td>
+                  <ul>
+                    <li>High contention environments (frequent updates)</li>
+                    <li>Critical data operations (financial transactions)</li>
+                    <li>Applications requiring strict data consistency</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Low contention environments (read-heavy systems)</li>
+                    <li>Non-critical data updates</li>
+                    <li>Short-lived transactions</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </TabItem>
+    </Tabs>
+</TabItem>
+  <TabItem value="sharding" label="Sharding/Partitioning">
+    <Tabs queryString="secondary">
+      <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        Database sharding splits a large database across machines for better handling of massive datasets.
+
+        ### Benefits
+
+        - Improve response time
+        - Avoid total service outage
+        - Scale efficiently
+      </TabItem>
+      <TabItem value="strategies" label="Strategies">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th style={{minWidth: '350px'}}>Visualization</th>
+              <th>Definition</th>
+              <th>Use Cases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Consistent Hashing</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(Table) --> hashFn(Hash Function)
+
+                    hashFn --> hashRing{Hash Ring}
+
+                    hashRing --> shard1(Shard 1)
+                    hashRing --> shard2(Shard 2)
+                    hashRing --> shard3(Shard N)
+                ```
+              </td>
+              <td>Distributes data across a dynamic number of partitions using a hash function</td>
+              <td>Distributed databases, Content Delivery Networks (CDNs)</td>
+            </tr>
+            <tr>
+              <td><b>Directory Based Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> |shard key<br/>delivery zone| hashTable(( ))
+                    hashTable --> |s1| shard1(( ))
+                    hashTable --> |s2| shard2(( ))
+                    hashTable --> |s3| shard3(( ))
+                    hashTable --> |s4| shard4(( ))
+
+                    table ~~~|<table><thead><tr><th>Delivery Zone</th><th>First Name</th><th>Last Name</th></tr></thead><tbody><tr><td>3</td><td>Joe</td><td>Doe</td></tr><tr><td>2</td><td>John</td><td>Smith</td></tr><tr><td>1</td><td>Jane</td><td>Williams</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td></tr></tbody></table>| table
+                    hashTable ~~~|<table><thead><tr><th>Delivery Zone</th><th>Shard ID</th></tr></thead><tbody><tr><td>1</td><td>S1</td></tr><tr><td>2</td><td>S2</td></tr><tr><td>3</td><td>S3</td></tr><tr><td>4</td><td>S4</td></tr></tbody></table>| hashTable
+                    shard1 ~~~|<table><tr><td>1</td><td>Jane</td><td>Williams</td></tr></table>| shard1
+                    shard2 ~~~|<table><tr><td>2</td><td>John</td><td>Smith</td></tr></table>| shard2
+                    shard3 ~~~|<table><tr><td>3</td><td>Joe</td><td>Doe</td></tr></table>| shard3
+                    shard4 ~~~|<table><tr><td>4</td><td>Jack</td><td>Jones</td></tr></table>| shard4
+                ```
+              </td>
+              <td>Central directory maps data to specific shards based on predefined rules</td>
+              <td>Strong consistency and moderate scalability</td>
+            </tr>
+            <tr>
+              <td><b>Geo Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(Users) --> shardUS(US Users)
+                    table --> shardEU(EU Users)
+                    table --> shardAsia(Asia Users)
+                ```
+              </td>
+              <td>Divides data based on geographic regions to localize data access</td>
+              <td>Applications requiring regional data localization or geo-distributed databases</td>
+            </tr>
+            <tr>
+              <td><b>Horizontal Partitioning (Sharding)</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> shard1(( ))
+                    table --> shard2(( ))
+
+                    table ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td><td>Active</td></tr><tr><td>2</td><td>John</td><td>Smith</td><td>Inactive</td></tr><tr><td>3</td><td>Jane</td><td>Williams</td><td>Active</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td><td>Inactive</td></tr></tbody></table>| table
+                    shard1 ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td><td>Active</td></tr><tr><td>2</td><td>John</td><td>Smith</td><td>Inactive</td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>3</td><td>Jane</td><td>Williams</td><td>Active</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td><td>Inactive</td></tr></tbody></table>| shard2
+                ```
+              </td>
+              <td>Data is partitioned across multiple databases or shards based on a certain criterion such as user ID, timestamp</td>
+              <td>High data volume and scalability requirements</td>
+            </tr>
+            <tr>
+              <td><b>Key-Based Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> |shard key<br/>col1| hashFn(Hash Function)
+                    hashFn --> hashTable(( ))
+                    hashTable --> shard1(( ))
+                    hashTable --> shard2(( ))
+
+                    table ~~~|<table><thead><tr><th>col1</th><th>col2</th><th>col3</th></tr></thead><tbody><tr><td>A</td><td></td><td></td></tr><tr><td>B</td><td></td><td></td></tr><tr><td>C</td><td></td><td></td></tr><tr><td>D</td><td></td><td></td></tr></tbody></table>| table
+                    hashTable ~~~|<table><thead><tr><th>col1</th><th>Hash Value</th></tr></thead><tbody><tr><td>A</td><td>1</td></tr><tr><td>B</td><td>2</td></tr><tr><td>C</td><td>1</td></tr><tr><td>D</td><td>2</td></tr></tbody></table>| hashTable
+                    shard1 ~~~|<table><thead><tr><th>col1</th><th>col2</th><th>col3</th></tr></thead><tbody><tr><td>A</td><td></td><td></td></tr><tr><td>C</td><td></td><td></td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>col1</th><th>col2</th><th>col3</th></tr></thead><tbody><tr><td>B</td><td></td><td></td></tr><tr><td>D</td><td></td><td></td></tr></tbody></table>| shard2
+                ```
+              </td>
+              <td>Data is distributed across shards based on a predefined key</td>
+              <td>Predictable access patterns and high scalability requirements</td>
+            </tr>
+            <tr>
+              <td><b>Range-Based Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> |0-50| shard1(( ))
+                    table --> |50-100| shard2(( ))
+                    table --> |100+| shard3(( ))
+
+                    table ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Coffee</td><td>20</td></tr><tr><td>Tea</td><td>15</td></tr><tr><td>Laptop</td><td>3000</td></tr><tr><td>Jeans</td><td>70</td></tr></tbody></table>| table
+                    shard1 ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Coffee</td><td>20</td></tr><tr><td>Tea</td><td>15</td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Jeans</td><td>70</td></tr></tbody></table>| shard2
+                    shard3 ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Laptop</td><td>3000</td></tr></tbody></table>| shard3
+                ```
+              </td>
+              <td>Divides data into ranges (numeric ranges, alphabetical ranges) and assigns each range to a shard</td>
+              <td>Range-based queries and moderate scalability requirements. Time-series data or data with a sequential range</td>
+            </tr>
+            <tr>
+              <td><b>Vertical Partitioning</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> shard1(( ))
+                    table --> shard2(( ))
+
+                    table ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td><td>Active</td></tr><tr><td>2</td><td>John</td><td>Smith</td><td>Inactive</td></tr><tr><td>3</td><td>Jane</td><td>Williams</td><td>Active</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td><td>Inactive</td></tr></tbody></table>| table
+                    shard1 ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td></tr><tr><td>2</td><td>John</td><td>Smith</td></tr><tr><td>3</td><td>Jane</td><td>Williams</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>User ID</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Active</td></tr><tr><td>2</td><td>Inactive</td></tr><tr><td>3</td><td>Active</td></tr><tr><td>4</td><td>Inactive</td></tr></tbody></table>| shard2
+                ```
+              </td>
+              <td>Segregates data vertically based on attributes or columns</td>
+              <td>Specific data access patterns and less dynamic schemas</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+  <TabItem value="replication" label="Replication">
+    <Tabs queryString="secondary">
+      <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        Database replication is the process of duplicating data from one database to another, ensuring that multiple copies of the same data are available across different locations or systems. This redundancy enhances data availability, fault tolerance, and scalability
+
+        ### Benefits
+
+        - **Durability**
+            - Replication enhances durability, preventing catastrophic data loss
+            - It ensures data preservation across multiple servers
+            - Replication, alongside backups, minimizes data loss windows and downtime
+
+        - **Availability**
+            - Replication boosts system availability and resilience
+            - It enables seamless failover to standby servers
+            - Without replication, server outages could cause prolonged downtime
+
+        - **Increasing Throughput**
+            - Replication spreads load across nodes, boosting throughput
+            - Additional replicas can be added for further scalability
+            - Proper management avoids replication overhead bottlenecks
+
+        - **Reducing Latency**
+            - Replication brings data closer to users, reducing latency
+            - Shorter network distance leads to faster response times
+            - Multi-region replication improves user experience and productivity
+      </TabItem>
+      <TabItem value="types" label="Types">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Full Table Replication</th>
+              <th>Key-based Incremental Replication</th>
+              <th>Log-based Incremental Replication</th>
+              <th>Trigger-based Replication</th>
+              <th>Snapshot Replication</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Overview</b></td>
+              <td>Replicates entire tables</td>
+              <td>Replicates only changed rows based on key values</td>
+              <td>Replicates changes based on transaction logs</td>
+              <td>Replicates changes based on triggers</td>
+              <td>Replicates a point-in-time copy of data</td>
+            </tr>
+            <tr>
+              <td><b>Data Volume / Network Bandwidth Usage</b></td>
+              <td>High</td>
+              <td>Moderate</td>
+              <td>Low</td>
+              <td>Moderate</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Data Warehousing, Reporting</td>
+              <td>Synchronizing specific datasets between databases</td>
+              <td>Replicating changes from a primary to secondary database</td>
+              <td>Replicating changes between databases with complex business logic</td>
+              <td>Creating backups for disaster recovery</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="methods" label="Methods">
+        <table class="text_vertical">
+            <thead>
+            <tr>
+                <th>Method</th>
+                <th style={{minWidth: '350px'}}>Visualization</th>
+                <th>Definition</th>
+                <th>Pros</th>
+                <th>Cons</th>
+                <th>Use Cases</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><b>Bi-Directional</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> replica[(Replica)]
+                        replica --> source
+                    ```
+                </td>
+                <td>Data flows bidirectionally between source and target databases, allowing updates in both directions</td>
+                <td>
+                    <ul>
+                        <li>High availability and fault tolerance</li>
+                        <li>Improved performance for distributed applications</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Complexity in conflict resolution</li>
+                        <li>Increased risk of data inconsistencies</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Multi-site collaboration</li>
+                        <li>Active-active data centers</li>
+                        <li>Real-time data synchronization</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Broadcast</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> replica1[(Replica)]
+                        source --> replica2[(Replica)]
+                        source --> replica3[(Replica)]
+                    ```
+                </td>
+                <td>Data from a single source is replicated to multiple targets simultaneously</td>
+                <td>
+                    <ul>
+                        <li>Scalability for large-scale distribution</li>
+                        <li>Reduced network traffic</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Limited support for bidirectional data flows</li>
+                        <li>Potential for data redundancy</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Mass data distribution</li>
+                        <li>Real-time data broadcasting</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Cascading</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> db[(DB)]
+
+                        db --> replica1[(Replica)]
+                        db --> replica2[(Replica)]
+                        db --> replica3[(Replica)]
+                    ```
+                </td>
+                <td>Replication is chained in a cascade, where changes propagate sequentially through multiple tiers of databases</td>
+                <td>
+                    <ul>
+                        <li>Flexibility in data routing and transformation</li>
+                        <li>Enhanced security through layered replication</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Increased complexity in setup and maintenance</li>
+                        <li>Potential for latency and synchronization issues</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Hierarchical data distribution</li>
+                        <li>Data transformation and filtering</li>
+                        <li>Data distribution across geographical regions</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Consolidation</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        replica1[(Replica)] --> source[(Source)]
+                        replica2[(Replica)] --> source
+                        replica3[(Replica)] --> source
+                    ```
+                </td>
+                <td>Data from multiple sources is consolidated into a single target database</td>
+                <td>
+                    <ul>
+                        <li>Simplified data management</li>
+                        <li>Reduced storage and infrastructure costs</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Risk of data loss if not implemented properly</li>
+                        <li>Increased latency for distributed queries</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Data warehousing</li>
+                        <li>Centralized reporting</li>
+                        <li>Data aggregation</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Peer-to-Peer</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        db1[(DB)]
+                        db2[(DB)]
+                        db3[(DB)]
+
+                        db1 & db2 --> db3
+                        db1 & db3 --> db2
+                        db2 & db3 --> db1
+                    ```
+                </td>
+                <td>All databases are peers and can act as both a source and a target. Data can flow between any pair of databases</td>
+                <td>
+                    <ul>
+                        <li>Enhanced fault tolerance and scalability</li>
+                        <li>Flexibility in data routing</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Complexity in configuration and maintenance</li>
+                        <li>Potential for network congestion and data conflicts</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Decentralized applications</li>
+                        <li>Collaborative editing environments</li>
+                        <li>Distributed systems</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Unidirectional</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> replica[(Replica)]
+                    ```
+                </td>
+                <td>Data flows in one direction from source to target databases</td>
+                <td>
+                    <ul>
+                        <li>Simplicity in setup</li>
+                        <li>Reduced risk of conflicts</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Limited scalability for distributed systems</li>
+                        <li>Potential for data latency</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Reporting and analytics</li>
+                        <li>Disaster recovery</li>
+                        <li>Load balancing</li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="cdc" label="CDC">
+        **Change Data Capture (CDC)**: Captures changes in real-time as they occur at the source database
+
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Transactional CDC</th>
+              <th>Batch-Optimized CDC</th>
+              <th>Data Warehouse Ingest-Merge</th>
+              <th>Message-Encoded CDC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Visualization</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    dbN[(N)] --> db2[(2)] --> db1[(1)]
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    db[( )] --> db1[( )]
+                    db ~~~|<table><tr><td>R1</td><td>▴</td><td></td><td></td><td></td></tr><tr><td>R1</td><td></td><td>▴</td><td>▴</td><td></td></tr><tr><td>R2</td><td></td><td>▴</td><td></td><td>▴</td></tr><tr><td>R1</td><td>▴</td><td></td><td></td><td></td></tr><tr><td>R2</td><td></td><td></td><td>▴</td><td></td></tr></table>| db
+                    db1 ~~~|<table><tr><td>R1</td><td>▴</td><td>▴</td><td>▴</td><td></td></tr><tr><td>R2</td><td></td><td>▴</td><td>▴</td><td>▴</td></tr></table>| db1
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    db1[( )] --> db[( )]
+                    db2[( )] --> db
+                    db3[( )] --> db
+
+                    db ~~~|<table><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>| db
+                    db1 ~~~|<table><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>| db1
+                    db2 ~~~|<table><tr><td></td><td></td><td></td></tr></table>| db2
+                    db3 ~~~|<table><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>| db3
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    mgsN((N)) -.-> msg2((2)) -.-> msg1((1))
+                ```
+              </td>
+            </tr>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Captures changes in real-time as they occur at the source database</td>
+              <td>Captures changes in bulk at specific intervals, rather than in real-time</td>
+              <td>Ingests and merges data from multiple sources into a data warehouse</td>
+              <td>Encodes changes into messages for asynchronous processing and consumption</td>
+            </tr>
+            <tr>
+              <td><b>Performance</b></td>
+              <td>Real-time, minimal latency for data replication</td>
+              <td>High throughput, reduced impact on source systems due to batch processing</td>
+              <td>Typically batch-oriented, suitable for large-scale data movement</td>
+              <td>Depends on message broker performance; can be asynchronous, may introduce latency</td>
+            </tr>
+            <tr>
+              <td><b>Data Consistency</b></td>
+              <td>Ensures consistency between source and target systems in near real-time</td>
+              <td>Data consistency may lag behind real-time due to batch processing</td>
+              <td>May require additional checks to maintain consistency during merge process</td>
+              <td>Consistency depends on message delivery guarantees and processing logic</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Real-time data synchronization (financial transactions, inventory management)</td>
+              <td>Daily reporting, data warehousing</td>
+              <td>Commonly used for data warehousing, analytics, and reporting purposes</td>
+              <td>Useful for event-driven architectures, microservices, and distributed systems</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="strategies" label="Strategies">
+        <table class="text_vertical">
+          <thead>
+            <tr>
+              <th>Replication Strategy</th>
+              <th style={{minWidth: '350px'}}>Visualization</th>
+              <th>Description</th>
+              <th>Pros</th>
+              <th>Cons</th>
+              <th>Use Cases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Leader-Follower Replication (Source-Replica / Master-Slave / Primary-Secondary)</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                   source[(Source)] --> replicaA[(Replica)]
+                   source --> replicaB[(Replica)]
+                ```
+              </td>
+              <td>Primary database instance accepts write operations, while one or more replicas replicate data from the leader. Replicas typically handle read operations</td>
+              <td>
+                <ul>
+                    <li>Simple setup and maintenance</li>
+                    <li>Consistent read operations</li>
+                    <li>Failover support for the leader</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Write operations bottlenecked by leader</li>
+                  <li>Potential for replication lag</li>
+                  <li>Single point of failure (leader)</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>High availability for read-heavy workloads</li>
+                  <li>Load balancing read operations</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Active/Active Replication</b></td>
+              <td>
+                ```mermaid
+                    graph TB
+
+                    coordinator(Coordinator)
+
+                    subgraph domainA[ ]
+                        direction TB
+
+                        a_dbA[( )]
+                        a_dbB[( )]
+
+                        a_dbA --> a_dbB
+                        a_dbB --> a_dbA
+                    end
+
+                    coordinator --> a_dbA
+                    coordinator --> a_dbB
+
+                    subgraph domainB[ ]
+                        direction TB
+
+                        b_dbA[( )]
+                        b_dbB[( )]
+
+                        b_dbA --> b_dbB
+                        b_dbB --> b_dbA
+                    end
+
+                    coordinator --> b_dbA
+                    coordinator --> b_dbB
+                ```
+              </td>
+              <td>Multiple database instances accept both read and write operations simultaneously. Each instance can serve read and write requests independently</td>
+              <td>
+                <ul>
+                  <li>Distributed load balancing</li>
+                  <li>Improved fault tolerance</li>
+                  <li>Minimal replication lag</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Complex conflict resolution</li>
+                  <li>Increased risk of data inconsistency</li>
+                  <li>Higher infrastructure and maintenance costs</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Geographically distributed applications</li>
+                  <li>Low-latency requirements</li>
+                  <li>High throughput</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Multi-Leader Replication (Master-Master / Primary-Primary)</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    subgraph SourcesA[ ]
+                        direction TB
+
+                        serverA(Server) --> |read/write| sourceA[(Source)]
+                        serverA --> |read| replicaA[(Replica)]
+                        sourceA -.-> replicaA
+                    end
+
+                    subgraph SourcesB[ ]
+                        direction TB
+
+                        serverB(Server) --> |read/write| sourceB[(Source)]
+                        serverB --> |read| replicaB[(Replica)]
+                        sourceB -.-> replicaB
+                    end
+
+                    sourceA --> sourceB
+                    sourceB --> sourceA
+                ```
+              </td>
+              <td>Multiple database instances accept write operations independently, and changes are asynchronously replicated between them</td>
+              <td>
+                <ul>
+                  <li>Improved write scalability</li>
+                  <li>Enhanced fault tolerance</li>
+                  <li>No single point of failure for writes</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Complex conflict resolution</li>
+                  <li>Increased risk of data conflicts and inconsistency</li>
+                  <li>Potential for replication lag</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Geographically distributed teams</li>
+                  <li>Active-active setups requiring write capabilities on all nodes</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Leaderless Replication</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    subgraph typeA[Circular Topology]
+                        direction LR
+
+                        a_dbA[(Source)] ---> a_dbB[(Source)] & a_dbC[(Source)] ---> a_dbD[(Source)]
+                    end
+
+                    subgraph typeB[Star Topology]
+                        direction TB
+
+                        b_source[(Source Root)]
+                        b_leafA[(Source Leaf)]
+                        b_leafB[(Source Leaf)]
+                        b_leafC[(Source Leaf)]
+
+                        b_source --> b_leafA
+                        b_leafA --> b_source
+
+                        b_leafA --> b_leafB
+                        b_leafB --> b_leafA
+
+                        b_leafA --> b_leafC
+                        b_leafC --> b_leafA
+                    end
+
+                    subgraph typeC[All-to-All Topology]
+                        direction LR
+
+                        c_dbA[(Source)]
+                        c_dbB[(Source)]
+                        c_dbC[(Source)]
+
+                        c_dbA & c_dbB --> c_dbC
+                        c_dbA & c_dbC --> c_dbB
+                        c_dbB & c_dbC --> c_dbA
+                    end
+                ```
+              </td>
+              <td>No designated leader. Each node in the cluster can accept both read and write operations. Data is replicated across all nodes in the cluster</td>
+              <td>
+                <ul>
+                  <li>No single point of failure</li>
+                  <li>High availability for both reads and writes</li>
+                  <li>Linear scalability</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Complex consistency and conflict resolution</li>
+                  <li>Increased network traffic for replication</li>
+                  <li>Potential for divergent data states</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Highly distributed environments</li>
+                  <li>Scalable architectures</li>
+                  <li>Fault tolerance</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Quorum Writes and Reads</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    subgraph read[Read]
+                        direction LR
+
+                        readCoordinator --> |response| readClient
+                        readCoordinator <--> |read quorum<br/>response| read_dbA[( )]
+                        readCoordinator <--> |read quorum<br/>response| read_dbB[( )]
+                        readCoordinator <--> |read quorum<br/>response| read_dbC[( )]
+
+                        readClient(Client) --> |read| readCoordinator(Coordinator)
+                    end
+
+                    subgraph write[Write]
+                        direction LR
+
+                        write_dbA[( )]
+                        write_dbB[( )]
+
+                        writeClient(Client) <--> |write<br/>respond| writeCoordinator(Coordinator)
+                        writeCoordinator <--> |prepare<br/>acknowledge| write_dbA
+                        writeCoordinator <--> |commit<br/>acknowledge| write_dbA
+
+                        writeCoordinator <--> |prepare<br/>acknowledge| write_dbB
+                        writeCoordinator <--> |commit<br/>acknowledge| write_dbB
+                    end
+                ```
+              </td>
+              <td>Requires a certain number (quorum) of nodes to agree on a write or read operation before it's considered successful. It's often used in distributed databases to ensure consistency and availability</td>
+              <td>
+                <ul>
+                  <li>Improved fault tolerance</li>
+                  <li>Tunable consistency levels</li>
+                  <li>Reduced risk of split-brain scenarios</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Increased coordination overhead</li>
+                  <li>Potential for performance degradation with large clusters</li>
+                  <li>Complexity in determining appropriate quorum sizes</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Highly available systems</li>
+                  <li>Consistency across distributed nodes</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="conflicts" label="Conflict Resolutions">
+        <table>
+          <thead>
+            <tr>
+              <th>Criteria</th>
+              <th>Last Write Wins (LWW)</th>
+              <th>Conflict-free Replicated Data Types (CRDTs)</th>
+              <th>Operational Transformation</th>
+              <th>Application-specific Resolution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Principle</b></td>
+              <td>The latest update overwrites previous ones</td>
+              <td>Concurrent updates merge seamlessly</td>
+              <td>Transformations are applied to resolve conflicts</td>
+              <td>Custom logic defines resolution rules</td>
+            </tr>
+            <tr>
+              <td><b>Concurrency Control</b></td>
+              <td>Often based on timestamps</td>
+              <td>Built-in, ensures eventual consistency</td>
+              <td>Complex, requires careful design</td>
+              <td>Depends on implementation approach</td>
+            </tr>
+            <tr>
+              <td><b>Conflict Detection</b></td>
+              <td>Timestamps or version vectors</td>
+              <td>Built-in mechanisms handle concurrent updates</td>
+              <td>Requires tracking dependencies</td>
+              <td>Custom logic or metadata tracking</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Simple applications with low concurrency where data loss is acceptable</td>
+              <td>Collaborative editing systems, real-time communication systems</td>
+              <td>Collaborative editing, version control systems, distributed databases</td>
+              <td>Application-specific needs, such as financial transactions</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>
+
+## Relational Database
+
+<Tabs>
+    <TabItem value="overview" label="Overview">
+        Structured Query Language (**SQL**) is a programming language used for managing and manipulating relational databases.
+
+        ### Query Flow
+
+        ```mermaid
+            graph LR
+
+            from(FROM + JOIN) --> where(WHERE)
+            where --> group(GROUP)
+            group --> having(HAVING)
+            having --> select(SELECT)
+            select --> orderBy(ORDER BY)
+            orderBy --> limit(LIMIT)
+        ```
+
+        ### Key Concepts
+
+        - **Attribute**: A property or characteristic of an entity
+        - **Column**: A vertical data element in a table
+        - **Constraint**: A condition that must be met for a row to be inserted into a table, such as a column being non-null or unique values (column/table constraints)
+        - **Database Management System (DBMS)**:  Database Management System, the software that manages and controls access to a database
+        - **Default**: Default allows to add values to the column if the value of that column is not set
+        - **Primary Key**: Non-null unique identifier for a row
+        - **Foreign Key**: Field or combination of fields that establishes a link between two tables. It enforces referential integrity by ensuring that values in one table's key match with values in another table's key. This relationship allows for data consistency and facilitates queries across related tables
+        - **Record**: A row in a table
+        - **Schema**: The structure or blueprint of the database, defining the tables, columns, and relationships
+        - **Table**: A collection of related data
+        - **View**: Virtual table that is made up of elements of multiple physical or "real" tables
+    </TabItem>
+    <TabItem value="detailed" label="Detailed">
+        <Tabs>
+            <TabItem value="subsets" label="Subsets of SQL" attributes={{className:"tabs__vertical"}}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Language</th>
+                      <th>Purpose</th>
+                      <th>Examples</th>
+                      <th>Features</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>DCL (Data Control Language)</b></td>
+                      <td>Manages access and permissions to data</td>
+                      <td>`GRANT`, `REVOKE`</td>
+                      <td>Controls who can access, manipulate, or delete data</td>
+                    </tr>
+                    <tr>
+                      <td><b>DDL (Data Definition Language)</b></td>
+                      <td>Defines and manages database structure</td>
+                      <td>`CREATE`, `ALTER`, `DROP`</td>
+                      <td>Used to define tables, indexes, constraints, etc</td>
+                    </tr>
+                    <tr>
+                      <td><b>DML (Data Manipulation Language)</b></td>
+                      <td>Manipulates data within the database</td>
+                      <td>`INSERT`, `UPDATE`, `DELETE`</td>
+                      <td>Allows adding, modifying, and removing data</td>
+                    </tr>
+                    <tr>
+                      <td><b>DQL (Data Query Language)</b></td>
+                      <td>Retrieves data from the database</td>
+                      <td>`SELECT`</td>
+                      <td>Primarily used for querying data from tables</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+            <TabItem value="having" label="WHERE vs HAVING">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Aspect</th>
+                      <th>WHERE Clause</th>
+                      <th>HAVING Clause</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Purpose</b></td>
+                      <td>Filters individual rows based on specific conditions</td>
+                      <td>Filters groups of rows after aggregation (using `GROUP BY`)</td>
+                    </tr>
+                    <tr>
+                      <td><b>Data Considered</b></td>
+                      <td>All rows in the table</td>
+                      <td>Groups created by the `GROUP BY` clause</td>
+                    </tr>
+                    <tr>
+                      <td><b>Condition Type</b></td>
+                      <td>Can use any comparison operators, logical operators</td>
+                      <td>Must use aggregate functions (`SUM`, `COUNT`, `AVG`, `MIN`, `MAX`) or expressions involving them</td>
+                    </tr>
+                    <tr>
+                      <td><b>Execution Timing</b></td>
+                      <td>Applied before rows are grouped (more efficient)</td>
+                      <td>Applied after rows are grouped (less efficient)</td>
+                    </tr>
+                    <tr>
+                      <td><b>Requirement</b></td>
+                      <td>Can be used with or without `GROUP BY`</td>
+                      <td>Requires a `GROUP BY` clause</td>
+                    </tr>
+                    <tr>
+                      <td><b>Compatibility</b></td>
+                      <td>Can be used with `SELECT`, `UPDATE`, and `DELETE` statements</td>
+                      <td>Can only be used with `SELECT` statements</td>
+                    </tr>
+                    <tr>
+                      <td><b>Filtering Logic</b></td>
+                      <td>Filters rows that meet the condition, excluding others</td>
+                      <td>Filters groups that meet the condition, excluding others</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+            <TabItem value="truncate" label="TRUNCATE vs DELETE">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Feature</th>
+                      <th>TRUNCATE</th>
+                      <th>DELETE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Category</b></td>
+                      <td>DDL (Data Definition Language)</td>
+                      <td>DML (Data Manipulation Language)</td>
+                    </tr>
+                    <tr>
+                      <td><b>Function</b></td>
+                      <td>Removes all rows from a table</td>
+                      <td>Removes specific rows based on conditions (`WHERE` clause)</td>
+                    </tr>
+                    <tr>
+                      <td><b>Filtering</b></td>
+                      <td>Not possible</td>
+                      <td>Possible using `WHERE` clause</td>
+                    </tr>
+                    <tr>
+                      <td><b>Transaction</b></td>
+                      <td>Cannot be used within a transaction</td>
+                      <td>Can be used within a transaction</td>
+                    </tr>
+                    <tr>
+                      <td><b>Constraints</b></td>
+                      <td>Disables foreign key constraints temporarily</td>
+                      <td>Triggers foreign key constraints and other constraints</td>
+                    </tr>
+                    <tr>
+                      <td><b>Transaction Log</b></td>
+                      <td>Records only deallocated data pages</td>
+                      <td>Records each deleted row</td>
+                    </tr>
+                    <tr>
+                      <td><b>Rollback</b></td>
+                      <td>Not possible</td>
+                      <td>Possible (if transaction is active)</td>
+                    </tr>
+                    <tr>
+                      <td><b>Speed</b></td>
+                      <td>Faster</td>
+                      <td>Slower</td>
+                    </tr>
+                    <tr>
+                      <td><b>Locking</b></td>
+                      <td>Exclusive lock on the table</td>
+                      <td>Locks individual rows being deleted</td>
+                    </tr>
+                    <tr>
+                      <td><b>Identity Columns</b></td>
+                      <td>Resets auto-incrementing values</td>
+                      <td>Preserves existing values</td>
+                    </tr>
+                    <tr>
+                      <td><b>Triggers</b></td>
+                      <td>Does not fire triggers</td>
+                      <td>May fire triggers (depending on definition)</td>
+                    </tr>
+                    <tr>
+                      <td><b>Permissions Required</b></td>
+                      <td>`ALTER` on the table</td>
+                      <td>`DELETE` on the table</td>
+                    </tr>
+                    <tr>
+                      <td><b>Use Cases</b></td>
+                      <td>
+                        <ul>
+                          <li>Clearing temporary or staging tables</li>
+                          <li>Removing all data before reloading</li>
+                          <li>Fast data deletion for large tables</li>
+                        </ul>
+                      </td>
+                      <td>
+                        <ul>
+                          <li>Deleting specific records based on criteria</li>
+                          <li>Selective data removal with rollback possibility</li>
+                          <li>Maintaining existing identity column values</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+            <TabItem value="keys" label="Table Keys">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Feature</th>
+                      <th>Primary Key</th>
+                      <th>Unique Key</th>
+                      <th>Foreign Key</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Purpose</b></td>
+                      <td>Uniquely identifies each row</td>
+                      <td>Ensures uniqueness for a set of columns</td>
+                      <td>Links data between two tables</td>
+                    </tr>
+                    <tr>
+                      <td><b>Uniqueness</b></td>
+                      <td>Mandatory (one and only one)</td>
+                      <td>Enforced (no duplicates)</td>
+                      <td>Enforced (references unique values)</td>
+                    </tr>
+                    <tr>
+                      <td><b>Null Values</b></td>
+                      <td>Not allowed</td>
+                      <td>Allowed (one per column)</td>
+                      <td>Not allowed</td>
+                    </tr>
+                    <tr>
+                      <td><b>Number per Table</b></td>
+                      <td>One</td>
+                      <td>Multiple</td>
+                      <td>Can reference multiple tables</td>
+                    </tr>
+                    <tr>
+                      <td><b>Indexes</b></td>
+                      <td>Typically creates a clustered index</td>
+                      <td>May or may not create an index</td>
+                      <td>Typically does not create an index</td>
+                    </tr>
+                    <tr>
+                      <td><b>Auto Increment</b></td>
+                      <td>Supported</td>
+                      <td>Not supported</td>
+                      <td>Not supported</td>
+                    </tr>
+                    <tr>
+                      <td><b>Foreign Key Reference</b></td>
+                      <td>Can be referenced by foreign keys</td>
+                      <td>Can be referenced by foreign keys</td>
+                      <td>References a primary or unique key</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+            <TabItem value="sql" label="Aggregation vs Window Function">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Feature</th>
+                      <th>Aggregation</th>
+                      <th>Window Function</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Functionality</b></td>
+                      <td>Applies to entire groups of data</td>
+                      <td>Applies to each row within a group</td>
+                    </tr>
+                    <tr>
+                      <td><b>Purpose</b></td>
+                      <td>Summarizes data by reducing it to a single value per group</td>
+                      <td>Calculates running totals, subtotals, ranking, percentiles, on a defined partition of data</td>
+                    </tr>
+                    <tr>
+                      <td><b>Common Functions</b></td>
+                      <td>`SUM`, `COUNT`, `AVG`, `MIN`, `MAX`</td>
+                      <td>`CUMSUM`, `ROW_NUMBER`, `DENSE_RANK`, `PERCENT_RANK`, `LAG`, `LEAD`</td>
+                    </tr>
+                    <tr>
+                      <td><b>Output Format</b></td>
+                      <td>Reduced DataFrame with one row per group</td>
+                      <td>Maintains the original DataFrame structure with the same number of rows</td>
+                    </tr>
+                    <tr>
+                      <td><b>Example</b></td>
+                      <td>`SELECT department, COUNT(*) FROM employees GROUP BY department`</td>
+                      <td>`SELECT name, salary, AVG(salary) OVER (PARTITION BY department ORDER BY hire_date ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) FROM employees`</td>
+                    </tr>
+                    <tr>
+                      <td><b>Use Cases</b></td>
+                      <td>Suitable for summarizing data across groups, such as calculating total sales per region or average order value per customer segment</td>
+                      <td>Ideal for analytical tasks requiring comparisons between rows, like calculating moving averages, cumulative sums, or identifying top N values within groups</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+            <TabItem value="set" label="Set Theory">
+                <table>
+                    <thead>
+                      <tr>
+                        <th>Feature</th>
+                        <th>UNION</th>
+                        <th>UNION ALL</th>
+                        <th>INTERSECT</th>
+                        <th>EXCEPT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Purpose</b></td>
+                        <td>Combines the results of two or more sets and removes duplicates</td>
+                        <td>Combines the results of two or more sets without removing duplicates</td>
+                        <td>Returns elements common to both sets</td>
+                        <td>Returns elements present in the first set but not in the second</td>
+                      </tr>
+                      <tr>
+                        <td><b>Syntax</b></td>
+                        <td>`SELECT id FROM A UNION SELECT id FROM B`</td>
+                        <td>`SELECT id FROM A UNION ALL SELECT id FROM B`</td>
+                        <td>`SELECT id FROM A INTERSECT SELECT id FROM B`</td>
+                        <td>`SELECT id FROM A EXCEPT SELECT id FROM B`</td>
+                      </tr>
+                      <tr>
+                        <td><b>Example</b></td>
+                        <td>`A = {1, 2, 3}, B = {2, 4, 5}` → `{1, 2, 3, 4, 5}` (w/o duplicates)</td>
+                        <td>`A = {1, 2, 3}, B = {2, 4, 5}` → `{1, 2, 2, 3, 4, 5}` (w/ duplicates)</td>
+                        <td>`A = {1, 2, 3}, B = {2, 4, 5}` → `{2}` (elements common to both sets)</td>
+                        <td>`A = {1, 2, 3}, B = {2, 4, 5}` → `{1, 3}` (elements in A but not B)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="structures" label="Data Structures">
+      <table class="text_vertical">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Visualization</th>
+            <th>Definition</th>
+            <th>Features</th>
+            <th>Use Cases</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Skip List</b></td>
+            <td>![](./assets/database/skiplist.svg)</td>
+            <td>Probabilistic data structure for ordered sets or maps, offering efficient search and insertion with average case complexity better than balanced trees</td>
+            <td>Used in Redis</td>
+            <td>In-memory</td>
+          </tr>
+          <tr>
+            <td><b>Hash Index</b></td>
+            <td>![](./assets/database/hash-index.svg)</td>
+            <td>Uses a hash function to quickly map data keys to their locations, ideal for fast lookups</td>
+            <td>Most common in-memory index solution</td>
+            <td>In-memory</td>
+          </tr>
+          <tr>
+            <td><b>SSTable</b></td>
+            <td>![](./assets/database/sstable.svg)</td>
+            <td>File format for storing data in sorted order on disk, enabling efficient retrieval operations</td>
+            <td>Immutable data structure. Seldom used alone</td>
+            <td>Disk-based</td>
+          </tr>
+          <tr>
+            <td><b>LSM Tree</b></td>
+            <td>![](./assets/database/lsm-tree.svg)</td>
+            <td>Data structure that combines in-memory and disk-based storage for ordered data, optimizing write performance and later merging for efficient reads</td>
+            <td>High write throughput. Disk compaction may impact performance</td>
+            <td>Memory + Disk</td>
+          </tr>
+          <tr>
+            <td><b>B-Tree</b></td>
+            <td>![](./assets/database/b-tree.svg)</td>
+            <td>Self-balancing tree data structure for sorted data, allowing efficient search, insertion, and deletion operations</td>
+            <td>Most popular database index implementation</td>
+            <td>Disk-based</td>
+          </tr>
+          <tr>
+            <td><b>Inverted Index</b></td>
+            <td>![](./assets/database/inverted-index.svg)</td>
+            <td>Used for text retrieval, where words are mapped to documents they appear in, facilitating fast full-text searches</td>
+            <td>Used in document search engine such as Lucene</td>
+            <td>Search document</td>
+          </tr>
+          <tr>
+            <td><b>Suffix Tree</b></td>
+            <td>![](./assets/database/suffix-tree.svg)</td>
+            <td>Stores suffixes of words, enabling efficient searches for patterns and substrings within a text</td>
+            <td>Used in string search, such as string suffix match</td>
+            <td>Search string</td>
+          </tr>
+          <tr>
+            <td><b>R-Tree</b></td>
+            <td>![](./assets/database/r-tree.svg)</td>
+            <td>Stores spatial data like points, rectangles, or polygons, allowing efficient searches for objects within a specific area</td>
+            <td>Nearest neighbor</td>
+            <td>Search multi-dimension shape</td>
+          </tr>
+        </tbody>
+      </table>
+    </TabItem>
+    <TabItem value="syntax" label="Syntax">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Definition</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>SELECT</b></td>
+                    <td>Retrieves data from a database</td>
+                    <td>`SELECT column1, column2 FROM table_name`</td>
+                </tr>
+                <tr>
+                    <td><b>INSERT</b></td>
+                    <td>Adds new records to a table</td>
+                    <td>`INSERT INTO table_name (column1, column2) VALUES (value1, value2)`</td>
+                </tr>
+                <tr>
+                    <td><b>UPDATE</b></td>
+                    <td>Modifies existing records in a table</td>
+                    <td>`UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition`</td>
+                </tr>
+                <tr>
+                    <td><b>DELETE</b></td>
+                    <td>Deletes records from a table</td>
+                    <td>`DELETE FROM table_name WHERE condition`</td>
+                </tr>
+                <tr>
+                    <td><b>JOIN</b></td>
+                    <td>Combines rows from two or more tables based on a related column</td>
+                    <td>`SELECT * FROM table1 INNER JOIN table2 ON table1.column = table2.column`</td>
+                </tr>
+                <tr>
+                    <td><b>GROUP BY</b></td>
+                    <td>Groups rows with identical values into summary rows</td>
+                    <td>`SELECT column1, COUNT(*) FROM table_name GROUP BY column1`</td>
+                </tr>
+                <tr>
+                    <td><b>HAVING</b></td>
+                    <td>Filters records grouped by GROUP BY clause</td>
+                    <td>`SELECT column1, COUNT(*) FROM table_name GROUP BY column1 HAVING COUNT(*) > 10`</td>
+                </tr>
+                <tr>
+                    <td><b>ORDER BY</b></td>
+                    <td>Sorts the result set in ascending or descending order</td>
+                    <td>`SELECT * FROM table_name ORDER BY column1 DESC`</td>
+                </tr>
+                <tr>
+                    <td><b>WHERE</b></td>
+                    <td>Filters records based on specified conditions</td>
+                    <td>`SELECT * FROM table_name WHERE condition`</td>
+                </tr>
+                <tr>
+                    <td><b>DISTINCT</b></td>
+                    <td>Returns only distinct (different) values</td>
+                    <td>`SELECT DISTINCT column1 FROM table_name`</td>
+                </tr>
+                <tr>
+                    <td><b>UNION</b></td>
+                    <td>Combines the result sets of two or more SELECT statements</td>
+                    <td>`SELECT column1 FROM table1 UNION SELECT column1 FROM table2`</td>
+                </tr>
+                <tr>
+                    <td><b>TRANSACTION</b></td>
+                    <td>Groups a set of SQL statements into a single unit of work</td>
+                    <td>`BEGIN TRANSACTION; ... COMMIT; or ROLLBACK;`</td>
+                </tr>
+                <tr>
+                    <td><b>INDEX</b></td>
+                    <td>Creates an index on a table</td>
+                    <td>`CREATE INDEX index_name ON table_name (column1)`</td>
+                </tr>
+                <tr>
+                    <td><b>VIEW</b></td>
+                    <td>Virtual table derived from one or more tables</td>
+                    <td>`CREATE VIEW view_name AS SELECT column1, column2 FROM table_name WHERE condition`</td>
+                </tr>
+                <tr>
+                    <td><b>TRIGGER</b></td>
+                    <td>Executes a set of actions when a certain event occurs on a table</td>
+                    <td>`CREATE TRIGGER trigger_name BEFORE INSERT ON table_name FOR EACH ROW BEGIN ... END`</td>
+                </tr>
+                <tr>
+                    <td><b>SUBQUERY</b></td>
+                    <td>Nested query inside another query</td>
+                    <td>`SELECT column1 FROM table_name WHERE column1 IN (SELECT column1 FROM table2 WHERE condition)`</td>
+                </tr>
+                <tr>
+                    <td><b>CASE</b></td>
+                    <td>Provides conditional logic within a query</td>
+                    <td>`SELECT column1, CASE WHEN condition THEN result1 ELSE result2 END AS result FROM table_name`</td>
+                </tr>
+            </tbody>
+        </table>
+    </TabItem>
+    <TabItem value="normalization" label="Normalization">
+        Process of organizing data in a relational database to minimize redundancy and improve data integrity.
+
+        - **Reduce data duplication**: This saves storage space and minimizes maintenance headaches
+        - **Enhance data consistency**: When a piece of data changes, it only needs to be updated in one place, ensuring consistency across the database
+        - **Improve data retrieval efficiency**: Normalized databases allow for faster and more efficient querying of data
+
+        Normalization is achieved through a series of steps, each referred to as a Normal Form (**NF**) Each subsequent form builds upon the previous one, progressively reducing redundancy
+
+        <table class="text_vertical">
+            <thead>
+              <tr>
+                <th>Normal Form</th>
+                <th>Key Points</th>
+                <th>Steps</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>0NF</b></td>
+                <td>Non-normalized data</td>
+                <td></td>
+                <td>
+                    <table>
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Movie</th>
+                            <th>Salutation</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jane Doe</td>
+                                <td>1st Street</td>
+                                <td>Pirates of the Caribbean, Game of Thrones</td>
+                                <td>Ms</td>
+                            </tr>
+                            <tr>
+                                <td>Joe Doe</td>
+                                <td>38 Street</td>
+                                <td>Kung Fu Panda, Squid Game</td>
+                                <td>Mr</td>
+                            </tr>
+                            <tr>
+                                <td>Joe Doe</td>
+                                <td>8th Ave</td>
+                                <td>Game of Thrones</td>
+                                <td>Mr</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+              </tr>
+              <tr>
+                <td><b>1NF</b></td>
+                <td>
+                    <ul>
+                        <li>Each table cell should contain a single value</li>
+                        <li>Each record has to be unique</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Identify repeating groups within a table</li>
+                        <li>Create separate tables for these groups</li>
+                        <li>Establish relationships between tables using primary and foreign keys. (A foreign key in one table references the primary key of another table, linking related data)</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Flatten the table by storing in a cell a single value</li>
+                        <li>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Movie</th>
+                                    <th>Salutation</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Jane Doe</td>
+                                        <td>1st Street</td>
+                                        <td>Pirates of the Caribbean</td>
+                                        <td>Ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jane Doe</td>
+                                        <td>1st Street</td>
+                                        <td>Game of Thrones</td>
+                                        <td>Ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Joe Doe</td>
+                                        <td>38 Street</td>
+                                        <td>Squid Game</td>
+                                        <td>Mr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Joe Doe</td>
+                                        <td>38 Street</td>
+                                        <td>Squid Game</td>
+                                        <td>Mr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Joe Doe</td>
+                                        <td>8th Ave</td>
+                                        <td>Game of Thrones</td>
+                                        <td>Mr</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>2NF</b></td>
+                <td>
+                    <ul>
+                        <li>The table must already be in 1NF</li>
+                        <li>Single column Primary Key that doesn't functionally dependant on any subset of candidate key relation</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Identify non-key attributes that depend only on a part of the primary key</li>
+                        <li>Create separate tables for these attributes, with a new primary key formed by the relevant part of the original key and any additional attributes that determine the value of the dependent attribute(s)</li>
+                        <li>Establish foreign key relationships between the new table and the original table</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Membership ID</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Salutation</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Jane Doe</td>
+                                        <td>1st Street</td>
+                                        <td>Ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Joe Doe</td>
+                                        <td>38 Street</td>
+                                        <td>Mr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Joe Doe</td>
+                                        <td>8th Ave</td>
+                                        <td>Mr</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <li>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Membership ID</th>
+                                    <th>Movie</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Pirates of the Caribbean</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Game of Thrones</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Squid Game</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Squid Game</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Game of Thrones</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>3NF</b></td>
+                <td>
+                    <ul>
+                        <li>The table must already be in 2NF</li>
+                        <li>
+                        Has no transitive functional dependencies
+                        <ul>
+                            <li>If an A functionally determines B (A → B; or B is dependant on A, or B comes from an A ) and simultaneously B determines C (B → C), then A is transitively dependant on C (A → C)</li>
+                            <li>birth code → name, age; name, age → address; birth code → address</li>
+                        </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>**Identify transitive dependencies**: Analyze the relationships between non-key attributes. Look for situations where one non-key attribute depends on another non-key attribute, which ultimately depends on the primary key</li>
+                        <li>**Decompose the table**: If you find transitive dependencies, create a new table to isolate the dependent attribute(s) and any other attributes that determine their values</li>
+                        <li>**Establish foreign key relationships**: Link the new table back to the original table using a foreign key that references the relevant determining attribute(s)</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Membership ID</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Salutation ID</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Jane Doe</td>
+                                        <td>1st Street</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Joe Doe</td>
+                                        <td>38 Street</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Joe Doe</td>
+                                        <td>8th Ave</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <li>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Membership ID</th>
+                                    <th>Movie</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Pirates of the Caribbean</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Game of Thrones</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Squid Game</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Squid Game</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Game of Thrones</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <li>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Salutation ID</th>
+                                    <th>Salutation</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Mr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Ms</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Boyce-Codd Normal Form (BCNF)</b></td>
+                <td>
+                    <ul>
+                        <li>The table must already be in 3NF</li>
+                        <li>Decompose non-trivial functional dependencies by separating them into a new tables and link them with foreign keys (FK)</li>
+                        <li>Ensure that every determinant is a candidate key</li>
+                    </ul>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>4NF</b></td>
+                <td>
+                    <ul>
+                        <li>The table must already be in BCNF</li>
+                        <li>If no database table instance contains 2 or more, independent and multivalued data describing the relevant entity</li>
+                    </ul>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>5NF</b></td>
+                <td>
+                    <ul>
+                        <li>The table must already be in 4NF</li>
+                        <li>Decompose join dependencies by separating them into a new tables and link them with foreign keys (FK)</li>
+                    </ul>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>6NF</b></td>
+                <td>
+                    <ul>
+                        <li>The table must already be in 5NF</li>
+                        <li>Decompose temporal dependencies which involve time-varying relationships between attributes</li>
+                    </ul>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+    </TabItem>
+    <TabItem value="joins" label="Joins">
+        <table class="sticky column text_vertical" style={{textWrap: "nowrap"}}>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th style={{minWidth: '350px'}}>Visualization</th>
+                <th>Definition</th>
+                <th>Syntax</th>
+                <th style={{minWidth: '350px'}}>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Left Join / Left Outer Join</b></td>
+                <td>![](./assets/database/left-join.svg)</td>
+                <td>Everything on the left + everything on the right that matches</td>
+                <td>`SELECT * FROM table1 LEFT JOIN table2 ON table1.key = table2.key`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>2</td><td>222</td></tr><tr><td>8</td><td>888</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>John</td><td>111</td></tr><tr><td>2</td><td>Joe</td><td>222</td></tr><tr><td>3</td><td>Jane</td><td>NULL</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Anti Left Join</b></td>
+                <td>![](./assets/database/anti-left-join.svg)</td>
+                <td>Everything on the left that is NOT on the right</td>
+                <td>`SELECT * FROM table1 LEFT JOIN table2 ON table1.key = table2.key WHERE table2.key IS NULL`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>2</td><td>222</td></tr><tr><td>8</td><td>888</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>3</td><td>Jane</td><td>NULL</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Right Join / Right Outer Join</b></td>
+                <td>![](./assets/database/right-join.svg)</td>
+                <td>Everything on the right + everything on the left that matches</td>
+                <td>`SELECT * FROM table1 RIGHT JOIN table2 ON table1.key = table2.key`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>2</td><td>222</td></tr><tr><td>8</td><td>888</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>John</td><td>111</td></tr><tr><td>2</td><td>Joe</td><td>222</td></tr><tr><td>8</td><td>NULL</td><td>888</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Anti Right Join</b></td>
+                <td>![](./assets/database/anti-right-join.svg)</td>
+                <td>Everything on the right that is NOT on the left</td>
+                <td>`SELECT * FROM table1 RIGHT JOIN table2 ON table1.key = table2.key WHERE table1.key IS NULL`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>2</td><td>222</td></tr><tr><td>8</td><td>888</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>NULL</td><td>NULL</td><td>888</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Full Outer Join</b></td>
+                <td>![](./assets/database/full-join.svg)</td>
+                <td>Everything on the left + everything on the right</td>
+                <td>`SELECT * FROM table1 FULL OUTER JOIN table2 ON table1.key = table2.key`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>2</td><td>222</td></tr><tr><td>8</td><td>888</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>John</td><td>111</td></tr><tr><td>2</td><td>Joe</td><td>222</td></tr><tr><td>3</td><td>Jane</td><td>NULL</td></tr><tr><td>8</td><td>NULL</td><td>888</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Anti Outer Join</b></td>
+                <td>![](./assets/database/anti-outer-join.svg)</td>
+                <td>Everything on the left and right that is unique to each other</td>
+                <td>`SELECT * FROM table1 FULL OUTER JOIN table2 ON table1.key = table2.key WHERE table1.key IS NULL OR table2.key IS NULL`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>2</td><td>222</td></tr><tr><td>8</td><td>888</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>NULL</td><td>NULL</td><td>888</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Join / Inner Join</b></td>
+                <td>![](./assets/database/inner-join.svg)</td>
+                <td>Only the things that are common</td>
+                <td>`SELECT * FROM table1 INNER JOIN table2 ON table1.key = table2.key`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>1</td><td>222</td></tr><tr><td>5</td><td>1</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>John</td><td>111</td></tr><tr><td>1</td><td>John</td><td>222</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Cross Join</b></td>
+                <td>![](./assets/database/cross-join.svg)</td>
+                <td>All combinations of rows from both tables (Cartesian Product)</td>
+                <td>`SELECT * FROM table1 CROSS JOIN table2`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user(User) --> result(Result)
+                        order(Order) --> result
+
+                        user ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user
+                        order ~~~|<table><thead><tr><th>User ID</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>111</td></tr><tr><td>2</td><td>222</td></tr><tr><td>8</td><td>888</td></tr></tbody></table>| order
+                        result ~~~|<table><thead><tr><th>User ID</th><th>User Name</th><th>Order ID</th></tr></thead><tbody><tr><td>1</td><td>John</td><td>111</td></tr><tr><td>1</td><td>John</td><td>222</td></tr><tr><td>1</td><td>John</td><td>888</td></tr><tr><td>2</td><td>Joe</td><td>111</td></tr><tr><td>2</td><td>Joe</td><td>222</td></tr><tr><td>2</td><td>Joe</td><td>888</td></tr><tr><td>3</td><td>Jane</td><td>111</td></tr><tr><td>3</td><td>Jane</td><td>222</td></tr><tr><td>3</td><td>Jane</td><td>888</td></tr></tbody></table>| result
+                    ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Self Join</b></td>
+                <td>![](./assets/database/self-join.svg)</td>
+                <td>The table is joined with itself</td>
+                <td>`SELECT * FROM table1 AS t1 INNER JOIN table1 AS t2 ON t1.key = t2.key`</td>
+                <td>
+                    ```mermaid
+                        graph TB
+
+                        user1(User) --> result(Result)
+                        user2(User) --> result
+
+                        user1 ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user1
+                        user2 ~~~|<table><thead><tr><th>User ID</th><th>User Name</th></tr></thead><tbody><tr><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td></tr></tbody></table>| user2
+                        result ~~~|"<table><thead><tr><th>User ID (User1)</th><th>User Name (User1)</th><th>User ID (User2)</th><th>User Name (User2)</th></tr></thead><tbody><tr><td>1</td><td>John</td><td>1</td><td>John</td></tr><tr><td>1</td><td>John</td><td>2</td><td>Joe</td></tr><tr><td>1</td><td>John</td><td>3</td><td>Jane</td></tr><tr><td>2</td><td>Joe</td><td>1</td><td>John</td></tr><tr><td>2</td><td>Joe</td><td>2</td><td>Joe</td></tr><tr><td>2</td><td>Joe</td><td>3</td><td>Jane</td></tr><tr><td>3</td><td>Jane</td><td>1</td><td>John</td></tr><tr><td>3</td><td>Jane</td><td>2</td><td>Joe</td></tr><tr><td>3</td><td>Jane</td><td>3</td><td>Jane</td></tr></tbody></table>"| result
+                    ```
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </TabItem>
+    <TabItem value="relations" label="Relations">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>One-to-One</th>
+                    <th>One-to-Many</th>
+                    <th>Many-to-Many</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Visualization</b></td>
+                    <td>
+                        ```mermaid
+                        erDiagram
+                            Person ||--o| Passport : "1..0-1"
+                        ````
+                    </td>
+                    <td>
+                        ```mermaid
+                        erDiagram
+                            DepartmentsA ||--|{ EmployeeA : "1..1-*"
+                        ````
+                    </td>
+                    <td>
+                        ```mermaid
+                        erDiagram
+                            Students o|--|{ Students-Courses : "0-1..1-*"
+                            Courses ||--o{ Students-Courses : "1..0-*"
+                        ````
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Definition</b></td>
+                    <td>Each record in one table is associated with exactly one record in another</td>
+                    <td>Each record in one table can be associated with one or more records in another</td>
+                    <td>Records in both tables can be associated with multiple records in the other</td>
+                </tr>
+                <tr>
+                    <td><b>Example</b></td>
+                    <td>Person → Passport</td>
+                    <td>Department → Employee</td>
+                    <td>Student → Course</td>
+                </tr>
+            </tbody>
+        </table>
+    </TabItem>
+</Tabs>
+
+## Data Storage Solutions
+
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    ### Key Points for Considerations
+
+    - **Data Volume and Growth:** How much data do you currently store, and what's the anticipated growth rate?
+    - **Performance Requirements:**  How critical is fast access and retrieval of data for your operations?
+    - **Data Security and Compliance:**  What security measures are necessary to safeguard sensitive data? Are there industry regulations to adhere to?
+    - **Accessibility and Sharing Needs:**  Do you require remote access to data or collaboration features?
+    - **Budgetary Constraints:**  What is your allocated budget for data storage solutions?
+  </TabItem>
+  <TabItem value="processingTypes" label="Processing Types">
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Online Analytical Processing (OLAP)</th>
+                <th>Online Transaction Processing (OLTP)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Purpose</b></td>
+                <td>Analytical processing for decision-making</td>
+                <td>Transaction processing for day-to-day operations</td>
+            </tr>
+            <tr>
+                <td><b>Data Usage</b></td>
+                <td>Aggregates historical data for reporting and analysis</td>
+                <td>Processes real-time transactions and updates</td>
+            </tr>
+            <tr>
+                <td><b>Data Schema</b></td>
+                <td>Star or snowflake schemas, denormalized</td>
+                <td>Normalized schemas, reducing redundancy</td>
+            </tr>
+            <tr>
+                <td><b>Query Complexity</b></td>
+                <td>Complex queries with aggregations and joins</td>
+                <td>Simple queries with frequent read/write operations</td>
+            </tr>
+            <tr>
+                <td><b>Data Granularity</b></td>
+                <td>Summarized, aggregated data</td>
+                <td>Detailed, individual transactions</td>
+            </tr>
+            <tr>
+                <td><b>Data Size</b></td>
+                <td>Huge data volumes, typically in terabytes or more</td>
+                <td>Smaller data volumes, typically in gigabytes or less</td>
+            </tr>
+            <tr>
+                <td><b>Performance</b></td>
+                <td>Designed for high throughput, slower write speeds</td>
+                <td>Optimized for fast write speeds and low latency reads</td>
+            </tr>
+            <tr>
+                <td><b>Examples</b></td>
+                <td>Amazon Redshift, Google BigQuery, Snowflake</td>
+                <td>MySQL, PostgreSQL</td>
+            </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="processingData" label="Data Processing">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>ETL</th>
+          <th>ELT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Visualization</b></td>
+          <td>
+            ```mermaid
+                graph LR
+
+                subgraph Extract
+                    direction TB
+
+                    lob[(LOB)]
+                    crm[(CRM)]
+                    erp[(ERP)]
+                end
+
+                subgraph Load
+                    direction TB
+
+                    warehouse[(Data Warehouse)]
+                end
+
+                Extract --> transform([Transform])
+                transform --> Load
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph LR
+
+                subgraph Extract
+                    direction TB
+
+                    lob[(LOB)]
+                    crm[(CRM)]
+                    erp[(ERP)]
+                end
+
+                subgraph Load
+                    direction TB
+
+                    lake[(Data Lake)]
+                end
+
+                Extract --> Load
+                Load --> transform([Transform])
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td><b>Process Flow</b></td>
+          <td>Extract data first, then transform and load into the target system</td>
+          <td>Extract data first, load into the target system, then transform within the target system</td>
+        </tr>
+        <tr>
+          <td><b>Data Transformation</b></td>
+          <td>Transformation occurs before loading into the target system</td>
+          <td>Transformation occurs after loading into the target system</td>
+        </tr>
+        <tr>
+          <td><b>Performance</b></td>
+          <td>Typically slower due to data transformation overhead during the ETL process</td>
+          <td>Generally faster because loading raw data is faster than transforming it during the ETL process</td>
+        </tr>
+        <tr>
+          <td><b>Scalability</b></td>
+          <td>Limited scalability due to the need for substantial transformation before loading data</td>
+          <td>Highly scalable as it can leverage the processing power of the target system for transformations</td>
+        </tr>
+        <tr>
+          <td><b>Storage Requirements</b></td>
+          <td>Higher storage requirements as both raw and transformed data need to be stored</td>
+          <td>Lower storage requirements as only raw data needs to be stored initially, and transformation occurs within the target system</td>
+        </tr>
+        <tr>
+          <td><b>Data Integrity</b></td>
+          <td>Higher data integrity as data is cleaned and transformed before loading into the target system</td>
+          <td>May require additional checks and controls within the target system to ensure data integrity post-transformation</td>
+        </tr>
+        <tr>
+          <td><b>Complexity</b></td>
+          <td>Typically more complex due to the need for designing and managing transformation logic</td>
+          <td>Generally less complex as it leverages the capabilities of the target system for transformations</td>
+        </tr>
+        <tr>
+          <td><b>Flexibility</b></td>
+          <td>May be less flexible as transformation logic is predefined and applied uniformly to all data</td>
+          <td>More flexible as transformations can be tailored to specific use cases within the target system</td>
+        </tr>
+        <tr>
+          <td><b>Real-time Processing</b></td>
+          <td>Less suitable for real-time processing due to batch-oriented nature</td>
+          <td>More suitable for real-time processing as data can be loaded into the target system immediately and transformed on-the-fly</td>
+        </tr>
+        <tr>
+          <td><b>Examples</b></td>
+          <td>Apache Spark, Apache Flink, Google Cloud Dataproc</td>
+          <td>GCS → Spark jobs, Dataflow → BigQuery</td>
+        </tr>
+        <tr>
+          <td><b>Use Cases</b></td>
+          <td>For well-defined data models and reporting needs</td>
+          <td>For big data, data lakes, and agile analytics environments</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="repositories" label="Data Repositories">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Data Mart</th>
+          <th>Data Warehouse</th>
+          <th>Data Lake</th>
+          <th>Data Lakehouse</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visualization</td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data[Data Sources]
+                    direction TB
+
+                    data1[( )]
+                    data2[( )]
+                    data3[( )]
+                end
+
+                data --> staging[(Staging Area)]
+
+                subgraph warehouse[Data Warehouse]
+                    direction TB
+
+                    warehouse1[(Metadata)]
+                    warehouse2[(Raw Data)]
+                    warehouse3[(Summary Data)]
+                end
+
+                subgraph marts[Data Marts]
+                    direction TB
+
+                    marts1[(Purchasing)]
+                    marts2[(sales)]
+                    marts3[(Inventory)]
+                end
+
+                staging --> warehouse
+                warehouse --> marts
+
+                marts --> analytics(Analytics)
+                marts --> reporting(Reporting)
+                marts --> mining(Mining)
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data[Structured Data]
+                    direction TB
+
+                    data1[( )]
+                    data2[( )]
+                    data3[( )]
+                end
+
+                data --> etl([ETL])
+
+                subgraph warehouses[Data Warehouses]
+                    direction TB
+
+                    mart1[(Data Mart)]
+                    mart2[(Data Mart)]
+                end
+
+                etl --> warehouses
+
+                warehouses --> bi(BI)
+                warehouses --> reports(Reports)
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data [Structured, Unstructured, Semi-structured]
+                    direction TB
+
+                    data1[(DB)]
+                    data2[(Images)]
+                    data3[(Files)]
+                end
+
+                data --> dataLake[[Data Lake]]
+
+                dataLake <--> etl([ETL])
+
+                dataLake --> dataPrep(Data Preparation & Validation)
+                dataPrep --> dataScience(Data Science)
+                dataLake --> machineLearning(Machine Learning)
+
+                subgraph warehouses[Data Warehouses]
+                    direction TB
+
+                    mart1[(Data Mart)]
+                    mart2[(Data Mart)]
+                end
+
+                etl --> warehouses
+
+                warehouses --> bi(BI)
+                warehouses --> reports(Reports)
+                warehouses --> dataScience
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data [Structured, Unstructured, Semi-structured]
+                    direction TB
+
+                    data1[(DB)]
+                    data2[(Images)]
+                    data3[(Files)]
+                end
+
+                subgraph dataLake[Data Lake: Metadata & Governance Layer]
+                    direction TB
+
+                    etl([ETL])
+                end
+
+                data --> dataLake
+
+                dataLake --> bi(BI)
+                dataLake --> reports(Reports)
+                dataLake --> dataScience(Data Science)
+                dataLake --> machineLearning(Machine Learning)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Definition</td>
+          <td>A subset of a Data Warehouse containing specific data focused on a particular business function or department</td>
+          <td>A central repository for structured, organized, and processed data, optimized for querying and analysis</td>
+          <td>A vast repository of raw, unstructured, or semi-structured data stored in its native format</td>
+          <td>An architecture combining the features of a Data Lake and a Data Warehouse, providing unified analytics on both raw and processed data</td>
+        </tr>
+        <tr>
+          <td>Data Type</td>
+          <td>Structured data tailored for specific business needs</td>
+          <td>Structured data, typically from operational systems</td>
+          <td>Raw, unstructured, semi-structured data</td>
+          <td>Raw, semi-structured, and structured data</td>
+        </tr>
+        <tr>
+          <td>Data Storage</td>
+          <td>Similar to Data Warehouse, stored in relational databases or columnar stores</td>
+          <td>Stored in a structured format like relational databases (e.g., SQL Server, PostgreSQL) or columnar stores (e.g., Redshift, BigQuery)</td>
+          <td>Typically stored in distributed file systems like HDFS, AWS S3, or Azure Data Lake Storage</td>
+          <td>Usually stored in a combination of Data Lake storage and structured data formats like Parquet, Delta Lake, or Apache Iceberg</td>
+        </tr>
+        <tr>
+          <td>Data Processing</td>
+          <td>Similar to Data Warehouse, batch processing is prevalent, with ETL tools used for data transformation</td>
+          <td>Primarily batch processing. Data transformation and ETL processes are well-defined and structured. Tools like Informatica, Talend, or Apache Airflow are commonly used</td>
+          <td>Supports batch and real-time processing. Processing is done on raw data, often using technologies like Hadoop, Spark, or Apache Flink</td>
+          <td>Combines batch and real-time processing capabilities. Data is transformed and unified using tools like Apache Spark, Databricks, or Delta Lake</td>
+        </tr>
+        <tr>
+          <td>Use Cases</td>
+          <td>Tailored for specific business functions or departments requiring localized analytics and reporting. Commonly used in finance, sales, or marketing</td>
+          <td>Best suited for structured reporting, business intelligence, and historical analysis. Ideal for organizations with well-defined data requirements</td>
+          <td>Suitable for exploratory analytics, machine learning, and big data processing where flexibility and scalability are critical</td>
+          <td>Ideal for organizations looking to combine the benefits of Data Lakes and Data Warehouses for unified analytics on both raw and processed data</td>
+        </tr>
+        <tr>
+          <td>Examples</td>
+          <td>Sales Data Mart, Finance Data Mart, HR Data Mart</td>
+          <td>Amazon Redshift, Google BigQuery, Snowflake</td>
+          <td>Hadoop Distributed File System (HDFS), Amazon S3, Azure Data Lake Storage</td>
+          <td>Databricks Delta Lake, AWS Glue, Google BigQuery Omni</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="parquet" label="File Storage">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Parquet</th>
+          <th>Avro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Data Storage</strong></td>
+          <td>Columnar</td>
+          <td>Row-based</td>
+        </tr>
+        <tr>
+          <td><strong>Schema</strong></td>
+          <td>Self-describing, stored in file metadata</td>
+          <td>Stored with data, language-independent</td>
+        </tr>
+        <tr>
+          <td><strong>Compression</strong></td>
+          <td>Highly compressed, supports multiple compression codecs (Snappy, Gzip, LZO, etc.)</td>
+          <td>Compressed, supports Deflate and Snappy codecs</td>
+        </tr>
+        <tr>
+          <td><strong>Performance</strong></td>
+          <td>Optimized for analytical (OLAP) workloads, fast data retrieval and processing</td>
+          <td>Optimized for write-intensive, big data operations, efficient for accessing all fields</td>
+        </tr>
+        <tr>
+          <td><strong>Language Support</strong></td>
+          <td>Language-agnostic, supported by many big data frameworks (Spark, Hive, Impala)</td>
+          <td>Language-independent, can be used across different programming languages</td>
+        </tr>
+        <tr>
+          <td><strong>Advantages</strong></td>
+          <td>
+            <ul>
+              <li>Highly compressed, efficient storage</li>
+              <li>Columnar format enables fast data retrieval and processing</li>
+              <li>Supports schema evolution and complex data types</li>
+              <li>Widely adopted and integrated with major big data frameworks</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Language-independent, can be used across different programming languages</li>
+              <li>Efficient for write-intensive, big data operations</li>
+              <li>Supports schema evolution and complex data types</li>
+              <li>Compact binary format reduces storage requirements</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Disadvantages</strong></td>
+          <td>
+            <ul>
+              <li>Not human-readable</li>
+              <li>Difficulties in applying updates, requires deleting and recreating the file</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Data is not human-readable</li>
+              <li>Not as widely integrated as Parquet in some big data frameworks</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Use Cases</strong></td>
+          <td>
+            <ul>
+              <li>Large-scale data analytics and business intelligence</li>
+              <li>Efficient storage and processing of structured, semi-structured, and unstructured data</li>
+              <li>Integration with cloud-based data warehousing and processing services (AWS Athena, Amazon Redshift Spectrum)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Efficient storage and processing of big data workloads</li>
+              <li>Data exchange and serialization between different systems and applications</li>
+              <li>Streaming and real-time data processing (Apache Kafka)</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
