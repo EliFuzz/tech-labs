@@ -1,0 +1,1956 @@
+---
+title: Data Management
+description: Data Management  Design Patterns
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## CAP Theorem
+
+<Tabs queryString="primary">
+    <TabItem value="overview" label="Overview">
+
+        ```mermaid
+            graph LR
+
+            c(C)
+            a(A)
+            p(P)
+
+            c --- |CA| a --- |AP| p --- |CP| c
+
+            a ~~~|Pick only 2| a
+        ```
+
+        - **Consistency (C)**: Ensures that all nodes in the system have the same data at the same time
+        - **Availability (A)**: Ensures that every request gets a response about whether it was successful or failed
+        - **Partition Tolerance (P)**: Ensures that the system continues to operate despite network partitions or communication failures
+    </TabItem>
+    <TabItem value="detailed" label="Detailed">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>AP (Availability & Partition Tolerance)</th>
+              <th>CA (Consistency & Availability)</th>
+              <th>CP (Consistency & Partition Tolerance)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Visualization</b></td>
+              <td>
+                ```mermaid
+                    graph TB
+
+                    user1(User) <--> |read/write| server1(Server)
+                    user2(User) <--> |read/write| server2(Server)
+
+                    server1 <--> |read/write| db1[(DB)]
+                    server2 <---> |read/write| db2[(DB)]
+
+                    db1 <--> |replicate| db2
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph TB
+
+                    user1(User) <--> |read/write| server1(Server)
+                    user2(User) <--> |read/write| server2(Server)
+
+                    server1 & server2 <--> |read/write| db[(DB)]
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph TB
+
+                    user1(User) <--> |read/write| server(Server)
+                    user2(User) <--> |read/write| server(Server)
+
+                    server <--> |read/write| primary[(DB)]
+                    primary <--> |read/write| secondary[(DB)]
+                ```
+              </td>
+            </tr>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Some data may not be consistent</td>
+              <td>Network issues might stop the system</td>
+              <td>Some data might not be available when a failure happens</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Social networks, real-time analytics, recommendation systems</td>
+              <td>Financial applications, e-commerce</td>
+              <td>Multi-datacenter deployments</td>
+            </tr>
+            <tr>
+              <td><b>Examples</b></td>
+              <td>Cassandra, DynamoDB, Riak</td>
+              <td>Google Spanner, RDBMS with high availability configurations</td>
+              <td>MongoDB with replica sets, BigTable</td>
+            </tr>
+          </tbody>
+        </table>
+    </TabItem>
+</Tabs>
+
+## Data Synchronization & Distribution Mechanisms
+
+<Tabs queryString="primary">
+  <TabItem value="sharding" label="Sharding/Partitioning">
+    <Tabs queryString="secondary">
+      <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        Database sharding splits a large database across machines for better handling of massive datasets.
+
+        ### Benefits
+
+        - Improve response time
+        - Avoid total service outage
+        - Scale efficiently
+      </TabItem>
+      <TabItem value="strategies" label="Strategies">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th style={{minWidth: '350px'}}>Visualization</th>
+              <th>Definition</th>
+              <th>Use Cases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Consistent Hashing</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(Table) --> hashFn(Hash Function)
+
+                    hashFn --> hashRing{Hash Ring}
+
+                    hashRing --> shard1(Shard 1)
+                    hashRing --> shard2(Shard 2)
+                    hashRing --> shard3(Shard N)
+                ```
+              </td>
+              <td>Distributes data across a dynamic number of partitions using a hash function</td>
+              <td>Distributed databases, Content Delivery Networks (CDNs)</td>
+            </tr>
+            <tr>
+              <td><b>Directory Based Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> |shard key<br/>delivery zone| hashTable(( ))
+                    hashTable --> |s1| shard1(( ))
+                    hashTable --> |s2| shard2(( ))
+                    hashTable --> |s3| shard3(( ))
+                    hashTable --> |s4| shard4(( ))
+
+                    table ~~~|<table><thead><tr><th>Delivery Zone</th><th>First Name</th><th>Last Name</th></tr></thead><tbody><tr><td>3</td><td>Joe</td><td>Doe</td></tr><tr><td>2</td><td>John</td><td>Smith</td></tr><tr><td>1</td><td>Jane</td><td>Williams</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td></tr></tbody></table>| table
+                    hashTable ~~~|<table><thead><tr><th>Delivery Zone</th><th>Shard ID</th></tr></thead><tbody><tr><td>1</td><td>S1</td></tr><tr><td>2</td><td>S2</td></tr><tr><td>3</td><td>S3</td></tr><tr><td>4</td><td>S4</td></tr></tbody></table>| hashTable
+                    shard1 ~~~|<table><tr><td>1</td><td>Jane</td><td>Williams</td></tr></table>| shard1
+                    shard2 ~~~|<table><tr><td>2</td><td>John</td><td>Smith</td></tr></table>| shard2
+                    shard3 ~~~|<table><tr><td>3</td><td>Joe</td><td>Doe</td></tr></table>| shard3
+                    shard4 ~~~|<table><tr><td>4</td><td>Jack</td><td>Jones</td></tr></table>| shard4
+                ```
+              </td>
+              <td>Central directory maps data to specific shards based on predefined rules</td>
+              <td>Strong consistency and moderate scalability</td>
+            </tr>
+            <tr>
+              <td><b>Geo Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(Users) --> shardUS(US Users)
+                    table --> shardEU(EU Users)
+                    table --> shardAsia(Asia Users)
+                ```
+              </td>
+              <td>Divides data based on geographic regions to localize data access</td>
+              <td>Applications requiring regional data localization or geo-distributed databases</td>
+            </tr>
+            <tr>
+              <td><b>Horizontal Partitioning (Sharding)</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> shard1(( ))
+                    table --> shard2(( ))
+
+                    table ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td><td>Active</td></tr><tr><td>2</td><td>John</td><td>Smith</td><td>Inactive</td></tr><tr><td>3</td><td>Jane</td><td>Williams</td><td>Active</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td><td>Inactive</td></tr></tbody></table>| table
+                    shard1 ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td><td>Active</td></tr><tr><td>2</td><td>John</td><td>Smith</td><td>Inactive</td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>3</td><td>Jane</td><td>Williams</td><td>Active</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td><td>Inactive</td></tr></tbody></table>| shard2
+                ```
+              </td>
+              <td>Data is partitioned across multiple databases or shards based on a certain criterion such as user ID, timestamp</td>
+              <td>High data volume and scalability requirements</td>
+            </tr>
+            <tr>
+              <td><b>Key-Based Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> |shard key<br/>col1| hashFn(Hash Function)
+                    hashFn --> hashTable(( ))
+                    hashTable --> shard1(( ))
+                    hashTable --> shard2(( ))
+
+                    table ~~~|<table><thead><tr><th>col1</th><th>col2</th><th>col3</th></tr></thead><tbody><tr><td>A</td><td></td><td></td></tr><tr><td>B</td><td></td><td></td></tr><tr><td>C</td><td></td><td></td></tr><tr><td>D</td><td></td><td></td></tr></tbody></table>| table
+                    hashTable ~~~|<table><thead><tr><th>col1</th><th>Hash Value</th></tr></thead><tbody><tr><td>A</td><td>1</td></tr><tr><td>B</td><td>2</td></tr><tr><td>C</td><td>1</td></tr><tr><td>D</td><td>2</td></tr></tbody></table>| hashTable
+                    shard1 ~~~|<table><thead><tr><th>col1</th><th>col2</th><th>col3</th></tr></thead><tbody><tr><td>A</td><td></td><td></td></tr><tr><td>C</td><td></td><td></td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>col1</th><th>col2</th><th>col3</th></tr></thead><tbody><tr><td>B</td><td></td><td></td></tr><tr><td>D</td><td></td><td></td></tr></tbody></table>| shard2
+                ```
+              </td>
+              <td>Data is distributed across shards based on a predefined key</td>
+              <td>Predictable access patterns and high scalability requirements</td>
+            </tr>
+            <tr>
+              <td><b>Range-Based Sharding</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> |0-50| shard1(( ))
+                    table --> |50-100| shard2(( ))
+                    table --> |100+| shard3(( ))
+
+                    table ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Coffee</td><td>20</td></tr><tr><td>Tea</td><td>15</td></tr><tr><td>Laptop</td><td>3000</td></tr><tr><td>Jeans</td><td>70</td></tr></tbody></table>| table
+                    shard1 ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Coffee</td><td>20</td></tr><tr><td>Tea</td><td>15</td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Jeans</td><td>70</td></tr></tbody></table>| shard2
+                    shard3 ~~~|<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Laptop</td><td>3000</td></tr></tbody></table>| shard3
+                ```
+              </td>
+              <td>Divides data into ranges (numeric ranges, alphabetical ranges) and assigns each range to a shard</td>
+              <td>Range-based queries and moderate scalability requirements. Time-series data or data with a sequential range</td>
+            </tr>
+            <tr>
+              <td><b>Vertical Partitioning</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    table(( )) --> shard1(( ))
+                    table --> shard2(( ))
+
+                    table ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td><td>Active</td></tr><tr><td>2</td><td>John</td><td>Smith</td><td>Inactive</td></tr><tr><td>3</td><td>Jane</td><td>Williams</td><td>Active</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td><td>Inactive</td></tr></tbody></table>| table
+                    shard1 ~~~|<table><thead><tr><th>User ID</th><th>First Name</th><th>Last Name</th></tr></thead><tbody><tr><td>1</td><td>Joe</td><td>Doe</td></tr><tr><td>2</td><td>John</td><td>Smith</td></tr><tr><td>3</td><td>Jane</td><td>Williams</td></tr><tr><td>4</td><td>Jack</td><td>Jones</td></tr></tbody></table>| shard1
+                    shard2 ~~~|<table><thead><tr><th>User ID</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Active</td></tr><tr><td>2</td><td>Inactive</td></tr><tr><td>3</td><td>Active</td></tr><tr><td>4</td><td>Inactive</td></tr></tbody></table>| shard2
+                ```
+              </td>
+              <td>Segregates data vertically based on attributes or columns</td>
+              <td>Specific data access patterns and less dynamic schemas</td>
+            </tr>
+            <tr>
+              <td><b>Materialized Views</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    inventory[(Inventory)]
+                    sales[(Sales)]
+                    view[(Materialized View)]
+
+                    inventory & sales --> view
+
+                    inventory ~~~|<table><thead><tr><th>Item ID</th><th>Item Name</th><th>Category ID</th></tr></thead><tbody><tr><td>111</td><td>Coffee</td><td>101</td></tr><tr><td>222</td><td>Tea</td><td>102</td></tr><tr><td>333</td><td>Juice</td><td>103</td></tr></tbody></table>| inventory
+                    sales ~~~|<table><thead><tr><th>Sale ID</th><th>Item ID</th><th>Price</th></tr></thead><tbody><tr><td>100</td><td>111</td><td>20</td></tr><tr><td>200</td><td>222</td><td>15</td></tr><tr><td>300</td><td>111</td><td>20</td></tr></tbody></table>| sales
+                    view ~~~|<table><thead><tr><th>Item ID</th><th>Total Sale</th></tr></thead><tbody><tr><td>111</td><td>40</td></tr><tr><td>222</td><td>15</td></tr></tbody></table>| view
+                ```
+              </td>
+              <td>
+                Precomputed views for faster query performance
+
+                Pros:
+                <ul>
+                  <li>Improved query performance</li>
+                </ul>
+
+                Cons:
+                <ul>
+                  <li>Overhead in maintaining materialized views, potential staleness</li>
+                </ul>
+
+                Considerations:
+                <ul>
+                  <li>View maintenance and update strategies</li>
+                  <li>Consistency with underlying data changes</li>
+                  <li>Refresh policies and scheduling</li>
+                  <li>Impact on write performance and storage requirements</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Aggregated queries</li>
+                  <li>Report generation</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+  <TabItem value="replication" label="Replication">
+    <Tabs queryString="secondary">
+      <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        Database replication is the process of duplicating data from one database to another, ensuring that multiple copies of the same data are available across different locations or systems. This redundancy enhances data availability, fault tolerance, and scalability
+
+        ### Benefits
+
+        - **Durability**
+            - Replication enhances durability, preventing catastrophic data loss
+            - It ensures data preservation across multiple servers
+            - Replication, alongside backups, minimizes data loss windows and downtime
+
+        - **Availability**
+            - Replication boosts system availability and resilience
+            - It enables seamless failover to standby servers
+            - Without replication, server outages could cause prolonged downtime
+
+        - **Increasing Throughput**
+            - Replication spreads load across nodes, boosting throughput
+            - Additional replicas can be added for further scalability
+            - Proper management avoids replication overhead bottlenecks
+
+        - **Reducing Latency**
+            - Replication brings data closer to users, reducing latency
+            - Shorter network distance leads to faster response times
+            - Multi-region replication improves user experience and productivity
+      </TabItem>
+      <TabItem value="types" label="Types">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Full Table Replication</th>
+              <th>Key-based Incremental Replication</th>
+              <th>Log-based Incremental Replication</th>
+              <th>Trigger-based Replication</th>
+              <th>Snapshot Replication</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Overview</b></td>
+              <td>Replicates entire tables</td>
+              <td>Replicates only changed rows based on key values</td>
+              <td>Replicates changes based on transaction logs</td>
+              <td>Replicates changes based on triggers</td>
+              <td>Replicates a point-in-time copy of data</td>
+            </tr>
+            <tr>
+              <td><b>Data Volume / Network Bandwidth Usage</b></td>
+              <td>High</td>
+              <td>Moderate</td>
+              <td>Low</td>
+              <td>Moderate</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Data Warehousing, Reporting</td>
+              <td>Synchronizing specific datasets between databases</td>
+              <td>Replicating changes from a primary to secondary database</td>
+              <td>Replicating changes between databases with complex business logic</td>
+              <td>Creating backups for disaster recovery</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="methods" label="Methods">
+        <table class="text_vertical">
+            <thead>
+            <tr>
+                <th>Method</th>
+                <th style={{minWidth: '350px'}}>Visualization</th>
+                <th>Definition</th>
+                <th>Pros</th>
+                <th>Cons</th>
+                <th>Use Cases</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><b>Bi-Directional</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> replica[(Replica)]
+                        replica --> source
+                    ```
+                </td>
+                <td>Data flows bidirectionally between source and target databases, allowing updates in both directions</td>
+                <td>
+                    <ul>
+                        <li>High availability and fault tolerance</li>
+                        <li>Improved performance for distributed applications</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Complexity in conflict resolution</li>
+                        <li>Increased risk of data inconsistencies</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Multi-site collaboration</li>
+                        <li>Active-active data centers</li>
+                        <li>Real-time data synchronization</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Broadcast</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> replica1[(Replica)]
+                        source --> replica2[(Replica)]
+                        source --> replica3[(Replica)]
+                    ```
+                </td>
+                <td>Data from a single source is replicated to multiple targets simultaneously</td>
+                <td>
+                    <ul>
+                        <li>Scalability for large-scale distribution</li>
+                        <li>Reduced network traffic</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Limited support for bidirectional data flows</li>
+                        <li>Potential for data redundancy</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Mass data distribution</li>
+                        <li>Real-time data broadcasting</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Cascading</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> db[(DB)]
+
+                        db --> replica1[(Replica)]
+                        db --> replica2[(Replica)]
+                        db --> replica3[(Replica)]
+                    ```
+                </td>
+                <td>Replication is chained in a cascade, where changes propagate sequentially through multiple tiers of databases</td>
+                <td>
+                    <ul>
+                        <li>Flexibility in data routing and transformation</li>
+                        <li>Enhanced security through layered replication</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Increased complexity in setup and maintenance</li>
+                        <li>Potential for latency and synchronization issues</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Hierarchical data distribution</li>
+                        <li>Data transformation and filtering</li>
+                        <li>Data distribution across geographical regions</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Consolidation</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        replica1[(Replica)] --> source[(Source)]
+                        replica2[(Replica)] --> source
+                        replica3[(Replica)] --> source
+                    ```
+                </td>
+                <td>Data from multiple sources is consolidated into a single target database</td>
+                <td>
+                    <ul>
+                        <li>Simplified data management</li>
+                        <li>Reduced storage and infrastructure costs</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Risk of data loss if not implemented properly</li>
+                        <li>Increased latency for distributed queries</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Data warehousing</li>
+                        <li>Centralized reporting</li>
+                        <li>Data aggregation</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Peer-to-Peer</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        db1[(DB)]
+                        db2[(DB)]
+                        db3[(DB)]
+
+                        db1 & db2 --> db3
+                        db1 & db3 --> db2
+                        db2 & db3 --> db1
+                    ```
+                </td>
+                <td>All databases are peers and can act as both a source and a target. Data can flow between any pair of databases</td>
+                <td>
+                    <ul>
+                        <li>Enhanced fault tolerance and scalability</li>
+                        <li>Flexibility in data routing</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Complexity in configuration and maintenance</li>
+                        <li>Potential for network congestion and data conflicts</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Decentralized applications</li>
+                        <li>Collaborative editing environments</li>
+                        <li>Distributed systems</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Unidirectional</b></td>
+                <td>
+                    ```mermaid
+                        graph LR
+
+                        source[(Source)] --> replica[(Replica)]
+                    ```
+                </td>
+                <td>Data flows in one direction from source to target databases</td>
+                <td>
+                    <ul>
+                        <li>Simplicity in setup</li>
+                        <li>Reduced risk of conflicts</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Limited scalability for distributed systems</li>
+                        <li>Potential for data latency</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Reporting and analytics</li>
+                        <li>Disaster recovery</li>
+                        <li>Load balancing</li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="cdc" label="CDC">
+        **Change Data Capture (CDC)**: Captures changes in real-time as they occur at the source database
+
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Transactional CDC</th>
+              <th>Batch-Optimized CDC</th>
+              <th>Data Warehouse Ingest-Merge</th>
+              <th>Message-Encoded CDC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Visualization</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    dbN[(N)] --> db2[(2)] --> db1[(1)]
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    db[( )] --> db1[( )]
+                    db ~~~|<table><tr><td>R1</td><td>▴</td><td></td><td></td><td></td></tr><tr><td>R1</td><td></td><td>▴</td><td>▴</td><td></td></tr><tr><td>R2</td><td></td><td>▴</td><td></td><td>▴</td></tr><tr><td>R1</td><td>▴</td><td></td><td></td><td></td></tr><tr><td>R2</td><td></td><td></td><td>▴</td><td></td></tr></table>| db
+                    db1 ~~~|<table><tr><td>R1</td><td>▴</td><td>▴</td><td>▴</td><td></td></tr><tr><td>R2</td><td></td><td>▴</td><td>▴</td><td>▴</td></tr></table>| db1
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    db1[( )] --> db[( )]
+                    db2[( )] --> db
+                    db3[( )] --> db
+
+                    db ~~~|<table><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>| db
+                    db1 ~~~|<table><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>| db1
+                    db2 ~~~|<table><tr><td></td><td></td><td></td></tr></table>| db2
+                    db3 ~~~|<table><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>| db3
+                ```
+              </td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    mgsN((N)) -.-> msg2((2)) -.-> msg1((1))
+                ```
+              </td>
+            </tr>
+            <tr>
+              <td><b>Definition</b></td>
+              <td>Captures changes in real-time as they occur at the source database</td>
+              <td>Captures changes in bulk at specific intervals, rather than in real-time</td>
+              <td>Ingests and merges data from multiple sources into a data warehouse</td>
+              <td>Encodes changes into messages for asynchronous processing and consumption</td>
+            </tr>
+            <tr>
+              <td><b>Performance</b></td>
+              <td>Real-time, minimal latency for data replication</td>
+              <td>High throughput, reduced impact on source systems due to batch processing</td>
+              <td>Typically batch-oriented, suitable for large-scale data movement</td>
+              <td>Depends on message broker performance; can be asynchronous, may introduce latency</td>
+            </tr>
+            <tr>
+              <td><b>Data Consistency</b></td>
+              <td>Ensures consistency between source and target systems in near real-time</td>
+              <td>Data consistency may lag behind real-time due to batch processing</td>
+              <td>May require additional checks to maintain consistency during merge process</td>
+              <td>Consistency depends on message delivery guarantees and processing logic</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Real-time data synchronization (financial transactions, inventory management)</td>
+              <td>Daily reporting, data warehousing</td>
+              <td>Commonly used for data warehousing, analytics, and reporting purposes</td>
+              <td>Useful for event-driven architectures, microservices, and distributed systems</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="strategies" label="Strategies">
+        <table class="text_vertical">
+          <thead>
+            <tr>
+              <th>Replication Strategy</th>
+              <th style={{minWidth: '350px'}}>Visualization</th>
+              <th>Description</th>
+              <th>Pros</th>
+              <th>Cons</th>
+              <th>Use Cases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Leader-Follower Replication (Source-Replica / Master-Slave / Primary-Secondary)</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                   source[(Source)] --> replicaA[(Replica)]
+                   source --> replicaB[(Replica)]
+                ```
+              </td>
+              <td>Primary database instance accepts write operations, while one or more replicas replicate data from the leader. Replicas typically handle read operations</td>
+              <td>
+                <ul>
+                    <li>Simple setup and maintenance</li>
+                    <li>Consistent read operations</li>
+                    <li>Failover support for the leader</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Write operations bottlenecked by leader</li>
+                  <li>Potential for replication lag</li>
+                  <li>Single point of failure (leader)</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>High availability for read-heavy workloads</li>
+                  <li>Load balancing read operations</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Active/Active Replication</b></td>
+              <td>
+                ```mermaid
+                    graph TB
+
+                    coordinator(Coordinator)
+
+                    subgraph domainA[ ]
+                        direction TB
+
+                        a_dbA[( )]
+                        a_dbB[( )]
+
+                        a_dbA --> a_dbB
+                        a_dbB --> a_dbA
+                    end
+
+                    coordinator --> a_dbA
+                    coordinator --> a_dbB
+
+                    subgraph domainB[ ]
+                        direction TB
+
+                        b_dbA[( )]
+                        b_dbB[( )]
+
+                        b_dbA --> b_dbB
+                        b_dbB --> b_dbA
+                    end
+
+                    coordinator --> b_dbA
+                    coordinator --> b_dbB
+                ```
+              </td>
+              <td>Multiple database instances accept both read and write operations simultaneously. Each instance can serve read and write requests independently</td>
+              <td>
+                <ul>
+                  <li>Distributed load balancing</li>
+                  <li>Improved fault tolerance</li>
+                  <li>Minimal replication lag</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Complex conflict resolution</li>
+                  <li>Increased risk of data inconsistency</li>
+                  <li>Higher infrastructure and maintenance costs</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Geographically distributed applications</li>
+                  <li>Low-latency requirements</li>
+                  <li>High throughput</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Multi-Leader Replication (Master-Master / Primary-Primary)</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    subgraph SourcesA[ ]
+                        direction TB
+
+                        serverA(Server) --> |read/write| sourceA[(Source)]
+                        serverA --> |read| replicaA[(Replica)]
+                        sourceA -.-> replicaA
+                    end
+
+                    subgraph SourcesB[ ]
+                        direction TB
+
+                        serverB(Server) --> |read/write| sourceB[(Source)]
+                        serverB --> |read| replicaB[(Replica)]
+                        sourceB -.-> replicaB
+                    end
+
+                    sourceA --> sourceB
+                    sourceB --> sourceA
+                ```
+              </td>
+              <td>Multiple database instances accept write operations independently, and changes are asynchronously replicated between them</td>
+              <td>
+                <ul>
+                  <li>Improved write scalability</li>
+                  <li>Enhanced fault tolerance</li>
+                  <li>No single point of failure for writes</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Complex conflict resolution</li>
+                  <li>Increased risk of data conflicts and inconsistency</li>
+                  <li>Potential for replication lag</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Geographically distributed teams</li>
+                  <li>Active-active setups requiring write capabilities on all nodes</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Leaderless Replication</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    subgraph typeA[Circular Topology]
+                        direction LR
+
+                        a_dbA[(Source)] ---> a_dbB[(Source)] & a_dbC[(Source)] ---> a_dbD[(Source)]
+                    end
+
+                    subgraph typeB[Star Topology]
+                        direction TB
+
+                        b_source[(Source Root)]
+                        b_leafA[(Source Leaf)]
+                        b_leafB[(Source Leaf)]
+                        b_leafC[(Source Leaf)]
+
+                        b_source --> b_leafA
+                        b_leafA --> b_source
+
+                        b_leafA --> b_leafB
+                        b_leafB --> b_leafA
+
+                        b_leafA --> b_leafC
+                        b_leafC --> b_leafA
+                    end
+
+                    subgraph typeC[All-to-All Topology]
+                        direction LR
+
+                        c_dbA[(Source)]
+                        c_dbB[(Source)]
+                        c_dbC[(Source)]
+
+                        c_dbA & c_dbB --> c_dbC
+                        c_dbA & c_dbC --> c_dbB
+                        c_dbB & c_dbC --> c_dbA
+                    end
+                ```
+              </td>
+              <td>No designated leader. Each node in the cluster can accept both read and write operations. Data is replicated across all nodes in the cluster</td>
+              <td>
+                <ul>
+                  <li>No single point of failure</li>
+                  <li>High availability for both reads and writes</li>
+                  <li>Linear scalability</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Complex consistency and conflict resolution</li>
+                  <li>Increased network traffic for replication</li>
+                  <li>Potential for divergent data states</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Highly distributed environments</li>
+                  <li>Scalable architectures</li>
+                  <li>Fault tolerance</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Quorum Writes and Reads</b></td>
+              <td>
+                ```mermaid
+                    graph LR
+
+                    subgraph read[Read]
+                        direction LR
+
+                        readCoordinator --> |response| readClient
+                        readCoordinator <--> |read quorum<br/>response| read_dbA[( )]
+                        readCoordinator <--> |read quorum<br/>response| read_dbB[( )]
+                        readCoordinator <--> |read quorum<br/>response| read_dbC[( )]
+
+                        readClient(Client) --> |read| readCoordinator(Coordinator)
+                    end
+
+                    subgraph write[Write]
+                        direction LR
+
+                        write_dbA[( )]
+                        write_dbB[( )]
+
+                        writeClient(Client) <--> |write<br/>respond| writeCoordinator(Coordinator)
+                        writeCoordinator <--> |prepare<br/>acknowledge| write_dbA
+                        writeCoordinator <--> |commit<br/>acknowledge| write_dbA
+
+                        writeCoordinator <--> |prepare<br/>acknowledge| write_dbB
+                        writeCoordinator <--> |commit<br/>acknowledge| write_dbB
+                    end
+                ```
+              </td>
+              <td>Requires a certain number (quorum) of nodes to agree on a write or read operation before it's considered successful. It's often used in distributed databases to ensure consistency and availability</td>
+              <td>
+                <ul>
+                  <li>Improved fault tolerance</li>
+                  <li>Tunable consistency levels</li>
+                  <li>Reduced risk of split-brain scenarios</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Increased coordination overhead</li>
+                  <li>Potential for performance degradation with large clusters</li>
+                  <li>Complexity in determining appropriate quorum sizes</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>Highly available systems</li>
+                  <li>Consistency across distributed nodes</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="conflicts" label="Conflict Resolutions">
+        <table>
+          <thead>
+            <tr>
+              <th>Criteria</th>
+              <th>Last Write Wins (LWW)</th>
+              <th>Conflict-free Replicated Data Types (CRDTs)</th>
+              <th>Operational Transformation</th>
+              <th>Application-specific Resolution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Principle</b></td>
+              <td>The latest update overwrites previous ones</td>
+              <td>Concurrent updates merge seamlessly</td>
+              <td>Transformations are applied to resolve conflicts</td>
+              <td>Custom logic defines resolution rules</td>
+            </tr>
+            <tr>
+              <td><b>Concurrency Control</b></td>
+              <td>Often based on timestamps</td>
+              <td>Built-in, ensures eventual consistency</td>
+              <td>Complex, requires careful design</td>
+              <td>Depends on implementation approach</td>
+            </tr>
+            <tr>
+              <td><b>Conflict Detection</b></td>
+              <td>Timestamps or version vectors</td>
+              <td>Built-in mechanisms handle concurrent updates</td>
+              <td>Requires tracking dependencies</td>
+              <td>Custom logic or metadata tracking</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Simple applications with low concurrency where data loss is acceptable</td>
+              <td>Collaborative editing systems, real-time communication systems</td>
+              <td>Collaborative editing, version control systems, distributed databases</td>
+              <td>Application-specific needs, such as financial transactions</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>
+
+## Communication Patterns
+
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    Distributed databases offer scalability and fault tolerance, but introduce communication challenges.
+
+    ### Core Concepts
+
+    - **Data Distribution**: Understanding how data is sharded or replicated across nodes is crucial for choosing communication patterns
+    - **Synchronous vs. Asynchronous**: Synchronous communication waits for a response before proceeding, while asynchronous allows independent execution. Selection depends on real-time response needs and fault tolerance requirements
+    - **Consistency Models**: Different consistency models (eventual consistency, strong consistency) define how quickly updates propagate across nodes, impacting communication frequency
+  </TabItem>
+  <TabItem value="patterns" label="Patterns">
+    <Tabs queryString="secondary">
+      <TabItem value="choreography" label="Choreography" attributes={{className:"tabs__vertical"}}>
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                graph LR
+
+                source[(Source)]
+                replica1[(Replica)]
+                replica2[(Replica)]
+                broker([Message Broker])
+
+                source --> broker
+                broker --> |subscribe| replica1 & replica2
+                replica1 & replica2 -.-> |listen| broker
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Decentralized coordination between services</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Scalability</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+              <ul>
+                <li>Harder to reason about global system state</li>
+                <li>Potential for cascading failures</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+              <ul>
+                <li>Event-driven architecture</li>
+                <li>Message formats and protocols</li>
+                <li>Resilience against message loss or duplication</li>
+                <li>Scalability and message routing mechanisms</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+              <ul>
+                <li>Event-driven architectures</li>
+                <li>Decoupled systems</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="cqrs" label="CQRS">
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                graph LR
+
+                write[(Write)]
+                read[(Read)]
+                event([EventBus])
+                command(Command)
+                query(Query)
+
+                command --> |write| write
+                write --> |event| event
+
+                query ----> |read| read
+                event -.-> |event| read
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Command Query Responsibility Segregation (CQRS). Separates read and write operations</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Optimized read/write operations</li>
+                <li>Scalability</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+              <ul>
+                <li>Increased complexity in implementation</li>
+                <li>Potential consistency issues</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+              <ul>
+                <li>Consistency between read and write models</li>
+                <li>Data synchronization mechanisms</li>
+                <li>Scalability of read and write paths</li>
+                <li>Complexity of maintaining separate models</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+              <ul>
+                <li>Complex read/write operations</li>
+                <li>Scalability requirements</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="dqp" label="Distributed Query Processing">
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                graph LR
+
+                service(Service)
+
+                subgraph dqp [Distributed Query Processing]
+                  direction TB
+
+                  job1(Job)
+                  job2(Job)
+                  job3(Job)
+                end
+
+                sql[(PostgreSQL)]
+                bq[(BigQuery)]
+
+                service --> |read data<br/>from multiple sources| dqp
+                dqp --> |read| sql
+                dqp --> |read| bq
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Executes queries across distributed nodes</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Scalability</li>
+                <li>Improved query performance</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+              <ul>
+                <li>Increased network overhead</li>
+                <li>Potential data consistency challenges</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+              <ul>
+                <li>Query optimization and pushdown mechanisms</li>
+                <li>Data locality and network overhead</li>
+                <li>Consistency and isolation levels</li>
+                <li>Handling failures and partial results</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+              <ul>
+                <li>Analytical workloads</li>
+                <li>Data-intensive applications</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="event-sourcing" label="Event Sourcing">
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+                ```mermaid
+                  graph LR
+
+                  service(Service)
+                  eventStore[(EventStore)]
+                  eventBus([EventBus])
+                  read[(Read DB)]
+                  replay(Replay)
+
+                  service --> |item 1 added| eventStore
+                  service --> |item 2 added| eventStore
+                  service --> |item 3 added| eventStore
+
+                  eventStore --> |publish event| eventBus
+                  eventBus --> |event published| read
+
+                  eventStore --> |replay event| replay
+                ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Stores events instead of current state for data changes. Appends only storage for replay of events to specific state/snapshot</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Full audit trail</li>
+                <li>Scalability</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+              <ul>
+                <li>Complexity in replaying events</li>
+                <li>Potential for performance issues</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+              <ul>
+                <li>Event schema evolution and compatibility</li>
+                <li>Event storage and indexing strategies</li>
+                <li>Event replay and snapshotting mechanisms</li>
+                <li>Eventual consistency and read model projections</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+              <ul>
+                <li>Auditing</li>
+                <li>Versioning</li>
+                <li>Rebuilding state</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="modular" label="Modular">
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                graph LR
+
+                service1(Service)
+                service2(Service)
+                db1[(DB)]
+                db2[(DB)]
+
+                service1 --> |read/write| db1
+                service2 --> |read/write| db2
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Data and transactions are divided into modules</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Scalability</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+                <ul>
+                  <li>Potential inconsistency in data between modules</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+                <ul>
+                  <li>Transaction isolation levels</li>
+                  <li>ACID compliance</li>
+                  <li>Coordination and consistency across distributed transactions</li>
+                  <li>Rollback and compensating actions for failures</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+                <ul>
+                  <li>Microservices architecture</li>
+                </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="orchestration" label="Orchestration">
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                graph LR
+
+                service(Service)
+
+                subgraph Orchestration
+                  direction LR
+
+                  step1(Step 1)
+                  step2(Step 2)
+                  step3(Step 3)
+
+                  step1 --> step2 --> step3
+                end
+
+                service --> |event| Orchestration
+
+                step1 <--> serviceA(Service)
+                step2 <--> serviceB(Service) <--> serviceC(Service)
+                step3 <--> serviceD(Service)
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Sequences distributed transactions into a saga</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Maintains consistency</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+              <ul>
+                <li>Complexity in handling compensating transactions</li>
+                <li>Potential for inconsistencies</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+              <ul>
+                <li>Transactional boundaries and compensation logic</li>
+                <li>Consistency and atomicity guarantees</li>
+                <li>Long-running transaction handling</li>
+                <li>Saga orchestration and message correlation</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+              <ul>
+                <li>Long-lived transactions</li>
+                <li>Business workflows</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="outbox" label="Outbox">
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                graph LR
+
+                service(Service)
+
+                subgraph Database [Database]
+                  direction LR
+
+                  transaction[[Transaction]]
+
+                  db[(Database Table)]
+                  outbox[(Outbox Table)]
+                end
+
+                service --- |1. event| transaction
+
+                transaction --> |upsert/delete| db
+                transaction --> |insert| outbox
+
+                relay(Message Relay) --> |2. read| outbox
+                relay --> |3. publish| broker([Message Broker])
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Uses an outbox table to guarantee message delivery</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Ensures message delivery</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+              <ul>
+                <li>Requires additional infrastructure, complexity in implementation</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+              <ul>
+                <li>Outbox implementation and integration patterns</li>
+                <li>Message delivery guarantees and retries</li>
+                <li>Error handling and dead letter queues</li>
+                <li>Scalability and performance considerations</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+              <ul>
+                <li>Event-driven architectures</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="parallel-pipelines" label="Parallel Pipelines">
+        <table>
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                graph LR
+
+                subgraph sources [Data Sources]
+                  direction LR
+
+                  sql[(PostgreSQL)]
+                  bq[(BigQuery)]
+                end
+
+                sources --> filter(Data Filtering)
+                filter --> clean(Data Cleaning)
+                clean --> filter2(Data Filtering)
+                filter2 --> aggregation(Data Aggregation)
+                aggregation --> db[(Destination<br/>Data Warehouse)]
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Divides data processing into parallel pipelines</td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+              <ul>
+                <li>Increased throughput</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+              <ul>
+                <li>Complexity in managing parallelism</li>
+                <li>Potential for data skew</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Considerations</b></td>
+            <td>
+              <ul>
+                <li>Parallelism and concurrency control mechanisms</li>
+                <li>Data partitioning and load balancing</li>
+                <li>Fault tolerance and error recovery strategies</li>
+                <li>Resource utilization and bottleneck detection</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+              <ul>
+                <li>Data processing pipelines</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="phase-commit" label="Phase Commit">
+        <table class="text_vertical">
+          <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>Two-Phase Commit (2PC)</th>
+            <th>Three-Phase Commit (3PC)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><b>Visualization</b></td>
+            <td>
+              ```mermaid
+                sequenceDiagram
+                autonumber
+
+                participant Node1
+                participant Coordinator
+                participant Node2
+
+                Note over Node1,Node2: Lock
+                alt Pre-Commit Phase
+                    activate Coordinator
+                    Coordinator->>Node1: Pre-Commit
+                    Node1->>Coordinator: Ack
+
+
+                    alt Abort or Continue
+                        Node1-->>Coordinator: Abort
+                        Coordinator-->>Node2: Abort
+                    else
+                        alt Abort or Continue
+                            Coordinator->>Node2: Pre-Commit
+                            Node2->>Coordinator: Ack
+                        else
+                            Node2-->>Coordinator: Abort
+                            Coordinator-->>Node1: Abort
+                        end
+                    end
+
+                    deactivate Coordinator
+                end
+
+                alt Commit Phase
+                    activate Coordinator
+                    Coordinator->>Node1: Commit
+                    Node1->>Coordinator: Ack
+
+                    Coordinator->>Node2: Commit
+                    Node2->>Coordinator: Ack
+                    deactivate Coordinator
+                end
+
+                Note over Node1,Node2: Release Lock
+              ```
+            </td>
+            <td>
+              ```mermaid
+                sequenceDiagram
+                autonumber
+
+                participant Node1
+                participant Coordinator
+                participant Node2
+
+                alt Prepare Phase
+                    activate Coordinator
+                    Coordinator->>Node1: Prepare
+                    Node1->>Coordinator: Ack
+
+                    Coordinator->>Node2: Prepare
+                    Node2->>Coordinator: Ack
+                    deactivate Coordinator
+                end
+
+                Note over Node1,Node2: Lock
+
+                alt Pre-Commit Phase
+                    activate Coordinator
+                    Coordinator->>Node1: Pre-Commit
+                    Node1->>Coordinator: Ack
+
+
+                    alt Abort or Continue
+                        Node1-->>Coordinator: Abort
+                        Coordinator-->>Node2: Abort
+                    else
+                        alt Abort or Continue
+                            Coordinator->>Node2: Pre-Commit
+                            Node2->>Coordinator: Ack
+                        else
+                            Node2-->>Coordinator: Abort
+                            Coordinator-->>Node1: Abort
+                        end
+                    end
+
+                    deactivate Coordinator
+                end
+
+                alt Commit Phase
+                    activate Coordinator
+                    Coordinator->>Node1: Commit
+                    Node1->>Coordinator: Ack
+
+                    Coordinator->>Node2: Commit
+                    Node2->>Coordinator: Ack
+                    deactivate Coordinator
+                end
+
+                Note over Node1,Node2: Release Lock
+              ```
+            </td>
+          </tr>
+          <tr>
+            <td><b>Definition</b></td>
+            <td>Ensures all participants commit or abort together in 2 phases</td>
+            <td>Extension of 2PC adding a "prepare to abort" phase for increased fault tolerance</td>
+          </tr>
+          <tr>
+            <td><b>Steps</b></td>
+            <td>
+                <ul>
+                  <li>
+                    <b>First Phase (Pre-Commit Phase):</b>
+                    <ul>
+                      <li><b>Voting Request:</b> Coordinator asks participants if they can commit the transaction</li>
+                      <li><b>Voting:</b> Participants pre-execute the transaction, responding "YES" if executable, "NO" if not</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Second Phase (Commit/Rollback Phase):</b>
+                    <ul>
+                      <li><b>All YES Votes:</b> Coordinator sends "commit" command to all</li>
+                      <li><b>Some NO Votes:</b> Coordinator sends "rollback" command if any participant dissents or doesn't respond</li>
+                    </ul>
+                  </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                  <li>
+                    <b>First Phase (Prepare Phase)</b>
+                    <ul>
+                      <li>Coordinator sends commit inquiry</li>
+                      <li>Participants respond with "can" or "cannot"</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Second Phase (Pre-Commit Phase)
+                    <ul>
+                      <li>If all agree, coordinator sends pre-commit message</li>
+                      <li>Participants pre-execute, send "ready to commit"</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Third Phase (Commit Phase)</b>
+                    <ul>
+                      <li>Coordinator sends commit message when all ready</li>
+                      <li>Participants commit; any "abort" or no response cancels transaction</li>
+                    </ul>
+                  </li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Pros</b></td>
+            <td>
+                <ul>
+                  <li>Ensures transaction atomicity in a distributed environment</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                  <li>Better solves single point of failure and blocking problems: By adding a prepare phase and timeouts. This allows for better handling of coordinator failures and avoids blocking issues</li>
+                  <li>Enhances system availability and robustness: Commit timeouts prevent long waits for unresponsive participants, boosting system availability and robustness</li>
+                  <li>Improves transaction execution efficiency: Lets participants start working early (prepare phase), improving efficiency for long transactions</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Cons</b></td>
+            <td>
+                <ul>
+                  <li>Performance overhead: Requires frequent network messages (requests, votes, commands) which increases latency, especially in slow networks</li>
+                  <li>Single point of failure: Coordinator failure leaves participants unsure about commit/rollback, impacting performance. Use multiple coordinators (primary-secondary) or heartbeat/timeouts for fault tolerance</li>
+                  <li>Blocking problem: Can block if a participant fails to respond during voting. Timeouts help avoid this by letting the coordinator rollback after a set wait time</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                  <li>Higher message overhead: Reduces performance especially in bad networks. Optimize network and messages to reduce overhead</li>
+                  <li>Increased complexity: New stage and timeouts make it trickier to implement and maintain. Consider Paxos or Raft for better fault tolerance, blocking handling, and performance</li>
+                  <li>Blocking problem still exists: Network partitions or simultaneous failures can still cause blocking. Fault recovery with logs helps resume operations by restoring state</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Use Cases</b></td>
+            <td>
+                <ul>
+                  <li>Simple data updates across a few geographically distributed databases</li>
+                  <li>Financial transactions</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                  <li>Scenarios with potential coordinator failures: Single Point of Failure (SPOF)</li>
+                  <li>Large-scale distributed databases</li>
+                </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>
+
+
+## Cache
+
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    Traditional cache stores frequently accessed data in a faster-to-access location (usually RAM) compared to the primary data source (typically a database).
+
+    Distributed cache extends this concept by spreading the cached data across multiple machines (nodes) within a network.
+  </TabItem>
+  <TabItem value="strategies" label="Strategies">
+    <table>
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th style={{minWidth: '350px'}}>Visualization</th>
+          <th>Definition</th>
+          <th>Use Cases</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Read Cache-Aside (Lazy-Loading)</b></td>
+          <td>
+            ```mermaid
+              graph LR
+
+              app(Application)
+              cache(Cache)
+              db[(DB)]
+
+              app --> |5. update cache| cache
+              app --> |1. read| cache
+              cache --> |2. miss| app
+              app --> |3. read| db
+              db --> |4. get data| app
+            ```
+          </td>
+          <td>If the data is not in the cache, the application fetches it from the data source and then caches it for subsequent accesses</td>
+          <td>
+            <ul>
+              <li>Frequently accessed, read-heavy workloads with acceptable eventual consistency (Content Delivery Networks: CDN)</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Read-Through</b></td>
+          <td>
+            ```mermaid
+              graph LR
+
+              app(Application)
+              cache(Cache)
+              db[(DB)]
+
+              app --> |1. read| cache
+              cache ~~~|2. miss| cache
+              cache --> |3. read| db
+              db --> |4. get data| cache
+              cache --> |5. update cache| cache
+            ```
+          </td>
+          <td>Data is fetched from the main storage only when it's not found in the cache, ensuring that the cache reflects the most up-to-date information available</td>
+          <td>
+            <ul>
+              <li>Read-heavy workloads where data consistency is managed by Cache Provider (middleware and proxy servers)</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Write-Around</b></td>
+          <td>
+            ```mermaid
+              graph LR
+
+              app(Application)
+              cache(Cache)
+              db[(DB)]
+
+              app --> |1. write db| db
+              cache --> |2. read from cache<br/>if data exists| app
+              db --> |3.1. read from DB<br/>if data missing| app
+              app --> |3.2. update cache| cache
+            ```
+          </td>
+          <td>Data is written directly to the main storage, bypassing the cache, but subsequent reads of that data can be cached for faster access</td>
+          <td>
+            <ul>
+              <li>Write-heavy workloads, large file writes, streaming applications</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Write-Back</b></td>
+          <td>
+            ```mermaid
+              graph TB
+
+              app(Application)
+              cache(Cache)
+              db[(DB)]
+
+              app --> |1. write to cache constantly| cache
+              cache --> |2. write to DB once in a while| db
+            ```
+          </td>
+          <td>Data is written to the cache first and then later transferred to the main memory, reducing the frequency of memory writes and improving system performance by allowing multiple updates before writing back to memory</td>
+          <td>
+            <ul>
+              <li>Write-heavy workloads where eventual consistency is acceptable (CPU caches, virtualization platforms in enhancing the performance of virtual machines <b>VMs</b>)</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Write-Through</b></td>
+          <td>
+            ```mermaid
+              graph TB
+
+              app(Application)
+              cache(Cache)
+              db[(DB)]
+
+              app --> |1. write| cache
+              cache --> |2. write immediately| db
+            ```
+          </td>
+          <td>Data is written simultaneously to both the cache and the underlying storage, ensuring consistency between the two at all times</td>
+          <td>
+            <ul>
+              <li>Real-time data updates where consistency is paramount (real-time analytics and dashboards)</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
