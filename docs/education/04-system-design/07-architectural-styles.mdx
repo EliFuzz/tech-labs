@@ -877,6 +877,75 @@ import TabItem from "@theme/TabItem";
                   </tbody>
                 </table>
             </TabItem>
+            <TabItem value="fan-in-fan-out" label="Fan-In / Fan-Out">
+                <table class="text_vertical">
+                  <thead>
+                      <tr>
+                        <th>Criteria</th>
+                        <th>Fan-In</th>
+                        <th>Fan-Out</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                        <td>Visualization</td>
+                        <td>
+                          ```mermaid
+                              graph LR
+
+                              producer1(Producer) & producer2(Producer) & producer3(Producer) --> aggregator[[Aggregator]]
+                              aggregator --> consumer(Consumer)
+                          ```
+                        </td>
+                        <td>
+                          ```mermaid
+                              graph LR
+
+                              producer(Producer) --> queue([Queue])
+                              queue --> consumer1(Consumer 1) & consumer2(Consumer 2) & consumer3(Consumer 3)
+                          ```
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Definition</td>
+                        <td>Multiple nodes or components send data to a single destination or central point</td>
+                        <td>Data is distributed from a single source or central point to multiple nodes or components</td>
+                      </tr>
+                      <tr>
+                        <td>Purpose</td>
+                        <td>
+                          <ul>
+                            <li>Aggregating data from multiple sources</li>
+                            <li>Collecting metrics from distributed systems for analysis</li>
+                          </ul>
+                        </td>
+                        <td>
+                          <ul>
+                            <li>Broadcasting updates or notifications to multiple subscribers</li>
+                            <li>Sending requests to multiple microservices for parallel processing</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Use Cases</td>
+                        <td>
+                          <ul>
+                            <li>Aggregating logs from various services to a central monitoring system</li>
+                            <li>Collecting metrics from distributed systems for analysis</li>
+                            <li>Centralized logging systems like ELK stack (Elasticsearch, Logstash, Kibana)</li>
+                            <li>Metrics aggregation platforms such as Prometheus</li>
+                          </ul>
+                        </td>
+                        <td>
+                          <ul>
+                            <li>Pub/Sub systems: Apache Kafka</li>
+                            <li>Message queues: RabbitMQ or AWS SQS (Simple Queue Service)</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </TabItem>
         </Tabs>
     </TabItem>
     <TabItem value="db" label="Database">
@@ -2144,7 +2213,7 @@ import TabItem from "@theme/TabItem";
                         </tr>
                         <tr>
                             <td><b>source</b></td>
-                            <td>Identifies the event's context, including details like event source type, publishing organization, or production process. The URI's syntax and semantics are defined by the event producer. Each event must have a unique source + ID combination, ensured by producers. Applications may assign unique sources to producers, facilitating unique ID generation. UUIDs, URNs, DNS authorities, or custom schemes can be used for source identifiers. A source may involve multiple producers, necessitating collaboration to maintain unique source + ID combinations for each event</td>
+                            <td>Event details include source type, publisher, and creation process. The source URI format is defined by the creator. Each event needs a unique source + ID combo, managed by producers. Applications can assign unique sources for easier ID creation. Source identifiers can be UUIDs, URNs, DNS or custom schemes. A source can have multiple producers, requiring collaboration on unique ID creation</td>
                             <td>
                                 <ul>
                                     <li>REQUIRED</li>
@@ -2227,7 +2296,7 @@ import TabItem from "@theme/TabItem";
                         </tr>
                         <tr>
                           <td><b>subject</b></td>
-                          <td>In event-driven systems, the event subject, tied to the event producer, helps subscribers filter relevant events. This is crucial in scenarios where middleware lacks data interpretation capability. For instance, a subscriber may only want to receive events related to certain blob names, like those ending in *.jpg* or *.jpeg*. The subject attribute aids in constructing efficient filters. For example, a subscriber might be interested in new blob creations within a storage container, where the event source denotes the container, the type indicates the event, and the ID distinguishes between occurrences of similarly named blobs. The subject field carries the name of the newly created blob</td>
+                          <td>Event-driven systems use event subjects to filter relevant events for subscribers, especially when dealing with limited middleware. Subscribers can specify filters based on the subject, like file extensions (.jpg, .jpeg) or blob names within a container. The subject essentially allows targeted filtering</td>
                           <td>
                             <ul>
                               <li>OPTIONAL</li>
