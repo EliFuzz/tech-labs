@@ -1,4 +1,59 @@
 ---
 title: Real World Examples
 description: Real World Design Pattern Examples
+hide_table_of_contents: true
 ---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs queryString="primary">
+    <TabItem value="basic" label="Basic">
+        <Tabs queryString="secondary">
+            <TabItem value="metrics-monitoring" label="Metrics & Monitoring" attributes={{className:"tabs__vertical"}}>
+                ![](./assets/real-world/metrics-monitoring.svg)
+
+                ### Considerations
+
+                - Collect metrics from various sources (servers, databases)
+                - Store and query time-series data (time-series database + Kafka)
+                - Process and analyze data (Apache Storm, Flink, Spark)
+                - Retrieve, visualize, and get alerted on metrics (query service, visualization system, alerting system)
+            </TabItem>
+            <TabItem value="peak-season" label="Peak Season">
+                ![](./assets/real-world/peak-season.svg)
+
+                ### Considerations
+
+
+                - **Block Bots & DDoS**: Use reCaptcha & rate limiting
+                - **Fast Loading**: Minify & CDN deliver CSS/JS/Images
+                - **Scale on Demand**: Spin up isolated dedicated instances & use queues
+                - **Prevent Overselling**: Lock inventory on order
+                - **Fast Cache**: Use cache & manage inventory
+                - **Minimize & Optimize**: Reduce RPC, hops, & streamline services
+                - **Isolate Content**: Separate static/dynamic & isolate uncommon items
+                - **Accurate Confirmation**: Show true stock availability
+            </TabItem>
+            <TabItem value="gmail" label="Gmail">
+                ![](./assets/real-world/gmail.svg)
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="systems" label="Systems">
+        <Tabs queryString="secondary">
+            <TabItem value="twitter" label="Twitter (2022)" attributes={{className:"tabs__vertical"}}>
+                ![](./assets/real-world/twitter.svg)
+            </TabItem>
+            <TabItem value="stackoverflow" label="StackOverflow">
+                ![](./assets/real-world/stack-overflow.svg)
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="lessons" label="Lessons">
+        <Tabs queryString="secondary">
+            <TabItem value="_" label="_" attributes={{className:"tabs__vertical"}}></TabItem>
+        </Tabs>
+    </TabItem>
+</Tabs>
