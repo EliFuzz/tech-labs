@@ -100,6 +100,181 @@ import TabItem from "@theme/TabItem";
     </TabItem>
 </Tabs>
 
+## Distributed Unique Identifiers
+
+<table class="text_vertical">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th style={{minWidth: '350px'}}>Structure</th>
+      <th>Example</th>
+      <th>Features</th>
+      <th>Use Cases</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>MongoDB ObjectID</b></td>
+      <td>
+        <ul>
+          <li><span style={{color: '#f06292'}}>Timestamp in seconds (4 bytes)</span></li>
+          <li><span style={{color: '#64b5f6'}}>Process ID (5 bytes)</span></li>
+          <li><span style={{color: '#4dd0e1'}}>Incrementing Counter (3 bytes)</span></li>
+        </ul>
+      </td>
+      <td><span style={{color: '#f06292'}}>6522bfc8</span>-<span style={{color: '#64b5f6'}}>6abf1a160a</span>-<span style={{color: '#4dd0e1'}}>16a83e</span></td>
+      <td>
+        <ul>
+          <li>Total: 96 bits (16.7m ID/sec)</li>
+          <li>Hexadecimal</li>
+          <li>Unix timestamps</li>
+          <li>Ordered</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Internal document identifiers in MongoDB</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Nano ID</b></td>
+      <td>Characters: `A-Za-z0-9_-`</td>
+      <td>TZOb75IqNux-DuSLisVDp</td>
+      <td>
+        <ul>
+          <li>Total: 126 bits</li>
+          <li>Customizable</li>
+          <li>URL friendly</li>
+          <li>Randomness</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Short, URL-friendly identifiers</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Sequence</b></td>
+      <td>
+        ```mermaid
+          graph LR
+
+          subgraph Centralized
+            direction TB
+
+            service1(Service) & service2(Service) --> |request| counter[[Counter]]
+          end
+
+          subgraph Decentralized
+            direction TB
+
+            service3(Service)
+            service4(Service)
+            service5(Service)
+
+            service3 --> |1,4,7| service3
+            service4 --> |3,6,9| service4
+            service5--> |2,5,8| service5
+          end
+        ```
+      </td>
+      <td>88</td>
+      <td>
+        <ul>
+          <li>Incremental</li>
+          <li>Decimal</li>
+          <li>Human readable</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Simple counters</li>
+          <li>Primary keys</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Sonyflake</b></td>
+      <td>
+        <ul>
+          <li><span style={{color: '#f06292'}}>Sign-bit (unused)</span></li>
+          <li><span style={{color: '#64b5f6'}}>Timestamp: 10 milliseconds (39 bits)</span></li>
+          <li><span style={{color: '#4dd0e1'}}>Counter (8 bits)</span></li>
+          <li><span style={{color: '#e57373'}}>Machine ID (16 bits)</span></li>
+        </ul>
+      </td>
+      <td><span style={{color: '#f06292'}}>0</span>-<span style={{color: '#64b5f6'}}>000011010110000100110111000001110001101</span>-<span style={{color: '#4dd0e1'}}>00000000</span>-<span style={{color: '#e57373'}}>0000000000000001</span></td>
+      <td>
+        <ul>
+          <li>Total: 64 bits (256 ID/10 ms)</li>
+          <li>~174 years</li>
+          <li>Decimal</li>
+          <li>Distributed</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Unique identifiers across distributed systems</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Twitter Snowflake</b></td>
+      <td>
+        <ul>
+          <li><span style={{color: '#f06292'}}>Sign-bit (unused)</span></li>
+          <li><span style={{color: '#64b5f6'}}>Timestamp in milliseconds (41 bits)</span></li>
+          <li><span style={{color: '#4dd0e1'}}>Data Center ID (5 bits)</span></li>
+          <li><span style={{color: '#e57373'}}>Machine ID (5 bits)</span></li>
+          <li><span style={{color: '#7e57c2'}}>Incrementing Counter (12 bits)</span></li>
+        </ul>
+      </td>
+      <td><span style={{color: '#f06292'}}>0</span>-<span style={{color: '#64b5f6'}}>00101111011111011010110100111101110001111</span>-<span style={{color: '#4dd0e1'}}>00000</span>-<span style={{color: '#e57373'}}>00001</span>-<span style={{color: '#7e57c2'}}>000000000000</span></td>
+      <td>
+        <ul>
+          <li>Total: 64 bits (4096 ID/ms)</li>
+          <li>~70 years</li>
+          <li>Decimal</li>
+          <li>Distributed</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Unique identifiers across distributed systems</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Universally Unique Identifier (UUID)</b></td>
+      <td>
+        <ul>
+          <li><span style={{color: '#f06292'}}>time_low (4 bytes)</span></li>
+          <li><span style={{color: '#64b5f6'}}>time_mid (2 bytes)</span></li>
+          <li><span style={{color: '#e57373'}}>version</span> & <span style={{color: '#4dd0e1'}}>time_hi</span> (2 bytes)</li>
+          <li><span style={{color: '#f06292'}}>clock_seq_hi_&_res (2 bytes)</span></li>
+          <li><span style={{color: '#7e57c2'}}>MAC Address (6 bytes)</span></li>
+        </ul>
+      </td>
+      <td><span style={{color: '#f06292'}}>d6e9ec10</span>-<span style={{color: '#64b5f6'}}>65e2</span>-<span style={{color: '#e57373'}}>1</span><span style={{color: '#4dd0e1'}}>1ee</span>-<span style={{color: '#f06292'}}>97a0</span>-<span style={{color: '#7e57c2'}}>3eb31bb9ccfe</span></td>
+      <td>
+        <ul>
+          <li>Total: 128 bits</li>
+          <li>Timestamp (depends on version)</li>
+          <li>Low collision</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Suitable for various systems and interoperability</li>
+          <li>May not be optimized for distributed systems</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Data Synchronization & Distribution Mechanisms
 
 <Tabs queryString="primary">

@@ -784,21 +784,21 @@ import TabItem from "@theme/TabItem";
                 <tbody>
                     <tr>
                         <td><b>0 (at least once)</b></td>
-                        <td>Each message will be delivered once or possibly not at all. This method prioritizes speed but compromises on reliability</td>
+                        <td>Each message will be delivered once or possibly not at all. This method prioritizes speed but compromises on reliability (may have duplicates)</td>
                         <td>Single Delivery</td>
                         <td>Swift</td>
                         <td>Low</td>
                     </tr>
                     <tr>
                         <td><b>1 (at most once)</b></td>
-                        <td>Ensures the delivery of the message but also allows the possibility of duplicates</td>
+                        <td>Ensures the delivery of the message but also allows the possibility of duplicates (may loose message)</td>
                         <td>Guaranteed Delivery</td>
                         <td>Fair</td>
                         <td>High</td>
                     </tr>
                     <tr>
                         <td><b>2 (exactly once)</b></td>
-                        <td>Promises a single delivery of the message. While the most reliable, it is the least speedy</td>
+                        <td>Promises a single delivery of the message. While the most reliable, it is the least speedy (guaranteed once)</td>
                         <td>Unambiguous Delivery</td>
                         <td>Slow</td>
                         <td>Supreme</td>
@@ -1170,7 +1170,7 @@ import TabItem from "@theme/TabItem";
           <tr>
             <td><b>Over-fetching/Under-fetching</b></td>
             <td>Possible, as server defines what data is returned for each endpoint</td>
-            <td>No over- or under-fetching, as client defines exactly what data it needs</td>
+            <td>No over- or under-fetching, as client defines exactly what data it needs. Might lead to N+1 requests problem that should be handled by dev</td>
           </tr>
           <tr>
             <td><b>Efficiency</b></td>
