@@ -15,49 +15,91 @@ import TabItem from "@theme/TabItem";
           <tr>
             <th>DB Type</th>
             <th>Features</th>
-            <th>Consistency Model</th>
-            <th>Transactions</th>
-            <th>Horizontal Partitioning</th>
-            <th>Vertical Partitioning</th>
-            <th>Indexing</th>
-            <th>CAP Theorem</th>
             <th>Use Cases</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><b>Relational / SQL</b></td>
+            <td><b>Columnar</b></td>
             <td>
                 <ul>
-                    <li>Indexing & Optimization</li>
-                    <li>Security Features</li>
-                    <li>Relationship & Referential Integrity</li>
-                    <li>Structured Data</li>
-                    <li>Transactions & ACID</li>
-                    <li>SQL Support</li>
+                    <li>Schema Evolution</li>
+                    <li>Column-Oriented Storage</li>
+                    <li>Column-Level Compression</li>
+                    <li>Column-Wise Indexing</li>
+                    <li>Analytical Query Performance</li>
+                    <li>Slice-and-Dice: efficiently analyze data by selecting columns (slice) and breaking it down further (dice), allowing complex queries and aggregations on large datasets with speed and flexibility</li>
                 </ul>
             </td>
-            <td>ACID</td>
-            <td>+</td>
-            <td>+</td>
-            <td>+</td>
             <td>
-              <ul>
-                  <li>B-Tree</li>
-                  <li>Hash</li>
-              </ul>
+                <ul>
+                    <li>Data Warehousing</li>
+                    <li>Analytics</li>
+                    <li>Log Processing</li>
+                </ul>
             </td>
+          </tr>
+          <tr>
+            <td><b>Document</b></td>
             <td>
-              <ul>
-                  <li>Availability</li>
-                  <li>Consistency</li>
-                  <li>Partition Tolerance</li>
-              </ul>
+                <ul>
+                    <li>Efficient Query Performance</li>
+                    <li>Document Versioning</li>
+                    <li>Flexible Schema</li>
+                </ul>
             </td>
             <td>
                 <ul>
-                    <li>OLTP</li>
-                    <li>OLAP</li>
+                    <li>Content Management</li>
+                    <li>IoT</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Graph</b></td>
+            <td>
+                <ul>
+                    <li>Relationship Focus</li>
+                    <li>Deep Insight</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Social Networks</li>
+                    <li>Fraud Detection</li>
+                    <li>LLMs</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Key-Value</b></td>
+            <td>
+                <ul>
+                    <li>Data Partitioning</li>
+                    <li>Simple Data Model</li>
+                    <li>High-Write & Query Performance</li>
+                    <li>Developer Friendly</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Caching</li>
+                    <li>Session Store</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>NewSQL</b></td>
+            <td>
+                <ul>
+                    <li>Transactions & ACID</li>
+                    <li>Support SQL</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>High-Transaction</li>
+                    <li>Real-time</li>
                 </ul>
             </td>
           </tr>
@@ -71,157 +113,10 @@ import TabItem from "@theme/TabItem";
                     <li>Flexible Data Model</li>
                 </ul>
             </td>
-            <td>Eventual, Strong</td>
-            <td>Limited</td>
-            <td>+</td>
-            <td>-</td>
-            <td>
-                <ul>
-                    <li>Key-Value</li>
-                </ul>
-            </td>
-            <td>
-              <ul>
-                  <li>Partition Tolerance</li>
-              </ul>
-            </td>
             <td>
                 <ul>
                     <li>Big Data</li>
                     <li>Real-time</li>
-                </ul>
-            </td>
-          </tr>
-          <tr>
-            <td><b>Columnar</b></td>
-            <td>
-                <ul>
-                    <li>Schema Evolution</li>
-                    <li>Column-Oriented Storage</li>
-                    <li>Column-Level Compression</li>
-                    <li>Column-Wise Indexing</li>
-                    <li>Analytical Query Performance</li>
-                    <li>Ideal for OLAP with Slice-and-Dice approach (efficiently analyzing data by selecting specific columns (slicing) and breaking it down further (dicing), enabling complex queries and aggregations on large datasets with speed and flexibility)</li>
-                </ul>
-            </td>
-            <td>ACID</td>
-            <td>+</td>
-            <td>+</td>
-            <td>+ (Conditional)</td>
-            <td>
-                <ul>
-                    <li>B-Tree</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Consistency</li>
-                    <li>Partition Tolerance</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Data Warehousing</li>
-                    <li>Analytics</li>
-                    <li>Log Processing</li>
-                </ul>
-            </td>
-          </tr>
-          <tr>
-            <td><b>NewSQL</b></td>
-            <td>
-                <ul>
-                    <li>Transactions & ACID</li>
-                    <li>Support SQL</li>
-                </ul>
-            </td>
-            <td>ACID</td>
-            <td>+</td>
-            <td>+</td>
-            <td>+ (Likely)</td>
-            <td>
-                <ul>
-                    <li>B-Tree</li>
-                    <li>Hash</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Availability</li>
-                    <li>Consistency</li>
-                    <li>Partition Tolerance</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>High-Transaction</li>
-                    <li>Real-time</li>
-                </ul>
-            </td>
-          </tr>
-          <tr>
-            <td><b>Spatial</b></td>
-            <td>
-                <ul>
-                    <li>Spatial Types & Indexing</li>
-                    <li>Topology & Network Analysis</li>
-                    <li>Geospatial Query Language</li>
-                    <li>Integration with GIS</li>
-                </ul>
-            </td>
-            <td>ACID</td>
-            <td>+</td>
-            <td>+</td>
-            <td>-</td>
-            <td>
-                <ul>
-                    <li>R-Tree</li>
-                    <li>Quadtree</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Availability</li>
-                    <li>Consistency</li>
-                    <li>Partition Tolerance</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Geographic Information Systems (GIS)</li>
-                    <li>Spatial Analysis</li>
-                </ul>
-            </td>
-          </tr>
-          <tr>
-            <td><b>Graph</b></td>
-            <td>
-                <ul>
-                    <li>Relationship Focus</li>
-                    <li>Deep Insight</li>
-                </ul>
-            </td>
-            <td>ACID</td>
-            <td>+</td>
-            <td>+</td>
-            <td>-</td>
-            <td>
-               <ul>
-                    <li>Graph Indices</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Availability</li>
-                    <li>Consistency</li>
-                    <li>Partition Tolerance</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Social Networks</li>
-                    <li>Fraud Detection</li>
-                    <li>LLMs</li>
                 </ul>
             </td>
           </tr>
@@ -237,22 +132,6 @@ import TabItem from "@theme/TabItem";
                     <li>Inheritance & Polymorphism</li>
                 </ul>
             </td>
-            <td>ACID</td>
-            <td>+</td>
-            <td>+</td>
-            <td>-</td>
-            <td>
-                <ul>
-                    <li>Object Indices</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Availability</li>
-                    <li>Consistency</li>
-                    <li>Partition Tolerance</li>
-                </ul>
-            </td>
             <td>
                 <ul>
                     <li>Object Persistence</li>
@@ -260,66 +139,38 @@ import TabItem from "@theme/TabItem";
             </td>
           </tr>
           <tr>
-            <td><b>Document</b></td>
+            <td><b>Relational / SQL</b></td>
             <td>
                 <ul>
-                    <li>Efficient Query Performance</li>
-                    <li>Document Versioning</li>
-                    <li>Flexible Schema</li>
-                </ul>
-            </td>
-            <td>Eventual, Strong</td>
-            <td>Limited</td>
-            <td>+</td>
-            <td>-</td>
-            <td>
-                <ul>
-                    <li>B-Tree</li>
-                    <li>Hash</li>
+                    <li>Indexing & Optimization</li>
+                    <li>Security Features</li>
+                    <li>Relationship & Referential Integrity</li>
+                    <li>Structured Data</li>
+                    <li>Transactions & ACID</li>
+                    <li>SQL Support</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Availability</li>
-                    <li>Partition Tolerance</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Content Management</li>
-                    <li>IoT</li>
+                    <li>Online Transaction Processing (OLTP)</li>
+                    <li>Online Analytical Processing (OLAP)</li>
                 </ul>
             </td>
           </tr>
           <tr>
-            <td><b>Key-Value</b></td>
+            <td><b>Spatial</b></td>
             <td>
                 <ul>
-                    <li>Data Partitioning</li>
-                    <li>Simple Data Model</li>
-                    <li>High-Write & Query Performance</li>
-                    <li>Developer Friendly</li>
-                </ul>
-            </td>
-            <td>Eventual, Strong</td>
-            <td>Limited</td>
-            <td>+</td>
-            <td>-</td>
-            <td>
-                <ul>
-                    <li>Hash</li>
-                    <li>LSM Tree</li>
+                    <li>Spatial Types & Indexing</li>
+                    <li>Topology & Network Analysis</li>
+                    <li>Geospatial Query Language</li>
+                    <li>Integration with GIS</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Partition Tolerance</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Caching</li>
-                    <li>Session Store</li>
+                    <li>Geographic Information Systems (GIS)</li>
+                    <li>Spatial Analysis</li>
                 </ul>
             </td>
           </tr>
@@ -333,26 +184,32 @@ import TabItem from "@theme/TabItem";
                     <li>High Write & Query Performance</li>
                 </ul>
             </td>
-            <td>ACID</td>
-            <td>+</td>
-            <td>+</td>
-            <td>-</td>
-            <td>
-                <ul>
-                    <li>B-Tree</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Availability</li>
-                    <li>Consistency</li>
-                </ul>
-            </td>
             <td>
                 <ul>
                     <li>Sensor Data</li>
                     <li>Financial Data</li>
                     <li>Industrial IoT</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Vector DB</b></td>
+            <td>
+                <ul>
+                    <li>High-dimensional vector storage</li>
+                    <li>Similarity search</li>
+                    <li>Approximate nearest neighbor (ANN) search</li>
+                    <li>Scalability</li>
+                    <li>Metadata management: Stores and manages additional information associated with vectors for filtering and contextualization</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Generative AI</li>
+                    <li>Natural language processing (NLP)</li>
+                    <li>Recommender systems</li>
+                    <li>Image and video search</li>
+                    <li>Fraud detection</li>
                 </ul>
             </td>
           </tr>
@@ -651,9 +508,465 @@ import TabItem from "@theme/TabItem";
   </TabItem>
 </Tabs>
 
+## Data Storage Solutions
+
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    ### Key Points for Considerations
+
+    - **Data Volume and Growth:** How much data do you currently store, and what's the anticipated growth rate?
+    - **Performance Requirements:**  How critical is fast access and retrieval of data for your operations?
+    - **Data Security and Compliance:**  What security measures are necessary to safeguard sensitive data? Are there industry regulations to adhere to?
+    - **Accessibility and Sharing Needs:**  Do you require remote access to data or collaboration features?
+    - **Budgetary Constraints:**  What is your allocated budget for data storage solutions?
+  </TabItem>
+  <TabItem value="processingTypes" label="Processing Types">
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Online Analytical Processing (OLAP)</th>
+                <th>Online Transaction Processing (OLTP)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Purpose</b></td>
+                <td>Analytical processing for decision-making</td>
+                <td>Transaction processing for day-to-day operations</td>
+            </tr>
+            <tr>
+                <td><b>Data Usage</b></td>
+                <td>Aggregates historical data for reporting and analysis</td>
+                <td>Processes real-time transactions and updates</td>
+            </tr>
+            <tr>
+                <td><b>Data Schema</b></td>
+                <td>Star or snowflake schemas, denormalized</td>
+                <td>Normalized schemas, reducing redundancy</td>
+            </tr>
+            <tr>
+                <td><b>Query Complexity</b></td>
+                <td>Complex queries with aggregations and joins</td>
+                <td>Simple queries with frequent read/write operations</td>
+            </tr>
+            <tr>
+                <td><b>Data Granularity</b></td>
+                <td>Summarized, aggregated data</td>
+                <td>Detailed, individual transactions</td>
+            </tr>
+            <tr>
+                <td><b>Data Size</b></td>
+                <td>Huge data volumes, typically in terabytes or more</td>
+                <td>Smaller data volumes, typically in gigabytes or less</td>
+            </tr>
+            <tr>
+                <td><b>Performance</b></td>
+                <td>Designed for high throughput, slower write speeds</td>
+                <td>Optimized for fast write speeds and low latency reads</td>
+            </tr>
+            <tr>
+                <td><b>Examples</b></td>
+                <td>Amazon Redshift, Google BigQuery, Snowflake</td>
+                <td>MySQL, PostgreSQL</td>
+            </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="processingData" label="Data Processing">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>ETL</th>
+          <th>ELT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Visualization</b></td>
+          <td>
+            ```mermaid
+                graph LR
+
+                subgraph Extract
+                    direction TB
+
+                    lob[(LOB)]
+                    crm[(CRM)]
+                    erp[(ERP)]
+                end
+
+                subgraph Load
+                    direction TB
+
+                    warehouse[(Data Warehouse)]
+                end
+
+                Extract --> transform([Transform])
+                transform --> Load
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph LR
+
+                subgraph Extract
+                    direction TB
+
+                    lob[(LOB)]
+                    crm[(CRM)]
+                    erp[(ERP)]
+                end
+
+                subgraph Load
+                    direction TB
+
+                    lake[(Data Lake)]
+                end
+
+                Extract --> Load
+                Load --> transform([Transform])
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td><b>Process Flow</b></td>
+          <td>Extract data first, then transform and load into the target system</td>
+          <td>Extract data first, load into the target system, then transform within the target system</td>
+        </tr>
+        <tr>
+          <td><b>Data Transformation</b></td>
+          <td>Transformation occurs before loading into the target system</td>
+          <td>Transformation occurs after loading into the target system</td>
+        </tr>
+        <tr>
+          <td><b>Performance</b></td>
+          <td>Typically slower due to data transformation overhead during the ETL process</td>
+          <td>Generally faster because loading raw data is faster than transforming it during the ETL process</td>
+        </tr>
+        <tr>
+          <td><b>Scalability</b></td>
+          <td>Limited scalability due to the need for substantial transformation before loading data</td>
+          <td>Highly scalable as it can leverage the processing power of the target system for transformations</td>
+        </tr>
+        <tr>
+          <td><b>Storage Requirements</b></td>
+          <td>Higher storage requirements as both raw and transformed data need to be stored</td>
+          <td>Lower storage requirements as only raw data needs to be stored initially, and transformation occurs within the target system</td>
+        </tr>
+        <tr>
+          <td><b>Data Integrity</b></td>
+          <td>Higher data integrity as data is cleaned and transformed before loading into the target system</td>
+          <td>May require additional checks and controls within the target system to ensure data integrity post-transformation</td>
+        </tr>
+        <tr>
+          <td><b>Complexity</b></td>
+          <td>Typically more complex due to the need for designing and managing transformation logic</td>
+          <td>Generally less complex as it leverages the capabilities of the target system for transformations</td>
+        </tr>
+        <tr>
+          <td><b>Flexibility</b></td>
+          <td>May be less flexible as transformation logic is predefined and applied uniformly to all data</td>
+          <td>More flexible as transformations can be tailored to specific use cases within the target system</td>
+        </tr>
+        <tr>
+          <td><b>Real-time Processing</b></td>
+          <td>Less suitable for real-time processing due to batch-oriented nature</td>
+          <td>More suitable for real-time processing as data can be loaded into the target system immediately and transformed on-the-fly</td>
+        </tr>
+        <tr>
+          <td><b>Examples</b></td>
+          <td>Apache Spark, Apache Flink, Google Cloud Dataproc</td>
+          <td>GCS → Spark jobs, Dataflow → BigQuery</td>
+        </tr>
+        <tr>
+          <td><b>Use Cases</b></td>
+          <td>For well-defined data models and reporting needs</td>
+          <td>For big data, data lakes, and agile analytics environments</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="repositories" label="Data Repositories">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Data Mart</th>
+          <th>Data Warehouse</th>
+          <th>Data Lake</th>
+          <th>Data Lakehouse</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visualization</td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data[Data Sources]
+                    direction TB
+
+                    data1[( )]
+                    data2[( )]
+                    data3[( )]
+                end
+
+                data --> staging[(Staging Area)]
+
+                subgraph warehouse[Data Warehouse]
+                    direction TB
+
+                    warehouse1[(Metadata)]
+                    warehouse2[(Raw Data)]
+                    warehouse3[(Summary Data)]
+                end
+
+                subgraph marts[Data Marts]
+                    direction TB
+
+                    marts1[(Purchasing)]
+                    marts2[(sales)]
+                    marts3[(Inventory)]
+                end
+
+                staging --> warehouse
+                warehouse --> marts
+
+                marts --> analytics(Analytics)
+                marts --> reporting(Reporting)
+                marts --> mining(Mining)
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data[Structured Data]
+                    direction TB
+
+                    data1[( )]
+                    data2[( )]
+                    data3[( )]
+                end
+
+                data --> etl([ETL])
+
+                subgraph warehouses[Data Warehouses]
+                    direction TB
+
+                    mart1[(Data Mart)]
+                    mart2[(Data Mart)]
+                end
+
+                etl --> warehouses
+
+                warehouses --> bi(BI)
+                warehouses --> reports(Reports)
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data [Structured, Unstructured, Semi-structured]
+                    direction TB
+
+                    data1[(DB)]
+                    data2[(Images)]
+                    data3[(Files)]
+                end
+
+                data --> dataLake[[Data Lake]]
+
+                dataLake <--> etl([ETL])
+
+                dataLake --> dataPrep(Data Preparation & Validation)
+                dataPrep --> dataScience(Data Science)
+                dataLake --> machineLearning(Machine Learning)
+
+                subgraph warehouses[Data Warehouses]
+                    direction TB
+
+                    mart1[(Data Mart)]
+                    mart2[(Data Mart)]
+                end
+
+                etl --> warehouses
+
+                warehouses --> bi(BI)
+                warehouses --> reports(Reports)
+                warehouses --> dataScience
+            ```
+          </td>
+          <td>
+            ```mermaid
+                graph BT
+
+                subgraph data [Structured, Unstructured, Semi-structured]
+                    direction TB
+
+                    data1[(DB)]
+                    data2[(Images)]
+                    data3[(Files)]
+                end
+
+                subgraph dataLake[Data Lake: Metadata & Governance Layer]
+                    direction TB
+
+                    etl([ETL])
+                end
+
+                data --> dataLake
+
+                dataLake --> bi(BI)
+                dataLake --> reports(Reports)
+                dataLake --> dataScience(Data Science)
+                dataLake --> machineLearning(Machine Learning)
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td>Definition</td>
+          <td>A subset of a Data Warehouse containing specific data focused on a particular business function or department</td>
+          <td>A central repository for structured, organized, and processed data, optimized for querying and analysis</td>
+          <td>A vast repository of raw, unstructured, or semi-structured data stored in its native format</td>
+          <td>An architecture combining the features of a Data Lake and a Data Warehouse, providing unified analytics on both raw and processed data</td>
+        </tr>
+        <tr>
+          <td>Data Type</td>
+          <td>Structured data tailored for specific business needs</td>
+          <td>Structured data, typically from operational systems</td>
+          <td>Raw, unstructured, semi-structured data</td>
+          <td>Raw, semi-structured, and structured data</td>
+        </tr>
+        <tr>
+          <td>Data Storage</td>
+          <td>Similar to Data Warehouse, stored in relational databases or columnar stores</td>
+          <td>Stored in a structured format like relational databases (e.g., SQL Server, PostgreSQL) or columnar stores (e.g., Redshift, BigQuery)</td>
+          <td>Typically stored in distributed file systems like HDFS, AWS S3, or Azure Data Lake Storage</td>
+          <td>Usually stored in a combination of Data Lake storage and structured data formats like Parquet, Delta Lake, or Apache Iceberg</td>
+        </tr>
+        <tr>
+          <td>Data Processing</td>
+          <td>Similar to Data Warehouse, batch processing is prevalent, with ETL tools used for data transformation</td>
+          <td>Primarily batch processing. Data transformation and ETL processes are well-defined and structured. Tools like Informatica, Talend, or Apache Airflow are commonly used</td>
+          <td>Supports batch and real-time processing. Processing is done on raw data, often using technologies like Hadoop, Spark, or Apache Flink</td>
+          <td>Combines batch and real-time processing capabilities. Data is transformed and unified using tools like Apache Spark, Databricks, or Delta Lake</td>
+        </tr>
+        <tr>
+          <td>Use Cases</td>
+          <td>Tailored for specific business functions or departments requiring localized analytics and reporting. Commonly used in finance, sales, or marketing</td>
+          <td>Best suited for structured reporting, business intelligence, and historical analysis. Ideal for organizations with well-defined data requirements</td>
+          <td>Suitable for exploratory analytics, machine learning, and big data processing where flexibility and scalability are critical</td>
+          <td>Ideal for organizations looking to combine the benefits of Data Lakes and Data Warehouses for unified analytics on both raw and processed data</td>
+        </tr>
+        <tr>
+          <td>Examples</td>
+          <td>Sales Data Mart, Finance Data Mart, HR Data Mart</td>
+          <td>Amazon Redshift, Google BigQuery, Snowflake</td>
+          <td>Hadoop Distributed File System (HDFS), Amazon S3, Azure Data Lake Storage</td>
+          <td>Databricks Delta Lake, AWS Glue, Google BigQuery Omni</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="parquet" label="File Storage">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Parquet</th>
+          <th>Avro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Data Storage</strong></td>
+          <td>Columnar</td>
+          <td>Row-based</td>
+        </tr>
+        <tr>
+          <td><strong>Schema</strong></td>
+          <td>Self-describing, stored in file metadata</td>
+          <td>Stored with data, language-independent</td>
+        </tr>
+        <tr>
+          <td><strong>Compression</strong></td>
+          <td>Highly compressed, supports multiple compression codecs (Snappy, Gzip, LZO, etc.)</td>
+          <td>Compressed, supports Deflate and Snappy codecs</td>
+        </tr>
+        <tr>
+          <td><strong>Performance</strong></td>
+          <td>Optimized for analytical (OLAP) workloads, fast data retrieval and processing</td>
+          <td>Optimized for write-intensive, big data operations, efficient for accessing all fields</td>
+        </tr>
+        <tr>
+          <td><strong>Language Support</strong></td>
+          <td>Language-agnostic, supported by many big data frameworks (Spark, Hive, Impala)</td>
+          <td>Language-independent, can be used across different programming languages</td>
+        </tr>
+        <tr>
+          <td><strong>Advantages</strong></td>
+          <td>
+            <ul>
+              <li>Highly compressed, efficient storage</li>
+              <li>Columnar format enables fast data retrieval and processing</li>
+              <li>Supports schema evolution and complex data types</li>
+              <li>Widely adopted and integrated with major big data frameworks</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Language-independent, can be used across different programming languages</li>
+              <li>Efficient for write-intensive, big data operations</li>
+              <li>Supports schema evolution and complex data types</li>
+              <li>Compact binary format reduces storage requirements</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Disadvantages</strong></td>
+          <td>
+            <ul>
+              <li>Not human-readable</li>
+              <li>Difficulties in applying updates, requires deleting and recreating the file</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Data is not human-readable</li>
+              <li>Not as widely integrated as Parquet in some big data frameworks</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Use Cases</strong></td>
+          <td>
+            <ul>
+              <li>Large-scale data analytics and business intelligence</li>
+              <li>Efficient storage and processing of structured, semi-structured, and unstructured data</li>
+              <li>Integration with cloud-based data warehousing and processing services (AWS Athena, Amazon Redshift Spectrum)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Efficient storage and processing of big data workloads</li>
+              <li>Data exchange and serialization between different systems and applications</li>
+              <li>Streaming and real-time data processing (Apache Kafka)</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
+
 ## Relational Database
 
-<Tabs>
+<Tabs queryString="primary">
     <TabItem value="overview" label="Overview">
         Structured Query Language (**SQL**) is a programming language used for managing and manipulating relational databases.
 
@@ -685,7 +998,7 @@ import TabItem from "@theme/TabItem";
         - **View**: Virtual table that is made up of elements of multiple physical or "real" tables
     </TabItem>
     <TabItem value="detailed" label="Detailed">
-        <Tabs>
+        <Tabs queryString="secondary">
             <TabItem value="subsets" label="Subsets of SQL" attributes={{className:"tabs__vertical"}}>
                 <table>
                   <thead>
@@ -1756,460 +2069,193 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
     </TabItem>
-</Tabs>
-
-## Data Storage Solutions
-
-<Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
-    ### Key Points for Considerations
-
-    - **Data Volume and Growth:** How much data do you currently store, and what's the anticipated growth rate?
-    - **Performance Requirements:**  How critical is fast access and retrieval of data for your operations?
-    - **Data Security and Compliance:**  What security measures are necessary to safeguard sensitive data? Are there industry regulations to adhere to?
-    - **Accessibility and Sharing Needs:**  Do you require remote access to data or collaboration features?
-    - **Budgetary Constraints:**  What is your allocated budget for data storage solutions?
-  </TabItem>
-  <TabItem value="processingTypes" label="Processing Types">
-    <table>
+    <TabItem value="common-issues" label="Common Issues">
+      <table class="text_vertical">
         <thead>
-            <tr>
-                <th>Feature</th>
-                <th>Online Analytical Processing (OLAP)</th>
-                <th>Online Transaction Processing (OLTP)</th>
-            </tr>
+          <tr>
+            <th>Issue</th>
+            <th>Definition</th>
+            <th>Impact</th>
+            <th>Solutions</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><b>Purpose</b></td>
-                <td>Analytical processing for decision-making</td>
-                <td>Transaction processing for day-to-day operations</td>
-            </tr>
-            <tr>
-                <td><b>Data Usage</b></td>
-                <td>Aggregates historical data for reporting and analysis</td>
-                <td>Processes real-time transactions and updates</td>
-            </tr>
-            <tr>
-                <td><b>Data Schema</b></td>
-                <td>Star or snowflake schemas, denormalized</td>
-                <td>Normalized schemas, reducing redundancy</td>
-            </tr>
-            <tr>
-                <td><b>Query Complexity</b></td>
-                <td>Complex queries with aggregations and joins</td>
-                <td>Simple queries with frequent read/write operations</td>
-            </tr>
-            <tr>
-                <td><b>Data Granularity</b></td>
-                <td>Summarized, aggregated data</td>
-                <td>Detailed, individual transactions</td>
-            </tr>
-            <tr>
-                <td><b>Data Size</b></td>
-                <td>Huge data volumes, typically in terabytes or more</td>
-                <td>Smaller data volumes, typically in gigabytes or less</td>
-            </tr>
-            <tr>
-                <td><b>Performance</b></td>
-                <td>Designed for high throughput, slower write speeds</td>
-                <td>Optimized for fast write speeds and low latency reads</td>
-            </tr>
-            <tr>
-                <td><b>Examples</b></td>
-                <td>Amazon Redshift, Google BigQuery, Snowflake</td>
-                <td>MySQL, PostgreSQL</td>
-            </tr>
+          <tr>
+            <td><b>Cartesian Products</b></td>
+            <td>Occurs when 2 or more tables are joined without a proper `WHERE` clause, resulting in huge datasets</td>
+            <td>
+              <ul>
+                <li>High resource consumption</li>
+                <li>Slow query performance</li>
+                <li>Database server overload</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Ensure `WHERE` clause in `JOIN` queries</li>
+                <li>Optimize query design and indexing</li>
+                <li>Limit result set size</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Connections overhead</b></td>
+            <td>Establishing multiple connections to the same database</td>
+            <td>
+              <ul>
+                <li>Resource wastage</li>
+                <li>Decreased performance due to connection establishment overhead</li>
+                <li>Scalability issues</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Implement connection pooling mechanism</li>
+                <li>Tune connection timeout settings</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Data Inconsistency</b></td>
+            <td>Same data exists in different forms across the database</td>
+            <td>
+              <ul>
+                <li>Incorrect query results</li>
+                <li>Application errors</li>
+                <li>Data corruption</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Use transactions and locking mechanisms</li>
+                <li>Implement referential integrity constraints</li>
+                <li>Regular data validation and cleansing</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Deadlocks</b></td>
+            <td>2 or more transactions are waiting for each other to release locks</td>
+            <td>
+              <ul>
+                <li>Transaction failure</li>
+                <li>Resource wastage</li>
+                <li>System deadlock</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Analyze and optimize transaction isolation levels</li>
+                <li>Minimize transaction duration</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Full Table Scans</b></td>
+            <td>Scanning the entire table to satisfy a query instead of using indexes</td>
+            <td>
+              <ul>
+                <li>Slow query performance</li>
+                <li>High I/O load</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Create appropriate indexes</li>
+                <li>Tune SQL queries to leverage existing indexes</li>
+                <li>Partition large tables for better performance</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Missing Indexes</b></td>
+            <td>Indexes that are required to satisfy a query are missing</td>
+            <td>
+              <ul>
+                <li>Slow query performance</li>
+                <li>High CPU and I/O utilization</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Analyze query execution plans</li>
+                <li>Create indexes based on query patterns and workload characteristics</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>N+1</b></td>
+            <td>Initial query fetches N rows, and then N additional queries are executed to fetch related data for each row</td>
+            <td>
+              <ul>
+                <li>Increased number of queries</li>
+                <li>Poor performance</li>
+                <li>High resource consumption</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Use eager loading or batch loading in ORMs</li>
+                <li>Optimize data access patterns</li>
+                <li>Implement custom data retrieval methods</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Over/Under fetching</b></td>
+            <td>Overfetching occurs when unnecessary data is fetched from the database, while underfetching occurs when necessary data is not fetched</td>
+            <td>
+              <ul>
+                <li>Wastage of network bandwidth and server resources</li>
+                <li>Reduced application responsiveness</li>
+                <li>Increased latency</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Optimize SQL queries to fetch only required data</li>
+                <li>Use pagination and filtering to limit result set size</li>
+                <li>Normalize data to reduce redundancy and improve query efficiency</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Poorly Designed Schema</b></td>
+            <td>Lacks normalization, proper data types, and relationships, leading to inefficient data access</td>
+            <td>
+              <ul>
+                <li>Data redundancy</li>
+                <li>Update anomalies</li>
+                <li>Inefficient queries and joins</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Normalize the database schema</li>
+                <li>Choose appropriate data types</li>
+                <li>Define relationships and constraints</li>
+                <li>Analyze and refactor existing schema structures</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Subquery Inefficiency</b></td>
+            <td>Subqueries are used inefficiently, resulting in poor query performance</td>
+            <td>
+              <ul>
+                <li>Slow query execution</li>
+                <li>Resource contention</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Rewrite subqueries as joins where possible</li>
+                <li>Use correlated subqueries judiciously</li>
+                <li>Ensure subquery optimization through proper indexing and query tuning</li>
+              </ul>
+            </td>
+          </tr>
         </tbody>
-    </table>
-  </TabItem>
-  <TabItem value="processingData" label="Data Processing">
-    <table>
-      <thead>
-        <tr>
-          <th>Aspect</th>
-          <th>ETL</th>
-          <th>ELT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><b>Visualization</b></td>
-          <td>
-            ```mermaid
-                graph LR
-
-                subgraph Extract
-                    direction TB
-
-                    lob[(LOB)]
-                    crm[(CRM)]
-                    erp[(ERP)]
-                end
-
-                subgraph Load
-                    direction TB
-
-                    warehouse[(Data Warehouse)]
-                end
-
-                Extract --> transform([Transform])
-                transform --> Load
-            ```
-          </td>
-          <td>
-            ```mermaid
-                graph LR
-
-                subgraph Extract
-                    direction TB
-
-                    lob[(LOB)]
-                    crm[(CRM)]
-                    erp[(ERP)]
-                end
-
-                subgraph Load
-                    direction TB
-
-                    lake[(Data Lake)]
-                end
-
-                Extract --> Load
-                Load --> transform([Transform])
-            ```
-          </td>
-        </tr>
-        <tr>
-          <td><b>Process Flow</b></td>
-          <td>Extract data first, then transform and load into the target system</td>
-          <td>Extract data first, load into the target system, then transform within the target system</td>
-        </tr>
-        <tr>
-          <td><b>Data Transformation</b></td>
-          <td>Transformation occurs before loading into the target system</td>
-          <td>Transformation occurs after loading into the target system</td>
-        </tr>
-        <tr>
-          <td><b>Performance</b></td>
-          <td>Typically slower due to data transformation overhead during the ETL process</td>
-          <td>Generally faster because loading raw data is faster than transforming it during the ETL process</td>
-        </tr>
-        <tr>
-          <td><b>Scalability</b></td>
-          <td>Limited scalability due to the need for substantial transformation before loading data</td>
-          <td>Highly scalable as it can leverage the processing power of the target system for transformations</td>
-        </tr>
-        <tr>
-          <td><b>Storage Requirements</b></td>
-          <td>Higher storage requirements as both raw and transformed data need to be stored</td>
-          <td>Lower storage requirements as only raw data needs to be stored initially, and transformation occurs within the target system</td>
-        </tr>
-        <tr>
-          <td><b>Data Integrity</b></td>
-          <td>Higher data integrity as data is cleaned and transformed before loading into the target system</td>
-          <td>May require additional checks and controls within the target system to ensure data integrity post-transformation</td>
-        </tr>
-        <tr>
-          <td><b>Complexity</b></td>
-          <td>Typically more complex due to the need for designing and managing transformation logic</td>
-          <td>Generally less complex as it leverages the capabilities of the target system for transformations</td>
-        </tr>
-        <tr>
-          <td><b>Flexibility</b></td>
-          <td>May be less flexible as transformation logic is predefined and applied uniformly to all data</td>
-          <td>More flexible as transformations can be tailored to specific use cases within the target system</td>
-        </tr>
-        <tr>
-          <td><b>Real-time Processing</b></td>
-          <td>Less suitable for real-time processing due to batch-oriented nature</td>
-          <td>More suitable for real-time processing as data can be loaded into the target system immediately and transformed on-the-fly</td>
-        </tr>
-        <tr>
-          <td><b>Examples</b></td>
-          <td>Apache Spark, Apache Flink, Google Cloud Dataproc</td>
-          <td>GCS → Spark jobs, Dataflow → BigQuery</td>
-        </tr>
-        <tr>
-          <td><b>Use Cases</b></td>
-          <td>For well-defined data models and reporting needs</td>
-          <td>For big data, data lakes, and agile analytics environments</td>
-        </tr>
-      </tbody>
-    </table>
-  </TabItem>
-  <TabItem value="repositories" label="Data Repositories">
-    <table>
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Data Mart</th>
-          <th>Data Warehouse</th>
-          <th>Data Lake</th>
-          <th>Data Lakehouse</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Visualization</td>
-          <td>
-            ```mermaid
-                graph BT
-
-                subgraph data[Data Sources]
-                    direction TB
-
-                    data1[( )]
-                    data2[( )]
-                    data3[( )]
-                end
-
-                data --> staging[(Staging Area)]
-
-                subgraph warehouse[Data Warehouse]
-                    direction TB
-
-                    warehouse1[(Metadata)]
-                    warehouse2[(Raw Data)]
-                    warehouse3[(Summary Data)]
-                end
-
-                subgraph marts[Data Marts]
-                    direction TB
-
-                    marts1[(Purchasing)]
-                    marts2[(sales)]
-                    marts3[(Inventory)]
-                end
-
-                staging --> warehouse
-                warehouse --> marts
-
-                marts --> analytics(Analytics)
-                marts --> reporting(Reporting)
-                marts --> mining(Mining)
-            ```
-          </td>
-          <td>
-            ```mermaid
-                graph BT
-
-                subgraph data[Structured Data]
-                    direction TB
-
-                    data1[( )]
-                    data2[( )]
-                    data3[( )]
-                end
-
-                data --> etl([ETL])
-
-                subgraph warehouses[Data Warehouses]
-                    direction TB
-
-                    mart1[(Data Mart)]
-                    mart2[(Data Mart)]
-                end
-
-                etl --> warehouses
-
-                warehouses --> bi(BI)
-                warehouses --> reports(Reports)
-            ```
-          </td>
-          <td>
-            ```mermaid
-                graph BT
-
-                subgraph data [Structured, Unstructured, Semi-structured]
-                    direction TB
-
-                    data1[(DB)]
-                    data2[(Images)]
-                    data3[(Files)]
-                end
-
-                data --> dataLake[[Data Lake]]
-
-                dataLake <--> etl([ETL])
-
-                dataLake --> dataPrep(Data Preparation & Validation)
-                dataPrep --> dataScience(Data Science)
-                dataLake --> machineLearning(Machine Learning)
-
-                subgraph warehouses[Data Warehouses]
-                    direction TB
-
-                    mart1[(Data Mart)]
-                    mart2[(Data Mart)]
-                end
-
-                etl --> warehouses
-
-                warehouses --> bi(BI)
-                warehouses --> reports(Reports)
-                warehouses --> dataScience
-            ```
-          </td>
-          <td>
-            ```mermaid
-                graph BT
-
-                subgraph data [Structured, Unstructured, Semi-structured]
-                    direction TB
-
-                    data1[(DB)]
-                    data2[(Images)]
-                    data3[(Files)]
-                end
-
-                subgraph dataLake[Data Lake: Metadata & Governance Layer]
-                    direction TB
-
-                    etl([ETL])
-                end
-
-                data --> dataLake
-
-                dataLake --> bi(BI)
-                dataLake --> reports(Reports)
-                dataLake --> dataScience(Data Science)
-                dataLake --> machineLearning(Machine Learning)
-            ```
-          </td>
-        </tr>
-        <tr>
-          <td>Definition</td>
-          <td>A subset of a Data Warehouse containing specific data focused on a particular business function or department</td>
-          <td>A central repository for structured, organized, and processed data, optimized for querying and analysis</td>
-          <td>A vast repository of raw, unstructured, or semi-structured data stored in its native format</td>
-          <td>An architecture combining the features of a Data Lake and a Data Warehouse, providing unified analytics on both raw and processed data</td>
-        </tr>
-        <tr>
-          <td>Data Type</td>
-          <td>Structured data tailored for specific business needs</td>
-          <td>Structured data, typically from operational systems</td>
-          <td>Raw, unstructured, semi-structured data</td>
-          <td>Raw, semi-structured, and structured data</td>
-        </tr>
-        <tr>
-          <td>Data Storage</td>
-          <td>Similar to Data Warehouse, stored in relational databases or columnar stores</td>
-          <td>Stored in a structured format like relational databases (e.g., SQL Server, PostgreSQL) or columnar stores (e.g., Redshift, BigQuery)</td>
-          <td>Typically stored in distributed file systems like HDFS, AWS S3, or Azure Data Lake Storage</td>
-          <td>Usually stored in a combination of Data Lake storage and structured data formats like Parquet, Delta Lake, or Apache Iceberg</td>
-        </tr>
-        <tr>
-          <td>Data Processing</td>
-          <td>Similar to Data Warehouse, batch processing is prevalent, with ETL tools used for data transformation</td>
-          <td>Primarily batch processing. Data transformation and ETL processes are well-defined and structured. Tools like Informatica, Talend, or Apache Airflow are commonly used</td>
-          <td>Supports batch and real-time processing. Processing is done on raw data, often using technologies like Hadoop, Spark, or Apache Flink</td>
-          <td>Combines batch and real-time processing capabilities. Data is transformed and unified using tools like Apache Spark, Databricks, or Delta Lake</td>
-        </tr>
-        <tr>
-          <td>Use Cases</td>
-          <td>Tailored for specific business functions or departments requiring localized analytics and reporting. Commonly used in finance, sales, or marketing</td>
-          <td>Best suited for structured reporting, business intelligence, and historical analysis. Ideal for organizations with well-defined data requirements</td>
-          <td>Suitable for exploratory analytics, machine learning, and big data processing where flexibility and scalability are critical</td>
-          <td>Ideal for organizations looking to combine the benefits of Data Lakes and Data Warehouses for unified analytics on both raw and processed data</td>
-        </tr>
-        <tr>
-          <td>Examples</td>
-          <td>Sales Data Mart, Finance Data Mart, HR Data Mart</td>
-          <td>Amazon Redshift, Google BigQuery, Snowflake</td>
-          <td>Hadoop Distributed File System (HDFS), Amazon S3, Azure Data Lake Storage</td>
-          <td>Databricks Delta Lake, AWS Glue, Google BigQuery Omni</td>
-        </tr>
-      </tbody>
-    </table>
-  </TabItem>
-  <TabItem value="parquet" label="File Storage">
-    <table>
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Parquet</th>
-          <th>Avro</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Data Storage</strong></td>
-          <td>Columnar</td>
-          <td>Row-based</td>
-        </tr>
-        <tr>
-          <td><strong>Schema</strong></td>
-          <td>Self-describing, stored in file metadata</td>
-          <td>Stored with data, language-independent</td>
-        </tr>
-        <tr>
-          <td><strong>Compression</strong></td>
-          <td>Highly compressed, supports multiple compression codecs (Snappy, Gzip, LZO, etc.)</td>
-          <td>Compressed, supports Deflate and Snappy codecs</td>
-        </tr>
-        <tr>
-          <td><strong>Performance</strong></td>
-          <td>Optimized for analytical (OLAP) workloads, fast data retrieval and processing</td>
-          <td>Optimized for write-intensive, big data operations, efficient for accessing all fields</td>
-        </tr>
-        <tr>
-          <td><strong>Language Support</strong></td>
-          <td>Language-agnostic, supported by many big data frameworks (Spark, Hive, Impala)</td>
-          <td>Language-independent, can be used across different programming languages</td>
-        </tr>
-        <tr>
-          <td><strong>Advantages</strong></td>
-          <td>
-            <ul>
-              <li>Highly compressed, efficient storage</li>
-              <li>Columnar format enables fast data retrieval and processing</li>
-              <li>Supports schema evolution and complex data types</li>
-              <li>Widely adopted and integrated with major big data frameworks</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li>Language-independent, can be used across different programming languages</li>
-              <li>Efficient for write-intensive, big data operations</li>
-              <li>Supports schema evolution and complex data types</li>
-              <li>Compact binary format reduces storage requirements</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Disadvantages</strong></td>
-          <td>
-            <ul>
-              <li>Not human-readable</li>
-              <li>Difficulties in applying updates, requires deleting and recreating the file</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li>Data is not human-readable</li>
-              <li>Not as widely integrated as Parquet in some big data frameworks</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Use Cases</strong></td>
-          <td>
-            <ul>
-              <li>Large-scale data analytics and business intelligence</li>
-              <li>Efficient storage and processing of structured, semi-structured, and unstructured data</li>
-              <li>Integration with cloud-based data warehousing and processing services (AWS Athena, Amazon Redshift Spectrum)</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li>Efficient storage and processing of big data workloads</li>
-              <li>Data exchange and serialization between different systems and applications</li>
-              <li>Streaming and real-time data processing (Apache Kafka)</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </TabItem>
+      </table>
+    </TabItem>
 </Tabs>
