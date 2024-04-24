@@ -8,8 +8,377 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Cache Mechanism
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    Temporary data store, typically in RAM, that holds frequently accessed data for faster retrieval.
+
+    ### Core Concepts
+
+    - Cache Operations
+      - **Cache Lookup**: Application checks the cache for requested data
+      - **Cache Hit**: Data is found in the cache and returned directly
+      - **Cache Miss**: Data is not found in the cache. The application fetches it from the primary source, updates the cache, and returns the data
+
+    ### Benefits
+
+    - Reduced database load
+    - Faster data access (commonly retrieval from RAM)
+    - Scalability
+    - Cost-Effectiveness
+  </TabItem>
+  <TabItem value="operations" label="Operations">
+    - `GET`: Retrieve the value of a key
+    - `PUT`: Create a new key-value pair or update an existing key
+    - `DELETE`: Delete a key-value pair
+  </TabItem>
+  <TabItem value="key-value-mappings" label="Key-Value Mappings">
+    ### Keys
+
+    - Unique identifier
+    - Can be only a string
+
+    ### Values
+
+    <table>
+      <thead>
+        <tr>
+          <th>Redis Data Structures</th>
+          <th>Underlying Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>String</b></td>
+          <td>SDS (Simple Dynamic String)</td>
+        </tr>
+        <tr>
+          <td><b>Lists</b></td>
+          <td>
+            <ul>
+              <li>Bi-Directional LinkedList → QuickList in Redis 7 - `O(n)`</li>
+              <li>ZipList → ListPack in Redis 7 - `O(n)`</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Hashes</b></td>
+          <td>
+            <ul>
+              <li>ZipList → ListPack in Redis 7 - `O(n)`</li>
+              <li>HashTable `O(1)`</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Sets</b></td>
+          <td>
+            <ul>
+              <li>HashTable `O(1)`</li>
+              <li>IntSet `O(n)`</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Sorted Sets</b></td>
+          <td>
+            <ul>
+              <li>ZipList → ListPack in Redis 7 - `O(n)`</li>
+              <li>SkipList `O(log(n))`</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="persistence" label="Persistence">
+    ### Levels
+
+    - **1ns (L1 cache)**
+    - **10ns (L2 cache)**
+    - **100ns (RAM access)**: Redis read
+    - **10µs (send data over network)**: Memcached send data over 1 Gbps network
+    - **100µs (read from SSD)**: RocksDB read
+    - **1ms (database insert)**: PostgreSQL insert
+    - **10ms (HDD disk seek)**: PostgreSQL read
+    - **100ms (packet CA → NL → CA)**: Remote Zoom call
+    - **10s (retry/refresh interval)**: Grafana refresh interval
+
+    Options:
+
+    - **AOF (Append Only File)**: Acts like a log, continuously recording every write operation. This allows replaying them on restart to rebuild the data
+    - **RDB (Redis Database)**: Creates point-in-time snapshots of your entire dataset at regular intervals
+    - **No Persistence**: Disables data persistence entirely, suitable for caching temporary data
+  </TabItem>
+  <TabItem value="eviction-policies" label="Eviction Policies">
+    <table>
+      <thead>
+        <tr>
+          <th>Eviction Policy</th>
+          <th>Description</th>
+          <th>Pros</th>
+          <th>Cons</th>
+          <th>Use Cases</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Least Frequently Used (LFU)</b></td>
+          <td>Evicts the least frequently accessed items from the cache. It counts how often an item is accessed</td>
+          <td>
+            <ul>
+              <li>Ideal for scenarios where access frequency varies widely</li>
+              <li>Ensures that frequently accessed items stay in the cache</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Complexity in implementation due to the need for tracking access frequency</li>
+              <li>Can be less effective in scenarios with sudden spikes in access frequency</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Caching of user profiles, session data, and user preferences</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Least Recently Used (LRU)</b></td>
+          <td>Evicts the least recently accessed items from the cache. It tracks the time of the last access for each item</td>
+          <td>
+            <ul>
+              <li>Effective in scenarios where recently accessed items are more likely to be accessed again</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>May not be optimal for scenarios with varying access patterns</li>
+              <li>Requires frequent updates to access timestamps</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Web page caching, API response caching, and frequently accessed database records</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Size-Based</b></td>
+          <td>Evicts items based on the size of the cache. It ensures that the cache does not exceed a predefined size limit</td>
+          <td>
+            <ul>
+              <li>Guarantees that the cache size remains within predefined limits</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>May lead to eviction of useful items if not carefully tuned</li>
+              <li>May not consider access patterns, leading to suboptimal cache utilization</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Image caching, file caching, and multimedia content caching</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Time-to-Live (TTL)</b></td>
+          <td>Evicts items based on their time since creation or last access. Items are evicted once their predefined lifespan expires</td>
+          <td>
+            <ul>
+              <li>Provides control over the freshness of cached data</li>
+              <li>Useful for scenarios where data validity is time-bound</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>May lead to eviction of frequently accessed but still valid items</li>
+              <li>Requires careful consideration of TTL values to balance between freshness and cache utilization</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>News articles, stock prices, and time-sensitive data feeds</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="invalidation-strategies" label="Invalidation Strategies">
+    - **Time-Based**
+      - **Absolute Timeout**: Cached data is invalidated after a fixed period from the time of caching
+      - **Relative Timeout**: Cached data is invalidated after a fixed period from the time of last access or update
+      - **Sliding Timeout**: Timeout period is extended every time the data is accessed or updated
+    - **Event-Based Invalidation**
+         - **Publish/Subscribe Model**: Invalidate cache based on events published by the data source or other relevant services
+         - **Webhooks**: Trigger cache invalidation based on HTTP callbacks from the data source
+         - **Message Queue Integration**: Invalidate cache in response to messages received from a message queue
+    - **Manual Invalidation**
+         - **Programmatic Invalidation**: Invalidate cache entries programmatically through API calls or direct cache manipulation
+         - **Admin Console**: Provide a user interface for administrators to manually invalidate cache entries
+  </TabItem>
+  <TabItem value="redis-vs-memcached" label="Redis vs Memcached">
+    <table class="text_vertical">
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Redis</th>
+          <th>Memcached</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Data Structure</b></td>
+          <td>
+            <ul>
+              <li>List</li>
+              <li>Set/Sorted Set</li>
+              <li>Hash</li>
+              <li>Bit Array</li>
+              <li>HyperLogLog</li>
+            </ul>
+          </td>
+          <td>Plain string value</td>
+        </tr>
+        <tr>
+          <td><b>Architecture</b></td>
+          <td>Single-thread for read/write keys</td>
+          <td>Multi-threaded</td>
+        </tr>
+        <tr>
+          <td><b>Transactions</b></td>
+          <td>Support atomic operations</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><b>Snapshots/Persistence</b></td>
+          <td>
+            <ul>
+              <li>Keep data on disks</li>
+              <li>Support RDB/AOF persistence</li>
+            </ul>
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><b>Pub-Sub Messaging</b></td>
+          <td>Support Pub-Sub messaging with pattern matching</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><b>Geo-Spatial Support</b></td>
+          <td>Geospatial indexes that stores the longitude and latitude data of the location</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><b>Server-Side Script</b></td>
+          <td>Support Lua script to perform operations inside Redis</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><b>Support Cache Eviction</b></td>
+          <td>
+            <ul>
+              <li>noeviction</li>
+              <li>allkeys-lru/allkeys-lfu/allkeys-random</li>
+              <li>volatile-lru/volatile-lfu/volatile-random/volatile-ttl</li>
+            </ul>
+          </td>
+          <td>LRU</td>
+        </tr>
+        <tr>
+          <td><b>Replication</b></td>
+          <td>Leader-Follower replication</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
+
+## Security
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview"></TabItem>
+  <TabItem value="overview" label="Overview">
+    <Tabs queryString="secondary">
+      <TabItem value="cache-miss" label="Cache Miss" attributes={{ className: "tabs__vertical" }}>
+        Cache Miss Attack exploits weaknesses in how data is stored to steal information or overload systems. It targets situations where a web application doesn't consider all input data when storing data in a cache. This lets attackers trick the cache into revealing sensitive information or causing performance issues.
+
+        Solutions:
+
+        - Cache keys with null value. Set a short TTL (Time to Live) for keys with null value
+        - Bloom filter to quickly check if key exists before hitting cache/database
+
+        ```mermaid
+          graph TB
+
+          subgraph attack [Cache Miss Attack]
+            direction LR
+
+            attack_app(Application)
+            attack_cache[[Cache]]
+            attack_db[(DB)]
+
+            attack_app --> |1. read<br/>cache miss| attack_cache
+            attack_app --> |2. read<br/>no data| attack_db
+
+            attack_db ~~~| hackers can overload the DB<br/>by initiating a lot of<br/>such queries| attack_db
+          end
+
+          subgraph solution1 [Cache non-existent keys]
+            direction LR
+
+            solution1_app(Application)
+            solution1_cache[[Cache]]
+            solution1_db[(DB)]
+
+            solution1_app --> |1. read k3<br/>cache miss| solution1_cache
+            solution1_app --> |2. read<br/>no data| solution1_db
+            solution1_app --> |3. write k3=NULL| solution1_cache
+
+            solution1_db ~~~|next time the key can be found in cache and DB is not hit| solution1_db
+            solution1_cache ~~~|<table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody><tr><td>k1</td><td>1</td></tr><tr><td>k2</td><td>2</td></tr><tr><td>k3</td><td>NULL</td></tr></tbody></table>| solution1_cache
+          end
+
+          subgraph solution2 [Bloom Filter]
+            direction TB
+
+            subgraph key [key exists]
+              direction LR
+
+              key_app(Application)
+              key_cache[[Cache]]
+              key_db[(DB)]
+              key_filter{{Bloom Filter}}
+
+              key_app --> |1. read k1<br/>found k1| key_filter
+              key_app --> |2. read k1| key_cache
+
+              key_filter ~~~|<table><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr></table>| key_filter
+              key_cache ~~~|<table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody><tr><td>k1</td><td>1</td></tr><tr><td>k2</td><td>2</td></tr></tbody></table>| key_cache
+            end
+
+            subgraph noKey [key doesn't exist]
+              direction LR
+
+              noKey_cache[[Cache]]
+              noKey_app(Application)
+              noKey_db[(DB)]
+              noKey_filter{{Bloom Filter}}
+
+              noKey_app --> |1. read k3<br/>not found| noKey_filter
+
+              noKey_filter ~~~|<table><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr></table>| noKey_filter
+              noKey_cache ~~~|<table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody><tr><td>k1</td><td>1</td></tr><tr><td>k2</td><td>2</td></tr></tbody></table>| noKey_cache
+              noKey_db ~~~|cache and DB are not hit if the key doesn't exist| noKey_db
+            end
+          end
+
+          attack --> |solution| solution1 & solution2
+        ```
+      </TabItem>
+    </Tabs>
+  </TabItem>
 </Tabs>
