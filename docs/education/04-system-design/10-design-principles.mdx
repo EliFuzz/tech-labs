@@ -12,6 +12,8 @@ import TabItem from "@theme/TabItem";
     <TabItem value="definitions" label="Definitions">
       - **DAU**: Daily Active Users
       - **HA**: High Availability
+      - **HLD**: High Level Design
+      - **LLD**: Low Level Design
       - **QPS**: Queries Per Second
       - **RPO**: Recovery Point Objective
       - **RT**: Response Time
@@ -19,5 +21,280 @@ import TabItem from "@theme/TabItem";
       - **SLI**: Service Level Indicator
       - **SLO**: Service Level Objective
       - **TPS**: Transactions Per Second
+    </TabItem>
+    <TabItem value="service-management-and-delivery" label="Service Management & Delivery">
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Definition</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Service Level Objective (SLO)</b></td>
+            <td>Objectives your team must hit to meet that agreement. What are the goals you are trying to accomplish for either ourselves or the customer</td>
+            <td>
+              <ul>
+                <li>Durability of disks should be 99.9%</li>
+                <li>Availability of service should be 99.95%</li>
+                <li>Service should successfully serve 99.999% of requests/transactions</li>
+                <li>99.5% of requests will be completed in 5ms</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Service Level Indicator (SLI)</b></td>
+            <td>Real numbers (metrics) on system performance. What were chosen to measure progress towards the final goal</td>
+            <td>
+              <ul>
+                <li>Requests latency</li>
+                <li>Availability/uptime of the service</li>
+                <li>Failures per requests</li>
+                <li>Consistency and durability of the data</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Service Level Agreement (SLA)</b></td>
+            <td>The agreement that you make with your clients. Consequences of failing to achieve your defined SLO</td>
+            <td>
+              <ul>
+                <li>Partial refund of service subscription fee</li>
+                <li>Additional subscription time added for free</li>
+                <li>If 99% of the system requests aren't completed in 5ms, client will get a refund</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </TabItem>
+    <TabItem value="estimation" label="Estimation">
+      <Tabs queryString="secondary">
+        <TabItem value="availability" label="Availability" attributes={{className:"tabs__vertical"}}>
+          <table>
+            <thead>
+              <tr>
+                <th>Availability % (Nines)</th>
+                <th>Downtime (Year)</th>
+                <th>Downtime (Month)</th>
+                <th>Downtime (Week)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>90% (one nine)</td>
+                <td>36.53 days</td>
+                <td>72 hours</td>
+                <td>16.8 hours</td>
+              </tr>
+              <tr>
+                <td>99% (two nines)</td>
+                <td>3.65 days</td>
+                <td>7.20 hours</td>
+                <td>1.68 hours</td>
+              </tr>
+              <tr>
+                <td>99.9% (three nines)</td>
+                <td>8.77 hours</td>
+                <td>43.8 minutes</td>
+                <td>10.1 minutes</td>
+              </tr>
+              <tr>
+                <td>99.99% (four nines)</td>
+                <td>52.6 minutes</td>
+                <td>4.32 minutes</td>
+                <td>1.01 minutes</td>
+              </tr>
+              <tr>
+                <td>99.999% (five nines)</td>
+                <td>5.25 minutes</td>
+                <td>25.9 seconds</td>
+                <td>6.05 seconds</td>
+              </tr>
+              <tr>
+                <td>99.9999% (six nines)</td>
+                <td>31.56 seconds</td>
+                <td>2.59 seconds</td>
+                <td>604.8 milliseconds</td>
+              </tr>
+              <tr>
+                <td>99.99999% (seven nines)</td>
+                <td>3.15 seconds</td>
+                <td>263 milliseconds</td>
+                <td>60.5 milliseconds</td>
+              </tr>
+              <tr>
+                <td>99.999999% (eight nines)</td>
+                <td>315.6 milliseconds</td>
+                <td>26.3 milliseconds</td>
+                <td>6 milliseconds</td>
+              </tr>
+              <tr>
+                <td>99.9999999% (nine nines)</td>
+                <td>31.6 milliseconds</td>
+                <td>2.6 milliseconds</td>
+                <td>0.6 milliseconds</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Availability Type</th>
+                <th>Overall Availability Trend</th>
+                <th>Formula</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Sequential</b></td>
+                <td>Decreases</td>
+                <td>`AvailabilityServiceA ∗ AvailabilityServiceB`</td>
+                <td>`99.9% * 99.9% = 99.8%`</td>
+              </tr>
+              <tr>
+                <td><b>Parallel</b></td>
+                <td>Increases</td>
+                <td>`1 - (1 - AvailabilityServiceA) * (1 - AvailabilityServiceB)`</td>
+                <td>`1 - (1 - 99.9%) * (1 - 99.9%) = 99.9999%`</td>
+              </tr>
+            </tbody>
+          </table>
+        </TabItem>
+        <TabItem value="calculations" label="Calculations">
+          <table>
+            <thead>
+              <tr>
+                <th>Power of Two</th>
+                <th>Approximate Value</th>
+                <th>Name</th>
+                <th>Conversion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>10</b></td>
+                <td>Thousand (1000)</td>
+                <td>1 KB (Kilobyte)</td>
+                <td>8 KB</td>
+              </tr>
+              <tr>
+                <td><b>20</b></td>
+                <td>Million (1,000,000)</td>
+                <td>1 MB (Megabyte)</td>
+                <td>8 KB * 10<sup>3</sup></td>
+              </tr>
+              <tr>
+                <td><b>30</b></td>
+                <td>Billion (1,000,000,000)</td>
+                <td>1 GB (Gigabyte)</td>
+                <td>8 KB * 10<sup>6</sup></td>
+              </tr>
+              <tr>
+                <td><b>40</b></td>
+                <td>Trillion (1,000,000,000,000)</td>
+                <td>1 TB (Terabyte)</td>
+                <td>8 KB * 10<sup>9</sup></td>
+              </tr>
+              <tr>
+                <td><b>50</b></td>
+                <td>Quadrillion (1,000,000,000,000,000)</td>
+                <td>1 PB (Petabyte)</td>
+                <td>8 KB * 10<sup>12</sup></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Formula</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Bandwidth</b></td>
+                <td>
+                  <ul>
+                    <li>`KB/message * message/day * days/sec`</li>
+                    <li>10<sup>-5</sup> days/sec</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Example: `2.5 KB/message * 100M message/day * 1 day/sec` (`24 hours * 60 min * 60 sec = 86400 sec = 10^-5 day/sec`)</li>
+                    <li>Calculate the number: `2.5`</li>
+                    <li>Calculate zeros: `0 (from KB) + 2 (from 100M) + 6 (from millions) - 5 (from days/sec) = 10^3`</li>
+                    <li>Check the "Power of Two" table: `10^3`</li>
+                    <li>Combine all together: `2.5 MB/sec`</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Memory</b></td>
+                <td>
+                  <ul>
+                    <li>`KB/message * message/day * 20%`</li>
+                    <li>80%/20% cache hits rule: 80% of egress is served by 20% of data stored on the cache servers</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Example: `2.5 KB/message * 100M message/day * 20%`</li>
+                    <li>Calculate the number: `2.5 (from KB/message) * 2 (from %) = 5`</li>
+                    <li>Calculate zeros: `2 (from 100M) + 6 (from millions) - 1 (from % because 20% is 0.2) = 10^7`</li>
+                    <li>Check the "Power of Two" table: `10 * 10^6`</li>
+                    <li>Combine all together: `2.5 * 10 = 25 GB/day`</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Storage</b></td>
+                <td>
+                  <ul>
+                    <li>Memory Storage = Throughput (bytes/day) * Retention Period (days)</li>
+                    <li>`KB/message * message/day * days * years`</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Example: `2.5 KB/message * 100M message/day * 365 days`</li>
+                    <li>Calculate the number: `3 (round 2.5) * 3 (365 reduce to 300 and remove zeros) = 9`</li>
+                    <li>Calculate zeros: `0 (from KB) + 2 (from 100M) + 6 (from millions) + 2 (from 300 which is a rounded 365 days) = 10^10` </li>
+                    <li>Check the "Power of Two" table: `10 * 10^9 = 10 * 10^9`</li>
+                    <li>Combine all together: `9 * 10 (that is left from the zeros) = 90 TB`</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </TabItem>
+        <TabItem value="compression" label="Compression">
+          <table>
+            <thead>
+              <tr>
+                <th>Uncompressed</th>
+                <th>Compressed</th>
+                <th>Compression Ratio</th>
+                <th>Savings (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>100 GB</td>
+                <td>40 GB</td>
+                <td>`100 / 40 = 2.5` or `2.5:1`</td>
+                <td>`100 * (1 - 40/100) = 60%`</td>
+              </tr>
+            </tbody>
+          </table>
+        </TabItem>
+      </Tabs>
     </TabItem>
 </Tabs>
