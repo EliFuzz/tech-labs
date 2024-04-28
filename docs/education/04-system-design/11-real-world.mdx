@@ -11,57 +11,32 @@ import TabItem from "@theme/TabItem";
 <Tabs queryString="primary">
     <TabItem value="basic" label="Basic">
         <Tabs queryString="secondary">
-            <TabItem value="web-crawler" label="Web Crawler" attributes={{className:"tabs__vertical"}}>
-                ![](./assets/real-world/basic/web-crawler.svg)
+            <TabItem value="autocomplete" label="Autocomplete" attributes={{className:"tabs__vertical"}}>
+                ![](./assets/real-world/basic/autocomplete.svg)
 
                 ### Clarifications
 
-                - **Crawling Goal:** Search Engine Indexing
-                - **Monthly Intake:** 1B pages
-                - **Content Type:** HTML only
-                - **Freshness:** Include new & edited pages
-                - **Storage:** Keep crawled HTML for 5 years
-                - **Duplicates:** Ignore duplicate content
+                - **Match Start Only:** Autocomplete suggestions only appear at the beginning of queries
+                - **Top 5 Picks:** Show 5 most popular suggestions based on past searches
+                - **No Spell Check:** Focuses on displaying popular suggestions, not correcting typos
+                - **Language Support:** English for now, multi-language can be discussed later
+                - **Lowercase Letters:** Search queries are assumed to be lowercase with no special characters
+                - **Traffic:** Used by 10M DAU
+                - **Workflow:** Each time you enter a character it'll send a request to a backend service to get suggestions: `/search?q=f` -> `/search?q=fo` -> `/search?q=foo`
 
                 ### Assumptions
 
-                - **Scale Up:** Handle billions of web pages with parallelization (running tasks simultaneously)
-                - **Handle the Weird:** Expect broken code, slow servers, crashes, and bad actors. The crawler must adapt
-                - **Be Nice:** Don't overload websites with too many requests at once based on the website
-                - **Future-Proof:** Easily add new content types (like images) without a major overhaul
-                - **Crawl:** Use BFS algorithm
+                - **Performance:** Autocomplete suggestions must appear within `100ms` to avoid lag
+                - **Relevance:** Suggestions should be related to the search terms
+                - **Ranked:** Show more popular suggestions first
+                - **Scalability:** HA, scalability, and fault tolerance considerations
+                - **Encoding**: UTF-8
 
                 ### Estimations
 
-                - **Load**: QPS: `1M (pages) / 30 (days) / 24 (hours) / 3600 (seconds) = 400 pages/sec` and Peak QPS: `QPS * 2 (peak ratio) = 800 pages/sec`
-                - **Storage**: `1B (pages) * 500kb (page size) = 500 TB/month` for 5 years `500 (TB/month) * 12 (months) * 5 (years) = 30 PB`
-            </TabItem>
-            <TabItem value="metrics-monitoring" label="Metrics & Monitoring">
-                ![](./assets/real-world/basic/metrics-monitoring.svg)
-
-                ### Considerations
-
-                - Collect metrics from various sources (servers, databases)
-                - Store and query time-series data (time-series database + Kafka)
-                - Process and analyze data (Apache Storm, Flink, Spark)
-                - Retrieve, visualize, and get alerted on metrics (query service, visualization system, alerting system)
-            </TabItem>
-            <TabItem value="peak-season" label="Peak Season">
-                ![](./assets/real-world/basic/peak-season.svg)
-
-                ### Considerations
-
-                - **Block Bots & DDoS**: Use reCaptcha & rate limiting
-                - **Fast Loading**: Minify & CDN deliver CSS/JS/Images
-                - **Scale on Demand**: Spin up isolated dedicated instances & use queues
-                - **Prevent Overselling**: Lock inventory on order
-                - **Fast Cache**: Use cache & manage inventory
-                - **Minimize & Optimize**: Reduce RPC, hops, & streamline services
-                - **Isolate Content**: Separate static/dynamic & isolate uncommon items
-                - **Accurate Confirmation**: Show true stock availability
-            </TabItem>
-            <TabItem value="email" label="Email">
-                ![](./assets/real-world/basic/email.svg)
+                - **Query Size**: `4 (words) * 5 (characters) * 1 (byte/character) = 20 bytes/query`
+                - **Load**: QPS: `10M (users) * 10 (queries/day) * 20 (characters) / 24 (hours) / 3600 (seconds) = 24K query/sec` and Peak QPS: `QPS * 2 (peak ratio) = 48K query/sec`
+                - **Storage**: `10M (users) * 10 (queries/day) * 20 (bytes/query) * 20% (new users) = 0.4 GB/day`
             </TabItem>
             <TabItem value="chat" label="Chat">
                 ![](./assets/real-world/basic/chat.svg)
@@ -84,6 +59,9 @@ import TabItem from "@theme/TabItem";
                 - **Online Status:** See if friends are available
                 - **Multi-Device:** Use on multiple devices at once
                 - **Push Notifications:** Get alerts for new messages
+            </TabItem>
+            <TabItem value="email" label="Email">
+                ![](./assets/real-world/basic/email.svg)
             </TabItem>
             <TabItem value="file-storage" label="File Storage">
                 ![](./assets/real-world/basic/file-storage.svg)
@@ -109,6 +87,16 @@ import TabItem from "@theme/TabItem";
 
                 - **Storage Allocation**: `50M (users) * 10GB (space allocation / user) = 500 PT/month`
                 - **Upload Load**: `10M (users) * 2 (upload/day) 24 (hours) / 3600 (seconds) = 240 upload/sec` and Peak QPS: `QPS * 2 (peak ratio) = 480 upload/sec`
+            </TabItem>
+            <TabItem value="metrics-monitoring" label="Metrics & Monitoring">
+                ![](./assets/real-world/basic/metrics-monitoring.svg)
+
+                ### Considerations
+
+                - Collect metrics from various sources (servers, databases)
+                - Store and query time-series data (time-series database + Kafka)
+                - Process and analyze data (Apache Storm, Flink, Spark)
+                - Retrieve, visualize, and get alerted on metrics (query service, visualization system, alerting system)
             </TabItem>
             <TabItem value="news-feed" label="News Feed">
                 ![](./assets/real-world/basic/news-feed.svg)
@@ -137,35 +125,22 @@ import TabItem from "@theme/TabItem";
                 - **Traffic:** 10M DAU
                 - **Feed Content:** Text, images, and videos
             </TabItem>
+            <TabItem value="peak-season" label="Peak Season">
+                ![](./assets/real-world/basic/peak-season.svg)
+
+                ### Considerations
+
+                - **Block Bots & DDoS**: Use reCaptcha & rate limiting
+                - **Fast Loading**: Minify & CDN deliver CSS/JS/Images
+                - **Scale on Demand**: Spin up isolated dedicated instances & use queues
+                - **Prevent Overselling**: Lock inventory on order
+                - **Fast Cache**: Use cache & manage inventory
+                - **Minimize & Optimize**: Reduce RPC, hops, & streamline services
+                - **Isolate Content**: Separate static/dynamic & isolate uncommon items
+                - **Accurate Confirmation**: Show true stock availability
+            </TabItem>
             <TabItem value="rate-limiter" label="Rate Limiter">
                 ![](./assets/real-world/basic/rate-limiter.svg)
-            </TabItem>
-            <TabItem value="autocomplete" label="Autocomplete">
-                ![](./assets/real-world/basic/autocomplete.svg)
-
-                ### Clarifications
-
-                - **Match Start Only:** Autocomplete suggestions only appear at the beginning of queries
-                - **Top 5 Picks:** Show 5 most popular suggestions based on past searches
-                - **No Spell Check:** Focuses on displaying popular suggestions, not correcting typos
-                - **Language Support:** English for now, multi-language can be discussed later
-                - **Lowercase Letters:** Search queries are assumed to be lowercase with no special characters
-                - **Traffic:** Used by 10M DAU
-                - **Workflow:** Each time you enter a character it'll send a request to a backend service to get suggestions: `/search?q=f` -> `/search?q=fo` -> `/search?q=foo`
-
-                ### Assumptions
-
-                - **Performance:** Autocomplete suggestions must appear within `100ms` to avoid lag
-                - **Relevance:** Suggestions should be related to the search terms
-                - **Ranked:** Show more popular suggestions first
-                - **Scalability:** HA, scalability, and fault tolerance considerations
-                - **Encoding**: UTF-8
-
-                ### Estimations
-
-                - **Query Size**: `4 (words) * 5 (characters) * 1 (byte/character) = 20 bytes/query`
-                - **Load**: QPS: `10M (users) * 10 (queries/day) * 20 (characters) / 24 (hours) / 3600 (seconds) = 24K query/sec` and Peak QPS: `QPS * 2 (peak ratio) = 48K query/sec`
-                - **Storage**: `10M (users) * 10 (queries/day) * 20 (bytes/query) * 20% (new users) = 0.4 GB/day`
             </TabItem>
             <TabItem value="url-shortener" label="URL Shortener">
                 ![](./assets/real-world/basic/url-shortener.svg)
@@ -221,15 +196,49 @@ import TabItem from "@theme/TabItem";
                 - **Storage**: `5M (users) * 10% (users upload 1 video/day) * 300MB (video) = 150 TB/day`
                 - **CDN Costs**: `5M (users) * 5 (videos) * 300MB (video) * 0.02 (CDN cost $/GB) = 750k $/day`
             </TabItem>
+            <TabItem value="web-crawler" label="Web Crawler">
+                ![](./assets/real-world/basic/web-crawler.svg)
+
+                ### Clarifications
+
+                - **Crawling Goal:** Search Engine Indexing
+                - **Monthly Intake:** 1B pages
+                - **Content Type:** HTML only
+                - **Freshness:** Include new & edited pages
+                - **Storage:** Keep crawled HTML for 5 years
+                - **Duplicates:** Ignore duplicate content
+
+                ### Assumptions
+
+                - **Scale Up:** Handle billions of web pages with parallelization (running tasks simultaneously)
+                - **Handle the Weird:** Expect broken code, slow servers, crashes, and bad actors. The crawler must adapt
+                - **Be Nice:** Don't overload websites with too many requests at once based on the website
+                - **Future-Proof:** Easily add new content types (like images) without a major overhaul
+                - **Crawl:** Use BFS algorithm
+
+                ### Estimations
+
+                - **Load**: QPS: `1M (pages) / 30 (days) / 24 (hours) / 3600 (seconds) = 400 pages/sec` and Peak QPS: `QPS * 2 (peak ratio) = 800 pages/sec`
+                - **Storage**: `1B (pages) * 500kb (page size) = 500 TB/month` for 5 years `500 (TB/month) * 12 (months) * 5 (years) = 30 PB`
+            </TabItem>
         </Tabs>
     </TabItem>
     <TabItem value="systems" label="Systems">
         <Tabs queryString="secondary">
-            <TabItem value="twitter" label="Twitter (2022)" attributes={{className:"tabs__vertical"}}>
-                ![](./assets/real-world/systems/twitter.svg)
+            <TabItem value="disney-hotstar" label="Disney Hotstar" attributes={{className:"tabs__vertical"}}>
+                ![](./assets/real-world/systems/disney-hotstar.svg)
+            </TabItem>
+            <TabItem value="netflix-play-api" label="Netflix Play API">
+                ![](./assets/real-world/systems/netflix-play-api.svg)
             </TabItem>
             <TabItem value="stackoverflow" label="StackOverflow">
                 ![](./assets/real-world/systems/stack-overflow.svg)
+            </TabItem>
+            <TabItem value="twitter" label="Twitter (2022)">
+                ![](./assets/real-world/systems/twitter.svg)
+            </TabItem>
+            <TabItem value="uber-live-chat" label="Uber Live Chat">
+                ![](./assets/real-world/systems/uber-live-chat.svg)
             </TabItem>
         </Tabs>
     </TabItem>
