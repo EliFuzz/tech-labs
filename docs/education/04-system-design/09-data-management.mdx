@@ -321,6 +321,16 @@ import TabItem from "@theme/TabItem";
           <li>Total: 128 bits</li>
           <li>Timestamp (depends on version)</li>
           <li>Low collision</li>
+          <li>
+            Types
+            <ul>
+                <li>**v1**: Current Time + MAC address</li>
+                <li>**v2**: Version 1 + extra info (like user/group ID)</li>
+                <li>**v3**: MD5 hash of namespace + string</li>
+                <li>**v4**: Pure random</li>
+                <li>**v5**: SHA-1 hash of namespace + string</li>
+            </ul>
+          </li>
         </ul>
       </td>
       <td>
