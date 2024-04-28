@@ -946,4 +946,162 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
+    <TabItem value="scale" label="Scale">
+        ```mermaid
+            graph TB
+
+            subgraph step1[ ]
+                direction TB
+
+                subgraph step1Server["Single Application Server (Monolith)"]
+                    direction TB
+
+                    step1Inventory(Inventory)
+                    step1User(User)
+                end
+
+                step1Server --> step1LocalDB[(Local DB<br/>Inventory & User Data)]
+            end
+
+            step1 --> |split services & DB| step2
+
+            subgraph step2[ ]
+                direction TB
+
+                step2Inventory(Inventory) --> step2DBInventory[(DB<br/>Inventory Table)]
+                step2User(User) --> step2DBUser[(DB<br/>User Table)]
+            end
+
+            step2 --> |split services into clusters| step3
+
+            subgraph step3[ ]
+                direction TB
+
+                subgraph step3Server1[Application Server]
+                    direction TB
+
+                    step3Server1Inventory(Inventory)
+                    step3Server1User(User)
+                end
+
+                subgraph step3Server2[Application Server]
+                    direction TB
+
+                    step3Server2Inventory(Inventory)
+                    step3Server2User(User)
+                end
+
+                step3Server1 & step3Server2 --> step3DB[(DB<br/>Inventory & User Table)]
+            end
+
+            step3 --> |add load balancer| step4
+
+            subgraph step4[ ]
+                direction TB
+
+                step4loadBalancer(Load Balancer) --> step4Server1 & step4Server2
+
+                subgraph step4Server1[Application Server]
+                    direction TB
+
+                    step4Server1Inventory(Inventory)
+                    step4Server1User(User)
+                end
+
+                subgraph step4Server2[Application Server]
+                    direction TB
+
+                    step4Server2Inventory(Inventory)
+                    step4Server2User(User)
+                end
+
+                step4Server1 & step4Server2 --> step4DB[(DB<br/>Inventory & User Table)]
+            end
+
+            step4 --> |"separate DB read/write (CQRS)"| step5
+
+            subgraph step5[ ]
+                direction TB
+
+                step5loadBalancer(Load Balancer) --> step5Server1 & step5Server2
+
+                subgraph step5Server1[Application Server]
+                    direction TB
+
+                    step5Server1Inventory(Inventory)
+                    step5Server1User(User)
+                end
+
+                subgraph step5Server2[Application Server]
+                    direction TB
+
+                    step5Server2Inventory(Inventory)
+                    step5Server2User(User)
+                end
+
+                step5Server1 & step5Server2 --> step5DBRead[(Read DB<br/>Inventory & User Table)]
+                step5Server1 & step5Server2 --> step5DBWrite[(Write DB<br/>Inventory & User Table)]
+            end
+
+            step5 --> |DB vertical/horizontal partitioning<br/>add cache| step6
+
+            subgraph step6[ ]
+                direction TB
+
+                step6loadBalancer(Load Balancer) --> step6Server1 & step6Server2
+
+                subgraph step6Server1[Application Server]
+                    direction TB
+
+                    step6Server1Inventory(Inventory)
+                    step6Server1User(User)
+                end
+
+                subgraph step6Server2[Application Server]
+                    direction TB
+
+                    step6Server2Inventory(Inventory)
+                    step6Server2User(User)
+                end
+
+                subgraph step6DbWrite[ ]
+                    direction TB
+
+                    step6DBWrite1[(Write DB)]
+                    step6DBWrite2[(Write DB)]
+                    step6DBWrite3[(Write DB)]
+                end
+
+                subgraph step6DbRead[ ]
+                    direction TB
+
+                    step6DBRead1[(Read DB)]
+                    step6DBRead2[(Read DB)]
+                end
+
+               step6Server1 & step6Server2 --> step6DbWrite
+               step6Server1 & step6Server2 --> step6Cache[[Cache]]
+               step6DbRead --> step6Cache
+            end
+
+            step6 --> |split and modularize services| step7
+
+            subgraph step7[ ]
+                direction TB
+
+                step7loadBalancer(Load Balancer) --> step7Product(Product) & step7Login(Login)
+
+                step7Product --> step7Inventory(Inventory Service)
+                step7Login --> step7User(User Service)
+
+                step7Inventory ---> step7InventoryCache[[Cache]]
+                step7InventoryCache --> step7InventoryDBWrite[(Write DB)]
+                step7InventoryDBRead[(Read DB)] --> step7InventoryCache
+
+                step7User ---> step7UserCache[[Cache]]
+                step7UserCache --> step7UserDBWrite[(Write DB)]
+                step7UserDBRead[(Read DB)] --> step7UserCache
+            end
+        ```
+    </TabItem>
 </Tabs>
