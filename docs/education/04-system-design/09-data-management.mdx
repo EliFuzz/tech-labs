@@ -8,95 +8,153 @@ hide_table_of_contents: true
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## CAP Theorem
+## Theorems
 
 <Tabs queryString="primary">
-    <TabItem value="overview" label="Overview">
+    <TabItem value="cap" label="CAP">
+        <Tabs queryString="secondary">
+            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
 
-        ```mermaid
-            graph LR
+                ```mermaid
+                    graph LR
 
-            c(C)
-            a(A)
-            p(P)
+                    c(C)
+                    a(A)
+                    p(P)
 
-            c --- |CA| a --- |AP| p --- |CP| c
+                    c --- |CA| a --- |AP| p --- |CP| c
 
-            a ~~~|Pick only 2| a
-        ```
+                    a ~~~|Pick only 2| a
+                ```
 
-        - **Consistency (C)**: Ensures that all nodes in the system have the same data at the same time
-        - **Availability (A)**: Ensures that every request gets a response about whether it was successful or failed
-        - **Partition Tolerance (P)**: Ensures that the system continues to operate despite network partitions or communication failures
+                - **Consistency (C)**: Ensures that all nodes in the system have the same data at the same time
+                - **Availability (A)**: Ensures that every request gets a response about whether it was successful or failed
+                - **Partition Tolerance (P)**: Ensures that the system continues to operate despite network partitions or communication failures
+            </TabItem>
+            <TabItem value="detailed" label="Detailed">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Aspect</th>
+                      <th>AP (Availability & Partition Tolerance)</th>
+                      <th>CA (Consistency & Availability)</th>
+                      <th>CP (Consistency & Partition Tolerance)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Visualization</b></td>
+                      <td>
+                        ```mermaid
+                            graph TB
+
+                            user1(User) <--> |read/write| server1(Server)
+                            user2(User) <--> |read/write| server2(Server)
+
+                            server1 <--> |read/write| db1[(DB)]
+                            server2 <---> |read/write| db2[(DB)]
+
+                            db1 <--> |replicate| db2
+                        ```
+                      </td>
+                      <td>
+                        ```mermaid
+                            graph TB
+
+                            user1(User) <--> |read/write| server1(Server)
+                            user2(User) <--> |read/write| server2(Server)
+
+                            server1 & server2 <--> |read/write| db[(DB)]
+                        ```
+                      </td>
+                      <td>
+                        ```mermaid
+                            graph TB
+
+                            user1(User) <--> |read/write| server(Server)
+                            user2(User) <--> |read/write| server(Server)
+
+                            server <--> |read/write| primary[(DB)]
+                            primary <--> |read/write| secondary[(DB)]
+                        ```
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>Definition</b></td>
+                      <td>Some data may not be consistent</td>
+                      <td>Network issues might stop the system</td>
+                      <td>Some data might not be available when a failure happens</td>
+                    </tr>
+                    <tr>
+                      <td><b>Use Cases</b></td>
+                      <td>Social networks, real-time analytics, recommendation systems</td>
+                      <td>Financial applications, e-commerce</td>
+                      <td>Multi-datacenter deployments</td>
+                    </tr>
+                    <tr>
+                      <td><b>Examples</b></td>
+                      <td>Cassandra, DynamoDB, Riak</td>
+                      <td>Google Spanner, RDBMS with high availability configurations</td>
+                      <td>MongoDB with replica sets, BigTable</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+        </Tabs>
     </TabItem>
-    <TabItem value="detailed" label="Detailed">
-        <table>
-          <thead>
-            <tr>
-              <th>Aspect</th>
-              <th>AP (Availability & Partition Tolerance)</th>
-              <th>CA (Consistency & Availability)</th>
-              <th>CP (Consistency & Partition Tolerance)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><b>Visualization</b></td>
-              <td>
+    <TabItem value="pacelc" label="PACELC">
+        <Tabs queryString="secondary">
+            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
                 ```mermaid
                     graph TB
 
-                    user1(User) <--> |read/write| server1(Server)
-                    user2(User) <--> |read/write| server2(Server)
+                    partition(Partition)
 
-                    server1 <--> |read/write| db1[(DB)]
-                    server2 <---> |read/write| db2[(DB)]
+                    subgraph cap [CAP]
+                        direction TB
 
-                    db1 <--> |replicate| db2
+                        availability(Availability)
+                        cap_consistency(Consistency)
+                    end
+
+                    subgraph elc [ELC]
+                        direction TB
+
+                        latency(Latency)
+                        elc_consistency(Consistency)
+                    end
+
+                    partition --> |yes| cap
+                    partition --> |no| elc
                 ```
-              </td>
-              <td>
-                ```mermaid
-                    graph TB
-
-                    user1(User) <--> |read/write| server1(Server)
-                    user2(User) <--> |read/write| server2(Server)
-
-                    server1 & server2 <--> |read/write| db[(DB)]
-                ```
-              </td>
-              <td>
-                ```mermaid
-                    graph TB
-
-                    user1(User) <--> |read/write| server(Server)
-                    user2(User) <--> |read/write| server(Server)
-
-                    server <--> |read/write| primary[(DB)]
-                    primary <--> |read/write| secondary[(DB)]
-                ```
-              </td>
-            </tr>
-            <tr>
-              <td><b>Definition</b></td>
-              <td>Some data may not be consistent</td>
-              <td>Network issues might stop the system</td>
-              <td>Some data might not be available when a failure happens</td>
-            </tr>
-            <tr>
-              <td><b>Use Cases</b></td>
-              <td>Social networks, real-time analytics, recommendation systems</td>
-              <td>Financial applications, e-commerce</td>
-              <td>Multi-datacenter deployments</td>
-            </tr>
-            <tr>
-              <td><b>Examples</b></td>
-              <td>Cassandra, DynamoDB, Riak</td>
-              <td>Google Spanner, RDBMS with high availability configurations</td>
-              <td>MongoDB with replica sets, BigTable</td>
-            </tr>
-          </tbody>
-        </table>
+            </TabItem>
+            <TabItem value="detailed" label="Detailed">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Theorem</th>
+                      <th>Scope</th>
+                      <th>Consistency Model</th>
+                      <th>Latency Consideration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>CAP</b></td>
+                      <td>Focuses on impact of network partitions on consistency and availability</td>
+                      <td>Binary choice between strong consistency and availability</td>
+                      <td>Doesn't explicitly consider latency</td>
+                    </tr>
+                    <tr>
+                      <td><b>PACELC</b></td>
+                      <td>Broader view, acknowledging trade-offs present even under normal operation</td>
+                      <td>Consistency is treated as a spectrum, offering more nuanced options</td>
+                      <td>Recognizes latency as a critical factor alongside consistency and availability (data replication can impact latency)</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+        </Tabs>
     </TabItem>
 </Tabs>
 
