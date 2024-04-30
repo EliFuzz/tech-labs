@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkclassic=self.webpackChunkclassic||[]).push([[3158],{30324:e=>{e.exports=JSON.parse('{"title":"Computer Science","slug":"/category/computer-science","permalink":"/tech-labs/docs/category/computer-science","navigation":{"next":{"title":"Probability","permalink":"/tech-labs/docs/category/probability"}}}')}}]);
