@@ -18,26 +18,26 @@
     "@docusaurus/core": "3.2.1",
     "@docusaurus/preset-classic": "3.2.1",
     "@mdx-js/react": "^3.0.1",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "prism-react-renderer": "^2.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.0.0",
-    "@types/react": "^18.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@types/react": "^18.3.1",
     "@docusaurus/theme-mermaid": "^3.2.1",
     "raw-loader": "^4.0.2",
-    "@docusaurus/plugin-content-pages": "^3.0.1",
+    "@docusaurus/plugin-content-pages": "^3.2.1",
     "remark-math": "^6.0.0",
     "rehype-katex": "^7.0.0",
-    "antd": "^5.16.1",
+    "antd": "^5.16.5",
     "@ant-design/icons": "^5.3.6",
     "docusaurus-plugin-sass": "^0.2.5",
-    "sass": "^1.74.1"
+    "sass": "^1.75.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.2.1",
     "@docusaurus/tsconfig": "3.2.1",
     "@docusaurus/types": "3.2.1",
-    "typescript": "~5.4.4"
+    "typescript": "~5.4.5"
   },
   "browserslist": {
     "production": [
