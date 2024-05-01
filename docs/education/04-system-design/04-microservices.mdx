@@ -622,6 +622,64 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
+  <TabItem value="repos" label="Repos">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Monorepo</th>
+          <th>Multi-Repo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Repository Structure</b></td>
+          <td>Single repository containing multiple projects/packages</td>
+          <td>Separate repositories for each project/package</td>
+        </tr>
+        <tr>
+          <td><b>Dependency Management</b></td>
+          <td>Shared dependencies managed centrally</td>
+          <td>Each repository manages its own dependencies</td>
+        </tr>
+        <tr>
+          <td><b>Build & CI/CD</b></td>
+          <td>Unified build and CI/CD pipelines</td>
+          <td>Separate pipelines for each repository</td>
+        </tr>
+        <tr>
+          <td><b>Code Ownership</b></td>
+          <td>Clear ownership and responsibility</td>
+          <td>Ownership can be more fragmented and decentralized</td>
+        </tr>
+        <tr>
+          <td><b>Deployment</b></td>
+          <td>Single deployment process</td>
+          <td>Each repository may have its own deployment process</td>
+        </tr>
+        <tr>
+          <td><b>Performance</b></td>
+          <td>Can lead to larger repository size and slower operations</td>
+          <td>Smaller repositories can have faster operations</td>
+        </tr>
+        <tr>
+          <td><b>Testing</b></td>
+          <td>Easier integration testing across projects/packages</td>
+          <td>Testing is more isolated, might require more integration efforts</td>
+        </tr>
+        <tr>
+          <td><b>Scaling</b></td>
+          <td>Might face scalability challenges with a very large codebase</td>
+          <td>Easier to scale by adding more repositories</td>
+        </tr>
+        <tr>
+          <td><b>Overhead</b></td>
+          <td>Potentially higher overhead due to managing a large codebase</td>
+          <td>Lower overhead for smaller repositories</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
 </Tabs>
 
 ## Migration
