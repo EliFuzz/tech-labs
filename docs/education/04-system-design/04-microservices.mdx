@@ -561,6 +561,67 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
+  <TabItem value="micro-frontends" label="Micro Frontends">
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Microservices</th>
+          <th>Micro Frontends</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Visualization</b></td>
+          <td>![](./assets/microservices/microservices.svg)</td>
+          <td>![](./assets/microservices/micro-frontends.svg)</td>
+        </tr>
+        <tr>
+          <td><b>Focus Area</b></td>
+          <td>Backend (server-side)</td>
+          <td>Frontend (client-side)</td>
+        </tr>
+        <tr>
+          <td><b>Responsibility</b></td>
+          <td>Business capabilities</td>
+          <td>User interface components</td>
+        </tr>
+        <tr>
+          <td><b>Communication</b></td>
+          <td>APIs (REST, gRPC)</td>
+          <td>Shared state, event bus, single-spa</td>
+        </tr>
+        <tr>
+          <td><b>Scalability</b></td>
+          <td>Scale individual services based on load</td>
+          <td>Scale specific UI modules based on usage</td>
+        </tr>
+        <tr>
+          <td><b>Maintainability</b></td>
+          <td>Easier to maintain smaller codebases</td>
+          <td>Easier to maintain specific UI features</td>
+        </tr>
+        <tr>
+          <td><b>Complexity</b></td>
+          <td>Increased complexity due to distributed systems and integration overhead</td>
+          <td>Increased complexity due to managing multiple UI modules, communication, and potential performance overhead</td>
+        </tr>
+        <tr>
+          <td><b>Testing</b></td>
+          <td>Requires more complex testing strategies due to service interactions</td>
+          <td>Requires additional testing for UI interactions across modules</td>
+        </tr>
+        <tr>
+          <td><b>Deployment</b></td>
+          <td colspan="2">Independent deployments</td>
+        </tr>
+        <tr>
+          <td><b>Collaboration</b></td>
+          <td colspan="2">Requires cross-team collaboration and communication</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
 </Tabs>
 
 ## Migration
