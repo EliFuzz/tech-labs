@@ -682,6 +682,238 @@ import TabItem from "@theme/TabItem";
   </TabItem>
 </Tabs>
 
+## Project Structure
+
+<Tabs queryString="primary">
+  <TabItem value="frontend" label="Frontend">
+    <Tabs queryString="secondary">
+      <TabItem value="frontend-overview" label="Overview" attributes={{ className: "tabs__vertical" }}>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>File Type Based</th>
+              <th>Module/Feature Based</th>
+              <th>Atomic Design</th>
+              <th>Clean Architecture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Focus</b></td>
+              <td>File types (JSX, CSS, tests)</td>
+              <td>Functional modules, features</td>
+              <td>UI component hierarchy</td>
+              <td>Business logic separation (layers)</td>
+            </tr>
+            <tr>
+              <td><b>Scalability</b></td>
+              <td>Small to medium projects</td>
+              <td>Medium to large projects</td>
+              <td>Scalable for complex UIs</td>
+              <td>Very scalable, promotes separation of concerns</td>
+            </tr>
+            <tr>
+              <td><b>Use Cases</b></td>
+              <td>Simple apps, prototypes</td>
+              <td>Complex features, e-commerce applications</td>
+              <td>Component libraries, design systems</td>
+              <td>Large-scale enterprise applications with strict separation</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="frontend-file-type-based" label="File Type Based">
+
+        ```md
+          src/
+          ├── components/
+          │   ├── Avatar/
+          │   │   ├── Avatar.jsx
+          │   │   ├── Avatar.test.js
+          │   ├── Button/
+          │   │   ├── Button.jsx
+          │   │   ├── Button.test.js
+          │   └── TextField/
+          │       ├── TextField.jsx
+          │       └── TextField.test.js
+          ├── contexts/
+          │   └── UserContext/
+          │       └── UserContext.js
+          ├── hooks/
+          │   └── useMediaQuery/
+          │       └── useMediaQuery.js
+          ├── pages/
+          │   ├── UserProfile/
+          │   │   ├── components/
+          │   │   │   └── UserProfileComponent/
+          │   │   │       ├── UserProfileComponent.jsx
+          │   │   │       └── UserProfileComponent.test.js
+          │   │   ├── UserProfile.jsx
+          │   │   └── UserProfile.test.js
+          │   └── index.js
+          ├── routes/
+          │   ├── routes.jsx
+          │   └── routes.test.js
+          ├── utils/
+          │   └── custom-util/
+          │       ├── index.js
+          │       ├── customUtil.js
+          │       └── index.test.js
+          ├── services/
+          │   └── custom-service/
+          │       ├── index.js/
+          │       ├── customService.js/
+          │       └── index.test.js
+          ├── App.jsx
+          └── index.js
+        ```
+      </TabItem>
+      <TabItem value="frontend-module-feature-based" label="Module / Feature Based">
+        ```md
+          src/
+          ├── components/
+          │   ├── Avatar/
+          │   │   ├── Avatar.jsx
+          │   │   └── Avatar.test.js
+          │   ├── Button/
+          │   │   ├── Button.jsx
+          │   │   └── Button.test.js
+          │   └── TextField/
+          │       ├── TextField.jsx
+          │       └── TextField.test.js
+          ├── contexts/
+          │   └── UserContext/
+          │       └── UserContext.js
+          ├── hooks/
+          │   └── useMediaQuery/
+          │      └── useMediaQuery.js
+          ├── features/
+          │   ├── Home/
+          │   │   ├── components/
+          │   │   │   └── UserProfileComponent/
+          │   │   │       ├── UserProfileComponent.jsx
+          │   │   │       ├── UserProfileComponent.test.js
+          │   │   ├── utils/
+          │   │   ├── services/
+          │   │   ├── hooks/
+          │   │   ├── contexts/
+          │   │   ├── views/
+          │   │   │   └── HomeView.jsx
+          │   │   └── pages/
+          │   │       └── HomePage.jsx
+          │   └── index.js
+          ├── utils/
+          │   └──  custom-common-util/
+          │       ├── index.js/
+          │       └── index.test.js
+          ├── services/
+          │   └── custom-common-service/
+          │       ├── index.js/
+          │       ├── custom-common-service.js/
+          │       └── index.test.js
+          ├── App.jsx
+          └── index.js
+        ```
+      </TabItem>
+      <TabItem value="frontend-atomic-design" label="Atomic Design">
+        ```md
+          src/
+          ├── components/
+          │   ├── atoms/ ← Single UI elements
+          │   │   └── Button/
+          │   │      ├── Button.js
+          │   │      └── Button.css
+          │   ├── molecules/ ← Groups of atoms with a function
+          │   │   └── SearchBar/
+          │   │       ├── SearchBar.js
+          │   │       └── SearchBar.css
+          │   ├── organisms/ ← Complex components from molecules/atoms
+          │   │   ├── Header/
+          │   │   │  ├── Header.js
+          │   │   │  └── Header.css
+          │   │   └── ProductList/
+          │   │       ├── ProductList.js
+          │   │       └── ProductList.css
+          │   └── templates/ ← Layouts for arranging UI on a page
+          │       └── DefaultTemplate/
+          │           ├── DefaultTemplate.js
+          │           └── DefaultTemplate.css
+          ├── pages/ ← Final product with real content in templates
+          │   ├── HomePage/
+          │   │   ├── HomePage.js
+          │   │   └── HomePage.css
+          │   └── AboutPage/
+          │       ├── AboutPage.js
+          │       └── AboutPage.css
+          ├── shared/
+          └── public/
+        ```
+      </TabItem>
+      <TabItem value="frontend-clean-architecture" label="Clean Architecture">
+        ```md
+          src/
+          ├── domain/
+          │   ├── models/
+          │   │   └── User.js/
+          │   └── services/
+          │       └── User.service.js/
+          ├── infrastructure/
+          │		├── components/
+          │		│   ├── Avatar/
+          │		│   │   ├── Avatar.jsx
+          │		│   │   └── Avatar.test.js
+          │		│	  └── UserProfile/
+          │		│       ├── UserProfile.jsx
+          │		│       └── UserProfile.test.js
+          │		├── http/
+          │		│   ├── dto/
+          │		│   │   └── userDto.js/
+          │		│   └── http.js
+          │		└── repositories/
+          │		    └── user.repository.js/
+          ├── App.jsx
+          └── index.js
+        ```
+      </TabItem>
+      <TabItem value="frontend-best-practices" label="Best Practices">
+        - **UI Components**
+          - **components**: React components - the main UI building blocks
+          - **design-system**: Fundamental UI elements and patterns based on the design system
+          - **icons**: Inline SVG icons
+        - **React Specific**
+          - **hooks**: Custom React hooks for shared logic
+          - **hocs**: React Higher-Order Components
+          - **contexts/providers**: Contains React Contexts and Providers
+        - **Utilities & External Integrations**
+          - **utils**: Utilities for universal logic that isn't related to business logic or any technologies
+          - **lib**: Utilities that are related to certain technologies
+          - **plugins**: Third-party plugins
+        - **Business Logic**
+          - **services**: Encapsulates main business & application logic
+          - **helpers**: Provides business-specific utilities
+        - **Styles**
+          - **styles**: Contains (global) CSS or CSS-in-JS styles
+        - **TypeScript and Configurations**
+          - **types**: For general TypeScript types, enums and interfaces
+          - **configs**: Configs for the application & environment variables
+          - **constants**: Constants for the application
+        - **Server Communication**
+          - **api**: For logic that communicates with the servers
+          - **graphql**: GraphQL-specific code
+        - **State Management**
+          - **states/store**: Global state management logic
+          - **reducers, store, actions, selectors**: Redux-specific logic
+        - **Routing**
+          - **routes/router**: Defining routes
+          - **pages**: Defining entry-point components for pages
+        - **Testing**
+          - **tests**: Unit tests and other kinds of tests for your code
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>
+
 ## Migration
 
 <Tabs queryString="primary">
