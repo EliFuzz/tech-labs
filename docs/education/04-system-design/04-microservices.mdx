@@ -726,189 +726,403 @@ import TabItem from "@theme/TabItem";
       <TabItem value="frontend-file-type-based" label="File Type Based">
 
         ```md
-          src/
-          ├── components/
-          │   ├── Avatar/
-          │   │   ├── Avatar.jsx
-          │   │   ├── Avatar.test.js
-          │   ├── Button/
-          │   │   ├── Button.jsx
-          │   │   ├── Button.test.js
-          │   └── TextField/
-          │       ├── TextField.jsx
-          │       └── TextField.test.js
-          ├── contexts/
-          │   └── UserContext/
-          │       └── UserContext.js
-          ├── hooks/
-          │   └── useMediaQuery/
-          │       └── useMediaQuery.js
-          ├── pages/
-          │   ├── UserProfile/
-          │   │   ├── components/
-          │   │   │   └── UserProfileComponent/
-          │   │   │       ├── UserProfileComponent.jsx
-          │   │   │       └── UserProfileComponent.test.js
-          │   │   ├── UserProfile.jsx
-          │   │   └── UserProfile.test.js
-          │   └── index.js
-          ├── routes/
-          │   ├── routes.jsx
-          │   └── routes.test.js
-          ├── utils/
-          │   └── custom-util/
-          │       ├── index.js
-          │       ├── customUtil.js
-          │       └── index.test.js
-          ├── services/
-          │   └── custom-service/
-          │       ├── index.js/
-          │       ├── customService.js/
-          │       └── index.test.js
-          ├── App.jsx
-          └── index.js
+        src/
+        ├── components/
+        │   ├── Avatar/
+        │   │   ├── Avatar.jsx
+        │   │   ├── Avatar.test.js
+        │   ├── Button/
+        │   │   ├── Button.jsx
+        │   │   ├── Button.test.js
+        │   └── TextField/
+        │       ├── TextField.jsx
+        │       └── TextField.test.js
+        ├── contexts/
+        │   └── UserContext/
+        │       └── UserContext.js
+        ├── hooks/
+        │   └── useMediaQuery/
+        │       └── useMediaQuery.js
+        ├── pages/
+        │   ├── UserProfile/
+        │   │   ├── components/
+        │   │   │   └── UserProfileComponent/
+        │   │   │       ├── UserProfileComponent.jsx
+        │   │   │       └── UserProfileComponent.test.js
+        │   │   ├── UserProfile.jsx
+        │   │   └── UserProfile.test.js
+        │   └── index.js
+        ├── routes/
+        │   ├── routes.jsx
+        │   └── routes.test.js
+        ├── utils/
+        │   └── custom-util/
+        │       ├── index.js
+        │       ├── customUtil.js
+        │       └── index.test.js
+        ├── services/
+        │   └── custom-service/
+        │       ├── index.js/
+        │       ├── customService.js/
+        │       └── index.test.js
+        ├── App.jsx
+        └── index.js
         ```
       </TabItem>
       <TabItem value="frontend-module-feature-based" label="Module / Feature Based">
         ```md
-          src/
-          ├── components/
-          │   ├── Avatar/
-          │   │   ├── Avatar.jsx
-          │   │   └── Avatar.test.js
-          │   ├── Button/
-          │   │   ├── Button.jsx
-          │   │   └── Button.test.js
-          │   └── TextField/
-          │       ├── TextField.jsx
-          │       └── TextField.test.js
-          ├── contexts/
-          │   └── UserContext/
-          │       └── UserContext.js
-          ├── hooks/
-          │   └── useMediaQuery/
-          │      └── useMediaQuery.js
-          ├── features/
-          │   ├── Home/
-          │   │   ├── components/
-          │   │   │   └── UserProfileComponent/
-          │   │   │       ├── UserProfileComponent.jsx
-          │   │   │       ├── UserProfileComponent.test.js
-          │   │   ├── utils/
-          │   │   ├── services/
-          │   │   ├── hooks/
-          │   │   ├── contexts/
-          │   │   ├── views/
-          │   │   │   └── HomeView.jsx
-          │   │   └── pages/
-          │   │       └── HomePage.jsx
-          │   └── index.js
-          ├── utils/
-          │   └──  custom-common-util/
-          │       ├── index.js/
-          │       └── index.test.js
-          ├── services/
-          │   └── custom-common-service/
-          │       ├── index.js/
-          │       ├── custom-common-service.js/
-          │       └── index.test.js
-          ├── App.jsx
-          └── index.js
+        src/
+        ├── components/
+        │   ├── Avatar/
+        │   │   ├── Avatar.jsx
+        │   │   └── Avatar.test.js
+        │   ├── Button/
+        │   │   ├── Button.jsx
+        │   │   └── Button.test.js
+        │   └── TextField/
+        │       ├── TextField.jsx
+        │       └── TextField.test.js
+        ├── contexts/
+        │   └── UserContext/
+        │       └── UserContext.js
+        ├── hooks/
+        │   └── useMediaQuery/
+        │      └── useMediaQuery.js
+        ├── features/
+        │   ├── Home/
+        │   │   ├── components/
+        │   │   │   └── UserProfileComponent/
+        │   │   │       ├── UserProfileComponent.jsx
+        │   │   │       ├── UserProfileComponent.test.js
+        │   │   ├── utils/
+        │   │   ├── services/
+        │   │   ├── hooks/
+        │   │   ├── contexts/
+        │   │   ├── views/
+        │   │   │   └── HomeView.jsx
+        │   │   └── pages/
+        │   │       └── HomePage.jsx
+        │   └── index.js
+        ├── utils/
+        │   └──  custom-common-util/
+        │       ├── index.js/
+        │       └── index.test.js
+        ├── services/
+        │   └── custom-common-service/
+        │       ├── index.js/
+        │       ├── custom-common-service.js/
+        │       └── index.test.js
+        ├── App.jsx
+        └── index.js
         ```
       </TabItem>
       <TabItem value="frontend-atomic-design" label="Atomic Design">
         ```md
-          src/
-          ├── components/
-          │   ├── atoms/ ← Single UI elements
-          │   │   └── Button/
-          │   │      ├── Button.js
-          │   │      └── Button.css
-          │   ├── molecules/ ← Groups of atoms with a function
-          │   │   └── SearchBar/
-          │   │       ├── SearchBar.js
-          │   │       └── SearchBar.css
-          │   ├── organisms/ ← Complex components from molecules/atoms
-          │   │   ├── Header/
-          │   │   │  ├── Header.js
-          │   │   │  └── Header.css
-          │   │   └── ProductList/
-          │   │       ├── ProductList.js
-          │   │       └── ProductList.css
-          │   └── templates/ ← Layouts for arranging UI on a page
-          │       └── DefaultTemplate/
-          │           ├── DefaultTemplate.js
-          │           └── DefaultTemplate.css
-          ├── pages/ ← Final product with real content in templates
-          │   ├── HomePage/
-          │   │   ├── HomePage.js
-          │   │   └── HomePage.css
-          │   └── AboutPage/
-          │       ├── AboutPage.js
-          │       └── AboutPage.css
-          ├── shared/
-          └── public/
+        src/
+        ├── components/
+        │   ├── atoms/ ← Single UI elements
+        │   │   └── Button/
+        │   │      ├── Button.js
+        │   │      └── Button.css
+        │   ├── molecules/ ← Groups of atoms with a function
+        │   │   └── SearchBar/
+        │   │       ├── SearchBar.js
+        │   │       └── SearchBar.css
+        │   ├── organisms/ ← Complex components from molecules/atoms
+        │   │   ├── Header/
+        │   │   │  ├── Header.js
+        │   │   │  └── Header.css
+        │   │   └── ProductList/
+        │   │       ├── ProductList.js
+        │   │       └── ProductList.css
+        │   └── templates/ ← Layouts for arranging UI on a page
+        │       └── DefaultTemplate/
+        │           ├── DefaultTemplate.js
+        │           └── DefaultTemplate.css
+        ├── pages/ ← Final product with real content in templates
+        │   ├── HomePage/
+        │   │   ├── HomePage.js
+        │   │   └── HomePage.css
+        │   └── AboutPage/
+        │       ├── AboutPage.js
+        │       └── AboutPage.css
+        ├── shared/
+        └── public/
         ```
       </TabItem>
       <TabItem value="frontend-clean-architecture" label="Clean Architecture">
         ```md
-          src/
-          ├── domain/
-          │   ├── models/
-          │   │   └── User.js/
-          │   └── services/
-          │       └── User.service.js/
-          ├── infrastructure/
-          │		├── components/
-          │		│   ├── Avatar/
-          │		│   │   ├── Avatar.jsx
-          │		│   │   └── Avatar.test.js
-          │		│	  └── UserProfile/
-          │		│       ├── UserProfile.jsx
-          │		│       └── UserProfile.test.js
-          │		├── http/
-          │		│   ├── dto/
-          │		│   │   └── userDto.js/
-          │		│   └── http.js
-          │		└── repositories/
-          │		    └── user.repository.js/
-          ├── App.jsx
-          └── index.js
+        src/
+        ├── domain/
+        │   ├── models/
+        │   │   └── User.js/
+        │   └── services/
+        │       └── User.service.js/
+        ├── infrastructure/
+        │		├── components/
+        │		│   ├── Avatar/
+        │		│   │   ├── Avatar.jsx
+        │		│   │   └── Avatar.test.js
+        │		│	  └── UserProfile/
+        │		│       ├── UserProfile.jsx
+        │		│       └── UserProfile.test.js
+        │		├── http/
+        │		│   ├── dto/
+        │		│   │   └── userDto.js/
+        │		│   └── http.js
+        │		└── repositories/
+        │		    └── user.repository.js/
+        ├── App.jsx
+        └── index.js
         ```
       </TabItem>
-      <TabItem value="frontend-best-practices" label="Best Practices">
-        - **UI Components**
-          - **components**: React components - the main UI building blocks
-          - **design-system**: Fundamental UI elements and patterns based on the design system
-          - **icons**: Inline SVG icons
-        - **React Specific**
-          - **hooks**: Custom React hooks for shared logic
-          - **hocs**: React Higher-Order Components
-          - **contexts/providers**: Contains React Contexts and Providers
-        - **Utilities & External Integrations**
-          - **utils**: Utilities for universal logic that isn't related to business logic or any technologies
-          - **lib**: Utilities that are related to certain technologies
-          - **plugins**: Third-party plugins
-        - **Business Logic**
-          - **services**: Encapsulates main business & application logic
-          - **helpers**: Provides business-specific utilities
-        - **Styles**
-          - **styles**: Contains (global) CSS or CSS-in-JS styles
-        - **TypeScript and Configurations**
-          - **types**: For general TypeScript types, enums and interfaces
-          - **configs**: Configs for the application & environment variables
-          - **constants**: Constants for the application
-        - **Server Communication**
-          - **api**: For logic that communicates with the servers
-          - **graphql**: GraphQL-specific code
-        - **State Management**
-          - **states/store**: Global state management logic
-          - **reducers, store, actions, selectors**: Redux-specific logic
-        - **Routing**
-          - **routes/router**: Defining routes
-          - **pages**: Defining entry-point components for pages
-        - **Testing**
-          - **tests**: Unit tests and other kinds of tests for your code
+    </Tabs>
+  </TabItem>
+  <TabItem value="backend" label="Backend">
+    <Tabs queryString="secondary">
+      <TabItem value="backend-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Layered Architecture</th>
+              <th>Feature-Based Architecture</th>
+              <th>Clean / Hexagonal Architecture (DDD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Core Concept</b></td>
+              <td>Segregation into layers such as Presentation, Business Logic, Data Access</td>
+              <td>Organization around features/modules with self-contained folders</td>
+              <td>Focus on domain-driven design, with clear boundaries between domain and application layers</td>
+            </tr>
+            <tr>
+              <td><b>Dependencies</b></td>
+              <td>Layer dependencies are hierarchical</td>
+              <td>Feature modules are more independent but may share utilities</td>
+              <td>Dependent on use cases, but typically focuses on domain logic being independent of infrastructure</td>
+            </tr>
+            <tr>
+              <td><b>Scalability</b></td>
+              <td>Can become rigid and hard to scale with increasing complexity</td>
+              <td>Scales well with the growth of features, easier to manage</td>
+              <td>Provides a scalable structure, but may require careful management of dependencies</td>
+            </tr>
+            <tr>
+              <td><b>Domain-Centric Focus</b></td>
+              <td>Less emphasis on domain modeling, more on technical layers</td>
+              <td>Features encapsulate domain logic but may not focus solely on it</td>
+              <td>Central focus on domain modeling, with application logic structured around it</td>
+            </tr>
+            <tr>
+              <td><b>Ease of Maintenance</b></td>
+              <td>Changes may require modifications across multiple layers</td>
+              <td>Easier maintenance due to encapsulation within features</td>
+              <td>Maintenance focused on the domain model, with changes reflected through adapters</td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="backend-layered-architecture" label="Layered Architecture">
+        ```md
+        project_name/
+        ├── src/
+        │   ├── config/
+        │   │   ├── database
+        │   │   └── app
+        │   ├── controllers/
+        │   │   ├── UserController
+        │   │   └── ProductController
+        │   ├── models/
+        │   │   ├── User
+        │   │   └── Product
+        │   ├── repositories/
+        │   │   ├── UserRepository
+        │   │   └── ProductRepository
+        │   ├── services/
+        │   │   ├── UserService
+        │   │   └── ProductService
+        │   ├── middlewares/
+        │   │   ├── AuthenticationMiddleware
+        │   │   └── AuthorizationMiddleware
+        │   ├── exceptions/
+        │   │   ├── CustomException
+        │   │   └── HttpException
+        │   ├── utils/
+        │   │   ├── Validation
+        │   │   └── HelperFunctions
+        │   ├── routes/
+        │   │   ├── web
+        │   │   └── api
+        │   └── views/
+        │       ├── user/
+        │       │   └── profileView
+        │       └── product/
+        │           └── listView
+        ├── tests/
+        │   ├── Unit/
+        │   │   ├── UserControllerTest
+        │   │   └── ProductControllerTest
+        │   └── Feature/
+        │       ├── UserFeatureTest
+        │       └── ProductFeatureTest
+        ├── database/
+        │   ├── migrations/
+        │   │   ├── 20240101000000_create_users_table
+        │   │   └── 20240102000000_create_products_table
+        │   └──  seeds/
+        │        ├── UsersTableSeeder
+        │        └── ProductsTableSeeder
+        ├── vendor/
+        ├── storage/
+        └── config/
+            ├── app
+            └── database
+        ```
+      </TabItem>
+      <TabItem value="backend-feature-based-architecture" label="Feature Based Architecture">
+        ```md
+        project_name/
+        ├── src/
+        │   ├── Features/
+        │   │   ├── User/
+        │   │   │   ├── Controllers/
+        │   │   │   │   └── UserController
+        │   │   │   ├── Models/
+        │   │   │   │   └── User
+        │   │   │   ├── Repositories/
+        │   │   │   │   └── UserRepository
+        │   │   │   ├── Services/
+        │   │   │   │   └── UserService
+        │   │   │   ├── Routes/
+        │   │   │   │   ├── web
+        │   │   │   │   └── api
+        │   │   │   └───Views
+        │   │   │       └── profileView
+        │   │   └── Product/
+        │   │       ├── Controllers/
+        │   │       │   └── ProductController
+        │   │       ├── Models/
+        │   │       │   └── Product
+        │   │       ├── Repositories/
+        │   │       │   └── ProductRepository
+        │   │       ├── Services/
+        │   │       │   └── ProductService
+        │   │       ├── Routes/
+        │   │       │   ├── web
+        │   │       │   └── api
+        │   │       └───Views/
+        │   │           └── listView
+        │   ├── Shared/
+        │   │   ├── Helpers/
+        │   │   │   └── Validation
+        │   │   ├── Exceptions/
+        │   │   │   └── CustomException
+        │   │   ├── Middleware/
+        │   │   │   └── AuthenticationMiddleware
+        │   │   ├── Services/
+        │   │   │   └── AuthService
+        │   │   ├── Models/
+        │   │   │   └── BaseModel
+        │   │   └── Repositories/
+        │   │       └── BaseRepository
+        │   └── Routes/
+        │       ├── web
+        │       └── api
+        ├── tests/
+        │   ├── Unit/
+        │   │   ├── User/
+        │   │   │   └── UserControllerTest
+        │   │   └── Product/
+        │   │       └── ProductControllerTest
+        │   └───Feature/
+        │       ├── User/
+        │       │   └── UserFeatureTest
+        │       └── Product/
+        │           └── ProductFeatureTest
+        ├── database/
+        │   ├── migrations/
+        │   │   ├── 20240101000000_create_users_table
+        │   │   └── 20240102000000_create_products_table
+        │   └───seeds/
+        │       ├── UsersTableSeeder
+        │       └── ProductsTableSeeder
+        ├── vendor/
+        └── config/
+            ├── app
+            └── database
+        ```
+      </TabItem>
+      <TabItem value="backend-hexagonal-architecture" label="Clean / Hexagonal Architecture (DDD)">
+        ```md
+        project_name/
+        ├── src/
+        │   ├── Application/
+        │   │   ├── Services/
+        │   │   │   ├── UserService
+        │   │   │   └── ProductService
+        │   │   └── UseCases/
+        │   │       ├── User/
+        │   │       │   ├── CreateUserUseCase
+        │   │       │   └── GetUserUseCase
+        │   │       └── Product/
+        │   │           ├── CreateProductUseCase
+        │   │           └── GetProductUseCase
+        │   ├── Domain/
+        │   │   ├── Entities/
+        │   │   │   ├── User
+        │   │   │   ├── Product
+        │   │   └── Repositories/
+        │   │       ├── UserRepositoryInterface
+        │   │       └── ProductRepositoryInterface
+        │   └── Infrastructure/
+        │       └── Persistence/
+        │           └── Repositories/
+        │               ├── EloquentUserRepository
+        │               └── EloquentProductRepository
+        ├── tests/
+        │   ├── Unit/
+        │   │   ├── Application/
+        │   │   │   ├── Services/
+        │   │   │   │   ├── UserServiceTest
+        │   │   │   │   └── ProductServiceTest
+        │   │   │   └── UseCases/
+        │   │   │       ├── User/
+        │   │   │       │   ├── CreateUserUseCaseTest
+        │   │   │       │   └── GetUserUseCaseTest
+        │   │   │       └── Product/
+        │   │   │           ├── CreateProductUseCaseTest
+        │   │   │           └── GetProductUseCaseTest
+        │   │   ├── Domain/
+        │   │   │   ├── Entities/
+        │   │   │   │   ├── UserTest
+        │   │   │   │   └── ProductTest
+        │   │   │   └── Repositories/
+        │   │   │       ├── UserRepositoryTest
+        │   │   │       └── ProductRepositoryTest
+        │   │   └── Infrastructure/
+        │   │       └── Persistence/
+        │   │           └── Repositories/
+        │   │               ├── EloquentUserRepositoryTest
+        │   │               └── EloquentProductRepositoryTest
+        │   └── Feature/
+        │       ├── User/
+        │       │   └── UserFeatureTest
+        │       └── Product/
+        │           └── ProductFeatureTest
+        ├── database/
+        │   ├── migrations/
+        │   │   ├── 20240101000000_create_users_table
+        │   │   └── 20240102000000_create_products_table
+        │   └── seeds/
+        │       ├── UsersTableSeeder
+        │       └── ProductsTableSeeder
+        ├── vendor/
+        └── config/
+            ├── app
+            └── database
+        ```
       </TabItem>
     </Tabs>
   </TabItem>
