@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-    <TabItem value="sdlc" label="SDLC">
+    <TabItem value="sdlc-overview" label="SDLC">
         **Software Development Lifecycle (SDLC)** is a cost-effective and time-efficient process utilized by development teams to design and build high-quality software. It aims to minimize project risks through proactive planning, ensuring that software meets customer expectations both during production and in the long term.
 
         ![](./assets/sdlc/sdlc.svg)
@@ -427,7 +427,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
     </TabItem>
-    <TabItem value="models" label="Models">
+    <TabItem value="sdlc-models" label="Models">
         <table>
           <thead>
             <tr>
@@ -687,9 +687,9 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
     </TabItem>
-    <TabItem value="methodologies" label="Agile methodologies">
+    <TabItem value="sdlc-methodologies" label="Agile methodologies">
       <Tabs queryString="secondary">
-        <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        <TabItem value="methodologies-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
           <table>
             <thead>
               <tr>
@@ -787,7 +787,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="agile" label="Agile">
+        <TabItem value="methodologies-agile" label="Agile">
             ```mermaid
                 graph LR
 
@@ -825,7 +825,7 @@ import TabItem from "@theme/TabItem";
 
             - Most companies typically don't adhere to all principles or procedures, thus each company adopts its own version of "Lean Agile" that best suits their needs
         </TabItem>
-        <TabItem value="scrum" label="Scrum">
+        <TabItem value="methodologies-scrum" label="Scrum">
             ```mermaid
                 graph LR
 
@@ -1002,7 +1002,7 @@ import TabItem from "@theme/TabItem";
                - **Implementation**: Launch ARTs, focus on continuous improvement through Inspect and Adapt workshops
                - **Benefits**: Provides structured scaling framework, aligns strategy with execution, facilitates collaboration across different levels
         </TabItem>
-        <TabItem value="kanban" label="Kanban">
+        <TabItem value="methodologies-kanban" label="Kanban">
           ## Visualization
 
           | To-Do | In Progress | Done  |

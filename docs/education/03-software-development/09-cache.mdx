@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="cache-overview" label="Overview">
     Temporary data store, typically in RAM, that holds frequently accessed data for faster retrieval.
 
     ### Core Concepts
@@ -26,12 +26,12 @@ import TabItem from "@theme/TabItem";
     - Scalability
     - Cost-Effectiveness
   </TabItem>
-  <TabItem value="operations" label="Operations">
+  <TabItem value="cache-operations" label="Operations">
     - `GET`: Retrieve the value of a key
     - `PUT`: Create a new key-value pair or update an existing key
     - `DELETE`: Delete a key-value pair
   </TabItem>
-  <TabItem value="key-value-mappings" label="Key-Value Mappings">
+  <TabItem value="cache-key-value-mappings" label="Key-Value Mappings">
     ### Keys
 
     - Unique identifier
@@ -90,7 +90,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="persistence" label="Persistence">
+  <TabItem value="cache-persistence" label="Persistence">
     ### Levels
 
     - **1ns (L1 cache)**
@@ -109,7 +109,7 @@ import TabItem from "@theme/TabItem";
     - **RDB (Redis Database)**: Creates point-in-time snapshots of your entire dataset at regular intervals
     - **No Persistence**: Disables data persistence entirely, suitable for caching temporary data
   </TabItem>
-  <TabItem value="eviction-policies" label="Eviction Policies">
+  <TabItem value="cache-eviction-policies" label="Eviction Policies">
     <table>
       <thead>
         <tr>
@@ -206,7 +206,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="invalidation-strategies" label="Invalidation Strategies">
+  <TabItem value="cache-invalidation-strategies" label="Invalidation Strategies">
     - **Time-Based**
       - **Absolute Timeout**: Cached data is invalidated after a fixed period from the time of caching
       - **Relative Timeout**: Cached data is invalidated after a fixed period from the time of last access or update
@@ -219,7 +219,7 @@ import TabItem from "@theme/TabItem";
          - **Programmatic Invalidation**: Invalidate cache entries programmatically through API calls or direct cache manipulation
          - **Admin Console**: Provide a user interface for administrators to manually invalidate cache entries
   </TabItem>
-  <TabItem value="redis-vs-memcached" label="Redis vs Memcached">
+  <TabItem value="cache-redis-vs-memcached" label="Redis vs Memcached">
     <table class="text_vertical">
       <thead>
         <tr>
@@ -250,7 +250,7 @@ import TabItem from "@theme/TabItem";
         <tr>
           <td><b>Transactions</b></td>
           <td>Support atomic operations</td>
-          <td>-</td>
+          <td>❌</td>
         </tr>
         <tr>
           <td><b>Snapshots/Persistence</b></td>
@@ -260,22 +260,22 @@ import TabItem from "@theme/TabItem";
               <li>Support RDB/AOF persistence</li>
             </ul>
           </td>
-          <td>-</td>
+          <td>❌</td>
         </tr>
         <tr>
           <td><b>Pub-Sub Messaging</b></td>
           <td>Support Pub-Sub messaging with pattern matching</td>
-          <td>-</td>
+          <td>❌</td>
         </tr>
         <tr>
           <td><b>Geo-Spatial Support</b></td>
           <td>Geospatial indexes that stores the longitude and latitude data of the location</td>
-          <td>-</td>
+          <td>❌</td>
         </tr>
         <tr>
           <td><b>Server-Side Script</b></td>
           <td>Support Lua script to perform operations inside Redis</td>
-          <td>-</td>
+          <td>❌</td>
         </tr>
         <tr>
           <td><b>Support Cache Eviction</b></td>
@@ -291,7 +291,7 @@ import TabItem from "@theme/TabItem";
         <tr>
           <td><b>Replication</b></td>
           <td>Leader-Follower replication</td>
-          <td>-</td>
+          <td>❌</td>
         </tr>
       </tbody>
     </table>
@@ -301,9 +301,9 @@ import TabItem from "@theme/TabItem";
 ## Security
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="security-overview" label="Overview">
     <Tabs queryString="secondary">
-      <TabItem value="cache-miss" label="Cache Miss" attributes={{ className: "tabs__vertical" }}>
+      <TabItem value="security-overview-cache-miss" label="Cache Miss" attributes={{ className: "tabs__vertical" }}>
         Cache Miss Attack exploits weaknesses in how data is stored to steal information or overload systems. It targets situations where a web application doesn't consider all input data when storing data in a cache. This lets attackers trick the cache into revealing sensitive information or causing performance issues.
 
         Solutions:

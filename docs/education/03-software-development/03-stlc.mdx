@@ -9,9 +9,9 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-    <TabItem value="overview" label="Overview">
+    <TabItem value="stlc-overview" label="Overview">
       <Tabs queryString="secondary">
-        <TabItem value="lifecycle" label="Lifecycle" attributes={{className:"tabs__vertical"}}>
+        <TabItem value="overview-lifecycle" label="Lifecycle" attributes={{className:"tabs__vertical"}}>
           **Software Testing Lifecycle (STLC)**: structured process for testing software to ensure quality and functionality throughout its development life cycle
 
           ```mermaid
@@ -26,7 +26,7 @@ import TabItem from "@theme/TabItem";
               closure --> requirement
           ```
         </TabItem>
-        <TabItem value="stages" label="Stages">
+        <TabItem value="overview-stages" label="Stages">
           <table class="sticky column text_vertical" style={{textWrap: "nowrap"}}>
               <thead>
                   <tr>
@@ -236,7 +236,7 @@ import TabItem from "@theme/TabItem";
               </tbody>
           </table>
         </TabItem>
-        <TabItem value="principles" label="Principles">
+        <TabItem value="overview-principles" label="Principles">
           - **Defect Detection**: Testing reveals defects but cannot guarantee their absence
           - **Limited Coverage**: It's impossible to test every scenario; focus on high-risk areas
           - **Early Initiation**: Begin testing as soon as possible to catch defects early
@@ -256,9 +256,9 @@ import TabItem from "@theme/TabItem";
         </TabItem>
       </Tabs>
     </TabItem>
-    <TabItem value="detailed" label="Detailed">
+    <TabItem value="stlc-detailed" label="Detailed">
       <Tabs queryString="secondary">
-        <TabItem value="overview" label="High Overview" attributes={{className:"tabs__vertical"}}>
+        <TabItem value="stlc-detailed-overview" label="High Overview" attributes={{className:"tabs__vertical"}}>
           ```mermaid
               graph LR
 
@@ -287,7 +287,7 @@ import TabItem from "@theme/TabItem";
               deployment --> maintenance
           ```
         </TabItem>
-        <TabItem value="requirements" label="Requirements">
+        <TabItem value="stlc-detailed-requirements" label="Requirements">
           <table>
               <thead>
                 <tr>
@@ -353,7 +353,7 @@ import TabItem from "@theme/TabItem";
               </tbody>
           </table>
         </TabItem>
-        <TabItem value="design" label="Design">
+        <TabItem value="stlc-detailed-design" label="Design">
           <table>
             <thead>
               <tr>
@@ -510,7 +510,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="development" label="Development">
+        <TabItem value="stlc-detailed-development" label="Development">
           <table>
             <thead>
               <tr>
@@ -543,7 +543,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="testing" label="Testing">
+        <TabItem value="stlc-detailed-testing" label="Testing">
           <table>
             <thead>
               <tr>
@@ -1119,7 +1119,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="deployment" label="Deployment">
+        <TabItem value="stlc-detailed-deployment" label="Deployment">
           <table>
             <thead>
               <tr>
@@ -1187,7 +1187,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="maintenance" label="Maintenance">
+        <TabItem value="stlc-detailed-maintenance" label="Maintenance">
           <table>
             <thead>
               <tr>
@@ -1221,7 +1221,7 @@ import TabItem from "@theme/TabItem";
         </TabItem>
       </Tabs>
     </TabItem>
-    <TabItem value="distinction" label="Distinction">
+    <TabItem value="stlc-distinction" label="Distinction">
       <table>
         <thead>
           <tr>
@@ -1297,7 +1297,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-    <TabItem value="test-pyramid" label="Test Pyramid">
+    <TabItem value="stlc-test-pyramid" label="Test Pyramid">
       ![](./assets/test/test-pyramid.svg)
 
       **Shift-Left Paradigm**

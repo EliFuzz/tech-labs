@@ -13,7 +13,7 @@ import TabItem from "@theme/TabItem";
 ## Layered Architecture MV(x)
 
 <Tabs queryString="primary">
-    <TabItem value="overview" label="High Overview">
+    <TabItem value="enterprise-overview" label="High Overview">
         <h3 style={{ textAlign: "center", margin: "3em 0 1em 0" }}>Model-View-Controller (MVC)</h3>
 
         ![](./assets/enterprise/mvc.svg)
@@ -38,7 +38,7 @@ import TabItem from "@theme/TabItem";
 
         ![](./assets/enterprise/viper.svg)
     </TabItem>
-    <TabItem value="comparison" label="Comparison Table">
+    <TabItem value="enterprise-comparison" label="Comparison Table">
         <table class="sticky column">
           <thead>
           <tr>
@@ -225,20 +225,20 @@ import TabItem from "@theme/TabItem";
 ## Domain-Driven Design (DDD)
 
 <Tabs queryString="primary">
-    <TabItem value="benefits" label="Benefits">
+    <TabItem value="ddd-benefits" label="Benefits">
         - **Communication**: Enhances communication among developers, managers, and domain experts through a shared language and understanding of the business domain
         - **Productivity**: Boosts productivity with a clear comprehension of the business domain and by encapsulating domain logic in an easily understandable and maintainable manner
         - **Improved Maintainability**: Enhances maintainability via a modular, object-oriented design that facilitates understanding and modification
         - **Scalability**: Enhances scalability by breaking down large monolithic applications into smaller, more manageable components
         - **Flexibility**: Enhances flexibility by facilitating the handling of complex business processes and adapting to changing business requirements
     </TabItem>
-    <TabItem value="challenges" label="Challenges">
+    <TabItem value="ddd-challenges" label="Challenges">
         - **Learning Curve**: Challenging for new developers, particularly those unfamiliar with object-oriented programming or domain modeling
         - **Complexity**: Significant complexity, especially in large, intricate domains, demanding substantial time and effort to create a well-designed domain model and implement domain logic
         - **Resistance to Change**: Difficulty in implementation within organizations resistant to change or entrenched in siloed development cultures
         - **Lack of Resources**: Demands substantial resources such as time, money, and personnel
     </TabItem>
-    <TabItem value="architecture" label="Architecture">
+    <TabItem value="ddd-architecture" label="Architecture">
 
         ![](./assets/enterprise/ddd-high-overview.svg)
 
@@ -258,7 +258,7 @@ import TabItem from "@theme/TabItem";
 
         The infrastructure layer furnishes technical resources and services to support system functionality, encompassing databases, message brokers, web servers, cloud platforms, and 3rd-party APIs. It should adhere to interfaces or abstractions outlined by the domain layer, ensuring compatibility. Furthermore, it should offer configurability and interchangeability, allowing different implementations or providers to be utilized based on requirements. For instance, it should support the use of various databases or message brokers for testing or production purposes. This flexibility enables optimization or replacement of the infrastructure layer without impacting other system layers
     </TabItem>
-    <TabItem value="principles" label="Principles">
+    <TabItem value="ddd-principles" label="Principles">
         - **Focus on the core domain and domain logic**: Developers should prioritize understanding and implementing the essential aspects of the business domain. This involves focusing on the key rules and behaviors that define how the domain operates and what it can accomplish
         - **Base complex designs on models of the domain**: Complex designs should be built upon simplified and abstract representations of the domain. These models capture the fundamental aspects of the domain while disregarding unnecessary details. They aid in comprehension, communication, and reasoning about the domain, guiding software design and implementation to align with domain logic and terminology
         - **Collaborate with domain experts and stakeholders**: Developers must engage closely with individuals possessing deep domain knowledge, such as business analysts, managers, or end-users. This collaboration enables the elicitation of requirements, validation of assumptions, and gathering of feedback. Domain experts contribute to refining and evolving the model, as well as identifying and resolving gaps or inconsistencies between the model and the reality of the domain
@@ -288,7 +288,7 @@ import TabItem from "@theme/TabItem";
            - Domain services encapsulate domain logic and provide standardized interfaces for interacting with the domain model
            - They are independent of specific entities or value objects, promoting modularity and maintainability while preserving the integrity of the domain model
     </TabItem>
-    <TabItem value="concepts" label="Concepts">
+    <TabItem value="ddd-concepts" label="Concepts">
         **Domain Model**
 
         A domain model in DDD is the core representation of domain concepts, rules, and behaviors in code. It serves as the central component of a DDD application, capturing the essence of the problem domain and facilitating communication between developers, domain experts, and stakeholders
@@ -397,7 +397,7 @@ import TabItem from "@theme/TabItem";
         - **Simple**: It should only create objects and not perform any other actions or side effects
         - **Configurable**: It may allow customizing some aspects of how the objects are created, such as their initial state, dependencies, settings, etc.
     </TabItem>
-    <TabItem value="bestPractices" label="Best Practices">
+    <TabItem value="ddd-bestPractices" label="Best Practices">
         **Identify and Define the Core Business Domain**
 
         - **Identify Primary Objects:** Entities, value objects, and domains critical to the business (Customers, accounts, transactions, and payments in banking)
@@ -439,7 +439,7 @@ import TabItem from "@theme/TabItem";
 ## Hexagonal Architecture
 
 <Tabs queryString="primary">
-  <TabItem value="definition" label="Definition">
+  <TabItem value="hexagonal-definition" label="Definition">
     Hexagonal architecture, also known as ports and adapters architecture, is an architectural pattern that aims to create loosely coupled application components that can be easily connected to their software environment by means of ports and adapters. This makes components exchangeable at any level and facilitates test automation.
 
     Hexagonal Architecture’s concept is to position inputs and outputs on the periphery of the design. The business logic should remain unaffected regardless of whether we expose a REST or a GraphQL API, and irrespective of our data sources — be it a database, a microservice API revealed through gRPC or REST.
@@ -456,7 +456,7 @@ import TabItem from "@theme/TabItem";
 
     Depending on the role of the external system, an adapter can be primary (connecting to an actor initiating communication) or secondary (connecting to an actor responding to communication). Primary actors include users or other applications, while secondary actors include databases or services.
   </TabItem>
-  <TabItem value="benefits" label="Benefits">
+  <TabItem value="hexagonal-benefits" label="Benefits">
     - Loose coupling by decopling core from external systems and their technical details
     - High cohesion by handling technical concerns with adapters and keeping focus on the business and application logic within core
     - Improved Testability
@@ -467,7 +467,7 @@ import TabItem from "@theme/TabItem";
     - Reusability by using different adapters
     - Improved Readability
   </TabItem>
-  <TabItem value="principles" label="Principles">
+  <TabItem value="hexagonal-principles" label="Principles">
     **Separation of User-/Business-/Server- Side Logic**
 
     ![](./assets/enterprise/separation-of-concerns.svg)
@@ -509,7 +509,7 @@ import TabItem from "@theme/TabItem";
 
     This is where we apply the "dependency inversion principle." The port is still defined by an interface, but the relationships between classes are reversed. This allows control the direction of a code dependency — for secondary ports and adapters, it’s opposite to the calling direction.
   </TabItem>
-  <TabItem value="workflow" label="Workflow">
+  <TabItem value="hexagonal-workflow" label="Workflow">
     ![](./assets/enterprise/hexagonal-full.svg)
 
     The main idea behind hexagonal architecture is to put the inputs and outputs at the edges of the design, and to isolate the core layer from outside concerns. This way, the core layer can be swapped out without changing the adapter layer, and vice versa.
@@ -551,9 +551,9 @@ import TabItem from "@theme/TabItem";
       - **ports** are a CLI API that defines how report parameters and options are parsed and validated using command-line arguments and options, and a data source interface that defines how data is retrieved and queried using data source identifiers and queries
       - **adapters** are a CLI parser that implements the CLI API using Apache Commons CLI library, and various data source adapters that implement the data source interface using different technologies, such as Apache Commons CSV, Apache HttpClient or JDBC
   </TabItem>
-  <TabItem value="comparison" label="Comparison">
+  <TabItem value="hexagonal-comparison" label="Comparison">
     <Tabs queryString="secondary">
-      <TabItem value="layered" label="Layered Architecture" attributes={{className: "tabs__vertical"}}>
+      <TabItem value="hexagonal-comparison-layered" label="Layered Architecture" attributes={{className: "tabs__vertical"}}>
         ![](./assets/enterprise/hexagonal-vs-layered-architecture.svg)
 
         Traditional layered architecture is a software architecture pattern that organizes the components of an application into a series of layers, each with a specific responsibility.
@@ -656,7 +656,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="clean" label="Clean Architecture">
+      <TabItem value="hexagonal-comparison-clean" label="Clean Architecture">
         ![](./assets/enterprise/hexagonal-vs-clean.svg)
 
         **Clean Architecture** also places business logic at the center, similar to the Hexagonal Architecture. Interface adapters surround this core, connecting it with the user interface, database, and other external components. The core is only aware of the interfaces of these adapters and not their concrete implementations.
@@ -672,7 +672,7 @@ import TabItem from "@theme/TabItem";
 
         ![](./assets/enterprise/clean-implicit-ports.svg)
       </TabItem>
-      <TabItem value="onion" label="Onion Architecture">
+      <TabItem value="hexagonal-comparison-onion" label="Onion Architecture">
         ![](./assets/enterprise/hexagonal-vs-onion.svg)
         
         The Onion Architecture places the business logic at the center, known as the **application core**. This core interfaces with the user interface and infrastructure but is unaware of their concrete implementations, isolating it from the infrastructure.
@@ -686,7 +686,7 @@ import TabItem from "@theme/TabItem";
         - **Application hexagon** aligns with the application core in the Onion Architecture, which is further divided into "application services", "domain services", and "domain model". Only the "domain model" is a fixed component of the Onion Architecture, with other rings marked as optional. The "domain model" defines the "enterprise business rules", corresponding to the innermost circle or "entities" ring of the Clean Architecture
 
       </TabItem>
-      <TabItem value="comparison" label="Comparison Table">
+      <TabItem value="hexagonal-comparison-table" label="Comparison Table">
         <table class="sticky column">
           <thead>
           <tr>

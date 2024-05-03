@@ -9,12 +9,12 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-    <TabItem value="definition" label="Definition">
+    <TabItem value="architecture-styles-definition" label="Definition">
         Architectural style is a framework of guidelines dictating the structure and organization of a software system, encompassing component roles, interactions, and dependencies. It also addresses non-functional aspects like scalability, performance, security, testability, and maintainability. While not rigid, it offers a flexible approach adaptable to project requirements. There's no one-size-fits-all solution; instead, various trade-offs and considerations must be weighed to select the most suitable style for a given scenario
 
         ![](./assets/architectural-styles/overview.svg)
     </TabItem>
-    <TabItem value="benefits" label="Benefits">
+    <TabItem value="architecture-styles-benefits" label="Benefits">
         - **Modularity**: breaking down a complex system into smaller and simpler components that can be developed, tested, deployed, and maintained independently
         - **Reusability**: avoiding duplication of code and logic by creating reusable components that can be shared across different parts of the system or even across different systems
         - **Extensibility**: allowing the system to evolve and adapt to changing requirements and new features by adding or modifying components without affecting the existing ones
@@ -22,7 +22,7 @@ import TabItem from "@theme/TabItem";
         - **Maintainability**: making the system easier to understand, modify, debug, and refactor by following consistent and coherent conventions and principles
         - **Decoupling**: reducing the coupling or dependency between components by minimizing the amount of information and behavior they share or expose to each other
     </TabItem>
-    <TabItem value="performance" label="Software Performance">
+    <TabItem value="architecture-styles-performance" label="Software Performance">
         Software performance refers to the ability of a software system to execute its intended functions within a certain time frame and with optimal use of resources. It is a critical aspect of software development and maintenance, as it directly impacts the user experience, system reliability, and overall efficiency.
 
         Software performance can be defined as the measure of how well a software system executes its intended functions and responds to user input within a specified time frame.
@@ -69,7 +69,7 @@ import TabItem from "@theme/TabItem";
         - **Performance benchmarking**: Comparing the system’s performance to industry-standard benchmarks or competing systems
         - **Root cause analysis**: Identifying the underlying causes of performance issues through techniques such as profiling, tracing, and logging
     </TabItem>
-    <TabItem value="styles" label="Architectural Styles">
+    <TabItem value="architecture-styles-overview" label="Architectural Styles">
         **Ways to Apply Architectural Style**
 
         - **Entire system**: defining the high-level structure and organization of the system as a whole, such as how it is divided into subsystems or modules, how they communicate with each other, and how they interact with external systems or services
@@ -399,7 +399,7 @@ import TabItem from "@theme/TabItem";
 ## Communication Patterns
 
 <Tabs queryString="primary">
-    <TabItem value="overview" label="Architecture Styles">
+    <TabItem value="communication-patterns-overview" label="Architecture Styles">
       <table>
         <thead>
           <tr>
@@ -588,9 +588,9 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-    <TabItem value="async" label="Async">
+    <TabItem value="communication-patterns-async" label="Async">
         <Tabs queryString="secondary">
-            <TabItem value="protocol" label="Messaging protocol" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="async-protocol" label="Messaging protocol" attributes={{className:"tabs__vertical"}}>
               <table>
                   <thead>
                       <tr>
@@ -772,7 +772,7 @@ import TabItem from "@theme/TabItem";
                   </tbody>
               </table>
             </TabItem>
-            <TabItem value="qos" label="Delivery Semantics">
+            <TabItem value="async-delivery-semantics" label="Delivery Semantics">
               <table>
                 <thead>
                     <tr>
@@ -808,7 +808,7 @@ import TabItem from "@theme/TabItem";
                 </tbody>
               </table>
             </TabItem>
-            <TabItem value="patterns" label="Service Integration Patterns">
+            <TabItem value="async-service-integration-patterns" label="Service Integration Patterns">
                 <table>
                   <thead>
                     <tr>
@@ -879,7 +879,7 @@ import TabItem from "@theme/TabItem";
                   </tbody>
                 </table>
             </TabItem>
-            <TabItem value="fan-in-fan-out" label="Fan-In / Fan-Out">
+            <TabItem value="async-fan-in-fan-out" label="Fan-In / Fan-Out">
                 <table class="text_vertical">
                   <thead>
                       <tr>
@@ -950,7 +950,7 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
-    <TabItem value="db" label="Database">
+    <TabItem value="communication-patterns-db" label="Database">
       <table>
         <thead>
           <tr>
@@ -1053,7 +1053,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-    <TabItem value="ftp" label="File Transfer">
+    <TabItem value="communication-patterns-ftp" label="File Transfer">
         <table>
           <thead>
             <tr>
@@ -1126,7 +1126,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
     </TabItem>
-    <TabItem value="graphql" label="GraphQL">
+    <TabItem value="communication-patterns-graphql" label="GraphQL">
       <table>
         <thead>
           <tr>
@@ -1237,9 +1237,9 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-    <TabItem value="gRPC" label="gRPC">
+    <TabItem value="communication-patterns-grpc" label="gRPC">
         <Tabs queryString="secondary">
-            <TabItem value="flow" label="gRPC Flow" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="grpc-flow" label="gRPC Flow" attributes={{className:"tabs__vertical"}}>
               ```mermaid
                 graph LR
 
@@ -1272,7 +1272,7 @@ import TabItem from "@theme/TabItem";
                 clientTransport <----> |5. HTTP/2| serverTransport
               ```
             </TabItem>
-            <TabItem value="types" label="Types">
+            <TabItem value="grpc-types" label="Types">
               <table>
                 <thead>
                   <tr>
@@ -1438,7 +1438,7 @@ import TabItem from "@theme/TabItem";
                 </tbody>
               </table>
             </TabItem>
-            <TabItem value="rpc" label="RPC vs RESTful">
+            <TabItem value="grpc-rpc" label="RPC vs RESTful">
               <table>
                 <thead>
                   <tr>
@@ -1491,7 +1491,7 @@ import TabItem from "@theme/TabItem";
                 </tbody>
               </table>
             </TabItem>
-            <TabItem value="trpc" label="gRPC vs tRPC">
+            <TabItem value="grpc-trpc" label="gRPC vs tRPC">
               <table>
                 <thead>
                   <tr>
@@ -1561,9 +1561,9 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
-    <TabItem value="p2p" label="P2P">
+    <TabItem value="communication-patterns-p2p" label="P2P">
       <Tabs queryString="secondary">
-        <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        <TabItem value="p2p-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
           Peer-to-peer (P2P) is a decentralized network model where nodes, or "peers", connect directly to each other instead of via a central server. Each peer shares resources like processing power or storage, enabling efficient and flexible data distribution
 
           ```mermaid
@@ -1598,7 +1598,7 @@ import TabItem from "@theme/TabItem";
               order3 --> payment3
           ```
         </TabItem>
-        <TabItem value="types" label="Network Types">
+        <TabItem value="p2p-types" label="Network Types">
           <table>
             <thead>
               <tr>
@@ -1674,7 +1674,7 @@ import TabItem from "@theme/TabItem";
         </TabItem>
       </Tabs>
     </TabItem>
-    <TabItem value="stream" label="Stream">
+    <TabItem value="communication-patterns-stream" label="Stream">
       <table>
           <thead>
               <tr>
@@ -1842,9 +1842,9 @@ import TabItem from "@theme/TabItem";
           </tbody>
       </table>
     </TabItem>
-    <TabItem value="sync" label="Sync">
+    <TabItem value="communication-patterns-sync" label="Sync">
         <Tabs  queryString="secondary">
-            <TabItem value="development" label="Development Styles" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="sync-development" label="Development Styles" attributes={{className:"tabs__vertical"}}>
               <table>
                 <thead>
                   <tr>
@@ -1948,7 +1948,7 @@ import TabItem from "@theme/TabItem";
                 </tbody>
               </table>
             </TabItem>
-            <TabItem value="retry-patterns" label="Retry Patterns">
+            <TabItem value="sync-retry-patterns" label="Retry Patterns">
                 ### Patterns
 
                 - **Cancel**: User can cancel the request
@@ -1968,7 +1968,7 @@ import TabItem from "@theme/TabItem";
                 - Rate limiting
                 - Circuit breakers
             </TabItem>
-            <TabItem value="practices" label="Best Practices">
+            <TabItem value="sync-practices" label="Best Practices">
                 ## Versioning
 
                 - **URL Path**: `test.com/v1/users`

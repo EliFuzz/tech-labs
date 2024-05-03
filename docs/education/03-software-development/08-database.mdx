@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="db-overview" label="Overview">
       <table class="text_vertical">
         <thead>
           <tr>
@@ -216,17 +216,17 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
   </TabItem>
-  <TabItem value="selection" label="Selection Process">
+  <TabItem value="db-selection" label="Selection Process">
     <Tabs queryString="secondary">
-        <TabItem value="selection" label="Selection" attributes={{className:"tabs__vertical"}}>
+        <TabItem value="process-selection" label="Selection" attributes={{className:"tabs__vertical"}}>
             ![](./assets/database/db-selection-process.svg)
         </TabItem>
-        <TabItem value="choice" label="Choice">
+        <TabItem value="process-choice" label="Choice">
             ![](./assets/database/db-choice.svg)
         </TabItem>
     </Tabs>
   </TabItem>
-  <TabItem value="transactions" label="Transactions">
+  <TabItem value="db-transactions" label="Transactions">
     <table>
         <thead>
           <tr>
@@ -271,9 +271,9 @@ import TabItem from "@theme/TabItem";
         </tbody>
     </table>
   </TabItem>
-  <TabItem value="locking" label="Locking">
+  <TabItem value="db-locking" label="Locking">
     <Tabs queryString="secondary">
-      <TabItem value="hierarchy" label="Locking Hierarchy" attributes={{className:"tabs__vertical"}}>
+      <TabItem value="locking-hierarchy" label="Locking Hierarchy" attributes={{className:"tabs__vertical"}}>
           ```mermaid
               graph LR
 
@@ -348,7 +348,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
       </TabItem>
-      <TabItem value="types" label="Types">
+      <TabItem value="locking-types" label="Types">
           <table>
             <thead>
               <tr>
@@ -511,7 +511,7 @@ import TabItem from "@theme/TabItem";
 ## Data Storage Solutions
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="storage-solutions-overview" label="Overview">
     ### Key Points for Considerations
 
     - **Data Volume and Growth:** How much data do you currently store, and what's the anticipated growth rate?
@@ -520,7 +520,7 @@ import TabItem from "@theme/TabItem";
     - **Accessibility and Sharing Needs:**  Do you require remote access to data or collaboration features?
     - **Budgetary Constraints:**  What is your allocated budget for data storage solutions?
   </TabItem>
-  <TabItem value="processingTypes" label="Processing Types">
+  <TabItem value="storage-solutions-processingTypes" label="Processing Types">
     <table>
         <thead>
             <tr>
@@ -573,7 +573,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
     </table>
   </TabItem>
-  <TabItem value="processingData" label="Data Processing">
+  <TabItem value="storage-solutions-processingData" label="Data Processing">
     <table>
       <thead>
         <tr>
@@ -688,7 +688,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="repositories" label="Data Repositories">
+  <TabItem value="storage-solutions-repositories" label="Data Repositories">
     <table>
       <thead>
         <tr>
@@ -873,7 +873,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="parquet" label="File Storage">
+  <TabItem value="storage-solutions-file-storage" label="File Storage">
     <table>
       <thead>
         <tr>
@@ -967,7 +967,7 @@ import TabItem from "@theme/TabItem";
 ## Database Federation
 
 <Tabs>
-  <TabItem value="overview" label="Overview">
+  <TabItem value="db-federation-overview" label="Overview">
     Data Federation is a technique used to integrate data from disparate sources and provide a unified, coherent view of data to the user. Often used in enterprise applications where data is distributed across multiple databases or systems.
 
     ```mermaid
@@ -979,14 +979,14 @@ import TabItem from "@theme/TabItem";
       source2 --> db2[(DB)]
     ```
   </TabItem>
-  <TabItem value="features" label="Features">
+  <TabItem value="db-federation-features" label="Features">
     - **Transparent**: Users see one database, not separate sources
     - **Heterogeneous**: Handles different data formats and systems
     - **Extensible**: Easily add new data sources as needed
     - **Autonomous**: Leaves existing databases unchanged
     - **Integrates data**: Combines data from various sources
   </TabItem>
-  <TabItem value="pros-cons" label="Pros & Cons">
+  <TabItem value="db-federation-pros-cons" label="Pros & Cons">
     ### Pros
 
     - Flexible data sharing
@@ -1005,7 +1005,7 @@ import TabItem from "@theme/TabItem";
 ## Relational Database
 
 <Tabs queryString="primary">
-    <TabItem value="overview" label="Overview">
+    <TabItem value="relational-db-overview" label="Overview">
         Structured Query Language (**SQL**) is a programming language used for managing and manipulating relational databases.
 
         ### Query Flow
@@ -1035,9 +1035,9 @@ import TabItem from "@theme/TabItem";
         - **Table**: A collection of related data
         - **View**: Virtual table that is made up of elements of multiple physical or "real" tables
     </TabItem>
-    <TabItem value="detailed" label="Detailed">
+    <TabItem value="relational-db-detailed" label="Detailed">
         <Tabs queryString="secondary">
-            <TabItem value="subsets" label="Subsets of SQL" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="relational-db-detailed-subsets" label="Subsets of SQL" attributes={{className:"tabs__vertical"}}>
                 <table>
                   <thead>
                     <tr>
@@ -1075,7 +1075,7 @@ import TabItem from "@theme/TabItem";
                   </tbody>
                 </table>
             </TabItem>
-            <TabItem value="having" label="WHERE vs HAVING">
+            <TabItem value="relational-db-detailed-having" label="WHERE vs HAVING">
                 <table>
                   <thead>
                     <tr>
@@ -1123,7 +1123,7 @@ import TabItem from "@theme/TabItem";
                   </tbody>
                 </table>
             </TabItem>
-            <TabItem value="truncate" label="TRUNCATE vs DELETE">
+            <TabItem value="relational-db-detailed-truncate" label="TRUNCATE vs DELETE">
                 <table>
                   <thead>
                     <tr>
@@ -1213,7 +1213,7 @@ import TabItem from "@theme/TabItem";
                   </tbody>
                 </table>
             </TabItem>
-            <TabItem value="keys" label="Table Keys">
+            <TabItem value="relational-db-detailed-keys" label="Table Keys">
                 <table>
                   <thead>
                     <tr>
@@ -1269,7 +1269,7 @@ import TabItem from "@theme/TabItem";
                   </tbody>
                 </table>
             </TabItem>
-            <TabItem value="sql" label="Aggregation vs Window Function">
+            <TabItem value="relational-db-detailed-sql" label="Aggregation vs Window Function">
                 <table>
                   <thead>
                     <tr>
@@ -1312,7 +1312,7 @@ import TabItem from "@theme/TabItem";
                   </tbody>
                 </table>
             </TabItem>
-            <TabItem value="set" label="Set Theory">
+            <TabItem value="relational-db-detailed-set" label="Set Theory">
                 <table>
                     <thead>
                       <tr>
@@ -1350,7 +1350,7 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
-    <TabItem value="structures" label="Data Structures">
+    <TabItem value="relational-db-structures" label="Data Structures">
       <table class="text_vertical">
         <thead>
           <tr>
@@ -1421,7 +1421,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-    <TabItem value="syntax" label="Syntax">
+    <TabItem value="relational-db-syntax" label="Syntax">
         <table>
             <thead>
                 <tr>
@@ -1519,7 +1519,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
     </TabItem>
-    <TabItem value="normalization" label="Normalization">
+    <TabItem value="relational-db-normalization" label="Normalization">
         Process of organizing data in a relational database to minimize redundancy and improve data integrity.
 
         - **Reduce data duplication**: This saves storage space and minimizes maintenance headaches
@@ -1882,7 +1882,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
     </TabItem>
-    <TabItem value="joins" label="Joins">
+    <TabItem value="relational-db-joins" label="Joins">
         <table class="sticky column text_vertical" style={{textWrap: "nowrap"}}>
             <thead>
               <tr>
@@ -2059,7 +2059,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
     </TabItem>
-    <TabItem value="relations" label="Relations">
+    <TabItem value="relational-db-relations" label="Relations">
         <table>
             <thead>
                 <tr>
@@ -2107,7 +2107,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
     </TabItem>
-    <TabItem value="common-issues" label="Common Issues">
+    <TabItem value="relational-db-common-issues" label="Common Issues">
       <table class="text_vertical">
         <thead>
           <tr>

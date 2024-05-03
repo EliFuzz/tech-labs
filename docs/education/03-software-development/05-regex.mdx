@@ -1,522 +1,525 @@
 ---
 title: Regex
 description: Regex Overview
+hide_table_of_contents: true
 ---
 
-**Regex** - is a sequence of characters that define a search pattern.
 
-## Anchors
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`^`</b></td>
-      <td>Start of string, or start of line in multi-line pattern</td>
-      <td>`^cat`  **cat**, **cats**</td>
-    </tr>
-    <tr>
-      <td><b>`\A`</b></td>
-      <td>Start of string</td>
-      <td>`\Adog` **dog**, **dogs**</td>
-    </tr>
-    <tr>
-      <td><b>`$`</b></td>
-      <td>End of string, or end of line in multi-line pattern</td>
-      <td>`bird$` **lovebird**, **tweeting bird**, **bird**</td>
-    </tr>
-    <tr>
-      <td><b>`\Z`</b></td>
-      <td>End of string</td>
-      <td>`fish\Z` **goldfish**, **jellyfish**, **fish**</td>
-    </tr>
-    <tr>
-      <td><b>`\b`</b></td>
-      <td>Word boundary</td>
-      <td>`\bwolf\b`  **The wolf howls**, **Lone wolf**</td>
-    </tr>
-    <tr>
-      <td><b>`\B`</b></td>
-      <td>Not word boundary</td>
-      <td>`\Bcat\` **concatenate**, **scatter**</td>
-    </tr>
-    <tr>
-      <td><b>`\<`</b></td>
-      <td>Start of word</td>
-      <td>`\<day` **day**, **days are long**</td>
-    </tr>
-    <tr>
-      <td><b>`\>`</b></td>
-      <td>End of word</td>
-      <td>`night\>` **goodnight**, **tonight**</td>
-    </tr>
-  </tbody>
-</table>
+<Tabs queryString="primary">
+  <TabItem value="overview" label="Overview">
+    **Regex** - is a sequence of characters that define a search pattern.
+  </TabItem>
+  <TabItem value="detailed" label="Detailed">
+    <Tabs queryString="secondary">
+        <TabItem value="detailed-anchors" label="Anchors" attributes={{className:"tabs__vertical"}}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`^`</b></td>
+                  <td>Start of string, or start of line in multi-line pattern</td>
+                  <td>`^cat`  **cat**, **cats**</td>
+                </tr>
+                <tr>
+                  <td><b>`\A`</b></td>
+                  <td>Start of string</td>
+                  <td>`\Adog` **dog**, **dogs**</td>
+                </tr>
+                <tr>
+                  <td><b>`$`</b></td>
+                  <td>End of string, or end of line in multi-line pattern</td>
+                  <td>`bird$` **lovebird**, **tweeting bird**, **bird**</td>
+                </tr>
+                <tr>
+                  <td><b>`\Z`</b></td>
+                  <td>End of string</td>
+                  <td>`fish\Z` **goldfish**, **jellyfish**, **fish**</td>
+                </tr>
+                <tr>
+                  <td><b>`\b`</b></td>
+                  <td>Word boundary</td>
+                  <td>`\bwolf\b`  **The wolf howls**, **Lone wolf**</td>
+                </tr>
+                <tr>
+                  <td><b>`\B`</b></td>
+                  <td>Not word boundary</td>
+                  <td>`\Bcat\` **concatenate**, **scatter**</td>
+                </tr>
+                <tr>
+                  <td><b>`\<`</b></td>
+                  <td>Start of word</td>
+                  <td>`\<day` **day**, **days are long**</td>
+                </tr>
+                <tr>
+                  <td><b>`\>`</b></td>
+                  <td>End of word</td>
+                  <td>`night\>` **goodnight**, **tonight**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-character-classes" label="Character Classes">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`\c`</b></td>
+                  <td>Control character</td>
+                  <td>`\c` **\cC**, **\cZ**</td>
+                </tr>
+                <tr>
+                  <td><b>`\s`</b></td>
+                  <td>White space</td>
+                  <td>`\s` **\t**, **\n**</td>
+                </tr>
+                <tr>
+                  <td><b>`\S`</b></td>
+                  <td>Not white space</td>
+                  <td>`\S` **c**, **a**</td>
+                </tr>
+                <tr>
+                  <td><b>`\d`</b></td>
+                  <td>Digit</td>
+                  <td>`\d` **0**, **1**</td>
+                </tr>
+                <tr>
+                  <td><b>`\D`</b></td>
+                  <td>Not digit</td>
+                  <td>`\D` **c**, **a**</td>
+                </tr>
+                <tr>
+                  <td><b>`\w`</b></td>
+                  <td>Word (alphanumeric or underscore)</td>
+                  <td>`\w` **a**, **_**</td>
+                </tr>
+                <tr>
+                  <td><b>`\W`</b></td>
+                  <td>Not word</td>
+                  <td>`\W` **-**, **.**</td>
+                </tr>
+                <tr>
+                  <td><b>`\x`</b></td>
+                  <td>Hexadecimal digit</td>
+                  <td>`\x` **0x0**, **0xFF**</td>
+                </tr>
+                <tr>
+                  <td><b>`\O`</b></td>
+                  <td>Octal digit</td>
+                  <td>`\O` **07**, **075**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-posix" label="POSIX">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`[:upper:]`</b></td>
+                  <td>Upper case letters</td>
+                  <td>`[:upper:]` **A**, **B**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:lower:]`</b></td>
+                  <td>Lower case letters</td>
+                  <td>`[:lower:]` **a**, **b**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:alpha:]`</b></td>
+                  <td>All letters</td>
+                  <td>`[:alpha:]` **A**, **b**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:alnum:]`</b></td>
+                  <td>Digits and letters</td>
+                  <td>`[:alnum:]` **0**, **a**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:digit:]`</b></td>
+                  <td>Digits</td>
+                  <td>`[:digit:]` **0**, **1**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:xdigit:]`</b></td>
+                  <td>Hexadecimal digits</td>
+                  <td>`[:xdigit:]` **0**, **F**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:punct:]`</b></td>
+                  <td>Punctuation</td>
+                  <td>`[:punct:]` **!**, **.**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:blank:]`</b></td>
+                  <td>Space and tab</td>
+                  <td>`[:blank:]` **\t**, " "</td>
+                </tr>
+                <tr>
+                  <td><b>`[:space:]`</b></td>
+                  <td>Blank characters</td>
+                  <td>`[:space:]` **\t**, **\n**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:cntrl:]`</b></td>
+                  <td>Control characters</td>
+                  <td>`[:cntrl:]` **\t**, **\n**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:graph:]`</b></td>
+                  <td>Printed characters (excluding space)</td>
+                  <td>`[:graph:]` **A**, **?**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:print:]`</b></td>
+                  <td>Printed characters and spaces</td>
+                  <td>`[:print:]` **A**, **?**</td>
+                </tr>
+                <tr>
+                  <td><b>`[:word:]`</b></td>
+                  <td>Digits, letters and underscore</td>
+                  <td>`[:word:]` **a**, **_**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-assertions" label="Assertions">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`?=`</b></td>
+                  <td>Lookahead assertion</td>
+                  <td>`cat(?=s)` **cats**, **catalog**</td>
+                </tr>
+                <tr>
+                  <td><b>`?!`</b></td>
+                  <td>Negative lookahead</td>
+                  <td>`cat(?!s)` **cat**, **catch**</td>
+                </tr>
+                <tr>
+                  <td><b>`?<=`</b></td>
+                  <td>Lookbehind assertion</td>
+                  <td>`(?<=re)cat` **recat**, **precative**</td>
+                </tr>
+                <tr>
+                  <td><b>`?!=` or `?<!`</b></td>
+                  <td>Negative lookbehind</td>
+                  <td>`(?<!re)cat` **cat**, **catch**</td>
+                </tr>
+                <tr>
+                  <td><b>`?>`</b></td>
+                  <td>Once-only Subexpression</td>
+                  <td>`(?>foo|fo)bar` **foobar**, **fofoobar**</td>
+                </tr>
+                <tr>
+                  <td><b>`?()`</b></td>
+                  <td>Condition (if-then)</td>
+                  <td>`(?(?=d)foo|bar)` **dog**, **food**</td>
+                </tr>
+                <tr>
+                  <td><b>`?()|`</b></td>
+                  <td>Condition (if-then-else)</td>
+                  <td>`(?(?=d)foo|bar)` **dog**, **food**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-quantifiers" label="Quantifiers">
+            Add `?` to a quantifier to make it ungreedy.
 
-## Character Classes
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`*`</b></td>
+                  <td>0 or more</td>
+                  <td>`go*gle` **ggle**, **google**</td>
+                </tr>
+                <tr>
+                  <td><b>`+`</b></td>
+                  <td>1 or more</td>
+                  <td>`go+gle` **google**, **gogle**</td>
+                </tr>
+                <tr>
+                  <td><b>`?`</b></td>
+                  <td>0 or 1</td>
+                  <td>`colou?r` **color**, **colour**</td>
+                </tr>
+                <tr>
+                  <td><b>`{3}`</b></td>
+                  <td>Exactly 3</td>
+                  <td>`go{3}gle` **gooogle**</td>
+                </tr>
+                <tr>
+                  <td><b>`{3,}`</b></td>
+                  <td>3 or more</td>
+                  <td>`go{3,}gle` **goooogle**, **goooogle**</td>
+                </tr>
+                <tr>
+                  <td><b>`{3,5}`</b></td>
+                  <td>3, 4 or 5</td>
+                  <td>`go{3,5}gle` **goooogle**, **goooooogle**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-escape-sequences" label="Escape Sequences">
+            **Escaping** is a way of treating characters which have a special meaning in regular expressions literally, rather than as special characters.
 
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`\c`</b></td>
-      <td>Control character</td>
-      <td>`\c` **\cC**, **\cZ**</td>
-    </tr>
-    <tr>
-      <td><b>`\s`</b></td>
-      <td>White space</td>
-      <td>`\s` **\t**, **\n**</td>
-    </tr>
-    <tr>
-      <td><b>`\S`</b></td>
-      <td>Not white space</td>
-      <td>`\S` **c**, **a**</td>
-    </tr>
-    <tr>
-      <td><b>`\d`</b></td>
-      <td>Digit</td>
-      <td>`\d` **0**, **1**</td>
-    </tr>
-    <tr>
-      <td><b>`\D`</b></td>
-      <td>Not digit</td>
-      <td>`\D` **c**, **a**</td>
-    </tr>
-    <tr>
-      <td><b>`\w`</b></td>
-      <td>Word (alphanumeric or underscore)</td>
-      <td>`\w` **a**, **_**</td>
-    </tr>
-    <tr>
-      <td><b>`\W`</b></td>
-      <td>Not word</td>
-      <td>`\W` **-**, **.**</td>
-    </tr>
-    <tr>
-      <td><b>`\x`</b></td>
-      <td>Hexadecimal digit</td>
-      <td>`\x` **0x0**, **0xFF**</td>
-    </tr>
-    <tr>
-      <td><b>`\O`</b></td>
-      <td>Octal digit</td>
-      <td>`\O` **07**, **075**</td>
-    </tr>
-  </tbody>
-</table>
-
-## POSIX
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`[:upper:]`</b></td>
-      <td>Upper case letters</td>
-      <td>`[:upper:]` **A**, **B**</td>
-    </tr>
-    <tr>
-      <td><b>`[:lower:]`</b></td>
-      <td>Lower case letters</td>
-      <td>`[:lower:]` **a**, **b**</td>
-    </tr>
-    <tr>
-      <td><b>`[:alpha:]`</b></td>
-      <td>All letters</td>
-      <td>`[:alpha:]` **A**, **b**</td>
-    </tr>
-    <tr>
-      <td><b>`[:alnum:]`</b></td>
-      <td>Digits and letters</td>
-      <td>`[:alnum:]` **0**, **a**</td>
-    </tr>
-    <tr>
-      <td><b>`[:digit:]`</b></td>
-      <td>Digits</td>
-      <td>`[:digit:]` **0**, **1**</td>
-    </tr>
-    <tr>
-      <td><b>`[:xdigit:]`</b></td>
-      <td>Hexadecimal digits</td>
-      <td>`[:xdigit:]` **0**, **F**</td>
-    </tr>
-    <tr>
-      <td><b>`[:punct:]`</b></td>
-      <td>Punctuation</td>
-      <td>`[:punct:]` **!**, **.**</td>
-    </tr>
-    <tr>
-      <td><b>`[:blank:]`</b></td>
-      <td>Space and tab</td>
-      <td>`[:blank:]` **\t**, " "</td>
-    </tr>
-    <tr>
-      <td><b>`[:space:]`</b></td>
-      <td>Blank characters</td>
-      <td>`[:space:]` **\t**, **\n**</td>
-    </tr>
-    <tr>
-      <td><b>`[:cntrl:]`</b></td>
-      <td>Control characters</td>
-      <td>`[:cntrl:]` **\t**, **\n**</td>
-    </tr>
-    <tr>
-      <td><b>`[:graph:]`</b></td>
-      <td>Printed characters (excluding space)</td>
-      <td>`[:graph:]` **A**, **?**</td>
-    </tr>
-    <tr>
-      <td><b>`[:print:]`</b></td>
-      <td>Printed characters and spaces</td>
-      <td>`[:print:]` **A**, **?**</td>
-    </tr>
-    <tr>
-      <td><b>`[:word:]`</b></td>
-      <td>Digits, letters and underscore</td>
-      <td>`[:word:]` **a**, **_**</td>
-    </tr>
-  </tbody>
-</table>
-
-## Assertions
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`?=`</b></td>
-      <td>Lookahead assertion</td>
-      <td>`cat(?=s)` **cats**, **catalog**</td>
-    </tr>
-    <tr>
-      <td><b>`?!`</b></td>
-      <td>Negative lookahead</td>
-      <td>`cat(?!s)` **cat**, **catch**</td>
-    </tr>
-    <tr>
-      <td><b>`?<=`</b></td>
-      <td>Lookbehind assertion</td>
-      <td>`(?<=re)cat` **recat**, **precative**</td>
-    </tr>
-    <tr>
-      <td><b>`?!=` or `?<!`</b></td>
-      <td>Negative lookbehind</td>
-      <td>`(?<!re)cat` **cat**, **catch**</td>
-    </tr>
-    <tr>
-      <td><b>`?>`</b></td>
-      <td>Once-only Subexpression</td>
-      <td>`(?>foo|fo)bar` **foobar**, **fofoobar**</td>
-    </tr>
-    <tr>
-      <td><b>`?()`</b></td>
-      <td>Condition (if-then)</td>
-      <td>`(?(?=d)foo|bar)` **dog**, **food**</td>
-    </tr>
-    <tr>
-      <td><b>`?()|`</b></td>
-      <td>Condition (if-then-else)</td>
-      <td>`(?(?=d)foo|bar)` **dog**, **food**</td>
-    </tr>
-  </tbody>
-</table>
-
-## Quantifiers
-
-Add `?` to a quantifier to make it ungreedy.
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`*`</b></td>
-      <td>0 or more</td>
-      <td>`go*gle` **ggle**, **google**</td>
-    </tr>
-    <tr>
-      <td><b>`+`</b></td>
-      <td>1 or more</td>
-      <td>`go+gle` **google**, **gogle**</td>
-    </tr>
-    <tr>
-      <td><b>`?`</b></td>
-      <td>0 or 1</td>
-      <td>`colou?r` **color**, **colour**</td>
-    </tr>
-    <tr>
-      <td><b>`{3}`</b></td>
-      <td>Exactly 3</td>
-      <td>`go{3}gle` **gooogle**</td>
-    </tr>
-    <tr>
-      <td><b>`{3,}`</b></td>
-      <td>3 or more</td>
-      <td>`go{3,}gle` **goooogle**, **goooogle**</td>
-    </tr>
-    <tr>
-      <td><b>`{3,5}`</b></td>
-      <td>3, 4 or 5</td>
-      <td>`go{3,5}gle` **goooogle**, **goooooogle**</td>
-    </tr>
-  </tbody>
-</table>
-
-## Escape Sequences
-
-**Escaping** is a way of treating characters which have a special meaning in regular expressions literally, rather than as special characters.
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`\`</b></td>
-      <td>Escape following character</td>
-      <td>`\$` **The price is $10**</td>
-    </tr>
-    <tr>
-      <td><b>`\Q`</b></td>
-      <td>Begin literal sequence</td>
-      <td>`\Q$10\E` **The price is $10**</td>
-    </tr>
-    <tr>
-      <td><b>`\E`</b></td>
-      <td>End literal sequence</td>
-      <td>`\Q$10\E` **The price is $10**</td>
-    </tr>
-  </tbody>
-</table>
-
-## Special Characters
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`\n`</b></td>
-      <td>New line</td>
-      <td>`Hello\nWorld` **Hello\nWorld**</td>
-    </tr>
-    <tr>
-      <td><b>`\r`</b></td>
-      <td>Carriage return</td>
-      <td>`First line\rSecond line` **First line\rSecond line**</td>
-    </tr>
-    <tr>
-      <td><b>`\t`</b></td>
-      <td>Tab</td>
-      <td>`Name:\tJohn` **Name:    John**</td>
-    </tr>
-    <tr>
-      <td><b>`\v`</b></td>
-      <td>Vertical tab</td>
-      <td>`First line\vSecond line` **First line\vSecond line**</td>
-    </tr>
-    <tr>
-      <td><b>`\f`</b></td>
-      <td>Form feed</td>
-      <td>``Page 1\fPage 2` **Page 1\fPage 2**</td>
-    </tr>
-    <tr>
-      <td><b>`\o`</b></td>
-      <td>Octal character</td>
-      <td>`\o123` **123**</td>
-    </tr>
-    <tr>
-      <td><b>`\x`</b></td>
-      <td>Hex character</td>
-      <td>`\x41` **41**</td>
-    </tr>
-  </tbody>
-</table>
-
-## Groups and Ranges
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`.`</b></td>
-      <td>Any character except new line (`\n`)</td>
-      <td>`c.t` **cAt**, **c1t**</td>
-    </tr>
-    <tr>
-      <td><b>`(|)`</b></td>
-      <td>Or</td>
-      <td>`(cat|dog)` **cat**, **dog**</td>
-    </tr>
-    <tr>
-      <td><b>`()`</b></td>
-      <td>Group</td>
-      <td>`(ab)+` **abab**, **ababab**</td>
-    </tr>
-    <tr>
-      <td><b>`(?:)`</b></td>
-      <td>Passive (non-capturing) group</td>
-      <td>`(?:abc)+` **abc**, **abcabcabc**</td>
-    </tr>
-    <tr>
-      <td><b>`[]`</b></td>
-      <td>Range</td>
-      <td>`[ae]` **a**, **e**</td>
-    </tr>
-    <tr>
-      <td><b>`[^]`</b></td>
-      <td>Not in range</td>
-      <td>`[^ae]` **b**, **d**</td>
-    </tr>
-    <tr>
-      <td><b>`[a-z]`</b></td>
-      <td>Range of lowercase letters from a to z</td>
-      <td>`[a-z]+` **abc**, **hello**</td>
-    </tr>
-    <tr>
-      <td><b>`[A-Z]`</b></td>
-      <td>Range of uppercase letters from A to Z</td>
-      <td>`[A-Z]+` **ABC**, **HELLO**</td>
-    </tr>
-    <tr>
-      <td><b>`[0-9]`</b></td>
-      <td>Range of digits from 0 to 9</td>
-      <td>`[0-9]+` **123**, **45**</td>
-    </tr>
-  </tbody>
-</table>
-
-## Pattern Modifiers
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Meaning</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`g`</b></td>
-      <td>Global match</td>
-      <td>`/cat/g` **cat**, **cats**</td>
-    </tr>
-    <tr>
-      <td><b>`i`</b></td>
-      <td>Case-insensitive (PCRE)</td>
-      <td>`/cat/i` **cAt**, **Cat**</td>
-    </tr>
-    <tr>
-      <td><b>`m`</b></td>
-      <td>Multiple lines (PCRE)</td>
-      <td>`/^cat/m` **cat\nconcatenat**, **cat\nsome text\ncat**</td>
-    </tr>
-    <tr>
-      <td><b>`s`</b></td>
-      <td>Treat string as single line (PCRE)</td>
-      <td>`/cat.s/m` **cat\ns**, **cat\nsome text**</td>
-    </tr>
-    <tr>
-      <td><b>`x`</b></td>
-      <td>Allow comments and whitespace in pattern (PCRE)</td>
-      <td>`/c a t/x` **concatenate**</td>
-    </tr>
-    <tr>
-      <td><b>`e`</b></td>
-      <td>Evaluate replacement (PCRE)</td>
-      <td>`preg_replace('/(\d+)/e', '$1 * 2', '123 456')` **246 912**</td>
-    </tr>
-    <tr>
-      <td><b>`U`</b></td>
-      <td>Ungreedy pattern (PCRE)</td>
-      <td>`/a.*b/U` **a test b**</td>
-    </tr>
-  </tbody>
-</table>
-
-## String Replacement
-
-<table>
-  <thead>
-    <tr>
-      <th>Regex Component</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>`$n`</b></td>
-      <td>nth non-passive group</td>
-    </tr>
-    <tr>
-      <td><b>`$2`</b></td>
-      <td>**xyz** in `/^(abc(xyz))$/`</td>
-    </tr>
-    <tr>
-      <td><b>`$1`</b></td>
-      <td>**xyz** in `/^(?:abc)(xyz)$/`</td>
-    </tr>
-    <tr>
-      <td><b><code>&`</code></b></td>
-      <td>Before matched string</td>
-    </tr>
-    <tr>
-      <td><b>`$'`</b></td>
-      <td>After matched string</td>
-    </tr>
-    <tr>
-      <td><b>`$+`</b></td>
-      <td>Last matched string</td>
-    </tr>
-    <tr>
-      <td><b>`$&`</b></td>
-      <td>Entire matched string</td>
-    </tr>
-  </tbody>
-</table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`\`</b></td>
+                  <td>Escape following character</td>
+                  <td>`\$` **The price is $10**</td>
+                </tr>
+                <tr>
+                  <td><b>`\Q`</b></td>
+                  <td>Begin literal sequence</td>
+                  <td>`\Q$10\E` **The price is $10**</td>
+                </tr>
+                <tr>
+                  <td><b>`\E`</b></td>
+                  <td>End literal sequence</td>
+                  <td>`\Q$10\E` **The price is $10**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-special-characters" label="Special Characters">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`\n`</b></td>
+                  <td>New line</td>
+                  <td>`Hello\nWorld` **Hello\nWorld**</td>
+                </tr>
+                <tr>
+                  <td><b>`\r`</b></td>
+                  <td>Carriage return</td>
+                  <td>`First line\rSecond line` **First line\rSecond line**</td>
+                </tr>
+                <tr>
+                  <td><b>`\t`</b></td>
+                  <td>Tab</td>
+                  <td>`Name:\tJohn` **Name:    John**</td>
+                </tr>
+                <tr>
+                  <td><b>`\v`</b></td>
+                  <td>Vertical tab</td>
+                  <td>`First line\vSecond line` **First line\vSecond line**</td>
+                </tr>
+                <tr>
+                  <td><b>`\f`</b></td>
+                  <td>Form feed</td>
+                  <td>``Page 1\fPage 2` **Page 1\fPage 2**</td>
+                </tr>
+                <tr>
+                  <td><b>`\o`</b></td>
+                  <td>Octal character</td>
+                  <td>`\o123` **123**</td>
+                </tr>
+                <tr>
+                  <td><b>`\x`</b></td>
+                  <td>Hex character</td>
+                  <td>`\x41` **41**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-groups-and-ranges" label="Groups and Ranges">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`.`</b></td>
+                  <td>Any character except new line (`\n`)</td>
+                  <td>`c.t` **cAt**, **c1t**</td>
+                </tr>
+                <tr>
+                  <td><b>`(|)`</b></td>
+                  <td>Or</td>
+                  <td>`(cat|dog)` **cat**, **dog**</td>
+                </tr>
+                <tr>
+                  <td><b>`()`</b></td>
+                  <td>Group</td>
+                  <td>`(ab)+` **abab**, **ababab**</td>
+                </tr>
+                <tr>
+                  <td><b>`(?:)`</b></td>
+                  <td>Passive (non-capturing) group</td>
+                  <td>`(?:abc)+` **abc**, **abcabcabc**</td>
+                </tr>
+                <tr>
+                  <td><b>`[]`</b></td>
+                  <td>Range</td>
+                  <td>`[ae]` **a**, **e**</td>
+                </tr>
+                <tr>
+                  <td><b>`[^]`</b></td>
+                  <td>Not in range</td>
+                  <td>`[^ae]` **b**, **d**</td>
+                </tr>
+                <tr>
+                  <td><b>`[a-z]`</b></td>
+                  <td>Range of lowercase letters from a to z</td>
+                  <td>`[a-z]+` **abc**, **hello**</td>
+                </tr>
+                <tr>
+                  <td><b>`[A-Z]`</b></td>
+                  <td>Range of uppercase letters from A to Z</td>
+                  <td>`[A-Z]+` **ABC**, **HELLO**</td>
+                </tr>
+                <tr>
+                  <td><b>`[0-9]`</b></td>
+                  <td>Range of digits from 0 to 9</td>
+                  <td>`[0-9]+` **123**, **45**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-pattern-modifiers" label="Pattern Modifiers">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`g`</b></td>
+                  <td>Global match</td>
+                  <td>`/cat/g` **cat**, **cats**</td>
+                </tr>
+                <tr>
+                  <td><b>`i`</b></td>
+                  <td>Case-insensitive (PCRE)</td>
+                  <td>`/cat/i` **cAt**, **Cat**</td>
+                </tr>
+                <tr>
+                  <td><b>`m`</b></td>
+                  <td>Multiple lines (PCRE)</td>
+                  <td>`/^cat/m` **cat\nconcatenat**, **cat\nsome text\ncat**</td>
+                </tr>
+                <tr>
+                  <td><b>`s`</b></td>
+                  <td>Treat string as single line (PCRE)</td>
+                  <td>`/cat.s/m` **cat\ns**, **cat\nsome text**</td>
+                </tr>
+                <tr>
+                  <td><b>`x`</b></td>
+                  <td>Allow comments and whitespace in pattern (PCRE)</td>
+                  <td>`/c a t/x` **concatenate**</td>
+                </tr>
+                <tr>
+                  <td><b>`e`</b></td>
+                  <td>Evaluate replacement (PCRE)</td>
+                  <td>`preg_replace('/(\d+)/e', '$1 * 2', '123 456')` **246 912**</td>
+                </tr>
+                <tr>
+                  <td><b>`U`</b></td>
+                  <td>Ungreedy pattern (PCRE)</td>
+                  <td>`/a.*b/U` **a test b**</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+        <TabItem value="detailed-string-replacement" label="String Replacement">
+            <table>
+              <thead>
+                <tr>
+                  <th>Regex Component</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>`$n`</b></td>
+                  <td>nth non-passive group</td>
+                </tr>
+                <tr>
+                  <td><b>`$2`</b></td>
+                  <td>**xyz** in `/^(abc(xyz))$/`</td>
+                </tr>
+                <tr>
+                  <td><b>`$1`</b></td>
+                  <td>**xyz** in `/^(?:abc)(xyz)$/`</td>
+                </tr>
+                <tr>
+                  <td><b><code>&`</code></b></td>
+                  <td>Before matched string</td>
+                </tr>
+                <tr>
+                  <td><b>`$'`</b></td>
+                  <td>After matched string</td>
+                </tr>
+                <tr>
+                  <td><b>`$+`</b></td>
+                  <td>Last matched string</td>
+                </tr>
+                <tr>
+                  <td><b>`$&`</b></td>
+                  <td>Entire matched string</td>
+                </tr>
+              </tbody>
+            </table>
+        </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

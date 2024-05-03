@@ -11,9 +11,9 @@ import TabItem from "@theme/TabItem";
 ## Theorems
 
 <Tabs queryString="primary">
-    <TabItem value="cap" label="CAP">
+    <TabItem value="data-management-cap" label="CAP">
         <Tabs queryString="secondary">
-            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="cap-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
 
                 ```mermaid
                     graph LR
@@ -31,7 +31,7 @@ import TabItem from "@theme/TabItem";
                 - **Availability (A)**: Ensures that every request gets a response about whether it was successful or failed
                 - **Partition Tolerance (P)**: Ensures that the system continues to operate despite network partitions or communication failures
             </TabItem>
-            <TabItem value="detailed" label="Detailed">
+            <TabItem value="cap-detailed" label="Detailed">
                 <table>
                   <thead>
                     <tr>
@@ -102,9 +102,9 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
-    <TabItem value="pacelc" label="PACELC">
+    <TabItem value="data-management-pacelc" label="PACELC">
         <Tabs queryString="secondary">
-            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="pacelc-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
                 ```mermaid
                     graph TB
 
@@ -128,7 +128,7 @@ import TabItem from "@theme/TabItem";
                     partition --> |no| elc
                 ```
             </TabItem>
-            <TabItem value="detailed" label="Detailed">
+            <TabItem value="pacelc-detailed" label="Detailed">
                 <table>
                   <thead>
                     <tr>
@@ -346,9 +346,9 @@ import TabItem from "@theme/TabItem";
 ## Data Synchronization & Distribution Mechanisms
 
 <Tabs queryString="primary">
-  <TabItem value="sharding" label="Sharding/Partitioning">
+  <TabItem value="data-synchronization-sharding" label="Sharding/Partitioning">
     <Tabs queryString="secondary">
-      <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+      <TabItem value="sharding-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
         Database sharding splits a large database across machines for better handling of massive datasets.
 
         ### Benefits
@@ -357,7 +357,7 @@ import TabItem from "@theme/TabItem";
         - Avoid total service outage
         - Scale efficiently
       </TabItem>
-      <TabItem value="strategies" label="Strategies">
+      <TabItem value="sharding-strategies" label="Strategies">
         <table>
           <thead>
             <tr>
@@ -546,9 +546,9 @@ import TabItem from "@theme/TabItem";
       </TabItem>
     </Tabs>
   </TabItem>
-  <TabItem value="replication" label="Replication">
+  <TabItem value="data-synchronization-replication" label="Replication">
     <Tabs queryString="secondary">
-      <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+      <TabItem value="replication-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
         Database replication is the process of duplicating data from one database to another, ensuring that multiple copies of the same data are available across different locations or systems. This redundancy enhances data availability, fault tolerance, and scalability
 
         ### Benefits
@@ -573,7 +573,7 @@ import TabItem from "@theme/TabItem";
             - Shorter network distance leads to faster response times
             - Multi-region replication improves user experience and productivity
       </TabItem>
-      <TabItem value="types" label="Types">
+      <TabItem value="replication-types" label="Types">
         <table>
           <thead>
             <tr>
@@ -613,7 +613,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="methods" label="Methods">
+      <TabItem value="replication-methods" label="Methods">
         <table class="text_vertical">
             <thead>
             <tr>
@@ -823,7 +823,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
       </TabItem>
-      <TabItem value="cdc" label="CDC">
+      <TabItem value="replication-cdc" label="CDC">
         **Change Data Capture (CDC)**: Captures changes in real-time as they occur at the source database
 
         <table>
@@ -908,7 +908,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="strategies" label="Strategies">
+      <TabItem value="replication-strategies" label="Strategies">
         <table class="text_vertical">
           <thead>
             <tr>
@@ -1182,7 +1182,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="conflicts" label="Conflict Resolutions">
+      <TabItem value="replication-conflicts" label="Conflict Resolutions">
         <table>
           <thead>
             <tr>
@@ -1232,7 +1232,7 @@ import TabItem from "@theme/TabItem";
 ## Communication Patterns
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="communication-patterns-overview" label="Overview">
     Distributed databases offer scalability and fault tolerance, but introduce communication challenges.
 
     ### Core Concepts
@@ -1241,9 +1241,9 @@ import TabItem from "@theme/TabItem";
     - **Synchronous vs. Asynchronous**: Synchronous communication waits for a response before proceeding, while asynchronous allows independent execution. Selection depends on real-time response needs and fault tolerance requirements
     - **Consistency Models**: Different consistency models (eventual consistency, strong consistency) define how quickly updates propagate across nodes, impacting communication frequency
   </TabItem>
-  <TabItem value="patterns" label="Patterns">
+  <TabItem value="communication-patterns-detailed" label="Patterns">
     <Tabs queryString="secondary">
-      <TabItem value="choreography" label="Choreography" attributes={{className:"tabs__vertical"}}>
+      <TabItem value="communication-patterns-choreography" label="Choreography" attributes={{className:"tabs__vertical"}}>
         <table>
           <thead>
           <tr>
@@ -1313,7 +1313,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="cqrs" label="CQRS">
+      <TabItem value="communication-patterns-cqrs" label="CQRS">
         <table>
           <thead>
           <tr>
@@ -1387,7 +1387,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="dqp" label="Distributed Query Processing">
+      <TabItem value="communication-patterns-dqp" label="Distributed Query Processing">
         <table>
           <thead>
           <tr>
@@ -1466,7 +1466,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="event-sourcing" label="Event Sourcing">
+      <TabItem value="communication-patterns-event-sourcing" label="Event Sourcing">
         <table>
           <thead>
           <tr>
@@ -1544,7 +1544,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="modular" label="Modular">
+      <TabItem value="communication-patterns-modular" label="Modular">
         <table>
           <thead>
           <tr>
@@ -1611,7 +1611,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="orchestration" label="Orchestration">
+      <TabItem value="communication-patterns-orchestration" label="Orchestration">
         <table>
           <thead>
           <tr>
@@ -1690,7 +1690,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="outbox" label="Outbox">
+      <TabItem value="communication-patterns-outbox" label="Outbox">
         <table>
           <thead>
           <tr>
@@ -1768,7 +1768,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="parallel-pipelines" label="Parallel Pipelines">
+      <TabItem value="communication-patterns-parallel-pipelines" label="Parallel Pipelines">
         <table>
           <thead>
           <tr>
@@ -1841,7 +1841,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="phase-commit" label="Phase Commit">
+      <TabItem value="communication-patterns-phase-commit" label="Phase Commit">
         <table class="text_vertical">
           <thead>
           <tr>
@@ -2064,12 +2064,12 @@ import TabItem from "@theme/TabItem";
 ## Cache
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="cache-overview" label="Overview">
     Traditional cache stores frequently accessed data in a faster-to-access location (usually RAM) compared to the primary data source (typically a database).
 
     Distributed cache extends this concept by spreading the cached data across multiple machines (nodes) within a network.
   </TabItem>
-  <TabItem value="strategies" label="Strategies">
+  <TabItem value="cache-strategies" label="Strategies">
     <table>
       <thead>
         <tr>

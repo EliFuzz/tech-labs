@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-    <TabItem value="definition" label="Definition">
+    <TabItem value="paradigm-definition" label="Definition">
         <table>
           <thead>
             <tr>
@@ -77,7 +77,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
     </TabItem>
-    <TabItem value="languages" label="Languages">
+    <TabItem value="paradigm-languages" label="Languages">
         <table>
           <thead>
             <tr>
@@ -94,88 +94,88 @@ import TabItem from "@theme/TabItem";
               <td><b>C#</b></td>
               <td>OOP</td>
               <td>Closures, lambdas</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Limited (through `readonly` keyword)</td>
             </tr>
             <tr>
               <td><b>C++11</b></td>
               <td>Mixed but primary OOP</td>
               <td>Lambda expressions, function objects, and higher-order functions</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Limited (with libraries like `Immutable` C++)</td>
             </tr>
             <tr>
               <td><b>Go</b></td>
               <td>Mixed</td>
               <td>Higher-order functions and closures</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Limited (with libraries like immutable)</td>
             </tr>
             <tr>
               <td><b>Java</b></td>
               <td>OOP</td>
               <td>Lambda expressions, streams, anonymous classes</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Limited (through `final` keyword)</td>
             </tr>
             <tr>
               <td><b>JavaScript</b></td>
               <td>Mixed</td>
               <td>First-class functions, closures</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Through `Object.freeze()` and libraries like `immutable.js`</td>
             </tr>
             <tr>
               <td><b>Kotlin</b></td>
               <td>Mixed but more lean to Functional</td>
               <td>Higher-order functions, first-class functions, and closures</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Yes (with `val` keyword)</td>
             </tr>
             <tr>
               <td><b>Python</b></td>
               <td>Mixed but primary OOP</td>
               <td>First-class citizens, lambda expressions, and comprehensions</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Yes (through tuples, frozensets, etc.)</td>
             </tr>
             <tr>
               <td><b>Rust</b></td>
               <td>Mixed</td>
               <td>Closures</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Yes (through libraries like `rust-immutability`)</td>
             </tr>
             <tr>
               <td><b>Scala</b></td>
               <td>Mixed</td>
               <td>higher-order functions, traits, case classes, and mixins</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Yes (with `val` keyword)</td>
             </tr>
             <tr>
               <td><b>Swift</b></td>
               <td>Mixed</td>
               <td>First-class functions, closures</td>
-              <td>+</td>
-              <td>+</td>
+              <td>✅</td>
+              <td>✅</td>
               <td>Yes (with `let` keyword)</td>
             </tr>
           </tbody>
         </table>
     </TabItem>
-    <TabItem value="oop" label="OOP">
+    <TabItem value="paradigm-oop" label="OOP">
         <Tabs queryString="secondary">
-            <TabItem value="principles" label="Core Principles" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="oop-principles" label="Core Principles" attributes={{className:"tabs__vertical"}}>
                 - **Abstraction**: Process of simplifying complex reality by modeling classes appropriate to the problem and ignoring irrelevant details
                     - Process of exposing only the relevant and essential data to the users without showing unnecessary information
                     - Hides the unnecessary implementation details from the user
@@ -273,7 +273,7 @@ import TabItem from "@theme/TabItem";
                     - Many forms - one interface, multiple functions (behavior)
                     - *Example*: `draw()` method in shapes where each shape implements its own version
             </TabItem>
-            <TabItem value="solid" label="SOLID Principles">
+            <TabItem value="oop-solid" label="SOLID Principles">
                 - **Single Responsibility Principle (SRP)**: Class should have a single responsibility
                     - Class should have only one reason to change
                     - Class and methods should have only 1 responsibility
@@ -301,12 +301,12 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
-    <TabItem value="functional" label="Functional">
+    <TabItem value="paradigm-functional" label="Functional">
         <Tabs queryString="secondary">
-            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="functional-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
                 Paradigm that treats computation as the evaluation of mathematical functions, emphasizing immutable data and pure functions.
             </TabItem>
-            <TabItem value="advantages" label="Advantages">
+            <TabItem value="functional-advantages" label="Advantages">
                 - **Conciseness and Expressiveness**: Encourages concise and expressive code
                 - **Modularity and Reusability**: Promotes modular design for maintainable and reusable code
                 - **Parallelism and Concurrency**: Facilitates parallelism and concurrent programming
@@ -315,7 +315,7 @@ import TabItem from "@theme/TabItem";
                 - **Better Error Handling**: Provides declarative error handling mechanisms
                 - **Cross-platform Compatibility**: Runs on multiple platforms for versatility
             </TabItem>
-            <TabItem value="principles" label="Principles">
+            <TabItem value="functional-principles" label="Principles">
                 - **Immutability**: Data is immutable, preventing unexpected side effects
                 - **Pure Functions**: Functions produce the same output for the same input without side effects
                 - **First-class and Higher-order Functions**: Functions can be passed as arguments, returned as values, and assigned to variables

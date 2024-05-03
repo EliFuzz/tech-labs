@@ -10,7 +10,7 @@ import TabItem from "@theme/TabItem";
 ## Routing
 
 <Tabs queryString="primary">
-  <TabItem value="proxy" label="Gateway Proxy">
+  <TabItem value="traffic-management-proxy" label="Gateway Proxy">
     <table>
       <thead>
         <tr>
@@ -265,9 +265,9 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="balancer" label="Load Balancer (LB)">
+  <TabItem value="traffic-management-balancer" label="Load Balancer (LB)">
     <Tabs queryString="secondary">
-      <TabItem value="algorithms" label="Algorithms" attributes={{className:"tabs__vertical"}}>
+      <TabItem value="balancer-algorithms" label="Algorithms" attributes={{className:"tabs__vertical"}}>
           <table>
               <thead>
                   <tr>
@@ -442,7 +442,7 @@ import TabItem from "@theme/TabItem";
               </tbody>
           </table>
         </TabItem>
-        <TabItem value="components" label="Components">
+        <TabItem value="balancer-components" label="Components">
           <table class="text_vertical">
             <thead>
               <tr>
@@ -563,7 +563,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="techniques" label="Techniques">
+        <TabItem value="balancer-techniques" label="Techniques">
           <table>
             <thead>
               <tr>
@@ -784,7 +784,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="deployment" label="Deployment Architecture">
+        <TabItem value="balancer-deployment" label="Deployment Architecture">
           <table>
               <thead>
                 <tr>
@@ -848,7 +848,7 @@ import TabItem from "@theme/TabItem";
               </tbody>
             </table>
         </TabItem>
-        <TabItem value="protocols" label="Protocols">
+        <TabItem value="balancer-protocols" label="Protocols">
           <table>
             <thead>
               <tr>
@@ -1093,7 +1093,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
           </table>
         </TabItem>
-        <TabItem value="practices" label="Best Practices">
+        <TabItem value="balancer-best-practices" label="Best Practices">
           - **Scalability Considerations**
             - Choose a load balancer that supports horizontal scaling (adding more instances) and vertical scaling (increasing resource allocation per instance)
             - Identify scaling triggers based on metrics like CPU, memory, or connection volume
@@ -1122,9 +1122,9 @@ import TabItem from "@theme/TabItem";
 ## Rate Limiter
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="rate-limiter-overview" label="Overview">
     <Tabs queryString="secondary">
-      <TabItem value="definition" label="Definition" attributes={{className:"tabs__vertical"}}>
+      <TabItem value="rate-limiter-definition" label="Definition" attributes={{className:"tabs__vertical"}}>
         Regulates incoming and outgoing traffic. By setting maximum request thresholds within specific time frames, it controls flow at various system levels, such as APIs, servers, and networks.
 
         **Core Concepts**
@@ -1132,19 +1132,19 @@ import TabItem from "@theme/TabItem";
         - **Request Rate**: Maximum allowable requests in a set time
         - **Time Window**: Duration for rate restriction to apply
       </TabItem>
-      <TabItem value="workflow" label="Workflow">
+      <TabItem value="rate-limiter-workflow" label="Workflow">
         - **Tracking Requests**: System monitors incoming requests, typically keeping track of the IP address or unique identifier of the requester
         - **Time Window & Limits**: Specific time window is defined. Within this window, a limit is set on the number of allowable requests from a single source (IP address or identifier)
         - **Throttling & Blocking**: If a requester exceeds the defined limit within the time window, their requests are throttled or blocked for a predetermined period. This essentially puts them on hold until the next window opens
       </TabItem>
-      <TabItem value="benefits" label="Benefits">
+      <TabItem value="rate-limiter-benefits" label="Benefits">
         - **Prevent DoS Attacks**: Shields servers from overload caused by excessive requests, thwarting malicious attempts to render services unavailable
         - **Mitigate Abusive Usage**: Curbs server overload from web scrapers and data miners, promoting fair resource allocation
         - **Enhance Scalability & Performance**: Regulating traffic flow improves system stability and performance by preventing server overload
         - **Protect Logins & Accounts**: On login pages slows down brute-force attacks, bolstering account security by impeding rapid login attempts
         - **Manage API Access**: Prevents resource monopolization, ensuring equitable access for all applications
       </TabItem>
-      <TabItem value="granularity" label="Granularity">
+      <TabItem value="rate-limiter-granularity" label="Granularity">
         <table className="text_vertical">
           <thead>
             <tr>
@@ -1226,9 +1226,9 @@ import TabItem from "@theme/TabItem";
       </TabItem>
     </Tabs>
   </TabItem>
-  <TabItem value="strategies" label="Strategies">
+  <TabItem value="rate-limiter-strategies" label="Strategies">
     <Tabs queryString="secondary">
-      <TabItem value="fixedWindow" label="Fixed Window Counter" attributes={{className:"tabs__vertical"}}>
+      <TabItem value="rate-limiter-strategies-fixed-window" label="Fixed Window Counter" attributes={{className:"tabs__vertical"}}>
         <table>
           <thead>
             <tr>
@@ -1359,7 +1359,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="leakyBucket" label="Leaky Bucket">
+      <TabItem value="rate-limiter-strategies-leaky-bucket" label="Leaky Bucket">
         <table>
           <thead>
             <tr>
@@ -1483,7 +1483,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="slidingWindow" label="Sliding Window">
+      <TabItem value="rate-limiter-strategies-sliding-window" label="Sliding Window">
         <table class="text_vertical">
           <thead>
             <tr>
@@ -1735,7 +1735,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="tokenBucket" label="Token Bucket">
+      <TabItem value="rate-limiter-strategies-token-bucket" label="Token Bucket">
         <table>
           <thead>
             <tr>
@@ -1837,7 +1837,7 @@ import TabItem from "@theme/TabItem";
       </TabItem>
     </Tabs>
   </TabItem>
-  <TabItem value="geo" label="Geo-Fencing">
+  <TabItem value="rate-limiter-geo" label="Geo-Fencing">
     <table class="text_vertical">
       <thead>
         <tr>

@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-  <TabItem value="fe" label="Frontend (FE)">
+  <TabItem value="security-fe" label="Frontend (FE)">
     <table>
       <thead>
         <tr>
@@ -29,7 +29,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="fe_be" label="FE + BE">
+  <TabItem value="security-fe_be" label="FE + BE">
     <table>
       <thead>
         <tr>
@@ -159,7 +159,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="be" label="Backend (BE)">
+  <TabItem value="security-be" label="Backend (BE)">
     <table>
       <thead>
         <tr>
@@ -196,7 +196,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="db" label="Database (DB)">
+  <TabItem value="security-db" label="Database (DB)">
     <table>
       <thead>
         <tr>
@@ -340,7 +340,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="infra" label="Infrastructure (Infra)">
+  <TabItem value="security-infra" label="Infrastructure (Infra)">
     <table>
       <thead>
         <tr>
@@ -614,10 +614,10 @@ import TabItem from "@theme/TabItem";
   </tbody>
 </table>
 
-## Demystifying Inner Workflow
+## Inner Workflow
 
 <Tabs queryString="primary">
-  <TabItem value="https" label="HTTPS">
+  <TabItem value="inner-workflow-https" label="HTTPS">
     <table>
       <thead>
         <tr>
@@ -697,7 +697,7 @@ import TabItem from "@theme/TabItem";
 ## Authentication Mechanisms
 
 <Tabs queryString="primary">
-  <TabItem value="overview" label="Overview">
+  <TabItem value="auth-overview" label="Overview">
     ```mermaid
         graph TB
 
@@ -757,7 +757,7 @@ import TabItem from "@theme/TabItem";
         end
     ```
   </TabItem>
-  <TabItem value="credentials" label="Credentials">
+  <TabItem value="auth-credentials" label="Credentials">
     ```mermaid
        sequenceDiagram
        autonumber
@@ -778,7 +778,7 @@ import TabItem from "@theme/TabItem";
        Server->>Client: Authentication Status
     ```
   </TabItem>
-  <TabItem value="jwt" label="JSON Web Token (JWT)">
+  <TabItem value="auth-jwt" label="JSON Web Token (JWT)">
     <table>
         <thead>
             <tr>
@@ -866,7 +866,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
     </table>
   </TabItem>
-  <TabItem value="oauth" label="Oauth 2.0">
+  <TabItem value="auth-oauth" label="Oauth 2.0">
     <table>
       <thead>
         <tr>
@@ -930,7 +930,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="ssh" label="SSH Keys">
+  <TabItem value="auth-ssh" label="SSH Keys">
     ```mermaid
        sequenceDiagram
        autonumber
@@ -947,7 +947,7 @@ import TabItem from "@theme/TabItem";
        note left of Client: Public host keys
     ```
   </TabItem>
-  <TabItem value="ssl" label="SSL Certificates">
+  <TabItem value="auth-ssl" label="SSL Certificates">
     ```mermaid
        sequenceDiagram
        autonumber
@@ -968,7 +968,7 @@ import TabItem from "@theme/TabItem";
        Server->>Client: Secured Connection
     ```
   </TabItem>
-  <TabItem value="2af" label="2FA">
+  <TabItem value="auth-2af" label="2FA">
     2FA (Two-Factor Authentication)
 
     <table>
@@ -1038,7 +1038,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
     </table>
   </TabItem>
-  <TabItem value="2sa" label="2SA">
+  <TabItem value="auth-2sa" label="2SA">
     2SA (Two-Step Verification)
 
     ```mermaid

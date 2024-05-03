@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-  <TabItem value="representation" label="Representation">
+  <TabItem value="diagram-representation" label="Representation">
     <table>
       <thead>
       <tr>
@@ -100,9 +100,9 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="umlTypes" label="UML Types">
+  <TabItem value="diagram-umlTypes" label="UML Types">
     <Tabs queryString="secondary">
-      <TabItem value="class" label="Class Diagram" attributes={{className: "tabs__vertical"}}>
+      <TabItem value="diagram-uml-class" label="Class Diagram" attributes={{className: "tabs__vertical"}}>
         The most commonly used UML diagram, representing classes, attributes, operations, and their relationships within a system.
 
         **Basic Components of a Class Diagram:**
@@ -220,7 +220,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="complement" label="Component Diagram">
+      <TabItem value="diagram-uml-complement" label="Component Diagram">
         Displays structural relationships of software system elements, particularly useful for complex systems with multiple components communicating via interfaces
 
         <table>
@@ -303,7 +303,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="Composite" label="Composite Structure Diagram">
+      <TabItem value="diagram-uml-Composite" label="Composite Structure Diagram">
         Shows the internal structure of a class
 
         <table>
@@ -356,7 +356,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="deployment" label="Deployment Diagram">
+      <TabItem value="diagram-uml-deployment" label="Deployment Diagram">
         Illustrates system hardware and software deployment across multiple machines with unique configurations
 
         <table>
@@ -396,7 +396,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
       </TabItem>
-      <TabItem value="object" label="Object Diagram">
+      <TabItem value="diagram-uml-object" label="Object Diagram">
         Illustrates object relationships using real-world examples, depicting the system's state at a given time
 
         <table>
@@ -416,7 +416,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
       </TabItem>
-      <TabItem value="package" label="Package Diagram">
+      <TabItem value="diagram-uml-package" label="Package Diagram">
         Represents package dependencies and system architecture levels using package import and merge mechanisms
 
         <table>
@@ -436,7 +436,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
       </TabItem>
-      <TabItem value="activity" label="Activity Diagram">
+      <TabItem value="diagram-uml-activity" label="Activity Diagram">
         Graphical representation of business or operational workflows, an alternative to State Machine diagrams
 
         **Key aspects**
@@ -529,7 +529,7 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
       </TabItem>
-      <TabItem value="communication" label="Communication Diagram">
+      <TabItem value="diagram-uml-communication" label="Communication Diagram">
         Focuses on messages passed between objects, similar to sequence diagrams but emphasizing communication.
 
         Communication diagrams provide a deeper insight into how components interact, prioritizing communication flow over event sequencing.
@@ -543,7 +543,7 @@ import TabItem from "@theme/TabItem";
 
         In essence, communication diagrams emphasize component interaction dynamics, aiding in comprehensive understanding and planning within programs
       </TabItem>
-      <TabItem value="sequence" label="Sequence Diagram">
+      <TabItem value="diagram-uml-sequence" label="Sequence Diagram">
         Represents object interactions and their order of occurrence for a particular scenario
 
         <table>
@@ -618,10 +618,10 @@ import TabItem from "@theme/TabItem";
             </tbody>
         </table>
       </TabItem>
-      <TabItem value="state" label="State Machine Diagram">
+      <TabItem value="diagram-uml-state" label="State Machine Diagram">
         Describes the behavior of objects in different states, similar to activity diagrams
       </TabItem>
-      <TabItem value="useCase" label="Use Case Diagram">
+      <TabItem value="diagram-uml-useCase" label="Use Case Diagram">
         Represents system functionalities and their relationships, illustrating internal/external controllers (actors)
 
         **Use Cases**
@@ -638,9 +638,8 @@ import TabItem from "@theme/TabItem";
         - **Goals**: End results of use cases, described through activities and variants leading to achievement
       </TabItem>
     </Tabs>
-
   </TabItem>
-  <TabItem value="bestPractices" label="Best Practices">
+  <TabItem value="diagram-bestPractices" label="Best Practices">
     - **Use Consistent Naming Conventions**: Always use standard naming conventions for your UML diagrams. This will ensure that all stakeholders understand the diagrams without any confusion
     - **Avoid Using Excessive Details**: UML diagrams should be simple and not cluttered with unnecessary information. If the diagram becomes too complex, it will be difficult to understand
     - **Use Correct Symbols and Notations**: UML has a set of standard symbols and notations. Make sure you use the correct ones for the appropriate elements in your diagrams
@@ -661,7 +660,7 @@ import TabItem from "@theme/TabItem";
     - **Use Association, Aggregation, and Composition Wisely**: Understand and use these relationships appropriately in your diagrams
     - **Make Effective Use of Stereotypes**: Stereotypes can help to clarify the meaning of elements in your diagrams. Use them effectively
   </TabItem>
-  <TabItem value="prosAndCons" label="Pros and Cons">
+  <TabItem value="diagram-pros-cons" label="Pros and Cons">
     **Pros:**
     - **Standardization**: uniform method to portray system models, ensuring consistent communication among developers and stakeholders
     - **Communication**: act as a robust communication medium among stakeholders, simplifying the exchange of intricate concepts
@@ -675,6 +674,5 @@ import TabItem from "@theme/TabItem";
     - **Ambiguity**: interpretation can be subjective, leading to potential confusion as different individuals may perceive them differently
     - **Learning Curve**: UML's extensive features necessitate a steep learning curve, often requiring training and experience for effective utilization by teams
     - **Over-Modeling or Under-Modeling**: risk either excessive detail (over-modeling) or omission of crucial information (under-modeling), necessitating a delicate balance for optimal effectiveness
-
   </TabItem>
 </Tabs>

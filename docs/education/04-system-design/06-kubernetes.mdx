@@ -13,14 +13,10 @@ import TabItem from "@theme/TabItem";
 ## Overview
 
 <Tabs queryString="primary">
-  <TabItem value="foundational" label="Foundational">
+  <TabItem value="k8s-foundational" label="Foundational">
     **Foundational Patterns** are reusable design principles and best practices for building applications that run on Kubernetes.
     <Tabs queryString="secondary">
-      <TabItem
-          value="predictable"
-          label="Predictable Demands"
-          attributes={{className: "tabs__vertical"}}
-      >
+      <TabItem value="foundational-predictable" label="Predictable Demands" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/foundational/predictable-demands.svg)
 
         **Predictable Demands** pattern emphasizes the importance of declaring application requirements, such as resource needs, to ensure efficient automation and adherence to
@@ -28,7 +24,7 @@ import TabItem from "@theme/TabItem";
         prevent resource contention. This approach benefits both applications and clusters, enhancing performance, reliability, scalability, efficiency, and simplifying resource management and
         troubleshooting.
       </TabItem>
-      <TabItem value="declarative" label="Declarative Deployment">
+      <TabItem value="foundational-declarative" label="Declarative Deployment">
         **Declarative deployment** involves specifying the desired state of the system, including aspects like the number of replicas, image versions, configurations, and resources (`Pods`,
         `ReplicaSets`, `Services`).
         Kubernetes then automatically manages the creation, scaling, updating, and deletion of underlying resources to match this desired state. This contrasts with imperative deployment, where
@@ -77,7 +73,7 @@ import TabItem from "@theme/TabItem";
         In Kubernetes, this is achieved by creating a new Deployment with a small replica count for the canary instance. The Service then directs some users to the updated Pod instances. Once
         confident in the new `ReplicaSet`, it’s scaled up and the old `ReplicaSet` is scaled down, effectively executing a controlled, user-tested incremental rollout.
       </TabItem>
-      <TabItem value="healthProbe" label="Health Probe">
+      <TabItem value="foundational-healthProbe" label="Health Probe">
         **Health Probe**
 
         **Health Probe** pattern is a way for an application to communicate its health state to Kubernetes, which can then take appropriate actions based on the application’s status. For example,
@@ -125,7 +121,7 @@ import TabItem from "@theme/TabItem";
 
         ![](./assets/kubernetes/foundational/startup-probes.svg)
       </TabItem>
-      <TabItem value="managedLifecycle" label="Managed Lifecycle">
+      <TabItem value="foundational-managedLifecycle" label="Managed Lifecycle">
         ![](./assets/kubernetes/foundational/managed-lifecycle.svg)
 
         Cloud-native applications need to adjust their lifecycles in response to platform events. They provide APIs for health checks and respond to platform commands. The deployment unit of an
@@ -138,7 +134,7 @@ import TabItem from "@theme/TabItem";
         pattern**
         and **Entrypoint Rewriting** can be used.
       </TabItem>
-      <TabItem value="automatedPlacement" label="Automated Placement">
+      <TabItem value="foundational-automatedPlacement" label="Automated Placement">
         **Automated Placement**
 
         ![](./assets/kubernetes/foundational/automated-placement.svg)
@@ -198,14 +194,13 @@ import TabItem from "@theme/TabItem";
         consideration of factors outside of the Kubernetes cluster when assigning Pods to nodes.
       </TabItem>
     </Tabs>
-
   </TabItem>
-  <TabItem value="behavioral" label="Behavioral">
+  <TabItem value="k8s-behavioral" label="Behavioral">
     **Behavioral Patterns** describe how to manage the life-cycle of Pods, which are the basic units of deployment in Kubernetes. Depending on the type of workload, a Pod might run until completion as
     a batch job, be scheduled to run periodically as a cron job, run as a daemon service on every node, or run as a singleton service on a specific node.
 
     <Tabs queryString="secondary">
-      <TabItem value="batch" label="Batch Job" attributes={{className: "tabs__vertical"}}>
+      <TabItem value="behavioral-batch" label="Batch Job" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/behavioral/batch-job.svg)
 
         **Kubernetes Resources and Controllers**
@@ -243,7 +238,7 @@ import TabItem from "@theme/TabItem";
 
         If you have an unlimited stream of work items to process, other controllers like `ReplicaSet` are recommended for managing the Pods processing these work items.
       </TabItem>
-      <TabItem value="periodic" label="Periodic Job">
+      <TabItem value="behavioral-periodic" label="Periodic Job">
         Periodic jobs, often used for system maintenance or administrative tasks, traditionally rely on specialized scheduling software or cron.
 
         However, these methods can be costly and difficult to maintain. Developers usually create solutions that handle both scheduling and business logic, but this can lead to high resource
@@ -255,7 +250,7 @@ import TabItem from "@theme/TabItem";
         cases
         of duplicate runs, no runs, parallel runs, or cancellations.
       </TabItem>
-      <TabItem value="daemon" label="Daemon Service">
+      <TabItem value="behavioral-daemon" label="Daemon Service">
         The Daemon Service pattern in Kubernetes is used to run prioritized, infrastructure-focused Pods on specific nodes. This is primarily used by administrators to run node-specific Pods to
         enhance the platform’s capabilities. In software systems, a daemon is a long-running, self-recovering program that runs as a background process. In Kubernetes, a similar concept exists in the
         form of a `DaemonSet`, which represents Pods that run on cluster nodes and provide background capabilities for the rest of the cluster.
@@ -285,7 +280,7 @@ import TabItem from "@theme/TabItem";
         - **External Push**: The application in the `DaemonSets` Pods can push data to a well-known location or service that’s external to the Pod
         - **Static Pods**: managed by the Kubelet only and run on one node only. However, `DaemonSets` are better integrated with the rest of the platform and are recommended over static Pods
       </TabItem>
-      <TabItem value="singleton" label="Singleton Service">
+      <TabItem value="behavioral-singleton" label="Singleton Service">
         The Singleton Service pattern in Kubernetes is a method that ensures only one instance of an application is active at any given time, while still maintaining high availability. This pattern is
         particularly useful in scenarios where tasks need to be executed by a single service instance to avoid duplication or to maintain order.
 
@@ -364,7 +359,7 @@ import TabItem from "@theme/TabItem";
         For workloads that only have one instance (singleton workloads), setting `maxUnavailable` to 0 or `minAvailable` to 100% will prevent any voluntary eviction, effectively making the Pod
         unevictable. This is beneficial in scenarios where the cluster operator needs to coordinate downtime with the singleton workload owner before evicting a non-highly available Pod.
       </TabItem>
-      <TabItem value="stateless" label="Stateless Service">
+      <TabItem value="behavioral-stateless" label="Stateless Service">
         ![](./assets/kubernetes/behavioral/stateless-service.svg)
 
         The Stateless Service pattern is a technique for building applications composed of identical, ephemeral replicas, making them suitable for dynamic cloud environments. These applications can be
@@ -418,7 +413,7 @@ import TabItem from "@theme/TabItem";
         replica.
         This is one of the key differences between how stateless and stateful workloads are managed in Kubernetes.
       </TabItem>
-      <TabItem value="stateful" label="Stateful Service">
+      <TabItem value="behavioral-stateful" label="Stateful Service">
         ![](./assets/kubernetes/behavioral/stateful-service.svg)
 
         Stateful applications like **Apache ZooKeeper**, **MongoDB**, **Redis**, or **MySQL** are unique and long-lived, often serving as the backbone for highly scalable stateless services.
@@ -489,7 +484,7 @@ import TabItem from "@theme/TabItem";
         managing
         unique Pods, whereas `ReplicaSet` is for managing identical, replaceable Pods.
       </TabItem>
-      <TabItem value="discovery" label="Service Discovery">
+      <TabItem value="behavioral-discovery" label="Service Discovery">
         ![](./assets/kubernetes/behavioral/service-discovery.svg)
 
         The Service Discovery pattern in Kubernetes offers a stable endpoint for service consumers to access service providers, regardless of whether they are within or outside the cluster.
@@ -573,7 +568,7 @@ import TabItem from "@theme/TabItem";
         Despite being the most complex service discovery mechanism on Kubernetes, it is highly useful for exposing multiple services under the same IP address, particularly when all services use the
         same L7 (typically HTTP) protocol.
       </TabItem>
-      <TabItem value="selfAwareness" label="Self Awareness">
+      <TabItem value="behavioral-self-awareness" label="Self Awareness">
         ![](./assets/kubernetes/behavioral/self-awareness.svg)
 
         The Self Awareness pattern in Kubernetes is beneficial for applications that require runtime information such as the Pod name, Pod IP address, and the hostname. This information, along with
@@ -592,7 +587,7 @@ import TabItem from "@theme/TabItem";
     </Tabs>
 
   </TabItem>
-  <TabItem value="structural" label="Structural">
+  <TabItem value="k8s-structural" label="Structural">
     Structural patterns are related to organizing containers within a Kubernetes pod. Having good cloud-native containers is the first step, but not enough. Reusing containers and combining them into
     Pods to achieve the desired outcome is the next step.
 
@@ -608,7 +603,7 @@ import TabItem from "@theme/TabItem";
     This pattern is particularly useful in microservices architectures where each service can be encapsulated in its own container.
 
     <Tabs queryString="secondary">
-      <TabItem value="initContainer" label="Init Container" attributes={{className: "tabs__vertical"}}>
+      <TabItem value="structural-init-container" label="Init Container" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/structural/init-container.svg)
 
         The Init Container pattern in Kubernetes is a way to separate initialization tasks from the main application containers, similar to constructors in programming languages.
@@ -633,7 +628,7 @@ import TabItem from "@theme/TabItem";
         This pattern ensures successful completion of each initialization step before moving to the next, allowing for the creation of containers focused on either initialization or application tasks,
         which can be reused in different contexts within Pods with predictable guarantees.
       </TabItem>
-      <TabItem value="sidecar" label="Sidecar">
+      <TabItem value="structural-sidecar" label="Sidecar">
         ![](./assets/kubernetes/structural/sidecar.svg)
 
         Containers are a popular technology for unified application development and deployment, but there’s a need to extend their functionality and enable collaboration among them.
@@ -651,7 +646,7 @@ import TabItem from "@theme/TabItem";
 
         The choice between using a separate process (sidecar) or merging it into the main container depends on factors including resource consumption and the specific requirements of your application.
       </TabItem>
-      <TabItem value="adapter" label="Adapter">
+      <TabItem value="structural-adapter" label="Adapter">
         ![](./assets/kubernetes/structural/adapter.svg)
 
         The Adapter pattern is a design strategy in containerized systems that provides a unified interface for different components. It’s a specialization of the Sidecar pattern, aimed at adapting
@@ -664,7 +659,7 @@ import TabItem from "@theme/TabItem";
         In essence, the Adapter acts as a reverse proxy to a heterogeneous system, hiding its complexity behind a unified interface. Using a distinct name separate from the generic Sidecar pattern
         allows for clearer communication of this pattern’s purpose.
       </TabItem>
-      <TabItem value="ambassador" label="Ambassador">
+      <TabItem value="structural-ambassador" label="Ambassador">
         ![](./assets/kubernetes/structural/ambassador.svg)
 
         The Ambassador pattern is a design pattern used in containerized services to manage the complexities of accessing external services. It acts as a proxy, decoupling the main container from
@@ -685,7 +680,7 @@ import TabItem from "@theme/TabItem";
     </Tabs>
 
   </TabItem>
-  <TabItem value="configuration" label="Configuration">
+  <TabItem value="k8s-configuration" label="Configuration">
     Kubernetes configuration is based on a declarative model, which means that you define what you want your deployment to look like, rather than how to achieve it. This is in contrast to imperative
     models, where you specify a series of steps to follow. The declarative model allows for more flexibility and easier management of complex deployments.
 
@@ -700,7 +695,7 @@ import TabItem from "@theme/TabItem";
     needing to modify the application or recreate its container image.
 
     <Tabs queryString="secondary">
-      <TabItem value="envVar" label="EnvVar Configuration" attributes={{className: "tabs__vertical"}}>
+      <TabItem value="configuration-envvar" label="EnvVar Configuration" attributes={{className: "tabs__vertical"}}>
         Configuring applications using environment variables is a simple and universally applicable method, suitable for all environments and platforms.
 
         Nontrivial applications need configuration for accessing data sources, external services, or production-level tuning. These configurations should be externalized rather than hardcoded within
@@ -722,7 +717,7 @@ import TabItem from "@theme/TabItem";
         be set before an application starts and cannot be changed later. This promotes immutability, meaning a new application container is started with a modified configuration whenever changes are
         needed.
       </TabItem>
-      <TabItem value="configurationResource" label="Configuration Resource">
+      <TabItem value="configuration-configuration-resource" label="Configuration Resource">
         Kubernetes offers 2 resources, **ConfigMap** and **Secret**, for managing regular and confidential data respectively. These resources allow the configuration lifecycle to be separated from the
         application lifecycle. They store and manage key-value pairs, which can be used as environment variables or files mapped to a volume in a Pod.
 
@@ -741,7 +736,7 @@ import TabItem from "@theme/TabItem";
         However, there are still ways to access Secrets as a root user or by creating a Pod and mounting a Secret. Role-based access control (RBAC) can limit access to Secrets, but users who can
         create Pods in a namespace can still escalate their privileges within that namespace. Thus, additional encryption of sensitive information is often done at the application level.
       </TabItem>
-      <TabItem value="immutable" label="Immutable Configuration">
+      <TabItem value="configuration-immutable" label="Immutable Configuration">
         The Immutable Configuration pattern is a strategy to ensure that your application’s configuration data is always in a known and consistent state.
 
         It addresses the challenge of managing numerous environment variables and the size limitation of ConfigMaps in Kubernetes.
@@ -792,7 +787,7 @@ import TabItem from "@theme/TabItem";
         To switch configurations between development and production environments, you simply need to change the image of the init container either by updating the `YAML` definition or using `kubectl`.
         However, editing the resource descriptor for each environment is not ideal.
       </TabItem>
-      <TabItem value="template" label="Configuration Template">
+      <TabItem value="configuration-template" label="Configuration Template">
         ![](./assets/kubernetes/configuration/configuration-template.svg)
 
         The Configuration Template pattern is a method for managing large and complex configurations during application startup. It creates a configuration specific to the target runtime environment
@@ -818,7 +813,7 @@ import TabItem from "@theme/TabItem";
     </Tabs>
 
   </TabItem>
-  <TabItem value="security" label="Security">
+  <TabItem value="k8s-security" label="Security">
 
     ![](./assets/kubernetes/security/security-patterns.svg)
 
@@ -831,7 +826,7 @@ import TabItem from "@theme/TabItem";
     - **Access Control**: This describes how an application can authenticate and interact with the Kubernetes API server
 
     <Tabs queryString="secondary">
-      <TabItem value="processContainment" label="Process Containment" attributes={{className: "tabs__vertical"}}>
+      <TabItem value="security-process-containment" label="Process Containment" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/security/process-containment-pattern.svg)
 
         Despite the implementation of various security measures such as static code analysis, dynamic scanning tools, and regular scanning of application dependencies for vulnerabilities, new code and
@@ -935,7 +930,7 @@ import TabItem from "@theme/TabItem";
         For example, a namespace can be created that rejects any Pods that don’t meet the baseline standard, and also issues a warning for Pods that don’t comply with the restricted standards
         requirements.
       </TabItem>
-      <TabItem value="networkSegmentation" label="Network Segmentation">
+      <TabItem value="security-network-segmentation" label="Network Segmentation">
         In Kubernetes, all Pods can connect to each other by default, which can pose security risks, particularly when multiple independent applications are running in the same cluster. While
         Kubernetes’ Namespaces offer a way to group related entities, they don’t inherently provide isolation for containers within those namespaces. As such, it’s vital to limit network access to and
         from Pods to bolster application security.
@@ -1076,7 +1071,7 @@ import TabItem from "@theme/TabItem";
 
         However, it’s crucial to understand that while `AuthorizationPolicy` is about application authorization, the Kubernetes RBAC model is about securing access to the Kubernetes API server.
       </TabItem>
-      <TabItem value="secureConfiguration" label="Secure Configuration">
+      <TabItem value="security-secure-configuration" label="Secure Configuration">
         Applications often need to interact with external systems, necessitating authentication and secure credential storage. Kubernetes provides Secret resources for storing confidential data, but
         these are merely Base64 encoded, not encrypted. Despite Kubernetes’ efforts to limit access to Secrets, they can be exposed when stored outside the cluster.
 
@@ -1240,7 +1235,7 @@ import TabItem from "@theme/TabItem";
         This
         technique is entirely transparent to the user and has fewer moving parts than hooking up a CSI secret storage volume with the provider deployment for a particular SMS product.
       </TabItem>
-      <TabItem value="accessControl" label="Access Control">
+      <TabItem value="security-access-control" label="Access Control">
         ![](./assets/kubernetes/security/access-control.svg)
 
         There are 2 core concepts of security:
@@ -1502,11 +1497,10 @@ import TabItem from "@theme/TabItem";
         power, Kubernetes RBAC can be complex to understand and even more complicated to debug. Therefore, it’s important to have a good understanding of a given RBAC setup.
       </TabItem>
     </Tabs>
-
   </TabItem>
-  <TabItem value="advanced" label="Advanced">
+  <TabItem value="k8s-advanced" label="Advanced">
     <Tabs queryString="secondary">
-      <TabItem value="controller" label="Controller" attributes={{className: "tabs__vertical"}}>
+      <TabItem value="advanced-controller" label="Controller" attributes={{className: "tabs__vertical"}}>
         ![](./assets/kubernetes/advanced/controller.svg)
 
         In Kubernetes, controllers are like diligent supervisors that constantly monitor and maintain resources to ensure they match the desired state. This process is known as state reconciliation.
@@ -1535,7 +1529,7 @@ import TabItem from "@theme/TabItem";
         request to
         monitor API Server events, checking if a changed `ConfigMap` carries an annotation. If so, it deletes all Pods matching the annotation’s selector.
       </TabItem>
-      <TabItem value="operator" label="Operator">
+      <TabItem value="advanced-operator" label="Operator">
         ![](./assets/kubernetes/advanced/operator.svg)
 
         In Kubernetes, an operator is a type of controller that uses a **CustomResourceDefinition (CRD)** to automate tasks for a specific application, thereby enhancing the platform’s capabilities.
@@ -1611,7 +1605,7 @@ import TabItem from "@theme/TabItem";
         want to implement your business logic in a language other than Go. Examples of controllers implemented using Metacontroller include `StatefulSet`, `Blue-Green Deployment`, `Indexed Job`, and
         `Service per Pod`.
       </TabItem>
-      <TabItem value="elasticScale" label="Elastic Scale">
+      <TabItem value="advanced-elastic-scale" label="Elastic Scale">
         Kubernetes’ Elastic Scale pattern enables multi-dimensional application scaling, including horizontal, vertical, and cluster scaling.
 
         This is particularly useful for workloads that fluctuate seasonally or over time. Kubernetes simplifies the process of determining the necessary resources for a container, the number of
@@ -1763,7 +1757,7 @@ import TabItem from "@theme/TabItem";
 
         These techniques can be automated, which aligns with the cloud-native mindset.
       </TabItem>
-      <TabItem value="imageBuilder" label="Image Builder">
+      <TabItem value="advanced-image-builder" label="Image Builder">
         ![](./assets/kubernetes/advanced/image-builder.svg)
 
         Traditionally, container images are built outside the cluster, pushed to a registry, and then referenced in the Kubernetes Deployment descriptors. However, building within the cluster has
@@ -1909,6 +1903,5 @@ import TabItem from "@theme/TabItem";
         build that creates the runtime artifact, such as a binary executable. This artifact is then used by a second build, typically a Docker build.
       </TabItem>
     </Tabs>
-
   </TabItem>
 </Tabs>

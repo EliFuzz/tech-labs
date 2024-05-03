@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-    <TabItem value="overview" label="High Overview">
+    <TabItem value="microservices-overview" label="High Overview">
         <table>
           <tr>
             <th>Category</th>
@@ -76,9 +76,9 @@ import TabItem from "@theme/TabItem";
           </tr>
         </table>
     </TabItem>
-    <TabItem value="monolithic" label="Monolithic">
+    <TabItem value="microservices-monolithic" label="Monolithic">
       <Tabs queryString="secondary">
-        <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        <TabItem value="monolithic-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
           ```mermaid
               graph TB
 
@@ -130,7 +130,7 @@ import TabItem from "@theme/TabItem";
 
           As a result, monolithic applications are often difficult to scale and maintain and often migrate to a **microservices architecture**. This involves identifying and modifying tightly coupled entities, which is complex.
         </TabItem>
-        <TabItem value="modular" label="Modular Monolith">
+        <TabItem value="monolithic-modular" label="Modular Monolith">
           Monolithic applications can be transformed into **modular monolith** by starting with a single repository and clear boundaries between business contexts. Which will allow for easier transition to microservices architecture.
 
           **Advantages of Modular Monolith**
@@ -220,9 +220,9 @@ import TabItem from "@theme/TabItem";
         </TabItem>
       </Tabs>
     </TabItem>
-    <TabItem value="microservices" label="Microservices">
+    <TabItem value="microservices-detailed" label="Microservices">
       <Tabs queryString="secondary">
-        <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+        <TabItem value="microservices-detailed-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
           ```mermaid
               graph LR
 
@@ -251,7 +251,7 @@ import TabItem from "@theme/TabItem";
           - if we needed to update our country codes library, and have all services pick up the new data immediately, we’d need to redeploy all services at the moment the new library is available
               - this is a classic lock-step release, and exactly what we’re trying to avoid with microservice architectures
         </TabItem>
-        <TabItem value="advantages" label="Advantages">
+        <TabItem value="microservices-detailed-advantages" label="Advantages">
           - **Simple Components**: Small, focused components, simplifying development and maintenance
           - **Team Autonomy**: Teams should have the independence to develop, test, and deploy their software autonomously, enabling faster iterations and reducing dependencies on other teams
           - **Fast Deployment Pipeline**: A rapid deployment pipeline facilitates quick feedback and frequent deployments
@@ -263,7 +263,7 @@ import TabItem from "@theme/TabItem";
           - **Minimize Runtime Coupling**: Reducing runtime coupling maximizes availability and minimizes latency for operations, improving overall system performance
           - **Minimize Design Time Coupling**: Decreasing design time coupling reduces the likelihood of services needing to be changed simultaneously, enhancing productivity and flexibility in development
         </TabItem>
-        <TabItem value="principles" label="Principles">
+        <TabItem value="microservices-detailed-principles" label="Principles">
           - **Organized around Business Capabilities**
             - Traditional division based on technology layers leads to cross-team projects for even simple changes due to Conway's Law (the way people within an organization communicate influences the structure of the systems they build)
             - Microservice approach focuses on organizing services around business capabilities
@@ -298,7 +298,7 @@ import TabItem from "@theme/TabItem";
             - Supports evolutionary design, modular decomposition, and granular release planning
             - Prefers tolerant services over heavy versioning for managing changes
         </TabItem>
-        <TabItem value="practices" label="Best Practices">
+        <TabItem value="microservices-detailed-practices" label="Best Practices">
           - Use separate data storage for each microservice
           - Keep code at a similar level of maturity
           - Separate build for each microservice
@@ -311,7 +311,7 @@ import TabItem from "@theme/TabItem";
         </TabItem>
       </Tabs>
     </TabItem>
-    <TabItem value="architecture" label="Architecture">
+    <TabItem value="microservices-architecture" label="Architecture">
         <table>
             <thead>
                 <tr>
@@ -404,7 +404,7 @@ import TabItem from "@theme/TabItem";
 ## Architecture Overview
 
 <Tabs queryString="primary">
-    <TabItem value="overview" label="Overview">
+    <TabItem value="architecture-overview" label="Overview">
       <table>
         <thead>
           <tr>
@@ -462,7 +462,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-    <TabItem value="common" label="Common Setup">
+    <TabItem value="architecture-common" label="Common Setup">
       <table>
         <thead>
           <tr>
@@ -561,7 +561,7 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-  <TabItem value="micro-frontends" label="Micro Frontends">
+  <TabItem value="architecture-micro-frontends" label="Micro Frontends">
     <table>
       <thead>
         <tr>
@@ -622,7 +622,7 @@ import TabItem from "@theme/TabItem";
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="repos" label="Repos">
+  <TabItem value="architecture-repos" label="Repos">
     <table>
       <thead>
         <tr>
@@ -685,7 +685,7 @@ import TabItem from "@theme/TabItem";
 ## Project Structure
 
 <Tabs queryString="primary">
-  <TabItem value="frontend" label="Frontend">
+  <TabItem value="project-structure-frontend" label="Frontend">
     <Tabs queryString="secondary">
       <TabItem value="frontend-overview" label="Overview" attributes={{ className: "tabs__vertical" }}>
         <table>
@@ -878,7 +878,7 @@ import TabItem from "@theme/TabItem";
       </TabItem>
     </Tabs>
   </TabItem>
-  <TabItem value="backend" label="Backend">
+  <TabItem value="project-structure-backend" label="Backend">
     <Tabs queryString="secondary">
       <TabItem value="backend-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
         <table>
@@ -1131,7 +1131,7 @@ import TabItem from "@theme/TabItem";
 ## Migration
 
 <Tabs queryString="primary">
-    <TabItem value="process" label="Process">
+    <TabItem value="migration-process" label="Process">
       - **Discovering system operations**
         - Analyzing existing monolithic architecture
         - Identifying functionalities and dependencies
@@ -1183,9 +1183,9 @@ import TabItem from "@theme/TabItem";
         - Ensuring backward compatibility and data migration strategies
         - Documenting refactoring decisions and outcomes
     </TabItem>
-    <TabItem value="decomposition" label="Service Decomposition">
+    <TabItem value="migration-decomposition" label="Service Decomposition">
         <Tabs queryString="secondary">
-            <TabItem value="overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+            <TabItem value="decomposition-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
               <table className="stick column">
                 <thead>
                   <tr>
@@ -1229,7 +1229,7 @@ import TabItem from "@theme/TabItem";
                 </tbody>
               </table>
             </TabItem>
-            <TabItem value="subdomain" label="Decompose by Subdomain / Business Capability">
+            <TabItem value="decomposition-subdomain" label="Decompose by Subdomain / Business Capability">
               ```mermaid
                 graph LR
 
@@ -1256,7 +1256,7 @@ import TabItem from "@theme/TabItem";
               - **Scalable Team Size**: Services should be small enough that they can be developed and managed effectively by a team of 6-10 people, promoting efficiency and communication
               - **Autonomous Teams**: Teams responsible for services should have the autonomy to develop, deploy, and maintain their services independently, minimizing dependencies and streamlining workflows
             </TabItem>
-            <TabItem value="selfContained" label="Self-Contained Service">
+            <TabItem value="decomposition-selfContained" label="Self-Contained Service">
                 ```mermaid
                     graph RL
 
@@ -1299,7 +1299,7 @@ import TabItem from "@theme/TabItem";
               - Increased complexity of using sagas
               - Less straightforward API when using sagas
             </TabItem>
-            <TabItem value="team" label="Service per Team">
+            <TabItem value="decomposition-team" label="Service per Team">
                 ```mermaid
                     graph BT
 
@@ -1338,7 +1338,7 @@ import TabItem from "@theme/TabItem";
               - Teams may not always align with end user features
               - Implementing cross-service features becomes more complex and requires collaboration between teams
             </TabItem>
-            <TabItem value="strangler" label="Strangler Pattern">
+            <TabItem value="decomposition-strangler" label="Strangler Pattern">
               - **Identify the system boundary you want to re-architect**
 
                 ```mermaid
@@ -1427,7 +1427,7 @@ import TabItem from "@theme/TabItem";
                   client(Client) <--> newService(New Service)
               ```
             </TabItem>
-            <TabItem value="branch" label="Branch by Abstraction">
+            <TabItem value="decomposition-branch" label="Branch by Abstraction">
                 ```mermaid
                     graph TB
 
@@ -1454,7 +1454,7 @@ import TabItem from "@theme/TabItem";
                - Once the transition is complete and the new implementation is proven, clean up the abstraction
                - Remove the old implementation once it's no longer needed
             </TabItem>
-            <TabItem value="parallel" label="Parallel Run">
+            <TabItem value="decomposition-parallel" label="Parallel Run">
                 ```mermaid
                     graph TB
 
@@ -1477,7 +1477,7 @@ import TabItem from "@theme/TabItem";
                 - Initially, the old implementation serves as the source of truth until ongoing verification validates the reliability of the new implementation
                 - This technique verifies not only the equivalence of results but also ensures that the new implementation operates within acceptable nonfunctional parameters
             </TabItem>
-            <TabItem value="decorating" label="Decorating Collaborator">
+            <TabItem value="decomposition-decorating" label="Decorating Collaborator">
                 ```mermaid
                     graph TB
 
@@ -1495,7 +1495,7 @@ import TabItem from "@theme/TabItem";
                 - Instead of intercepting calls before reaching the monolith, the calls proceed normally
                 - After the call, based on the result, external microservices can be invoked through any chosen collaboration mechanism
             </TabItem>
-            <TabItem value="capture" label="Change Data Capture">
+            <TabItem value="decomposition-capture" label="Change Data Capture">
                 ```mermaid
                     graph TB
 
@@ -1511,7 +1511,7 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
-    <TabItem value="scale" label="Scale">
+    <TabItem value="migration-scale" label="Scale">
         ```mermaid
             graph TB
 
