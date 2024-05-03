@@ -1,0 +1,43 @@
+---
+title: Spring Boot
+description: Spring Boot Overview
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs queryString="primary">
+  <TabItem value="definition" label="Definition">
+    **Spring Boot** is a open-source framework built on top of the Spring platform. Its primary goal is to simplify the development of Java applications, particularly microservices, by providing autoconfiguration and reducing boilerplate code
+  </TabItem>
+  <TabItem value="core-modules" label="Modules">
+    - **Core Modules**
+       - **Core**: Central module providing the basic functionalities and configuration for Spring Boot applications
+       - **Autoconfigure**: Automatically configures Spring and 3rd-party libraries based on classpath contents, other beans, and various property settings
+    - **Web Modules**
+       - **Web**: Provides support for building web applications using Spring MVC
+       - **Webflux**: Provides support for reactive programming with Spring WebFlux, allowing you to build non-blocking, event-driven applications
+    - **Data Modules**
+       - **Data JPA**: Provides support for Java Persistence API (JPA) to interact with relational databases
+       - **Data MongoDB**: Offers support for MongoDB, allowing you to work with NoSQL databases
+       - **Data Redis**: Provides integration with Redis, a powerful in-memory data structure store
+       - **Data JDBC**: Simplifies working with JDBC-based data access and relational databases without using JPA
+    - **Security Modules**
+       - **Security**: Provides security features for Spring Boot applications, including authentication, authorization, and encryption
+       - **OAuth2**: Offers support for implementing OAuth 2.0 authentication and authorization mechanisms
+    - **Messaging Modules:**
+       - **AMQP**: Provides support for messaging with RabbitMQ using the Advanced Message Queuing Protocol (AMQP)
+       - **Kafka**: Offers support for messaging with Apache Kafka, a distributed streaming platform
+    - **Testing Modules**
+       - **Test**: Offers testing support for Spring Boot applications, including unit, integration, and end-to-end testing
+       - **Test Starter**: Includes dependencies for testing, such as JUnit, Mockito, and Spring Test
+    - **Cloud Modules**
+       - **Spring Cloud Config**: Provides centralized external configuration management for distributed systems
+       - **Spring Cloud Netflix**: Integrates Spring applications with Netflix OSS components, such as Eureka for service discovery, Ribbon for client-side load balancing, Hystrix for circuit breaking, and Zuul for API gateway
+       - **Spring Cloud Stream**: Offers support for building event-driven microservices with Spring Integration
+       - **Spring Cloud Function**: Provides a programming model and runtime support for serverless functions in Spring Boot applications
+    - **Monitoring and Management Modules**
+       - **Actuator**: Provides features for monitoring and managing Spring Boot applications, including health checks, metrics, and environment details
+  </TabItem>
+</Tabs>
