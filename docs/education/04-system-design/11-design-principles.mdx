@@ -4,7 +4,6 @@ description: Design Principles Overview
 hide_table_of_contents: true
 ---
 
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
@@ -73,6 +72,10 @@ import TabItem from "@theme/TabItem";
     <TabItem value="design-principles-estimation" label="Estimation">
       <Tabs queryString="secondary">
         <TabItem value="estimation-availability" label="Availability" attributes={{className:"tabs__vertical"}}>
+          **Availability** is the % of time a service or infrastructure is accessible and functioning normally.
+
+          $$Availability \% = \frac{(Total Time - Total Downtime)} {Total Time} * 100$$
+
           <table>
             <thead>
               <tr>
@@ -164,6 +167,14 @@ import TabItem from "@theme/TabItem";
               </tr>
             </tbody>
           </table>
+
+          ### Reliability
+
+          **Reliability** is the probability of a service working as expected for a certain time, even under different conditions.
+
+          $$Mean Time Between Failures (MTBF) = \frac{Total Elapsed Time - Sum Of Downtime}{Total Number Of Failures}$$
+
+          $$Mean Time To Repair (MTTR) = \frac{Total Maintenance Time}{Total Number Of Repairs}$$
         </TabItem>
         <TabItem value="estimation-calculations" label="Calculations">
           <table>
@@ -297,4 +308,5 @@ import TabItem from "@theme/TabItem";
         </TabItem>
       </Tabs>
     </TabItem>
+
 </Tabs>
