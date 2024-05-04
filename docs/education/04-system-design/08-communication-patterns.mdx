@@ -9,13 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs queryString="primary">
-    <TabItem value="communication-patterns-overview" label="Architecture Styles">
-      ### Ways to Apply Architectural Style
-
-      - **Entire system**: defining the high-level structure and organization of the system as a whole, such as how it is divided into subsystems or modules, how they communicate with each other, and how they interact with external systems or services
-      - **Subsystem or module**: defining the internal structure and organization of a subsystem or module within the system, such as how it is divided into components or classes, how they collaborate with each other, and how they expose their functionality to other subsystems or modules
-      - **Component or class**: defining the internal structure and organization of a component or class within a subsystem or module, such as how it is divided into methods or functions, how they implement the logic and behavior of the component or class, and how they access data or resources
-
+    <TabItem value="communication-patterns-overview" label="Overview">
       <table>
         <thead>
           <tr>
@@ -1584,35 +1578,240 @@ import TabItem from "@theme/TabItem";
                 - Rate limiting
                 - Circuit breakers
             </TabItem>
-            <TabItem value="sync-practices" label="Best Practices">
-                ## Versioning
+        </Tabs>
+    </TabItem>
+</Tabs>
 
+## Best Practices
+
+<Tabs queryString="primary">
+    <TabItem value="best-practices-asynchronous" label="Asynchronous">
+        <Tabs queryString="secondary">
+            <TabItem value="async-versioning" label="Versioning" attributes={{className:"tabs__vertical"}}>
+                ### Semantic Versioning
+
+                **Semantic Versioning (SemVer)**: (`1.0.0`)
+
+                - `MAJOR`: version for incompatible contract changes
+                - `MINOR`: version for adding functionality in a backward-compatible manner
+                - `PATCH`: version for backward-compatible bug fixes
+
+                ## Strategies
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>Definition</th>
+                            <th>Consumers Action</th>
+                            <th>Pros</th>
+                            <th>Cons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Schema Versioning</b></td>
+                            <td>Explicitly include a version number in the message itself</td>
+                            <td>Consumers can handle messages based on their version</td>
+                            <td>
+                                <ul>
+                                    <li>Granular control</li>
+                                    <li>Easy identification of changes</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>More complex implementation</li>
+                                    <li>Potential for breaking changes</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Backward Compatible Schema Evolution</b></td>
+                            <td>Introduce new optional fields to messages without breaking existing consumers</td>
+                            <td>Consumers can ignore new fields they don't understand</td>
+                            <td>
+                                <ul>
+                                    <li>Minimizes disruption</li>
+                                    <li>Promotes smooth upgrades</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Can lead to cluttered messages over time</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Forward Compatible Schema Evolution</b></td>
+                            <td>Mark existing fields as deprecated in older versions</td>
+                            <td>Introduce new fields in newer versions for future consumers</td>
+                            <td>
+                                <ul>
+                                    <li>Prepares for future changes</li>
+                                    <li>Avoids cluttering older messages</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Requires handling deprecated fields</li>
+                                    <li>Potential confusion for consumers unaware of versions</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Content Negotiation</b></td>
+                            <td>Producer and consumer negotiate the message format during connection establishment</td>
+                            <td>Allows for dynamic adaptation and interoperability between different versions</td>
+                            <td>
+                                <ul>
+                                    <li>Highly flexible</li>
+                                    <li>Avoids version conflicts</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>More complex implementation</li>
+                                    <li>Requires additional negotiation overhead</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                ### Considerations
+
+                - **Trade-offs**: Complexity vs Flexibility, Backward vs Forward Compatibility
+                - **Start simple**: Opt for schema versioning or backward-compatible evolution for most cases
+                - **Use content negotiation**: For highly dynamic environments with diverse clients
+                - **Versioning granularity**: Decide if versioning applies to entire messages or individual fields
+                - **Version deprecation policy**: Define a timeline for removing support for older versions
+                - **Versioning tooling**: Leverage tools for schema documentation, validation, and migration
+                - **Clear communication**: Document versioning policies and notify stakeholders of upcoming changes
+                - **Forsee Future Changes**: Plan for message versioning to accommodate future changes in the payload structure, and ensure backward and forward compatibility to facilitate system evolution
+            </TabItem>
+            <TabItem value="async-communication-channels" label="Communication Channels">
+                - **Identify Use Cases**:
+                    - Processing large data sets
+                    - Triggering workflows
+                    - Sending notifications
+                    - Real-time communication
+                - **Message Routing and Filtering**
+                    - Topic-based vs Queue-based Routing
+                    - Content-Based Routing
+                    - Filtering Techniques (Header, Metadata, Content)
+                - **Messaging Pattern**
+                    - **Point-to-Point (P2P)**: Messages are delivered from a single producer to a single consumer. Ideal for one-off tasks or directed communication
+                    - **Publish-Subscribe (Pub/Sub)**: Messages are published to a topic, and any interested subscribers receive them. Great for real-time updates and broadcasting information
+                    - **Request-Reply**:  Similar to synchronous communication, but with a delayed response to handle long-running tasks
+                - **Messaging Technology**
+                    - **Message Queues (MQ)**: Robust and reliable, offering features like message persistence, retries, and guaranteed delivery (RabbitMQ, Apache Kafka, Amazon SQS)
+                    - **Streaming Platforms (Apache Kafka)**: Handle high-volume, real-time data pipelines with low latency
+                    - **Server-Sent Events (SSE) and WebSockets**:  Enable bi-directional communication for real-time web applications
+
+                ### Naming
+
+                - **Abbreviation Standards**: Define a clear abbreviation policy for common elements (`prod` for production)
+                - **Case Sensitivity**: Decide on case sensitivity (uppercase, lowercase, mixed) for consistency
+                - **Namespace Separation**: Utilize separators (hyphen `-`, underscore `_`) to differentiate between elements clearly
+                - **Naming Length**: Maintain a reasonable length to avoid excessive complexity
+                - **Structure**: `{base_resource}.{environment}.{application}.{functionality}[.{version}]` (`queue.prod.order-processing.payment-confirmation.v2`)
+                    - **Base Resource**: Identify the top-level resource category (`queue`, `topic`, `exchange`)
+                    - **Environment**: Indicate the deployment environment (`dev`, `test`, `prod`)
+                    - **Domain/Product/Application**: Specify the entity using the resource (`order-processing`, `user-service`)
+                    - **Functionality**: Describe the specific functionality of the resource (`payment-confirmation`, `user-registration`)
+                    - **Versioning Strategy**: Establish a versioning approach to denote changes (semantic versioning)
+            </TabItem>
+            <TabItem value="async-resource-naming-convention" label="Resource Naming Convention">
+                - **Abbreviations**: Use abbreviations judiciously for commonly used terms, but ensure clarity for less familiar ones
+                - **Clarity and Consistency**: Use clear and concise names that accurately reflect the field's purpose
+                - **Domain-Specificity**: Use terminology relevant to the specific domain the message applies to
+                - **Extensibility**: Design messages to be easily extensible for future requirements
+                - **Generic Terms**: Avoid generic terms like "data" or "value" unless their meaning is self-evident
+                - **Hierarchical Structure**: If necessary, use a hierarchical structure for nested data
+                - **Immutability**: Prefer immutable message fields to maintain data integrity
+                - **Maintain consistent naming conventions**: Use consistent naming throughout the system (`camelCase`, `snake_case`)
+                - **Message Format**: Define a clear and consistent message format (JSON, Protobuf)
+                - **Metadata Fields**: Incorporate metadata fields for tracking message processing (`retry_count`, `status`, `error_details`)
+                - **Payload Structure**: Design payload structure to encapsulate data relevant to the specific use case
+
+                ###  Common Fields
+
+                - **Acknowledgment**: Mechanism for confirming message receipt or processing status
+                - **Correlation ID**: Links related messages for tracking and tracing purposes
+                - **Message ID**: Unique identifier for each message instance
+                - **Message Type**: Indicates the purpose or category of the message
+                - **Priority**: Importance level of the message for processing
+                - **Source/Destination**: Identify the sender and recipient of the message
+                - **Timestamps**: Creation time, expiration time, and processing time (UTC timestamp as number or in ISO-8601 format)
+            </TabItem>
+            <TabItem value="async-error-handling" label="Error Handling">
+                - **Dead Letter Queues**: Implement dead letter queues for handling undeliverable messages
+                - **Error Logging**: Log errors and exceptions for troubleshooting and analysis
+                - **Retry Policies**: Define retry policies with exponential backoff to handle transient failures
+            </TabItem>
+            <TabItem value="async-data-filtering" label="Data Filtering">
+                - **Message Delivery Acknowledgment**: Implement acknowledgement mechanisms to confirm message receipt or processing status
+                - **Message Expiration / Time-To-Live (TTL)**: Implement message expiration to ensure message delivery after specified time periods
+                - **Message Ordering**: Ensure message ordering to avoid race conditions
+                - **Message Queuing**: Implement message queuing for reliable delivery and load balancing
+                - **Message Routing**: Implement message routing to ensure message delivery to the appropriate destination
+            </TabItem>
+            <TabItem value="async-data-security" label="Security">
+                - **Access Control**: Implement access controls to restrict message access based on roles and permissions
+                - **Compliance**: Ensure compliance with industry standards and regulations (GDPR, HIPAA)
+                - **Encryption**: Encrypt sensitive message data both in transit and at rest
+                - **Schema Registry**: Use schema registries to manage schema versions and enforce validation
+            </TabItem>
+            <TabItem value="async-traceability" label="Traceability">
+                - **Auditing**: Enable auditing mechanisms for tracking message access and modifications
+                - **Monitoring**: Set up monitoring for tracking message processing metrics and error rates
+            </TabItem>
+            <TabItem value="async-performance" label="Performance">
+                - **Batching**: Implement batching techniques to reduce the number of messages sent
+                - **Caching**: Utilize caching mechanisms for frequently accessed or static message data to enhance performance
+                - **Compression**: Compress message data to reduce network overhead and improve performance
+                - **Concurrency**: Implement concurrency patterns to handle high message volumes efficiently
+                - **Payload Size**: Minimize payload size to reduce network overhead
+            </TabItem>
+        </Tabs>
+    </TabItem>
+    <TabItem value="best-practices-rest-api" label="REST API">
+        <Tabs queryString="secondary">
+            <TabItem value="rest-api-versioning" label="Versioning" attributes={{className:"tabs__vertical"}}>
                 - **URL Path**: `test.com/v1/users`
                 - **URL Query**: `/users?version=1.0`
                 - **Header** (or as a custom header): `curl -H "Accept: application/json; version=1.0" test.com/users`
                 - **Body**: `curl test.com/users -d "{version: 1.0}"`
-
-                ## Resource Naming Convention
+            </TabItem>
+            <TabItem value="rest-api-resource-naming-convention" label="Resource Naming Convention">
+                ### URL
 
                 - **URL Path and URL Query Parameters**: Consider using hyphens (`-`) to separate words in your URLs, as it helps users and search engines identify concepts in the URL more easily
                     - `/users/very-long-path?long-text=123`
                 - **camelCase**
                     - `/users/veryLongPath?longText=123`
 
-                ## Nouns vs Verbs
+                ### Nouns vs Verbs
 
                 - Verbs should not be used in endpoint paths. Instead, the pathname should contain the nouns that identify the object that the endpoint that we are accessing or altering belongs to.
                     - Instead of using `/getAllClients` to fetch all clients, use `/clients`
 
-                ## Singular vs Plural
+                ### Singular vs Plural
 
                 - Stick to one convention because it depends on your domain
                     - as an example
                         - **shopping cart** in e-commerce website is **1-to-1** relationship between client and a shopping cart. Therefore, it's confusing to have `/carts`
                         - on the other hand, we can have a **blog** with **articles** which makes more sense to have `/articles` endpoint
 
-                ## REST Verbs
+                ### Utilize Resource Nesting Efficiency
 
+                - If resource have a **has-a** relationship to another resource it's good to use **nesting** while implementing REST API Contracts
+                    - Example: user can have some orders in e-commerce website
+                        - **user's orders**: `/users/1/orders/`
+                        - **user's order**: `/users/1/orders/1`
+            </TabItem>
+            <TabItem value="rest-api-rest-verbs" label="REST Verbs">
                 - **HEAD**
                     - identical to GET, except without the response body. It will do the same GET request but won't return anything
                     - useful for checking what a GET request will return before actually making a GET request (download large file or response body)
@@ -1655,8 +1854,9 @@ import TabItem from "@theme/TabItem";
                         </tr>
                     </tbody>
                 </table>
-
-                ## HTTP Status Codes
+            </TabItem>
+            <TabItem value="rest-api-http-status-codes" label="HTTP Status Codes">
+                ### HTTP Status Codes
 
                 - **1xx**: Information
                 - **2xx**: Success
@@ -1725,9 +1925,8 @@ import TabItem from "@theme/TabItem";
                           </tr>
                     </tbody>
                 </table>
-
-                ## Proper Error Handling
-
+            </TabItem>
+            <TabItem value="rest-api-error-handling" label="Error Handling">
                 - Do not expose any sensitive information
                 - Wrap any API calls and return only predefined messages for `4xx`, `5xx`
                 - Implement global Exception and provide Default Response Entity
@@ -1744,14 +1943,8 @@ import TabItem from "@theme/TabItem";
                       "path":"/api/user/1"
                   }
                   ```
-
-                ## Response Entity
-
-                - Don’t return plain text responses
-                - In most cases REST APIs should accept JSON for request payload and also respond with JSON because it is a standard for transferring data
-
-                ## Data Filtering
-
+            </TabItem>
+            <TabItem value="rest-api-data-filtering" label="Data Filtering">
                 - use URL params
                     - **filter**: `GET /users?country=US&city=NY`
                     - **sorting**: `GET /users?sort=name:asc`
@@ -1764,16 +1957,8 @@ import TabItem from "@theme/TabItem";
                             - **token**: any column or property that is used to pivot through the data in the table. Most common is `created_at` column
                             - **improve performance**: index column that is used to pivot through the data in the table (cursor/token column)
                             - **WHERE created_at >= "2024-01-01" LIMIT 10**: filter through the table and read only 10 required rows
-
-                ## Utilize Resource Nesting Efficiency
-
-                - If resource have a **has-a** relationship to another resource it's good to use **nesting** while implementing REST API Contracts
-                    - Example: user can have some orders in e-commerce website
-                        - **user's orders**: `/users/1/orders/`
-                        - **user's order**: `/users/1/orders/1`
-
-                ## Security
-
+            </TabItem>
+            <TabItem value="rest-api-security" label="Security">
                 - Use SSL/TLS for secure communication
                 - Add secured short-lived headers
                     - **JWT Token**: `Authorization: Bearer <token>`
@@ -1781,30 +1966,35 @@ import TabItem from "@theme/TabItem";
                 - Root Certificate
                 - Rate Limiting
                     - Design rate limiting rules based on **user**, **IP**, **action group**, etc.
-
-                ## Async Logging
+            </TabItem>
+            <TabItem value="rest-api-traceability" label="Traceability">
+                ### Async Logging
 
                 - send logs to a lock-free ring buffer and return
                 - flush to the disk periodically
                 - higher throughput and lower latency
-
-                ## Caching
+            </TabItem>
+            <TabItem value="rest-api-performance" label="Performance">
+                ### Caching
 
                 - store frequently accessed data in the cache instead of database
                 - query database when there is a cache miss
 
-                ## Payload Compression
+                ### Payload Compression
 
                 - use gzip
                 - reduce the data size to speed up the download/upload
 
-                ## Connection Pool
+                ### Connection Pool
 
                 - opening and closing DB connections add significant overhead
                 - connection pool maintains a number of open connections for applications to reuse
 
-                ## Request Body
+                ### Batching
 
+                - useful when you need to send multiple requests to the same resource to reduce the number of round trips
+            </TabItem>
+            <TabItem value="rest-api" label="Request Payload">
                 This pattern is well-suited for any messaging protocols and data formats. Including but not limited to REST, Pub-Sub
 
                 ```json
@@ -1990,6 +2180,10 @@ import TabItem from "@theme/TabItem";
                         </tr>
                     </tbody>
                 </table>
+            </TabItem>
+            <TabItem value="rest-api-response-entity" label="Response Entity">
+                - Don’t return plain text responses
+                - In most cases REST APIs should accept JSON for request payload and also respond with JSON because it is a standard for transferring data
             </TabItem>
         </Tabs>
     </TabItem>
