@@ -737,115 +737,232 @@ import TabItem from "@theme/TabItem";
         </table>
     </TabItem>
     <TabItem value="communication-patterns-graphql" label="GraphQL">
-      <table>
-        <thead>
-          <tr>
-            <th>Aspect</th>
-            <th>REST</th>
-            <th>GraphQL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><b>Visualization</b></td>
-            <td>
-              ```mermaid
-                graph TB
+        <Tabs queryString="secondary">
+            <TabItem value="communication-patterns-graphql-overview" label="Overview" attributes={{className:"tabs__vertical"}}>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aspect</th>
+                    <th>REST</th>
+                    <th>GraphQL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Visualization</b></td>
+                    <td>
+                      ```mermaid
+                        graph TB
 
-                client(Client) --> |REST call| product(Product)
-                client --> |REST call| review(Review)
-                client --> |REST call| inventory(Inventory)
-              ```
-            </td>
-            <td>
-              ```mermaid
-                graph TB
+                        client(Client) --> |REST call| product(Product)
+                        client --> |REST call| review(Review)
+                        client --> |REST call| inventory(Inventory)
+                      ```
+                    </td>
+                    <td>
+                      ```mermaid
+                        graph TB
 
-                client(Client) --> |REST call| graphql(GraphQL)
+                        client(Client) --> |REST call| graphql(GraphQL)
 
-                graphql --> |request data| product(Product)
-                graphql --> |request data| review(Review)
-                graphql --> |request data| inventory(Inventory)
-              ```
-            </td>
-          </tr>
-          <tr>
-            <td><b>Design Philosophy</b></td>
-            <td>Based on standard HTTP methods (GET, POST, PUT, DELETE for CRUD operations) and status codes</td>
-            <td>A query language for APIs, not tied to HTTP. Provides single endpoint for clients to query for precisely the data they need</td>
-          </tr>
-          <tr>
-            <td><b>Data Fetching</b></td>
-            <td>Multiple requests might be required to gather all necessary data</td>
-            <td>Allows fetching all necessary data in a single request</td>
-          </tr>
-          <tr>
-            <td><b>Over-fetching/Under-fetching</b></td>
-            <td>Possible, as server defines what data is returned for each endpoint</td>
-            <td>No over- or under-fetching, as client defines exactly what data it needs. Might lead to N+1 requests problem that should be handled by dev</td>
-          </tr>
-          <tr>
-            <td><b>Efficiency</b></td>
-            <td>Less efficient due to over-fetching and under-fetching</td>
-            <td>More efficient due to minimized data transfer</td>
-          </tr>
-          <tr>
-            <td><b>Versioning</b></td>
-            <td>Requires versioning as changing the structure can lead to breaking changes</td>
-            <td>No versioning needed, as old fields can be deprecated and new ones added</td>
-          </tr>
-          <tr>
-            <td><b>Error Handling</b></td>
-            <td>Uses HTTP status codes</td>
-            <td>Provides error messages in the response, not tied to HTTP status codes</td>
-          </tr>
-          <tr>
-            <td><b>Real-time Updates</b></td>
-            <td>Requires additional technologies like WebSockets</td>
-            <td>Supports subscriptions which allows real-time updates</td>
-          </tr>
-          <tr>
-            <td><b>Flexibility</b></td>
-            <td>Less flexible as server defines what data is sent for each endpoint</td>
-            <td>API-First approach: More flexible as client specifies exactly what data it needs</td>
-          </tr>
-          <tr>
-            <td><b>Caching</b></td>
-            <td>Caching is straightforward with HTTP caching mechanisms</td>
-            <td>Requires more effort to implement as it doesn't leverage HTTP caching mechanisms</td>
-          </tr>
-          <tr>
-            <td><b>Use Case</b></td>
-            <td>Ideal for simple, CRUD-based projects and public APIs due to its simplicity and scalability</td>
-            <td>Best for complex systems, real-time data, microservices, and when precise control over data fetching is required and when following API-First approach</td>
-          </tr>
-          <tr>
-            <td><b>Typing</b></td>
-            <td>No built-in type system</td>
-            <td>Has a strong type system, which helps with validation and autocompletion tools</td>
-          </tr>
-          <tr>
-            <td><b>API Introspection</b></td>
-            <td>Not supported</td>
-            <td>Supported, which allows clients to understand what data is available</td>
-          </tr>
-          <tr>
-            <td><b>Optimized for</b></td>
-            <td>Optimized for servers</td>
-            <td>Optimized for clients</td>
-          </tr>
-          <tr>
-            <td><b>Scalability</b></td>
-            <td>Might suffer performance issues due to over-fetching and multiple round trips</td>
-            <td>Better performance due to minimized data transfer and single round trip. For Enterprise applications Federated schemas and Apollo Router can be used</td>
-          </tr>
-          <tr>
-            <td><b>Debugging</b></td>
-            <td>Can be difficult due to the lack of specific error messages</td>
-            <td>Easier due to detailed error messages and API introspection</td>
-          </tr>
-        </tbody>
-      </table>
+                        graphql --> |request data| product(Product)
+                        graphql --> |request data| review(Review)
+                        graphql --> |request data| inventory(Inventory)
+                      ```
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>Design Philosophy</b></td>
+                    <td>Based on standard HTTP methods (GET, POST, PUT, DELETE for CRUD operations) and status codes</td>
+                    <td>A query language for APIs, not tied to HTTP. Provides single endpoint for clients to query for precisely the data they need</td>
+                  </tr>
+                  <tr>
+                    <td><b>Data Fetching</b></td>
+                    <td>Multiple requests might be required to gather all necessary data</td>
+                    <td>Allows fetching all necessary data in a single request</td>
+                  </tr>
+                  <tr>
+                    <td><b>Over-fetching/Under-fetching</b></td>
+                    <td>Possible, as server defines what data is returned for each endpoint</td>
+                    <td>No over- or under-fetching, as client defines exactly what data it needs. Might lead to N+1 requests problem that should be handled by dev</td>
+                  </tr>
+                  <tr>
+                    <td><b>Efficiency</b></td>
+                    <td>Less efficient due to over-fetching and under-fetching</td>
+                    <td>More efficient due to minimized data transfer</td>
+                  </tr>
+                  <tr>
+                    <td><b>Versioning</b></td>
+                    <td>Requires versioning as changing the structure can lead to breaking changes</td>
+                    <td>No versioning needed, as old fields can be deprecated and new ones added</td>
+                  </tr>
+                  <tr>
+                    <td><b>Error Handling</b></td>
+                    <td>Uses HTTP status codes</td>
+                    <td>Provides error messages in the response, not tied to HTTP status codes</td>
+                  </tr>
+                  <tr>
+                    <td><b>Real-time Updates</b></td>
+                    <td>Requires additional technologies like WebSockets</td>
+                    <td>Supports subscriptions which allows real-time updates</td>
+                  </tr>
+                  <tr>
+                    <td><b>Flexibility</b></td>
+                    <td>Less flexible as server defines what data is sent for each endpoint</td>
+                    <td>API-First approach: More flexible as client specifies exactly what data it needs</td>
+                  </tr>
+                  <tr>
+                    <td><b>Caching</b></td>
+                    <td>Caching is straightforward with HTTP caching mechanisms</td>
+                    <td>Requires more effort to implement as it doesn't leverage HTTP caching mechanisms</td>
+                  </tr>
+                  <tr>
+                    <td><b>Use Case</b></td>
+                    <td>Ideal for simple, CRUD-based projects and public APIs due to its simplicity and scalability</td>
+                    <td>Best for complex systems, real-time data, microservices, and when precise control over data fetching is required and when following API-First approach</td>
+                  </tr>
+                  <tr>
+                    <td><b>Typing</b></td>
+                    <td>No built-in type system</td>
+                    <td>Has a strong type system, which helps with validation and autocompletion tools</td>
+                  </tr>
+                  <tr>
+                    <td><b>API Introspection</b></td>
+                    <td>Not supported</td>
+                    <td>Supported, which allows clients to understand what data is available</td>
+                  </tr>
+                  <tr>
+                    <td><b>Optimized for</b></td>
+                    <td>Optimized for servers</td>
+                    <td>Optimized for clients</td>
+                  </tr>
+                  <tr>
+                    <td><b>Scalability</b></td>
+                    <td>Might suffer performance issues due to over-fetching and multiple round trips</td>
+                    <td>Better performance due to minimized data transfer and single round trip. For Enterprise applications Federated schemas and Apollo Router can be used</td>
+                  </tr>
+                  <tr>
+                    <td><b>Debugging</b></td>
+                    <td>Can be difficult due to the lack of specific error messages</td>
+                    <td>Easier due to detailed error messages and API introspection</td>
+                  </tr>
+                </tbody>
+              </table>
+            </TabItem>
+            <TabItem value="communication-patterns-graphql-monograph-vs-supergraph" label="Monograph vs Supergraph">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Aspect</th>
+                      <th>Monograph</th>
+                      <th>Supergraph</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Visualization</b></td>
+                      <td>
+                        ```mermaid
+                            graph LR
+
+                            client(Client) --> server[[GraphQL Server]]
+                        ```
+                      </td>
+                      <td>
+                        ```mermaid
+                            graph LR
+
+                            client(Client) --> router[[Router]] --> product{{Product Subgraph}} & inventory{{Inventory Subgraph}}
+                        ```
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>Definition</b></td>
+                      <td>Single GraphQL service with its own schema, resolvers, and data sources</td>
+                      <td>Collection of independent GraphQL services (subgraphs) stitched together into a unified GraphQL API</td>
+                    </tr>
+                    <tr>
+                      <td><b>Schema</b></td>
+                      <td>Single, monolithic schema defining all available data</td>
+                      <td>Composed of individual schemas from each subgraph, combined into a single supergraph schema by the router</td>
+                    </tr>
+                    <tr>
+                      <td><b>Data Sources</b></td>
+                      <td>Connects directly to its own data sources</td>
+                      <td>Can connect to its own data sources or leverage data from other subgraphs</td>
+                    </tr>
+                    <tr>
+                      <td><b>Resolvers</b></td>
+                      <td>Contains resolvers for all data types defined in its schema</td>
+                      <td>Each subgraph defines resolvers for its own data types</td>
+                    </tr>
+                    <tr>
+                      <td><b>Client Interaction</b></td>
+                      <td>Clients interact directly with the monograph endpoint</td>
+                      <td>Clients interact with a single supergraph endpoint managed by the router</td>
+                    </tr>
+                    <tr>
+                      <td><b>Scalability</b></td>
+                      <td>Limited scalability as the service grows</td>
+                      <td>Highly scalable by adding or removing subgraphs independently</td>
+                    </tr>
+                    <tr>
+                      <td><b>Flexibility</b></td>
+                      <td>Limited flexibility as changes require modifying the entire schema</td>
+                      <td>Highly flexible, allowing independent changes to subgraphs without affecting the entire API</td>
+                    </tr>
+                    <tr>
+                      <td><b>Use Cases</b></td>
+                      <td>Small to medium sized applications</td>
+                      <td>Enterprise applications</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </TabItem>
+            <TabItem value="communication-patterns-graphql-federation" label="Federation">
+              ![](./assets/communication-patterns/graphql-federation.svg)
+            </TabItem>
+            <TabItem value="communication-patterns-graphql-" label="GraphQL Composition">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Concept</th>
+                            <th>Implementation</th>
+                            <th>Schema Design</th>
+                            <th>Scalability</th>
+                            <th>Use Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Schema Stitching</b></td>
+                            <td>Manually combines schemas from multiple GraphQL servers into a single schema</td>
+                            <td>Requires manual schema manipulation and merging</td>
+                            <td>Can be less flexible and lead to complex schemas</td>
+                            <td>Limited scalability as adding new subgraphs requires manual schema updates</td>
+                            <td>Simple use cases with a limited number of subgraphs and limited need for future growth</td>
+                        </tr>
+                        <tr>
+                            <td><b>Apollo Federation</b></td>
+                            <td>Leverages a specification and tooling to create a unified schema from independent subgraphs</td>
+                            <td>Uses directives and extensions to define subgraphs and entity relationships</td>
+                            <td>Promotes a clean separation of concerns with independent subgraphs</td>
+                            <td>Highly scalable as subgraphs are independent and loosely coupled</td>
+                            <td>Microservices architectures with independent development and deployment of subgraphs</td>
+                        </tr>
+                        <tr>
+                            <td><b>Code-First Approach</b></td>
+                            <td>Focuses on code-driven development of subgraphs with minimal schema manipulation</td>
+                            <td>Relies on code libraries and frameworks to define subgraphs and resolvers</td>
+                            <td>Encourages code-centric design for subgraphs with potential schema duplication</td>
+                            <td>Scalability depends on the chosen code-first framework and its ability to handle distributed queries</td>
+                            <td>Preference for code-driven development and rapid prototyping of subgraphs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </TabItem>
+        </Tabs>
     </TabItem>
     <TabItem value="communication-patterns-grpc" label="gRPC">
         <Tabs queryString="secondary">
@@ -1792,10 +1909,12 @@ import TabItem from "@theme/TabItem";
                 - **Enums**: Employ enums for defining finite sets of possible values
                 - **Evolvable Schema**: Design for future growth. Consider potential use cases and data needs that may arise
                 - **Field-Level Resolution**: Implement field-level resolvers to optimize data fetching and avoid over-fetching unnecessary data
+                - **GraphQL Variables**: Use GraphQL variables to avoid query string manipulation to improve cache effectiveness and information privacy
                 - **Input Object Types**: Use input object types to structure data for mutations
                 - **Input Types**: Utilize input types for mutation arguments
                 - **Interfaces and Unions**: Use interfaces and unions for creating flexible schemas
                 - **Language Agnostic**: The schema should be independent of programming language
+                - **Name all operations**: Query, Mutation, Subscription, and Fragments
                 - **Naming Conventions**: Establish clear and consistent naming conventions for types, fields, and arguments. This improves readability and maintainability
                 - **Nullability**: Explicitly define whether fields can be `null`. This enhances type safety and prevents unexpected errors
                 - **Object Types**: Define object types to represent data entities with well-defined properties
@@ -1804,6 +1923,7 @@ import TabItem from "@theme/TabItem";
                 - **Type Extensions**: Utilize GraphQL type extensions to add additional fields or functionality to existing types without modifying their original definition
             </TabItem>
             <TabItem value="graphql-federation" label="Federation">
+                - **Automatic Persisted Queries (APQ)**: Use APQ to improve query performance by caching queries and responses
                 - **Federated Supergraph**: Leverage tools like Apollo Router for simplified federation setup and management
                 - **Federation**: Align subgraphs with business domains for ownership and maintainability
                 - **Gateway Configuration**: Use GraphQL Gateway to orchestrate requests across federated services
