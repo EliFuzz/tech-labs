@@ -151,18 +151,17 @@ import TabItem from "@theme/TabItem";
                 - **Volume:** 100M shortened URLs generated daily
                 - **Length:** Short as possible
                 - **Characters:** Numbers (0-9) and letters (a-z, A-Z)
-                - **Updates:** Shortened URLs cannot be deleted or changed (for simplicity)
 
                 ### Assumptions
 
                 - **URL shortening**: given a long URL → return a much shorter URL
                 - **URL redirecting**: given a shorter URL → redirect to the original URL
                 - **Characters**: `[A-Za-z0-9]`
-                - HA, scalability, and fault tolerance considerations
+                - HA, scalability, and fault tolerance considerations, with distributed architecture
 
                 ### Estimations
 
-                - **URL Shortener**: `62 characters ([A-Za-z0-9]) * 7 (letters for short URL) = 3.5 trillion (URLs)`
+                - **URL Shortener**: `62 characters ([A-Za-z0-9]) ^ 7 (letters for short URL) = 3.5 trillion (URLs)`
                 - **Write operation**: 100M URLs/day → `100M (URLs) / 24 (hours) / 3600 (seconds) = 1160` (URLs/sec)
                 - **Read operation**: assuming ratio of read operation to write operation is `10:1` → `1160 (writes/sec) * 10 (reads ratio) = 11,600 (reads/sec)`
                 - **Storage requirement**: average URL length is `100 bytes` with `10 years` of data storage: `100M (URLs) * 365 (days) * 10 (years) * 100 (bytes) = 365TB`

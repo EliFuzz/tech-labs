@@ -2130,7 +2130,6 @@ import TabItem from "@theme/TabItem";
                         - **cursor/token**: `GET /users?cursor=12345`
                             - more efficient solution especially for large datasets
                             - **token**: any column or property that is used to pivot through the data in the table. Most common is `created_at` column
-                            - **improve performance**: index column that is used to pivot through the data in the table (cursor/token column)
                             - **WHERE created_at >= "2024-01-01" LIMIT 10**: filter through the table and read only 10 required rows
             </TabItem>
             <TabItem value="rest-api-security" label="Security">
