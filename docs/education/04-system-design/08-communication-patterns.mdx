@@ -1954,10 +1954,54 @@ import TabItem from "@theme/TabItem";
     <TabItem value="best-practices-rest-api" label="REST API">
         <Tabs queryString="secondary">
             <TabItem value="rest-api-versioning" label="Versioning" attributes={{className:"tabs__vertical"}}>
-                - **URL Path**: `test.com/v1/users`
-                - **URL Query**: `/users?version=1.0`
-                - **Header** (or as a custom header): `curl -H "Accept: application/json; version=1.0" test.com/users`
-                - **Body**: `curl test.com/users -d "{version: 1.0}"`
+              <table>
+                <thead>
+                  <tr>
+                    <th>Versioning</th>
+                    <th>Definition</th>
+                    <th>Caching</th>
+                    <th>Compatibility</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>URL Path</b></td>
+                    <td>Version information is included in the URL path</td>
+                    <td>Each version has a unique URL, making it easy to cache separately</td>
+                    <td>Older versions remain accessible via their unique URLs</td>
+                    <td>`test.com/v1/users`</td>
+                  </tr>
+                  <tr>
+                    <td><b>URL Query</b></td>
+                    <td>Version information is included in the query parameters of the URL</td>
+                    <td>Cache configuration might be complex as the URL is the same but the query parameter differs</td>
+                    <td>Older versions remain accessible as long as the query parameters are supported</td>
+                    <td>`/users?version=1.0`</td>
+                  </tr>
+                  <tr>
+                    <td><b>Header</b></td>
+                    <td>Version information is included in the headers of the HTTP request</td>
+                    <td>Caching with headers can be complex as most caches are URL-based</td>
+                    <td>Compatibility depends on how well clients handle headers. Some may not support custom headers or may behave unpredictably</td>
+                    <td>`Version: 1.0`</td>
+                  </tr>
+                  <tr>
+                    <td><b>Media Type</b></td>
+                    <td>Version information is included in the media type</td>
+                    <td>Caching is possible but may require additional configuration, as the URLs are same but media types differ</td>
+                    <td>Compatibility is generally high, but older clients that don't support media type versioning could face issues</td>
+                    <td>`application/company.resource.v1+json`</td>
+                  </tr>
+                  <tr>
+                    <td><b>Body</b></td>
+                    <td>Version information is included in the request body</td>
+                    <td>Body-based versioning is typically not cache-friendly as it is difficult to segregate based on body content</td>
+                    <td>Compatibility could be an issue, as it depends on clients sending correct data in the body</td>
+                    <td>`{ "version": "1.0" }`</td>
+                  </tr>
+                </tbody>
+              </table>
             </TabItem>
             <TabItem value="rest-api-resource-naming-convention" label="Resource Naming Convention">
                 ### URL
