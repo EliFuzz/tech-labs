@@ -11,33 +11,6 @@ import TabItem from "@theme/TabItem";
 <Tabs queryString="primary">
     <TabItem value="basic" label="Basic">
         <Tabs queryString="secondary">
-            <TabItem value="autocomplete" label="Autocomplete" attributes={{className:"tabs__vertical"}}>
-                ![](./assets/real-world/basic/autocomplete.svg)
-
-                ### Clarifications
-
-                - **Match Start Only:** Autocomplete suggestions only appear at the beginning of queries
-                - **Top 5 Picks:** Show 5 most popular suggestions based on past searches
-                - **No Spell Check:** Focuses on displaying popular suggestions, not correcting typos
-                - **Language Support:** English for now, multi-language can be discussed later
-                - **Lowercase Letters:** Search queries are assumed to be lowercase with no special characters
-                - **Traffic:** Used by 10M DAU
-                - **Workflow:** Each time you enter a character it'll send a request to a backend service to get suggestions: `/search?q=f` -> `/search?q=fo` -> `/search?q=foo`
-
-                ### Assumptions
-
-                - **Performance:** Autocomplete suggestions must appear within `100ms` to avoid lag
-                - **Relevance:** Suggestions should be related to the search terms
-                - **Ranked:** Show more popular suggestions first
-                - **Scalability:** HA, scalability, and fault tolerance considerations
-                - **Encoding**: UTF-8
-
-                ### Estimations
-
-                - **Query Size**: `4 (words) * 5 (characters) * 1 (byte/character) = 20 bytes/query`
-                - **Load**: QPS: `10M (users) * 10 (queries/day) * 20 (characters) / 24 (hours) / 3600 (seconds) = 24K query/sec` and Peak QPS: `QPS * 2 (peak ratio) = 48K query/sec`
-                - **Storage**: `10M (users) * 10 (queries/day) * 20 (bytes/query) * 20% (new users) = 0.4 GB/day`
-            </TabItem>
             <TabItem value="chat" label="Chat">
                 ![](./assets/real-world/basic/chat.svg)
 
@@ -141,6 +114,33 @@ import TabItem from "@theme/TabItem";
             </TabItem>
             <TabItem value="rate-limiter" label="Rate Limiter">
                 ![](./assets/real-world/basic/rate-limiter.svg)
+            </TabItem>
+            <TabItem value="typeahead-suggestion" label="Typeahead Suggestion" attributes={{className:"tabs__vertical"}}>
+                ![](./assets/real-world/basic/typeahead-suggestion.svg)
+
+                ### Clarifications
+
+                - **Match Start Only:** Autocomplete suggestions only appear at the beginning of queries
+                - **Top 5 Picks:** Show 5 most popular suggestions based on past searches
+                - **No Spell Check:** Focuses on displaying popular suggestions, not correcting typos
+                - **Language Support:** English for now, multi-language can be discussed later
+                - **Lowercase Letters:** Search queries are assumed to be lowercase with no special characters
+                - **Traffic:** Used by 10M DAU
+                - **Workflow:** Each time you enter a character it'll send a request to a backend service to get suggestions: `/search?q=f` -> `/search?q=fo` -> `/search?q=foo`
+
+                ### Assumptions
+
+                - **Performance:** Autocomplete suggestions must appear within `100ms` to avoid lag
+                - **Relevance:** Suggestions should be related to the search terms
+                - **Ranked:** Show more popular suggestions first
+                - **Scalability:** HA, scalability, and fault tolerance considerations
+                - **Encoding**: UTF-8
+
+                ### Estimations
+
+                - **Query Size**: `4 (words) * 5 (characters) * 1 (byte/character) = 20 bytes/query`
+                - **Load**: QPS: `10M (users) * 10 (queries/day) * 20 (characters) / 24 (hours) / 3600 (seconds) = 24K query/sec` and Peak QPS: `QPS * 2 (peak ratio) = 48K query/sec`
+                - **Storage**: `10M (users) * 10 (queries/day) * 20 (bytes/query) * 20% (new users) = 0.4 GB/day`
             </TabItem>
             <TabItem value="url-shortener" label="URL Shortener">
                 ![](./assets/real-world/basic/url-shortener.svg)
