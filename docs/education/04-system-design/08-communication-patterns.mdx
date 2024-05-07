@@ -2192,11 +2192,11 @@ import TabItem from "@theme/TabItem";
                     - Design rate limiting rules based on **user**, **IP**, **action group**, etc.
             </TabItem>
             <TabItem value="rest-api-traceability" label="Traceability">
-                ### Async Logging
-
-                - send logs to a lock-free ring buffer and return
-                - flush to the disk periodically
-                - higher throughput and lower latency
+                - **Traceability headers**: `X-Request-Id: 888`, `X-Trace: 888`, or custom header
+                - **Async Logging**
+                  - send logs to a lock-free ring buffer and return
+                  - flush to the disk periodically
+                  - higher throughput and lower latency
             </TabItem>
             <TabItem value="rest-api-performance" label="Performance">
                 ### Caching
