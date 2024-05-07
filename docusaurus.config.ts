@@ -112,7 +112,7 @@ const config: Config = {
     algolia: {
       apiKey: "f15e354dfc29b7f627e66d2ff97889a3",
       appId: "W90HZ26JR6",
-      contextualSearch: false,
+      contextualSearch: true,
       indexName: "elifuzzio",
     },
   } satisfies Preset.ThemeConfig,
