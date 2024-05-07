@@ -141,6 +141,18 @@ import TabItem from "@theme/TabItem";
                 - **Query Size**: `4 (words) * 5 (characters) * 1 (byte/character) = 20 bytes/query`
                 - **Load**: QPS: `10M (users) * 10 (queries/day) * 20 (characters) / 24 (hours) / 3600 (seconds) = 24K query/sec` and Peak QPS: `QPS * 2 (peak ratio) = 48K query/sec`
                 - **Storage**: `10M (users) * 10 (queries/day) * 20 (bytes/query) * 20% (new users) = 0.4 GB/day`
+
+                ### Improvements
+
+                - Use Bloom filter for faster empty suggestions
+                - Choose the right data structure for storing the data in database
+                  - **Trie**: Search is `O(n)`
+                  - **Optimized Trie**: All completions stored along with the prefix in the trie node (more space is required). Limit data by prefix size and completion count for better storage efficiency
+                  - **Prefix Hash Tree**: Search is `O(1)` but uses more space
+                - Choose proper data structure for storing the data in cache
+                  - **Redis List**: Search is `O(n)`
+                  - **Redis Sorted Set**: Search/Update `O(log n)`
+                  - If number of completions reach limit, remove lowest-scoring and add a new one
             </TabItem>
             <TabItem value="url-shortener" label="URL Shortener">
                 ![](./assets/real-world/basic/url-shortener.svg)
