@@ -1,5 +1,5 @@
-import {themes as prismThemes} from "prism-react-renderer";
-import type {Config} from "@docusaurus/types";
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 import remarkMath from "remark-math";
@@ -43,7 +43,7 @@ const config: Config = {
       href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
       type: "text/css",
       integrity:
-          "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
       crossorigin: "anonymous",
     },
   ],
@@ -96,10 +96,10 @@ const config: Config = {
       additionalLanguages: ["java"],
     },
     mermaid: {
-      theme: {light: "neutral", dark: "forest"},
+      theme: { light: "neutral", dark: "forest" },
       options: {
         fontfamily:
-            "'JetBrains Mono', 'Fira Code Medium', 'Source Code Pro', monospace",
+          "'JetBrains Mono', 'Fira Code Medium', 'Source Code Pro', monospace",
         fontSize: 18,
       },
     },
@@ -109,12 +109,18 @@ const config: Config = {
         autoCollapseCategories: true,
       },
     },
+    algolia: {
+      apiKey: "f15e354dfc29b7f627e66d2ff97889a3",
+      appId: "W90HZ26JR6",
+      contextualSearch: true,
+      indexName: "elifuzzio",
+    },
   } satisfies Preset.ThemeConfig,
   markdown: {
     mermaid: true,
   },
   themes: ["@docusaurus/theme-mermaid"],
-  plugins: ['docusaurus-plugin-sass']
+  plugins: ["docusaurus-plugin-sass"],
 };
 
 export default config;
