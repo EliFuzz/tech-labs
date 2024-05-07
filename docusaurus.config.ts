@@ -110,7 +110,7 @@ const config: Config = {
       },
     },
     algolia: {
-      apiKey: "f15e354dfc29b7f627e66d2ff97889a3",
+      apiKey: "3e2138f27ba0ddf0fa33db4b398e00e3",
       appId: "W90HZ26JR6",
       contextualSearch: true,
       indexName: "elifuzzio",
