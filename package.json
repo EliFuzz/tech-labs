@@ -15,28 +15,29 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "3.2.1",
-    "@docusaurus/preset-classic": "3.2.1",
+    "@docusaurus/core": "^3.3.2",
+    "@docusaurus/preset-classic": "^3.3.2",
     "@mdx-js/react": "^3.0.1",
     "clsx": "^2.1.1",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "@types/react": "^18.3.1",
-    "@docusaurus/theme-mermaid": "^3.2.1",
+    "@docusaurus/theme-mermaid": "^3.3.2",
     "raw-loader": "^4.0.2",
-    "@docusaurus/plugin-content-pages": "^3.2.1",
+    "@docusaurus/plugin-content-pages": "^3.3.2",
     "remark-math": "^6.0.0",
     "rehype-katex": "^7.0.0",
-    "antd": "^5.16.5",
-    "@ant-design/icons": "^5.3.6",
+    "antd": "^5.17.0",
+    "@ant-design/icons": "^5.3.7",
     "docusaurus-plugin-sass": "^0.2.5",
-    "sass": "^1.75.0"
+    "sass": "^1.77.0",
+    "@docusaurus/theme-search-algolia": "^3.3.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.2.1",
-    "@docusaurus/tsconfig": "3.2.1",
-    "@docusaurus/types": "3.2.1",
+    "@docusaurus/module-type-aliases": "3.3.2",
+    "@docusaurus/tsconfig": "3.3.2",
+    "@docusaurus/types": "3.3.2",
     "typescript": "~5.4.5"
   },
   "browserslist": {
