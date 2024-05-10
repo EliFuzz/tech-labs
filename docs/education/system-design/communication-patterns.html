@@ -7,7 +7,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/tech-labs/assets/css/styles.cf83a125.css">
-<script src="/tech-labs/assets/js/runtime~main.861d83d6.js" defer="defer"></script>
+<script src="/tech-labs/assets/js/runtime~main.a33bf51f.js" defer="defer"></script>
 <script src="/tech-labs/assets/js/main.6bbea543.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -293,10 +293,15 @@
 <li>Design rate limiting rules based on <strong>user</strong>, <strong>IP</strong>, <strong>action group</strong>, etc.</li>
 </ul>
 </li>
-</ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><h3 class="anchor anchorWithStickyNavbar_BmoB" id="async-logging">Async Logging<a href="#async-logging" class="hash-link" aria-label="Direct link to Async Logging" title="Direct link to Async Logging">​</a></h3><ul>
+</ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><ul>
+<li><strong>Traceability headers</strong>: <code>X-Request-Id: 888</code>, <code>X-Trace: 888</code>, or custom header</li>
+<li><strong>Async Logging</strong>
+<ul>
 <li>send logs to a lock-free ring buffer and return</li>
 <li>flush to the disk periodically</li>
 <li>higher throughput and lower latency</li>
+</ul>
+</li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><h3 class="anchor anchorWithStickyNavbar_BmoB" id="caching">Caching<a href="#caching" class="hash-link" aria-label="Direct link to Caching" title="Direct link to Caching">​</a></h3><ul>
 <li>store frequently accessed data in the cache instead of database</li>
 <li>query database when there is a cache miss</li>
