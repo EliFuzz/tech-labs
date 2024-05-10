@@ -16,22 +16,41 @@ import TabItem from "@theme/TabItem";
 
                 ### Clarifications
 
-                - **App Type:** Both 1-on-1 and group chat
-                - **Platform:** Mobile & Web
-                - **Scale:** 50M DAU
-                - **Group Size:** Max 100 members
-                - **Features:** Basic (text chat, online indicator) - No attachments for now
-                - **Message Length:** Up to 100,000 characters
-                - **Encryption:** Not required (discuss later)
-                - **History:** Saved forever
+                - **DAU**: 50M
+                - **Messages**: 100M/day
+                - 5% of messages are media
+
+                ### Functional Requirements
+
+                - chat with one person or a group (up to 100 people)
+                - share photos, videos, and other files
+                - See when your messages are sent, delivered, and read
+                - See when other users are online
+                - Get notifications for new messages
+
+                ### Non-functional Requirements
+
+                - fast and reliable
+                - handle a lot of users and traffic
 
                 ### Assumptions
 
-                - **1:1 Chat:** Messages arrive quickly between 2 people
-                - **Group Chat:** Up to 100 people in a group chat
-                - **Online Status:** See if friends are available
-                - **Multi-Device:** Use on multiple devices at once
-                - **Push Notifications:** Get alerts for new messages
+                - **Core Features:** Group chat, file sharing
+                - **Sharing & Notifications:** Share files and get alerts on edits/changes
+                - **Fast & Efficient:** Quick file sync with minimal bandwidth use
+                - **Rock-Solid Reliability:** No data loss
+                - **Load:** HA and scalability
+
+                ### Estimations
+
+                - **Traffic**:
+                  - Activity: $$50M * 40 (messages) = 2B/day$$
+                  - Media: $$2B/day * 5% (content with media) = 100M/day$$
+                  - RSP: $$\frac{2B/day}{24h * 3600sec} = 24K req/sec$$
+                - **Storage**:
+                  - Messages: $$2B/day * 100byte (message size) = 200GB/day$$
+                  - Media: $$100M/day (messages) * 100KB (media size) = 10TB/day$$, 10 years: $$(10TB/day (media) + 0.2TB/day (messages)) * 10 (years) * 365 (day) = 38PB$$
+                - **Bandwidth**: $$\frac{10TB/day (media) + 0.2TB/day (messages)}{24h * 3600sec} = 120MB/sec$$
             </TabItem>
             <TabItem value="email" label="Email">
                 ![](./assets/real-world/basic/email.svg)
