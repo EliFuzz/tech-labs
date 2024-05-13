@@ -35,11 +35,11 @@ import TabItem from "@theme/TabItem";
 
                 ### Assumptions
 
-                - **Core Features:** Group chat, file sharing
-                - **Sharing & Notifications:** Share files and get alerts on edits/changes
-                - **Fast & Efficient:** Quick file sync with minimal bandwidth use
-                - **Rock-Solid Reliability:** No data loss
-                - **Load:** HA and scalability
+                - **Core Features**: Group chat, file sharing
+                - **Sharing & Notifications**: Share files and get alerts on edits/changes
+                - **Fast & Efficient**: Quick file sync with minimal bandwidth use
+                - **Rock-Solid Reliability**: No data loss
+                - **Load**: HA and scalability
 
                 ### Estimations
 
@@ -62,20 +62,20 @@ import TabItem from "@theme/TabItem";
 
                 ### Clarifications
 
-                - **Features:** Upload, download, sync files, get notifications
-                - **Platform:** Mobile & Web
-                - **File Types:** All supported
-                - **Encryption:** Encrypted storage
-                - **Size Limit:** Up to 10GB per file
-                - **Users:** 10M DAU
+                - **Features**: Upload, download, sync files, get notifications
+                - **Platform**: Mobile & Web
+                - **File Types**: All supported
+                - **Encryption**: Encrypted storage
+                - **Size Limit**: Up to 10GB per file
+                - **Users**: 10M DAU
 
                 ### Assumptions
 
-                - **Core Features:** Drag-and-Drop upload, download, multi-device sync, revision history
-                - **Sharing & Notifications:** Share files and get alerts on edits/changes
-                - **Fast & Efficient:** Quick file sync with minimal bandwidth use
-                - **Rock-Solid Reliability:** No data loss
-                - **Load:** HA and scalability
+                - **Core Features**: Drag-and-Drop upload, download, multi-device sync, revision history
+                - **Sharing & Notifications**: Share files and get alerts on edits/changes
+                - **Fast & Efficient**: Quick file sync with minimal bandwidth use
+                - **Rock-Solid Reliability**: No data loss
+                - **Load**: HA and scalability
 
                 ### Estimations
 
@@ -97,14 +97,14 @@ import TabItem from "@theme/TabItem";
 
                 ### Assumptions
 
-                - **Functionality:** Post, Get Feed, Update Feed
-                - **Focus:** Text and not on large media
-                - **Ranking Assumed:** Existing system already ranks posts
-                - **Global Reach:** Serves 1B users worldwide
-                - **Share:** 500 friends per user
-                - **Post Speed:** Varies by location (1s - 1 minute)
-                - **Availability:** Ensures posts aren't lost, but not guaranteed uptime
-                - **Ads (Bonus):** Optional addition of advertisements
+                - **Functionality**: Post, Get Feed, Update Feed
+                - **Focus**: Text and not on large media
+                - **Ranking Assumed**: Existing system already ranks posts
+                - **Global Reach**: Serves 1B users worldwide
+                - **Share**: 500 friends per user
+                - **Post Speed**: Varies by location (1s - 1 minute)
+                - **Availability**: Ensures posts aren't lost, but not guaranteed uptime
+                - **Ads (Bonus)**: Optional addition of advertisements
 
                 ### Estimations
 
@@ -112,12 +112,12 @@ import TabItem from "@theme/TabItem";
 
                 ### Clarifications
 
-                - **Platform:** Mobile & Web
-                - **Key Feature:** Users post and see friends' posts in a news feed
-                - **Feed Order:** Newest first
-                - **Friend Limit:** Up to 5k friends per user
-                - **Traffic:** 10M DAU
-                - **Feed Content:** Text, images, and videos
+                - **Platform**: Mobile & Web
+                - **Key Feature**: Users post and see friends' posts in a news feed
+                - **Feed Order**: Newest first
+                - **Friend Limit**: Up to 5k friends per user
+                - **Traffic**: 10M DAU
+                - **Feed Content**: Text, images, and videos
             </TabItem>
             <TabItem value="peak-season" label="Peak Season">
                 ![](./assets/real-world/basic/peak-season.svg)
@@ -141,20 +141,20 @@ import TabItem from "@theme/TabItem";
 
                 ### Clarifications
 
-                - **Match Start Only:** Autocomplete suggestions only appear at the beginning of queries
-                - **Top 5 Picks:** Show 5 most popular suggestions based on past searches
-                - **No Spell Check:** Focuses on displaying popular suggestions, not correcting typos
-                - **Language Support:** English for now, multi-language can be discussed later
-                - **Lowercase Letters:** Search queries are assumed to be lowercase with no special characters
-                - **Traffic:** Used by 10M DAU
-                - **Workflow:** Each time you enter a character it'll send a request to a backend service to get suggestions: `/search?q=f` -> `/search?q=fo` -> `/search?q=foo`
+                - **Match Start Only**: Autocomplete suggestions only appear at the beginning of queries
+                - **Top 5 Picks**: Show 5 most popular suggestions based on past searches
+                - **No Spell Check**: Focuses on displaying popular suggestions, not correcting typos
+                - **Language Support**: English for now, multi-language can be discussed later
+                - **Lowercase Letters**: Search queries are assumed to be lowercase with no special characters
+                - **Traffic**: Used by 10M DAU
+                - **Workflow**: Each time you enter a character it'll send a request to a backend service to get suggestions: `/search?q=f` -> `/search?q=fo` -> `/search?q=foo`
 
                 ### Assumptions
 
-                - **Performance:** Autocomplete suggestions must appear within `100ms` to avoid lag
-                - **Relevance:** Suggestions should be related to the search terms
-                - **Ranked:** Show more popular suggestions first
-                - **Scalability:** HA, scalability, and fault tolerance considerations
+                - **Performance**: Autocomplete suggestions must appear within `100ms` to avoid lag
+                - **Relevance**: Suggestions should be related to the search terms
+                - **Ranked**: Show more popular suggestions first
+                - **Scalability**: HA, scalability, and fault tolerance considerations
                 - **Encoding**: UTF-8
 
                 ### Estimations
@@ -183,10 +183,10 @@ import TabItem from "@theme/TabItem";
 
                 ### Clarifications
 
-                - **Shortener:** Long URL (e.g. `https://www.myweb.com/learn/system-design/`) to short one (`https://tinyurl.com/app`). Clicking short link goes to the original long URL
-                - **Volume:** 100M shortened URLs generated daily
-                - **Length:** Short as possible
-                - **Characters:** Numbers (0-9) and letters (a-z, A-Z)
+                - **Shortener**: Long URL (e.g. `https://www.myweb.com/learn/system-design/`) to short one (`https://tinyurl.com/app`). Clicking short link goes to the original long URL
+                - **Volume**: 100M shortened URLs generated daily
+                - **Length**: Short as possible
+                - **Characters**: Numbers (0-9) and letters (a-z, A-Z)
 
                 ### Assumptions
 
@@ -207,24 +207,24 @@ import TabItem from "@theme/TabItem";
 
                 ### Clarifications
 
-                - **Features:** Upload & watch videos
-                - **Clients:** Mobile, web, smart TV
-                - **Users:** 5M DAU
-                - **Engagement:** 30 min/day
-                - **Global:** Supports international users
-                - **Playback:** Accepts most resolutions/formats
-                - **Security:** Encrypted videos
-                - **Upload Limit:** Max 1GB videos (focuses on smaller sizes)
-                - **Cloud Storage:** Consider leveraging existing services (AWS, Google Cloud, Azure)
+                - **Features**: Upload & watch videos
+                - **Clients**: Mobile, web, smart TV
+                - **Users**: 5M DAU
+                - **Engagement**: 30 min/day
+                - **Global**: Supports international users
+                - **Playback**: Accepts most resolutions/formats
+                - **Security**: Encrypted videos
+                - **Upload Limit**: Max 1GB videos (focuses on smaller sizes)
+                - **Cloud Storage**: Consider leveraging existing services (AWS, Google Cloud, Azure)
 
                 ### Assumptions
 
-                - **Fast Uploads:** Videos upload quickly
-                - **Seamless Streaming:** Videos play smoothly without buffering
-                - **Quality Control:** Lets users adjust video quality
-                - **Cost-Effective:** Needs low infrastructure costs
-                - **Scalability:** HA, scalable, and reliable
-                - **Multi-Platform:** Works on mobile apps, web browsers, and smart TVs
+                - **Fast Uploads**: Videos upload quickly
+                - **Seamless Streaming**: Videos play smoothly without buffering
+                - **Quality Control**: Lets users adjust video quality
+                - **Cost-Effective**: Needs low infrastructure costs
+                - **Scalability**: HA, scalable, and reliable
+                - **Multi-Platform**: Works on mobile apps, web browsers, and smart TVs
 
                 ### Estimations
 
@@ -236,20 +236,20 @@ import TabItem from "@theme/TabItem";
 
                 ### Clarifications
 
-                - **Crawling Goal:** Search Engine Indexing
-                - **Monthly Intake:** 1B pages
-                - **Content Type:** HTML only
-                - **Freshness:** Include new & edited pages
-                - **Storage:** Keep crawled HTML for 5 years
-                - **Duplicates:** Ignore duplicate content
+                - **Crawling Goal**: Search Engine Indexing
+                - **Monthly Intake**: 1B pages
+                - **Content Type**: HTML only
+                - **Freshness**: Include new & edited pages
+                - **Storage**: Keep crawled HTML for 5 years
+                - **Duplicates**: Ignore duplicate content
 
                 ### Assumptions
 
-                - **Scale Up:** Handle billions of web pages with parallelization (running tasks simultaneously)
-                - **Handle the Weird:** Expect broken code, slow servers, crashes, and bad actors. The crawler must adapt
-                - **Be Nice:** Don't overload websites with too many requests at once based on the website
-                - **Future-Proof:** Easily add new content types (like images) without a major overhaul
-                - **Crawl:** Use BFS algorithm
+                - **Scale Up**: Handle billions of web pages with parallelization (running tasks simultaneously)
+                - **Handle the Weird**: Expect broken code, slow servers, crashes, and bad actors. The crawler must adapt
+                - **Be Nice**: Don't overload websites with too many requests at once based on the website
+                - **Future-Proof**: Easily add new content types (like images) without a major overhaul
+                - **Crawl**: Use BFS algorithm
 
                 ### Estimations
 

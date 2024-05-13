@@ -400,39 +400,39 @@ import TabItem from "@theme/TabItem";
     <TabItem value="ddd-bestPractices" label="Best Practices">
         **Identify and Define the Core Business Domain**
 
-        - **Identify Primary Objects:** Entities, value objects, and domains critical to the business (Customers, accounts, transactions, and payments in banking)
-        - **Define Domain Model:** Define attributes, behaviors, and relationships of identified objects (Customer name, account balance)
+        - **Identify Primary Objects**: Entities, value objects, and domains critical to the business (Customers, accounts, transactions, and payments in banking)
+        - **Define Domain Model**: Define attributes, behaviors, and relationships of identified objects (Customer name, account balance)
 
         **Ubiquitous Language Establishment**
 
-        - **Define Shared Language:** Common vocabulary based on the domain model (Customer, account, transaction, payment)
-        - **Communication Standardization:** Consistent usage throughout the development process (Ensures effective communication across stakeholders)
+        - **Define Shared Language**: Common vocabulary based on the domain model (Customer, account, transaction, payment)
+        - **Communication Standardization**: Consistent usage throughout the development process (Ensures effective communication across stakeholders)
 
         **Object-Relational Mapping (ORM) Tools**
 
-        - **Mapping Domain Model:** Tools like Hibernate, Entity Framework map domain model to database (Facilitates interaction with data in the domain model)
-        - **Abstraction of Storage Technology:** Allows direct work with the domain model, abstracting storage technology (Simplifies potential changes in storage technology)
+        - **Mapping Domain Model**: Tools like Hibernate, Entity Framework map domain model to database (Facilitates interaction with data in the domain model)
+        - **Abstraction of Storage Technology**: Allows direct work with the domain model, abstracting storage technology (Simplifies potential changes in storage technology)
 
         **Command-Query Responsibility Segregation (CQRS)**
 
-        - **Separate System Responsibilities:** Commands for updating the model, queries for data retrieval (Enhances scalability and maintainability)
+        - **Separate System Responsibilities**: Commands for updating the model, queries for data retrieval (Enhances scalability and maintainability)
 
         **Event Sourcing**
 
-        - **Store Domain Model History:** Records changes as events, providing a complete history (Facilitates auditing and debugging)
-        - **Reconstruction of Domain Model:** Replay events to reconstruct the model, understand system evolution
+        - **Store Domain Model History**: Records changes as events, providing a complete history (Facilitates auditing and debugging)
+        - **Reconstruction of Domain Model**: Replay events to reconstruct the model, understand system evolution
 
         **Bounded Context**
 
-        - **Define Domain Boundaries:** Establish limits of a specific subdomain's applicability (Ensures relevance and avoids unnecessary complexity)
+        - **Define Domain Boundaries**: Establish limits of a specific subdomain's applicability (Ensures relevance and avoids unnecessary complexity)
 
         **Microservices**
 
-        - **Decompose Large Systems:** Break large systems into smaller, manageable parts (Enables independent development, deployment, and scaling)
+        - **Decompose Large Systems**: Break large systems into smaller, manageable parts (Enables independent development, deployment, and scaling)
 
         **Messaging**
 
-        - **Facilitate Communication:** Messaging enables communication between objects or systems (Supports loosely coupled architecture, aiding system flexibility)
+        - **Facilitate Communication**: Messaging enables communication between objects or systems (Supports loosely coupled architecture, aiding system flexibility)
     </TabItem>
 </Tabs>
 

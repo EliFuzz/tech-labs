@@ -29,7 +29,7 @@ import TabItem from "@theme/TabItem";
             - **Security Modules**
                - **Security**: Provides security features for Spring Boot applications, including authentication, authorization, and encryption
                - **OAuth2**: Offers support for implementing OAuth 2.0 authentication and authorization mechanisms
-            - **Messaging Modules:**
+            - **Messaging Modules**:
                - **AMQP**: Provides support for messaging with RabbitMQ using the Advanced Message Queuing Protocol (AMQP)
                - **Kafka**: Offers support for messaging with Apache Kafka, a distributed streaming platform
             - **Testing Modules**
@@ -44,5 +44,229 @@ import TabItem from "@theme/TabItem";
                - **Actuator**: Provides features for monitoring and managing Spring Boot applications, including health checks, metrics, and environment details
           </TabItem>
         </Tabs>
+    </TabItem>
+    <TabItem value="spring-boot-optimization" label="Optimization">
+        <table class="text_vertical">
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Definition</th>
+                    <th>Benefits</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Lazy Bean Initialization</b></td>
+                    <td>Load bean only when needed</td>
+                    <td>Reduces memory footprint</td>
+                    <td>
+                    ```java
+                    // Load bean when it is needed, ideal for optional features
+                    @Lazy @Bean
+
+                    // Load bean only if a given bean is missing
+                    @Bean @ConditionalOnMissingBean
+
+                    // Load bean based on app config, ideal for optional features
+                    @Configuration @ConditionalOnProperty(name = "feature.enabled", havingValue = "true")
+
+                    // Load bean based on classpath, for scenarios where certain classes are expected to be present
+                    @Configuration @ConditionalOnClass(name = "com.example.SomeClass")
+
+                    // Load bean based on classpath, for scenarios where certain classes are missing
+                    @Configuration @ConditionalOnMissingClass(name = "com.example.SomeExcludedClass")
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Minimize Auto-Configuration</b></td>
+                    <td>Disable unnecessary auto-configurations</td>
+                    <td>Reduces startup time</td>
+                    <td>
+                    ```yaml
+                    spring:
+                        autoconfigure:
+                            exclude: org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Dependencies</b></td>
+                    <td>Include only essential dependencies</td>
+                    <td>Reduces startup time and application size</td>
+                    <td>
+                    ```java
+                    // use maven-dependency-plugin to analyze dependencies
+                    mvn dependency:analyze
+
+                    // use maven-enforcer-plugin to enforce dependencies
+                    mvn enforcer:enforce
+
+                    // use maven-dependency-plugin to exclude dependencies
+                    mvn dependency:tree -DexcludeTransitive=true
+
+                    // check dependencies versions
+                    mvn versions:display-dependency-updates
+
+                    // check plugins versions
+                    mvn versions:display-version-updates
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Classpath Scanning</b></td>
+                    <td>Limit classpath scanning to only necessary packages</td>
+                    <td>Reduces startup time</td>
+                    <td>
+                    ```java
+                    @SpringBootApplication(scanBasePackages = "com.example")
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Garbage Collection Tuning</b></td>
+                    <td>Enable garbage collection</td>
+                    <td>Reduce memory usage and improves performance</td>
+                    <td>
+                    ```bash
+                    // Garbage-First (G1) Collector
+                    -XX:+UseG1GC
+
+                    // Set min and max heap size equal for stable heap usage during runtime
+                    -Xms=2G -Xmx=2G
+
+                    // Set max pause time for garbage collection based on the project performance
+                    -XX:MaxGCPauseMillis=500
+
+                    // Disable explicit GC calls
+                    -XX:+DisableExplicitGC
+
+                    // Enable string deduplication to reduce memory usage
+                    -XX:+UseStringDeduplication
+
+                    // Enable parallel GC for faster garbage collection
+                    -XX:+ParallelRefProcEnabled
+
+                    // Set max size for class metadata
+                    -XX:MaxMetaspaceSize=256M
+
+                    // Set max tenuring threshold based on the project performance
+                    -XX:MaxTenuringThreshold=15
+
+                    // Set number of threads for garbage collection
+                    -XX:ConcGCThreads=2
+
+                    // Set initial heap occupancy
+                    -XX:InitiatingHeapOccupancyPercent=25
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>HTTP Compression</b></td>
+                    <td>Enable HTTP compression</td>
+                    <td>Reduces network traffic</td>
+                    <td>
+                    ```yaml
+                    # based on the project specification lz4 or other compression algorithm can be used
+                    spring:
+                      http:
+                        gzip:
+                          enabled: true
+                          mime-types: application/json
+                          min-gzip-size: 1024
+                          deflate-compression-level: 6
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>JVM Version</b></td>
+                    <td>Use a compatible latest JVM for best performance</td>
+                    <td>Improves overall performance</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>GraalVM Native Image</b></td>
+                    <td>
+                        Scale Zero (low memory footprint and fast startup time).
+                        With tradeoffs:
+                        <ul>
+                            <li>Slow compilation</li>
+                            <li>Additional metadata required for reflection, proxies, and resources</li>
+                            <li>Closed world assumptions. Bean conditions fixed at build time. No dynamic class loading</li>
+                        </ul>
+                    </td>
+                    <td>Improves startup time and application size</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>Virtual Threads (JDK 21+)</b></td>
+                    <td>Reduces the cost of server applications written in thread-per-request style to scale with near-optimal hardware utilization</td>
+                    <td>Reduces memory footprint and improves performance</td>
+                    <td>
+                    ```java
+                    var thread = Thread.ofVirtual().start(() -> System.out.println("Hello"));
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>JIB</b></td>
+                    <td>JIB (Java Image Builder) is a build tool for containerization that produces highly optimized build images</td>
+                    <td>Reduces startup time, application size, and overall performance</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>JVM Memory Management</b></td>
+                    <td>Use JVM Memory Calculator to estimate memory usage</td>
+                    <td>Reduces memory footprint</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>Compiler Optimization</b></td>
+                    <td>Enhances performance by using multiple levels of compilation</td>
+                    <td>Reduces build time</td>
+                    <td>
+                    ```bash
+                    // Enhances performance by using multiple levels of compilation
+                    JAVA_OPTS: -XX:+TieredCompilation
+
+                    // Limits compilation to the first tier, balancing performance and compilation time
+                    JAVA_OPTS: -XX:TieredStopAtLevel=1
+
+                    // Compile with multiple threads (1C is 1 thread per CPU core)
+                    mvn -T 1C clean install
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Threads Memory Management</b></td>
+                    <td>Control memory allocation per thread</td>
+                    <td>Reduces memory footprint and improves performance</td>
+                    <td>
+                    ```bash
+                    // Control memory allocation per thread
+                    JAVA_OPTS: -Xss256k
+                    ```
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Connection Pooling</b></td>
+                    <td>Connection pooling reduces network traffic</td>
+                    <td>Improves performance and reduces initial database connection time</td>
+                    <td>
+                    ```yaml
+                    spring:
+                        datasource:
+                            type: com.zaxxer.hikari.HikariDataSource
+                        hikari:
+                            maximum-pool-size: 10
+                            minimum-idle: 5
+                            idle-timeout: 30000
+                            connection-test-query: SELECT 1
+                    ```
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </TabItem>
 </Tabs>

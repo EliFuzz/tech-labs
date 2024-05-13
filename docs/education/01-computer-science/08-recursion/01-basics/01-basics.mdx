@@ -26,7 +26,7 @@ import TS from "!!raw-loader!./assets/recursion/ts.ts";
 
 ### Terminology
 
-- **Base Case:** The condition that stops the recursion
+- **Base Case**: The condition that stops the recursion
 
 ```
 factorial(n):
@@ -36,11 +36,11 @@ factorial(n):
    return n * factorial(n-1)
 ```
 
-- **Recursive Case:** The case where the function calls itself
-- **Stack Overflow:** If the base case is not reached or defined, a stack overflow error may occur due to the continuous (infinite) addition of functions to the stack
-- **Direct Recursion:** Function calls itself
-- **Indirect Recursion:** One function calling another, forming a cycle
-- **Tailed Recursion:** When the recursive call is the last operation in the function, and its result is directly returned
+- **Recursive Case**: The case where the function calls itself
+- **Stack Overflow**: If the base case is not reached or defined, a stack overflow error may occur due to the continuous (infinite) addition of functions to the stack
+- **Direct Recursion**: Function calls itself
+- **Indirect Recursion**: One function calling another, forming a cycle
+- **Tailed Recursion**: When the recursive call is the last operation in the function, and its result is directly returned
 
 ```
 factorial_tail(n, result=1):
@@ -50,8 +50,8 @@ factorial_tail(n, result=1):
     return factorial_tail(n-1, n*result)
 ```
 
-- **Non-Tailed Recursion:** When the recursive call is not the last operation
-- **Mutual Recursion:** Two or more functions call each other in a cycle
+- **Non-Tailed Recursion**: When the recursive call is not the last operation
+- **Mutual Recursion**: Two or more functions call each other in a cycle
 
 ```
 is_even(n):
@@ -67,8 +67,8 @@ is_odd(n):
     return is_even(n-1)
 ```
 
-- **Tabulation:** Tabulation is a bottom-up approach in dynamic programming that involves storing subproblem results in a table and employs an iterative implementation. This method is particularly effective for problems with a substantial number of inputs and is preferred when subproblems do not overlap
-- **Memoization:** Memoization is a top-down dynamic programming approach that involves caching the results of function calls through a recursive implementation. This method is effective for problems with a relatively small set of inputs, especially when the subproblems exhibit overlapping subproblems
+- **Tabulation**: Tabulation is a bottom-up approach in dynamic programming that involves storing subproblem results in a table and employs an iterative implementation. This method is particularly effective for problems with a substantial number of inputs and is preferred when subproblems do not overlap
+- **Memoization**: Memoization is a top-down dynamic programming approach that involves caching the results of function calls through a recursive implementation. This method is effective for problems with a relatively small set of inputs, especially when the subproblems exhibit overlapping subproblems
 
 ## Advantages
 
