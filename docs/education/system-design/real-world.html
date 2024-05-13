@@ -7,7 +7,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/tech-labs/assets/css/styles.cf83a125.css">
-<script src="/tech-labs/assets/js/runtime~main.937f58f7.js" defer="defer"></script>
+<script src="/tech-labs/assets/js/runtime~main.1a257381.js" defer="defer"></script>
 <script src="/tech-labs/assets/js/main.6bbea543.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -25,11 +25,11 @@
 <li>fast and reliable</li>
 <li>handle a lot of users and traffic</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="assumptions">Assumptions<a href="#assumptions" class="hash-link" aria-label="Direct link to Assumptions" title="Direct link to Assumptions">​</a></h3><ul>
-<li><strong>Core Features:</strong> Group chat, file sharing</li>
-<li><strong>Sharing &amp; Notifications:</strong> Share files and get alerts on edits/changes</li>
-<li><strong>Fast &amp; Efficient:</strong> Quick file sync with minimal bandwidth use</li>
-<li><strong>Rock-Solid Reliability:</strong> No data loss</li>
-<li><strong>Load:</strong> HA and scalability</li>
+<li><strong>Core Features</strong>: Group chat, file sharing</li>
+<li><strong>Sharing &amp; Notifications</strong>: Share files and get alerts on edits/changes</li>
+<li><strong>Fast &amp; Efficient</strong>: Quick file sync with minimal bandwidth use</li>
+<li><strong>Rock-Solid Reliability</strong>: No data loss</li>
+<li><strong>Load</strong>: HA and scalability</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="estimations">Estimations<a href="#estimations" class="hash-link" aria-label="Direct link to Estimations" title="Direct link to Estimations">​</a></h3><ul>
 <li><strong>Traffic</strong>:<!-- -->
 <ul>
@@ -51,18 +51,18 @@
 </li>
 <li><strong>Bandwidth</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>10</mn><mi>T</mi><mi>B</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>a</mi><mi>y</mi><mo stretchy="false">(</mo><mi>m</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mn>0.2</mn><mi>T</mi><mi>B</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>a</mi><mi>y</mi><mo stretchy="false">(</mo><mi>m</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>a</mi><mi>g</mi><mi>e</mi><mi>s</mi><mo stretchy="false">)</mo></mrow><mrow><mn>24</mn><mi>h</mi><mo>∗</mo><mn>3600</mn><mi>s</mi><mi>e</mi><mi>c</mi></mrow></mfrac><mo>=</mo><mn>120</mn><mi>M</mi><mi>B</mi><mi mathvariant="normal">/</mi><mi>s</mi><mi>e</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">\frac{10TB/day (media) + 0.2TB/day (messages)}{24h * 3600sec} = 120MB/sec</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em"><span style="top:-2.655em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">24</span><span class="mord mathnormal mtight">h</span><span class="mbin mtight">∗</span><span class="mord mtight">3600</span><span class="mord mathnormal mtight">sec</span></span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.485em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span><span class="mord mathnormal mtight" style="margin-right:0.05017em">TB</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em">y</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">ia</span><span class="mclose mtight">)</span><span class="mbin mtight">+</span><span class="mord mtight">0.2</span><span class="mord mathnormal mtight" style="margin-right:0.05017em">TB</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em">y</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">ess</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em">g</span><span class="mord mathnormal mtight">es</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord">120</span><span class="mord mathnormal" style="margin-right:0.05017em">MB</span><span class="mord">/</span><span class="mord mathnormal">sec</span></span></span></span></li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/email-32c338535ec8194f9bd350f1e563fc09.svg" width="604" height="458" class="img_NW00"></p></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/file-storage-19704c01ccd6a2be842aa59e25e56025.svg" width="1648" height="1001" class="img_NW00"></p><h3 class="anchor anchorWithStickyNavbar_BmoB" id="clarifications-1">Clarifications<a href="#clarifications-1" class="hash-link" aria-label="Direct link to Clarifications" title="Direct link to Clarifications">​</a></h3><ul>
-<li><strong>Features:</strong> Upload, download, sync files, get notifications</li>
-<li><strong>Platform:</strong> Mobile &amp; Web</li>
-<li><strong>File Types:</strong> All supported</li>
-<li><strong>Encryption:</strong> Encrypted storage</li>
-<li><strong>Size Limit:</strong> Up to 10GB per file</li>
-<li><strong>Users:</strong> 10M DAU</li>
+<li><strong>Features</strong>: Upload, download, sync files, get notifications</li>
+<li><strong>Platform</strong>: Mobile &amp; Web</li>
+<li><strong>File Types</strong>: All supported</li>
+<li><strong>Encryption</strong>: Encrypted storage</li>
+<li><strong>Size Limit</strong>: Up to 10GB per file</li>
+<li><strong>Users</strong>: 10M DAU</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="assumptions-1">Assumptions<a href="#assumptions-1" class="hash-link" aria-label="Direct link to Assumptions" title="Direct link to Assumptions">​</a></h3><ul>
-<li><strong>Core Features:</strong> Drag-and-Drop upload, download, multi-device sync, revision history</li>
-<li><strong>Sharing &amp; Notifications:</strong> Share files and get alerts on edits/changes</li>
-<li><strong>Fast &amp; Efficient:</strong> Quick file sync with minimal bandwidth use</li>
-<li><strong>Rock-Solid Reliability:</strong> No data loss</li>
-<li><strong>Load:</strong> HA and scalability</li>
+<li><strong>Core Features</strong>: Drag-and-Drop upload, download, multi-device sync, revision history</li>
+<li><strong>Sharing &amp; Notifications</strong>: Share files and get alerts on edits/changes</li>
+<li><strong>Fast &amp; Efficient</strong>: Quick file sync with minimal bandwidth use</li>
+<li><strong>Rock-Solid Reliability</strong>: No data loss</li>
+<li><strong>Load</strong>: HA and scalability</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="estimations-1">Estimations<a href="#estimations-1" class="hash-link" aria-label="Direct link to Estimations" title="Direct link to Estimations">​</a></h3><ul>
 <li><strong>Storage Allocation</strong>: <code>50M (users) * 10GB (space allocation / user) = 500 PT/month</code></li>
 <li><strong>Upload Load</strong>: <code>10M (users) * 2 (upload/day) 24 (hours) / 3600 (seconds) = 240 upload/sec</code> and Peak QPS: <code>QPS * 2 (peak ratio) = 480 upload/sec</code></li>
@@ -72,23 +72,23 @@
 <li>Process and analyze data (Apache Storm, Flink, Spark)</li>
 <li>Retrieve, visualize, and get alerted on metrics (query service, visualization system, alerting system)</li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/news-feed-19da0f4e9afb2637175efdc7bf9e7e32.svg" width="599" height="617" class="img_NW00"></p><h3 class="anchor anchorWithStickyNavbar_BmoB" id="assumptions-2">Assumptions<a href="#assumptions-2" class="hash-link" aria-label="Direct link to Assumptions" title="Direct link to Assumptions">​</a></h3><ul>
-<li><strong>Functionality:</strong> Post, Get Feed, Update Feed</li>
-<li><strong>Focus:</strong> Text and not on large media</li>
-<li><strong>Ranking Assumed:</strong> Existing system already ranks posts</li>
-<li><strong>Global Reach:</strong> Serves 1B users worldwide</li>
-<li><strong>Share:</strong> 500 friends per user</li>
-<li><strong>Post Speed:</strong> Varies by location (1s - 1 minute)</li>
-<li><strong>Availability:</strong> Ensures posts aren&#x27;t lost, but not guaranteed uptime</li>
-<li><strong>Ads (Bonus):</strong> Optional addition of advertisements</li>
+<li><strong>Functionality</strong>: Post, Get Feed, Update Feed</li>
+<li><strong>Focus</strong>: Text and not on large media</li>
+<li><strong>Ranking Assumed</strong>: Existing system already ranks posts</li>
+<li><strong>Global Reach</strong>: Serves 1B users worldwide</li>
+<li><strong>Share</strong>: 500 friends per user</li>
+<li><strong>Post Speed</strong>: Varies by location (1s - 1 minute)</li>
+<li><strong>Availability</strong>: Ensures posts aren&#x27;t lost, but not guaranteed uptime</li>
+<li><strong>Ads (Bonus)</strong>: Optional addition of advertisements</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="estimations-2">Estimations<a href="#estimations-2" class="hash-link" aria-label="Direct link to Estimations" title="Direct link to Estimations">​</a></h3><ul>
 <li><strong>News Feed Size</strong>: <code>1K (posts) * 10Kb (post size) = 10 MB</code></li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="clarifications-2">Clarifications<a href="#clarifications-2" class="hash-link" aria-label="Direct link to Clarifications" title="Direct link to Clarifications">​</a></h3><ul>
-<li><strong>Platform:</strong> Mobile &amp; Web</li>
-<li><strong>Key Feature:</strong> Users post and see friends&#x27; posts in a news feed</li>
-<li><strong>Feed Order:</strong> Newest first</li>
-<li><strong>Friend Limit:</strong> Up to 5k friends per user</li>
-<li><strong>Traffic:</strong> 10M DAU</li>
-<li><strong>Feed Content:</strong> Text, images, and videos</li>
+<li><strong>Platform</strong>: Mobile &amp; Web</li>
+<li><strong>Key Feature</strong>: Users post and see friends&#x27; posts in a news feed</li>
+<li><strong>Feed Order</strong>: Newest first</li>
+<li><strong>Friend Limit</strong>: Up to 5k friends per user</li>
+<li><strong>Traffic</strong>: 10M DAU</li>
+<li><strong>Feed Content</strong>: Text, images, and videos</li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/peak-season-479a3b5cf55fb8eb4d5d3dc265a13aaa.svg" width="237" height="468" class="img_NW00"></p><h3 class="anchor anchorWithStickyNavbar_BmoB" id="considerations-1">Considerations<a href="#considerations-1" class="hash-link" aria-label="Direct link to Considerations" title="Direct link to Considerations">​</a></h3><ul>
 <li><strong>Block Bots &amp; DDoS</strong>: Use reCaptcha &amp; rate limiting</li>
 <li><strong>Fast Loading</strong>: Minify &amp; CDN deliver CSS/JS/Images</li>
@@ -99,18 +99,18 @@
 <li><strong>Isolate Content</strong>: Separate static/dynamic &amp; isolate uncommon items</li>
 <li><strong>Accurate Confirmation</strong>: Show true stock availability</li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/rate-limiter-0207703a1af336091b444365691e6317.svg" width="430" height="228" class="img_NW00"></p></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/typeahead-suggestion-6c875c145b8dd77e51bb6fbe3a9a1c3d.svg" width="570" height="932" class="img_NW00"></p><h3 class="anchor anchorWithStickyNavbar_BmoB" id="clarifications-3">Clarifications<a href="#clarifications-3" class="hash-link" aria-label="Direct link to Clarifications" title="Direct link to Clarifications">​</a></h3><ul>
-<li><strong>Match Start Only:</strong> Autocomplete suggestions only appear at the beginning of queries</li>
-<li><strong>Top 5 Picks:</strong> Show 5 most popular suggestions based on past searches</li>
-<li><strong>No Spell Check:</strong> Focuses on displaying popular suggestions, not correcting typos</li>
-<li><strong>Language Support:</strong> English for now, multi-language can be discussed later</li>
-<li><strong>Lowercase Letters:</strong> Search queries are assumed to be lowercase with no special characters</li>
-<li><strong>Traffic:</strong> Used by 10M DAU</li>
-<li><strong>Workflow:</strong> Each time you enter a character it&#x27;ll send a request to a backend service to get suggestions: <code>/search?q=f</code> -&gt; <code>/search?q=fo</code> -&gt; <code>/search?q=foo</code></li>
+<li><strong>Match Start Only</strong>: Autocomplete suggestions only appear at the beginning of queries</li>
+<li><strong>Top 5 Picks</strong>: Show 5 most popular suggestions based on past searches</li>
+<li><strong>No Spell Check</strong>: Focuses on displaying popular suggestions, not correcting typos</li>
+<li><strong>Language Support</strong>: English for now, multi-language can be discussed later</li>
+<li><strong>Lowercase Letters</strong>: Search queries are assumed to be lowercase with no special characters</li>
+<li><strong>Traffic</strong>: Used by 10M DAU</li>
+<li><strong>Workflow</strong>: Each time you enter a character it&#x27;ll send a request to a backend service to get suggestions: <code>/search?q=f</code> -&gt; <code>/search?q=fo</code> -&gt; <code>/search?q=foo</code></li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="assumptions-3">Assumptions<a href="#assumptions-3" class="hash-link" aria-label="Direct link to Assumptions" title="Direct link to Assumptions">​</a></h3><ul>
-<li><strong>Performance:</strong> Autocomplete suggestions must appear within <code>100ms</code> to avoid lag</li>
-<li><strong>Relevance:</strong> Suggestions should be related to the search terms</li>
-<li><strong>Ranked:</strong> Show more popular suggestions first</li>
-<li><strong>Scalability:</strong> HA, scalability, and fault tolerance considerations</li>
+<li><strong>Performance</strong>: Autocomplete suggestions must appear within <code>100ms</code> to avoid lag</li>
+<li><strong>Relevance</strong>: Suggestions should be related to the search terms</li>
+<li><strong>Ranked</strong>: Show more popular suggestions first</li>
+<li><strong>Scalability</strong>: HA, scalability, and fault tolerance considerations</li>
 <li><strong>Encoding</strong>: UTF-8</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="estimations-3">Estimations<a href="#estimations-3" class="hash-link" aria-label="Direct link to Estimations" title="Direct link to Estimations">​</a></h3><ul>
 <li><strong>Query Size</strong>: <code>4 (words) * 5 (characters) * 1 (byte/character) = 20 bytes/query</code></li>
@@ -133,10 +133,10 @@
 </ul>
 </li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/uber-4a994f4e44b4dabd144fcc16af830396.svg" width="910" height="461" class="img_NW00"></p></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/url-shortener-57e532f431a1bdd1173c3ff1a17260b1.svg" width="736" height="715" class="img_NW00"></p><h3 class="anchor anchorWithStickyNavbar_BmoB" id="clarifications-4">Clarifications<a href="#clarifications-4" class="hash-link" aria-label="Direct link to Clarifications" title="Direct link to Clarifications">​</a></h3><ul>
-<li><strong>Shortener:</strong> Long URL (e.g. <code>https://www.myweb.com/learn/system-design/</code>) to short one (<code>https://tinyurl.com/app</code>). Clicking short link goes to the original long URL</li>
-<li><strong>Volume:</strong> 100M shortened URLs generated daily</li>
-<li><strong>Length:</strong> Short as possible</li>
-<li><strong>Characters:</strong> Numbers (0-9) and letters (a-z, A-Z)</li>
+<li><strong>Shortener</strong>: Long URL (e.g. <code>https://www.myweb.com/learn/system-design/</code>) to short one (<code>https://tinyurl.com/app</code>). Clicking short link goes to the original long URL</li>
+<li><strong>Volume</strong>: 100M shortened URLs generated daily</li>
+<li><strong>Length</strong>: Short as possible</li>
+<li><strong>Characters</strong>: Numbers (0-9) and letters (a-z, A-Z)</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="assumptions-4">Assumptions<a href="#assumptions-4" class="hash-link" aria-label="Direct link to Assumptions" title="Direct link to Assumptions">​</a></h3><ul>
 <li><strong>URL shortening</strong>: given a long URL → return a much shorter URL</li>
 <li><strong>URL redirecting</strong>: given a shorter URL → redirect to the original URL</li>
@@ -148,38 +148,38 @@
 <li><strong>Read operation</strong>: assuming ratio of read operation to write operation is <code>10:1</code> → <code>1160 (writes/sec) * 10 (reads ratio) = 11,600 (reads/sec)</code></li>
 <li><strong>Storage requirement</strong>: average URL length is <code>100 bytes</code> with <code>10 years</code> of data storage: <code>100M (URLs) * 365 (days) * 10 (years) * 100 (bytes) = 365TB</code></li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/video-platform-e6e1df38b4d157218ea5a0f8d9c42738.svg" width="973" height="1164" class="img_NW00"></p><h3 class="anchor anchorWithStickyNavbar_BmoB" id="clarifications-5">Clarifications<a href="#clarifications-5" class="hash-link" aria-label="Direct link to Clarifications" title="Direct link to Clarifications">​</a></h3><ul>
-<li><strong>Features:</strong> Upload &amp; watch videos</li>
-<li><strong>Clients:</strong> Mobile, web, smart TV</li>
-<li><strong>Users:</strong> 5M DAU</li>
-<li><strong>Engagement:</strong> 30 min/day</li>
-<li><strong>Global:</strong> Supports international users</li>
-<li><strong>Playback:</strong> Accepts most resolutions/formats</li>
-<li><strong>Security:</strong> Encrypted videos</li>
-<li><strong>Upload Limit:</strong> Max 1GB videos (focuses on smaller sizes)</li>
-<li><strong>Cloud Storage:</strong> Consider leveraging existing services (AWS, Google Cloud, Azure)</li>
+<li><strong>Features</strong>: Upload &amp; watch videos</li>
+<li><strong>Clients</strong>: Mobile, web, smart TV</li>
+<li><strong>Users</strong>: 5M DAU</li>
+<li><strong>Engagement</strong>: 30 min/day</li>
+<li><strong>Global</strong>: Supports international users</li>
+<li><strong>Playback</strong>: Accepts most resolutions/formats</li>
+<li><strong>Security</strong>: Encrypted videos</li>
+<li><strong>Upload Limit</strong>: Max 1GB videos (focuses on smaller sizes)</li>
+<li><strong>Cloud Storage</strong>: Consider leveraging existing services (AWS, Google Cloud, Azure)</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="assumptions-5">Assumptions<a href="#assumptions-5" class="hash-link" aria-label="Direct link to Assumptions" title="Direct link to Assumptions">​</a></h3><ul>
-<li><strong>Fast Uploads:</strong> Videos upload quickly</li>
-<li><strong>Seamless Streaming:</strong> Videos play smoothly without buffering</li>
-<li><strong>Quality Control:</strong> Lets users adjust video quality</li>
-<li><strong>Cost-Effective:</strong> Needs low infrastructure costs</li>
-<li><strong>Scalability:</strong> HA, scalable, and reliable</li>
-<li><strong>Multi-Platform:</strong> Works on mobile apps, web browsers, and smart TVs</li>
+<li><strong>Fast Uploads</strong>: Videos upload quickly</li>
+<li><strong>Seamless Streaming</strong>: Videos play smoothly without buffering</li>
+<li><strong>Quality Control</strong>: Lets users adjust video quality</li>
+<li><strong>Cost-Effective</strong>: Needs low infrastructure costs</li>
+<li><strong>Scalability</strong>: HA, scalable, and reliable</li>
+<li><strong>Multi-Platform</strong>: Works on mobile apps, web browsers, and smart TVs</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="estimations-5">Estimations<a href="#estimations-5" class="hash-link" aria-label="Direct link to Estimations" title="Direct link to Estimations">​</a></h3><ul>
 <li><strong>Storage</strong>: <code>5M (users) * 10% (users upload 1 video/day) * 300MB (video) = 150 TB/day</code></li>
 <li><strong>CDN Costs</strong>: <code>5M (users) * 5 (videos) * 300MB (video) * 0.02 (CDN cost $/GB) = 750k $/day</code></li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><img decoding="async" loading="lazy" src="/tech-labs/assets/images/web-crawler-39b65cb26af96683a9b8f2b7634db020.svg" width="758" height="825" class="img_NW00"></p><h3 class="anchor anchorWithStickyNavbar_BmoB" id="clarifications-6">Clarifications<a href="#clarifications-6" class="hash-link" aria-label="Direct link to Clarifications" title="Direct link to Clarifications">​</a></h3><ul>
-<li><strong>Crawling Goal:</strong> Search Engine Indexing</li>
-<li><strong>Monthly Intake:</strong> 1B pages</li>
-<li><strong>Content Type:</strong> HTML only</li>
-<li><strong>Freshness:</strong> Include new &amp; edited pages</li>
-<li><strong>Storage:</strong> Keep crawled HTML for 5 years</li>
-<li><strong>Duplicates:</strong> Ignore duplicate content</li>
+<li><strong>Crawling Goal</strong>: Search Engine Indexing</li>
+<li><strong>Monthly Intake</strong>: 1B pages</li>
+<li><strong>Content Type</strong>: HTML only</li>
+<li><strong>Freshness</strong>: Include new &amp; edited pages</li>
+<li><strong>Storage</strong>: Keep crawled HTML for 5 years</li>
+<li><strong>Duplicates</strong>: Ignore duplicate content</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="assumptions-6">Assumptions<a href="#assumptions-6" class="hash-link" aria-label="Direct link to Assumptions" title="Direct link to Assumptions">​</a></h3><ul>
-<li><strong>Scale Up:</strong> Handle billions of web pages with parallelization (running tasks simultaneously)</li>
-<li><strong>Handle the Weird:</strong> Expect broken code, slow servers, crashes, and bad actors. The crawler must adapt</li>
-<li><strong>Be Nice:</strong> Don&#x27;t overload websites with too many requests at once based on the website</li>
-<li><strong>Future-Proof:</strong> Easily add new content types (like images) without a major overhaul</li>
-<li><strong>Crawl:</strong> Use BFS algorithm</li>
+<li><strong>Scale Up</strong>: Handle billions of web pages with parallelization (running tasks simultaneously)</li>
+<li><strong>Handle the Weird</strong>: Expect broken code, slow servers, crashes, and bad actors. The crawler must adapt</li>
+<li><strong>Be Nice</strong>: Don&#x27;t overload websites with too many requests at once based on the website</li>
+<li><strong>Future-Proof</strong>: Easily add new content types (like images) without a major overhaul</li>
+<li><strong>Crawl</strong>: Use BFS algorithm</li>
 </ul><h3 class="anchor anchorWithStickyNavbar_BmoB" id="estimations-6">Estimations<a href="#estimations-6" class="hash-link" aria-label="Direct link to Estimations" title="Direct link to Estimations">​</a></h3><ul>
 <li><strong>Load</strong>: QPS: <code>1M (pages) / 30 (days) / 24 (hours) / 3600 (seconds) = 400 pages/sec</code> and Peak QPS: <code>QPS * 2 (peak ratio) = 800 pages/sec</code></li>
 <li><strong>Storage</strong>: <code>1B (pages) * 500kb (page size) = 500 TB/month</code> for 5 years <code>500 (TB/month) * 12 (months) * 5 (years) = 30 PB</code></li>

@@ -7,7 +7,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/tech-labs/assets/css/styles.cf83a125.css">
-<script src="/tech-labs/assets/js/runtime~main.937f58f7.js" defer="defer"></script>
+<script src="/tech-labs/assets/js/runtime~main.1a257381.js" defer="defer"></script>
 <script src="/tech-labs/assets/js/main.6bbea543.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -133,25 +133,25 @@
 <li><strong>Simple</strong>: It should only create objects and not perform any other actions or side effects</li>
 <li><strong>Configurable</strong>: It may allow customizing some aspects of how the objects are created, such as their initial state, dependencies, settings, etc.</li>
 </ul></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><p><strong>Identify and Define the Core Business Domain</strong></p><ul>
-<li><strong>Identify Primary Objects:</strong> Entities, value objects, and domains critical to the business (Customers, accounts, transactions, and payments in banking)</li>
-<li><strong>Define Domain Model:</strong> Define attributes, behaviors, and relationships of identified objects (Customer name, account balance)</li>
+<li><strong>Identify Primary Objects</strong>: Entities, value objects, and domains critical to the business (Customers, accounts, transactions, and payments in banking)</li>
+<li><strong>Define Domain Model</strong>: Define attributes, behaviors, and relationships of identified objects (Customer name, account balance)</li>
 </ul><p><strong>Ubiquitous Language Establishment</strong></p><ul>
-<li><strong>Define Shared Language:</strong> Common vocabulary based on the domain model (Customer, account, transaction, payment)</li>
-<li><strong>Communication Standardization:</strong> Consistent usage throughout the development process (Ensures effective communication across stakeholders)</li>
+<li><strong>Define Shared Language</strong>: Common vocabulary based on the domain model (Customer, account, transaction, payment)</li>
+<li><strong>Communication Standardization</strong>: Consistent usage throughout the development process (Ensures effective communication across stakeholders)</li>
 </ul><p><strong>Object-Relational Mapping (ORM) Tools</strong></p><ul>
-<li><strong>Mapping Domain Model:</strong> Tools like Hibernate, Entity Framework map domain model to database (Facilitates interaction with data in the domain model)</li>
-<li><strong>Abstraction of Storage Technology:</strong> Allows direct work with the domain model, abstracting storage technology (Simplifies potential changes in storage technology)</li>
+<li><strong>Mapping Domain Model</strong>: Tools like Hibernate, Entity Framework map domain model to database (Facilitates interaction with data in the domain model)</li>
+<li><strong>Abstraction of Storage Technology</strong>: Allows direct work with the domain model, abstracting storage technology (Simplifies potential changes in storage technology)</li>
 </ul><p><strong>Command-Query Responsibility Segregation (CQRS)</strong></p><ul>
-<li><strong>Separate System Responsibilities:</strong> Commands for updating the model, queries for data retrieval (Enhances scalability and maintainability)</li>
+<li><strong>Separate System Responsibilities</strong>: Commands for updating the model, queries for data retrieval (Enhances scalability and maintainability)</li>
 </ul><p><strong>Event Sourcing</strong></p><ul>
-<li><strong>Store Domain Model History:</strong> Records changes as events, providing a complete history (Facilitates auditing and debugging)</li>
-<li><strong>Reconstruction of Domain Model:</strong> Replay events to reconstruct the model, understand system evolution</li>
+<li><strong>Store Domain Model History</strong>: Records changes as events, providing a complete history (Facilitates auditing and debugging)</li>
+<li><strong>Reconstruction of Domain Model</strong>: Replay events to reconstruct the model, understand system evolution</li>
 </ul><p><strong>Bounded Context</strong></p><ul>
-<li><strong>Define Domain Boundaries:</strong> Establish limits of a specific subdomain&#x27;s applicability (Ensures relevance and avoids unnecessary complexity)</li>
+<li><strong>Define Domain Boundaries</strong>: Establish limits of a specific subdomain&#x27;s applicability (Ensures relevance and avoids unnecessary complexity)</li>
 </ul><p><strong>Microservices</strong></p><ul>
-<li><strong>Decompose Large Systems:</strong> Break large systems into smaller, manageable parts (Enables independent development, deployment, and scaling)</li>
+<li><strong>Decompose Large Systems</strong>: Break large systems into smaller, manageable parts (Enables independent development, deployment, and scaling)</li>
 </ul><p><strong>Messaging</strong></p><ul>
-<li><strong>Facilitate Communication:</strong> Messaging enables communication between objects or systems (Supports loosely coupled architecture, aiding system flexibility)</li>
+<li><strong>Facilitate Communication</strong>: Messaging enables communication between objects or systems (Supports loosely coupled architecture, aiding system flexibility)</li>
 </ul></div></div></div>
 <h2 class="anchor anchorWithStickyNavbar_BmoB" id="hexagonal-architecture">Hexagonal Architecture<a href="#hexagonal-architecture" class="hash-link" aria-label="Direct link to Hexagonal Architecture" title="Direct link to Hexagonal Architecture">​</a></h2>
 <div class="tabs-container tabList_s7n3"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_jgSl tabs__item--active">Definition</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_jgSl">Benefits</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_jgSl">Principles</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_jgSl">Workflow</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_jgSl">Comparison</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_V_Js"><p>Hexagonal architecture, also known as ports and adapters architecture, is an architectural pattern that aims to create loosely coupled application components that can be easily connected to their software environment by means of ports and adapters. This makes components exchangeable at any level and facilitates test automation.</p><p>Hexagonal Architecture’s concept is to position inputs and outputs on the periphery of the design. The business logic should remain unaffected regardless of whether we expose a REST or a GraphQL API, and irrespective of our data sources — be it a database, a microservice API revealed through gRPC or REST.</p><p><strong>Port</strong></p><p>A port is an interface that facilitates communication between an application and an external system using a specific protocol. It can be either incoming (receiving requests or events from the external system) or outgoing (sending commands or queries to the external system).</p><p>A port can support multiple adapters, each implementing the communication protocol differently. For instance, an incoming port could have adapters for a GUI, CLI, or a web service, while an outgoing port could have adapters for various DBMS or repositories.</p><p><strong>Adapters</strong></p><p>An adapter is a component that links a port to an external system, translating data and messages between the application and the external system using the port’s protocol. It also manages technical aspects like error handling, logging, security, and caching.</p><p>Depending on the role of the external system, an adapter can be primary (connecting to an actor initiating communication) or secondary (connecting to an actor responding to communication). Primary actors include users or other applications, while secondary actors include databases or services.</p></div><div role="tabpanel" class="tabItem_V_Js" hidden=""><ul>
