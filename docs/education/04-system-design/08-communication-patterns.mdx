@@ -4,7 +4,6 @@ description: Communication Patterns Overview
 hide_table_of_contents: true
 ---
 
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
@@ -1697,6 +1696,7 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
+
 </Tabs>
 
 ## Best Practices
@@ -2181,6 +2181,7 @@ import TabItem from "@theme/TabItem";
                             - more efficient solution especially for large datasets
                             - **token**: any column or property that is used to pivot through the data in the table. Most common is `created_at` column
                             - **WHERE created_at >= "2024-01-01" LIMIT 10**: filter through the table and read only 10 required rows
+                        - **page token**: `GET /users?page={base64String}`: Base64 encoded string can be represented as a string or JSON object for more advanced use cases
             </TabItem>
             <TabItem value="rest-api-security" label="Security">
                 - Use SSL/TLS for secure communication
@@ -2411,4 +2412,5 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
+
 </Tabs>
