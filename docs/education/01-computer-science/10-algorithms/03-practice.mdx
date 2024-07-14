@@ -1,0 +1,3784 @@
+---
+title: Practice
+description: Practice
+hide_table_of_contents: true
+---
+
+import TOCInline from '@theme/TOCInline';
+
+<TOCInline toc={toc} />
+
+## Array
+
+<details>
+  <summary>Best Time to Buy and Sell Stock</summary>
+
+  You are given an array `prices` where `prices[i]` is the price of a given stock on the `ith` day.
+  You want to maximize your profit by choosing a **single day** to buy one stock and choosing a **different day in the future** to sell that stock.
+  Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+  **Example 1**
+
+  **Input**: `prices = [7,1,5,3,6,4]` <br />
+  **Output**: `5` <br />
+  **Explanation**: Buy on day 2 (`price = 1`) and sell on day 5 (`price = 6`), `profit = 6-1 = 5` <br />
+  Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell
+
+  **Example 2**
+
+  **Input**: `prices = [7,6,4,3,1]` <br />
+  **Output**: `0` <br />
+  **Explanation**: In this case, no transactions are done and the max `profit = 0`
+
+
+  **Constraints**
+
+  - `1 <= prices.length <= 105`
+  - `0 <= prices[i] <= 104`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Container With Most Water</summary>
+
+  You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the `ith` line are `(i, 0)` and `(i, height[i])`.
+  Find two lines that together with the x-axis form a container, such that the container contains the most water.
+  Return the maximum amount of water a container can store.
+  Notice that you may not slant the container.
+
+  **Example 1**
+
+  ```mermaid
+  xychart-beta
+      x-axis "Items"
+      y-axis "Height" 1 --> 8
+      bar [1,8,6,2,5,4,8,3,7]
+  ```
+
+  **Input**: `height = [1,8,6,2,5,4,8,3,7]` <br />
+  **Output**: `49` <br />
+  **Explanation**: The above vertical lines are represented by array `[1,8,6,2,5,4,8,3,7]`. In this case, the max area of water (blue section) the container can contain is `49`
+
+  **Example 2**
+
+  **Input**: `height = [1,1]` <br />
+  **Output**: `1` <br />
+
+
+  **Constraints**
+
+  - `n == height.length`
+  - `2 <= n <= 105`
+  - `0 <= height[i] <= 104`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Contains Duplicate</summary>
+
+  Given an integer array `nums`, return `true` if any value appears **at least** twice in the array, and return `false` if every element is distinct.
+
+  **Example 1**
+
+  **Input**: `nums = [1,2,3,1]` <br />
+  **Output**: `true`
+
+  **Example 2**
+
+  **Input**: `nums = [1,2,3,4]` <br />
+  **Output**: `false`
+
+  **Example 3**
+
+  **Input**: `nums = [1,1,1,3,3,4,3,2,4,2]`  <br />
+  **Output**: `true`
+
+
+  **Constraints**
+
+  - `1 <= nums.length <= 105`
+  - `-109 <= nums[i] <= 109`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Find Minimum in Rotated Sorted Array</summary>
+
+  Suppose an array of length `n` sorted in ascending order is **rotated** between `1` and `n` times. For example, the array `nums = [0,1,2,4,5,6,7]` might become:
+
+  - `[4,5,6,7,0,1,2]` if it was rotated `4` times
+  - `[0,1,2,4,5,6,7]` if it was rotated `7` times
+  - Notice that **rotating** an array `[a[0], a[1], a[2], ..., a[n-1]]` 1 time results in the array `[a[n-1], a[0], a[1], a[2], ..., a[n-2]]`
+
+  Given the sorted rotated array `nums` of **unique** elements, return the minimum element of this array
+
+  **Example 1**
+
+  **Input**: `nums = [3,4,5,1,2]` <br />
+  **Output**: `1` <br />
+  **Explanation**: The original array was `[1,2,3,4,5]` rotated `3` times
+
+  **Example 2**
+
+  **Input**: nums = `[4,5,6,7,0,1,2]` <br />
+  **Output**: `0` <br />
+  **Explanation**: The original array was `[0,1,2,4,5,6,7]` and it was rotated `4` times
+
+  **Example 3**
+
+  **Input**: nums = `[11,13,15,17]` <br />
+  **Output**: `11` <br />
+  **Explanation**: The original array was `[11,13,15,17]` and it was rotated `4` times
+
+  **Constraints**
+
+  - `n == nums.length`
+  - `1 <= n <= 5000`
+  - `-5000 <= nums[i] <= 5000`
+  - All the integers of `nums` are **unique**
+  - `nums` is sorted and rotated between `1` and `n` times
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Maximum Product Subarray</summary>
+
+  Given an integer array `nums`, find a subarray that has the largest product, and return the product
+
+  **Example 1**
+
+  **Input**: `nums = [2,3,-2,4]` <br />
+  **Output**: `6` <br />
+  **Explanation**: `[2,3]` has the largest product `6`
+
+  **Example 2**
+
+  **Input**: `nums = [-2,0,-1]` <br />
+  **Output**: `0` <br />
+  **Explanation**: The result cannot be `2`, because `[-2,-1]` is not a subarray
+
+  **Constraints**
+
+  - `1 <= nums.length <= 2 * 104`
+  - `-10 <= nums[i] <= 10`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Maximum Subarray</summary>
+
+  Given an integer array nums, find the subarray with the largest sum, and return its sum.
+
+  **Example 1**
+
+  **Input**: `nums = [-2,1,-3,4,-1,2,1,-5,4]` <br />
+  **Output**: `6` <br />
+  **Explanation**: The subarray `[4,-1,2,1]` has the largest sum `6`
+
+  **Example 2**
+
+  **Input**: `nums = [1]` <br />
+  **Output**: `1` <br />
+  **Explanation**: The subarray `[1]` has the largest sum `1`
+
+  **Example 3**
+
+  **Input**: `nums = [5,4,-1,7,8]` <br />
+  **Output**: `23` <br />
+  **Explanation**: The subarray `[5,4,-1,7,8]` has the largest sum `23`
+
+  **Constraints**
+
+  - `1 <= nums.length <= 105`
+  - `-104 <= nums[i] <= 104`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Product of Array Except Self</summary>
+
+  Given an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.
+  The product of any prefix or suffix of `nums` is guaranteed to fit in a **32-bit** integer
+
+  **Example 1**
+
+  **Input**: `nums = [1,2,3,4]` <br />
+  **Output**: `[24,12,8,6]`
+
+  **Example 2**
+
+  **Input**: `nums = [-1,1,0,-3,3]` <br />
+  **Output**: `[0,0,9,0,0]`
+
+
+  **Constraints**
+
+  - `2 <= nums.length <= 105`
+  - `-30 <= nums[i] <= 30`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Search in Rotated Sorted Array</summary>
+
+  There is an integer array `nums` sorted in ascending order (with **distinct** values).
+  Prior to being passed to your function, `nums` is **possibly rotated** at an unknown pivot index `k` (`1 <= k < nums.length`) such that the resulting array is `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]` (**0-indexed**). For example, `[0,1,2,4,5,6,7]` might be rotated at pivot index `3` and become `[4,5,6,7,0,1,2]`.
+  Given the array `nums` after the possible rotation and an integer `target`, return the index of `target` if it is in `nums`, or `-1` if it is not in `nums`.
+
+  **Example 1**
+
+  **Input**: `nums = [4,5,6,7,0,1,2], target = 0` <br />
+  **Output**: `4`
+
+  **Example 2**
+
+  **Input**: `nums = [4,5,6,7,0,1,2], target = 3` <br />
+  **Output**: `-1`
+
+  **Example 3**
+
+  **Input**: `nums = [1], target = 0` <br />
+  **Output**: `-1`
+
+  **Constraints**
+
+  - `1 <= nums.length <= 5000`
+  - `-104 <= nums[i] <= 104`
+  - All values of `nums` are **unique**
+  - `nums` is an ascending array that is possibly rotated
+  - `-104 <= target <= 104`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+    <summary>2Sum (Two Sum)</summary>
+
+    Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.
+
+    **Example 1**
+
+    Input: nums = `[2,7,11,15], target = 9` <br />
+    Output: `[0,1]` <br />
+    Explanation: Because `nums[0] + nums[1] == 9`, we return `[0, 1]`
+
+    **Example 2**
+
+    **Input**: `nums = [3,2,4], target = 6` <br />
+    **Output**: `[1,2]`
+
+    **Example 3**
+
+    **Input**: `nums = [3,3], target = 6` <br />
+    **Output**: `[0,1]`
+
+    **Constraints**
+
+    - `2 <= nums.length <= 104`
+    - `-109 <= nums[i] <= 109`
+    - `-109 <= target <= 109`
+
+    Only one valid answer exists
+
+  <hr/>
+
+    **Practice**
+
+    <table>
+      <thead>
+        <tr>
+          <th>Approach</th>
+          <th>Algorithm</th>
+          <th>Complexity Analysis</th>
+          <th>Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Brute Force</b></td>
+          <td>Loop through each element `x` and find if there is another value that equals to `target − x`</td>
+          <td>
+            <ul>
+              <li><b>Time</b>: `O(n^2)`: For each element, we try to find it's complement by looping through the rest of the array which takes `O(n)` time</li>
+              <li><b>Space</b>: `O(1)`: The space required does not depend on the size of the input array, so only constant space is used</li>
+            </ul>
+          </td>
+          <td>
+            ```python
+            twoSum(nums, target):
+              for i from 0 to nums.length:
+                for j from i + 1 to nums.length:
+                  if nums[j] == target - nums[i]:
+                    return [i, j]
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td><b>Two-pass Hash Table</b></td>
+          <td>Using hash table reduces lookup from `O(n)` to nearly constant `O(1)` time. A hash table efficiently maps array elements to their indices. We iterate through the array, storing elements and their indices. Then, we check if each element's complement exists in the hash table. If so, we've found a pair</td>
+          <td>
+            <ul>
+              <li><b>Time</b>: `O(n)`: We traverse the list containing `n` elements exactly twice. Since the hash table reduces the lookup time to `O(1)`, the overall time complexity is `O(n)`</li>
+              <li><b>Space</b>: `O(n)`: The extra space required depends on the number of items stored in the hash table, which stores exactly `n` elements</li>
+            </ul>
+          </td>
+          <td>
+            ```python
+            twoSum(nums, target):
+              hashmap = {}
+              for i from 0 to nums.length:
+                hashmap[nums[i]] = i
+              for i from 0 to nums.length:
+                complement = target - nums[i]
+                if complement in hashmap and hashmap[complement] != i:
+                  return [i, hashmap[complement]]
+            ```
+          </td>
+        </tr>
+        <tr>
+          <td><b>One-pass Hash Table</b></td>
+          <td>Check for complements while building the hash table. If a complement is found, we've located the pair and can stop immediately</td>
+          <td>
+            <ul>
+              <li><b>Time</b>: `O(n)`: We traverse the list containing `n` elements only once. Each lookup in the table costs only `O(1)` time</li>
+              <li><b>Space</b>: `O(n)`: The extra space required depends on the number of items stored in the hash table, which stores at most `n` elements</li>
+            </ul>
+          </td>
+          <td>
+            ```python
+            twoSum(nums, target):
+              hashmap = {}
+              for i from 0 to nums.length:
+                complement = target - nums[i]
+                if complement in hashmap:
+                  return [i, hashmap[complement]]
+                hashmap[nums[i]] = i
+            ```
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</details>
+
+<details>
+  <summary>3Sum (Three Sum)</summary>
+
+  Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
+  Notice that the solution set must not contain duplicate triplets.
+
+  **Example 1**
+
+  **Input**: `nums = [-1,0,1,2,-1,-4]` <br />
+  **Output**: `[[-1,-1,2],[-1,0,1]]` <br />
+  **Explanation**: <br />
+  `nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0` <br />
+  `nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0` <br />
+  `nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0` <br />
+  The distinct triplets are `[-1,0,1] and [-1,-1,2]` <br />
+  Notice that the order of the output and the order of the triplets does not matter
+
+  **Example 2**
+
+  **Input**: `nums = [0,1,1]` <br />
+  **Output**: `[]` <br />
+  **Explanation**: The only possible triplet does not sum up to 0
+
+  **Example 3**
+
+  **Input**: `nums = [0,0,0]` <br />
+  **Output**: `[[0,0,0]]` <br />
+  **Explanation**: The only possible triplet sums up to 0
+
+  **Constraints**
+
+  - `3 <= nums.length <= 3000`
+  - `-105 <= nums[i] <= 105`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Binary
+
+<details>
+  <summary>Counting Bits</summary>
+
+  Given an integer `n`, return an array ans of length `n + 1` such that for each `i` (`0 <= i <= n`), `ans[i]` is the **number of `1`'s** in the binary representation of `i`
+
+  **Example 1**
+
+  **Input**: `n = 2` <br />
+  **Output**: `[0,1,1]` <br />
+  **Explanation**:
+
+  - `0 --> 0`
+  - `1 --> 1`
+  - `2 --> 10`
+
+  **Example 2**
+
+  **Input**: `n = 5` <br />
+  **Output**: `[0,1,1,2,1,2]` <br />
+  **Explanation**:
+
+  - `0 --> 0`
+  - `1 --> 1`
+  - `2 --> 10`
+  - `3 --> 11`
+  - `4 --> 100`
+  - `5 --> 101`
+
+
+  **Constraints**
+
+  - `0 <= n <= 105`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Missing Number</summary>
+
+  Given an array `nums` containing `n` **distinct** numbers in the range `[0, n]`, return the only number in the range that is missing from the array
+
+  **Example 1**
+
+  **Input**: `nums = [3,0,1]`
+  **Output**: `2`
+  **Explanation**: `n = 3` since there are `3` numbers, so all numbers are in the range `[0,3]`. `2` is the missing number in the range since it does not appear in `nums`
+
+  **Example 2**
+
+  **Input**: `nums = [0,1]`
+  **Output**: `2`
+  **Explanation**: `n = 2` since there are `2` numbers, so all numbers are in the range `[0,2]`. `2` is the missing number in the range since it does not appear in `nums`
+
+  **Example 3**
+
+  **Input**: `nums = [9,6,4,2,3,5,7,0,1]`
+  **Output**: `8`
+  **Explanation**: `n = 9` since there are `9` numbers, so all numbers are in the range `[0,9]`. `8` is the missing number in the range since it does not appear in `nums`
+
+
+  **Constraints**
+
+  - `n == nums.length`
+  - `1 <= n <= 104`
+  - `0 <= nums[i] <= n`
+  - All the numbers of `nums` are **unique**
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Number of 1 Bits</summary>
+
+  Write a function that takes the binary representation of a positive integer and returns the number of set bits it has (also known as the Hamming weight)
+
+  **Example 1**
+
+  **Input**: `n = 11` <br />
+  **Output**: `3` <br />
+  **Explanation**: The input binary string `1011` has a total of three set bits
+
+  **Example 2**
+
+  **Input**: `n = 128` <br />
+  **Output**: `1` <br />
+  **Explanation**: The input binary string `10000000` has a total of one set bit
+
+  **Example 3**
+
+  **Input**: `n = 2147483645` <br />
+  **Output**: `30` <br />
+  **Explanation**: The input binary string `1111111111111111111111111111101` has a total of thirty set bits
+
+  **Constraints**
+
+  - `1 <= n <= 231 - 1`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Reverse Bits</summary>
+
+  Reverse bits of a given 32 bits unsigned integer
+
+  **Note**
+
+  - Note that in some languages, such as Java, there is no unsigned integer type. In this case, both input and output will be given as a signed integer type. They should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned
+  - In Java, the compiler represents the signed integers using **2's complement notation**. Therefore, in Example 2 above, the input represents the signed integer `-3` and the output represents the signed integer `-1073741825`
+
+  **Example 1**
+
+  **Input**: `n = 00000010100101000001111010011100` <br />
+  **Output**: `964176192 (00111001011110000010100101000000)` <br />
+  **Explanation**: The input binary string `00000010100101000001111010011100` represents the unsigned integer `43261596`, so return 964176192 which its binary representation is `00111001011110000010100101000000`
+
+  **Example 2**
+
+  **Input**: `n = 11111111111111111111111111111101` <br />
+  **Output**: `3221225471 (10111111111111111111111111111111)` <br />
+  **Explanation**: The input binary string `11111111111111111111111111111101` represents the unsigned integer `4294967293`, so return `3221225471` which its binary representation is `10111111111111111111111111111111`
+
+  **Constraints**
+
+  - The input must be a binary string of length 32
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Sum of Two Integers</summary>
+
+  Given two integers `a` and `b`, return the sum of the two integers without using the operators `+` and `-`
+
+  **Example 1**
+
+  **Input**: `a = 1, b = 2` <br />
+  **Output**: `3`
+
+  **Example 2**
+
+  **Input**: `a = 2, b = 3` <br />
+  **Output**: `5`
+
+  **Constraints**
+
+  - `-1000 <= a, b <= 1000`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Dynamic Programming
+
+<details>
+  <summary>Climbing Stairs</summary>
+
+  You are climbing a staircase. It takes `n` steps to reach the top.
+  Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?
+
+  **Example 1**
+
+  **Input**: `n = 2` <br />
+  **Output**: `2` <br />
+  **Explanation**: There are two ways to climb to the top.
+
+  - 1 step + 1 step
+  - 2 steps
+
+  **Example 2**
+
+  **Input**: `n = 3` <br />
+  **Output**: `3` <br />
+  **Explanation**: There are three ways to climb to the top.
+
+  - 1 step + 1 step + 1 step
+  - 1 step + 2 steps
+  - 2 steps + 1 step
+
+  **Constraints**
+
+  - `1 <= n <= 45`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Coin Change</summary>
+
+  You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.
+  Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return `-1`.
+  You may assume that you have an infinite number of each kind of coin.
+
+  **Example 1**
+
+  **Input**: `coins = [1,2,5]`, `amount = 11` <br />
+  **Output**: `3` <br />
+  **Explanation**: `11 = 5 + 5 + 1`
+
+  **Example 2**
+
+  **Input**: `coins = [2]`, `amount = 3` <br />
+  **Output**: `-1`
+
+  **Example 3**
+
+  **Input**: `coins = [1]`, `amount = 0` <br />
+  **Output**: `0`
+
+  **Constraints**
+
+  - `1 <= coins.length <= 12`
+  - `1 <= coins[i] <= 231 - 1`
+  - `0 <= amount <= 104`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Combination Sum</summary>
+
+  Given an array of **distinct** integers `candidates` and a target integer `target`, return a list of all **unique combinations** of `candidates` where the chosen numbers sum to `target`. You may return the combinations in **any order**.
+  The **same** number may be chosen from `candidates` an **unlimited number of times**. Two combinations are unique if the frequency of at least one of the chosen numbers is different
+
+  **Example 1**
+
+  **Input**: `candidates = [2,3,6,7]`, `target = 7` <br />
+  **Output**: `[[2,2,3],[7]]` <br />
+  **Explanation**:
+
+  - `2` and `3` are candidates, and `2 + 2 + 3 = 7`. Note that `2` can be used multiple times
+  - `7` is a candidate, and `7 = 7`
+  - These are the only **two** combinations
+
+  **Example 2**
+
+  **Input**: `candidates = [2,3,5`], `target = 8` <br />
+  **Output**: `[[2,2,2,2],[2,3,3],[3,5]]`
+
+  **Example 3**
+
+  **Input**: `candidates = [2]`, `target = 1` <br />
+  **Output**: `[]`
+
+  **Constraints**
+
+  - `1 <= candidates.length <= 30`
+  - `2 <= candidates[i] <= 40`
+  - All elements of candidates are distinct
+  - `1 <= target <= 40`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Decode Ways</summary>
+
+  You have intercepted a secret message encoded as a string of numbers. The message is **decoded** via the following mapping:
+
+  - "1" -> 'A'
+  - "2" -> 'B'
+  - ...
+  - "25" -> 'Y'
+  - "26" -> 'Z'
+
+  However, while decoding the message, you realize that there are many different ways you can decode the message because some codes are contained in other codes (`2` and `5` vs `25`).
+  For example, `11106` can be decoded into:
+
+  - `AAJF` with the grouping `(1, 1, 10, 6)`
+  - `KJF` with the grouping `(11, 10, 6)`
+  - The grouping `(1, 11, 06)` is invalid because `06` is not a valid code (only `6` is valid)
+
+  Note: there may be strings that are impossible to decode.
+
+  Given a string s containing only digits, return the number of ways to decode it. If the entire string cannot be decoded in any valid way, return `0`.
+
+  **Example 1**
+
+  **Input**: `s = 12` <br />
+  **Output**: `2` <br />
+  **Explanation**: `12` could be decoded as `AB` `(1 2)` or `L` `(12)`
+
+  **Example 2**
+
+  **Input**: `s = 226` <br />
+  **Output**: `3` <br />
+  **Explanation**: `226` could be decoded as `BZ` `(2 26)`, `VF` `(22 6)`, or `BBF` `(2 2 6)`
+
+  **Example 3**
+
+  **Input**: `s = 06` <br />
+  **Output**: `0` <br />
+  **Explanation**: `06` cannot be mapped to `F` because of the leading zero (`6` is different from `06`). In this case, the string is not a valid encoding, so return `0`
+
+  **Constraints**
+
+  - `1 <= s.length <= 100`
+  - `s` contains only digits and may contain leading zero(s)
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>House Robber</summary>
+
+  You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and **it will automatically contact the police if two adjacent houses were broken into on the same night**.
+  Given an integer array `nums` representing the amount of money of each house, return the maximum amount of money you can rob tonight **without alerting the police**.
+
+  **Example 1**
+
+  **Input**: `nums = [1,2,3,1]` <br />
+  **Output**: `4` <br />
+  **Explanation**: Rob house 1 (money = 1) and then rob house 3 (money = 3). Total amount you can `rob = 1 + 3 = 4`
+
+  **Example 2**
+
+  **Input**: nums = [2,7,9,3,1] <br />
+  **Output**: 12 <br />
+  **Explanation**: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1). Total amount you can `rob = 2 + 9 + 1 = 12`
+
+  **Constraints**
+
+  - `1 <= nums.length <= 100`
+  - `0 <= nums[i] <= 400`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>House Robber II</summary>
+
+  You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are **arranged in a circle**. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have a security system connected, and **it will automatically contact the police if two adjacent houses were broken into on the same night**.
+  Given an integer array `nums` representing the amount of money of each house, return the maximum amount of money you can rob tonight **without alerting the police**
+
+  **Example 1**
+
+  **Input**: `nums = [2,3,2]` <br />
+  **Output**: `3` <br />
+  **Explanation**: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2), because they are adjacent houses
+
+  **Example 2**
+
+  **Input**: `nums = [1,2,3,1]` <br />
+  **Output**: `4` <br />
+  **Explanation**: Rob house 1 (money = 1) and then rob house 3 (money = 3). Total amount you can `rob = 1 + 3 = 4`
+
+  **Example 3**
+
+  **Input**: `nums = [1,2,3]` <br />
+  **Output**: `3`
+
+  **Constraints**
+
+  - `1 <= nums.length <= 100`
+  - `0 <= nums[i] <= 1000`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Jump Game</summary>
+
+  You are given an integer array `nums`. You are initially positioned at the array's **first index**, and each element in the array represents your maximum jump length at that position.
+  Return `true` if you can reach the last index, or `false` otherwise
+
+  **Example 1**
+
+  **Input**: `nums = [2,3,1,1,4]` <br />
+  **Output**: `true` <br />
+  **Explanation**: Jump 1 step from index 0 to 1, then 3 steps to the last index
+
+  **Example 2**
+
+  **Input**: `nums = [3,2,1,0,4]` <br />
+  **Output**: `false` <br />
+  **Explanation**: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index
+
+  **Constraints**
+
+  - `1 <= nums.length <= 104`
+  - `0 <= nums[i] <= 105`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Longest Common Subsequence</summary>
+
+  Given two strings `text1` and `text2`, return the length of their longest **common subsequence**. If there is no **common subsequence**, return `0`.
+  A **subsequence** of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+  For example, `ace` is a subsequence of `abcde`.
+  A **common subsequence** of two strings is a subsequence that is common to both strings.
+
+  **Example 1**
+
+  **Input**: `text1 = "abcde"`, `text2 = "ace"`
+  **Output**: `3`
+  **Explanation**: The longest common subsequence is `ace` and its length is `3`
+
+  **Example 2**
+
+  **Input**: `text1 = "abc"`, `text2 = "abc"`
+  **Output**: `3`
+  **Explanation**: The longest common subsequence is `abc` and its length is `3`
+
+  **Example 3**
+
+  **Input**: `text1 = "abc"`, `text2 = "def"`
+  **Output**: `0`
+  **Explanation**: There is no such common subsequence, so the result is `0`
+
+  **Constraints**
+
+  - `1 <= text1.length`, `text2.length <= 1000`
+  - `text1` and `text2` consist of only lowercase English characters
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Longest Increasing Subsequence</summary>
+
+  Given an integer array `nums`, return the length of the longest **strictly increasing subsequence**
+
+  **Example 1**
+
+  **Input**: `nums = [10,9,2,5,3,7,101,18]` <br />
+  **Output**: `4` <br />
+  **Explanation**: The longest increasing subsequence is `[2,3,7,101]`, therefore the length is `4`
+
+  **Example 2**
+
+  **Input**: `nums = [0,1,0,3,2,3]` <br />
+  **Output**: `4`
+
+  **Example 3**
+
+  **Input**: `nums = [7,7,7,7,7,7,7]` <br />
+  **Output**: `1`
+
+  **Constraints**
+
+  - `1 <= nums.length <= 2500`
+  - `-104 <= nums[i] <= 104`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Unique Paths</summary>
+
+  There is a robot on an `m x n` grid. The robot is initially located at the **top-left corner** (i.e., `grid[0][0]`). The robot tries to move to the **bottom-right corner** (i.e., `grid[m - 1][n - 1]`). The robot can only move either down or right at any point in time.
+  Given the two integers `m` and `n`, return the number of possible unique paths that the robot can take to reach the bottom-right corner
+
+  **Example 1**
+
+  **Input**: `m = 3`, `n = 7` <br />
+  **Output**: `28`
+
+  **Example 2**
+
+  **Input**: `m = 3`, `n = 2` <br />
+  **Output**: `3` <br />
+  **Explanation**: From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+
+  - Right -> Down -> Down
+  - Down -> Down -> Right
+  - Down -> Right -> Down
+
+  Constraints:
+
+  - `1 <= m, n <= 100`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Word Break</summary>
+
+  Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` can be segmented into a space-separated sequence of one or more dictionary words.
+  Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+  **Example 1**
+
+  **Input**: `s = "applepenapple"`, `wordDict = ["apple","pen"]` <br />
+  **Output**: `true` <br />
+  **Explanation**: Return true because `applepenapple` can be segmented as `apple pen apple`.
+  Note that you are allowed to reuse a dictionary word
+
+  **Example 2**
+
+  **Input**: `s = "catsandog"`, `wordDict = ["cats","dog","sand","and","cat"]` <br />
+  **Output**: `false`
+
+  **Constraints**
+
+  - `1 <= s.length <= 300`
+  - `1 <= wordDict.length <= 1000`
+  - `1 <= wordDict[i].length <= 20`
+  - `s` and `wordDict[i]` consist of only lowercase English letters
+  - All the strings of `wordDict` are unique
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Graph
+
+<details>
+  <summary>Alien Dictionary</summary>
+
+  Given a sorted dictionary of an alien language having `N` words and `k` starting alphabets of standard dictionary. Find the order of characters in the alien language.
+  Note: Many orders may be possible for a particular test case, thus you may return any valid order and output will be `1` if the order of string returned by the function is correct else `0` denoting incorrect string returned
+
+  **Example 1**
+
+  **Input**: `N = 5`, `K = 4`, `dict = {"baa","abcd","abca","cab","cad"}` <br />
+  **Output**: `1` <br />
+  **Explanation**: Here order of characters is 'b', 'd', 'a', 'c' Note that words are sorted and in the given language "baa" comes before "abcd", therefore 'b' is before 'a' in output. Similarly we can find other orders
+
+  **Example 2**
+
+  **Input**: `N = 3`, `K = 3`, `dict = {"caa","aaa","aab"}` <br />
+  **Output**: `1` <br />
+  **Explanation**: Here order of characters is 'c', 'a', 'b' Note that words are sorted and in the given language "caa" comes before "aaa", therefore 'c' is before 'a' in output. Similarly we can find other orders
+
+  **Constraints**
+
+  - `1 ≤ N, M ≤ 300`
+  - `1 ≤ K ≤ 26`
+  - `1 ≤ Length of words ≤ 50`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Clone Graph</summary>
+
+  Given a reference of a node in a connected undirected graph.
+  Return a deep copy (clone) of the graph.
+  Each node in the graph contains a `value` (`int`) and a list (`List[Node]`) of its `neighbors`.
+  For simplicity, each node's value is the same as the node's index (1-indexed). For example, the first node with `val == 1`, the second node with `val == 2`, and so on. The graph is represented in the test case using an adjacency list.
+  An adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a node in the graph.
+  The given node will always be the first node with `val = 1`. You must return the copy of the given node as a reference to the cloned graph.
+
+  **Example 1**
+
+  **Input**: `adjList = [[2,4],[1,3],[2,4],[1,3]]` <br />
+  **Output**: `[[2,4],[1,3],[2,4],[1,3]]` <br />
+  **Explanation**: There are 4 nodes in the graph.
+
+  - 1st node (`val = 1`)'s neighbors are 2nd node (`val = 2`) and 4th node (`val = 4`)
+  - 2nd node (`val = 2`)'s neighbors are 1st node (`val = 1`) and 3rd node (`val = 3`)
+  - 3rd node (`val = 3`)'s neighbors are 2nd node (`val = 2`) and 4th node (`val = 4`)
+  - 4th node (`val = 4`)'s neighbors are 1st node (`val = 1`) and 3rd node (`val = 3`)
+
+  **Example 2**
+
+  **Input**: `adjList = [[]]` <br />
+  **Output**: `[[]]` <br />
+  **Explanation**: Note that the input contains one empty list. The graph consists of only one node with `val = 1` and it does not have any neighbors
+
+  **Example 3**
+
+  **Input**: `adjList = []` <br />
+  **Output**: `[]` <br />
+  **Explanation**: This an empty graph, it does not have any nodes
+
+  **Constraints**
+
+  - The number of nodes in the graph is in the range `[0, 100]`
+  - `1 <= Node.val <= 100`
+  - `Node.val` is unique for each node
+  - There are no repeated edges and no self-loops in the graph
+  - The Graph is connected and all nodes can be visited starting from the given node
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Course Schedule</summary>
+
+  There are a total of `numCourses` courses you have to take, labeled from 0 to `numCourses - 1`. You are given an array `prerequisites` where <code>prerequisites[i] = [$$a_i$$, $$b_i$$]</code> indicates that you must take course <code>$$b_i$$</code> first if you want to take course <code>$$a_i$$</code>.
+  For example, the pair `[0, 1]`, indicates that to take course `0` you have to first take course `1`.
+  Return `true` if you can finish all courses. Otherwise, return `false`.
+
+  **Example 1**
+
+  **Input**: `numCourses = 2`, `prerequisites = [[1,0]]` <br />
+  **Output**: `true` <br />
+  **Explanation**: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible
+
+  **Example 2**
+
+  **Input**: `numCourses = 2`, `prerequisites = [[1,0],[0,1]]` <br />
+  **Output**: `false` <br />
+  **Explanation**: There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible
+
+  **Constraints**
+
+  - `1 <= numCourses <= 2000`
+  - `0 <= prerequisites.length <= 5000`
+  - `prerequisites[i].length == 2`
+  - `0 <= ai, bi < numCourses`
+  - All the pairs `prerequisites[i]` are unique
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Graph Valid Tree</summary>
+
+  Given `n` nodes labeled from `0` to `n-1` and a list of undirected edges (each edge is a pair of nodes), write a function to check whether these edges make up a valid tree.
+  Note: you can assume that no duplicate edges will appear in edges. Since all edges are undirected, `[0,1]` is the same as `[1,0]` and thus will not appear together in edges
+
+  **Example 1**
+
+  **Input**: `n = 5`, `edges = [[0,1], [0,2], [0,3], [1,4]]` <br />
+  **Output**: `true` <br />
+
+  **Example 2**
+
+  **Input**: `n = 5`, `edges = [[0,1], [1,2], [2,3], [1,3], [1,4]]` <br />
+  **Output**: `false`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Longest Consecutive Sequence</summary>
+
+  Given an unsorted array of integers `nums`, return the length of the longest consecutive elements sequence.
+  You must write an algorithm that runs in `O(n)` time.
+
+  **Example 1**
+
+  **Input**: `nums = [100,4,200,1,3,2]` <br />
+  **Output**: `4` <br />
+  **Explanation**: The longest consecutive elements sequence is `[1, 2, 3, 4]`. Therefore its length is `4`
+
+  **Example 2**
+
+  **Input**: `nums = [0,3,7,2,5,8,4,6,0,1]` <br />
+  **Output**: `9`
+
+
+  **Constraints**
+
+  - `0 <= nums.length <= 105`
+  - `-109 <= nums[i] <= 109`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Number of Connected Components in an Undirected Graph</summary>
+
+  Given `n` nodes labeled from `0` to `n - 1` and a list of undirected edges (each edge is a pair of nodes), write a function to find the number of connected components in an undirected graph.
+  Note: You can assume that no duplicate edges will appear in edges. Since all edges are undirected, `[0, 1]` is the same as `[1, 0]` and thus will not appear together in edges
+
+  **Example 1**
+
+  ```text
+  0        3
+  |        |
+  1 - 2    4
+  ```
+
+  **Input**: `n = 5`, `edges = [[0, 1], [1, 2], [3, 4]]` <br />
+  **Output**: `2`
+
+  **Example 2**
+
+  ```text
+  0       4
+  |       |
+  1 - 2 - 3
+  ```
+
+  **Input**: `n = 5`, `edges = [[0, 1], [1, 2], [2, 3], [3, 4]]` <br />
+  **Output**:  `1`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Number of Islands</summary>
+
+  Given an `m x n` 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+  An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+  **Example 1**
+
+  **Input**:
+
+  ```python
+  grid = [
+    ["1","1","1","1","0"],
+    ["1","1","0","1","0"],
+    ["1","1","0","0","0"],
+    ["0","0","0","0","0"]
+  ]
+  ```
+
+  **Output**: 1
+
+  **Example 2**
+
+  **Input**:
+
+  ```python
+  grid = [
+    ["1","1","0","0","0"],
+    ["1","1","0","0","0"],
+    ["0","0","1","0","0"],
+    ["0","0","0","1","1"]
+  ]
+  ```
+
+  **Output**: 3
+
+  **Constraints**
+
+  - `m == grid.length`
+  - `n == grid[i].length`
+  - `1 <= m, n <= 300`
+  - `grid[i][j] is '0' or '1'`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Pacific Atlantic Water Flow</summary>
+
+  There is an `m x n` rectangular island that borders both the **Pacific Ocean** and **Atlantic Ocean**. The **Pacific Ocean** touches the island's left and top edges, and the Atlantic Ocean touches the island's right and bottom edges.
+  The island is partitioned into a grid of square cells. You are given an `m x n` integer matrix `heights` where `heights[r][c]` represents the **height above sea level** of the cell at coordinate `(r, c)`.
+  The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell's height is **less than or equal to** the current cell's height. Water can flow from any cell adjacent to an ocean into the ocean.
+  Return a **2D list** of grid coordinates `result` where <code>result[i] = [$$r_i$$, $$c_i$$]</code> denotes that rain water can flow from cell <code>($$r_i$$, $$c_i$$)</code> to both the **Pacific** and **Atlantic** oceans.
+
+  **Example 1**
+
+  $$$
+  \begin{vmatrix}
+     1 & 2 & 2 & 3 & (5) \\
+     3 & 2 & 3 & (4) & (4) \\
+     2 & 4 & (5) & 3 & 1 \\
+     (6) & (7) & 1 & 4 & 5 \\
+     (5) & 1 & 1 & 2 & 4
+  \end{vmatrix}
+  $$$
+
+  **Input**:
+  ```python
+  heights = [
+    [1,2,2,3,5],
+    [3,2,3,4,4],
+    [2,4,5,3,1],
+    [6,7,1,4,5],
+    [5,1,1,2,4]
+  ]
+  ```
+
+  **Output**:
+  ```python
+  [
+    [0,4],
+    [1,3],
+    [1,4],
+    [2,2],
+    [3,0],
+    [3,1],
+    [4,0]
+  ]
+  ```
+  Explanation: The following cells can flow to the Pacific and Atlantic oceans, as shown below:
+
+  ```python
+  [0,4]: [0,4] -> Pacific Ocean
+         [0,4] -> Atlantic Ocean
+  [1,3]: [1,3] -> [0,3] -> Pacific Ocean
+         [1,3] -> [1,4] -> Atlantic Ocean
+  [1,4]: [1,4] -> [1,3] -> [0,3] -> Pacific Ocean
+         [1,4] -> Atlantic Ocean
+  [2,2]: [2,2] -> [1,2] -> [0,2] -> Pacific Ocean
+         [2,2] -> [2,3] -> [2,4] -> Atlantic Ocean
+  [3,0]: [3,0] -> Pacific Ocean
+         [3,0] -> [4,0] -> Atlantic Ocean
+  [3,1]: [3,1] -> [3,0] -> Pacific Ocean
+         [3,1] -> [4,1] -> Atlantic Ocean
+  [4,0]: [4,0] -> Pacific Ocean
+         [4,0] -> Atlantic Ocean
+  ```
+
+  Note that there are other possible paths for these cells to flow to the Pacific and Atlantic oceans
+
+  **Example 2**
+
+  **Input**: `heights = [[1]]`
+  **Output**: `[[0,0]]`
+  **Explanation**: The water can flow from the only cell to the Pacific and Atlantic oceans
+
+
+  Constraints:
+
+  - `m == heights.length`
+  - `n == heights[r].length`
+  - `1 <= m, n <= 200`
+  - `0 <= heights[r][c] <= 105`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Heap
+
+<details>
+  <summary>Find Median from Data Stream</summary>
+
+  The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values
+
+  - For example, for `arr = [2,3,4]`, the median is `3`
+  - For example, for `arr = [2,3]`, the median is `(2 + 3) / 2 = 2.5`
+
+  Implement the `MedianFinder` class:
+
+  - `MedianFinder()` initializes the `MedianFinder` object
+  - `void addNum(int num)` adds the integer num from the data stream to the data structure
+  - `double findMedian()` returns the median of all elements so far. Answers within <code>$$10^{-5}$$</code> of the actual answer will be accepted
+
+  **Example 1**
+
+  **Input**: `["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]`, `[[], [1], [2], [], [3], []]` <br />
+  **Output**: `[null, null, null, 1.5, null, 2.0]`
+
+  **Explanation**:
+
+  ```python
+  MedianFinder medianFinder = new MedianFinder();
+  medianFinder.addNum(1);    // arr = [1]
+  medianFinder.addNum(2);    // arr = [1, 2]
+  medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
+  medianFinder.addNum(3);    // arr[1, 2, 3]
+  medianFinder.findMedian(); // return 2.0
+  ```
+
+  **Constraints**
+
+  - `-105 <= num <= 105`
+  - There will be at least one element in the data structure before calling `findMedian`
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Merge K Sorted Lists</summary>
+
+  You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+  Merge all the linked-lists into one sorted linked-list and return it
+
+  **Example 1**
+
+  **Input**: `lists = [[1,4,5],[1,3,4],[2,6]]` <br />
+  **Output**: `[1,1,2,3,4,4,5,6]` <br />
+  **Explanation**: The linked-lists are:
+
+  ```python
+  [
+    1->4->5,
+    1->3->4,
+    2->6
+  ]
+  ```
+
+  merging them into one sorted list: `1->1->2->3->4->4->5->6`
+
+  **Example 2**
+
+  **Input**: `lists = []` <br />
+  **Output**: `[]`
+
+  **Example 3**
+
+  **Input**: `lists = [[]]` <br />
+  **Output**: `[]`
+
+  **Constraints**
+
+  - `k == lists.length`
+  - `0 <= k <= 104`
+  - `0 <= lists[i].length <= 500`
+  - `-104 <= lists[i][j] <= 104`
+  - `lists[i]` is sorted in ascending order
+  - The sum of `lists[i].length` will not exceed <code>$$10^4$$</code>
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Top K Frequent Elements</summary>
+
+  Given an integer array `nums` and an integer `k`, return the `k` most frequent elements. You may return the answer in any order
+
+  **Example 1**
+
+  **Input**: `nums = [1,1,1,2,2,3]`, `k = 2` <br />
+  **Output**: `[1,2]`
+
+  **Example 2**
+
+  **Input**: `nums = [1]`, `k = 1` <br />
+  **Output**: `[1]`
+
+  **Constraints**
+
+  - `1 <= nums.length <= 105`
+  - `-104 <= nums[i] <= 104`
+  - `k` is in the range `[1, the number of unique elements in the array]`
+  - It is guaranteed that the answer is unique
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Interval
+
+<details>
+  <summary>Insert Interval</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Meeting Rooms</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Meeting Rooms II</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Merge Intervals</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Non-overlapping Intervals</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Linked List
+
+<details>
+  <summary>Detect Cycle in a Linked List</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Merge K Sorted Lists</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Merge Two Sorted Lists</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Remove Nth Node From End Of List</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Reorder List</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Reverse a Linked List</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Matrix
+
+<details>
+  <summary>Rotate Image</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Set Matrix Zeroes</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Spiral Matrix</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Word Search</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## String
+
+<details>
+  <summary>Encode and Decode Strings</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Group Anagrams</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Longest Palindromic Substring</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Longest Repeating Character Replacement</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Longest Substring Without Repeating Characters</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Minimum Window Substring</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Palindromic Substrings</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Valid Anagram</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Valid Palindrome</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Valid Parentheses</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+## Tree
+
+<details>
+  <summary>Add and Search Word</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Binary Tree Level Order Traversal</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Binary Tree Maximum Path Sum</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Construct Binary Tree from Preorder and Inorder Traversal</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Implement Trie (Prefix Tree)</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Invert/Flip Binary Tree</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Kth Smallest Element in a BST</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Lowest Common Ancestor of BST</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Maximum Depth of Binary Tree</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Same Tree</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Serialize and Deserialize Binary Tree</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Subtree of Another Tree</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Validate Binary Search Tree</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary>Word Search II</summary>
+
+
+  <hr/>
+
+  **Practice**
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Algorithm</th>
+        <th>Complexity Analysis</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b></b></td>
+        <td></td>
+        <td>
+          <ul>
+            <li><b>Time</b>: ``:</li>
+            <li><b>Space</b>: ``:</li>
+          </ul>
+        </td>
+        <td>
+          ```python
+          ```
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
