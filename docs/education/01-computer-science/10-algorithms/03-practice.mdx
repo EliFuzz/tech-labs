@@ -2374,6 +2374,31 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Insert Interval</summary>
 
+  You are given an array of non-overlapping intervals intervals where <code>intervals[i] = [$$start_i$$, $$end_i$$]</code> represent the start and the end of the $$i^{th}$$ interval and `intervals` is sorted in ascending order by <code>$$start_i$$</code>. You are also given an interval `newInterval = [start, end]` that represents the start and end of another interval.
+  Insert `newInterval` into `intervals` such that `intervals` is still sorted in ascending order by <code>$$start_i$$</code> and `intervals` still does not have any overlapping intervals (merge overlapping intervals if necessary).
+  Return `intervals` after the insertion.
+  Note that you don't need to modify `intervals` in-place. You can make a new array and return it.
+
+  **Example 1**
+
+  **Input**: `intervals = [[1,3],[6,9]]`, `newInterval = [2,5]` <br />
+  **Output**: `[[1,5],[6,9]]`
+
+  **Example 2**
+
+  **Input**: `intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]`, `newInterval = [4,8]` <br />
+  **Output**: `[[1,2],[3,10],[12,16]]` <br />
+  **Explanation**: Because the new interval `[4,8]` overlaps with `[3,5],[6,7],[8,10]`
+
+
+  Constraints:
+
+  - `0 <= intervals.length <= 104`
+  - `intervals[i].length == 2`
+  - `0 <= starti <= endi <= 105`
+  - intervals is sorted by <code>$$start_i$$</code> in ascending order
+  - `newInterval.length == 2`
+  - `0 <= start <= end <= 105`
 
   <hr/>
 
@@ -2410,6 +2435,17 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Meeting Rooms</summary>
 
+  Given an array of meeting time intervals consisting of start and end times `[[s1,e1],[s2,e2],...]` (<code>$$e_i$$ > $$s_i$$</code>), determine if a person could attend all meetings
+
+  **Example 1**
+
+  **Input**: `[[0,30],[5,10],[15,20]]` <br />
+  **Output**: `false`
+
+  **Example 2**
+
+  **Input**: `[[7,10],[2,4]]` <br />
+  **Output**: `true`
 
   <hr/>
 
@@ -2446,6 +2482,17 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Meeting Rooms II</summary>
 
+  Given an array of meeting time intervals consisting of start and end times `[[s1,e1],[s2,e2],...]` (<code>$$e_i$$ > $$s_i$$</code>), find the minimum number of conference rooms required
+
+  **Example 1**
+
+  **Input**: `[[0, 30],[5, 10],[15, 20]]` <br />
+  **Output**: `2`
+
+  **Example 2**
+
+  **Input**: `[[7,10],[2,4]]` <br />
+  **Output**: `1`
 
   <hr/>
 
@@ -2482,6 +2529,26 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Merge Intervals</summary>
 
+  Given an array of `intervals` where <code>intervals[i] = [$$start_i$$, $$end_i$$]</code>, merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+
+  **Example 1**
+
+  **Input**: `intervals = [[1,3],[2,6],[8,10],[15,18]]` <br />
+  **Output**: `[[1,6],[8,10],[15,18]]` <br />
+  **Explanation**: Since intervals `[1,3]` and `[2,6]` overlap, merge them into `[1,6]`
+
+  **Example 2**
+
+  **Input**: `intervals = [[1,4],[4,5]]` <br />
+  **Output**: `[[1,5]]` <br />
+  **Explanation**: Intervals `[1,4]` and `[4,5]` are considered overlapping
+
+
+  **Constraints**
+
+  - `1 <= intervals.length <= 104`
+  - `intervals[i].length == 2`
+  - `0 <= starti <= endi <= 104`
 
   <hr/>
 
@@ -2518,6 +2585,31 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Non-overlapping Intervals</summary>
 
+  Given an array of `intervals` where <code>intervals[i] = [$$start_i$$, $$end_i$$]</code>, return the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping
+
+  **Example 1**
+
+  **Input**: `intervals = [[1,2],[2,3],[3,4],[1,3]]` <br />
+  **Output**: `1` <br />
+  **Explanation**: `[1,3]` can be removed and the rest of the intervals are non-overlapping
+
+  **Example 2**
+
+  **Input**: `intervals = [[1,2],[1,2],[1,2]]` <br />
+  **Output**: `2` <br />
+  **Explanation**: You need to remove two `[1,2]` to make the rest of the intervals non-overlapping
+
+  **Example 3**
+
+  **Input**: `intervals = [[1,2],[2,3]]` <br />
+  **Output**: `0` <br />
+  **Explanation**: You don't need to remove any of the intervals since they're already non-overlapping
+
+  **Constraints**
+
+  - `1 <= intervals.length <= 105`
+  - `intervals[i].length == 2`
+  - <code>$$-5 * 10^4 <= start_i <\ end_i <= 5 * 10^4$$</code>
 
   <hr/>
 
@@ -2554,8 +2646,54 @@ import TOCInline from '@theme/TOCInline';
 ## Linked List
 
 <details>
-  <summary>Detect Cycle in a Linked List</summary>
+  <summary>Linked List Cycle</summary>
 
+  Given `head`, the head of a linked list, determine if the linked list has a cycle in it.
+
+  There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the node that tail's `next` pointer is connected to. Note that `pos` is not passed as a parameter.
+  Return `true` if there is a cycle in the linked list. Otherwise, return `false`.
+
+  **Example 1**
+
+  ```mermaid
+    graph LR
+
+    A((3)) --> B((2)) --> C((0)) --> D(("-4")) --> B
+  ```
+
+  **Input**: `head = [3,2,0,-4]`, `pos = 1` <br />
+  **Output**: `true` <br />
+  **Explanation**: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed)
+
+  **Example 2**
+
+  ```mermaid
+    graph LR
+
+    A((1)) --> B((2)) --> A
+  ```
+
+  **Input**: `head = [1,2]`, `pos = 0` <br />
+  **Output**: `true` <br />
+  **Explanation**: There is a cycle in the linked list, where the tail connects to the 0th node
+
+  **Example 3**
+
+  ```mermaid
+    graph LR
+
+    A((1))
+  ```
+
+  **Input**: `head = [1], pos = -1` <br />
+  **Output**: `false` <br />
+  **Explanation**: There is no cycle in the linked list
+
+  **Constraints**
+
+  - The number of the nodes in the list is in the range `[0, 104]`
+  - `-105 <= Node.val <= 105`
+  - `pos` is `-1` or a **valid index** in the linked-list
 
   <hr/>
 
@@ -2592,6 +2730,44 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Merge K Sorted Lists</summary>
 
+  You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+  Merge all the linked-lists into one sorted linked-list and return it.
+
+  **Example 1**
+
+  **Input**: `lists = [[1,4,5],[1,3,4],[2,6]]`
+  **Output**: `[1,1,2,3,4,4,5,6]`
+  **Explanation**: The linked-lists are:
+
+  ```python
+  [
+    1->4->5,
+    1->3->4,
+    2->6
+  ]
+  ```
+
+  merging them into one sorted list: `1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6`
+
+  **Example 2**
+
+  **Input**: `lists = []`
+  **Output**: `[]`
+
+  **Example 3**
+
+  **Input**: `lists = [[]]`
+  **Output**: `[]`
+
+
+  **Constraints**
+
+  - `k == lists.length`
+  - `0 <= k <= 104`
+  - `0 <= lists[i].length <= 500`
+  - `-104 <= lists[i][j] <= 104`
+  - `lists[i]` is sorted in ascending order
+  - The sum of `lists[i].length` will not exceed <code>$$10^4$$</code>
 
   <hr/>
 
@@ -2628,6 +2804,52 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Merge Two Sorted Lists</summary>
 
+  You are given the heads of two sorted linked lists `list1` and `list2`.
+  Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
+  Return the head of the merged linked list.
+
+  **Example 1**
+
+  ```mermaid
+    graph LR
+
+    subgraph result
+      direction LR
+
+      A_3((B1)) --> B_3((A1)) --> C_3((A2)) --> D_3((B3)) --> E_3((A4)) --> F_3((B4))
+    end
+
+    subgraph list2
+      direction LR
+
+      A_2((B1)) --> B_2((B3)) --> C_2((B4))
+    end
+
+    subgraph list1
+      direction LR
+
+      A_1((A1)) --> B_1((A2)) --> C_1((A4))
+    end
+  ```
+
+  **Input**: `list1 = [1,2,4]`, `list2 = [1,3,4]` <br />
+  **Output**: `[1,1,2,3,4,4]`
+
+  **Example 2**
+
+  **Input**: `list1 = []`, `list2 = []` <br />
+  **Output**: `[]`
+
+  **Example 3**
+
+  **Input**: `list1 = []`, `list2 = [0]` <br />
+  **Output**: `[0]`
+
+  **Constraints**
+
+  - The number of nodes in both lists is in the range `[0, 50]`
+  - `-100 <= Node.val <= 100`
+  - Both `list1` and `list2` are sorted in non-decreasing order
 
   <hr/>
 
@@ -2664,6 +2886,47 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Remove Nth Node From End Of List</summary>
 
+  Given the `head` of a linked list, remove the <code>$$n^{th}$$</code> node from the end of the list and return its head.
+
+  **Example 1**
+
+  ```mermaid
+    graph TB
+
+    subgraph current
+      direction LR
+
+      A((1)) --> B((2)) --> C((3)) --> D(4) --> E((5))
+    end
+
+    subgraph result
+      direction LR
+
+      A_1((1)) --> B_1((2)) --> C_1((3)) ---> E_1((5))
+    end
+
+    current --> result
+  ```
+
+  **Input**: `head = [1,2,3,4,5]`, `n = 2` <br />
+  **Output**: `[1,2,3,5]`
+
+  **Example 2**
+
+  **Input**: `head = [1]`, `n = 1` <br />
+  **Output**: `[]`
+
+  **Example 3**
+
+  **Input**: `head = [1,2]`, `n = 1` <br />
+  **Output**: `[1]`
+
+  **Constraints**
+
+  - The number of nodes in the list is `sz`
+  - `1 <= sz <= 30`
+  - `0 <= Node.val <= 100`
+  - `1 <= n <= sz`
 
   <hr/>
 
@@ -2700,6 +2963,60 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Reorder List</summary>
 
+  You are given the head of a singly linked-list. The list can be represented as: <code>$$L_0 → L_1 → … → L_{n - 1} → L_n$$</code>
+  Reorder the list to be on the following form: <code>$$L_0 → L_n → L_1 → L_{n - 1} → L_2 → L_{n - 2} → …$$</code>
+  You may not modify the values in the list's nodes. Only nodes themselves may be changed.
+
+  **Example 1**
+
+  ```mermaid
+    graph TB
+
+    subgraph current
+      direction LR
+
+      C1((1)) --> C2((2)) --> C3((3)) --> C4((4))
+    end
+
+    subgraph result
+      direction LR
+
+      R1((1)) --> R2((4)) --> R3((2)) --> R4((3))
+    end
+
+    current --> result
+  ```
+
+  **Input**: `head = [1,2,3,4]` <br />
+  **Output**: `[1,4,2,3]`
+
+  **Example 2**
+
+  ```mermaid
+    graph TB
+
+    subgraph current
+      direction LR
+
+      C1((1)) --> C2((2)) --> C3((3)) --> C4((4)) --> C5((5))
+    end
+
+    subgraph result
+      direction LR
+
+      R1((1)) --> R2((5)) --> R3((2)) --> R4((4)) --> R5((3))
+    end
+
+    current --> result
+  ```
+
+  **Input: `head = [1,2,3,4,5]` <br />
+  **Output: `[1,5,2,4,3]`
+
+  **Constraints**
+
+  - The number of nodes in the list is in the range <code>[1, 5 * $$10^4$$]</code>
+  - `1 <= Node.val <= 1000`
 
   <hr/>
 
@@ -2736,6 +3053,63 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Reverse a Linked List</summary>
 
+  Given the `head` of a singly linked list, reverse the list, and return the reversed list.
+
+  **Example 1**
+
+  ```mermaid
+    graph TB
+
+    subgraph current
+      direction LR
+
+      C1((1)) --> C2((2)) --> C3((3)) --> C4((4)) --> C5((5))
+    end
+
+    subgraph result
+      direction LR
+
+      R1((5)) --> R2((4)) --> R3((3)) --> R4((2)) --> R5((1))
+    end
+
+    current --> result
+  ```
+
+  **Input**: `head = [1,2,3,4,5]` <br />
+  **Output**: `[5,4,3,2,1]`
+
+  **Example 2**
+
+  ```mermaid
+    graph TB
+
+    subgraph current
+      direction LR
+
+      C1((1)) --> C2((2))
+    end
+
+    subgraph result
+      direction LR
+
+      R1((2)) --> R2((1))
+    end
+
+    current --> result
+  ```
+
+  **Input**: `head = [1,2]` <br />
+  **Output**: `[2,1]`
+
+  **Example 3**
+
+  **Input**: `head = []` <br />
+  **Output**: `[]`
+
+  **Constraints**
+
+  - The number of nodes in the list is the range `[0, 5000]`
+  - `-5000 <= Node.val <= 5000`
 
   <hr/>
 
@@ -2774,6 +3148,54 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Rotate Image</summary>
 
+  You are given an `n x n` 2D `matrix` representing an image, rotate the image by **90** degrees (clockwise).
+  You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+
+  **Example 1**
+
+  $$$
+  \begin{vmatrix}
+     1 & 2 & 3 \\
+     4 & 5 & 6 \\
+     7 & 8 & 9
+  \end{vmatrix}
+  \rArr
+  \begin{vmatrix}
+     7 & 4 & 1 \\
+     8 & 5 & 2 \\
+     9 & 6 & 3
+  \end{vmatrix}
+  $$$
+
+  **Input**: `matrix = [[1,2,3],[4,5,6],[7,8,9]]` <br />
+  **Output**: `[[7,4,1],[8,5,2],[9,6,3]]`
+
+  **Example 2**
+
+  $$$
+  \begin{vmatrix}
+    5 & 1 & 9 & 11 \\
+    2 & 4 & 8 & 10 \\
+    13 & 3 & 6 & 7 \\
+    15 & 14 & 12 & 16
+  \end{vmatrix}
+  \rArr
+  \begin{vmatrix}
+    15 & 13 & 2 & 5 \\
+    14 & 3 & 4 & 1 \\
+    12 & 6 & 8 & 9 \\
+    16 & 7 & 10 & 11
+  \end{vmatrix}
+  $$$
+
+  **Input**: `matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]` <br />
+  **Output**: `[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]`
+
+  **Constraints**
+
+  - `n == matrix.length == matrix[i].length`
+  - `1 <= n <= 20`
+  - `-1000 <= matrix[i][j] <= 1000`
 
   <hr/>
 
@@ -2810,6 +3232,53 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Set Matrix Zeroes</summary>
 
+  Given an `m x n` integer matrix `matrix`, if an element is `0`, set its entire row and column to `0`'s.
+  You must do it in place.
+
+  **Example 1**
+
+  $$$
+  \begin{vmatrix}
+    1 & 1 & 1 \\
+    1 & 0 & 1 \\
+    1 & 1 & 1
+  \end{vmatrix}
+  \rArr
+  \begin{vmatrix}
+    1 & 0 & 1 \\
+    0 & 0 & 0 \\
+    1 & 0 & 1
+  \end{vmatrix}
+  $$$
+
+  **Input**: `matrix = [[1,1,1],[1,0,1],[1,1,1]]` <br />
+  **Output**: `[[1,0,1],[0,0,0],[1,0,1]]`
+
+  **Example 2**
+
+  $$$
+  \begin{vmatrix}
+    0 & 1 & 2 & 0 \\
+    3 & 4 & 5 & 2 \\
+    1 & 3 & 1 & 5
+  \end{vmatrix}
+  \rArr
+  \begin{vmatrix}
+    0 & 0 & 0 & 0 \\
+    0 & 4 & 5 & 0 \\
+    0 & 3 & 1 & 0
+  \end{vmatrix}
+  $$$
+
+  **Input**: `matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]` <br />
+  **Output**: `[[0,0,0,0],[0,4,5,0],[0,3,1,0]]`
+
+  **Constraints**
+
+  - `m == matrix.length`
+  - `n == matrix[0].length`
+  - `1 <= m, n <= 200`
+  - <code>$$-2^{31} <= matrix[i][j] <= 2^{31} - 1$$</code>
 
   <hr/>
 
@@ -2846,6 +3315,40 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Spiral Matrix</summary>
 
+  Given an `m x n` `matrix`, return all elements of the `matrix` in spiral order.
+
+  **Example 1**
+
+  $$$
+  \begin{vmatrix}
+    1→ & 2→ & 3↓ \\
+    4→ & 5 & 6↓ \\
+    7↑ & ←8 & ←9
+  \end{vmatrix}
+  $$$
+
+  **Input**: `matrix = [[1,2,3],[4,5,6],[7,8,9]]` <br />
+  **Output**: `[1,2,3,6,9,8,7,4,5]`
+
+  **Example 2**
+
+  $$$
+  \begin{vmatrix}
+    1→ & 2→ & 3→ & 4↓ \\
+    5→ & 6→ & 7 & 8↓ \\
+    9↑ & ←10 & ←11 & ←12
+  \end{vmatrix}
+  $$$
+
+  **Input**: `matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]` <br />
+  **Output**: `[1,2,3,4,8,12,11,10,9,5,6,7]`
+
+  **Constraints**
+
+  - `m == matrix.length`
+  - `n == matrix[i].length`
+  - `1 <= m, n <= 10`
+  - `-100 <= matrix[i][j] <= 100`
 
   <hr/>
 
@@ -2882,6 +3385,55 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Word Search</summary>
 
+  Given an `m x n` grid of characters `board` and a string `word`, return `true` if `word` exists in the grid.
+  The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+
+  **Example 1**
+
+  $$$
+  \begin{vmatrix}
+    [A] & [B] & [C] & E \\
+    S & F & [C] & S \\
+    A & [D] & [E] & E
+  \end{vmatrix}
+  $$$
+
+  **Input**: `board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]`, `word = "ABCCED"` <br />
+  **Output**: `true`
+
+  **Example 2**
+
+  $$$
+  \begin{vmatrix}
+    A & B & C & E \\
+    S & F & C & [S] \\
+    A & D & [E] & [E]
+  \end{vmatrix}
+  $$$
+
+  **Input**: `board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]`, `word = "SEE"` <br />
+  **Output**: `true`
+
+  **Example 3**
+
+  $$$
+  \begin{vmatrix}
+    A & B & C & E \\
+    S & F & C & S \\
+    A & D & E & E
+  \end{vmatrix}
+  $$$
+
+  **Input**: `board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]`, `word = "ABCB"` <br />
+  **Output**: `false`
+
+  **Constraints**
+
+  - `m == board.length`
+  - `n = board[i].length`
+  - `1 <= m, n <= 6`
+  - `1 <= word.length <= 15`
+  - board and word consists of only lowercase and uppercase English letters
 
   <hr/>
 
@@ -2920,6 +3472,19 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Encode and Decode Strings</summary>
 
+  Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings. Please implement encode and decode
+
+  **Example 1**
+
+  **Input**: `["lint","code","love","you"]` <br />
+  **Output**: `["lint","code","love","you"]` <br />
+  **Explanation**: One possible encode method is: `lint:;code:;love:;you`
+
+  **Example 2**
+
+  Input: `["we", "say", ":", "yes"]` <br />
+  Output: `["we", "say", ":", "yes"]` <br />
+  Explanation: One possible encode method is: `we:;say:;:::;yes`
 
   <hr/>
 
@@ -2956,6 +3521,29 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Group Anagrams</summary>
 
+  Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.
+  An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+  **Example 1**
+
+  **Input**: `strs = ["eat","tea","tan","ate","nat","bat"]` <br />
+  **Output**: `[["bat"],["nat","tan"],["ate","eat","tea"]]`
+
+  **Example 2**
+
+  **Input**: `strs = [""]` <br />
+  **Output**: `[[""]]`
+
+  **Example 3**
+
+  **Input**: `strs = ["a"]` <br />
+  **Output**: `[["a"]]`
+
+  **Constraints**
+
+  - <code>$$1 <= strs.length <= 10^4$$</code>
+  - `0 <= strs[i].length <= 100`
+  - `strs[i]` consists of lowercase English letters
 
   <hr/>
 
@@ -2992,6 +3580,23 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Longest Palindromic Substring</summary>
 
+  Given a string `s`, return the longest palindromic substring in `s`.
+
+  **Example 1**
+
+  **Input**: `s = "babad"` <br />
+  **Output**: `bab` <br />
+  **Explanation**: "aba" is also a valid answer
+
+  **Example 2**
+
+  **Input**: `s = "cbbd"` <br />
+  **Output**: `bb`
+
+  **Constraints**
+
+  - `1 <= s.length <= 1000`
+  - `s` consist of only digits and English letters
 
   <hr/>
 
@@ -3028,6 +3633,28 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Longest Repeating Character Replacement</summary>
 
+  You are given a string `s` and an integer `k`. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most `k` times.
+  Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+  **Example 1**
+
+  **Input**: `s = "ABAB"`, `k = 2` <br />
+  **Output**: `4` <br />
+  **Explanation**: Replace the two 'A's with two 'B's or vice versa
+
+  **Example 2**
+
+  **Input**: `s = "AABABBA"`, `k = 1` <br />
+  **Output**: `4` <br />
+  **Explanation**: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+  The substring "BBBB" has the longest repeating letters, which is 4.
+  There may exists other ways to achieve this answer too.
+
+  **Constraints**
+
+  - <code>$$1 <= s.length <= 10^5$$</code>
+  - `s` consists of only uppercase English letters
+  - `0 <= k <= s.length`
 
   <hr/>
 
@@ -3064,6 +3691,30 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Longest Substring Without Repeating Characters</summary>
 
+  Given a string `s`, find the length of the longest substring without repeating characters.
+
+  **Example 1**
+
+  **Input**: `s = "abcabcbb"` <br />
+  **Output**: `3` <br />
+  **Explanation**: The answer is "abc", with the length of 3
+
+  **Example 2**
+
+  **Input**: `s = "bbbbb"` <br />
+  **Output**: `1` <br />
+  **Explanation**: The answer is "b", with the length of 1
+
+  **Example 3**
+
+  **Input**: `s = "pwwkew"` <br />
+  **Output**: `3` <br />
+  **Explanation**: The answer is "wke", with the length of 3. Notice that the answer must be a substring, "pwke" is a subsequence and not a substring
+
+  **Constraints**
+
+  - <code>$$<= s.length <= 5 * 10^4$$</code>
+  - `s` consists of English letters, digits, symbols and spaces
 
   <hr/>
 
@@ -3100,6 +3751,32 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Minimum Window Substring</summary>
 
+  Given two strings `s` and `t` of lengths `m` and `n` respectively, return the minimum window substring of `s` such that every character in `t` (including duplicates) is included in the window. If there is no such substring, return the empty string `""`.
+
+  **Example 1**
+
+  **Input**: `s = "ADOBECODEBANC"`, `t = "ABC"` <br />
+  **Output**: `BANC` <br />
+  **Explanation**: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t
+
+  **Example 2**
+
+  **Input**: `s = "a"`, `t = "a"` <br />
+  **Output**: `a` <br />
+  **Explanation**: The entire string s is the minimum window
+
+  **Example 3**
+
+  **Input**: `s = "a"`, `t = "aa"` <br />
+  **Output**: `""` <br />
+  **Explanation**: Both 'a's from t must be included in the window. Since the largest window of s only has one 'a', return empty string
+
+  **Constraints**
+
+  - `m == s.length`
+  - `n == t.length`
+  - <code>$$1 <= m, n <= 10^5$$</code>
+  - `s` and `t` consist of uppercase and lowercase English letters
 
   <hr/>
 
@@ -3136,6 +3813,26 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Palindromic Substrings</summary>
 
+  Given a string `s`, return the number of palindromic substrings in it.
+  A string is a palindrome when it reads the same backward as forward.
+  A substring is a contiguous sequence of characters within the string.
+
+  **Example 1**
+
+  **Input**: `s = "abc"` <br />
+  **Output**: `3` <br />
+  **Explanation**: Three palindromic strings: "a", "b", "c"
+
+  **Example 2**
+
+  **Input**: `s = "aaa"` <br />
+  **Output**: `6` <br />
+  **Explanation**: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa"
+
+  **Constraints**
+
+  - `1 <= s.length <= 1000`
+  - `s` consists of lowercase English letters
 
   <hr/>
 
@@ -3172,6 +3869,23 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Valid Anagram</summary>
 
+  Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.
+  An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+  **Example 1**
+
+  **Input**: `s = "anagram"`, `t = "nagaram"` <br />
+  **Output**: `true`
+
+  **Example 2**
+
+  **Input**: `s = "rat"`, `t = "car"` <br />
+  **Output**: `false`
+
+  **Constraints**
+
+  - <code>$$1 <= s.length, t.length <= 5 * 10^4$$</code>
+  - `s` and t consist of lowercase English letters
 
   <hr/>
 
@@ -3208,6 +3922,31 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Valid Palindrome</summary>
 
+  A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+  Given a string `s`, return `true` if it is a palindrome, or `false` otherwise.
+
+  **Example 1**
+
+  **Input**: `s = "A man, a plan, a canal: Panama"` <br />
+  **Output**: `true` <br />
+  **Explanation**: "amanaplanacanalpanama" is a palindrome
+
+  **Example 2**
+
+  **Input**: `s = "race a car"` <br />
+  **Output**: `false` <br />
+  **Explanation**: "raceacar" is not a palindrome
+
+  **Example 3**
+
+  **Input**: `s = " "` <br />
+  **Output**: `true` <br />
+  **Explanation**: `s` is an empty string "" after removing non-alphanumeric characters. Since an empty string reads the same forward and backward, it is a palindrome
+
+  **Constraints**
+
+  - <code>$$1 <= s.length <= 2 * 10^5$$</code>
+  - `s` consists only of printable ASCII characters
 
   <hr/>
 
@@ -3244,6 +3983,32 @@ import TOCInline from '@theme/TOCInline';
 <details>
   <summary>Valid Parentheses</summary>
 
+  Given a string s containing just the characters `( ) [ ] { }`, determine if the input string is valid.
+  An input string is valid if:
+
+  - Open brackets must be closed by the same type of brackets
+  - Open brackets must be closed in the correct order
+  - Every close bracket has a corresponding open bracket of the same type
+
+  **Example 1**
+
+  **Input**: `s = "()"` <br />
+  **Output**: `true`
+
+  **Example 2**
+
+  **Input**: `s = "()[]{}"` <br />
+  **Output**: `true`
+
+  **Example 3**
+
+  **Input**: `s = "(]"` <br />
+  **Output**: `false`
+
+  **Constraints**
+
+  - <code>$$1 <= s.length <= 10^4$$</code>
+  - `s` consists of parentheses only `( ) [ ] { }`
 
   <hr/>
 
