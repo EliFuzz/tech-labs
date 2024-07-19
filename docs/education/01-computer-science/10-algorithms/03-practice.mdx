@@ -9,6 +9,8 @@ import TabItem from "@theme/TabItem";
 
 
 <Tabs queryString="primary">
+  <TabItem value="math" label="Math"></TabItem>
+  <TabItem value="data-structures" label="Data Structures"></TabItem>
   <TabItem value="practice" label="Practice">
     <Tabs queryString="secondary">
       <TabItem value="array" label="Array" attributes={{ className: "tabs__vertical"}}>
@@ -53,16 +55,25 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Kadane's Algorithm</b></td>
+                <td>Finds the maximum subarray sum in an array, requires two variables, `min_price` and `max_profit`, to iteratively update and track the maximum sum ending at the current position and the overall maximum sum, respectively</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(n)`: iterates through the array of stock prices once</li>
+                    <li><b>Space</b>: `O(1)`: no extra space is used</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                  def maxProfit(prices):
+                    min_price = prices[0]
+                    max_profit = 0
+
+                    for price in prices[1:]:
+                      max_profit = max(max_profit, price - min_price)
+                      min_price = min(min_price, price)
+
+                    return max_profit
                   ```
                 </td>
               </tr>
@@ -118,16 +129,31 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Two-Pointer</b></td>
+                <td>Starts wide, moves inward. Moving pointers explores potentially higher areas</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(n)`: iterates through the array</li>
+                    <li><b>Space</b>: `O(1)`: no extra space is used</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                  def maxArea(height):
+                    left = 0
+                    right = len(height) - 1
+                    maxArea = 0
+
+                    while left < right:
+                      currentArea = min(height[left], height[right]) * (right - left)
+                      maxArea = max(maxArea, currentArea)
+
+                      if height[left] < height[right]:
+                        left += 1
+                      else:
+                        right -= 1
+
+                    return maxArea
                   ```
                 </td>
               </tr>
@@ -176,16 +202,89 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Brute-Force</b></td>
+                <td>Compares each element with every other element in the array to check for duplicates</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(n²)`: traverse the list containing `n` elements exactly `n²` times</li>
+                    <li><b>Space</b>: `O(1)`: space required does not depend on the size of the input array, so only constant space is used</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                  def containsDuplicate(nums):
+                    for i in range(len(nums) - 1):
+                      for j in range(i + 1, len(nums)):
+                          if nums[i] == nums[j]:
+                            return True
+                    return False
+                  ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Sorting</b></td>
+                <td>Sorts the array in ascending order and then checks for adjacent elements that are the same</td>
+                <td>
+                  <ul>
+                    <li><b>Time</b>: `O(n log n)`: sort the list containing `n` elements in `O(n log n)`</li>
+                    <li><b>Space</b>: `O(1)`: no extra space is used</li>
+                  </ul>
+                </td>
+                <td>
+                  ```python
+                  def containsDuplicate(nums):
+                    nums.sort()
+
+                    for i in range(1, len(nums)):
+                      if nums[i] == nums[i - 1]:
+                        return True
+                    return False
+                  ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Hash Set</b></td>
+                <td>Use a hash set to store encountered elements. Iterate through the array, checking if an element is already in the set</td>
+                <td>
+                  <ul>
+                    <li><b>Time</b>: `O(n)`: traverse the list containing `n` elements exactly once</li>
+                    <li><b>Space</b>: `O(n)`: the extra space required depends on the number of items stored in the hash set, which stores at most `n` elements</li>
+                  </ul>
+                </td>
+                <td>
+                  ```python
+                  def containsDuplicate(nums):
+                    seen = set()
+
+                    for num in nums:
+                      if num in seen:
+                        return True
+                      seen.add(num)
+
+                    return False
+                  ```
+                </td>
+              </tr>
+              <tr>
+                <td><b>Hash Map</b></td>
+                <td>Use a hash map to store the elements as keys and their counts as values. Duplicate element is found if its count >= 1</td>
+                <td>
+                  <ul>
+                    <li><b>Time</b>: `O(n)`: traverse the list containing `n` elements exactly once</li>
+                    <li><b>Space</b>: `O(n)`: the extra space required depends on the number of items stored in the hash map, which stores at most `n` elements</li>
+                  </ul>
+                </td>
+                <td>
+                  ```python
+                  def containsDuplicate(nums):
+                    seen = {}
+
+                    for num in nums:
+                      if num in seen and seen[num] >= 1:
+                        return True
+                      seen[num] = seen.get(num, 0) + 1
+
+                    return False
                   ```
                 </td>
               </tr>
@@ -5144,4 +5243,5 @@ import TabItem from "@theme/TabItem";
       </TabItem>
     </Tabs>
   </TabItem>
+  <TabItem value="common-patterns" label="Common Patterns"></TabItem>
 </Tabs>
