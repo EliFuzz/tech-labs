@@ -344,16 +344,27 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Binary Search</b></td>
+                <td>In each iteration of the while loop, the search space is halved</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(log n)`: time grows logarithmically with the input size</li>
+                    <li><b>Space</b>: `O(1)`: no extra space is used</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                  def findMin(self, nums):
+                    left, right = 0, len(nums)-1
+
+                    while left < right:
+                      mid = (left + right) // 2
+                      if nums[mid] > nums[right]:
+                        left = mid + 1
+                      else:
+                        right = mid
+
+                    return nums[left]
                   ```
                 </td>
               </tr>
@@ -398,16 +409,27 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Dynamic Programming</b></td>
+                <td>DP sub-problem is to find the maximum and minimum products for contiguous sub-arrays from the 0th to the current element. Maintaining the minimum product is crucial because negative elements can transform the current product into a greater value when multiplied by the previous minimum product</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(n)`: scan the array once</li>
+                    <li><b>Space</b>: `O(1)`: no extra space is used</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                  def maxProduct(nums):
+                    curMax, curMin = 1, 1
+                    res = nums[0]
+
+                    for num in nums:
+                      vals = (num, num * curMax, n * curMin)
+                      curMax, curMin = max(vals), min(vals)
+
+                      res = max(res, curMax)
+
+                    return res
                   ```
                 </td>
               </tr>
@@ -458,16 +480,25 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Dynamic Programming</b></td>
+                <td>Find the largest sum of consecutive elements by tracking current and maximum sums while iterating and reset current sum if negative</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(n)`:linear, processes each element of the array exactly once in a single loop</li>
+                    <li><b>Space</b>: `O(1)`: no extra space is used</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                    def maxSubArray(nums):
+                      maxSum = nums[0]
+                      currentSum = nums[0]
+
+                      for num in nums[1:]:
+                        currentSum = max(num, currentSum + num)
+                        maxSum = max(maxSum, currentSum)
+
+                      return maxSum
                   ```
                 </td>
               </tr>
@@ -512,16 +543,27 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Dynamic Programming</b></td>
+                <td>Calculate all the products to the left and right of any given element just once and reuse those calculations</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(n)`: linear, processes each element of the array exactly once</li>
+                    <li><b>Space</b>: `O(n)`: the extra space required depends on the size of the input array</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                    def productExceptSelf(self, nums: List[int]) -> List[int]:
+                      products = [1] * len(nums)
+                      for i in range(1, len(nums)):
+                        products[i] = products[i-1] * nums[i-1]
+
+                      right = nums[-1]
+                      for i in range(len(nums) - 2, -1, -1):
+                        products[i] *= right
+                        right *= nums[i]
+
+                      return products
                   ```
                 </td>
               </tr>
@@ -574,16 +616,36 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
-                <td></td>
+                <td><b>Binary Search</b></td>
+                <td>`nums` array `[17, 18, 19, 0, 1, 2, 3]`. If target is 18 then `[17, 18, 19, inf, inf, inf, inf]`. If target is 2 then `[-inf, -inf, -inf, 0, 1, 2, 3]`. Then use binary search</td>
                 <td>
                   <ul>
-                    <li><b>Time</b>: ``:</li>
-                    <li><b>Space</b>: ``:</li>
+                    <li><b>Time</b>: `O(log n)`: time grows logarithmically with the input size</li>
+                    <li><b>Space</b>: `O(1)`: no extra space is used</li>
                   </ul>
                 </td>
                 <td>
                   ```python
+                  def search(nums, target):
+                      left, right = 0, len(nums)
+
+                      while left < right:
+                          mid = (left + right) // 2
+
+                          if (nums[mid] < nums[0]) == (target < nums[0]):
+                              num = nums[mid]
+                          else:
+                              num = float('-inf') if target < nums[0] else float('inf')
+
+                          if num == target:
+                            return mid
+
+                          if num < target:
+                              left = mid + 1
+                          elif num > target:
+                              right = mid
+
+                      return -1
                   ```
                 </td>
               </tr>
@@ -749,7 +811,7 @@ import TabItem from "@theme/TabItem";
             </thead>
             <tbody>
               <tr>
-                <td><b></b></td>
+                <td><b>Two Pointer</b></td>
                 <td></td>
                 <td>
                   <ul>
@@ -759,6 +821,34 @@ import TabItem from "@theme/TabItem";
                 </td>
                 <td>
                   ```python
+                  def threeSum(nums):
+                      res = []
+                      nums.sort()
+
+                      for current in range(len(nums)):
+                          # Skip duplicate
+                          if current > 0 and nums[current] == nums[current - 1]:
+                              continue
+
+                          left = current + 1
+                          right = len(nums) - 1
+
+                          while left < right:
+                              sum = nums[current] + nums[left] + nums[right]
+
+                              if sum > 0:
+                                  right -= 1
+                              elif sum < 0:
+                                  left += 1
+                              else:
+                                  res.append([nums[current], nums[left], nums[right]])
+                                  left += 1
+
+                                  # Skip duplicate for the left pointer
+                                  while left <· right and nums[left] == nums[left - 1]:
+                                      left += 1
+
+                      return res
                   ```
                 </td>
               </tr>
