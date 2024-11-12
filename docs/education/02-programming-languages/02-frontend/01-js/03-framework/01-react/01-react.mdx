@@ -1,0 +1,891 @@
+---
+title: Basics
+description: React Basics
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Re-Rendering
+
+<Tabs queryString="primary">
+  <TabItem value="glossary" label="Glossary">
+    - **initial render** - happens when a component first appears on the screen
+    - **re-render** - second and any consecutive render of a component that is already on the screen. Re-renders in React happen when the app updates with new data, usually from user interactions or asynchronous requests
+    - **necessary re-render** - updates a component directly reflecting changes (e.g., input field updates on keystrokes)
+    - **unnecessary re-render** - caused by inefficiencies, leading to broader re-renders (e.g., entire page re-renders on keystrokes). Excessive re-renders can cause lag, delays, or unresponsiveness
+  </TabItem>
+  <TabItem value="reasons" label="Reasons">
+    <Tabs queryString="secondary">
+      <TabItem value="state" label="State" attributes={{className: "tabs__vertical"}}>
+        when a component's state changes, it re-renders, typically in a callback or the `useEffect` hook. State changes are the primary cause of re-renders
+
+        ```js
+        const Component = () => {
+          const [state, setState] = useState(); // 1. state changed
+
+          return (...);
+        }                                       // 2. re-render whole component
+        ```
+      </TabItem>
+      <TabItem value="parent" label="Parent">
+        re-rendering flows down the tree **parent → children** but not vice versa
+
+        ```js
+        const Parent = () => { // 1. re-renders
+
+          return <Child />     // 2. re-renders children
+        }
+        ```
+      </TabItem>
+      <TabItem value="context" label="Context">
+        when the value in a Context Provider changes, all components using that Context will re-render, even if they don't directly use the changed data (cascading). Memoization can't prevent these re-renders
+
+        ```js {1,6,13}
+        // useUser.js
+        const useUser = useContext(UserContext) => { // 1. re-renders
+
+        }
+
+        // UserProfile.js
+        const userProfile = () => {
+          const user = useUser();
+
+          return (...);
+        }
+
+        // UserDetails.js
+        const UserDetails = () => {
+          const user = useUser();
+
+          return (...);
+        }                                             // 2. both will be re-rendered (UserProfile and UserDetails)
+        ```
+      </TabItem>
+      <TabItem value="hooks" label="Hooks">
+        all actions within a hook are tied to the component that uses it. The same rules for **Context** and **State** changes apply:
+
+        <ul>
+          <li>state change within the hook will cause an unavoidable re-render of the host component</li>
+          <li>if the hook uses Context and its value changes, it will also trigger an unavoidable re-render of the host component</li>
+        </ul>
+
+        Hooks can be chained, and each hook in the chain remains associated with the host component, following the same rules
+
+        ```js {1,8}
+        // useUser.js
+        const useUser = useContext(UserContext) => { // 1. value changes
+          const useName = {                          // 2. chain reaction
+            useName()
+          }
+        }
+
+        // UserComponent.js
+        const UserComponent = () => {                // 3. re-renders
+          const name = useName();
+
+          return (...);
+        }
+        ```
+      </TabItem>
+      <TabItem value="props" label="Props (myth)">
+        For non-memoized components, it doesn't matter if the component's props change (they are not the sole reason for re-renders); if the parent re-renders, the child will re-render as well. Props can only change if the parent updates them, which triggers the child's re-render. However, when using memoization techniques like `React.memo` or `useMemo`, prop changes become significant
+
+        ```js
+        const Parent = () => {              // 1. re-renders
+          return <Child value={{value}} />;
+        }                                   // 2. doesn't matter of props change children will re-render
+        ```
+      </TabItem>
+    </Tabs>
+
+  </TabItem>
+  <TabItem value="prevention" label="Prevention">
+    <Tabs queryString="secondary">
+      <TabItem value="composition" label="Composition" attributes={{className: "tabs__vertical"}}>
+        ### Anti-pattern: Creating components in render function
+
+        Creating components inside the render function of another component is an anti-pattern that can severely impact performance. Each re-render causes React to re-mount the inner component, which is slower than a normal re-render.
+
+        This can lead to issues such as:
+
+        - content "flashes" during re-renders
+        - state being reset with each re-render
+        - `useEffect` without dependencies triggering on every re-render
+        - loss of focus if the component was focused
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => {            // 1. re-renders
+                  const SlowComponent = () => <></>; // 2. new component
+
+                  return (
+                    <>
+                      <SlowComponent />              // 3. re-mounts
+                    </>
+                  );
+                }
+                ```
+              </td>
+              <td>
+                ```js
+                const SlowComponent = () => <></>; // 2. same component
+
+                const Component = () => {          // 1. re-renders
+                  return (
+                    <>
+                      <SlowComponent />            // 3. just re-renders
+                    </>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Moving state down
+
+        Useful when a heavy component manages state that only affects a small, isolated part of the render tree. For example, consider a complex component that opens or closes a dialog with a button click
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => {
+                  const [open, setOpen] = useState(false); // 2. updated
+
+                  return (
+                    <>
+                      <button
+                        onClick={() => setOpen(true)}      // 1. triggers re-render
+                      >
+                      Open
+                      </button>
+                      {open && <Modal />}
+                      <SlowComponent />
+                    </>
+                  );
+                }                                         // 3. re-renders whole component
+                ```
+              </td>
+              <td>
+                ```js {1,17}
+                // ButtonWithDialog.js
+                const ButtonWithDialog = () => {
+                  const [open, setOpen] = useState(false); // 2. updated
+
+                  return (
+                    <>
+                      <button
+                        onClick={() => setOpen(true)}      // 1. triggers re-render
+                      >
+                      Open
+                      </button>
+                      {open && <Modal />}
+                    </>
+                  );
+                }                                          // 3. re-renders whole component
+
+                // Component.js
+                const Component = () => {
+                  return (
+                    <>
+                      <ButtonWithDialog />
+                      <SlowComponent />                    // not affected
+                    </>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Children as props
+
+        Known as "wrapping state around children," is similar to "moving state down" but focuses on encapsulating state changes in a smaller component that wraps a slower part of the render tree. A common example is using `onScroll` or `onMouseMove` callbacks on the root element of a component
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => {
+                  const [value, setValue] = useState({}); // 2. updated
+
+                  return (
+                    <div
+                      onScroll={(e) => setValue(e)}       // 1. triggers re-render
+                    >
+                      <SlowComponent />
+                    </div>
+                  );
+                }                                         // 3. re-renders whole component
+                ```
+              </td>
+              <td>
+                ```js {1,14}
+                // ComponentWithScroll.js
+                const ComponentWithScroll = ({ children }) => {
+                  const [value, setValue] = useState({}); // 2. updated
+
+                  return (
+                    <div
+                      onScroll={(e) => setValue(e)}       // 1. triggers re-render
+                    >
+                      {children}                          // 3. just props, not affected
+                    </div>
+                  );
+                }
+
+                // Component.js
+                const Component = () => {
+                  return (
+                    <>
+                      <ComponentWithScroll>
+                        <SlowComponent />                 // not affected
+                      </ComponentWithScroll>
+                    </>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Components as props
+
+        Encapsulates state within a smaller component while passing heavy components as props. Since props are not affected by state changes, the heavy components won't re-render. Useful when several heavy components are independent of the state but cannot be extracted as a group of children
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => {
+                  const [value, setValue] = useState({}); // 2. updated
+
+                  return (
+                    <div
+                      onScroll={(e) => setValue(e)}       // 1. triggers re-render
+                    >
+                      <SlowComponent />
+                      <UserComponent />
+                      <AnotherSlowComponent />
+                    </div>
+                  );
+                }                                         // 3. re-renders whole component
+                ```
+              </td>
+              <td>
+                ```js {1,16}
+                // ComponentWithScroll.js
+                const ComponentWithScroll = ({ above, below }) => {
+                  const [value, setValue] = useState({}); // 2. updated
+
+                  return (
+                    <div
+                      onScroll={(e) => setValue(e)}       // 1. triggers re-render
+                    >
+                      {above}                             // 3. just props, not affected
+                      <UserComponent />
+                      {below}                             // 3. just props, not affected
+                    </div>
+                  );
+                }
+
+                // Component.js
+                const Component = () => {
+                  return (
+                    <ComponentWithScroll
+                      above={<SlowComponent />}           // not affected
+                      below={<AnotherSlowComponent />}    // not affected
+                    />
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="react-memo" label="React.memo">
+
+        ### React.memo
+
+        Wrapping a component in `React.memo` will prevent downstream re-renders triggered by changes higher up in the render tree, unless the component's props have changed. Useful for rendering heavy components that do not depend on the source of re-renders, such as state or updated data.
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Parent = () => {  // 1. re-renders
+                  return <Child />;     // 2. re-renders children
+                }
+                ```
+              </td>
+              <td>
+                ```js {1,4}
+                // ChildMemo.js
+                const ChildMemo = React.memo(Child);
+
+                // Parent.js
+                const Parent = () => {  // 1. re-renders
+                  return <ChildMemo />; // 2. doesn't re-render
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Component with props
+
+         For `React.memo` to work effectively, all props that are not primitive values must be memoized
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js {1,4}
+                // ChildMemo.js
+                const ChildMemo = React.memo(Child);
+
+                // Parent.js
+                const Parent = () => {   // 1. re-renders
+                  return (
+                    <ChildMemo
+                      value={{ value }}  // 2. doesn't re-render
+                    />
+                  );
+                }
+                ```
+              </td>
+              <td>
+                ```js {1,4}
+                // ChildMemo.js
+                const ChildMemo = React.memo(Child);
+
+                // Parent.js
+                const Parent = () => {                          // 1. re-renders
+                  const value - useMemo(() => ({ value }), []); // 2. stays the same
+
+                  return (
+                    <ChildMemo
+                      value={ value }                           // 3. doesn't re-render
+                    />
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Components as props or children
+
+        `React.memo` must be applied to the elements passed as children or props. Simply memoizing the parent component won't suffice, as children and props are typically objects that change with every re-render
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js {1,4}
+                // ChildMemo.js
+                const ChildMemo = React.memo(Child);
+
+                // Parent.js
+                const Parent = () => {      // 1. re-renders
+
+                  return (
+                    <ChildMemo
+                      right={<Component />}
+                    >
+                      <GrandChild />
+                    </ChildMemo>
+                  );                        // 2. re-renders whole component
+                }
+                ```
+              </td>
+              <td>
+                ```js {1,4,7}
+                // ComponentMemo.js
+                const ComponentMemo = React.memo(Component);
+
+                // GrandChildMemo.js
+                const GrandChildMemo = React.memo(GrandChild);
+
+                // Parent.js
+                const Parent = () => {          // 1. re-renders
+                  return (
+                    <Child
+                      right={<ComponentMemo />} // 2. doesn't re-render
+                    >
+                      <GrandChildMemo />        // 3. doesn't re-render
+                    </Child>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="useMemo" label="useMemo/useCallback">
+
+        ### Necessary useMemo/useCallback
+
+        Memoizing props alone won't prevent a child component from re-rendering. If the parent component re-renders, it will trigger a re-render of the child component, regardless of the props
+
+        If a child component is wrapped in `React.memo`, all non-primitive props must be memoized to prevent unnecessary re-renders. If a component uses a non-primitive value as a dependency in hooks like `useEffect`, `useMemo`, or `useCallback`, that value should be memoized to avoid unnecessary re-renders or recalculations
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Parent = () => {                      // 1. re-renders
+                  const value = useMemo(() => ({ value }));
+
+                  return <Child value={value} />;           // 2. value doesn't matter, re-renders
+                }
+                ```
+              </td>
+              <td>
+                ```js {1,4,15}
+                // ChildMemo.js
+                const ChildMemo = React.memo(Child);
+
+                // Parent.js
+                const Parent = () => {  // 1. re-renders
+                  const value = useMemo(() => ({ value }));
+
+                  return (
+                    <ChildMemo
+                     value={value}     // 2. should be memoized, doesn't re-render
+                    />
+                  );
+                }
+
+                // ParentWithUseEffect.js
+                const Parent = () => {  // 1. re-renders
+                  const value = useMemo(() => ({ value }));
+
+                  useEffect(() => {
+
+                  }, [value]);          // 2. should be memoized
+
+                  return (...);
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### useMemo for expensive calculations
+
+        `useMemo` has its own cost, consuming some memory and slightly slowing down the initial render, so it shouldn't be used for every calculation. In most cases, mounting and updating components are the most expensive operations, unless you're performing complex calculations like generating prime numbers, which should generally be avoided on the frontend. Typically, `useMemo` is best used to memoize React elements, such as parts of an existing render tree or results from a map function that generates new elements. The cost of "pure" JavaScript operations like sorting or filtering an array is usually negligible compared to component updates
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => { // 1. re-renders
+                  return (
+                    <>
+                      <FirstComponent />
+                      <SlowComponent />
+                      <SecondComponent />
+                    </>
+                  );                      // 2. re-renders whole component
+                }
+                ```
+              </td>
+              <td>
+                ```js
+                const Component = () => {     // 1. re-renders
+                  const SlowComponent = useMemo(()=> {
+                    return <SlowComponent />;
+                  }, []);
+
+                  return (
+                    <>
+                      <FirstComponent />
+                      {SlowComponent}        // 2. doesn't re-render
+                      <SecondComponent />
+                    </>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="prevention-context" label="Context">
+
+        ### Memoizing Provider value
+
+        If a Context Provider is not placed at the very root of the app and may re-render due to changes in its ancestor components, its value should be memoized. This helps prevent unnecessary re-renders of components that consume the context
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => { // 1. re-renders
+                  return (
+                    <Context.Provider
+                      data={{value}}      // 2. on value changes every consumer re-renders
+                    >
+                      {children}
+                    </Context.Provider>
+                  );
+                }
+                ```
+              </td>
+              <td>
+                ```js
+                const Component = () => { // 1. re-renders
+                  const memoValue = useMemo(() => ({ value }), []);
+
+                  return (
+                    <Context.Provider
+                      data={memoValue}    // 2. stays the same no one re-renders
+                    >
+                      {children}
+                    </Context.Provider>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Splitting data and API
+
+        If a Context contains both data and API (getters and setters), they can be split into separate Providers within the same component. This way, components that only use the API won't re-render when the data changes
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => {
+                  const [state, setState] = useState(); // 1. state change
+
+                  const memo = useMemo(() => ({
+                    data: state,
+                    api: (data) => setState(data)
+                  }), [state]);
+
+                  return (
+                    <Context.Provider
+                      data={value}                     // 2. every consumer re-renders
+                    >
+                      {children}
+                    </Context.Provider>
+                  );
+                }
+                ```
+              </td>
+              <td>
+                ```js
+                const Component = () => {
+                  const [state, setState] = useState(); // 1. state change
+
+                  return (
+                    <DataContext.Provider
+                      data={state}
+                    >
+                      <ApiContext.Provider
+                        data={setState}                 // 2. API consumers won't re-render
+                      >
+                        {children}
+                      </ApiContext.Provider>
+                    </DataContext.Provider>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Splitting data into chunks
+
+        If a Context manages multiple independent data chunks, they can be split into smaller providers under the same parent provider. This approach ensures that only the consumers of the changed data chunk will re-render
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => {
+                  const [first, setFirst] = useState();   // 1. state change
+                  const [second, setSecond] = useState();
+
+                  const data = useMemo(() => ({
+                    first: first,
+                    second: second
+                  }), [first, second]);
+
+                  return (
+                    <Context.Provider
+                      data={data}                        // 2. every consumer re-renders
+                    >
+                      {children}
+                    </Context.Provider>
+                  );
+                }
+                ```
+              </td>
+              <td>
+                ```js
+                const Component = () => {
+                  const [first, setFirst] = useState(); // 1. state change
+                  const [second, setSecond] = useState();
+
+                  return (
+                    <Data1Context.Provider
+                      data={first}
+                    >
+                      <Data2Context.Provider
+                        data={second}               // 2. 2nd state consumers won't re-render
+                      >
+                        {children}
+                      </Data2Context.Provider>
+                    </Data1Context.Provider>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        ### Context selectors
+
+        There is no way to prevent a component that uses a portion of a Context value from re-rendering, even if that specific piece of data hasn't changed, and even with the `useMemo` hook. However, Context selectors can be simulated using higher-order components and `React.memo` to optimize re-renders
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js {1,8}
+                // useUser.js
+                const useUser = () => {
+                  const { name } = useContext(UserContext); // 1. will re-render
+                                                            // even if "name" hasn't change
+
+                  return useMemo(() => name, [name]);       // 2. useMemo won't help
+                }
+
+                // Component.js
+                const Component = () => {
+                  const { name } = useUser();               // 1. will re-render
+                                                            // even if "name" hasn't change
+
+                  return (...);
+                }
+                ```
+              </td>
+              <td>
+                ```js {1,13}
+                // withUser.js
+                const withUser = (Component) => {
+                  const MemoComponent = React.memo(Component);// 1. component is memomized
+
+                  return () => {
+                    const { name } = useUser();
+
+                    return <MemoComponent name={name} />;     // 2. re-renders
+                                                              // only if "name" changes
+                  };
+                }
+
+                // Component.js
+                const Component = withUser(({ name }) => {    // 3. re-renders
+                                                              // only if "name" changes
+                  return (...);
+                });
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+      <TabItem value="lists" label="Performance of Lists">
+
+        ### Anti-pattern: random value as key in lists
+
+        Simply providing a `key` attribute won't improve performance; to prevent re-renders of list elements, you need to wrap them in `React.memo` and follow its best practices. The `key` value should be a consistent string for each element in the list across re-renders, typically using an item's ID or the array's index. Using the array's index as a key is acceptable for static lists where elements are not added, removed, or reordered
+
+        Randomly generated values or index as a key in dynamic lists should never be used as the key attribute in lists. Doing so will cause React to re-mount items on every re-render, resulting in:
+
+        <ul>
+          <li>bugs if items have state or uncontrolled elements (like form inputs)</li>
+          <li>degraded performance if items are wrapped in `React.memo`</li>
+        </ul>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Case</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                ```js
+                const Component = () => { // 1. re-renders
+                  return (
+                    <>
+                      {items.map((item) => (
+                       <Child
+                        key={item.id}    // 2. key doesn't prevent re-renders
+                        item={item}
+                       />
+                      ))}
+                    </>
+                  );
+                }
+                ```
+
+                ```js {1,4}
+                // ChildMemo.js
+                const ChildMemo = React.memo(Child);
+
+                // Parent.js
+                const Parent = () => {    // 1. re-renders
+                  return (
+                    <>
+                      {items.map((item) => (
+                       <ChildMemo
+                        key={Math.random()}    // 2. causes re-mount on every re-render
+                        item={item}
+                       />
+                      ))}
+                    </>
+                  );
+                }
+                ```
+              </td>
+              <td>
+                ```js {1,4}
+                // ChildMemo.js
+                const ChildMemo = React.memo(Child);
+
+                // Parent.js
+                const Parent = () => {    // 1. re-renders
+                  return (
+                    <>
+                      {items.map((item) => (
+                       <ChildMemo
+                        key={item.id}    // 2. doesn't re-render
+                        item={item}
+                       />
+                      ))}
+                    </>
+                  );
+                }
+                ```
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </TabItem>
+    </Tabs>
+
+  </TabItem>
+</Tabs>
