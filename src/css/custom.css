@@ -1,0 +1,277 @@
+:root {
+    --ifm-color-primary: #1d1d1f;
+    --ifm-color-primary-dark: #1a1a1c;
+    --ifm-color-primary-darker: #19191a;
+    --ifm-color-primary-darkest: #141416;
+    --ifm-color-primary-light: #202022;
+    --ifm-color-primary-lighter: #212124;
+    --ifm-color-primary-lightest: #262628;
+    --ifm-link-color: #0066cc;
+}
+
+[data-theme="dark"] {
+    --ifm-color-primary: #f5f5f7;
+    --ifm-color-primary-dark: #dadae1;
+    --ifm-color-primary-darker: #ccccd6;
+    --ifm-color-primary-darkest: #a3a3b5;
+    --ifm-color-primary-light: #ffffff;
+    --ifm-color-primary-lighter: #ffffff;
+    --ifm-color-primary-lightest: #ffffff;
+    --ifm-link-color: #2997ff;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+/* Big O */
+code.horrible {
+    background-color: #ff8989;
+}
+
+code.bad {
+    background-color: #ffc543;
+}
+
+code.fair {
+    background-color: #ffff00;
+}
+
+code.good {
+    background-color: #c8ea00;
+}
+
+code.excellent {
+    background-color: #53d000;
+}
+
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+/*
+Image size
+*/
+
+p:has(> img) {
+    display: flex;
+    justify-content: center;
+}
+
+p:has(> img) > img {
+    flex-basis: fit-content;
+}
+
+/*
+Vertical tabs
+*/
+.tabs-container:has(> ul > li.tabs__vertical) {
+    display: flex;
+}
+
+.tabs-container:has(> ul > li.tabs__vertical) > ul {
+    flex-shrink: 0;
+    flex-direction: column;
+    margin-right: 1em;
+}
+
+.tabs-container:has(> ul > li.tabs__vertical) > ul + .margin-top--md {
+    width: 100%;
+}
+
+.tabs-container:has(> ul > li.tabs__vertical) > ul > li {
+    border-bottom: 0;
+    border-top: 0;
+    border-top-right-radius: 0;
+}
+
+.tabs-container:has(> ul > li.tabs__vertical) > ul > li.tabs__item--active {
+    border-right: 2px solid transparent;
+    border-right-color: var(--ifm-color-primary);
+}
+
+.tabs:has(> .code_lang) {
+    margin-top: 1em;
+}
+
+.tabs:has(> .code_lang) > li {
+    margin-right: 1em;
+}
+
+.code_lang {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.code_lang.go {
+    background-image: url("@site/static/img/lang/go.svg");
+}
+
+.code_lang.java {
+    background-image: url("@site/static/img/lang/java.svg");
+}
+
+.code_lang.js {
+    background-image: url("@site/static/img/lang/js.svg");
+}
+
+.code_lang.kotlin {
+    background-image: url("@site/static/img/lang/kotlin.svg");
+}
+
+.code_lang.python {
+    background-image: url("@site/static/img/lang/python.svg");
+}
+
+.code_lang.rust {
+    background-image: url("@site/static/img/lang/rust.svg");
+}
+
+.code_lang.scala {
+    background-image: url("@site/static/img/lang/scala.svg");
+}
+
+.code_lang.ts {
+    background-image: url("@site/static/img/lang/ts.svg");
+}
+
+.code_lang.s {
+    width: 32px;
+    height: 32px;
+}
+
+.code_lang.m {
+    width: 64px;
+    height: 64px;
+}
+
+/*
+Image size
+*/
+
+div.img {
+    display: inline-block;
+}
+
+div.img > img {
+    width: auto;
+}
+
+div.img.s > img {
+    height: 1.5em;
+}
+
+div.img.m > img {
+    height: 2em;
+}
+
+div.img.l > img {
+    height: 3em;
+}
+
+/*
+Home Page main text
+*/
+.text__main {
+    font-family: "Poppings", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--ifm-color-primary);
+    font-size: 4em;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+}
+
+/*
+Sticky Table Column
+*/
+table.sticky.column tr > td:first-child {
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+html:is([data-theme="light"]) table.sticky.column tr:nth-child(even) > td:first-child {
+    background: #f8f8f8;
+}
+
+html:is([data-theme="light"]) table.sticky.column tr:nth-child(odd) > td:first-child {
+    background: #ffffff;
+}
+
+html:is([data-theme="dark"]) table.sticky.column tr:nth-child(even) > td:first-child {
+    background: #2b2b2b;
+}
+
+html:is([data-theme="dark"]) table.sticky.column tr:nth-child(odd) > td:first-child {
+    background: #1b1b1b;
+}
+
+/*
+copy
+*/
+
+.copy:hover {
+    color: #fff !important;
+    background-color: #1677ff !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.copy:focus {
+    outline: none;
+    border: none;
+}
+
+/*
+antd
+*/
+
+.ant-descriptions-view > table,
+.ant-table-header > table {
+    margin-bottom: 0;
+}
+
+.vertical_top table > tbody > tr > td {
+    vertical-align: top;
+}
+
+table.ant-picker-content {
+    display: table;
+}
+
+table.ant-picker-content > thead {
+    background-color: transparent;
+}
+
+table.ant-picker-content > thead > tr {
+    border: none;
+    background-color: transparent;
+}
+
+table.ant-picker-content > thead > tr > th {
+    border: none;
+}
+
+table.ant-picker-content > tbody > tr {
+    border: none;
+    background-color: transparent;
+}
+
+table.ant-picker-content > tbody > tr > td {
+    border: none;
+}
+
+table.text_vertical > tbody > tr > td {
+    vertical-align: top;
+}

@@ -33,7 +33,7 @@ const config: Config = {
           rehypePlugins: [rehypeKatex],
         },
         theme: {
-          customCss: "./src/css/custom.scss",
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
@@ -120,7 +120,7 @@ const config: Config = {
     mermaid: true,
   },
   themes: ["@docusaurus/theme-mermaid"],
-  plugins: ["docusaurus-plugin-sass"],
+  plugins: [],
 };
 
 export default config;
