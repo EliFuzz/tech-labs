@@ -1,0 +1,493 @@
+---
+title: Design Patterns
+description: React Design Patterns
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs queryParam="primary">
+    <TabItem value="overview" label="Overview">
+        <table>
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Design Pattern</th>
+                <th>Definition</th>
+                <th>Use Cases</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td rowSpan="5"><b>Component</b></td>
+                <td><b>Functional Components</b></td>
+                <td>Simplify components by using functions instead of classes</td>
+                <td>
+                    <ul>
+                        <li>simple UI elements without complex logic</li>
+                        <li>stateless or UI-only components (like buttons, labels)</li>
+                        <li>rendering small reusable parts of the UI</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Higher-Order Components (HOC)</b></td>
+                <td>Functions that take a component and return an enhanced component with additional functionality</td>
+                <td>
+                    <ul>
+                        <li>logging</li>
+                        <li>
+                            enhancing existing components with additional functionality (e.g., authentication checks)
+                        </li>
+                        <li>sharing logic between components (e.g., logging, analytics)</li>
+                        <li>extending component functionality without modifying the component directly</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Render Props</b></td>
+                <td>
+                    Components with a function as a prop that allows dynamic content rendering based on the function's
+                    output
+                </td>
+                <td>
+                    <ul>
+                        <li>sharing stateful logic, such as managing data-fetching</li>
+                        <li>toggle or switch functionality (e.g., showing/hiding elements)</li>
+                        <li>reusing animation logic across components</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Controlled and Uncontrolled Components</b></td>
+                <td>
+                    Controlled components are fully managed by React state and are preferable for predictable behavior,
+                    while uncontrolled components maintain their own state
+                </td>
+                <td>
+                    <ul>
+                        <li>form inputs where fine control over input values is needed (Controlled)</li>
+                        <li>simple, self-contained forms with minimal logic requirements (Uncontrolled)</li>
+                        <li>cases where validation needs vary based on input type or conditions</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Container and Presentational Components</b></td>
+                <td>
+                    Separates "smart" (container) components, which manage state and business logic, from "dumb"
+                    (presentational) components, which focus on rendering UI
+                </td>
+                <td>
+                    <ul>
+                        <li>large applications where separation of UI and logic is beneficial</li>
+                        <li>
+                            apps using state management (e.g., Redux) or context, where logic and display need
+                            decoupling
+                        </li>
+                        <li>optimizing re-rendering by isolating presentation logic from data handling</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="4"><b>State Management</b></td>
+                <td><b>Lifting State Up</b></td>
+                <td>
+                    When several components need to share data, the state can be lifted to their closest common ancestor
+                    and passed as props to maintain a single source of truth
+                </td>
+                <td>
+                    <ul>
+                        <li>sharing state between sibling components</li>
+                        <li>reducing redundant state variables in different components</li>
+                        <li>managing form data across related inputs</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Context API</b></td>
+                <td>Allows state to be shared across components without prop drilling</td>
+                <td>
+                    <ul>
+                        <li>providing global configuration or theme to multiple components</li>
+                        <li>sharing user authentication status or locale settings</li>
+                        <li>avoiding prop drilling in deeply nested component structures</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>State Colocation</b></td>
+                <td>Keeps the state as close to where it is needed as possible</td>
+                <td>
+                    <ul>
+                        <li>keeping state close to where it's used (e.g., within a component)</li>
+                        <li>reducing unnecessary re-renders by managing state scope</li>
+                        <li>improving component reusability by limiting state exposure</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>State Reducers</b></td>
+                <td>
+                    Useful for managing complex state logic, often in conjunction with hooks like useReducer to handle
+                    various state transitions in a centralized way
+                </td>
+                <td>
+                    <ul>
+                        <li>managing complex state logic (e.g., form handling, wizards)</li>
+                        <li>containing state transitions in one location for predictable updates</li>
+                        <li>reducing repetitive state update functions in larger components</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="4"><b>Hooks</b></td>
+                <td><b>Custom Hooks</b></td>
+                <td>
+                    Encapsulate reusable stateful logic into functions that can be shared across multiple components
+                </td>
+                <td>
+                    <ul>
+                        <li>reusing common logic (e.g., data fetching, form handling)</li>
+                        <li>simplifying complex components by extracting logic</li>
+                        <li>managing shared logic across multiple components</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>UseEffect</b></td>
+                <td>
+                    React Hook for managing side effects in functional components, such as data fetching or
+                    subscriptions. It runs after rendering and can be controlled with a dependency array to determine
+                    when it should re-run. A cleanup function can be returned to handle cleanup tasks before the
+                    component unmounts or before the effect re-runs
+                </td>
+                <td>
+                    <ul>
+                        <li>executing code on component mount (e.g., API calls)</li>
+                        <li>cleaning up resources (e.g., removing event listeners)</li>
+                        <li>syncing state with external dependencies</li>
+                    </ul>
+
+                </td>
+            </tr>
+            <tr>
+                <td><b>UseMemo and UseCallback</b></td>
+                <td>
+                    Optimize performance by memoizing expensive calculations (`useMemo`) or functions (`useCallback`) to
+                    prevent unnecessary re-renders
+                </td>
+                <td>
+                    <ul>
+                        <li>optimizing performance for expensive calculations</li>
+                        <li>avoiding unnecessary re-renders for stable functions</li>
+                        <li>preventing child component re-renders in complex UIs</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>UseImperativeHandle</b></td>
+                <td>
+                    Provides a way for functional components to expose imperative methods to parent components, often
+                    used with `forwardRef`
+                </td>
+                <td>
+                    <ul>
+                        <li>exposing component functions to parent components</li>
+                        <li>managing custom focus control for input fields</li>
+                        <li>controlling animation or scroll actions externally</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="4"><b>Code Organization</b></td>
+                <td><b>Folder Structure</b></td>
+                <td>Organizes files and directories for better readability and scalability</td>
+                <td>
+                    <ul>
+                        <li>organizing code by features, domains, or types (e.g., `components`, `hooks`)</li>
+                        <li>improving project scalability and team collaboration</li>
+                        <li>enhancing maintainability for large-scale applications</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Extensible Styles</b></td>
+                <td>Modularizes styling in CSS (CSS-in-JS), allowing styles to be scoped to individual components</td>
+                <td>
+                    <ul>
+                        <li>creating scoped styles to avoid CSS conflicts</li>
+                        <li>applying dynamic styling in JavaScript (e.g., theme-based)</li>
+                        <li>sharing component-specific styles in a modular fashion</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Centralized Prop Types</b></td>
+                <td>Defines prop types for reusable components in a single location</td>
+                <td>
+                    <ul>
+                        <li>improving type safety and readability of component props</li>
+                        <li>ensuring consistent prop validation across the app</li>
+                        <li>reducing errors from inconsistent prop usage</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Service Layers</b></td>
+                <td>
+                    Creates a service layer for API calls, caching, or other external resources to keep components
+                    focused on UI rendering
+                </td>
+                <td>
+                    <ul>
+                        <li>centralizing API requests and data handling logic</li>
+                        <li>encapsulating external service interactions for consistency</li>
+                        <li>separating business logic from UI components</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="4"><b>Data Fetching</b></td>
+                <td><b>Fetching on Render</b></td>
+                <td>Triggers data fetching when a component mounts, using hooks like `useEffect`</td>
+                <td>
+                    <ul>
+                        <li>basic data loading when the component mounts</li>
+                        <li>retrieving initial data for page rendering</li>
+                        <li>simplifying logic for components that don't need caching</li>
+                        <li>static or infrequently data changes</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Fetching on Interaction</b></td>
+                <td>
+                    Triggers data fetching based on user interactions (e.g., clicking a button) to optimize
+                    performance
+                </td>
+                <td>
+                    <ul>
+                        <li>loading data only when the user initiates (e.g., button click)</li>
+                        <li>reducing initial load time by delaying fetches</li>
+                        <li>triggering data fetch on specific user actions (e.g., load more)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Data Fetching with Suspense</b></td>
+                <td>Uses React Suspense to manage async data fetching with loading states in a declarative way</td>
+                <td>
+                    <ul>
+                        <li>handling loading and error states with minimal code</li>
+                        <li>simplifying asynchronous data handling</li>
+                        <li>optimizing loading experience with React Suspense features</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Infinite Scrolling / Pagination</b></td>
+                <td>
+                    Used for loading data progressively, enhancing performance and user experience with lazy loading
+                    patterns
+                </td>
+                <td>
+                    <ul>
+                        <li>displaying large datasets efficiently</li>
+                        <li>improving UX for continuous data loading</li>
+                        <li>enabling smooth scrolling or pagination for long lists</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="2"><b>Error Handling</b></td>
+                <td><b>Error Boundaries</b></td>
+                <td>Components that catch JavaScript errors in their child component tree and display a fallback UI</td>
+                <td>
+                    <ul>
+                        <li>global error handling</li>
+                        <li>prevents the entire app from crashing</li>
+                        <li>providing fallback UI for failed component rendering</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Try/Catch with Async Functions</b></td>
+                <td>
+                    Used to handle errors in async data fetching functions, often paired with user notifications for
+                    better error management
+                </td>
+                <td>
+                    <ul>
+                        <li>handling errors during asynchronous operations (e.g., API calls)</li>
+                        <li>avoiding unhandled promise rejections</li>
+                        <li>logging or displaying error messages for async failures</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="4"><b>Performance Optimization</b></td>
+                <td><b>Lazy Loading and Code Splitting</b></td>
+                <td>
+                    Loads only the required modules at a time, often using `React.lazy` and `Suspense` to delay
+                    component loading until needed
+                </td>
+                <td>
+                    <ul>
+                        <li>loading components only when needed (e.g., dynamic imports)</li>
+                        <li>reducing initial page load times for faster interaction</li>
+                        <li>enhancing performance by splitting large bundles</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Virtualization</b></td>
+                <td>Renders only visible items in a large list, improving performance for large data sets</td>
+                <td>
+                    <ul>
+                        <li>rendering only visible items in long lists</li>
+                        <li>reducing DOM elements to improve performance</li>
+                        <li>efficiently handling large datasets in list or table views</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Memoization</b></td>
+                <td>
+                    Optimizes components with `React.memo` or `useMemo` to avoid re-rendering when props or state
+                    haven’t changed
+                </td>
+                <td>
+                    <ul>
+                        <li>caching expensive calculations or API results</li>
+                        <li>reducing unnecessary re-renders by using stable values</li>
+                        <li>improving performance for complex computations in real time</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Throttling and Debouncing</b></td>
+                <td>
+                    Controls the rate at which functions like API calls are executed, reducing unnecessary re-renders or
+                    data fetching
+                </td>
+                <td>
+                    <ul>
+                        <li>limiting function executions in rapid interactions (e.g., resize)</li>
+                        <li>improving input performance by delaying actions</li>
+                        <li>optimizing resource usage in frequent events (e.g., scroll)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="4"><b>Routing</b></td>
+                <td><b>Nested Routing</b></td>
+                <td>Creates a hierarchy of routes, allowing sub-routes to be rendered inside parent routes</td>
+                <td>
+                    <ul>
+                        <li>defining routes that need hierarchical structure</li>
+                        <li>managing parent-child relationships in route paths</li>
+                        <li>building layouts where pages have nested views</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Dynamic Routing</b></td>
+                <td>Allows routes to change based on state or data</td>
+                <td>
+                    <ul>
+                        <li>loading routes based on dynamic parameters (e.g., user ID)</li>
+                        <li>creating flexible route structures for user-generated content</li>
+                        <li>user-specific or resource-specific routes</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Protected Routes</b></td>
+                <td>
+                    Guards routes that require authentication, often wrapping them with an authentication check
+                    component
+                </td>
+                <td>
+                    <ul>
+                        <li>restricting access to authenticated users only</li>
+                        <li>redirecting unauthenticated users to login pages</li>
+                        <li>securing sensitive pages with conditional access</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Lazy Loading Routes</b></td>
+                <td>
+                    Delays loading of route-based components until they’re needed, improving load times and reducing
+                    initial bundle size
+                </td>
+                <td>
+                    <ul>
+                        <li>loading routes only when they're accessed</li>
+                        <li>reducing initial app bundle size</li>
+                        <li>optimizing route handling for large applications</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td rowSpan="4"><b>Miscellaneous</b></td>
+                <td><b>Portals</b></td>
+                <td>Renders components outside of the main React tree</td>
+                <td>
+                    <ul>
+                        <li>rendering modals, tooltips, or dropdowns outside the parent DOM</li>
+                        <li>managing z-index and overlay issues</li>
+                        <li>ensuring elements appear above the rest of the UI</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Compound Components</b></td>
+                <td>
+                    Creates a group of components that work together, like `<Tabs/>` and `<Tab/>`, where the parent
+                    component manages the state of its children
+                </td>
+                <td>
+                    <ul>
+                        <li>creating components with flexible subcomponents (e.g., tabs)</li>
+                        <li>enabling users to customize the structure within the main component</li>
+                        <li>providing a consistent API for complex component patterns</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Configuration-Driven UI</b></td>
+                <td>
+                    Allows components to be rendered based on configuration objects, making UI structure flexible and
+                    customizable
+                </td>
+                <td>
+                    <ul>
+                        <li>building UI based on JSON or configuration files</li>
+                        <li>creating reusable and customizable forms or tables</li>
+                        <li>separating UI structure from hardcoded layouts</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Facade</b></td>
+                <td>
+                    Provides a simplified interface to complex logic, often wrapping multiple hooks or components for
+                    simplified usage
+                </td>
+                <td>
+                    <ul>
+                        <li>simplifying complex functionality with a single interface</li>
+                        <li>abstracting library methods into app-specific functions</li>
+                        <li>managing third-party service integrations efficiently</li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </TabItem>
+
+</Tabs>
