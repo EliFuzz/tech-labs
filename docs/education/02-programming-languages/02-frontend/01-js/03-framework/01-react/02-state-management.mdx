@@ -1,0 +1,73 @@
+---
+title: State Management
+description: State Management
+hide_table_of_contents: true
+---
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Redux
+
+<Tabs queryParam="primary">
+    <TabItem value="overview" label="Overview">
+        ```mermaid
+        graph TB
+
+        subgraph Store[Redux: Store]
+        direction TB
+
+        dispatcher(Dispatcher)
+        dispatcher -->|send| reducer(Reducer)
+        reducer -->|new state| state(State)
+        state -->|previous state| reducer
+        state -->|exposed by| selector(Selector)
+        end
+
+        subgraph Linker[Linker: connects react & redux]
+        direction TB
+
+        container(Container) -->|updates| mapToStore(Map Store to Props)
+        end
+
+        subgraph Middleware
+        direction TB
+
+        reduxSaga(redux-saga)
+        end
+
+        subgraph Saga[Saga Middleware]
+        direction TB
+
+        standardChannel(Standard Channel)
+        standardChannel ~~~|executes or queues a task depending on the state of the scheduler| standardChannel
+        standardChannel -->|new task<br/>take / takeEvery / takeLatest| watcher(Watcher)
+        watcher -->|iterators #40;next#41;| watcher
+        watcher -->|call / apply| worker(Worker)
+        worker -->|iterators #40;next#41;<br/>call / apply / fork / cancel / spawn / join| worker
+        end
+
+        subgraph View [React: View / UI]
+        direction TB
+
+        props(Props) -->|re-renders| template(Template with React Components)
+        end
+
+        mapToStore -->|map| props
+
+        worker -->|request| api(REST API)
+        worker -->|put / select / take| reduxSaga
+
+        container -->|trigger| action(Action)
+        action -->|dispatch| Middleware
+        Middleware -->|send| dispatcher
+        selector -->|used by| container
+        template -->|event| container
+
+        reduxSaga -->|register dispatch action| standardChannel
+
+        ```
+    </TabItem>
+
+</Tabs>
