@@ -561,66 +561,140 @@ import TabItem from "@theme/TabItem";
         </tbody>
       </table>
     </TabItem>
-  <TabItem value="architecture-micro-frontends" label="Micro Frontends">
-    <table>
-      <thead>
-        <tr>
-          <th>Aspect</th>
-          <th>Microservices</th>
-          <th>Micro Frontends</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><b>Visualization</b></td>
-          <td>![](./assets/microservices/microservices.svg)</td>
-          <td>![](./assets/microservices/micro-frontends.svg)</td>
-        </tr>
-        <tr>
-          <td><b>Focus Area</b></td>
-          <td>Backend (server-side)</td>
-          <td>Frontend (client-side)</td>
-        </tr>
-        <tr>
-          <td><b>Responsibility</b></td>
-          <td>Business capabilities</td>
-          <td>User interface components</td>
-        </tr>
-        <tr>
-          <td><b>Communication</b></td>
-          <td>APIs (REST, gRPC)</td>
-          <td>Shared state, event bus, single-spa</td>
-        </tr>
-        <tr>
-          <td><b>Scalability</b></td>
-          <td>Scale individual services based on load</td>
-          <td>Scale specific UI modules based on usage</td>
-        </tr>
-        <tr>
-          <td><b>Maintainability</b></td>
-          <td>Easier to maintain smaller codebases</td>
-          <td>Easier to maintain specific UI features</td>
-        </tr>
-        <tr>
-          <td><b>Complexity</b></td>
-          <td>Increased complexity due to distributed systems and integration overhead</td>
-          <td>Increased complexity due to managing multiple UI modules, communication, and potential performance overhead</td>
-        </tr>
-        <tr>
-          <td><b>Testing</b></td>
-          <td>Requires more complex testing strategies due to service interactions</td>
-          <td>Requires additional testing for UI interactions across modules</td>
-        </tr>
-        <tr>
-          <td><b>Deployment</b></td>
-          <td colspan="2">Independent deployments</td>
-        </tr>
-        <tr>
-          <td><b>Collaboration</b></td>
-          <td colspan="2">Requires cross-team collaboration and communication</td>
-        </tr>
-      </tbody>
-    </table>
+    <TabItem value="architectural-layers" label="Architectural Layers">
+        <table>
+            <thead>
+            <tr>
+                <th>Aspect</th>
+                <th>Micro Frontends</th>
+                <th>Microservices</th>
+                <th>Data Mesh</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><b>Visualization</b></td>
+                <td>![](./assets/microservices/micro-frontends.svg)</td>
+                <td>![](./assets/microservices/microservices.svg)</td>
+                <td>![](./assets/microservices/data-mesh.svg)</td>
+            </tr>
+            <tr>
+                <td><b>Definition</b></td>
+                <td>
+                    Architectural style for frontend development, breaking down a frontend app into smaller, manageable
+                    pieces
+                </td>
+                <td>
+                    Architectural style for backend development, breaking down a monolithic app into smaller,
+                    independent services
+                </td>
+                <td>
+                    Architectural approach for data management, decentralizing data ownership to domain-specific teams
+                </td>
+            </tr>
+            <tr>
+                <td><b>Focus</b></td>
+                <td>User interface components</td>
+                <td>Business capabilities</td>
+                <td>Data ownership</td>
+            </tr>
+            <tr>
+                <td><b>Purpose</b></td>
+                <td>Enable multiple teams to work on different parts of a frontend application independently</td>
+                <td>Enable independent development, deployment, and scaling of backend services</td>
+                <td>
+                    Address challenges in centralized data architectures by decentralizing data ownership and
+                    governance
+                </td>
+            </tr>
+            <tr>
+                <td><b>Key Principles</b></td>
+                <td>
+                    <ul>
+                        <li>Technology agnostic</li>
+                        <li>Isolate team code</li>
+                        <li>Independent deployment</li>
+                        <li>Clear ownership</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Single responsibility principle</li>
+                        <li>Decentralized data management</li>
+                        <li>Independent deployment</li>
+                        <li>Scalability</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Domain-oriented data ownership</li>
+                        <li>Data as a product</li>
+                        <li>Self-serve data infrastructure</li>
+                        <li>Federated governance</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Benefits</b></td>
+                <td>
+                    <ul>
+                        <li>Faster development cycles</li>
+                        <li>Reduced complexity</li>
+                        <li>Independent deployments</li>
+                        <li>Better team autonomy</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Scalability</li>
+                        <li>Flexibility</li>
+                        <li>Fault isolation</li>
+                        <li>Technology diversity</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Improved data quality</li>
+                        <li>Faster data access</li>
+                        <li>Scalability</li>
+                        <li>Better alignment with business domains</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Challenges</b></td>
+                <td>
+                    <ul>
+                        <li>Increased complexity in integration</li>
+                        <li>Potential for inconsistent user experience</li>
+                        <li>Requires strong governance</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Increased complexity in managing multiple services</li>
+                        <li>Potential for data inconsistency</li>
+                        <li>Requires strong governance</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Requires cultural shift</li>
+                        <li>Potential for data silos</li>
+                        <li>Requires strong governance and collaboration</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Deployment</b></td>
+                <td colspan="3">Independent deployments</td>
+            </tr>
+            <tr>
+                <td><b>Collaboration</b></td>
+                <td colspan="3">Requires cross-team collaboration and communication</td>
+            </tr>
+            </tbody>
+        </table>
   </TabItem>
   <TabItem value="architecture-repos" label="Repos">
     <table>
