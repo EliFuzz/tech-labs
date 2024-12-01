@@ -1893,64 +1893,6 @@ import TabItem from "@theme/TabItem";
             </TabItem>
         </Tabs>
     </TabItem>
-    <TabItem value="best-practices-graphql" label="GraphQL">
-        <Tabs queryString="secondary">
-            <TabItem value="graphql-schema" label="Schema" attributes={{className:"tabs__vertical"}}>
-                ### Core Principles
-
-                - **Abstract Types**: Use abstract types like interfaces and unions to model shared characteristics between entities
-                - **Caching**: Implement caching mechanisms for frequently accessed data to reduce server load and improve response times
-                - **Client-Driven Design**: Focus on the specific needs of client applications. Prioritize functionality used by multiple clients, but avoid bloating the schema with features for a single client
-                - **Complex Data Structures**: Define object types for complex data structures
-                - **Consistent Naming Conventions**: Adopt a consistent naming convention for types, fields, and relationships across schemas
-                - **Custom Scalars**: Define custom scalar types for specialized data formats to improve type safety and expressiveness
-                - **Demand-Oriented**: Add functionalities gradually based on client requirements to lean and efficient schema
-                - **Entity Identification**: Ensure each entity has a unique identifier, typically an ID field
-                - **Enums**: Employ enums for defining finite sets of possible values
-                - **Evolvable Schema**: Design for future growth. Consider potential use cases and data needs that may arise
-                - **Field-Level Resolution**: Implement field-level resolvers to optimize data fetching and avoid over-fetching unnecessary data
-                - **GraphQL Variables**: Use GraphQL variables to avoid query string manipulation to improve cache effectiveness and information privacy
-                - **Input Object Types**: Use input object types to structure data for mutations
-                - **Input Types**: Utilize input types for mutation arguments
-                - **Interfaces and Unions**: Use interfaces and unions for creating flexible schemas
-                - **Language Agnostic**: The schema should be independent of programming language
-                - **Name all operations**: Query, Mutation, Subscription, and Fragments
-                - **Naming Conventions**: Establish clear and consistent naming conventions for types, fields, and arguments. This improves readability and maintainability
-                - **Nullability**: Explicitly define whether fields can be `null`. This enhances type safety and prevents unexpected errors
-                - **Object Types**: Define object types to represent data entities with well-defined properties
-                - **Relationships and Keys**: Define relationships between entities using unique keys to establish connections between federated types
-                - **Schema Definition Language (SDL)**: Utilize GraphQL SDL (Schema Definition Language) to define types, queries, mutations, and subscriptions with clear and concise naming conventions
-                - **Type Extensions**: Utilize GraphQL type extensions to add additional fields or functionality to existing types without modifying their original definition
-            </TabItem>
-            <TabItem value="graphql-federation" label="Federation">
-                - **Automatic Persisted Queries (APQ)**: Use APQ to improve query performance by caching queries and responses
-                - **Federated Supergraph**: Leverage tools like Apollo Router for simplified federation setup and management
-                - **Federation**: Align subgraphs with business domains for ownership and maintainability
-                - **Gateway Configuration**: Use GraphQL Gateway to orchestrate requests across federated services
-                - **Modular Schema**: Encourage a modular approach to schema design, where each domain or microservice defines its own GraphQL schema
-                - **Schema Stitching**: Foster collaboration between teams to align on a unified graph schema that reflects the entire organization's data model
-                - **Schema Stitching**: Use schema stitching techniques to compose a unified GraphQL schema from federated service schemas
-                - **Service Configuration**: Configure each service to participate in the federation, including endpoint URLs and schemas
-                - **Service Discovery**: Implement a robust service discovery mechanism for the federation gateway to locate subgraphs
-                - **Service Implementation**: Develop individual GraphQL services responsible for serving specific types or subsets of types
-                - **Subgraphs**: Define clear boundaries between subgraphs to avoid overlap and conflicts
-                - **Type Definitions**: Define entity types and their relationships in each service's GraphQL schema
-                - **`@external` Directive**: Mark fields from other services as external using `@external` directive
-                - **`@key` Directive**: Annotate entity fields with @key directive to declare them as federation keys
-                - **`@requires` and `@provides` Directives**: Specify field dependencies using these directives to enable automatic query planning
-            </TabItem>
-            <TabItem value="graphql-error-handling" label="Error Handling">
-                - **Error Handling**: Define a consistent error handling strategy to provide meaningful error messages to clients
-            </TabItem>
-            <TabItem value="graphql-performance" label="Performance">
-                - **Batching**: Consider server-side batching to improve performance by fetching related data in a single request
-                - **Data Pagination**: Implement cursor-based pagination for large datasets to improve query performance and reduce memory overhead
-                - **Dynamic Discovery**: Consider using a registry or service mesh for dynamic discovery
-                - **Optimized Resolvers**: Write efficient resolver functions to minimize data fetching latency and optimize query execution
-                - **Query Complexity Analysis**: Perform query complexity analysis to prevent costly or inefficient queries from impacting system performance
-            </TabItem>
-        </Tabs>
-    </TabItem>
     <TabItem value="best-practices-rest-api" label="REST API">
         <Tabs queryString="secondary">
             <TabItem value="rest-api-versioning" label="Versioning" attributes={{className:"tabs__vertical"}}>
