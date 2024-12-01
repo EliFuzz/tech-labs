@@ -33,6 +33,16 @@ html {
     display: none !important;
 }
 
+/* Code Highlight */
+
+html[data-theme="light"] .prism-code > code > .theme-code-block-highlighted-line {
+    background: rgb(237 237 237);
+}
+
+html[data-theme="dark"] .prism-code > code > .theme-code-block-highlighted-line {
+    background: rgb(51 56 67);
+}
+
 /* Big O */
 code.horrible {
     background-color: #ff8989;
