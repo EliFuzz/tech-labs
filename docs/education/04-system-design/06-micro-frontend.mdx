@@ -1,0 +1,85 @@
+---
+title: Micro Frontend
+description: Micro Frontend
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+
+## System Architecture
+
+<Tabs queryString="primary">
+    <TabItem value="system-architecture-overview" label="Overview">
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Monolith</th>
+                    <th>Modular Monolith</th>
+                    <th>Micro Frontend (Vertical)</th>
+                    <th>Micro Frontend (Horizontal)</th>
+                    <th>Island Architecture</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Visualization</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>Definition</b></td>
+                    <td>Single-tiered software application where the UI and data access code are combined into a single program from a single platform</td>
+                    <td>Monolithic application that is divided into modules based on features or business domains</td>
+                    <td>Type of microservice architecture where each frontend component corresponds to a vertical slice of the application</td>
+                    <td>Microservice approach where components are split based on horizontal layers like presentation, business logic, etc.</td>
+                    <td>Modern approach that involves building a web application as a set of small, independent, and loosely coupled islands</td>
+                </tr>
+                <tr>
+                    <td><b>Complexity</b></td>
+                    <td>Low to moderate, depending on the application size</td>
+                    <td>Moderate, as it involves breaking down the monolith into logical modules</td>
+                    <td>High, due to the distributed nature of services</td>
+                    <td>High, similar to vertical micro frontends but with an additional layer of complexity due to horizontal slicing</td>
+                    <td>Moderate to high, depending on the granularity of the islands</td>
+                </tr>
+                <tr>
+                    <td><b>Scalability</b></td>
+                    <td>Challenging for large applications due to tight coupling and complexity</td>
+                    <td>Improved over monolith due to modularity, but still requires careful management of module interactions</td>
+                    <td>Good, as each service can be updated independently</td>
+                    <td>Good, with the added benefit of clear separation of concerns</td>
+                    <td>Excellent, as each island can be maintained separately</td>
+                </tr>
+                <tr>
+                    <td><b>Technology Stack</b></td>
+                    <td>Uniform across the entire application</td>
+                    <td>Uniform or varied, depending on module requirements</td>
+                    <td>Can vary between services, allowing for the use of best-suited technologies</td>
+                    <td>Can vary between layers, providing flexibility</td>
+                    <td>Highly flexible, with each island potentially using different technologies</td>
+                </tr>
+                <tr>
+                    <td><b>Use Case</b></td>
+                    <td>Small to medium-sized applications with a limited scope</td>
+                    <td>Medium-sized applications that require clear separation of concerns without fully committing to Micro Frontend (MFE)</td>
+                    <td>Large-scale applications with clear domain boundaries and the need for independent scaling and deployment</td>
+                    <td>Large applications that require a clear separation of presentation and business logic</td>
+                    <td>Applications that can benefit from a mix of different technologies and independent deployment cycles</td>
+                </tr>
+            </tbody>
+        </table>
+    </TabItem>
+</Tabs>
+
+## Repositories
+
+<Tabs queryString="primary">
+    <TabItem value="repositories-overview" label="Overview">
+    </TabItem>
+</Tabs>
