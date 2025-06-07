@@ -1,0 +1,488 @@
+---
+title: Basics
+description: Frontend Basics
+hide_table_of_contents: true
+---
+
+import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
+
+# Optimization
+
+## Script Loading
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>inline script</th>
+      <th>sync</th>
+      <th>async</th>
+      <th>defer</th>
+      <th>external + `type="module"`</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Visualization</b></td>
+      <td>
+        ```mermaid
+        sequenceDiagram
+            participant Browser as Browser (HTML Parser)
+            participant JSEngine as JavaScript Engine
+
+            Browser->>Browser: Starts HTML Parsing
+            Browser->>Browser: Encounters Inline <script>...</script>
+            Browser->>Browser: Pauses HTML Parsing
+            Browser->>JSEngine: Send Inline Script for Execution
+            JSEngine->>JSEngine: Execute Script
+            JSEngine-->>Browser: Script Execution Complete
+            Browser->>Browser: Resumes HTML Parsing
+            Browser->>Browser: Finishes HTML Parsing
+        ```
+      </td>
+      <td>
+        ```mermaid
+        sequenceDiagram
+            participant Browser as Browser (HTML Parser)
+            participant Network
+            participant JSEngine as JavaScript Engine
+
+            Browser->>Browser: Starts HTML Parsing
+            Browser->>Browser: Encounters <script src="...">
+            Browser->>Browser: Pauses HTML Parsing
+            Browser->>Network: Request Script File
+            Network-->>Browser: Script File Received
+            Browser->>JSEngine: Send Script for Execution
+            JSEngine->>JSEngine: Execute Script
+            JSEngine-->>Browser: Script Execution Complete
+            Browser->>Browser: Resumes HTML Parsing
+            Browser->>Browser: Finishes HTML Parsing
+        ```
+      </td>
+      <td>
+        ```mermaid
+        sequenceDiagram
+            participant Browser as Browser (HTML Parser)
+            participant Network
+            participant JSEngine as JavaScript Engine
+
+            Browser->>Browser: Starts HTML Parsing
+            Browser->>Browser: Encounters <script async src="...">
+            Browser->>Network: Request Script File (in parallel)
+            Browser->>Browser: Continues HTML Parsing
+            Network-->>Browser: Script File Received
+            Browser->>JSEngine: Send Script for Execution (as soon as fetched)
+            JSEngine->>JSEngine: Execute Script
+            JSEngine-->>Browser: Script Execution Complete
+            Browser->>Browser: (HTML Parsing may still be ongoing or completed)
+            Browser->>Browser: Finishes HTML Parsing / DOMContentLoaded
+        ```
+      </td>
+      <td>
+        ```mermaid
+        sequenceDiagram
+            participant Browser as Browser (HTML Parser)
+            participant Network
+            participant JSEngine as JavaScript Engine
+
+            Browser->>Browser: Starts HTML Parsing
+            Browser->>Browser: Encounters <script defer src="...">
+            Browser->>Network: Request Script File (in parallel)
+            Browser->>Browser: Continues HTML Parsing
+            Network-->>Browser: Script File Received
+            Browser->>Browser: Finishes HTML Parsing
+            Browser->>Browser: DOMContentLoaded Event Ready
+            Browser->>JSEngine: Send Script for Execution (after HTML parsing complete)
+            JSEngine->>JSEngine: Execute Script
+            JSEngine-->>Browser: Script Execution Complete
+        ```
+      </td>
+      <td>
+        ```mermaid
+        sequenceDiagram
+            participant Browser as Browser (HTML Parser)
+            participant Network
+            participant JSEngine as JavaScript Engine
+
+            Browser->>Browser: Starts HTML Parsing
+            Browser->>Browser: Encounters <script type="module" src="...">
+            Browser->>Network: Request Module Script (in parallel)
+            Browser->>Browser: Continues HTML Parsing
+            Network-->>Browser: Module Script Received
+            Browser->>Browser: Finishes HTML Parsing
+            Browser->>Browser: DOMContentLoaded Event Ready
+            Browser->>JSEngine: Send Module Script for Execution (after HTML parsing complete)
+            JSEngine->>JSEngine: Execute Module Script
+            JSEngine-->>Browser: Module Execution Complete
+        ```
+      </td>
+    </tr>
+
+    <tr>
+      <td><b>Present in Tag</b></td>
+      <td>
+        `<script>...</script>`
+      </td>
+      <td>
+        `<script src="..."></script>`
+      </td>
+      <td>
+        `<script async src="..."></script>`
+      </td>
+      <td>
+        `<script defer src="..."></script>`
+      </td>
+      <td>
+        `<script type="module" src="..."></script>`
+      </td>
+    </tr>
+
+    <tr>
+      <td><b>Loading Behavior</b></td>
+      <td>script is executed immediately when encountered</td>
+      <td>script is fetched immediately as the browser encounters the tag</td>
+      <td>script is fetched in parallel with HTML parsing</td>
+      <td>script is fetched in parallel with HTML parsing</td>
+      <td>fetched in parallel</td>
+    </tr>
+
+    <tr>
+      <td><b>Execution Timing</b></td>
+      <td>immediate execution</td>
+      <td>script is executed immediately after it's downloaded, before continuing parsing the HTML document</td>
+      <td>script is executed as soon as it's downloaded, even if the HTML parsing is not finished</td>
+      <td>script is executed in order after HTML parsing is fully complete, just before `DOMContentLoaded`</td>
+      <td>deferred by default, executed after parsing</td>
+    </tr>
+
+    <tr>
+      <td><b>Execution Order</b></td>
+      <td>based on document location</td>
+      <td>preserved, as per DOM order</td>
+      <td>not preserved - random order</td>
+      <td>preserved</td>
+      <td>preserved (per top-level await and import graph)</td>
+    </tr>
+
+    <tr>
+      <td><b>Blocking Behavior</b></td>
+      <td>blocks HTML parsing</td>
+      <td>blocks HTML parsing</td>
+      <td>may block parsing at execution</td>
+      <td>does not block parsing</td>
+      <td>deferred behavior</td>
+    </tr>
+
+    <tr>
+      <td><b>Notes</b></td>
+      <td>avoid for large code blocks; inline code can't use `async` or `defer`</td>
+      <td>default behavior; loading blocks rendering</td>
+      <td>non-deterministic execution order; may lead to race conditions</td>
+      <td>most preferred for non-blocking DOM-safe execution</td>
+      <td>always deferred by spec; uses strict mode automatically</td>
+    </tr>
+
+    <tr>
+      <td><b>Use Cases</b></td>
+      <td>critical inline JS; not affected by `async` / `defer`</td>
+      <td>scripts that must run immediately, and manipulate DOM elements above them</td>
+      <td>analytics, tracking, or other scripts that don't depend on DOM or other scripts</td>
+      <td>scripts that depend on DOM elements, and must maintain execution order</td>
+      <td>modern ES Modules and top-level imports</td>
+    </tr>
+
+  </tbody>
+</table>
+
+## Optimization Strategies
+
+<Tabs queryString="primary-optimization">
+  <TabItem value="core" label="Core">
+    <table>
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Minimize HTTP Requests</td>
+          <td>
+            Fewer files mean faster load times due to reduced browser requests
+          </td>
+        </tr>
+        <tr>
+          <td>Reduce File Sizes</td>
+          <td>Smaller assets (images, code, videos) download more quickly</td>
+        </tr>
+        <tr>
+          <td>Optimize Critical Rendering Path (CRP)</td>
+          <td>Improve how fast key content appears and becomes usable</td>
+        </tr>
+        <tr>
+          <td>Leverage Caching</td>
+          <td>Store files in-browser or via CDN to speed up repeat visits</td>
+        </tr>
+        <tr>
+          <td>Prioritize User Experience</td>
+          <td>
+            Make the site feel fast and responsive, even if not fully loaded
+          </td>
+        </tr>
+        <tr>
+          <td>Reduce Server Response Time (SSR)</td>
+          <td>Faster backend response improves overall frontend speed</td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="js" label="JS">
+    <table>
+      <tr>
+        <th>Strategy</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Minification</td>
+        <td>Minify code by removing unnecessary characters and shortening variable/function names</td>
+      </tr>
+      <tr>
+        <td>Compression</td>
+        <td>Serve JS files with Gzip or Brotli compression enabled</td>
+      </tr>
+      <tr>
+        <td>Code Splitting/Bundling</td>
+        <td>Bundle multiple JS files into a single file to reduce HTTP requests, and use code splitting to load smaller chunks on demand</td>
+      </tr>
+      <tr>
+        <td>Lazy Loading (Dynamic Imports)</td>
+        <td>Load JS modules or components on demand, such as using `import('./my-component.js')` to load the component only when the promise resolves</td>
+      </tr>
+      <tr>
+        <td>Tree Shaking (Dead Code Elimination)</td>
+        <td>Eliminate unused code from the final JS bundle to enable effective tree shaking</td>
+      </tr>
+      <tr>
+        <td>Deferring Non-Critical JavaScript</td>
+        <td>Use `async` or `defer` attributes on `<script>` tags for non-essential JavaScript</td>
+      </tr>
+      <tr>
+        <td>Optimize JavaScript Execution</td>
+        <td>Avoid long-running tasks on the main thread to maintain browser responsiveness by breaking up large tasks with `setTimeout` or `requestAnimationFrame`, using Web Workers for heavy computations, and applying debouncing or throttling for frequently fired events like scroll or resize</td>
+      </tr>
+      <tr>
+        <td>Efficient DOM Manipulation</td>
+        <td>Minimize direct DOM manipulation, batch updates with `documentFragment`, use `requestAnimationFrame` for visual updates, and avoid layout thrashing by batching read/write operations to prevent forced synchronous reflows</td>
+      </tr>
+      <tr>
+        <td>Remove Unnecessary Libraries/Dependencies</td>
+        <td>Audit your project for unused or bloated third-party libraries. Consider using lighter alternatives or writing custom code if feasible</td>
+      </tr>
+    </table>
+  </TabItem>
+  <TabItem value="css" label="CSS">
+  <table>
+  <tr>
+    <th>Strategy</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Minification</td>
+    <td>Remove unnecessary characters like whitespace, comments, and line breaks from CSS files</td>
+  </tr>
+  <tr>
+    <td>Compression</td>
+    <td>Serve CSS files with Gzip or Brotli compression enabled on the server. This reduces the file size transferred over the network</td>
+  </tr>
+  <tr>
+    <td>Critical CSS (Above-the-Fold CSS)</td>
+    <td>Extract the minimum CSS for "above-the-fold" content, inline it in the HTML `<head>` for faster rendering, and load the remaining CSS asynchronously</td>
+  </tr>
+  <tr>
+    <td>Remove Unused CSS</td>
+    <td>Analyze your project to identify and remove CSS rules that are not used on any page. This drastically reduces file size</td>
+  </tr>
+  <tr>
+    <td>Optimize Selectors and Rules</td>
+    <td>Use simpler selectors for faster matching, avoid unnecessary qualifications of IDs or classes, and limit `@import` rules to prevent blocking parallel downloads, favoring `link` tags instead</td>
+  </tr>
+  <tr>
+    <td>Use CSS Sprites</td>
+    <td>Combine small background images into a single file and use CSS background-position to display segments, reducing the number of HTTP requests</td>
+  </tr>
+</table>
+  </TabItem>
+  <TabItem value="html" label="HTML">
+    <table>
+      <thead>
+        <tr>
+          <th>Srategy</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Remove Comments & Whitespace</td>
+          <td>Reduces file size by eliminating non-essential content</td>
+        </tr>
+        <tr>
+          <td>Eliminate Redundant Tags</td>
+          <td>Keep HTML semantic and free of unnecessary elements</td>
+        </tr>
+        <tr>
+          <td>Avoid Large Inline CSS/JS</td>
+          <td>Prevents bloated HTML and allows for better caching</td>
+        </tr>
+        <tr>
+          <td>Validate HTML</td>
+          <td>Ensures consistent rendering and fewer browser issues</td>
+        </tr>
+        <tr>
+          <td>Place CSS in `head`</td>
+          <td>Enables faster rendering and avoids unstyled content flashes</td>
+        </tr>
+        <tr>
+          <td>Place JS at Bottom or Use `async`</td>
+          <td>
+            `async` loads and runs scripts as soon as ready; execution order not
+            guaranteed
+          </td>
+        </tr>
+        <tr>
+          <td>Use `defer` for Dependent Scripts</td>
+          <td>
+            Loads scripts in order after HTML parsing, before `DOMContentLoaded`
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="media" label="Media">
+    <table>
+      <tr>
+        <th>Srategy</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Image Compression</td>
+        <td>Compress images to reduce file size without significant quality loss</td>
+      </tr>
+      <tr>
+        <td>Choose the Right Image Format</td>
+        <td>Use JPEG for photographs, PNG for transparency or sharp-edged images like logos, SVG for resolution-independent vector graphics, and modern formats like WebP or AVIF for superior compression, with fallbacks for older browsers</td>
+      </tr>
+      <tr>
+        <td>Responsive Images</td>
+        <td>Serve image sizes based on device, resolution, and viewport using `srcset` and `sizes` in `<img>` for automatic selection, and utilize the `<picture>` element for complex layouts or art direction</td>
+      </tr>
+      <tr>
+        <td>Lazy Loading Images and Videos</td>
+        <td>Load media as it nears the viewport by using `loading="lazy"` on `<img>` and employ the Intersection Observer API for better control or support in older browsers</td>
+      </tr>
+      <tr>
+        <td>Image Dimensions</td>
+        <td>Always specify `width` and `height` on `<img>` and `<video>` to prevent layout shifts and reserve space during loading</td>
+      </tr>
+      <tr>
+        <td>Optimize Video Delivery</td>
+        <td>Compress videos and use modern formats like WebM and MP4 (H.264/H.265), stream instead of forcing full downloads, and preload metadata or small segments for faster playback start</td>
+      </tr>
+    </table>
+  </TabItem>
+  <TabItem value="font" label="Font">
+    <table>
+      <tr>
+        <th>Strategy</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Reduce Font File Size</td>
+        <td>Subset fonts to include only necessary characters, use WOFF2 for modern, compressed formats with fallbacks like WOFF and TTF for older browsers, and load only required font weights and styles to remove unused styles</td>
+      </tr>
+      <tr>
+        <td>Font Loading Strategy</td>
+        <td>Use the `font-display` property to control font loading and prevent "Flash of Invisible Text" <b>FOIT</b>, "Flash of Unstyled Text" <b>FOUT</b>, and "Flash of Faux Text" <b>FOFT</b>; additionally, preload critical fonts using `<link rel="preload" as="font" crossorigin href="myfont.woff2">` in the `<head>` to fetch important fonts early</td>
+      </tr>
+    </table>
+  </TabItem>
+  <TabItem value="server-side" label="Server-Side">
+    <table>
+      <tr>
+        <th>Strategy</th>
+        <th>Description</th>
+      </tr>
+
+      <tr>
+        <td>Content Delivery Network (CDN)</td>
+        <td>Serve static assets like images, CSS, and JavaScript via a CDN to reduce latency by delivering content from the closest globally distributed server to the user</td>
+      </tr>
+
+      <tr>
+        <td>Browser Caching (HTTP Caching Headers)</td>
+        <td>Configure headers like `Cache-Control`, `Expires`, `ETag`, and `Last-Modified` to instruct browsers on how long to cache static resources, reducing repeated downloads for returning visitors</td>
+      </tr>
+
+      <tr>
+        <td>HTTP/2 or HTTP/3</td>
+        <td>Ensure your server supports HTTP/2 or HTTP/3 for improved performance over HTTP/1.1, featuring multiplexing (multiple requests/responses over one connection), header compression (reducing request overhead), and server push (proactively sending likely-needed resources, though more limited in HTTP/3)</td>
+      </tr>
+
+      <tr>
+        <td>Prefetching and Preloading (Resource Hints)</td>
+        <td>Use `rel` attributes in `<link>` tags to enhance perceived performance by utilizing `preload` to fetch critical resources early (e.g., fonts), `prefetch` for resources likely needed for future navigation, `preconnect` to open early connections to important third-party origins, and `dns-prefetch` to resolve DNS early for external domains</td>
+      </tr>
+
+      <tr>
+        <td>Reduce Redirects</td>
+        <td>Minimize unnecessary redirects (e.g., HTTP to HTTPS, www to non-www) as each redirect adds an extra round-trip delay, slowing down page loading</td>
+      </tr>
+
+      <tr>
+        <td>Server-Side Rendering (SSR) / Static Site Generation (SSG)</td>
+        <td>Improve Time To Interactive (TTI) by delivering HTML directly through Server-Side Rendering (SSR), where HTML is rendered on the server and sent fully formed to the browser, or Static Site Generation (SSG), where HTML files are generated at build time and served statically (e.g., via a CDN) for extremely fast load times</td>
+      </tr>
+    </table>
+
+  </TabItem>
+  <TabItem value="advanced" label="Advanced">
+    <table>
+      <tr>
+        <th>Strategy</th>
+        <th>Description</th>
+      </tr>
+
+      <tr>
+        <td>WebAssembly (Wasm)</td>
+        <td>For highly computational tasks like video editing and gaming, WebAssembly enables near-native performance by allowing code compiled from languages such as C++, Rust, and Go to run in the browser</td>
+      </tr>
+
+      <tr>
+        <td>Service Workers</td>
+        <td>Enable offline support by caching assets and API responses to serve cached content for fast repeat visits, and implement complex caching strategies like cache-first or network-first</td>
+      </tr>
+
+      <tr>
+        <td>Performance Budgeting</td>
+        <td>Define limits on metrics such as JavaScript size, First Contentful Paint, and Time To Interactive (TTI), and enforce budgets through CI/CD to prevent performance regressions</td>
+      </tr>
+
+      <tr>
+        <td>Continuous Performance Monitoring (RUM & Synthetic)</td>
+        <td>RUM (Real User Monitoring) captures real user performance data such as Core Web Vitals and load times, while Synthetic Monitoring simulates user sessions in test environments using tools like Lighthouse and WebPageTest in CI</td>
+      </tr>
+
+      <tr>
+        <td>User-Centric Performance Metrics (Core Web Vitals)</td>
+        <td>Optimize for metrics that impact real user experience, including LCP (Largest Contentful Paint) for perceived load speed, CLS (Cumulative Layout Shift) for visual stability, and INP (Interaction to Next Paint) as a new responsiveness metric measuring full input-to-render delay</td>
+      </tr>
+
+      <tr>
+        <td>Third-Party Script Optimization</td>
+        <td>Third-party scripts (e.g., analytics, chat, ads) can harm performance; therefore, audit to remove unnecessary scripts, use `async` or `defer` attributes, lazy load scripts only when needed (e.g., show chat on click), and host common libraries locally for better control</td>
+      </tr>
+    </table>
+
+  </TabItem>
+</Tabs>
