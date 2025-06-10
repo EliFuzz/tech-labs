@@ -4,9 +4,8 @@ description: Kubernetes Design Patterns
 hide_table_of_contents: true
 ---
 
-
-import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
 
 # Kubernetes Design Patterns
 
@@ -194,6 +193,7 @@ import TabItem from "@theme/TabItem";
         consideration of factors outside of the Kubernetes cluster when assigning Pods to nodes.
       </TabItem>
     </Tabs>
+
   </TabItem>
   <TabItem value="k8s-behavioral" label="Behavioral">
     **Behavioral Patterns** describe how to manage the life-cycle of Pods, which are the basic units of deployment in Kubernetes. Depending on the type of workload, a Pod might run until completion as
@@ -1497,6 +1497,7 @@ import TabItem from "@theme/TabItem";
         power, Kubernetes RBAC can be complex to understand and even more complicated to debug. Therefore, it’s important to have a good understanding of a given RBAC setup.
       </TabItem>
     </Tabs>
+
   </TabItem>
   <TabItem value="k8s-advanced" label="Advanced">
     <Tabs queryString="secondary">
@@ -1903,5 +1904,6 @@ import TabItem from "@theme/TabItem";
         build that creates the runtime artifact, such as a binary executable. This artifact is then used by a second build, typically a Docker build.
       </TabItem>
     </Tabs>
+
   </TabItem>
 </Tabs>

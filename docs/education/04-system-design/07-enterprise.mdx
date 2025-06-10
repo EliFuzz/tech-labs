@@ -4,9 +4,8 @@ description: Enterprise Design Patterns
 hide_table_of_contents: true
 ---
 
-
-import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
 
 # Enterprise Design Patterns
 
@@ -220,6 +219,7 @@ import TabItem from "@theme/TabItem";
           </tbody>
         </table>
     </TabItem>
+
 </Tabs>
 
 ## Domain-Driven Design (DDD)
@@ -434,6 +434,7 @@ import TabItem from "@theme/TabItem";
 
         - **Facilitate Communication**: Messaging enables communication between objects or systems (Supports loosely coupled architecture, aiding system flexibility)
     </TabItem>
+
 </Tabs>
 
 ## Hexagonal Architecture
@@ -455,6 +456,7 @@ import TabItem from "@theme/TabItem";
     An adapter is a component that links a port to an external system, translating data and messages between the application and the external system using the port’s protocol. It also manages technical aspects like error handling, logging, security, and caching.
 
     Depending on the role of the external system, an adapter can be primary (connecting to an actor initiating communication) or secondary (connecting to an actor responding to communication). Primary actors include users or other applications, while secondary actors include databases or services.
+
   </TabItem>
   <TabItem value="hexagonal-benefits" label="Benefits">
     - Loose coupling by decopling core from external systems and their technical details
@@ -508,6 +510,7 @@ import TabItem from "@theme/TabItem";
     The difficulty arises when implementing secondary ports and adapters, where the source code dependency must be opposite to the direction of invocation. For instance, how can the application core access the database if the database is outside the core and the source code dependency is to be directed towards the center?
 
     This is where we apply the "dependency inversion principle." The port is still defined by an interface, but the relationships between classes are reversed. This allows control the direction of a code dependency — for secondary ports and adapters, it’s opposite to the calling direction.
+
   </TabItem>
   <TabItem value="hexagonal-workflow" label="Workflow">
     ![](./assets/enterprise/hexagonal-full.svg)
@@ -550,6 +553,7 @@ import TabItem from "@theme/TabItem";
       - **external components** are a command-line interface that provides a user interface for specifying report parameters and options, and various data sources that provide data for the reports, such as CSV files, web services or databases
       - **ports** are a CLI API that defines how report parameters and options are parsed and validated using command-line arguments and options, and a data source interface that defines how data is retrieved and queried using data source identifiers and queries
       - **adapters** are a CLI parser that implements the CLI API using Apache Commons CLI library, and various data source adapters that implement the data source interface using different technologies, such as Apache Commons CSV, Apache HttpClient or JDBC
+
   </TabItem>
   <TabItem value="hexagonal-comparison" label="Comparison">
     <Tabs queryString="secondary">
@@ -674,13 +678,13 @@ import TabItem from "@theme/TabItem";
       </TabItem>
       <TabItem value="hexagonal-comparison-onion" label="Onion Architecture">
         ![](./assets/enterprise/hexagonal-vs-onion.svg)
-        
+
         The Onion Architecture places the business logic at the center, known as the **application core**. This core interfaces with the user interface and infrastructure but is unaware of their concrete implementations, isolating it from the infrastructure.
-        
+
         Like the Hexagonal and Clean architectures, all source code dependencies in the Onion Architecture point towards the core. Dependency inversion is applied when the call direction opposes the source code dependency.
-        
+
         The Hexagonal Architecture can be almost directly mapped to the Onion Architecture:
-        
+
         - **External agencies** around the outer hexagon correspond to the infrastructure components in the Onion Architecture
         - **Outer hexagon adapters** match the ring containing "user interface", "tests", and "infrastructure" in the Onion Architecture
         - **Application hexagon** aligns with the application core in the Onion Architecture, which is further divided into "application services", "domain services", and "domain model". Only the "domain model" is a fixed component of the Onion Architecture, with other rings marked as optional. The "domain model" defines the "enterprise business rules", corresponding to the innermost circle or "entities" ring of the Clean Architecture
@@ -917,5 +921,6 @@ import TabItem from "@theme/TabItem";
         </table>
       </TabItem>
     </Tabs>
+
   </TabItem>
 </Tabs>
