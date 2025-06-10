@@ -443,7 +443,7 @@ import Tabs from "@theme/Tabs";
   <TabItem value="hexagonal-definition" label="Definition">
     Hexagonal architecture, also known as ports and adapters architecture, is an architectural pattern that aims to create loosely coupled application components that can be easily connected to their software environment by means of ports and adapters. This makes components exchangeable at any level and facilitates test automation.
 
-    Hexagonal Architecture’s concept is to position inputs and outputs on the periphery of the design. The business logic should remain unaffected regardless of whether we expose a REST or a GraphQL API, and irrespective of our data sources — be it a database, a microservice API revealed through gRPC or REST.
+    Hexagonal Architecture's concept is to position inputs and outputs on the periphery of the design. The business logic should remain unaffected regardless of whether we expose a REST or a GraphQL API, and irrespective of our data sources — be it a database, a microservice API revealed through gRPC or REST.
 
     **Port**
 
@@ -453,7 +453,7 @@ import Tabs from "@theme/Tabs";
 
     **Adapters**
 
-    An adapter is a component that links a port to an external system, translating data and messages between the application and the external system using the port’s protocol. It also manages technical aspects like error handling, logging, security, and caching.
+    An adapter is a component that links a port to an external system, translating data and messages between the application and the external system using the port's protocol. It also manages technical aspects like error handling, logging, security, and caching.
 
     Depending on the role of the external system, an adapter can be primary (connecting to an actor initiating communication) or secondary (connecting to an actor responding to communication). Primary actors include users or other applications, while secondary actors include databases or services.
 
@@ -475,14 +475,14 @@ import Tabs from "@theme/Tabs";
     ![](./assets/enterprise/separation-of-concerns.svg)
 
     - **Compartmentalization**: This separation allows for focusing on one logic at a time, making each easier to understand without mixing them up. The constraints of each logic have less impact on the others
-    - **Prioritization of Business Logic**: The business logic is emphasized in the code. It can be isolated into a specific directory or module, making it clear for all developers. It can be developed, refined, and tested without the cognitive load of the rest of the program. This is important as it’s the developers’ understanding of the business that gets deployed
+    - **Prioritization of Business Logic**: The business logic is emphasized in the code. It can be isolated into a specific directory or module, making it clear for all developers. It can be developed, refined, and tested without the cognitive load of the rest of the program. This is important as it's the developers' understanding of the business that gets deployed
     - **Effective Testing**: With this separation, automated tests can efficiently test: The entire Business Logic on its own. The integration between User-Side and Business Logic, independent of the Server-Side. The integration between Business Logic and Server-Side, independent of the User-Side
 
     **Dependencies Go Inside**
 
     ![](./assets/enterprise/dependencies-go-inside.svg)
 
-    - **Business Logic as Core Dependency**: The software can be manipulated via console and tests, but the Business Logic doesn’t recognize the concept of a console. The User-Side depends on the Business Logic, not vice versa. The User-Side relies on a universal user-initiated "post request" mechanism
+    - **Business Logic as Core Dependency**: The software can be manipulated via console and tests, but the Business Logic doesn't recognize the concept of a console. The User-Side depends on the Business Logic, not vice versa. The User-Side relies on a universal user-initiated "post request" mechanism
     - **Inside vs Outside**: The central Business Logic is "inside" and everything else is "outside". Dependencies point inward. Everything is dependent on the Business Logic, while the Business Logic is independent. This distinction between "inside" and "outside" is emphasized as more crucial than differentiating between User-Side and Server-Side
 
     **Boundaries are Isolated with Interfaces**
@@ -509,7 +509,7 @@ import Tabs from "@theme/Tabs";
 
     The difficulty arises when implementing secondary ports and adapters, where the source code dependency must be opposite to the direction of invocation. For instance, how can the application core access the database if the database is outside the core and the source code dependency is to be directed towards the center?
 
-    This is where we apply the "dependency inversion principle." The port is still defined by an interface, but the relationships between classes are reversed. This allows control the direction of a code dependency — for secondary ports and adapters, it’s opposite to the calling direction.
+    This is where we apply the "dependency inversion principle." The port is still defined by an interface, but the relationships between classes are reversed. This allows control the direction of a code dependency — for secondary ports and adapters, it's opposite to the calling direction.
 
   </TabItem>
   <TabItem value="hexagonal-workflow" label="Workflow">
@@ -574,7 +574,7 @@ import Tabs from "@theme/Tabs";
 
         **Layered Architecture** is criticized for its focus on the database, leading to issues such as transitive dependencies, blurred layer boundaries, poor component isolation, and difficulties in testing, maintaining, and swapping infrastructure components. This approach is referred to as **database-driven design**, where the application is planned around a database.
 
-        On the other hand, the **hexagonal architecture**, emphasizes **business logic over database design**. It’s more logical to plan and develop the business side of an application first and consider data persistence later. Changes in business logic should drive changes in data persistence, not vice versa.
+        On the other hand, the **hexagonal architecture**, emphasizes **business logic over database design**. It's more logical to plan and develop the business side of an application first and consider data persistence later. Changes in business logic should drive changes in data persistence, not vice versa.
 
         As applications grow more complex and incorporate additional components like REST APIs and third-party services, the hexagonal architecture provides clear guidelines for where these components belong. In contrast, a layered architecture often results in increased dependencies and potential duplication of business logic.
 
@@ -644,8 +644,8 @@ import Tabs from "@theme/Tabs";
                 <ul>
                   <li>Has a simple structure</li>
                   <li>Has a small number of components</li>
-                  <li>Doesn’t require extensive integration with external systems</li>
-                  <li>Doesn’t require high scalability</li>
+                  <li>Doesn't require extensive integration with external systems</li>
+                  <li>Doesn't require high scalability</li>
                 </ul>
               </td>
               <td>

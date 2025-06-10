@@ -4,9 +4,8 @@ description: Microservices
 hide_table_of_contents: true
 ---
 
-
-import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
 
 <Tabs queryString="primary">
     <TabItem value="microservices-overview" label="High Overview">
@@ -248,8 +247,8 @@ import TabItem from "@theme/TabItem";
           **Golden Rule**
 
           - we need to ensure that our microservices are independently deployable
-          - if we needed to update our country codes library, and have all services pick up the new data immediately, we’d need to redeploy all services at the moment the new library is available
-              - this is a classic lock-step release, and exactly what we’re trying to avoid with microservice architectures
+          - if we needed to update our country codes library, and have all services pick up the new data immediately, we'd need to redeploy all services at the moment the new library is available
+              - this is a classic lock-step release, and exactly what we're trying to avoid with microservice architectures
         </TabItem>
         <TabItem value="microservices-detailed-advantages" label="Advantages">
           - **Simple Components**: Small, focused components, simplifying development and maintenance
@@ -399,6 +398,7 @@ import TabItem from "@theme/TabItem";
             </tfoot>
         </table>
     </TabItem>
+
 </Tabs>
 
 ## Architecture Overview
@@ -695,6 +695,7 @@ import TabItem from "@theme/TabItem";
             </tr>
             </tbody>
         </table>
+
   </TabItem>
   <TabItem value="architecture-repos" label="Repos">
     <table>
@@ -951,6 +952,7 @@ import TabItem from "@theme/TabItem";
         ```
       </TabItem>
     </Tabs>
+
   </TabItem>
   <TabItem value="project-structure-backend" label="Backend">
     <Tabs queryString="secondary">
@@ -1743,4 +1745,5 @@ import TabItem from "@theme/TabItem";
             end
         ```
     </TabItem>
+
 </Tabs>

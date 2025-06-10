@@ -70,13 +70,13 @@ import Tabs from "@theme/Tabs";
         users to interact with the updated version. If the new version performs well, all old instances are replaced.
 
         In Kubernetes, this is achieved by creating a new Deployment with a small replica count for the canary instance. The Service then directs some users to the updated Pod instances. Once
-        confident in the new `ReplicaSet`, it’s scaled up and the old `ReplicaSet` is scaled down, effectively executing a controlled, user-tested incremental rollout.
+        confident in the new `ReplicaSet`, it's scaled up and the old `ReplicaSet` is scaled down, effectively executing a controlled, user-tested incremental rollout.
       </TabItem>
       <TabItem value="foundational-healthProbe" label="Health Probe">
         **Health Probe**
 
-        **Health Probe** pattern is a way for an application to communicate its health state to Kubernetes, which can then take appropriate actions based on the application’s status. For example,
-        Kubernetes can restart a container that is not responding, or remove a pod that is not ready from a service’s load balancer. The Health Probe pattern enables a cloud-native application to be
+        **Health Probe** pattern is a way for an application to communicate its health state to Kubernetes, which can then take appropriate actions based on the application's status. For example,
+        Kubernetes can restart a container that is not responding, or remove a pod that is not ready from a service's load balancer. The Health Probe pattern enables a cloud-native application to be
         more resilient and scalable by allowing Kubernetes to manage its lifecycle and traffic routing.
 
         ![](./assets/kubernetes/foundational/health-probe.svg)
@@ -125,7 +125,7 @@ import Tabs from "@theme/Tabs";
 
         Cloud-native applications need to adjust their lifecycles in response to platform events. They provide APIs for health checks and respond to platform commands. The deployment unit of an
         application is a Pod, which consists of one or more containers.
-        Kubernetes manages the container lifecycle. When it decides to shut down a container, it sends a `SIGTERM` signal, and if the application doesn’t shut down, a `SIGKILL` signal is sent after a
+        Kubernetes manages the container lifecycle. When it decides to shut down a container, it sends a `SIGTERM` signal, and if the application doesn't shut down, a `SIGKILL` signal is sent after a
         grace period.
         Kubernetes also provides features like `PostStart Hook` and `PreStop Hook`. The `PostStart Hook` runs after a container is created, while the PreStop Hook is sent before a container is
         terminated.
@@ -140,15 +140,15 @@ import Tabs from "@theme/Tabs";
 
         The Kubernetes scheduler is responsible for assigning new Pods to suitable nodes, a process known as **Automated Placement**. This process takes into account container resource requests and
         scheduling policies.
-        In a microservices-based system, there can be numerous isolated processes. Containers and Pods provide packaging and deployment abstractions, but they don’t solve the placement problem on
-        appropriate nodes. That’s where the Kubernetes scheduler comes in. It retrieves each new Pod definition from the API Server and assigns it to a node considering runtime dependencies, resource
+        In a microservices-based system, there can be numerous isolated processes. Containers and Pods provide packaging and deployment abstractions, but they don't solve the placement problem on
+        appropriate nodes. That's where the Kubernetes scheduler comes in. It retrieves each new Pod definition from the API Server and assigns it to a node considering runtime dependencies, resource
         requirements, and high availability policies.
 
         Key aspects of Kubernetes scheduling:
 
-        - **Node Resource Availability**: The scheduler ensures that the total resources requested by a Pod’s containers don’t exceed the node’s available capacity. If resources are not reserved for
+        - **Node Resource Availability**: The scheduler ensures that the total resources requested by a Pod's containers don't exceed the node's available capacity. If resources are not reserved for
         system
-        daemons, Pods can be scheduled up to the node’s full capacity, potentially leading to resource starvation issues
+        daemons, Pods can be scheduled up to the node's full capacity, potentially leading to resource starvation issues
         - **Container Resource Requirements**: For efficient Pod placement, containers should declare their resource profiles and environment dependencies. This allows Pods to be optimally assigned to
         nodes
         and run without affecting each other or facing resource starvation during peak usage
@@ -157,7 +157,7 @@ import Tabs from "@theme/Tabs";
         and
         ordered by weight. The scheduler then informs the API server about the assignment decision
 
-        While it’s generally better to let the scheduler handle Pod-to-Node assignment, you may want to force a Pod’s assignment to a specific node using a node selector. **Node Affinity** in
+        While it's generally better to let the scheduler handle Pod-to-Node assignment, you may want to force a Pod's assignment to a specific node using a node selector. **Node Affinity** in
         Kubernetes
         allows for more flexible scheduling configurations by enabling rules to be either required or preferred.
 
@@ -175,21 +175,21 @@ import Tabs from "@theme/Tabs";
         acceptance
         for the impurity.
 
-        The Kubernetes **descheduler** helps in defragmenting nodes and enhancing their utilization. It’s run as a Job by a cluster administrator to tidy up and defragment a cluster by rescheduling
+        The Kubernetes **descheduler** helps in defragmenting nodes and enhancing their utilization. It's run as a Job by a cluster administrator to tidy up and defragment a cluster by rescheduling
         the
         Pods.
 
         **Placement** is the process of assigning Pods to nodes. In complex scenarios, Pods may be scheduled to specific nodes based on constraints like data locality, Pod colocality, application high
         availability, and efficient cluster resource utilization.
 
-        There are several methods to guide the scheduler towards your preferred deployment topology: `nodeName`, `nodeSelector`, `Node affinity`, and `Taints` and `tolerations`. Once you’ve expressed
+        There are several methods to guide the scheduler towards your preferred deployment topology: `nodeName`, `nodeSelector`, `Node affinity`, and `Taints` and `tolerations`. Once you've expressed
         your
         preferred correlation between a Pod and nodes, identify dependencies between different Pods. Use Pod affinity techniques for colocation of tightly coupled applications, and use Pod
         anti-affinity techniques to distribute Pods across nodes and avoid single points of failure.
 
         To use topology spread constraints, admins must label nodes with topology data. Workload authors must then be aware of this topology when creating Pod configurations.
 
-        The default scheduler places new Pods onto nodes and can be altered in the filtering and prioritization phases. If this isn’t enough, a custom scheduler can be created. This allows for
+        The default scheduler places new Pods onto nodes and can be altered in the filtering and prioritization phases. If this isn't enough, a custom scheduler can be created. This allows for
         consideration of factors outside of the Kubernetes cluster when assigning Pods to nodes.
       </TabItem>
     </Tabs>
@@ -227,13 +227,13 @@ import Tabs from "@theme/Tabs";
 
         **Limitations and Solutions**
 
-        There are limitations with Indexed Jobs. For instance, the Job’s application code cannot discover the total number of workers (i.e., the value specified in `.spec.completions`) for an Indexed
+        There are limitations with Indexed Jobs. For instance, the Job's application code cannot discover the total number of workers (i.e., the value specified in `.spec.completions`) for an Indexed
         Job.
 
         To overcome this:
 
         - Hardcode the total number of Pods working on a Job into the application code
-        - Access the value of `.spec.completions` in your application code by copying it to an environment variable or passing it as an argument to the container command in the Job’s template
+        - Access the value of `.spec.completions` in your application code by copying it to an environment variable or passing it as an argument to the container command in the Job's template
         specification
 
         If you have an unlimited stream of work items to process, other controllers like `ReplicaSet` are recommended for managing the Pods processing these work items.
@@ -244,15 +244,15 @@ import Tabs from "@theme/Tabs";
         However, these methods can be costly and difficult to maintain. Developers usually create solutions that handle both scheduling and business logic, but this can lead to high resource
         consumption and requires the entire application to be highly available for the scheduler to be the same.
 
-        Kubernetes CronJob offers a solution by scheduling Job resources using the cron format, allowing developers to focus on the work rather than scheduling. It’s similar to a Unix crontab line and
-        manages a Job’s temporal aspects. Combined with other Kubernetes features, a `CronJob` becomes a powerful job-scheduling system, enabling developers to focus on implementing a containerized
-        application responsible for the business logic, with scheduling handled by the platform. However, when implementing a `CronJob` container, it’s important to consider all corner and failure
+        Kubernetes CronJob offers a solution by scheduling Job resources using the cron format, allowing developers to focus on the work rather than scheduling. It's similar to a Unix crontab line and
+        manages a Job's temporal aspects. Combined with other Kubernetes features, a `CronJob` becomes a powerful job-scheduling system, enabling developers to focus on implementing a containerized
+        application responsible for the business logic, with scheduling handled by the platform. However, when implementing a `CronJob` container, it's important to consider all corner and failure
         cases
         of duplicate runs, no runs, parallel runs, or cancellations.
       </TabItem>
       <TabItem value="behavioral-daemon" label="Daemon Service">
         The Daemon Service pattern in Kubernetes is used to run prioritized, infrastructure-focused Pods on specific nodes. This is primarily used by administrators to run node-specific Pods to
-        enhance the platform’s capabilities. In software systems, a daemon is a long-running, self-recovering program that runs as a background process. In Kubernetes, a similar concept exists in the
+        enhance the platform's capabilities. In software systems, a daemon is a long-running, self-recovering program that runs as a background process. In Kubernetes, a similar concept exists in the
         form of a `DaemonSet`, which represents Pods that run on cluster nodes and provide background capabilities for the rest of the cluster.
 
         A `DaemonSet` is similar to `ReplicaSet` and `ReplicationController` in that it ensures a certain number of Pods are always running. However, unlike these two, a `DaemonSet` is not driven by
@@ -262,7 +262,7 @@ import Tabs from "@theme/Tabs";
         Key differences in how `DaemonSet` and `ReplicaSet` are managed include:
 
         - By default, a `DaemonSet` places one Pod instance on every node. This can be controlled and limited to a subset of nodes using the `nodeSelector` or affinity fields
-        - A Pod created by a `DaemonSet` already has `nodeName` specified, so it doesn’t require the existence of the Kubernetes scheduler to run containers
+        - A Pod created by a `DaemonSet` already has `nodeName` specified, so it doesn't require the existence of the Kubernetes scheduler to run containers
         - Pods created by a `DaemonSet` can run before the scheduler has started
         - The unschedulable field of a node is not respected by the `DaemonSet` controller
         - Pods created by a `DaemonSet` can have a `RestartPolicy` only set to `Always` or left unspecified
@@ -277,7 +277,7 @@ import Tabs from "@theme/Tabs";
         - **Service**: Create a Service with the same Pod selector as a `DaemonSet` to reach a daemon Pod load-balanced to a random node
         - **DNS**: Create a headless Service with the same Pod selector as a `DaemonSet` to retrieve multiple A records from DNS containing all Pod IPs and ports
         - **Node IP with hostPort**: Pods in the `DaemonSet` can specify a `hostPort` and become reachable via the node IP addresses and the specified port
-        - **External Push**: The application in the `DaemonSets` Pods can push data to a well-known location or service that’s external to the Pod
+        - **External Push**: The application in the `DaemonSets` Pods can push data to a well-known location or service that's external to the Pod
         - **Static Pods**: managed by the Kubelet only and run on one node only. However, `DaemonSets` are better integrated with the rest of the platform and are recommended over static Pods
       </TabItem>
       <TabItem value="behavioral-singleton" label="Singleton Service">
@@ -309,8 +309,8 @@ import Tabs from "@theme/Tabs";
         connections through the Service resource.
 
         Regular Services create a virtual IP and perform load balancing among all matching Pod instances. Singleton Pods managed through a StatefulSet have only one Pod and a stable network identity.
-        It’s recommended to create a headless Service (by setting both type: `ClusterIP` and `clusterIP: None`) for singleton Pods. Headless Services don’t have a virtual IP address, kube-proxy
-        doesn’t
+        It's recommended to create a headless Service (by setting both type: `ClusterIP` and `clusterIP: None`) for singleton Pods. Headless Services don't have a virtual IP address, kube-proxy
+        doesn't
         handle these Services, and no proxying is performed.
 
         Headless Services with selectors create endpoint records in the API Server and generate DNS A records for the matching Pod(s). DNS lookup for the Service returns the IP address(es) of the
@@ -332,11 +332,11 @@ import Tabs from "@theme/Tabs";
         up
         acquires the lock and becomes active, while any other subsequently started instances become passive and wait for the lock to be released.
 
-        This strategy is similar to a Singleton in object-oriented programming: an object instance stored in a static class variable that doesn’t allow instantiation of multiple instances for the same
-        process. In distributed systems, this means the application itself has to be written in a way that doesn’t allow more than one active instance at a time, regardless of the number of Pod
+        This strategy is similar to a Singleton in object-oriented programming: an object instance stored in a static class variable that doesn't allow instantiation of multiple instances for the same
+        process. In distributed systems, this means the application itself has to be written in a way that doesn't allow more than one active instance at a time, regardless of the number of Pod
         instances that are started.
 
-        To achieve this in a distributed environment, we need a distributed lock implementation such as **Apache ZooKeeper**, **HashiCorp’s Consul**, **Redis**, or **etcd**. For example, ZooKeeper
+        To achieve this in a distributed environment, we need a distributed lock implementation such as **Apache ZooKeeper**, **HashiCorp's Consul**, **Redis**, or **etcd**. For example, ZooKeeper
         uses ephemeral
         nodes which exist as long as there is a client session and are deleted as soon as the session ends.
 
@@ -346,7 +346,7 @@ import Tabs from "@theme/Tabs";
 
         Kubernetes Leases are used in high-availability cluster deployments to ensure that only one control plane component, such as `kube-controller-manager` and `kube-scheduler`, is active at a
         time,
-        with others on standby. Apache Camel’s Kubernetes connector provides leader election and singleton capabilities, using Kubernetes APIs to leverage `ConfigMaps` as a distributed lock. This
+        with others on standby. Apache Camel's Kubernetes connector provides leader election and singleton capabilities, using Kubernetes APIs to leverage `ConfigMaps` as a distributed lock. This
         ensures that only one Camel route instance is active at a time.
 
         **Pod Disruption Budget**
@@ -372,7 +372,7 @@ import Tabs from "@theme/Tabs";
         A complex distributed system comprises various services, including stateful services, short-lived jobs, and highly scalable stateless services. Stateless services are ideal for handling
         short-lived requests as they are composed of identical, swappable, ephemeral, and replaceable instances that can scale rapidly.
 
-        Kubernetes provides several primitives to manage such applications. However, Kubernetes doesn’t enforce any direct relationship between these building blocks. It’s the user’s responsibility to
+        Kubernetes provides several primitives to manage such applications. However, Kubernetes doesn't enforce any direct relationship between these building blocks. It's the user's responsibility to
         combine them to match the application nature. This includes understanding how liveness checks, ReplicaSet, readiness probes, Service definitions, PVCs, and accessMode work together.
 
         **Instances**
@@ -380,19 +380,19 @@ import Tabs from "@theme/Tabs";
         A `ReplicaSet` in Kubernetes is a tool that ensures a specified number of identical Pod replicas are running at all times. It can create new Pods as needed to maintain the desired count, and
         can
         manage bare Pods (those without an owner reference) that match its label selector. However, this can lead to a `ReplicaSet` owning a nonidentical set of Pods and terminating existing bare Pods
-        that exceed the declared replica count. To avoid this, it’s advised to ensure bare Pods do not have labels matching `ReplicaSet` selectors.
+        that exceed the declared replica count. To avoid this, it's advised to ensure bare Pods do not have labels matching `ReplicaSet` selectors.
 
         Whether a `ReplicaSet` is created directly or through a Deployment, the end goal is the same: to create and maintain the desired number of identical Pod replicas. Deployments offer additional
         benefits such as controlling how replicas are upgraded and rolled back. The replicas are then scheduled to available nodes as per certain policies.
 
-        The `ReplicaSet’s` role is to restart containers if needed and scale out or in when the number of replicas changes. This allows Deployment and `ReplicaSet` to automate the lifecycle management
+        The `ReplicaSet's` role is to restart containers if needed and scale out or in when the number of replicas changes. This allows Deployment and `ReplicaSet` to automate the lifecycle management
         of
         stateless applications.
 
         **Networking**
 
-        Stateless applications in Kubernetes can handle new requests by any Pod, and depending on the application’s connection to other systems, a Kubernetes Service may be necessary. These services
-        often use synchronous request/response-driven protocols like HTTP and gRPC. However, since Pod IP addresses change with every restart, it’s more efficient to use a permanent IP address
+        Stateless applications in Kubernetes can handle new requests by any Pod, and depending on the application's connection to other systems, a Kubernetes Service may be necessary. These services
+        often use synchronous request/response-driven protocols like HTTP and gRPC. However, since Pod IP addresses change with every restart, it's more efficient to use a permanent IP address
         provided by a Kubernetes Service.
 
         A Kubernetes Service provides a fixed IP address that remains constant throughout its lifetime. This ensures that client requests are evenly distributed across instances and are directed to
@@ -418,7 +418,7 @@ import Tabs from "@theme/Tabs";
 
         Stateful applications like **Apache ZooKeeper**, **MongoDB**, **Redis**, or **MySQL** are unique and long-lived, often serving as the backbone for highly scalable stateless services.
 
-        However, they pose challenges when implemented as a distributed service with multiple instances. Kubernetes’ `StatefulSets` offer a solution for these applications by addressing needs such as
+        However, they pose challenges when implemented as a distributed service with multiple instances. Kubernetes' `StatefulSets` offer a solution for these applications by addressing needs such as
         persistent storage, networking, identity, and ordinality. This makes stateful applications first-class citizens in the cloud native world. Despite this, many legacy stateful applications are
         not designed for cloud native platforms.
 
@@ -443,14 +443,14 @@ import Tabs from "@theme/Tabs";
 
         **Networking**
 
-        In Kubernetes, a `StatefulSet` is used to create Pods with a stable identity, which is determined by the `StatefulSet’s` name and an ordinal index. This is particularly useful for stateful
+        In Kubernetes, a `StatefulSet` is used to create Pods with a stable identity, which is determined by the `StatefulSet's` name and an ordinal index. This is particularly useful for stateful
         applications that often need scalable persistent storage and networking. To cater to this, a headless Service (where clusterIP is set to None) is defined.
 
         Unlike stateless Pods that are created through a `ReplicaSet` and are identical, stateful Pods are unique and may need to be accessed individually. Stateful applications require a stable
         network
         identity because they store configuration details such as hostname and connection details of their peers.
 
-        Creating a Service per `ReplicaSet` with `replicas=1` could be a solution, but it requires manual work and doesn’t provide a stable hostname. Therefore, the use of `StatefulSets` simplifies
+        Creating a Service per `ReplicaSet` with `replicas=1` could be a solution, but it requires manual work and doesn't provide a stable hostname. Therefore, the use of `StatefulSets` simplifies
         the
         management of stateful applications in Kubernetes.
 
@@ -459,16 +459,16 @@ import Tabs from "@theme/Tabs";
         `StatefulSet` is a fundamental aspect that provides predictable Pod names and identities based on its name. This identity is crucial for naming PVCs, reaching specific Pods via headless
         Services, and more.
 
-        The identity of each Pod can be predicted before it’s created, which can be useful for the application. Stateful applications require each instance to have its own long-lasting storage and
+        The identity of each Pod can be predicted before it's created, which can be useful for the application. Stateful applications require each instance to have its own long-lasting storage and
         network identity.
 
-        In contrast, a Pod created with `ReplicaSet` would have a random name and wouldn’t maintain that identity across a restart.
+        In contrast, a Pod created with `ReplicaSet` would have a random name and wouldn't maintain that identity across a restart.
 
         **Ordinality**
 
         In a distributed stateful application, each instance is unique and has a fixed position in the collection of instances, which is known as its ordinality.
 
-        This ordinality affects the sequence in which instances are scaled up or down. It’s also used for data distribution, access, and determining in-cluster behavior.
+        This ordinality affects the sequence in which instances are scaled up or down. It's also used for data distribution, access, and determining in-cluster behavior.
 
         The concept of ordinality is particularly significant in `StatefulSet` during scaling operations.
 
@@ -550,11 +550,11 @@ import Tabs from "@theme/Tabs";
         - **LoadBalancer Service**: This method builds on top of a regular Service with type ClusterIP by also opening a port on every node. However, a load balancer is still needed for client
         applications
         to pick a healthy node
-        - **Service of type LoadBalancer**: This exposes the service externally using a cloud provider’s load balancer. When such a Service is created, Kubernetes adds IP addresses to the `.spec` and
+        - **Service of type LoadBalancer**: This exposes the service externally using a cloud provider's load balancer. When such a Service is created, Kubernetes adds IP addresses to the `.spec` and
         `.status`
         fields, allowing an external client application to connect to the load balancer, which then selects a node and locates the Pod
-        However, it’s important to note that load-balancer provisioning and service discovery can vary among cloud providers. Some providers allow you to define the load-balancer address while others
-        do not. Similarly, some offer mechanisms for preserving the source address, while others replace it with the load-balancer address. Therefore, it’s crucial to check the specific implementation
+        However, it's important to note that load-balancer provisioning and service discovery can vary among cloud providers. Some providers allow you to define the load-balancer address while others
+        do not. Similarly, some offer mechanisms for preserving the source address, while others replace it with the load-balancer address. Therefore, it's crucial to check the specific implementation
         provided by your chosen cloud provider.
 
         **Application Layer Service Discovery**
@@ -597,7 +597,7 @@ import Tabs from "@theme/Tabs";
     task, a separate container should be deployed for each additional task.
 
     This approach enhances the modularity and scalability of your application. By ensuring that each container performs only one task, you can easily update or scale individual components without
-    affecting others. This also improves fault isolation, as issues in one container don’t directly impact others. Moreover, it simplifies the process of building, testing, and deploying each
+    affecting others. This also improves fault isolation, as issues in one container don't directly impact others. Moreover, it simplifies the process of building, testing, and deploying each
     component of your application.
 
     This pattern is particularly useful in microservices architectures where each service can be encapsulated in its own container.
@@ -631,7 +631,7 @@ import Tabs from "@theme/Tabs";
       <TabItem value="structural-sidecar" label="Sidecar">
         ![](./assets/kubernetes/structural/sidecar.svg)
 
-        Containers are a popular technology for unified application development and deployment, but there’s a need to extend their functionality and enable collaboration among them.
+        Containers are a popular technology for unified application development and deployment, but there's a need to extend their functionality and enable collaboration among them.
 
         The Sidecar pattern uses the Pod primitive to combine multiple containers into a single unit. Containers in a Pod share volumes and communicate over the local network or host IPC.
 
@@ -639,7 +639,7 @@ import Tabs from "@theme/Tabs";
 
         Extending a container is compared to inheritance in OOP, signifying an "**is-a**" relationship and resulting in tighter coupling between containers. Having multiple containers collaborate in a
         Pod
-        is akin to composition in OOP, representing a "**has-a**" relationship. This approach is more flexible as it doesn’t couple containers at build time.
+        is akin to composition in OOP, representing a "**has-a**" relationship. This approach is more flexible as it doesn't couple containers at build time.
 
         Sidecars can be transparent or explicit. An example of a transparent sidecar is Envoy proxy, which provides features like TLS, load balancing, automatic retries by intercepting all traffic to
         the main container. Dapr is an example of an explicit proxy that offers features like reliable service invocation, publish-subscribe, bindings to external systems over HTTP and gRPC APIs.
@@ -649,7 +649,7 @@ import Tabs from "@theme/Tabs";
       <TabItem value="structural-adapter" label="Adapter">
         ![](./assets/kubernetes/structural/adapter.svg)
 
-        The Adapter pattern is a design strategy in containerized systems that provides a unified interface for different components. It’s a specialization of the Sidecar pattern, aimed at adapting
+        The Adapter pattern is a design strategy in containerized systems that provides a unified interface for different components. It's a specialization of the Sidecar pattern, aimed at adapting
         access to the application. This pattern is particularly useful in distributed systems with components using different technologies, as it hides system complexity and offers unified access.
 
         A practical example of the Adapter pattern is in monitoring a distributed system with multiple services. Services written in different languages might not expose metrics in the same format
@@ -657,7 +657,7 @@ import Tabs from "@theme/Tabs";
         adapter container that translates locally stored metrics information into an external format that the monitoring server understands.
 
         In essence, the Adapter acts as a reverse proxy to a heterogeneous system, hiding its complexity behind a unified interface. Using a distinct name separate from the generic Sidecar pattern
-        allows for clearer communication of this pattern’s purpose.
+        allows for clearer communication of this pattern's purpose.
       </TabItem>
       <TabItem value="structural-ambassador" label="Ambassador">
         ![](./assets/kubernetes/structural/ambassador.svg)
@@ -688,10 +688,10 @@ import Tabs from "@theme/Tabs";
     command-line arguments, configuration files, secrets, etc. Configuration can affect the behavior, performance, security, and scalability of the application. Therefore, it is important to follow
     some best practices and patterns when dealing with configuration in Kubernetes.
 
-    It’s important to separate application configuration from the source code. Storing configurations in the source code can lead to issues as it ties the life cycle of the code and configuration
+    It's important to separate application configuration from the source code. Storing configurations in the source code can lead to issues as it ties the life cycle of the code and configuration
     together. This is not ideal for a continuous delivery approach, where the application should remain unchanged as it moves through different stages of the deployment pipeline.
 
-    To achieve this separation, it’s a good practice to use external configuration data, which can be customized for each environment. This allows for flexibility in adapting configurations without
+    To achieve this separation, it's a good practice to use external configuration data, which can be customized for each environment. This allows for flexibility in adapting configurations without
     needing to modify the application or recreate its container image.
 
     <Tabs queryString="secondary">
@@ -705,7 +705,7 @@ import Tabs from "@theme/Tabs";
         can
         be overwritten at runtime.
 
-        Default values can simplify configuration but can also be problematic for evolving applications. If a default value needs to be changed, it’s often better to remove the default and throw an
+        Default values can simplify configuration but can also be problematic for evolving applications. If a default value needs to be changed, it's often better to remove the default and throw an
         error if the user does not provide a configuration value. Avoid default values if you cannot be 90% sure that a reasonable default will last for a long time. Passwords or database connection
         parameters are good candidates for not providing default values.
 
@@ -724,7 +724,7 @@ import Tabs from "@theme/Tabs";
         However, updates to ConfigMap entries used as environment variables are not reflected in running processes. Also, when using multiple ConfigMaps with duplicate keys, the last entry in envFrom
         takes precedence, and any same-named environment variable set directly with env has higher priority.
 
-        Kubernetes has introduced an immutable field for ConfigMaps and Secrets to prevent updates once they’re created, enhancing cluster performance. To modify an immutable Secret, it must be
+        Kubernetes has introduced an immutable field for ConfigMaps and Secrets to prevent updates once they're created, enhancing cluster performance. To modify an immutable Secret, it must be
         deleted and recreated, and any running Pod referencing this secret would need to be restarted.
 
         Despite their benefits, there are limitations. Secrets have a 1 MB size limit and are not suitable for storing large non-configuration application data. Also, Kubernetes clusters often impose
@@ -737,7 +737,7 @@ import Tabs from "@theme/Tabs";
         create Pods in a namespace can still escalate their privileges within that namespace. Thus, additional encryption of sensitive information is often done at the application level.
       </TabItem>
       <TabItem value="configuration-immutable" label="Immutable Configuration">
-        The Immutable Configuration pattern is a strategy to ensure that your application’s configuration data is always in a known and consistent state.
+        The Immutable Configuration pattern is a strategy to ensure that your application's configuration data is always in a known and consistent state.
 
         It addresses the challenge of managing numerous environment variables and the size limitation of ConfigMaps in Kubernetes.
 
@@ -760,8 +760,8 @@ import Tabs from "@theme/Tabs";
         Drawbacks:
 
         - The process is complex as it requires building and distributing extra container images
-        - It doesn’t address security concerns around sensitive configuration data
-        - As of 2023, only experimental CSI support is available, and there’s no image volume support for Kubernetes workloads
+        - It doesn't address security concerns around sensitive configuration data
+        - As of 2023, only experimental CSI support is available, and there's no image volume support for Kubernetes workloads
 
         Extra init container processing is required in the Kubernetes case, necessitating different Deployment objects for different environments.
         An alternative approach for dealing with large configuration files that differ slightly from environment to environment is the **Configuration Template** pattern.
@@ -777,7 +777,7 @@ import Tabs from "@theme/Tabs";
 
         ![](./assets/kubernetes/configuration/kubernetes-init-containers.svg)
 
-        Kubernetes, unlike Docker, does not support container volumes. Instead, it allows containers to share external volumes but not directories within the containers. To overcome this, Kubernetes’
+        Kubernetes, unlike Docker, does not support container volumes. Instead, it allows containers to share external volumes but not directories within the containers. To overcome this, Kubernetes'
         Init Containers pattern can be used to initialize an empty shared volume during startup by copying configuration data to a shared Pod volume using a base image like busybox.
 
         This process involves creating a configuration image with a `Dockerfile`. The Pod template specification in the Deployment contains a single volume and two containers. An empty directory, of
@@ -796,7 +796,7 @@ import Tabs from "@theme/Tabs";
         Large and complex configuration files can be challenging to manage when directly embedded into ConfigMaps due to special characters and size limitations. These files often contain redundant
         data as they only slightly differ for different execution environments.
 
-        To reduce redundancy, only differing configuration values (like database connection parameters) are stored in a ConfigMap or environment variables. During the container’s startup, these values
+        To reduce redundancy, only differing configuration values (like database connection parameters) are stored in a ConfigMap or environment variables. During the container's startup, these values
         are processed with configuration templates to create the full configuration file. Tools like **Tiller** or **Gomplate** can be used for processing templates during application initialization.
 
         There are some techniques for live processing during runtime:
@@ -804,7 +804,7 @@ import Tabs from "@theme/Tabs";
         - Adding the template processor as part of the ENTRYPOINT to a Dockerfile so the template processing becomes directly part of the container image
         - Using an init container of a Pod in Kubernetes where the template processor runs and creates the configuration for the application containers in the Pod
 
-        The Configuration Template pattern is beneficial when operating applications in different environments with similar complex configurations. It’s particularly useful for applications that
+        The Configuration Template pattern is beneficial when operating applications in different environments with similar complex configurations. It's particularly useful for applications that
         require a large amount of configuration data, with only a small fraction being environment-dependent. However, this setup is more complex and has more potential for errors.
 
         Directly copying the entire configuration into the environment-specific ConfigMap may initially work, but it can lead to maintenance issues as the configuration is likely to diverge over time.
@@ -817,10 +817,10 @@ import Tabs from "@theme/Tabs";
 
     ![](./assets/kubernetes/security/security-patterns.svg)
 
-    It’s important to keep secure the system in all stages of the software development lifecycle and its implications on various layers of the software stack, known as the **4C’s** of cloud native
+    It's important to keep secure the system in all stages of the software development lifecycle and its implications on various layers of the software stack, known as the **4C's** of cloud native
     security:
 
-    - **Process Containment**: This pattern aims to limit and contain the actions an application can perform on the node it’s running on
+    - **Process Containment**: This pattern aims to limit and contain the actions an application can perform on the node it's running on
     - **Network Segmentation**: This involves techniques to restrict which Pods a particular Pod can communicate with
     - **Secure Configuration**: This pattern discusses how an application within a Pod can access and use configurations securely
     - **Access Control**: This describes how an application can authenticate and interact with the Kubernetes API server
@@ -833,7 +833,7 @@ import Tabs from "@theme/Tabs";
         dependencies can still introduce fresh vulnerabilities. This means that without runtime process-level security controls, a malicious actor could potentially breach the application code and
         take control of the host or even the entire Kubernetes cluster.
 
-        To mitigate this risk, it’s crucial to limit a container to only the permissions it needs to run, applying the principle of least privilege. This can be achieved through Kubernetes
+        To mitigate this risk, it's crucial to limit a container to only the permissions it needs to run, applying the principle of least privilege. This can be achieved through Kubernetes
         configurations, which serve as an additional line of defense by containing any rogue process and preventing it from operating outside its designated boundary.
 
         The Security configurations applied to a container are managed by Kubernetes and made available to the user through the security context configurations of the Pod and container specs. While
@@ -853,12 +853,12 @@ import Tabs from "@theme/Tabs";
         **Running Containers with a Non-Root User**
 
         In Kubernetes, you can specify user and group IDs for container images, which are crucial for managing access to files, directories, and volume mounts. However, some containers either run as
-        root by default or don’t have a default user set. You can override this at runtime using `securityContext`, which allows you to define the user ID and group ID for any container in the Pod.
+        root by default or don't have a default user set. You can override this at runtime using `securityContext`, which allows you to define the user ID and group ID for any container in the Pod.
 
         However, be aware that mismatches between the directory structure and file ownership IDs in the container image and the specified user and group IDs can lead to runtime failures due to
-        permission issues. Therefore, it’s advisable to inspect the container image file and run the container with the defined user ID and group ID.
+        permission issues. Therefore, it's advisable to inspect the container image file and run the container with the defined user ID and group ID.
 
-        To ensure a container doesn’t run as root, set the `.spec.securityContext.runAsNonRoot` flag to `true`. This doesn’t alter the user but guarantees that the container operates as a non-root
+        To ensure a container doesn't run as root, set the `.spec.securityContext.runAsNonRoot` flag to `true`. This doesn't alter the user but guarantees that the container operates as a non-root
         user.
         If root access is required for certain tasks, you can use an init container that runs as root briefly before the application containers start up as non-root.
 
@@ -871,7 +871,7 @@ import Tabs from "@theme/Tabs";
         A container is essentially a process running on a node, possessing the same privileges as any other process. If it needs to make a kernel-level call, it requires the appropriate privileges,
         which can be granted by running the container as root or assigning specific capabilities.
 
-        Containers with the `.spec.containers[].securityContext.privileged` flag are equivalent to root on the host, bypassing kernel permission checks and potentially compromising security. It’s
+        Containers with the `.spec.containers[].securityContext.privileged` flag are equivalent to root on the host, bypassing kernel permission checks and potentially compromising security. It's
         advisable to avoid using privileged containers and instead assign specific kernel capabilities to those containers that require them.
 
         In Linux, root user privileges are divided into distinct capabilities that can be independently enabled or disabled. Determining what capabilities your container has is not straightforward. An
@@ -884,17 +884,17 @@ import Tabs from "@theme/Tabs";
         could
         replace the container with one that binds to an unprivileged port number.
 
-        A Pod’s security context should be configured appropriately and not overly permissive to prevent compromise. Limiting the capabilities of containers serves as an additional line of defense
+        A Pod's security context should be configured appropriately and not overly permissive to prevent compromise. Limiting the capabilities of containers serves as an additional line of defense
         against known attacks. A malicious actor who breaches an application would find it more challenging to take control of the host if the container process is not privileged or if the
         capabilities are significantly limited.
 
         **Avoiding a Mutable Container Filesystem**
 
-        It’s crucial to understand that applications running in containers should avoid writing to the container filesystem. This is because containers are temporary, and any data stored within them
+        It's crucial to understand that applications running in containers should avoid writing to the container filesystem. This is because containers are temporary, and any data stored within them
         will be lost when they restart. Instead, applications should write their state to external persistence methods like databases or filesystems.
 
         To enhance security, applications can limit potential attack vectors by setting the container filesystem to `read-only`. This prevents any modifications to the application configuration or the
-        installation of additional executables. In Kubernetes, this can be achieved by setting `.spec.containers[].securityContext.readOnlyRootFile` to `true`, which mounts the container’s root
+        installation of additional executables. In Kubernetes, this can be achieved by setting `.spec.containers[].securityContext.readOnlyRootFile` to `true`, which mounts the container's root
         filesystem
         as read-only.
 
@@ -927,12 +927,12 @@ import Tabs from "@theme/Tabs";
         - **Audit**: Recorded auditing log entry
         - **Enforce**: Pod rejection
 
-        For example, a namespace can be created that rejects any Pods that don’t meet the baseline standard, and also issues a warning for Pods that don’t comply with the restricted standards
+        For example, a namespace can be created that rejects any Pods that don't meet the baseline standard, and also issues a warning for Pods that don't comply with the restricted standards
         requirements.
       </TabItem>
       <TabItem value="security-network-segmentation" label="Network Segmentation">
         In Kubernetes, all Pods can connect to each other by default, which can pose security risks, particularly when multiple independent applications are running in the same cluster. While
-        Kubernetes’ Namespaces offer a way to group related entities, they don’t inherently provide isolation for containers within those namespaces. As such, it’s vital to limit network access to and
+        Kubernetes' Namespaces offer a way to group related entities, they don't inherently provide isolation for containers within those namespaces. As such, it's vital to limit network access to and
         from Pods to bolster application security.
 
         Network segmentation becomes particularly important in multi-tenant environments where multiple entities share the same cluster. However, setting up network segmentation in Kubernetes can be a
@@ -942,7 +942,7 @@ import Tabs from "@theme/Tabs";
         control plane, which makes decisions about data transmission, from the data plane that carries out these decisions.
 
         Kubernetes allows for the overlay of its flat cluster-internal network with user-defined network segments via the Kubernetes API. This shifts the responsibility of managing network topology to
-        developers who have a better understanding of their applications’ security needs. This Shift-Left approach is particularly beneficial in a microservices environment characterized by
+        developers who have a better understanding of their applications' security needs. This Shift-Left approach is particularly beneficial in a microservices environment characterized by
         distributed dependencies and a complex network of connections.
 
         To implement this Network Segmentation pattern, `NetworkPolicies` for L3/L4 network segmentation and `AuthorizationPolicies` for finer control of network boundaries are essential tools.
@@ -954,7 +954,7 @@ import Tabs from "@theme/Tabs";
         A potential solution could be network isolation, which provides a softer approach to multitenancy. For stricter isolation needs, a more encapsulated approach like a virtual control plane per
         tenant provided by vcluster might be necessary.
 
-        Kubernetes has shifted networking tasks to the left, allowing developers to fully define their applications’ networking topology. This includes creating "application firewalls" for network
+        Kubernetes has shifted networking tasks to the left, allowing developers to fully define their applications' networking topology. This includes creating "application firewalls" for network
         segmentation.
 
         This can be achieved in a few ways:
@@ -968,7 +968,7 @@ import Tabs from "@theme/Tabs";
         ![](./assets/kubernetes/security/network-policies.svg)
 
         In Kubernetes, a resource type known as `NetworkPolicy` acts as a custom firewall, setting rules for inbound and outbound network connections for Pods. These rules dictate which Pods can be
-        accessed and their connection points. The **Container Network Interface (CNI)** add-on, used by Kubernetes for internal networking, implements these rules. However, it’s important to note that
+        accessed and their connection points. The **Container Network Interface (CNI)** add-on, used by Kubernetes for internal networking, implements these rules. However, it's important to note that
         not
         all CNI plugins support `NetworkPolicies`.
 
@@ -987,10 +987,10 @@ import Tabs from "@theme/Tabs";
         **Network segment definition with labels**
 
         In Kubernetes, groups of Pods are defined using label selectors, which facilitate the creation of unique networking segments. This is advantageous because it allows developers, who have a deep
-        understanding of the application’s Pods and their communication patterns, to label the Pods appropriately. These labels can then be converted into `NetworkPolicies`, establishing clear network
+        understanding of the application's Pods and their communication patterns, to label the Pods appropriately. These labels can then be converted into `NetworkPolicies`, establishing clear network
         boundaries for an application with defined entry and exit points.
 
-        To segment the network using labels, it’s typical to label all Pods in the application with a unique app label. This label is then used in the `NetworkPolicy` selector to ensure that all Pods
+        To segment the network using labels, it's typical to label all Pods in the application with a unique app label. This label is then used in the `NetworkPolicy` selector to ensure that all Pods
         associated with the application are included in the policy.
 
         There are a few prevalent methods for consistently labeling workloads:
@@ -1005,11 +1005,11 @@ import Tabs from "@theme/Tabs";
         **Deny-all as default policy**
 
         In Kubernetes, the default setting for `NetworkPolicy` allows all incoming and outgoing traffic, which can be a potential issue if a Pod is overlooked or future Pods are added without the
-        necessary `NetworkPolicy`. To mitigate this, it’s advisable to implement a `deny-all` policy as a starting point.
+        necessary `NetworkPolicy`. To mitigate this, it's advisable to implement a `deny-all` policy as a starting point.
 
-        This policy essentially sets the list of permitted ingresses to an empty list (`[]`), effectively blocking all incoming traffic. It’s crucial to understand that an empty list is not the same
+        This policy essentially sets the list of permitted ingresses to an empty list (`[]`), effectively blocking all incoming traffic. It's crucial to understand that an empty list is not the same
         as
-        a list with a single empty element (`{}`). The latter matches everything, which is the complete opposite of what we’re trying to achieve with a `deny-allh` policy. This distinction is key in
+        a list with a single empty element (`{}`). The latter matches everything, which is the complete opposite of what we're trying to achieve with a `deny-allh` policy. This distinction is key in
         maintaining a secure and efficient Kubernetes environment.
 
         **Ingress**
@@ -1029,24 +1029,24 @@ import Tabs from "@theme/Tabs";
 
         ![](./assets/kubernetes/security/egress.svg)
 
-        When working with Kubernetes, it’s advisable to begin with a stringent policy. Although blocking all outgoing traffic may seem like a good idea, it’s not feasible because every Pod needs to
+        When working with Kubernetes, it's advisable to begin with a stringent policy. Although blocking all outgoing traffic may seem like a good idea, it's not feasible because every Pod needs to
         interact with Pods from the system namespace for DNS lookups.
 
         The `policyTypes` field in a `NetworkPolicy` is crucial as it determines the type of traffic the policy impacts. It can include Egress and/or Ingress elements, indicating which rules are part
         of
         the policy. The default value is decided based on whether the ingress and egress rule sections are present.
 
-        For an egress-only policy, you need to explicitly set `policyTypes` to `Egress`. If this isn’t done, it would imply an empty ingress rules set, effectively blocking all incoming traffic.
+        For an egress-only policy, you need to explicitly set `policyTypes` to `Egress`. If this isn't done, it would imply an empty ingress rules set, effectively blocking all incoming traffic.
 
         Selective activation of access to external IP addresses is possible for specific Pods that need network access outside the cluster. However, if you opt for stricter egress rules and also wish
-        to limit the internal egress traffic within the cluster, it’s crucial to always permit access to the DNS server in the kube-system namespace and the Kubernetes API server.
+        to limit the internal egress traffic within the cluster, it's crucial to always permit access to the DNS server in the kube-system namespace and the Kubernetes API server.
 
         **Authorization Policies**
 
         Kubernetes provides control over network traffic between Pods at the TCP/IP level. However, there might be situations where you need to manage network restrictions based on higher-level
         protocol parameters.
 
-        This requires a deep understanding of protocols like HTTP and the ability to inspect incoming and outgoing traffic. Unfortunately, Kubernetes doesn’t inherently support this feature.
+        This requires a deep understanding of protocols like HTTP and the ability to inspect incoming and outgoing traffic. Unfortunately, Kubernetes doesn't inherently support this feature.
 
         To overcome this, there are add-ons known as service meshes that extend Kubernetes to provide this advanced network control.
 
@@ -1069,17 +1069,17 @@ import Tabs from "@theme/Tabs";
         The `AuthorizationPolicy` can define network segments of an application that are independent and isolated from each other. It can also be used for application-level authorization when an
         identity check is added to the rules.
 
-        However, it’s crucial to understand that while `AuthorizationPolicy` is about application authorization, the Kubernetes RBAC model is about securing access to the Kubernetes API server.
+        However, it's crucial to understand that while `AuthorizationPolicy` is about application authorization, the Kubernetes RBAC model is about securing access to the Kubernetes API server.
       </TabItem>
       <TabItem value="security-secure-configuration" label="Secure Configuration">
         Applications often need to interact with external systems, necessitating authentication and secure credential storage. Kubernetes provides Secret resources for storing confidential data, but
-        these are merely Base64 encoded, not encrypted. Despite Kubernetes’ efforts to limit access to Secrets, they can be exposed when stored outside the cluster.
+        these are merely Base64 encoded, not encrypted. Despite Kubernetes' efforts to limit access to Secrets, they can be exposed when stored outside the cluster.
 
         The advent of GitOps, which involves storing configurations in remote Git repositories, introduces additional security risks. Secrets should never be stored unencrypted in remote repositories,
-        and the encryption and decryption process requires careful management. Even within a cluster, access to encrypted credentials isn’t entirely secure since the cluster administrator can access
+        and the encryption and decryption process requires careful management. Even within a cluster, access to encrypted credentials isn't entirely secure since the cluster administrator can access
         all data.
 
-        Trust levels can differ based on whether a 3rd-party operates the cluster or if it’s deployed on a company-wide platform. Depending on these trust boundaries and confidentiality needs,
+        Trust levels can differ based on whether a 3rd-party operates the cluster or if it's deployed on a company-wide platform. Depending on these trust boundaries and confidentiality needs,
         different solutions may be necessary.
 
         Two common approaches for secure configuration are:
@@ -1099,7 +1099,7 @@ import Tabs from "@theme/Tabs";
         external vaults
         - **Vault Sidecar Agent Injector**: Offers sidebar injections that shield from direct access to an SMS
 
-        However, it’s crucial to remember that if someone with malicious intent gains full root access to your cluster and containers, they can potentially access that data. The aim is to make these
+        However, it's crucial to remember that if someone with malicious intent gains full root access to your cluster and containers, they can potentially access that data. The aim is to make these
         kinds of exploits as challenging as possible by adding an extra layer on the Kubernetes Secret abstraction.
 
         **Out-of-Cluster Encryption**
@@ -1118,7 +1118,7 @@ import Tabs from "@theme/Tabs";
 
         The encryption employs `AES-256-GCM` symmetrically for a session key, and the session key is encrypted asymmetrically with `RSA-OAEP`, mirroring the approach used in TLS. The secret private
         key is
-        stored within the cluster and is automatically created by the `SealedSecret Operator`. However, it’s important to note that the administrator is responsible for backing up this key and
+        stored within the cluster and is automatically created by the `SealedSecret Operator`. However, it's important to note that the administrator is responsible for backing up this key and
         rotating
         it when necessary.
 
@@ -1142,7 +1142,7 @@ import Tabs from "@theme/Tabs";
 
         Unlike `SealedSecrets`, which requires you to handle the encrypted data storage, `ExternalSecrets` delegates the tasks of encryption, decryption, and secure persistence to an external SMS.
         This
-        approach allows you to utilize features provided by your cloud’s SMS, such as key rotation and a user-friendly interface.
+        approach allows you to utilize features provided by your cloud's SMS, such as key rotation and a user-friendly interface.
 
         This system promotes a separation of duties, allowing different roles to manage application deployments and secrets independently. It provides flexibility in defining how the external secret
         data maps to the content of the mirrored Secret. For example, you can use a template to create a configuration with a specific structure.
@@ -1156,8 +1156,8 @@ import Tabs from "@theme/Tabs";
 
         ![](./assets/kubernetes/security/sops.svg)
 
-        Sops is a versatile tool created by Mozilla. It’s designed to encrypt and decrypt any `YAML` or `JSON` file, making it safe to store these files in a source code repository. This is especially
-        handy in a GitOps environment where all resources are stored in a Git repository. Sops operates entirely outside of a Kubernetes cluster and doesn’t require any server-side component.
+        Sops is a versatile tool created by Mozilla. It's designed to encrypt and decrypt any `YAML` or `JSON` file, making it safe to store these files in a source code repository. This is especially
+        handy in a GitOps environment where all resources are stored in a Git repository. Sops operates entirely outside of a Kubernetes cluster and doesn't require any server-side component.
 
         The tool encrypts all values in a document, leaving the keys untouched. It supports various encryption methods:
 
@@ -1167,7 +1167,7 @@ import Tabs from "@theme/Tabs";
 
         Sops is a command-line interface (CLI) tool that can be run either locally on your machine or within a cluster (for instance, as part of a CI pipeline).
 
-        If you’re operating in one of the major clouds, integrating with their KMSs can provide seamless operation. This makes Sops an essential tool for those working with Kubernetes and other deep
+        If you're operating in one of the major clouds, integrating with their KMSs can provide seamless operation. This makes Sops an essential tool for those working with Kubernetes and other deep
         tech knowledge areas.
 
         **Secret Management Systems (SMSs) vs Key Management Systems (KMSs)**
@@ -1181,7 +1181,7 @@ import Tabs from "@theme/Tabs";
         of
         a KMS is the GnuPG keyserver.
 
-        Each leading cloud provider offers both SMSs and KMSs, and if you’re using one of the major cloud services, you’ll also benefit from good integration with its identity management for defining
+        Each leading cloud provider offers both SMSs and KMSs, and if you're using one of the major cloud services, you'll also benefit from good integration with its identity management for defining
         and assigning access rules to SMS- and KMS-managed data.
 
         **Centralized Secret Management**
@@ -1212,7 +1212,7 @@ import Tabs from "@theme/Tabs";
 
         While the setup for a CSI Secret Storage drive is complex, its usage is straightforward, and it allows you to avoid storing confidential data within Kubernetes.
 
-        However, there are more moving parts than with Secrets alone, so more things can go wrong, and it’s harder to troubleshoot.
+        However, there are more moving parts than with Secrets alone, so more things can go wrong, and it's harder to troubleshoot.
 
         **Pod injection**
 
@@ -1231,7 +1231,7 @@ import Tabs from "@theme/Tabs";
         once before the main container starts
         - **Sidecar**: A Sidecar syncs secret data from the SMS to a local ephemeral volume accessed by the application. This method allows for updating secrets locally if the SMS rotates them
 
-        **HashiCorp Vault Sidecar Agent Injector** implemented as a mutating webhook, it modifies any resource when it’s created based on specific vault-specific annotations in a Pod specification.
+        **HashiCorp Vault Sidecar Agent Injector** implemented as a mutating webhook, it modifies any resource when it's created based on specific vault-specific annotations in a Pod specification.
         This
         technique is entirely transparent to the user and has fewer moving parts than hooking up a CSI secret storage volume with the provider deployment for a particular SMS product.
       </TabItem>
@@ -1244,7 +1244,7 @@ import Tabs from "@theme/Tabs";
         - **Authorization (AuthZ)**: determining permissions for actions on resources
 
         Developers are typically more concerned with authorization, such as who can perform operations in the cluster and access specific parts of an application. Misconfigured access can lead to
-        privilege escalation and deployment failures, hence it’s crucial for developers to understand authorization rules set up by administrators.
+        privilege escalation and deployment failures, hence it's crucial for developers to understand authorization rules set up by administrators.
 
         Every request to the Kubernetes API server has to pass through a few stages :
 
@@ -1269,7 +1269,7 @@ import Tabs from "@theme/Tabs";
 
         - **Avoid wildcard permissions**: Follow the principle of least privilege when defining Roles and ClusterRoles
         - **Avoid cluster-admin ClusterRole**: High privileges can lead to severe security implications
-        - **Don’t automount ServiceAccount tokens**: If a Pod gets compromised, an attacker can talk with the API server with the permissions of the Pod’s associated `ServiceAccount`
+        - **Don't automount ServiceAccount tokens**: If a Pod gets compromised, an attacker can talk with the API server with the permissions of the Pod's associated `ServiceAccount`
 
         **Authentication**
 
@@ -1279,7 +1279,7 @@ import Tabs from "@theme/Tabs";
         in the
         Authorization header of their request, and the API Server validates the token to allow access
         - **Client certificates (X.509)**: The client presents a TLS certificate to the API Server, which is then validated and used to grant access
-        - **Authenticating Proxy**: This refers to using a custom authenticating proxy to verify the client’s identity before granting access to the API Server
+        - **Authenticating Proxy**: This refers to using a custom authenticating proxy to verify the client's identity before granting access to the API Server
         - **Static Token files**: Tokens can be stored in standard files and used for authentication. The client presents a token to the API Server, which is then used to look up the token file and
         search
         for a match
@@ -1289,7 +1289,7 @@ import Tabs from "@theme/Tabs";
 
         Kubernetes allows you to use multiple authentication plugins simultaneously, such as **Bearer Tokens** and **Client certificates**.
 
-        However, the order in which these strategies are evaluated is not fixed, so it’s impossible to know which one will be checked first. The process will stop after one is successful, and
+        However, the order in which these strategies are evaluated is not fixed, so it's impossible to know which one will be checked first. The process will stop after one is successful, and
         Kubernetes will forward the request to the next stage for authorization.
 
         **Authorization**
@@ -1329,7 +1329,7 @@ import Tabs from "@theme/Tabs";
 
         **Users**
 
-        In Kubernetes, human users are not defined as explicit resources in the Kubernetes API, meaning they can’t be managed via an API call.
+        In Kubernetes, human users are not defined as explicit resources in the Kubernetes API, meaning they can't be managed via an API call.
 
         Instead, authentication and mapping to a user subject are handled externally. After successful authentication, each component creates the same user representation and adds it to the actual API
         request for later verification.
@@ -1338,7 +1338,7 @@ import Tabs from "@theme/Tabs";
 
         This information is evaluated by the Authorization plugin against the authorization rules associated with the user or via its membership to a user group.
 
-        Certain usernames are reserved for internal Kubernetes use and have the special prefix `system:`. It’s recommended to avoid creating your own users or groups with the `system:` prefix to avoid
+        Certain usernames are reserved for internal Kubernetes use and have the special prefix `system:`. It's recommended to avoid creating your own users or groups with the `system:` prefix to avoid
         conflicts. While external user management can vary, workload identities for Pods are standardized as part of the Kubernetes API and are consistent across all clusters.
 
         **Service accounts**
@@ -1346,20 +1346,20 @@ import Tabs from "@theme/Tabs";
         In Kubernetes, service accounts represent non-human users within the cluster, enabling processes within a pod to interact with the Kubernetes API Server. These accounts are authenticated by
         the API server using a specific username format.
 
-        Every namespace includes a default service account that is used by any pod that doesn’t specify its own service account. Each of these accounts has an associated JWT, which is managed by
-        Kubernetes and automatically integrated into each pod’s filesystem.
+        Every namespace includes a default service account that is used by any pod that doesn't specify its own service account. Each of these accounts has an associated JWT, which is managed by
+        Kubernetes and automatically integrated into each pod's filesystem.
 
-        The service account token can be mapped directly into the pod’s filesystem, which enhances security by eliminating the need for an intermediate token representation and allowing for token
+        The service account token can be mapped directly into the pod's filesystem, which enhances security by eliminating the need for an intermediate token representation and allowing for token
         expiration times.
 
         Before the release of Kubernetes 1.24, these tokens were represented as secrets and had long lifetimes without rotation. However, with the introduction of the projected volume type, the token
-        is now only accessible to the pod and isn’t exposed as an additional resource.
+        is now only accessible to the pod and isn't exposed as an additional resource.
 
         The service account resource also includes fields for specifying credentials for pulling container images and defining mountable secrets. Image pull secrets enable workloads to authenticate
         with a private registry when pulling images.
 
         You can attach a pull secret directly to a service account in Kubernetes, which means that every pod associated with that service account will automatically include the pull secrets in its
-        specification when it’s created. This eliminates the need to manually include them each time a new pod is created.
+        specification when it's created. This eliminates the need to manually include them each time a new pod is created.
 
         Furthermore, you can specify which secrets a pod associated with a service account can mount using the secrets field in the service account resource. You can enforce this restriction by adding
         a specific annotation to the service account. If this annotation is set to true, only the listed secrets will be mountable by pods associated with the service account, enhancing security and
@@ -1374,7 +1374,7 @@ import Tabs from "@theme/Tabs";
         decode,
         validate, and inspect these tokens.
 
-        In Kubernetes, the API server verifies the JWT’s signature by comparing it with a public key published in a **JSON Web Key Set (JWKS)**, following the **JSON Web Key (JWK)** specification
+        In Kubernetes, the API server verifies the JWT's signature by comparing it with a public key published in a **JSON Web Key Set (JWKS)**, following the **JSON Web Key (JWK)** specification
         which
         defines the cryptographic algorithms used in the verification process.
 
@@ -1402,7 +1402,7 @@ import Tabs from "@theme/Tabs";
         its
         resources.
 
-        It’s crucial to understand that in Kubernetes **RBAC (Role-Based Access Control)**, there is a many-to-many relationship between subjects and Roles. This means a single subject can have
+        It's crucial to understand that in Kubernetes **RBAC (Role-Based Access Control)**, there is a many-to-many relationship between subjects and Roles. This means a single subject can have
         multiple
         Roles, and a single Role can be applied to multiple subjects. The relationship between a subject and a Role is established using a RoleBinding, which contains references to a list of subjects
         and a specific Role.
@@ -1435,7 +1435,7 @@ import Tabs from "@theme/Tabs";
 
         - **User**: Human or system authenticated by the API server. User entries have a fixed apiGroup value of `rbac.authorization.k8s.io`
         - **Group**: Group is a collection of users. The group entries also carry `rbac.authorization.k8s.io` as `apiGroup`
-        - **ServiceAccount**: Belong to the core API Group that is represented by an empty string (`""`). It’s unique in that it can also carry a namespace field, allowing you to grant access to Pods
+        - **ServiceAccount**: Belong to the core API Group that is represented by an empty string (`""`). It's unique in that it can also carry a namespace field, allowing you to grant access to Pods
         from
         other namespaces
 
@@ -1487,14 +1487,14 @@ import Tabs from "@theme/Tabs";
         `ClusterRoleBinding`, such as the `ClusterRole` `view-pod`, apply universally, allowing any Pod associated with a specific `ServiceAccount` (like `test-sa`) to read all Pods across all
         namespaces.
 
-        However, caution is advised when using `ClusterRoleBindings` due to their wide-ranging permissions across the entire cluster. It’s recommended to consider carefully whether using a
+        However, caution is advised when using `ClusterRoleBindings` due to their wide-ranging permissions across the entire cluster. It's recommended to consider carefully whether using a
         `ClusterRoleBinding` is necessary. While it may be convenient as it automatically grants permissions to newly created namespaces, using individual `RoleBindings` per namespace is generally
         better
         for more granular control over permissions. This allows for the omission of specific namespaces, such as `kube-system`, from unauthorized access.
 
         `ClusterRoleBindings` should be used only for administrative tasks, like managing cluster-wide resources (`Nodes`, `Namespaces`, `CustomResourceDefinitions`, or even `ClusterRoleBindings`).
         Despite its
-        power, Kubernetes RBAC can be complex to understand and even more complicated to debug. Therefore, it’s important to have a good understanding of a given RBAC setup.
+        power, Kubernetes RBAC can be complex to understand and even more complicated to debug. Therefore, it's important to have a good understanding of a given RBAC setup.
       </TabItem>
     </Tabs>
 
@@ -1506,7 +1506,7 @@ import Tabs from "@theme/Tabs";
 
         In Kubernetes, controllers are like diligent supervisors that constantly monitor and maintain resources to ensure they match the desired state. This process is known as state reconciliation.
 
-        Kubernetes uses a declarative resource-centric API. For example, when you want to scale up a Deployment, you don’t create new Pods directly. Instead, you change the Deployment resource’s
+        Kubernetes uses a declarative resource-centric API. For example, when you want to scale up a Deployment, you don't create new Pods directly. Instead, you change the Deployment resource's
         replicas property via the Kubernetes API to the desired number. Controllers then create new Pods in response to these changes.
 
         Kubernetes has built-in controllers that manage standard resources like `ReplicaSets`, `DaemonSets`, `StatefulSets`, `Deployments`, or `Services`. These controllers run on the control plane
@@ -1520,20 +1520,20 @@ import Tabs from "@theme/Tabs";
         A new generation of more sophisticated controllers called **Operators** manage the full application lifecycle and interact with **CustomResourceDefinitions (CRDs)**. They encapsulate complex
         application domain logic and use the Singleton Service pattern to prevent multiple controllers from acting on the same resources simultaneously.
 
-        Controllers can be written in any programming language by sending requests to the Kubernetes API Server. They extend Kubernetes’ resource management capabilities and are invisible to the
+        Controllers can be written in any programming language by sending requests to the Kubernetes API Server. They extend Kubernetes' resource management capabilities and are invisible to the
         cluster user.
 
         Controllers evaluate resource definitions and perform actions based on conditions. `Metadata` and `ConfigMaps` are suitable for monitoring and acting upon any field in the resource definition.
-        Labels, part of a resource’s metadata, can be watched by any controller. They are indexed in the backend database and can be efficiently searched for in queries.
+        Labels, part of a resource's metadata, can be watched by any controller. They are indexed in the backend database and can be efficiently searched for in queries.
 
         CRDs are favored over `ConfigMaps` for custom target state specifications. A Kubernetes controller observes `ConfigMap` changes and restarts Pods accordingly. It uses a hanging `GET` HTTP
         request to
-        monitor API Server events, checking if a changed `ConfigMap` carries an annotation. If so, it deletes all Pods matching the annotation’s selector.
+        monitor API Server events, checking if a changed `ConfigMap` carries an annotation. If so, it deletes all Pods matching the annotation's selector.
       </TabItem>
       <TabItem value="advanced-operator" label="Operator">
         ![](./assets/kubernetes/advanced/operator.svg)
 
-        In Kubernetes, an operator is a type of controller that uses a **CustomResourceDefinition (CRD)** to automate tasks for a specific application, thereby enhancing the platform’s capabilities.
+        In Kubernetes, an operator is a type of controller that uses a **CustomResourceDefinition (CRD)** to automate tasks for a specific application, thereby enhancing the platform's capabilities.
         When
         integrating new concepts like Prometheus for monitoring, we need additional domain objects. CRDs allow us to extend the Kubernetes API by adding custom resources to our cluster, which we can
         use as if they were native resources.
@@ -1552,7 +1552,7 @@ import Tabs from "@theme/Tabs";
         suitable for modeling custom domain logic that aligns with the declarative Kubernetes way of handling resources with reactive controllers.
 
         If your custom use case requires more flexibility in how custom resources can be implemented and persisted, a custom API Server may be a better choice. However, not all use cases are suitable
-        for Kubernetes extension points. If your use case is not declarative, if the data to manage does not fit into the Kubernetes resource model, or you don’t need a tight integration into the
+        for Kubernetes extension points. If your use case is not declarative, if the data to manage does not fit into the Kubernetes resource model, or you don't need a tight integration into the
         platform, it might be better to write your standalone API and expose it with a classical Service or Ingress object.
 
         **Controller and Operator Classification**
@@ -1564,7 +1564,7 @@ import Tabs from "@theme/Tabs";
         Prometheus
         operator to register specific Kubernetes Services to be scraped by a Prometheus server
 
-        If creating CRDs isn’t possible, consider using `ConfigMaps`. While this method doesn’t require cluster-admin rights, it lacks features like API Server level validation and support for API
+        If creating CRDs isn't possible, consider using `ConfigMaps`. While this method doesn't require cluster-admin rights, it lacks features like API Server level validation and support for API
         versioning.
 
         From an implementation perspective, the choice between using vanilla Kubernetes objects or custom resources managed by a controller is significant. For CRDs, we can use a schemaless approach
@@ -1586,7 +1586,7 @@ import Tabs from "@theme/Tabs";
 
         The **Operator Lifecycle Manager (OLM)** enables nonprivileged users to register CRDs and install their operators. Operators can be published on the Operator Hub, which extracts metadata from
         the
-        operator’s **ClusterServiceVersion (CSV)** and displays it in a user-friendly web interface.
+        operator's **ClusterServiceVersion (CSV)** and displays it in a user-friendly web interface.
 
         **Metacontroller**
 
@@ -1594,7 +1594,7 @@ import Tabs from "@theme/Tabs";
         running multiple controllers defined through Metacontroller-specific CRDs.
 
         In essence, Metacontroller is a delegating controller that calls out to a service providing the actual controller logic. It simplifies the definition of behavior for standard or custom
-        resources. When defining a controller through Metacontroller, you only need to provide a function containing your controller’s specific business logic.
+        resources. When defining a controller through Metacontroller, you only need to provide a function containing your controller's specific business logic.
 
         Metacontroller handles all interactions with the Kubernetes APIs, runs a reconciliation loop for you, and calls your function through a webhook. This webhook gets called with a payload
         describing the CRD event. The function then returns a definition of the Kubernetes resources to be created (or deleted) on behalf of our controller function.
@@ -1602,12 +1602,12 @@ import Tabs from "@theme/Tabs";
         This delegation allows functions to be written in any language that understands HTTP and JSON, without any dependency on the Kubernetes API or its client libraries. These functions can be
         hosted on Kubernetes, externally on a **Functions-as-a-Service (FaaS)** provider, or elsewhere.
 
-        Metacontroller is particularly useful for extending and customizing Kubernetes with simple automation or orchestration when no extra functionality is needed. It’s especially handy when you
+        Metacontroller is particularly useful for extending and customizing Kubernetes with simple automation or orchestration when no extra functionality is needed. It's especially handy when you
         want to implement your business logic in a language other than Go. Examples of controllers implemented using Metacontroller include `StatefulSet`, `Blue-Green Deployment`, `Indexed Job`, and
         `Service per Pod`.
       </TabItem>
       <TabItem value="advanced-elastic-scale" label="Elastic Scale">
-        Kubernetes’ Elastic Scale pattern enables multi-dimensional application scaling, including horizontal, vertical, and cluster scaling.
+        Kubernetes' Elastic Scale pattern enables multi-dimensional application scaling, including horizontal, vertical, and cluster scaling.
 
         This is particularly useful for workloads that fluctuate seasonally or over time. Kubernetes simplifies the process of determining the necessary resources for a container, the number of
         replicas for a service, and the number of nodes in a cluster. It can monitor external load and capacity-related events, analyze the current state, and self-adjust for optimal performance.
@@ -1644,7 +1644,7 @@ import Tabs from "@theme/Tabs";
 
         ![](./assets/kubernetes/advanced/hpa.svg)
 
-        **HPA** in Kubernetes can scale the number of Pods horizontally. However, it can’t scale down to 0 (zero) Pods. Add-ons like **Knative** and **KEDA** can provide this capability, turning
+        **HPA** in Kubernetes can scale the number of Pods horizontally. However, it can't scale down to 0 (zero) Pods. Add-ons like **Knative** and **KEDA** can provide this capability, turning
         Kubernetes
         into a
         serverless platform.
@@ -1691,7 +1691,7 @@ import Tabs from "@theme/Tabs";
 
         **KEDA**: Project by Microsoft and Red Hat, scales based on external metrics from different systems. It consists of the `KEDA Operator` and `Metrics` service. The `KEDA Operator` connects the
         scaled
-        target with an autoscale trigger that connects to an external system via a scaler. It also configures the HPA with the external metrics service provided by KEDA. KEDA’s autoscaling algorithm
+        target with an autoscale trigger that connects to an external system via a scaler. It also configures the HPA with the external metrics service provided by KEDA. KEDA's autoscaling algorithm
         distinguishes between 2 scenarios: activation by scaling from zero replicas to one, and scaling up and down when running. The central element for KEDA is the custom resource `ScaledObject`,
         which plays a similar role as the `HorizontalPodAutoscaler` resource. As soon as the KEDA operator detects a new instance of `ScaledObject`, it automatically creates a
         `HorizontalPodAutoscaler`
@@ -1705,7 +1705,7 @@ import Tabs from "@theme/Tabs";
 
         - **Push**: Autoscalers, like the one used in Knative, actively receive metrics from closely integrated systems. For instance, the Activator in Knative sends concurrent request metrics to the
         Autoscaler component. This type is typically employed for applications that are data recipients, such as those with HTTP endpoints
-        - **Pull**: Autoscalers actively fetch metrics either from the application itself or external sources. This is common when the metrics are stored externally or aren’t directly accessible to
+        - **Pull**: Autoscalers actively fetch metrics either from the application itself or external sources. This is common when the metrics are stored externally or aren't directly accessible to
         the
         autoscaler. KEDA is an example of this, scaling deployments based on factors like queue length in terms of events or messages. Pull autoscalers are generally suitable for applications that
         actively fetch their workload, such as pulling from a message queue
@@ -1729,9 +1729,9 @@ import Tabs from "@theme/Tabs";
         The CA performs a few operations:
 
         - **Scale-up**: adding new nodes to a cluster
-        - **Scale-down**: removing nodes from a cluster, ensuring service isn’t disrupted
+        - **Scale-down**: removing nodes from a cluster, ensuring service isn't disrupted
 
-        The **CA** manages the size of your cluster based on the workload. It scales down the cluster when a node is not needed, and scales it up when there’s an increase in load. To determine if a
+        The **CA** manages the size of your cluster based on the workload. It scales down the cluster when a node is not needed, and scales it up when there's an increase in load. To determine if a
         node
         can be scaled down, the CA checks if more than half of its capacity is unused and if all movable Pods on the node can be relocated to other nodes.
 
@@ -1746,13 +1746,13 @@ import Tabs from "@theme/Tabs";
 
         The first step in scaling is **Application Tuning**. This involves adjusting the application within the container to make the most of the resources available.
 
-        Techniques such as **Netflix’s Adaptive Concurrency Limits library** can be used for dynamic in-app autoscaling:
+        Techniques such as **Netflix's Adaptive Concurrency Limits library** can be used for dynamic in-app autoscaling:
 
         - **VPA**, which automates the process of determining and applying optimal resource requests and limits in containers based on actual usage. However, this may cause brief service disruptions
         as Pods
         need to be deleted and recreated
         - **HPA** is another method where the number of Pods is adjusted without altering their specifications. This is useful when you want to improve performance without changing the number of Pods
-        - **Cluster Autoscaler (CA)** provides flexibility at the cluster capacity level, expanding or reducing the cluster as needed. It operates independently of other scaling methods and doesn’t
+        - **Cluster Autoscaler (CA)** provides flexibility at the cluster capacity level, expanding or reducing the cluster as needed. It operates independently of other scaling methods and doesn't
         concern
         itself with why workload profiles are changing
 
@@ -1764,7 +1764,7 @@ import Tabs from "@theme/Tabs";
         Traditionally, container images are built outside the cluster, pushed to a registry, and then referenced in the Kubernetes Deployment descriptors. However, building within the cluster has
         several benefits such as lower maintenance costs, simplified capacity planning, and reduced platform resource overhead.
 
-        Kubernetes’ advanced scheduler is ideal for scheduling tasks like image building with **Continuous Integration (CI)** systems like Jenkins. This becomes particularly useful when transitioning
+        Kubernetes' advanced scheduler is ideal for scheduling tasks like image building with **Continuous Integration (CI)** systems like Jenkins. This becomes particularly useful when transitioning
         to
         **Continuous Delivery (CD)**, where the process moves from building images to running containers. Since both phases share the same infrastructure, having the build occur within the same
         cluster
@@ -1780,12 +1780,12 @@ import Tabs from "@theme/Tabs";
 
         - **Container Image Builders**: Creates container images within the cluster without needing privileged access. They can also run outside the cluster as CLI programs. Their main function is to
         create
-        a container image, but they don’t handle application redeployments
+        a container image, but they don't handle application redeployments
         - **Build Orchestration Tools**: Operates at a higher level of abstraction. They trigger the container image builder for creating images and support build-related tasks like updating
         deployment
         descriptors after an image has been built. CI/CD systems are typical examples of orchestrators
 
-        Building and running an application in the same cluster offers several benefits. For instance, OpenShift’s ImageStream triggers allow for better integration between build and deployment, a key
+        Building and running an application in the same cluster offers several benefits. For instance, OpenShift's ImageStream triggers allow for better integration between build and deployment, a key
         aspect of Continuous Deployment (CD).
 
         **Container Image Builder**
@@ -1801,7 +1801,7 @@ import Tabs from "@theme/Tabs";
         OCI-compliant
         images without a Docker daemon, creating images locally within the container before pushing them to an image registry
         - **Multilanguage Builders**: These are favored by developers who are more concerned about their application being packaged as container images rather than the process itself
-        However, Docker’s client-server architecture poses potential security risks as a daemon running in the background needs root privileges mainly for network and volume management reasons. This
+        However, Docker's client-server architecture poses potential security risks as a daemon running in the background needs root privileges mainly for network and volume management reasons. This
         could potentially allow untrusted processes to escape their container, giving an intruder control of the entire host.
 
         **Cloud Native Buildpacks (CNB)** is a unified platform supporting many programming platforms. Introduced by Heroku in 2012 and later adopted by Cloud Foundry, CNB became part of the **Cloud
@@ -1826,7 +1826,7 @@ import Tabs from "@theme/Tabs";
         and running
         buildpacks within a Kubernetes cluster.
 
-        **CNB** has been adopted by many platforms and projects as their preferred build platform, including **Knative Functions** and **OpenShift’s Source-to-Image (S2I)**. Specialized builders are
+        **CNB** has been adopted by many platforms and projects as their preferred build platform, including **Knative Functions** and **OpenShift's Source-to-Image (S2I)**. Specialized builders are
         also
         available for specific situations that perform a rootless build, creating the container image without running arbitrary commands as with a Dockerfile RUN directive.
 
@@ -1838,7 +1838,7 @@ import Tabs from "@theme/Tabs";
         - **ko**: A tool for creating images from Golang sources. It can create images directly from remote Git repositories and update Pod specifications to point to the image after it has been built
         and
         pushed to a registry
-        - **Apko**: A unique builder that uses Alpine’s Apk packages as building blocks instead of `Dockerfile` scripts. This strategy allows for easy reuse of building blocks when creating multiple
+        - **Apko**: A unique builder that uses Alpine's Apk packages as building blocks instead of `Dockerfile` scripts. This strategy allows for easy reuse of building blocks when creating multiple
         similar
         images
 
@@ -1893,7 +1893,7 @@ import Tabs from "@theme/Tabs";
 
         **S2I** is a robust mechanism for creating application images and is more secure than plain Docker builds because the build process is under full control of trusted builder images. However,
         **S2I**
-        can be slow for complex applications, especially when many dependencies need to be loaded. To mitigate this, it’s recommended to set up a cluster-internal Maven repository that serves as a
+        can be slow for complex applications, especially when many dependencies need to be loaded. To mitigate this, it's recommended to set up a cluster-internal Maven repository that serves as a
         cache or use incremental builds with **S2I**.
 
         A drawback of S2I is that the generated image also contains the whole build environment, increasing the size of the application image and potentially exposing vulnerabilities. To address this,

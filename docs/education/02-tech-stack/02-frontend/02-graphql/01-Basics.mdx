@@ -747,12 +747,12 @@ import Tabs from "@theme/Tabs";
                         <tr>
                             <td><b>Scalability</b></td>
                             <td>Scales effectively, but with potential bottlenecks in very high-load scenarios</td>
-                            <td>Highly scalable, leveraging Rust’s ability to manage resources efficiently under heavy traffic</td>
+                            <td>Highly scalable, leveraging Rust's ability to manage resources efficiently under heavy traffic</td>
                         </tr>
                         <tr>
                             <td><b>Memory Usage</b></td>
                             <td>Comparatively higher memory footprint due to Node.js overhead</td>
-                            <td>Lower memory usage due to Rust’s fine-grained memory management</td>
+                            <td>Lower memory usage due to Rust's fine-grained memory management</td>
                         </tr>
                         <tr>
                             <td><b>Customization</b></td>
@@ -767,12 +767,12 @@ import Tabs from "@theme/Tabs";
                         <tr>
                             <td><b>Concurrency Model</b></td>
                             <td>Single-threaded, event-driven (Node.js)</td>
-                            <td>Multi-threaded by default, leveraging Rust’s concurrency model for better utilization of CPU resources</td>
+                            <td>Multi-threaded by default, leveraging Rust's concurrency model for better utilization of CPU resources</td>
                         </tr>
                         <tr>
                             <td><b>Resource Efficiency</b></td>
                             <td>Moderate resource efficiency, subject to Node.js limitations</td>
-                            <td>High resource efficiency, using Rust’s optimized resource management</td>
+                            <td>High resource efficiency, using Rust's optimized resource management</td>
                         </tr>
                         <tr>
                             <td><b>Use Case</b></td>
@@ -1703,7 +1703,7 @@ import Tabs from "@theme/Tabs";
                 - **Entity Normalization**: break down complex entities into smaller, normalized types to allow reuse and easier resolution. Use references (IDs) and separate queries for resolving deeply nested data
                 - **Pagination and Limits**: implement pagination (edges and nodes) for nested lists to prevent overwhelming the server
                 - **Avoid N+1 Problem**: design resolvers with batching mechanisms (e.g., `DataLoader`) to mitigate N+1 query issues in nested relationships
-                - **Error Handling and Partial Responses**: ensure the schema can handle errors gracefully, especially in nested cases, by leveraging GraphQL’s error format for partial responses
+                - **Error Handling and Partial Responses**: ensure the schema can handle errors gracefully, especially in nested cases, by leveraging GraphQL's error format for partial responses
                 - **Client-Driven Design**: Focus on the specific needs of client applications. Prioritize functionality used by multiple clients, but avoid bloating the schema with features for a single client
                 - **Demand-Oriented**: Add functionalities gradually based on client requirements to lean and efficient schema
                 - **Evolvable Schema**: Design for future growth. Consider potential use cases and data needs that may arise

@@ -3,10 +3,9 @@ title: Basics
 description: "Recursion: Basics"
 ---
 
-
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
+import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
 
 import Go from "!!raw-loader!./assets/recursion/go.go";
 import Java from "!!raw-loader!./assets/recursion/java.java";
@@ -135,7 +134,7 @@ Memory is allocated on the stack for each function call, with each call having i
   <TabItem value="fibonacci" label="Fibonacci">
     ![](./assets/recursion/recursion.svg)
 
-    - **Mathematical formula**: `F(n) = F(n−1) + F(n−2)`
+    - **Mathematical formula**: `F(n) = F(n-1) + F(n-2)`
     - **Initial Call**: start with the initial call to `fibonacci(5)`
     - **Base Case Check**: function checks if the base case is met. In this case, if `n` is 0 or 1, the Fibonacci number is `n`. Since 5 is not 0 or 1, we proceed to the recursive case
     ```
@@ -180,7 +179,7 @@ Memory is allocated on the stack for each function call, with each call having i
 
   </TabItem>
   <TabItem value="factorial" label="Factorial">
-    - **Mathematical formula**: `n! = n * (n−1) * (n−2) * … * 2 * 1`
+    - **Mathematical formula**: `n! = n * (n-1) * (n-2) * … * 2 * 1`
     - **Initial Call**: `factorial(5)`
     - **Base Case Check**: function checks if the base case is met. In this case, if `n` is 0 or 1, the factorial is 1. Since 5 is not 0 or 1, we proceed to the recursive case
     ```

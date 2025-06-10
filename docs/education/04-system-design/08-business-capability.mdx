@@ -3,3 +3,386 @@ title: Business Capability
 description: Business Capability Design Patterns
 hide_table_of_contents: true
 ---
+
+import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
+
+# Business Capability
+
+<Tabs queryString="primary">
+  <TabItem value="bcm-overview" label="Overview">
+
+    **Glossary**
+
+    - **Business Capability**: represents an organization's core competency, or
+    what it's able to do to achieve strategic goals. It's a combination of
+    people, processes, and technology that enables the organization to perform a
+    specific task or function, essentially the "what" an organization can do.
+    These capabilities are independent of the organization's structure,
+    processes, and technology, and are the building blocks of the organization's
+    strategy
+    - **Business Capability Map**: visual representation that depicts
+    the core functions or capabilities a business possesses and how they
+    contribute to achieving its strategic goals. It provides a high-level
+    understanding of what an organization can do and how its capabilities are
+    structured
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Business Capabilities</th>
+                <th>Business Processes</th>
+                <th>Value Streams</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Perspective</b></td>
+                <td>Represent the organization's perspective of their own internal abilities and competencies</td>
+                <td>Represent the key stakeholders' perspectives of their operational activities and workflows</td>
+                <td>Represent the customer's perspective and the flow of value creation</td>
+            </tr>
+            <tr>
+                <td><b>Level of Abstraction</b></td>
+                <td>High or mid-level view of organizational abilities</td>
+                <td>High-level, mid-level, or detailed operational view of specific activities</td>
+                <td>High-level, end-to-end view of the business</td>
+            </tr>
+            <tr>
+                <td><b>Purpose</b></td>
+                <td>Used for strategic planning, capability gap analysis, and resource allocation</td>
+                <td>Can be used in conjunction with or as an alternative to capabilities and have similar purposes such as strategic planning, capability gap analysis, and resource allocation. Also used for operational improvement, automation, and compliance</td>
+                <td>Used for strategic analysis, optimization, and customer-centric transformation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    ```mermaid
+    graph LR
+        A@{ shape: sm-circ }-->|organized activity with defined goal and distinct timeframe| projects(IT Projects and Initiatives)
+        projects -->|self-contained function that delivers a specific business outcome| services(Business Services)
+        services -->|series of logically linked activities and tasks that collectively accomplish the goal. It may also define the guideines, tools, timetrames, information exchanged on how the stakeholders interact with each other to add valut at each step along the activity| processes(Business Processes / Value Streams)
+        processes -->|defines 'What a business does' and not 'Why' or 'How'. Business Capability mapping is structuring the functional capabilities of a business in a hierarchical fashion| capability(Business Capability)
+        capability -->|method, approach or plan of action which may include how organizational resources, skills, tools and stakeholders across value chain may be aligned and optimized to achieve desired result or reach a goal. This may also include the business case and business model| strategy(Strategy)
+        strategy -->|aspirational statement of where the organization or business unit would lie to be in near-term or long-term| vision(Vision)
+    ```
+
+    **Benefits**
+
+    - **Improving Strategic Planning**: align investments with strategic goals by showing strengths and weaknesses
+    - **Aligning Business Units**: create a common language that breaks down silos and improves collaboration
+    - **Identifying Gaps**: reveal deficiencies where new technology, staff, or processes are needed
+    - **Streamlining Processes**: uncover redundancies, leading to reduced costs and better ROI
+    - **Mitigating Risk**: highlight underdeveloped capabilities that pose a threat to critical functions
+    - **Enhancing Communication**: provide a shared vocabulary to bridge the gap between business and IT
+
+  </TabItem>
+  <TabItem value="bcm-components" label="Components">
+    <table className="text_vertical">
+        <thead>
+            <tr>
+            <th>Component</th>
+            <th>Description</th>
+            <th>Purpose and Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Capabilities</b></td>
+                <td>The fundamental, high-level abilities a business must possess to deliver value (e.g., "Customer Relationship Management," "Order Fulfillment"). These are often verb/noun combinations focusing on functional and operational divisions. They are defined independently of how they are achieved, focusing on the 'what'</td>
+                <td>Form the core building blocks of the business, providing a stable, abstract view of organizational functions</td>
+            </tr>
+            <tr>
+                <td><b>Levels</b></td>
+                <td>A hierarchical organization (e.g., Level 1: Foundation, Level 2: Capability Group, Level 3: Business Capability) to provide increasing detail and granularity. Organizations typically use 7-10 capabilities at the highest level and often one or two levels of sub-capabilities</td>
+                <td>Enables a structured, layered understanding, from broad strategic functions to specific operational activities, without overcomplicating the hierarchy</td>
+            </tr>
+            <tr>
+                <td><b>Relationships</b></td>
+                <td>Illustrates how different capabilities interact, depend on each other, or share resources</td>
+                <td>Helps identify areas for collaboration, shared resources, and potential interdependencies that could lead to bottlenecks or efficiencies</td>
+            </tr>
+            <tr>
+                <td><b>Maturity</b></td>
+                <td>An assessment of how well-developed a capability is within the organization. This is often visualized using heatmaps (e.g., green-yellow-red traffic light, "hot" for high change, "cold" for no change). Heatmaps can also highlight other criteria like market differentiation, data quality issues, or investment needs</td>
+                <td>Provides a quick visual assessment of the current state, enabling strategic prioritization of areas requiring change, investment, or improvement</td>
+            </tr>
+            <tr>
+                <td><b>Importance</b></td>
+                <td>The strategic relevance of each capability to the organization's overarching goals and competitive advantage</td>
+                <td>Guides resource allocation and investment decisions, ensuring focus on critical capabilities that drive business success</td>
+            </tr>
+            <tr>
+                <td><b>Resources</b></td>
+                <td>The people (with their roles and skills), technology (applications, IT infrastructure), information, and other assets required to support each capability</td>
+                <td>Identifies potential gaps, areas for investment, and dependencies on specific resources, including domain experts</td>
+            </tr>
+            <tr>
+                <td><b>Performance</b></td>
+                <td>Metrics used to assess how well each capability is performing, based on criteria like efficiency, effectiveness, or customer satisfaction</td>
+                <td>Enables objective evaluation of capabilities, informing decisions on optimization and improvement</td>
+            </tr>
+            <tr>
+                <td><b>Governance and Ownership</b></td>
+                <td>Clear assignment of responsibility for a capability's execution, ongoing performance, maintenance, and optimization to specific individuals or teams</td>
+                <td>Ensures accountability and effective capacity management, aligning capabilities with business objectives and responsible parties</td>
+            </tr>
+            <tr>
+                <td><b>Interdependencies</b></td>
+                <td>Explicitly shows how capabilities influence or rely on one another</td>
+                <td>Crucial for identifying gaps in critical areas that could cause bottlenecks or inefficiencies if not properly aligned</td>
+            </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="bcm-context-mapping" label="Context Mapping">
+    <table>
+        <thead>
+            <tr>
+            <th>Pattern</th>
+            <th>Description</th>
+            <th>Implications for Distributed Enterprises</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Partnership</b></td>
+                <td>Two teams in a symbiotic relationship, where their success or failure is interdependent. This necessitates coordinated planning of development and joint management of integration efforts</td>
+                <td>Fosters deep collaboration and shared objectives between teams responsible for tightly coupled Bounded Contexts, ensuring mutual understanding and alignment</td>
+            </tr>
+            <tr>
+                <td><b>Shared Kernel</b></td>
+                <td>An explicitly defined, small subset of the domain model that two or more teams agree to share and collaboratively evolve. The key is to keep this kernel minimal to avoid excessive coupling</td>
+                <td>Promotes consistency for core, shared concepts while allowing independent evolution for other parts of the domain. Requires strong governance over the shared kernel</td>
+            </tr>
+            <tr>
+                <td><b>Customer/Supplier Development</b></td>
+                <td>Establishes a clear upstream-downstream relationship between two teams. The upstream team (supplier) provides a model or service that the downstream team (customer) consumes. The customer team can influence the supplier's roadmap</td>
+                <td>Defines clear dependencies and responsibilities, enabling downstream teams to plan based on upstream deliverables. Requires effective communication channels for feedback and requirements</td>
+            </tr>
+            <tr>
+                <td><b>Conformist</b></td>
+                <td>The downstream team chooses to conform to the upstream team's model, adopting its Ubiquitous Language and design. This simplifies integration by eliminating translation complexity but means the downstream team accepts the upstream model as is, without influence</td>
+                <td>Useful when the upstream system is mature and stable, or when the downstream team lacks the resources or influence to customize. Can lead to suboptimal models if the upstream model is not ideal for the downstream context</td>
+            </tr>
+            <tr>
+                <td><b>Anticorruption Layer (ACL)</b></td>
+                <td>An isolating layer created by the downstream system to translate between its own domain model and the upstream system's model. This prevents "contamination" of the downstream model by the quirks or inconsistencies of the upstream system</td>
+                <td>Essential for integrating with legacy systems or third-party services, protecting the integrity of the new domain model. Adds complexity due to the translation layer but provides strong decoupling</td>
+            </tr>
+            <tr>
+                <td><b>Open-Host Service</b></td>
+                <td>A protocol that provides access to a subsystem as a set of services, allowing many other subsystems to integrate without requiring custom translations for each integration</td>
+                <td>Promotes broad interoperability and reusability of services, particularly useful when one Bounded Context needs to expose its functionality to numerous consumers</td>
+            </tr>
+            <tr>
+                <td><b>Published Language</b></td>
+                <td>A well-documented, shared language (e.g., industry-standard data interchange formats) used as a common communication medium between contexts</td>
+                <td>Facilitates standardized communication and data exchange between disparate systems, reducing the need for custom integration logic</td>
+            </tr>
+            <tr>
+                <td><b>Separate Ways</b></td>
+                <td>Two Bounded Contexts have no direct connection, allowing developers to find simple, specialized solutions within their small scope without concern for external impact</td>
+                <td>Ideal for truly independent subdomains, minimizing coordination overhead and maximizing team autonomy</td>
+            </tr>
+            <tr>
+                <td><b>Big Ball of Mud</b></td>
+                <td>A boundary drawn around an existing, unstructured system where no clear internal boundaries can be found. This pattern acknowledges the reality of highly coupled legacy systems</td>
+                <td>A pragmatic approach for dealing with complex legacy systems, recognizing that immediate, full decomposition may not be feasible. Often a starting point for incremental modernization</td>
+            </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="bcm-techniques" label="Techniques">
+    <table className="text_vertical">
+        <thead>
+            <tr>
+            <th>Technique</th>
+            <th>Description</th>
+            <th>Process</th>
+            <th>Best Practices</th>
+            <th>Use Cases</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td><b>Straw-based</b></td>
+            <td>Building a business capability map from internal data, starting from scratch</td>
+            <td>
+                <ul>
+                <li>Gather all available internal organizational data (e.g., departmental reports, process documentation, existing system inventories)</li>
+                <li>Identify core functions and activities performed within the organization</li>
+                <li>Map these functions to initial capability definitions</li>
+                <li>Analyze internal data to understand current performance and resource allocation for each capability</li>
+                <li>Identify gaps in internal data and areas requiring external validation</li>
+                <li>Integrate external market data and industry benchmarks to assess the potential and competitive landscape of identified capabilities</li>
+                <li>Refine and iterate on the capability map based on both internal and external insights</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Ensure comprehensive collection of internal data</li>
+                <li>Clearly define the scope of the internal data collection</li>
+                <li>Be prepared to seek out and integrate external market and industry data</li>
+                <li>Iterate frequently to refine the map</li>
+                <li>Involve various internal stakeholders to gather diverse perspectives</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Organizations with limited prior capability mapping experience</li>
+                <li>Companies undergoing significant internal restructuring</li>
+                <li>Situations where a deeply internal view of capabilities is required before external alignment</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td><b>Whiteboard</b></td>
+            <td>Shaping a business capability map around customer needs by leveraging industry trends and examples</td>
+            <td>
+                <ul>
+                <li>Research current industry trends, best practices, and competitor business models</li>
+                <li>Analyze customer journeys and pain points to understand their needs and expectations</li>
+                <li>Brainstorm potential capabilities that address identified customer needs and align with industry benchmarks</li>
+                <li>Sketch out the initial capability map on a whiteboard, focusing on customer-centricity</li>
+                <li>Categorize and group related capabilities</li>
+                <li>Validate the proposed capabilities against customer feedback and market demands</li>
+                <li>Refine the map collaboratively with key stakeholders</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Prioritize customer needs as the central focus</li>
+                <li>Continuously monitor industry trends and competitor strategies</li>
+                <li>Encourage open and collaborative brainstorming sessions</li>
+                <li>Use visual aids effectively on the whiteboard</li>
+                <li>Seek external validation from customers or market research</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Businesses looking to become more customer-centric</li>
+                <li>Organizations in rapidly evolving industries</li>
+                <li>Companies seeking to innovate their business model based on external market opportunities</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td><b>Top-down</b></td>
+            <td>Senior stakeholders define high-level capabilities, which are then broken down into more detailed levels</td>
+            <td>
+                <ul>
+                <li>Convene senior leadership and key stakeholders to define the overarching strategic goals and objectives of the organization</li>
+                <li>Identify the highest-level business capabilities required to achieve these strategic goals (e.g., "Customer Relationship Management," "Product Development")</li>
+                <li>For each high-level capability, senior stakeholders decompose it into more detailed sub-capabilities</li>
+                <li>Continue the decomposition process iteratively until capabilities are defined at a manageable and actionable level</li>
+                <li>Validate the alignment of lower-level capabilities with the initial high-level definitions and strategic objectives</li>
+                <li>Document and communicate the hierarchical capability map to the broader organization</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Ensure strong alignment with organizational strategy</li>
+                <li>Secure active participation and consensus from senior leadership</li>
+                <li>Clearly define the scope and boundaries of each capability level</li>
+                <li>Maintain consistency in decomposition logic</li>
+                <li>Communicate the rationale behind capability definitions to the wider organization</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Organizations with clear strategic direction and strong leadership</li>
+                <li>Situations requiring a high-level overview of capabilities before detailed planning</li>
+                <li>Enterprises undergoing significant strategic transformation</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td><b>Bottom-up</b></td>
+            <td>Defining business capabilities at the task level, a more time-intensive approach</td>
+            <td>
+                <ul>
+                <li>Identify and document individual tasks and activities performed across the organization</li>
+                <li>Group related tasks into logical processes or functions</li>
+                <li>Aggregate these processes/functions into more abstract, higher-level capabilities</li>
+                <li>Continue to synthesize and consolidate capabilities upward until a comprehensive map is formed</li>
+                <li>Analyze the current state of tasks and processes to identify potential redundancies or inefficiencies</li>
+                <li>Validate the derived capabilities with process owners and subject matter experts</li>
+                <li>Refine the capability definitions based on detailed operational insights</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Allocate sufficient time and resources for this detailed approach</li>
+                <li>Ensure thorough documentation of all tasks and activities</li>
+                <li>Involve employees at all levels who perform the daily tasks</li>
+                <li>Be prepared to manage a large amount of detailed information</li>
+                <li>Regularly validate and refine findings with operational teams</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Organizations seeking a highly detailed and granular understanding of their capabilities</li>
+                <li>Companies looking to optimize operational efficiency and identify process improvements</li>
+                <li>Situations where a deep understanding of current operational reality is critical</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td><b>Event Storming</b></td>
+            <td>A collaborative workshop method for exploring and modeling complex business domains, primarily using sticky notes on a large surface to visualize the flow of events and interactions</td>
+            <td>
+                <ul>
+                <li>Gather team: Assemble a diverse team of stakeholders, experts, and developers</li>
+                <li>Set up: Use a large wall or a virtual whiteboard (like Miro/Mural)</li>
+                <li>Brainstorm events: Chronologically map out past domain events on orange notes</li>
+                <li>Add detail: Introduce commands (blue), systems (pink), users (yellow), and policies (grey) that relate to the events</li>
+                <li>Group: Cluster related items into aggregates (tan) and circle larger Bounded Contexts</li>
+                <li>Mark problems: Use red notes to flag areas of confusion or disagreement for later review</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Ensure a diverse and engaged group of participants</li>
+                <li>Maintain a strong focus on domain events as the starting point</li>
+                <li>Encourage open communication and active participation</li>
+                <li>Use consistent color-coding for different elements</li>
+                <li>Don't shy away from flagging problems or areas of uncertainty</li>
+                <li>Limit the duration of individual sessions to maintain focus</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                <li>Understanding complex business domains quickly</li>
+                <li>Identifying key events and processes in a system</li>
+                <li>Preparing for Domain-Driven Design (DDD) initiatives</li>
+                <li>Facilitating communication between business and technical teams</li>
+                <li>Uncovering hidden assumptions and inconsistencies in business processes</li>
+                </ul>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+
+  </TabItem>
+  <TabItem value="bcm-guidelines" label="Gudelines">
+  
+    - **Focus on Outcomes**: Define what a capability is in terms of the outcomes it achieves, rather than how those outcomes are produced
+    - **Unique Intent**: Ensure that each capability is unique in its intent or purpose. There should be no ambiguity about what a specific capability aims to accomplish
+    - **Single Instance**: A capability should exist once only within the organization. This prevents redundancy and ensures a single source of truth for each capability
+    - **Avoid Overgeneralization**: Do not overgeneralize the business when defining capabilities. Be specific enough to accurately reflect the business's unique functions
+    - **Business-Centric Language**: Use language and terminology that is appropriate and understood by the business stakeholders, avoiding technical jargon
+    - **Define All Capabilities** (Ignore 80/20 Rule - Pareto Principle, suggests that roughly 80% of outcomes or effects come from 20% of the causes or inputs. This principle is often used in business to focus efforts on the most impactful activities and resources): If a Subject Matter Expert (SME) states that a task is rarely performed, still define it as a capability. The 80/20 rule doesn't apply here; a comprehensive map requires all capabilities
+    - **Complete Business Description**: Your business's highest-level capabilities should provide a complete description of what your business does. Consider making your categories reflect key aspects of day-to-day operations for an accurate portrayal
+    - **Non-Overlapping Capabilities**: You'll know you have good, non-overlapping capabilities when you can assign Level 2 capabilities without any confusion or debate
+    - **Noun-Based Naming**: A capability is expressed as a noun (e.g., "Customer Management"), in contrast to a process, which is expressed as a verb (e.g., "Manage Customer")
+    - **Stability Over Time**: Well-defined business capabilities don't change much over time, regardless of organizational shifts. The only exception is a substantial update to the organization's strategy
+    - **Avoid Redundant Naming**: Avoid using the word "capability" at any level of the capability name itself (e.g., not "Customer Management Capability," just "Customer Management")
+    - **Focus on Business Objects**: Focus on business objects as they provide a natural focal point for defining capabilities (e.g., "Product," "Customer," "Order")
+    - **Organizational Structure Agnostic**: Don't stress too much about business units. Capabilities should stay the same and operate independently of the organization's current structure
+    - **Maintain Appropriate Depth**: If you go too deep, the audience will be overwhelmed. Maintain a three-level distance between the highest level and the most detailed level for an accurate portrayal of your organization's breadth of capabilities, which is usually sufficient for IT landscape mapping
+    - **Involve Strategy Stakeholders**: When developing your map, include those who define the strategies. When defining your company's capabilities at the top level, consider strategy as a primary factor
+  
+  </TabItem>
+</Tabs>
